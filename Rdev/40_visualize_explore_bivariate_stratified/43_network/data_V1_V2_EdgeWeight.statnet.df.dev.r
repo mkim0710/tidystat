@@ -20,13 +20,13 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet =
     termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% asNetwork
 save(termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet, file = "data/termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet.rda")
 
-## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) -----  
+## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1, give.attr = TRUE) -----  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% network.size #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() |> str(max.level = 1) #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() |> str(max.level = 1, give.attr = TRUE) #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1, give.attr = TRUE) #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2, give.attr = TRUE) #----
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet #----  
 #  Network attributes:
 #   vertices = 21 
@@ -140,7 +140,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #---
 # [208,]   19   20
 # [209,]   19   21
 # [210,]   20   21
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() |> str(max.level = 1) #----  
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 5
 #  $ mel:List of 210
 #  $ gal:List of 10
@@ -148,7 +148,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #---
 #  $ iel:List of 21
 #  $ oel:List of 21
 #  - attr(*, "class")= chr "summary.network"
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) #----  
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 5
 #  $ mel:List of 210
 #  $ gal:List of 7
@@ -156,7 +156,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #---
 #  $ iel:List of 21
 #  $ oel:List of 21
 #  - attr(*, "class")= chr "network"
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #----  
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2, give.attr = TRUE) #----  
 # List of 5
 #  $ mel:List of 210
 #   ..$ :List of 3

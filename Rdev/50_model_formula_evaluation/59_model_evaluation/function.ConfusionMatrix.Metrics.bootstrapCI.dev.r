@@ -405,12 +405,12 @@ Sys.time() - .t0
 
 
 
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1, give.attr = TRUE) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1, give.attr = TRUE) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1, give.attr = TRUE) #----
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) |> as.matrix() |> str() #-----
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) |> as.matrix() #-----
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1) #----  
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 1000
 #  $ :List of 6
 #  $ :List of 6
@@ -419,7 +419,7 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 #   [list output truncated]
 #  - attr(*, "InputSquareMatrix.tbl")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #  - attr(*, "InputSquareMatrix.tbl.ConfusionMatrix.Metrics")=List of 6
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1) #----  
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 6
 #  $ InputSquareMatrix.tbl:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #  $ ConfusionLongFormat1 :Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
@@ -435,7 +435,7 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 #   ..- attr(*, "groups")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2 obs. of  2 variables:
 #   .. ..- attr(*, ".drop")= logi TRUE
 #  $ Metrics              :'data.frame':	21 obs. of  7 variables:
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1) #----  
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1, give.attr = TRUE) #----  
 # 'data.frame':	21 obs. of  7 variables:
 #  $ rowname     : chr  "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #  $ equation    : chr  NA NA "True Negative = (Predicted == FALSE) & (Actual == FALSE)" "False Negative = (Predicted == FALSE) & (Actual == TRUE)" ...

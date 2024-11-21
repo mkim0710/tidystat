@@ -161,7 +161,7 @@ data.ccwc = function(
     # if (!identical( sort(as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical))), 0:1 )) {
     #     print("!identical( sort(as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical))), 0:1 )")
     #     out = list()
-    #     attr(out, "error.message0") = "!identical( sort(as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical))), 0:1 )"  # attr() is shown with str(max.level = 1)
+    #     attr(out, "error.message0") = "!identical( sort(as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical))), 0:1 )"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
     # }
     if (length(unique(.mydata[[varname4event]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical)), 0:1 ))
         print("length(unique(.mydata[[varname4event]]) < 2")
@@ -175,7 +175,7 @@ data.ccwc = function(
             , is.Ctrl.Candidate = NA
             , is.assigned = NA
         )
-        attr(out, "error.message") = "length(unique(.mydata[[varname4event]])) < 2"  # attr() is shown with str(max.level = 1)
+        attr(out, "error.message") = "length(unique(.mydata[[varname4event]])) < 2"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
         
         # if (add_Table1_pre_post == T) {
         #     out$Table1_pre = NA
@@ -198,7 +198,7 @@ data.ccwc = function(
             , is.assigned = F
         )
         .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == T) %>% select(.exit_age) |> unlist() |> unname() |> unique() |> sort()
-        # Browse[2]> .event.exit_age.unique.sort |> str()
+        # Browse[2]> .event.exit_age.unique.sort |> str(max.level = 2, give.attr = TRUE)
         # num 14790
         # print(paste0(".event.exit_age.unique.sort: ", deparse(.event.exit_age.unique.sort) ))
         incomplete = 0
@@ -219,7 +219,7 @@ data.ccwc = function(
                 which.Case = which({ ({ .mydata.ccwc[[".exit_age"]] == .event.exit_age.unique.sort[i] }) & .mydata.ccwc[[".event"]] == T & .mydata.ccwc$is.assigned == F })  # this case may have already been assigned as control
             }  # debug 180516
 
-            # Browse[2]> which.Case |> str()
+            # Browse[2]> which.Case |> str(max.level = 2, give.attr = TRUE)
             # int 2
             if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
             if (length(which.Case) == 0) {
@@ -235,7 +235,7 @@ data.ccwc = function(
                 # Q) why (t.entry<=tf)?
 
                 which.Ctrl.Candidate = which({ .mydata.ccwc$is.Ctrl.Candidate == T & (.mydata.ccwc[[".entry_age"]] <= .event.exit_age.unique.sort[i]) & (.mydata.ccwc[[".exit_age"]] >= .event.exit_age.unique.sort[i]) })
-                # which.Ctrl.Candidate |> str()
+                # which.Ctrl.Candidate |> str(max.level = 2, give.attr = TRUE)
                 # print(.mydata.ccwc[c(which.Case, which.Ctrl.Candidate), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
                 if(print.process == T) print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
 				
@@ -312,7 +312,7 @@ data.ccwc = function(
     attr(out$data, ".origin") = varname4origin
     attr(out$data, ".MatchingRatio") = .MatchingRatio
     attr(out$data, "apply.na.omit") = apply.na.omit
-    # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1)
+    # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     attr(out, "function.input") = list(
         Call = match.call(expand.dots = TRUE)
         , fun = data.ccwc
@@ -323,7 +323,7 @@ data.ccwc = function(
         , .MatchingRatio = .MatchingRatio
         , apply.na.omit = apply.na.omit
         , apply.function.dichotomous2logical = apply.function.dichotomous2logical
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     if(is.data.frame(out$data)) {
         # outdataRowNum_original = NULL
         out$data$RowNum_after_na.omit = NULL
@@ -368,8 +368,8 @@ mycohort_1strata_tie |> as_tibble()
 # 12             322        38       49 FALSE Driver|>2750 KCals
 
 
-mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) |> str(max.level = 1) #----
-# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) |> str(max.level = 1) #----  
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) |> str(max.level = 1, give.attr = TRUE) #----
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) |> str(max.level = 1, give.attr = TRUE) #----  
 # [1] "*** 1-th iteration for .event.exit_age.unique.sort: 42"
 # [1] "which.Case: 1L"
 # [1] "which.Ctrl.Candidate: c(10L, 12L)"
@@ -423,11 +423,11 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #   ..- attr(*, "apply.na.omit")= logi FALSE
 #  - attr(*, "function.input")=List of 9
 
-mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) |> str(max.level = 1)
-mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) |> str(max.level = 1)
+mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) |> str(max.level = 1, give.attr = TRUE)
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) |> str(max.level = 1, give.attr = TRUE)
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% {.[c(2, 1, 3)]}
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F)
-# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) |> str(max.level = 1)
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) |> str(max.level = 1, give.attr = TRUE)
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
 # [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
@@ -898,7 +898,7 @@ data.strata_list = function(
     attr(out, "function.input") = list(
         data.strata_list = data.strata_list
         , .vars4strata = .vars4strata
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     out
 }
 
@@ -930,10 +930,10 @@ diet |> as_tibble()
 # # ... with 327 more rows
 
 diet.strata_list = diet %>% data.strata_list(.vars4strata = c("job", "energy.grp"), paste.collapse = "|")
-diet.strata_list |> str(max.level = 1)
+diet.strata_list |> str(max.level = 1, give.attr = TRUE)
 diet.strata_list[[1]]
 # > diet.strata_list = diet %>% data.strata_list(.vars4strata = c("job", "energy.grp"), paste.collapse = "|")
-# > diet.strata_list |> str(max.level = 1)
+# > diet.strata_list |> str(max.level = 1, give.attr = TRUE)
 # List of 6
 #  $ Bank worker|<=2750 KCals:Classes ??tbl_df??, ??tbl?? and 'data.frame':	68 obs. of  20 variables:
 #  $ Bank worker|>2750 KCals :Classes ??tbl_df??, ??tbl?? and 'data.frame':	83 obs. of  20 variables:
@@ -1110,7 +1110,7 @@ f_df.stratified.ccwc = function(
         , varname4exit = varname4exit
         , .MatchingRatio = .MatchingRatio
         , apply.na.omit = apply.na.omit
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     out$data$RowNum_original = out$data$RowNum_original_before_strata  # these are not unique numbers d/t stratified map
     out$data$RowNum_original_before_strata  = NULL
     out$data$RowNum_after_na.omit = NULL  # these are not unique numbers d/t stratified map

@@ -616,10 +616,10 @@ f_path.list_subpath.BreathFirstSearch(getwd()) |> as.list() |> str() #----
 # __________|------  
 # @@ END-----  
 
-f_path.list_subpath(VERBOSE = T) |> str()
-f_path.list_subpath(VERBOSE = T, BreadthFirstSearch = T) |> str()
-f_path.list_subpath(getwd()) |> str()
-# > f_path.list_subpath(VERBOSE = T) |> str()
+f_path.list_subpath(VERBOSE = T) |> str(max.level = 2, give.attr = TRUE)
+f_path.list_subpath(VERBOSE = T, BreadthFirstSearch = T) |> str(max.level = 2, give.attr = TRUE)
+f_path.list_subpath(getwd()) |> str(max.level = 2, give.attr = TRUE)
+# > f_path.list_subpath(VERBOSE = T) |> str(max.level = 2, give.attr = TRUE)
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -631,7 +631,7 @@ f_path.list_subpath(getwd()) |> str()
 # Structure of the final list of subpaths at the top level:
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
-# > f_path.list_subpath(VERBOSE = T, BreadthFirstSearch = T) |> str()
+# > f_path.list_subpath(VERBOSE = T, BreadthFirstSearch = T) |> str(max.level = 2, give.attr = TRUE)
 # Processing:  .  at depth  0 
 # Queue length:  0 
 # Processing:  ./-info  at depth  1 
@@ -760,6 +760,6 @@ f_path.list_subpath(getwd()) |> str()
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
 # NULL
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
-# > f_path.list_subpath(getwd()) |> str()
+# > f_path.list_subpath(getwd()) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:62] "D:/OneDrive/[][Rproject]/github_tidystat" "D:/OneDrive/[][Rproject]/github_tidystat/-info" "D:/OneDrive/[][Rproject]/github_tidystat/-tmp" ...
 

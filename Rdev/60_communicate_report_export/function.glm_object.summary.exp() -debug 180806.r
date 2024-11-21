@@ -109,8 +109,8 @@ data.svydesign.svyglm_binomial_Depressed = svyglm(Depressed ~ SSQ_5_6_adequate *
 
 
 
-data.svydesign.svyglm_binomial_Depressed |> str(max.level = 1)
-# > data.svydesign.svyglm_binomial_Depressed |> str(max.level = 1)
+data.svydesign.svyglm_binomial_Depressed |> str(max.level = 1, give.attr = TRUE)
+# > data.svydesign.svyglm_binomial_Depressed |> str(max.level = 1, give.attr = TRUE)
 # List of 34
 #  $ coefficients     : Named num [1:20] -0.33 -1.399 -0.71 0.7 -0.238 ...
 #   ..- attr(*, "names")= chr [1:20] "(Intercept)" "SSQ_5_6_adequateTRUE" "US_BORN2: Other" "GENDER2: Female" ...

@@ -313,16 +313,16 @@ print(named_vector_custom)
 value_options <- "ValueA=LabelA, ValueB=LabelB"
 
 str_split(value_options, ", ") %>% 
-  unlist() %>% str
+  unlist() |> str(max.level = 2, give.attr = TRUE)
 
 str_split(value_options, ", ") %>% 
   unlist() %>% 
-  str_split("=") %>% str
+  str_split("=") |> str(max.level = 2, give.attr = TRUE)
 
 str_split(value_options, ", ") %>% 
   unlist() %>% 
   str_split("=") %>% 
-  map(~ set_names(.x[1], .x[2])) %>% str
+  map(~ set_names(.x[1], .x[2])) |> str(max.level = 2, give.attr = TRUE)
 
 # Create the named vector using tidyverse functions
 named_vector <- str_split(value_options, ", ") %>% 
@@ -472,7 +472,7 @@ NameValuePair_separator = ","
 Name_Value_separator = "="
 chrNameValuePairs <- "ValueA = LabelA, ValueB = LabelB"
 
-chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% str
+chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() %>% str  # ***
 
@@ -481,9 +481,9 @@ vec.NameValuePair <- chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePai
 
 cat("    ________________________________________________________________________    \n")
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))) %>% str
+vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))) |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*")) %>% unlist()) %>% str
+vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*")) %>% unlist()) |> str(max.level = 2, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*")) %>% str  # ***
 

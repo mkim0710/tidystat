@@ -541,7 +541,7 @@ convert_unicode_numbers <- function(input_text) {
   return(unicode_df)
 }
 
-convert_unicode_numbers() %>% str
+convert_unicode_numbers() |> str(max.level = 2, give.attr = TRUE)
 convert_unicode_numbers() %>% as_tibble
 ```
   

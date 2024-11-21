@@ -37,19 +37,19 @@ if (is.null(colnames(input_matrix))) {
     colnames(input_matrix) = paste0("C", 1:ncol(input_matrix))
 }
 input_matrix
-input_matrix %>% str
+input_matrix |> str(max.level = 2, give.attr = TRUE)
 # > input_matrix
 #    C1     C2     C3    
 # R1 "R1C1" "R1C2" "R1C3"
 # R2 "R2C1" "R2C2" "R2C3"
-# > input_matrix %>% str
+# > input_matrix |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:2, 1:3] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:2] "R1" "R2"
 #   ..$ : chr [1:3] "C1" "C2" "C3"
 
-input_matrix %>% as.data.frame %>% map(as.list) %>% map(set_names, rownames(input_matrix)) %>% str
-# > input_matrix %>% as.data.frame %>% map(as.list) %>% map(set_names, rownames(input_matrix)) %>% str
+input_matrix %>% as.data.frame %>% map(as.list) %>% map(set_names, rownames(input_matrix)) |> str(max.level = 2, give.attr = TRUE)
+# > input_matrix %>% as.data.frame %>% map(as.list) %>% map(set_names, rownames(input_matrix)) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ C1:List of 2
 #   ..$ R1: chr "R1C1"
@@ -83,9 +83,9 @@ f_matrix.to_list_list = function(input_matrix = outer(1:2, 1:3, function(i, j) {
     out_list_list
 }
 
-input_matrix %>% f_matrix.to_list_list %>% str
-input_matrix %>% f_matrix.to_list_list(type = "list_list[[indexRow]][[indexColumn]]") %>% str
-# > input_matrix %>% f_matrix.to_list_list %>% str
+input_matrix %>% f_matrix.to_list_list |> str(max.level = 2, give.attr = TRUE)
+input_matrix %>% f_matrix.to_list_list(type = "list_list[[indexRow]][[indexColumn]]") |> str(max.level = 2, give.attr = TRUE)
+# > input_matrix %>% f_matrix.to_list_list |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ C1:List of 2
 #   ..$ R1: chr "R1C1"
@@ -96,7 +96,7 @@ input_matrix %>% f_matrix.to_list_list(type = "list_list[[indexRow]][[indexColum
 #  $ C3:List of 2
 #   ..$ R1: chr "R1C3"
 #   ..$ R2: chr "R2C3"
-# > input_matrix %>% f_matrix.to_list_list(type = "list_list[[indexRow]][[indexColumn]]") %>% str
+# > input_matrix %>% f_matrix.to_list_list(type = "list_list[[indexRow]][[indexColumn]]") |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ R1:List of 3
 #   ..$ C1: chr "R1C1"

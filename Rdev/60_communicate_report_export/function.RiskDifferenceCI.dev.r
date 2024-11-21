@@ -379,9 +379,9 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
-    {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str()
+    {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str(max.level = 2, give.attr = TRUE)
 # > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
-# +     {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str()
+# +     {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str(max.level = 2, give.attr = TRUE)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr  "1.43 (0.38, 5.44)" "1.00 (0.61, 1.66)" "1.03 (0.61, 1.74)" "0.00 (0.00, NaN)" ...
 #  $ OddsRatio (95% CI) %.3f     : chr  "1.431 (0.376, 5.441)" "1.004 (0.607, 1.661)" "1.029 (0.609, 1.737)" "0.000 (0.000, NaN)" ...

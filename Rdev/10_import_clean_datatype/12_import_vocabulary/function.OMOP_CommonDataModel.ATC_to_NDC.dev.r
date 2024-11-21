@@ -3,9 +3,9 @@
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ATC_RxNorm_NDC = readRDS("ATC_RxNorm_NDC.rds")
-ATC_RxNorm_NDC |> str(max.level = 1) #-----
+ATC_RxNorm_NDC |> str(max.level = 1, give.attr = TRUE) #-----
 ATC_RxNorm_NDC |> str() #-----
-# > ATC_RxNorm_NDC |> str(max.level = 1) #-----  
+# > ATC_RxNorm_NDC |> str(max.level = 1, give.attr = TRUE) #-----  
 # List of 9
 #  $ CONCEPT             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #  $ CONCEPT_ANCESTOR    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1807275 obs. of  4 variables:

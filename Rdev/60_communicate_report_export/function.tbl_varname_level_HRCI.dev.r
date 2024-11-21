@@ -125,12 +125,12 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # 
     # #@ object.coxph$formula |> str() ----
-    # object.coxph$formula |> str()
-    # object.coxph$formula |> as.list() |> str()
-    # # > object.coxph$formula |> str()
+    # object.coxph$formula |> str(max.level = 2, give.attr = TRUE)
+    # object.coxph$formula |> as.list() |> str(max.level = 2, give.attr = TRUE)
+    # # > object.coxph$formula |> str(max.level = 2, give.attr = TRUE)
     # # Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
     # #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-    # # > object.coxph$formula |> as.list() |> str()
+    # # > object.coxph$formula |> as.list() |> str(max.level = 2, give.attr = TRUE)
     # # List of 3
     # #  $ : symbol ~
     # #  $ : language Surv(time = fuduration_yr, event = evnttrth_C24_r)
@@ -139,11 +139,11 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
     # 
     # #@ object.coxph$terms |> str() ----
-    # object.coxph$terms |> str()
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # object.coxph$terms |> str(max.level = 2, give.attr = TRUE)
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str(max.level = 2, give.attr = TRUE)
     # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
     # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
-    # # > object.coxph$terms |> str()
+    # # > object.coxph$terms |> str(max.level = 2, give.attr = TRUE)
     # # Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
     # #   ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
     # #   ..- attr(*, "factors")= int [1:8, 1:7] 0 1 0 0 0 0 0 0 0 0 ...
@@ -162,7 +162,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #   ..- attr(*, "predvars")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
     # #   ..- attr(*, "dataClasses")= Named chr [1:8] "nmatrix.2" "numeric" "factor" "logical" ...
     # #   .. ..- attr(*, "names")= chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str(max.level = 2, give.attr = TRUE)
     # # List of 2
     # #  $ CigaretteCurrentSmoker  : chr [1:2] "FALSE" "TRUE"
     # #  $ pmhx_DM_OR_glucose_ge126: chr [1:2] "FALSE" "TRUE"
@@ -173,9 +173,9 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # 
     # 
-    # #@ object.coxph$xlevels |> str(max.level = 1) ----
-    # object.coxph$xlevels |> str(max.level = 1)
-    # # > object.coxph$xlevels |> str(max.level = 1)
+    # #@ object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE) ----
+    # object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE)
+    # # > object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE)
     # # List of 3
     # #  $ SEX                        : chr [1:2] "Male" "Female"
     # #  $ BMI_Q_yr                   : chr [1:5] "0-" "18.5-" "23-" "25-" ...
@@ -183,16 +183,16 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # 
     # 
-    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
-    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
+    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str(max.level = 2, give.attr = TRUE)
+    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str(max.level = 2, give.attr = TRUE)
     # # # List of 5
     # # #  $ SEcoQ4                : logi [1:2] FALSE TRUE
     # # #  $ Disability_Any        : logi [1:2] FALSE TRUE
     # # #  $ CigaretteCurrentSmoker: logi [1:2] FALSE TRUE
     # # #  $ Drink_ge3pwk          : logi [1:2] FALSE TRUE
     # # #  $ Excercise_ge3pwk      : logi [1:2] FALSE TRUE
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str(max.level = 2, give.attr = TRUE)
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str(max.level = 2, give.attr = TRUE)
     # # List of 5
     # #  $ SEcoQ4                : chr [1:2] "FALSE" "TRUE"
     # #  $ Disability_Any        : chr [1:2] "FALSE" "TRUE"
@@ -208,7 +208,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # structure(list(), .Names = character(0))
     
     # degub 200222 for strata(MatchingPairID) -----
-#     Browse[2]> object.coxph$xlevels |> str()
+#     Browse[2]> object.coxph$xlevels |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ MatchingPairID        : chr [1:683] "Female|40-|SEcoQ1|Level 1-2_NA" "Female|40-|SEcoQ1|Level 3-6_NA" "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" ...
 #  $ strata(MatchingPairID): chr [1:587] "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" "Female|40-|SEcoQ1|None_3" "Female|40-|SEcoQ1|None_4" ...
@@ -291,7 +291,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 6 total_ddd_yr_NSAID.dyd   NA    total_ddd_yr_NSAID.dyd         0.0245
     # 
     # 
-    # Browse[1]> list_levels |> str()
+    # Browse[1]> list_levels |> str(max.level = 2, give.attr = TRUE)
     #  list()
     # Browse[1]> list_levels |> dput()
     # list()
@@ -392,7 +392,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     #     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     # res1[c("exp(coef)", "lower .95", "upper .95")] %>%
     #     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    # res1[c("exp(coef)", "lower .95", "upper .95")] |> str()
+    # res1[c("exp(coef)", "lower .95", "upper .95")] |> str(max.level = 2, give.attr = TRUE)
     # res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
     #     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     # # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
@@ -506,7 +506,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # > tbl_varname_level_coefficients_res |> names() |> dput()
     # # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
-    # # txt |> str_extract_all("[A-Za-z0-9_]+") |> str()
+    # # txt |> str_extract_all("[A-Za-z0-9_]+") |> str(max.level = 2, give.attr = TRUE)
     # # txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
     # # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     
@@ -522,8 +522,8 @@ name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1)
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1)
+analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -559,10 +559,10 @@ data_list.cut.coxph_list.HRCI =
             '!is.list(list_object.coxph)'
         }
     })
-data_list.cut.coxph_list.HRCI |> str(max.level = 1)
-data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med |> str(max.level = 1)
-data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` |> str(max.level = 1)
-# > data_list.cut.coxph_list.HRCI |> str(max.level = 1)
+data_list.cut.coxph_list.HRCI |> str(max.level = 1, give.attr = TRUE)
+data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med |> str(max.level = 1, give.attr = TRUE)
+data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` |> str(max.level = 1, give.attr = TRUE)
+# > data_list.cut.coxph_list.HRCI |> str(max.level = 1, give.attr = TRUE)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -571,14 +571,14 @@ data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Beh
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :List of 5
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:List of 5
 #  $ function.tbl_varname_level_coefHR                                : chr "!is.list(list_object.coxph)"
-# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med |> str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med |> str(max.level = 1, give.attr = TRUE)
 # List of 5
 #  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	36 obs. of  11 variables:
 #  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  11 variables:
 #  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	42 obs. of  11 variables:
 #  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44 obs. of  11 variables:
-# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` |> str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` |> str(max.level = 1, give.attr = TRUE)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ varname     : chr  "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" ...
 #  $ level       : chr  "[0,0.001)" "[0.001,30)" "[30,365)" "[365,730)" ...
@@ -617,10 +617,10 @@ name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-data_list.cut.coxph_list.HRCI |> str(max.level = 1)
-data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) |> str(max.level = 1)
-data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact |> str(max.level = 1)
-# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) |> str(max.level = 1)
+data_list.cut.coxph_list.HRCI |> str(max.level = 1, give.attr = TRUE)
+data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) |> str(max.level = 1, give.attr = TRUE)
+data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact |> str(max.level = 1, give.attr = TRUE)
+# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) |> str(max.level = 1, give.attr = TRUE)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
@@ -629,7 +629,7 @@ data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4Main
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ function.tbl_varname_level_coefHR                                : logi NA
-# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact |> str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact |> str(max.level = 1, give.attr = TRUE)
 # List of 6
 #  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:

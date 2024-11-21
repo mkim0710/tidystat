@@ -1357,7 +1357,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
             .objectname <- deparse(substitute(.object))
             if (.objectname == ".") {
                 warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe(), "  \n", immediate. = TRUE)
-                # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(.object, parent.frame(n = n)))}) %>% str()
+                # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(.object, parent.frame(n = n)))}) |> str(max.level = 2, give.attr = TRUE)
                 if (VERBOSE) 0:sys.nframe() %>% set_names() %>% map(function(n) { ls(envir = sys.frame(which = n)) }) %>% dput()
                 # message('-> Trying: ','deparse(substitute(.object, parent.frame(n = 2)))')
                 # .objectname <- deparse(substitute(.object, parent.frame(n = 2)))

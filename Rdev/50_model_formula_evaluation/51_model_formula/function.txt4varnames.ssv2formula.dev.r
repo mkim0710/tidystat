@@ -86,16 +86,16 @@ txt |> str_extract_all("[A-Za-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = 
 
 ## @ txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"' -----  
 txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"'
-txt |> str_extract_all("[A-Za-z0-9_]+") |> str()
-txt |> str_extract_all("[A-Za-z0-9_]+") |> paste0(collapse = ', ') |> str()
-txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') |> str()
+txt |> str_extract_all("[A-Za-z0-9_]+") |> str(max.level = 2, give.attr = TRUE)
+txt |> str_extract_all("[A-Za-z0-9_]+") |> paste0(collapse = ', ') |> str(max.level = 2, give.attr = TRUE)
+txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') |> str(max.level = 2, give.attr = TRUE)
 txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
-# > txt |> str_extract_all("[A-Za-z0-9_]+") |> str()
+# > txt |> str_extract_all("[A-Za-z0-9_]+") |> str(max.level = 2, give.attr = TRUE)
 # List of 1
 # $ : chr [1:13] "varname" "level" "varnamelevel" "coefficients" ...
-# > txt |> str_extract_all("[A-Za-z0-9_]+") |> paste0(collapse = ', ') |> str()
+# > txt |> str_extract_all("[A-Za-z0-9_]+") |> paste0(collapse = ', ') |> str(max.level = 2, give.attr = TRUE)
 # chr "c(\"varname\", \"level\", \"varnamelevel\", \"coefficients\", \"exp\", \"coef\", \"lower\", \"95\", \"upper\", "| __truncated__
-# > txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') |> str()
+# > txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') |> str(max.level = 2, give.attr = TRUE)
 # chr "varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR"
 # > txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
 # select(varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR)

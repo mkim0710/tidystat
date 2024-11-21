@@ -10,7 +10,7 @@ explain_code(c("43410", "43491"), short_code = TRUE)
 
 
 c("43410", "43491") %>% explain_code |> str() #----
-# > c("43410", "43491") %>% explain_code |> str()
+# > c("43410", "43491") %>% explain_code |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:2] "Cerebral embolism without mention of cerebral infarction" ...
 
 

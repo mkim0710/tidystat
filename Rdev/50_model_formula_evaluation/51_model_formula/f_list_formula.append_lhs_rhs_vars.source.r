@@ -157,7 +157,7 @@ env1$f$f_list_formula.append_lhs_rhs_vars = function(list_formula) {
     # .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
-    # MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+    # MetaData$ModelList$time2event |> str(max.level = 2, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE

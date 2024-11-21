@@ -308,10 +308,10 @@ list_vec = list("2^20" = c(b = 1048576, Kb = 1024, Mb = 1, Gb = 0.0009765625, Tb
 # #  9 1.05e-3 1.07e+0 1.10e 3 1   e-3 1   e+0 1   e+ 3
 # # 10 1.05e-6 1.07e-3 1.10e 0 1   e-6 1   e-3 1   e+ 0
 
-do.call(rbind, list_vec) %>% str
+do.call(rbind, list_vec) |> str(max.level = 2, give.attr = TRUE)
 do.call(rbind, list_vec)
 do.call(rbind, list_vec) %>% as_tibble(rownames = "rowname")
-# > do.call(rbind, list_vec) %>% str
+# > do.call(rbind, list_vec) |> str(max.level = 2, give.attr = TRUE)
 #  num [1:6, 1:10] 1.05e+06 1.07e+09 1.10e+12 1.00e+06 1.00e+09 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:6] "2^20" "2^30" "2^40" "10^6" ...
@@ -448,9 +448,9 @@ f_objectsize_unit.create = function(objectsize = 1 * 1024^2, objectsize_unit = c
 }
 
 
-1 %>% f_objectsize_unit.create("kB") %>% str()
+1 %>% f_objectsize_unit.create("kB") |> str(max.level = 2, give.attr = TRUE)
 1 %>% f_objectsize_unit.create("kB") %>% object.size()
-# > 1 %>% f_objectsize_unit.create("kB") %>% str()
+# > 1 %>% f_objectsize_unit.create("kB") |> str(max.level = 2, give.attr = TRUE)
 # Warning: length(objectsize_standard) > 1  --> objectsize_standard[1] will be used.
 # Warning: c("B", "kB", "MB", "GB", "TB", "PB", "kB") could be either "legacy" or "SI" units.  Defaulting to "legacy" units.
 #  num [1:125] 0 0 0 0 0 0 0 0 0 0 ...
@@ -460,9 +460,9 @@ f_objectsize_unit.create = function(objectsize = 1 * 1024^2, objectsize_unit = c
 # 1048 bytes
 
 
-"1 kB" %>% f_objectsize_unit.create() %>% str()
+"1 kB" %>% f_objectsize_unit.create() |> str(max.level = 2, give.attr = TRUE)
 "1 kB" %>% f_objectsize_unit.create() %>% object.size()
-# > "1 kB" %>% f_objectsize_unit.create() %>% str()
+# > "1 kB" %>% f_objectsize_unit.create() |> str(max.level = 2, give.attr = TRUE)
 # Warning: is.character(objectsize)  -->  attempting to deparse into `numeric unit`
 # objectsize =  1 
 # objectsize_unit =  "kB" 

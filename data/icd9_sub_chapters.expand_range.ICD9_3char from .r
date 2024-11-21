@@ -301,16 +301,16 @@ icd9_map_quan_deyo |> str() #----
 # 
 # 
 # 
-# icd9_chapters |> str()
+# icd9_chapters |> str(max.level = 2, give.attr = TRUE)
 # 
 # ?icd:::expand_range.icd9
 # ?icd::guess_short
-# icd9_chapters$Neoplasms |> str()
+# icd9_chapters$Neoplasms |> str(max.level = 2, give.attr = TRUE)
 # 
-# icd9_chapters$Neoplasms %>% {icd:::expand_range.icd9(.[1], .[2])} |> str()
-# icd9_chapters$`Injury And Poisoning` %>% {icd:::expand_range.icd9(.[1], .[2])} |> str()
-# icd9_chapters$`Supplementary Classification Of Factors Influencing Health Status And Contact With Health Services` %>% {icd:::expand_range.icd9(.[1], .[2])} |> str()
-# icd9_chapters$`Supplementary Classification Of External Causes Of Injury And Poisoning` %>% {icd:::expand_range.icd9(.[1], .[2])} |> str()
+# icd9_chapters$Neoplasms %>% {icd:::expand_range.icd9(.[1], .[2])} |> str(max.level = 2, give.attr = TRUE)
+# icd9_chapters$`Injury And Poisoning` %>% {icd:::expand_range.icd9(.[1], .[2])} |> str(max.level = 2, give.attr = TRUE)
+# icd9_chapters$`Supplementary Classification Of Factors Influencing Health Status And Contact With Health Services` %>% {icd:::expand_range.icd9(.[1], .[2])} |> str(max.level = 2, give.attr = TRUE)
+# icd9_chapters$`Supplementary Classification Of External Causes Of Injury And Poisoning` %>% {icd:::expand_range.icd9(.[1], .[2])} |> str(max.level = 2, give.attr = TRUE)
 # 
 # 
 # is_defined("V01")

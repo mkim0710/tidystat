@@ -96,7 +96,7 @@ c(
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tlmgr_installed_packages <- tinytex::tlmgr(c('info', '--list', '--only-installed'), stdout = TRUE)
 # tlmgr info --list --only-installed
-.tlmgr_installed_packages |> str()
+.tlmgr_installed_packages |> str(max.level = 2, give.attr = TRUE)
 .tlmgr_installed_packages |> env1$f$f_vec.dput_line_by_line()
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

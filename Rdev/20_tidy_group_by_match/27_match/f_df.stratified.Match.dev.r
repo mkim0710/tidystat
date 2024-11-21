@@ -226,7 +226,7 @@ data.strata_list = function(
     attr(out, "function.input") = list(
         data.strata_list = data.strata_list
         , .vars4strata = .vars4strata
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     out
 }
 
@@ -253,9 +253,9 @@ rhc_mydata |> as_tibble()
 # # ... with 5,725 more rows
 # %>% map(seq_along(.), function(i) {df = .[[i]]; names(df)[1] = names(.)[i]; t(df)})
 rhc_mydata.strata_list = rhc_mydata %>% data.strata_list(.vars4strata = c("female", "age.cut"))
-rhc_mydata.strata_list |> str(max.level = 1)
+rhc_mydata.strata_list |> str(max.level = 1, give.attr = TRUE)
 rhc_mydata.strata_list[[1]]
-# > rhc_mydata.strata_list |> str(max.level = 1)
+# > rhc_mydata.strata_list |> str(max.level = 1, give.attr = TRUE)
 # List of 20
 #  $ 0_[10,20)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	22 obs. of  15 variables:
 #  $ 0_[100,Inf]:Classes ??tbl_df??, ??tbl?? and 'data.frame':	1 obs. of  15 variables:
@@ -440,13 +440,13 @@ data.Match = function(
     if (!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )) {
         print("!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )")
         out = list()
-        attr(out, "error.message0") = "!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )"  # attr() is shown with str(max.level = 1)
+        attr(out, "error.message0") = "!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
     }
     if (length(unique(.mydata[[.exposure]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical)), 0:1 ))
         print("length(unique(.mydata[[.exposure]]) < 2")
         # out = list()
         out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
-        attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
+        attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
         
         # if (add_Table1_pre_post == T) {
         #     out$Table1_pre = NA
@@ -520,7 +520,7 @@ data.Match = function(
                 print("length(.mydata.Match$index.treated) == 0")
                 # out = list()
                 out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
-                attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
+                attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
             } else {
                 
                 
@@ -576,7 +576,7 @@ data.Match = function(
     attr(out$data, ".exposure") = .exposure
     attr(out$data, ".MatchingRatio") = .MatchingRatio
     attr(out$data, "apply.na.omit") = apply.na.omit
-    # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1)
+    # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     attr(out, "function.input") = list(
         Call = match.call(expand.dots = TRUE)
         , data.Match = data.Match
@@ -589,7 +589,7 @@ data.Match = function(
         , propensity_score_matching = propensity_score_matching
         , propensity_score_matching_weight = propensity_score_matching_weight
         , apply.function.dichotomous2logical = apply.function.dichotomous2logical
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     if(is.data.frame(out$data)) {
         # outdataRowNum_original = NULL
         out$data$RowNum_after_na.omit = NULL
@@ -622,9 +622,9 @@ rhc_mydata.Match = rhc_mydata %>% data.Match(
     , .exposure = "treatment"
     , .MatchingRatio = 5
 )
-rhc_mydata.Match |> str(max.level = 1)
+rhc_mydata.Match |> str(max.level = 1, give.attr = TRUE)
 rhc_mydata.Match %>% attr("function.input") |> str()  #----
-# > rhc_mydata.Match |> str(max.level = 1)
+# > rhc_mydata.Match |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -704,13 +704,13 @@ rhc_mydata.Match_propensity_score = rhc_mydata %>% data.Match(
     , .MatchingRatio = 5
     , propensity_score_matching = T
 )
-rhc_mydata.Match_propensity_score |> str(max.level = 1)
-# rhc_mydata.Match_propensity_score %>% attr("function.input") |> str()
+rhc_mydata.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
+# rhc_mydata.Match_propensity_score %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # rhc_mydata.Match_propensity_score$Table1_pre |> print(smd = T)
 rhc_mydata.Match_propensity_score$Table1_post_total |> print(smd = T)  # ----
 # rhc_mydata.Match_propensity_score$Table1_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
 rhc_mydata.Match_propensity_score$data
-# > rhc_mydata.Match_propensity_score |> str(max.level = 1)
+# > rhc_mydata.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -723,7 +723,7 @@ rhc_mydata.Match_propensity_score$data
 #   ..- attr(*, "class")= chr "tableone"
 #  $ Table1_post_i    :List of 5
 #  - attr(*, "function.input")=List of 5
-# > rhc_mydata.Match_propensity_score %>% attr("function.input") |> str()
+# > rhc_mydata.Match_propensity_score %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 #     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
@@ -771,13 +771,13 @@ rhc_mydata.Match_propensity_score_matching_weight = rhc_mydata %>% data.Match(
     , .MatchingRatio = 5
     , propensity_score_matching_weight = T
 )
-rhc_mydata.Match_propensity_score_matching_weight |> str(max.level = 1)
-# rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") |> str()
+rhc_mydata.Match_propensity_score_matching_weight |> str(max.level = 1, give.attr = TRUE)
+# rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # rhc_mydata.Match_propensity_score_matching_weight$Table1_pre |> print(smd = T)
 rhc_mydata.Match_propensity_score_matching_weight$Table1_post_total |> print(smd = T)  # ----
 rhc_mydata.Match_propensity_score_matching_weight$Table1_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
 rhc_mydata.Match_propensity_score_matching_weight$data
-# > rhc_mydata.Match_propensity_score_matching_weight |> str(max.level = 1)
+# > rhc_mydata.Match_propensity_score_matching_weight |> str(max.level = 1, give.attr = TRUE)
 # List of 3
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -790,7 +790,7 @@ rhc_mydata.Match_propensity_score_matching_weight$data
 #  $ Table1_post_total:List of 3
 #   ..- attr(*, "class")= chr [1:2] "svyTable1" "tableone"
 #  - attr(*, "function.input")=List of 5
-# > rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") |> str()
+# > rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 #     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
@@ -838,8 +838,8 @@ rhc_mydata.Match_propensity_score_caliper.2 = rhc_mydata %>% data.Match(
     , caliper = 0.2
     , propensity_score_matching = T
 )
-rhc_mydata.Match_propensity_score_caliper.2 |> str(max.level = 1)
-# rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") |> str()
+rhc_mydata.Match_propensity_score_caliper.2 |> str(max.level = 1, give.attr = TRUE)
+# rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # rhc_mydata.Match_propensity_score_caliper.2$Table1_pre |> print(smd = T)
 rhc_mydata.Match_propensity_score_caliper.2$Table1_post_total |> print(smd = T)  # ----
 # rhc_mydata.Match_propensity_score_caliper.2$Table1_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
@@ -894,8 +894,8 @@ rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), inclu
 rhc_mydata.na = rhc_mydata
 rhc_mydata.na$age[0:99 * 7 + 1] = NA
 rhc_mydata.na$meanbp1[0:99 * 5 + 1] = NA
-rhc_mydata.na |> str()
-# > rhc_mydata.na |> str()
+rhc_mydata.na |> str(max.level = 2, give.attr = TRUE)
+# > rhc_mydata.na |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	5735 obs. of  14 variables:
 #  $ ARF      : num  0 0 0 1 0 0 0 1 0 1 ...
 #  $ CHF      : num  0 0 0 0 0 0 0 0 0 0 ...
@@ -964,9 +964,9 @@ rhc_mydata.na.Match = rhc_mydata.na %>% data.Match(
 # + )
 # [1] "apply.na.omit == T : removing 185 rows - from 5735 rows to 5550 rows"
 
-rhc_mydata.na.Match |> str(max.level = 1)
-rhc_mydata.na.Match %>% attr("function.input") |> str()
-# > rhc_mydata.na.Match |> str(max.level = 1)
+rhc_mydata.na.Match |> str(max.level = 1, give.attr = TRUE)
+rhc_mydata.na.Match %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
+# > rhc_mydata.na.Match |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -979,7 +979,7 @@ rhc_mydata.na.Match %>% attr("function.input") |> str()
 #   ..- attr(*, "class")= chr "tableone"
 #  $ Table1_post_i    :List of 5
 #  - attr(*, "function.input")=List of 5
-# > rhc_mydata.na.Match %>% attr("function.input") |> str()
+# > rhc_mydata.na.Match %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_Table1_pre_post = T, apply.na.omit = F, print.process = F, 
 #     load.dependent.library = T)  
@@ -1065,8 +1065,8 @@ rhc_mydata.na.Match_propensity_score = rhc_mydata.na %>% data.Match(
     , apply.na.omit = T
     , propensity_score_matching = T
 )
-rhc_mydata.na.Match_propensity_score |> str(max.level = 1)
-# rhc_mydata.na.Match_propensity_score %>% attr("function.input") |> str()
+rhc_mydata.na.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
+# rhc_mydata.na.Match_propensity_score %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 rhc_mydata.na.Match_propensity_score$Table1_pre |> print(smd = T)
 rhc_mydata.na.Match_propensity_score$Table1_post_total |> print(smd = T) # ----
 # rhc_mydata.na.Match_propensity_score$Table1_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
@@ -1080,7 +1080,7 @@ rhc_mydata.na.Match_propensity_score$data
 # # +     , propensity_score_matching = T
 # # + )
 # # [1] "apply.na.omit == T : removing 100 rows - from 5735 rows to 5635 rows"
-# # > rhc_mydata.na.Match_propensity_score |> str(max.level = 1)
+# # > rhc_mydata.na.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
 # # List of 4
 # #  $ Table1_pre       :List of 3
 # #   ..- attr(*, "class")= chr "tableone"
@@ -1093,7 +1093,7 @@ rhc_mydata.na.Match_propensity_score$data
 # #   ..- attr(*, "class")= chr "tableone"
 # #  $ Table1_post_i    :List of 5
 # #  - attr(*, "function.input")=List of 5
-# # > rhc_mydata.na.Match_propensity_score %>% attr("function.input") |> str()
+# # > rhc_mydata.na.Match_propensity_score %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # # List of 5
 # #  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 # #     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
@@ -1148,7 +1148,7 @@ rhc_mydata.na.Match_propensity_score$data
 # +     , propensity_score_matching = T
 # + )
 # [1] "apply.na.omit == T : removing 185 rows - from 5735 rows to 5550 rows"
-# > rhc_mydata.na.Match_propensity_score |> str(max.level = 1)
+# > rhc_mydata.na.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -1200,8 +1200,8 @@ rhc_mydata.na.Match_propensity_score_matching_weight = rhc_mydata.na %>% data.Ma
     , apply.na.omit = T
     , propensity_score_matching_weight = T
 )
-rhc_mydata.na.Match_propensity_score_matching_weight |> str(max.level = 1)
-# rhc_mydata.na.Match_propensity_score_matching_weight %>% attr("function.input") |> str()
+rhc_mydata.na.Match_propensity_score_matching_weight |> str(max.level = 1, give.attr = TRUE)
+# rhc_mydata.na.Match_propensity_score_matching_weight %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 rhc_mydata.na.Match_propensity_score_matching_weight$Table1_pre |> print(smd = T)
 rhc_mydata.na.Match_propensity_score_matching_weight$Table1_post_total |> print(smd = T) # ----
 # rhc_mydata.na.Match_propensity_score_matching_weight$Table1_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
@@ -1215,7 +1215,7 @@ rhc_mydata.na.Match_propensity_score_matching_weight$data
 # +     , propensity_score_matching_weight = T
 # + )
 # [1] "apply.na.omit == T : removing 185 rows - from 5735 rows to 5550 rows"
-# > rhc_mydata.na.Match_propensity_score_matching_weight |> str(max.level = 1)
+# > rhc_mydata.na.Match_propensity_score_matching_weight |> str(max.level = 1, give.attr = TRUE)
 # List of 3
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -1228,7 +1228,7 @@ rhc_mydata.na.Match_propensity_score_matching_weight$data
 #  $ Table1_post_total:List of 3
 #   ..- attr(*, "class")= chr [1:2] "svyTable1" "tableone"
 #  - attr(*, "function.input")=List of 5
-# > rhc_mydata.na.Match_propensity_score_matching_weight %>% attr("function.input") |> str()
+# > rhc_mydata.na.Match_propensity_score_matching_weight %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 #     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
@@ -1278,8 +1278,8 @@ rhc_mydata.na.Match_propensity_score_matching_weight$data
 # # Warning messages:
 # # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
 # # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# rhc_mydata.strata_list.Match.old |> str(max.level = 1)
-# # > rhc_mydata.strata_list.Match.old |> str(max.level = 1)
+# rhc_mydata.strata_list.Match.old |> str(max.level = 1, give.attr = TRUE)
+# # > rhc_mydata.strata_list.Match.old |> str(max.level = 1, give.attr = TRUE)
 # # List of 20
 # #  $ 0_[10,20)  :List of 4
 # #   ..- attr(*, "function.input")=List of 5
@@ -1421,7 +1421,7 @@ f_df.stratified.Match = function(
         attr(out, "function.input") = list(
             data.strata_list = data.strata_list
             , .vars4strata = .vars4strata
-        ) # list inside attr() is not shown with str(max.level = 1)
+        ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
         out
     }
     
@@ -1534,13 +1534,13 @@ f_df.stratified.Match = function(
         if (!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )) {
             print("!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )")
             out = list()
-            attr(out, "error.message0") = "!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )"  # attr() is shown with str(max.level = 1)
+            attr(out, "error.message0") = "!identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
         }
         if (length(unique(.mydata[[.exposure]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical)), 0:1 ))
             print("length(unique(.mydata[[.exposure]]) < 2")
             # out = list()
             out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
-            attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
+            attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
             
             # if (add_Table1_pre_post == T) {
             #     out$Table1_pre = NA
@@ -1615,7 +1615,7 @@ f_df.stratified.Match = function(
                     print(paste0("length(.mydata.Match) == 1 : .mydata.Match = ", .mydata.Match))
                     # out = list()
                     out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
-                    attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
+                    attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1, give.attr = TRUE)
                 } else {
                     
                     
@@ -1671,7 +1671,7 @@ f_df.stratified.Match = function(
         attr(out$data, ".exposure") = .exposure
         attr(out$data, ".MatchingRatio") = .MatchingRatio
         attr(out$data, "apply.na.omit") = apply.na.omit
-        # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1)
+        # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
         attr(out, "function.input") = list(
             Call = match.call(expand.dots = TRUE)
             , data.Match = data.Match
@@ -1684,7 +1684,7 @@ f_df.stratified.Match = function(
             , propensity_score_matching = propensity_score_matching
             , propensity_score_matching_weight = propensity_score_matching_weight
             , apply.function.dichotomous2logical = apply.function.dichotomous2logical
-        ) # list inside attr() is not shown with str(max.level = 1)
+        ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
         if(is.data.frame(out$data)) {
             # outdataRowNum_original = NULL
             out$data$RowNum_after_na.omit = NULL
@@ -1780,7 +1780,7 @@ f_df.stratified.Match = function(
         , .exposure = .exposure
         , .MatchingRatio = .MatchingRatio
         , apply.na.omit = apply.na.omit
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     out$data$RowNum_original = out$data$RowNum_original_before_strata  # these are not unique numbers d/t stratified map
     out$data$RowNum_original_before_strata  = NULL
     out$data$RowNum_after_na.omit = NULL  # these are not unique numbers d/t stratified map
@@ -1948,9 +1948,9 @@ rhc_myf_df.stratified.Match = rhc_mydata %>% f_df.stratified.Match(
 # #   length(unique(.mydata[[.exposure]]) < 2: 
 # # c("0_[100,Inf]", "1_[100,Inf]")
 
-rhc_myf_df.stratified.Match |> str(max.level = 1)
-rhc_myf_df.stratified.Match %>% attr("function.input") |> str()
-# > rhc_myf_df.stratified.Match |> str(max.level = 1)
+rhc_myf_df.stratified.Match |> str(max.level = 1, give.attr = TRUE)
+rhc_myf_df.stratified.Match %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
+# > rhc_myf_df.stratified.Match |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -1964,7 +1964,7 @@ rhc_myf_df.stratified.Match %>% attr("function.input") |> str()
 #   ..- attr(*, "class")= chr "tableone"
 #  $ Table1_post_i    :List of 5
 #  - attr(*, "function.input")=List of 8
-# > rhc_myf_df.stratified.Match %>% attr("function.input") |> str()
+# > rhc_myf_df.stratified.Match %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # List of 8
 #  $ f_df.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, apply.na.omit = F, 
 #     print.process = F, load.dependent.library = T, propensity_score_matching = F)  
@@ -2078,8 +2078,8 @@ rhc_myf_df.stratified.Match_propensity_score = rhc_mydata %>% f_df.stratified.Ma
     , .MatchingRatio = 5
     , propensity_score_matching = T
 )
-rhc_myf_df.stratified.Match_propensity_score |> str(max.level = 1)
-# rhc_myf_df.stratified.Match_propensity_score %>% attr("function.input") |> str()
+rhc_myf_df.stratified.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
+# rhc_myf_df.stratified.Match_propensity_score %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 rhc_myf_df.stratified.Match_propensity_score$Table1_pre |> print(smd = T)
 rhc_myf_df.stratified.Match_propensity_score$Table1_post_total |> print(smd = T)  # ----
 # rhc_myf_df.stratified.Match_propensity_score$Table1_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
@@ -2101,7 +2101,7 @@ rhc_myf_df.stratified.Match_propensity_score$data
 # 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
-# > rhc_myf_df.stratified.Match_propensity_score |> str(max.level = 1)
+# > rhc_myf_df.stratified.Match_propensity_score |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -2115,7 +2115,7 @@ rhc_myf_df.stratified.Match_propensity_score$data
 #   ..- attr(*, "class")= chr "tableone"
 #  $ Table1_post_i    :List of 5
 #  - attr(*, "function.input")=List of 8
-# > # rhc_myf_df.stratified.Match_propensity_score %>% attr("function.input") |> str()
+# > # rhc_myf_df.stratified.Match_propensity_score %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # > rhc_myf_df.stratified.Match_propensity_score$Table1_pre |> print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
@@ -2346,8 +2346,8 @@ rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), inclu
 rhc_mydata.na = rhc_mydata
 rhc_mydata.na$age[0:99 * 7 + 1] = NA
 rhc_mydata.na$meanbp1[0:99 * 5 + 1] = NA
-rhc_mydata.na |> str()
-# > rhc_mydata.na |> str()
+rhc_mydata.na |> str(max.level = 2, give.attr = TRUE)
+# > rhc_mydata.na |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	5735 obs. of  14 variables:
 #  $ ARF      : num  0 0 0 1 0 0 0 1 0 1 ...
 #  $ CHF      : num  0 0 0 0 0 0 0 0 0 0 ...
@@ -2534,9 +2534,9 @@ rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
 
 
 
-rhc_mydata.na.stratified.Match |> str(max.level = 1)
-rhc_mydata.na.stratified.Match %>% attr("function.input") |> str()
-# > rhc_mydata.na.stratified.Match |> str(max.level = 1)
+rhc_mydata.na.stratified.Match |> str(max.level = 1, give.attr = TRUE)
+rhc_mydata.na.stratified.Match %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
+# > rhc_mydata.na.stratified.Match |> str(max.level = 1, give.attr = TRUE)
 # List of 4
 #  $ Table1_pre       :List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -2550,7 +2550,7 @@ rhc_mydata.na.stratified.Match %>% attr("function.input") |> str()
 #   ..- attr(*, "class")= chr "tableone"
 #  $ Table1_post_i    :List of 5
 #  - attr(*, "function.input")=List of 8
-# > rhc_mydata.na.stratified.Match %>% attr("function.input") |> str()
+# > rhc_mydata.na.stratified.Match %>% attr("function.input") |> str(max.level = 2, give.attr = TRUE)
 # List of 8
 #  $ f_df.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, apply.na.omit = F, 
 #     print.process = F, load.dependent.library = T, propensity_score_matching = F)  

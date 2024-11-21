@@ -28,8 +28,8 @@ convert_character_to_numeric_or_factor <- function(column) {
 }
 df <- data.frame(a = c("1", "2", "NA"), b = c("x", "y", "z"), c = c("3.5", "4.2", "5"), stringsAsFactors = FALSE)
 df <- df %>% mutate(across(everything(), convert_character_to_numeric_or_factor))
-df |> str()
-# > df |> str()
+df |> str(max.level = 2, give.attr = TRUE)
+# > df |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	3 obs. of  3 variables:
 #  $ a: Factor w/ 2 levels "1","2": 1 2 NA
 #  $ b: Factor w/ 3 levels "x","y","z": 1 2 3
@@ -37,7 +37,7 @@ df |> str()
 as1_7.na.Date.fct = as1_7.na.Date %>% 
     mutate(across(everything(), convert_character_to_numeric)) %>% 
     mutate_if(is.character, as.factor)
-as1_7.na.Date.fct |> str()
+as1_7.na.Date.fct |> str(max.level = 2, give.attr = TRUE)
 
 convert_character_to_numeric <- function(column) {
   if (is.character(column)) {
@@ -67,8 +67,8 @@ convert_character_to_factor <- function(column) {
 }
 df <- data.frame(a = c("1", "2", "NA"), b = c("x", "y", "z"), c = c("3.5", "4.2", "5"), stringsAsFactors = FALSE)
 df <- df %>% mutate(across(everything(), convert_character_to_numeric)) %>% mutate(across(everything(), convert_character_to_factor))
-df |> str()
-# > df |> str()
+df |> str(max.level = 2, give.attr = TRUE)
+# > df |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	3 obs. of  3 variables:
 #  $ a: num  1 2 NA
 #  $ b: Factor w/ 3 levels "x","y","z": 1 2 3
@@ -139,14 +139,14 @@ df
 # 10      10       J       j      20       10       110 1e+08  1.1e+07
 # # ... with 16 more rows
 
-df |> str()
-data_frame.map_df.as.factor(df) |> str()
-data_frame.map_df.as.factor(df, colnames.as.factor = NULL) |> str()
-data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = NULL) |> str()
-data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "aaa") |> str()
-data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "letters") |> str()
-data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
-# > df |> str()
+df |> str(max.level = 2, give.attr = TRUE)
+data_frame.map_df.as.factor(df) |> str(max.level = 2, give.attr = TRUE)
+data_frame.map_df.as.factor(df, colnames.as.factor = NULL) |> str(max.level = 2, give.attr = TRUE)
+data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = NULL) |> str(max.level = 2, give.attr = TRUE)
+data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "aaa") |> str(max.level = 2, give.attr = TRUE)
+data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "letters") |> str(max.level = 2, give.attr = TRUE)
+data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str(max.level = 2, give.attr = TRUE)
+# > df |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : chr  "1" "2" "3" "4" ...
 #  $ LETTERS  : chr  "A" "B" "C" "D" ...
@@ -156,7 +156,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
 #  $ PERSON_ID: num  101 102 103 104 105 106 107 108 109 110 ...
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : chr  "10100000" "10200000" "10300000" "10400000" ...
-# > data_frame.map_df.as.factor(df) |> str()
+# > data_frame.map_df.as.factor(df) |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -166,7 +166,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
 #  $ PERSON_ID: Factor w/ 26 levels "101","102","103",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
-# > data_frame.map_df.as.factor(df, colnames.as.factor = NULL) |> str()
+# > data_frame.map_df.as.factor(df, colnames.as.factor = NULL) |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -176,7 +176,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
 #  $ PERSON_ID: num  101 102 103 104 105 106 107 108 109 110 ...
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
-# > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = NULL) |> str()
+# > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = NULL) |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","10","11",..: 1 12 20 21 22 23 24 25 26 2 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -186,7 +186,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
 #  $ PERSON_ID: Factor w/ 26 levels "101","102","103",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
-# > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "aaa") |> str()
+# > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "aaa") |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","10","11",..: 1 12 20 21 22 23 24 25 26 2 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -196,7 +196,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
 #  $ PERSON_ID: Factor w/ 26 levels "101","102","103",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
-# > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "letters") |> str()
+# > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "letters") |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","10","11",..: 1 12 20 21 22 23 24 25 26 2 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -210,7 +210,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 2: In .f(.x[[i]], ...) :
 #   any(is.na(as.numeric(x))) -> Check colnames_character.as.numeric.as.factor
-# > data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str()
+# > data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") |> str(max.level = 2, give.attr = TRUE)
 # Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...

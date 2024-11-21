@@ -176,8 +176,8 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
         .sourcename = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]]);}
     }  
     .GlobalEnv$env1$info = env1$env.internal$get_system_info()
-    cat("> .tmp |> str(max.level = 1)", "  \n", sep="") 
-    .tmp |> str(max.level = 1)
+    cat("> .tmp |> str(max.level = 1, give.attr = TRUE)", "  \n", sep="") 
+    .tmp |> str(max.level = 1, give.attr = TRUE)
     cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
     env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

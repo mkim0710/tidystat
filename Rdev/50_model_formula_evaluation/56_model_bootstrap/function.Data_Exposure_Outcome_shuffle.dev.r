@@ -66,20 +66,20 @@ ffqtot %>% select(currsm, fkcal)
 # 10      0 2130.
 # # ... with 2,133 more rows
 
-ffqtot$currsm |> str()
+ffqtot$currsm |> str(max.level = 2, give.attr = TRUE)
 set.seed(1)
-ffqtot$currsm %>% sample |> str()
-ffqtot$currsm %>% sample |> str()
-ffqtot$currsm %>% sample |> str()
-# > ffqtot$currsm |> str()
+ffqtot$currsm %>% sample |> str(max.level = 2, give.attr = TRUE)
+ffqtot$currsm %>% sample |> str(max.level = 2, give.attr = TRUE)
+ffqtot$currsm %>% sample |> str(max.level = 2, give.attr = TRUE)
+# > ffqtot$currsm |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2143] 1 0 0 0 0 0 0 0 0 0 ...
 #  - attr(*, "label")= chr "currsm"
 # > set.seed(1)
-# > ffqtot$currsm %>% sample |> str()
+# > ffqtot$currsm %>% sample |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2143] 1 0 0 0 0 0 0 0 1 0 ...
-# > ffqtot$currsm %>% sample |> str()
+# > ffqtot$currsm %>% sample |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2143] 0 0 0 0 0 0 0 0 0 1 ...
-# > ffqtot$currsm %>% sample |> str()
+# > ffqtot$currsm %>% sample |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2143] 1 0 0 0 1 0 0 0 0 0 ...
 
 
@@ -199,8 +199,8 @@ for (i in 1:500) {
     ffqtot.select.permutation_list[[i]] = ffqtot.select
     ffqtot.select.permutation_list[[i]]$currsm = sample(ffqtot.select$currsm)
 }
-ffqtot.select.permutation_list |> str(max.level = 1) #----
-# > ffqtot.select.permutation_list |> str(max.level = 1) #----  
+ffqtot.select.permutation_list |> str(max.level = 1, give.attr = TRUE) #----
+# > ffqtot.select.permutation_list |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 500
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2143 obs. of  27 variables:
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2143 obs. of  27 variables:
@@ -468,8 +468,8 @@ for (i in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "
     
 }
 permutationP_multiple = permutationP_multiple |> unlist()
-permutationP_multiple |> str(max.level = 1) #-----
-# > permutationP_multiple |> str(max.level = 1) #-----  
+permutationP_multiple |> str(max.level = 1, give.attr = TRUE) #-----
+# > permutationP_multiple |> str(max.level = 1, give.attr = TRUE) #-----  
 #  Named num [1:26] 0.746 0 0 0 0.752 0 0 0.086 0 0.088 ...
 #  - attr(*, "names")= chr [1:26] "fkcal" "atotfat" "asat" "aoleic" ...
 

@@ -121,8 +121,8 @@ boot.output.ci
 # Calculations and Intervals on Original Scale
 
 
-boot.output.ci |> str()
-# > boot.output.ci |> str()
+boot.output.ci |> str(max.level = 2, give.attr = TRUE)
+# > boot.output.ci |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ R      : int 1000
 #  $ t0     : Named num 0.333

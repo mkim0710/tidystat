@@ -199,17 +199,17 @@ outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector() |> as_tibble(
 # 9     c     c
 
 
-c(F, T) |> as.character() |> as.logical() |> str()
-c(F, T) |> as.character() |> as.factor() |> str()
-c(F, T) |> as.character() |> as.factor() |> as.logical() |> str()
-c(F, T) |> as.character() |> as.factor() |> as.numeric() |> as.logical() |> str()
-# > c(F, T) |> as.character() |> as.logical() |> str()
+c(F, T) |> as.character() |> as.logical() |> str(max.level = 2, give.attr = TRUE)
+c(F, T) |> as.character() |> as.factor() |> str(max.level = 2, give.attr = TRUE)
+c(F, T) |> as.character() |> as.factor() |> as.logical() |> str(max.level = 2, give.attr = TRUE)
+c(F, T) |> as.character() |> as.factor() |> as.numeric() |> as.logical() |> str(max.level = 2, give.attr = TRUE)
+# > c(F, T) |> as.character() |> as.logical() |> str(max.level = 2, give.attr = TRUE)
 #  logi [1:2] FALSE TRUE
-# > c(F, T) |> as.character() |> as.factor() |> str()
+# > c(F, T) |> as.character() |> as.factor() |> str(max.level = 2, give.attr = TRUE)
 #  Factor w/ 2 levels "FALSE","TRUE": 1 2
-# > c(F, T) |> as.character() |> as.factor() |> as.logical() |> str()
+# > c(F, T) |> as.character() |> as.factor() |> as.logical() |> str(max.level = 2, give.attr = TRUE)
 #  logi [1:2] FALSE TRUE
-# > c(F, T) |> as.character() |> as.factor() |> as.numeric() |> as.logical() |> str()
+# > c(F, T) |> as.character() |> as.factor() |> as.numeric() |> as.logical() |> str(max.level = 2, give.attr = TRUE)
 #  logi [1:2] TRUE TRUE
 
 
@@ -221,8 +221,8 @@ outer(RACE, c(F, T), paste, sep = "|")
 outer(RACE, c(F, T), paste, sep = "|") |> as.vector()
 outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble()
 outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor)
-outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) |> str()
-outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) |> str()
+outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) |> str(max.level = 2, give.attr = TRUE)
+outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) |> str(max.level = 2, give.attr = TRUE)
 # > outer(RACE, c(F, T), paste, sep = "|")
 #      [,1]                          [,2]                        
 # [1,] "1: Non-Hispanic White|FALSE" "1: Non-Hispanic White|TRUE"
@@ -263,11 +263,11 @@ outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separat
 #  8           3: Hispanic     TRUE
 #  9              4: Asian     TRUE
 # 10              5: Other     TRUE
-# > outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) |> str()
+# > outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	10 obs. of  2 variables:
 #  $ RACE    : Factor w/ 5 levels "1: Non-Hispanic White",..: 1 2 3 4 5 1 2 3 4 5
 #  $ isFemale: Factor w/ 2 levels "FALSE","TRUE": 1 1 1 1 1 2 2 2 2 2
-# > outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) |> str()
+# > outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	10 obs. of  2 variables:
 #  $ RACE    : logi  NA NA NA NA NA NA ...
 #  $ isFemale: logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
@@ -540,10 +540,10 @@ function.pairwise.data_frame = function(vars, only.lower.tri = T) {
 }
 
 
-letters |> str()
+letters |> str(max.level = 2, give.attr = TRUE)
 letters %>% function.pairwise.data_frame
 26 * 25 / 2
-# > letters |> str()
+# > letters |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:26] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
 # > letters %>% function.pairwise.data_frame
 # # A tibble: 325 x 2

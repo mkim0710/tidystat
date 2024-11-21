@@ -17,12 +17,12 @@ f_vec1_vec2.setdiff_list(
     NHID_JK_GJ_0213.bind_rows.integer.by.PERSON_ID.min.HCHK_YEAR %>% dplyr::filter(AGE_GROUP %in% 5:17) %>% {.$PERSON_ID}
     , 
     NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin %>% {.$PERSON_ID}
-) |> str()
+) |> str(max.level = 2, give.attr = TRUE)
 # > function.setdiff(
 # +     NHID_JK_GJ_0213.bind_rows.integer.by.PERSON_ID.min.HCHK_YEAR %>% dplyr::filter(AGE_GROUP %in% 5:17) %>% {.$PERSON_ID}
 # +     , 
 # +     NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin %>% {.$PERSON_ID}
-# + ) |> str()
+# + ) |> str(max.level = 2, give.attr = TRUE)
 # List of 6
 #  $ x          : chr [1:590743] "10000453" "10001179" "10001439" "10001704" ...
 #  $ y          : chr [1:408215] "10000201" "10000453" "10001439" "10003179" ...

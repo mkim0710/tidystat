@@ -6,7 +6,7 @@
 
 
 # > available.packages() |> str() ----
-# available.packages() |> str()
+# available.packages() |> str(max.level = 2, give.attr = TRUE)
 # #  chr [1:21465, 1:17] "A3" "AalenJohansen" "AATtools" "ABACUS" "abasequence" "abbreviate" "abc" "abc.data" "ABC.RAP" "ABCanalysis" "abclass" "ABCoptim" ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:21465] "A3" "AalenJohansen" "AATtools" "ABACUS" ...
@@ -22,11 +22,11 @@ getOption("pkgType")
 # > getOption("pkgType")
 # [1] "both"
 
-# cran_mirror.available.packages = available.packages(contriburl = contrib.url(repos = cran_mirror, type = getOption("pkgType"))) |> str()
+# cran_mirror.available.packages = available.packages(contriburl = contrib.url(repos = cran_mirror, type = getOption("pkgType"))) |> str(max.level = 2, give.attr = TRUE)
 cran_mirror.available.packages = available.packages(contriburl = contrib.url(repos = cran_mirror, type = "win.binary")) 
-cran_mirror.available.packages |> str()
+cran_mirror.available.packages |> str(max.level = 2, give.attr = TRUE)
 cran_mirror.available.packages |> colnames() |> deparse(width.cutoff = 500) |> cat("\n")
-# > cran_mirror.available.packages |> str()
+# > cran_mirror.available.packages |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:21487, 1:17] "A3" "AATtools" "ABACUS" "ABC.RAP" "ABCanalysis" "ABCoptim" "ABCp2" "ABHgenotypeR" "ABM" "ABPS" "ABSurvTDC" "ACA" "ACDm" "ACE.CoCo" ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:21487] "A3" "AATtools" "ABACUS" "ABC.RAP" ...
@@ -36,7 +36,7 @@ cran_mirror.available.packages |> colnames() |> deparse(width.cutoff = 500) |> c
 
 
 ## > cran_mirror.available.packages[package_name, ] |> as.list |> str() ----
-cran_mirror.available.packages[package_name, ] |> as.list() |> str()
+cran_mirror.available.packages[package_name, ] |> as.list() |> str(max.level = 2, give.attr = TRUE)
 cran_mirror.available.packages[package_name, "Repository"]
 cran_mirror.available.packages[package_name, "Version"]
 # List of 17
@@ -66,7 +66,7 @@ cran_mirror.available.packages[package_name, "Version"]
 
 
 ## # > packageDescription(package_name) |> str() ----
-packageDescription(package_name) |> str()
+packageDescription(package_name) |> str(max.level = 2, give.attr = TRUE)
 # List of 23
 #  $ Package                : chr "cli"
 #  $ Title                  : chr "Helpers for Developing Command Line Interfaces"

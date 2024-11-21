@@ -91,12 +91,12 @@ c(".GlobalEnv", "tools:rstudio", "package:lubridate", "package:forcats", "packag
 ls(envir = asNamespace("base")) %>%  str
 # > ls(envir = asNamespace("base")) %>%  str
 #  chr [1:1270] "-" "-.Date" "-.POSIXt" ":" "::" ":::" "!" "!.hexmode" "!.octmode" "!=" "(" "[" "[.AsIs" "[.data.frame" "[.Date" "[.difftime" "[.Dlist" ...
-getNamespaceExports("base") %>% str
-# > getNamespaceExports("base") %>% str
+getNamespaceExports("base") |> str(max.level = 2, give.attr = TRUE)
+# > getNamespaceExports("base") |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:1391] "!" "$" "&" "(" "*" "+" "-" "/" ":" "<" "=" ">" "as.matrix.data.frame" "@" "F" "I" "registerS3methods" "as.POSIXct.Date" "T" "[" "^" "c" "q" ...
 
-env1$f$f_vec1_vec2.setdiff_list(ls(envir = asNamespace("base")), getNamespaceExports("base")) %>% str
-# > env1$f$f_vec1_vec2.setdiff_list(ls(envir = asNamespace("base")), getNamespaceExports("base")) %>% str
+env1$f$f_vec1_vec2.setdiff_list(ls(envir = asNamespace("base")), getNamespaceExports("base")) |> str(max.level = 2, give.attr = TRUE)
+# > env1$f$f_vec1_vec2.setdiff_list(ls(envir = asNamespace("base")), getNamespaceExports("base")) |> str(max.level = 2, give.attr = TRUE)
 # List of 7
 #  $ vec1.character: chr [1:1270] "-" "-.Date" "-.POSIXt" ":" ...
 #  $ vec2.character: chr [1:1391] "!" "$" "&" "(" ...

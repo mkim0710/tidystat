@@ -277,7 +277,7 @@ for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)
 data("titanic_train")
 
 # View the first few rows
-titanic_train %>% str
+titanic_train |> str(max.level = 2, give.attr = TRUE)
 titanic_train %>% as_tibble
 
 # Select relevant variables
@@ -290,7 +290,7 @@ titanic_data <- na.omit(titanic_data)
 # Convert 'Survived' and 'Sex' to factors
 titanic_data$Survived <- factor(titanic_data$Survived)
 titanic_data$Sex <- factor(titanic_data$Sex)
-titanic_data %>% str
+titanic_data |> str(max.level = 2, give.attr = TRUE)
 titanic_data %>% as_tibble
 ```
   
@@ -486,7 +486,7 @@ options(width=120)
 # library(glmnet)
 # # load(system.file("data", "CoxExample.rda", package = "glmnet"))
 # data(CoxExample)
-# CoxExample %>% str
+# CoxExample |> str(max.level = 2, give.attr = TRUE)
 # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
 
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_glmnet_coxExample_tibble.rda"))
@@ -498,7 +498,7 @@ glmnet_coxExample_tibble.round3
 ```
   
   
-    > glmnet_coxExample_tibble %>% str()
+    > glmnet_coxExample_tibble |> str(max.level = 2, give.attr = TRUE)
     tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
      $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
      $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...
@@ -759,15 +759,15 @@ TheTrainSet.cv.glmnet_cox.a00 <- f_df.cv.glmnet_cox(
 # saveRDS(TheTrainSet.cv.glmnet_cox.alphas, file = "TheTrainSet.cv.glmnet_cox.alphas.rds")
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-TheTrainSet.cv.glmnet_cox.a00 %>% str(max.level = 1)
+TheTrainSet.cv.glmnet_cox.a00 |> str(max.level = 1, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet_cox.a00$glmnet.fit %>% str(max.level = 1)
+TheTrainSet.cv.glmnet_cox.a00$glmnet.fit |> str(max.level = 1, give.attr = TRUE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 
 TheTrainSet.cv.glmnet_cox.a00.list_coef = list()
 TheTrainSet.cv.glmnet_cox.a00.list_coef[["min"]] = TheTrainSet.cv.glmnet_cox.a00 %>% coef(s = "lambda.min")
 TheTrainSet.cv.glmnet_cox.a00.list_coef[["1se"]] = TheTrainSet.cv.glmnet_cox.a00 %>% coef(s = "lambda.1se")
-TheTrainSet.cv.glmnet_cox.a00.list_coef %>% str
+TheTrainSet.cv.glmnet_cox.a00.list_coef |> str(max.level = 2, give.attr = TRUE)
 
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 TheTrainSet.cv.glmnet_cox.a00.mat_coef = TheTrainSet.cv.glmnet_cox.a00.list_coef %>% (function(ls) {
@@ -776,7 +776,7 @@ TheTrainSet.cv.glmnet_cox.a00.mat_coef = TheTrainSet.cv.glmnet_cox.a00.list_coef
     out
 })()
 
-TheTrainSet.cv.glmnet_cox.a00.mat_coef %>% str()
+TheTrainSet.cv.glmnet_cox.a00.mat_coef |> str(max.level = 2, give.attr = TRUE)
 TheTrainSet.cv.glmnet_cox.a00.mat_coef %>% print()
 
 cat("    ________________________________________________________________________    \n")
@@ -980,17 +980,17 @@ TheTrainSet.cv.glmnet_cox.alphas <- f_df.cv.glmnet_cox.alphas(
 # saveRDS(TheTrainSet.cv.glmnet_cox.alphas, file = "TheTrainSet.cv.glmnet_cox.alphas.rds")
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-TheTrainSet.cv.glmnet_cox.alphas %>% str(max.level = 1)
+TheTrainSet.cv.glmnet_cox.alphas |> str(max.level = 1, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet_cox.alphas[[1]] %>% str(max.level = 1)
+TheTrainSet.cv.glmnet_cox.alphas[[1]] |> str(max.level = 1, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet_cox.alphas[[1]]$glmnet.fit %>% str(max.level = 1)
+TheTrainSet.cv.glmnet_cox.alphas[[1]]$glmnet.fit |> str(max.level = 1, give.attr = TRUE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 
 # TheTrainSet.cv.glmnet_cox.alphas.coef_list_list = list()
 # TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["min"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.min")
 # TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["1se"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.1se")
-# TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% str
+# TheTrainSet.cv.glmnet_cox.alphas.coef_list_list |> str(max.level = 2, give.attr = TRUE)
 # 
 # cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 # TheTrainSet.cv.glmnet_cox.alphas.coef = TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% (function(ls_ls) { 
@@ -1004,7 +1004,7 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #     out2
 # })()
 # 
-# TheTrainSet.cv.glmnet_cox.alphas.coef %>% str()
+# TheTrainSet.cv.glmnet_cox.alphas.coef |> str(max.level = 2, give.attr = TRUE)
 # TheTrainSet.cv.glmnet_cox.alphas.coef %>% print()
 # 
 cat("    ________________________________________________________________________    \n")

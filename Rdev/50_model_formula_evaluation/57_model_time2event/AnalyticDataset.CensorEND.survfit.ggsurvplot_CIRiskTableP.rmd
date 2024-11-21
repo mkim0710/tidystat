@@ -155,9 +155,9 @@ cat(" ----\n> ", "str(get(.objectname), max.level = 2, give.attr = F)", "  \n", 
 ```
   
   
-##\% as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)  
+##\% as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2, give.attr = TRUE)  
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
-as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
+as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2, give.attr = TRUE)
 ```
   
   

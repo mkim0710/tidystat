@@ -147,8 +147,8 @@ list.PERSON_ID.setdiff.diagram |> str() #-----
 
 list.PERSON_ID.setdiff.diagram.n =
     list.PERSON_ID.setdiff.diagram %>% map(length)
-list.PERSON_ID.setdiff.diagram.n |> str()
-# > list.PERSON_ID.setdiff.diagram.n |> str()
+list.PERSON_ID.setdiff.diagram.n |> str(max.level = 2, give.attr = TRUE)
+# > list.PERSON_ID.setdiff.diagram.n |> str(max.level = 2, give.attr = TRUE)
 # List of 7
 #  $ n0         : int 264777
 #  $ setdiff_0_1: int 211655

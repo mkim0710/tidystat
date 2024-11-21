@@ -315,7 +315,7 @@ apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4na
 labeled_data <- apply_codebook_labeling(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = TRUE)
 
 
-labeled_data %>% str
+labeled_data |> str(max.level = 2, give.attr = TRUE)
 
 # Print the final labeled dataset
 print("Labeled dataset:")

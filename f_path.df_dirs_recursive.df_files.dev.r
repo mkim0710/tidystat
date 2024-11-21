@@ -162,7 +162,7 @@ if(!"f_path.df_dirs_recursive.df_files" %in% names(.GlobalEnv$env1)) {
 
 ## @ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
-df_dirs_recursive |> str(max.level = 2) #----
+df_dirs_recursive |> str(max.level = 2, give.attr = TRUE) #----
 # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
 # df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----  
 df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
@@ -174,7 +174,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 # .Platform$file.sep:  / 
 # input_path0:  . 
 # Finished iterating through paths.
-#' > df_dirs_recursive |> str(max.level = 2) #----  
+#' > df_dirs_recursive |> str(max.level = 2, give.attr = TRUE) #----  
 #' tibble [61 × 17] (S3: tbl_df/tbl/data.frame)
 #'  $ path.level               : num [1:61] 0 1 1 2 2 2 3 3 3 3 ...
 #'  $ path                     : chr [1:61] "" "-info" "Rdev" "Rdev/-dev" ...
@@ -908,7 +908,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 
 ## @ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
-df_dirs_recursive |> str(max.level = 2) #----
+df_dirs_recursive |> str(max.level = 2, give.attr = TRUE) #----
 # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
 # df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----  
 df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----

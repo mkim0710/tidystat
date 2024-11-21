@@ -276,7 +276,7 @@ dummies = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 
 ## @ header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))] ----  
 colnames(dummies)
-strsplit(colnames(dummies), '[.]') |> str()
+strsplit(colnames(dummies), '[.]') |> str(max.level = 2, give.attr = TRUE)
 unlist(strsplit(colnames(dummies), '[.]'))
 1:ncol(dummies)
 2 * (1:ncol(dummies))
@@ -284,7 +284,7 @@ unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))]
 header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))]
 # > colnames(dummies)
 # [1] "Species.setosa"     "Species.versicolor" "Species.virginica" 
-# > strsplit(colnames(dummies), '[.]') |> str()
+# > strsplit(colnames(dummies), '[.]') |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr [1:2] "Species" "setosa"
 #  $ : chr [1:2] "Species" "versicolor"
@@ -300,9 +300,9 @@ header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))]
 
 
 
-colnames(dummies) |> str()split("\\.") |> str()
+colnames(dummies) |> str()split("\\.") |> str(max.level = 2, give.attr = TRUE)
 colnames(dummies) |> str()split("\\.") %>% map(function(vec) vec[2]) |> unlist()
-# > colnames(dummies) |> str()split("\\.") |> str()
+# > colnames(dummies) |> str()split("\\.") |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr [1:2] "Species" "setosa"
 #  $ : chr [1:2] "Species" "versicolor"
@@ -324,10 +324,10 @@ colnames(dummies) |> str_replace_all("^.+\\.", "")
 
 
 ## @ -----  
-dummies |> str()
+dummies |> str(max.level = 2, give.attr = TRUE)
 dummies |> as_tibble()
 dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
-# > dummies |> str()
+# > dummies |> str(max.level = 2, give.attr = TRUE)
 #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
@@ -366,13 +366,13 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 # 141              0                  0                 1
 
 
-1:ncol(dummies) |> str()
-(dummies %*% 1:ncol(dummies)) |> str()
+1:ncol(dummies) |> str(max.level = 2, give.attr = TRUE)
+(dummies %*% 1:ncol(dummies)) |> str(max.level = 2, give.attr = TRUE)
 (dummies %*% 1:ncol(dummies)) |> as_tibble()
 (dummies %*% 1:ncol(dummies)) %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
-# > 1:ncol(dummies) |> str()
+# > 1:ncol(dummies) |> str(max.level = 2, give.attr = TRUE)
 #  int [1:3] 1 2 3
-# > (dummies %*% 1:ncol(dummies)) |> str()
+# > (dummies %*% 1:ncol(dummies)) |> str(max.level = 2, give.attr = TRUE)
 #  num [1:150, 1] 1 1 1 1 1 1 1 1 1 1 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
@@ -397,10 +397,10 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 #   1   1   1   1   1   2   2   2   2   2   3   3   3   3   3 
 
 
-factor(dummies %*% 1:ncol(dummies), labels = header) |> str()
+factor(dummies %*% 1:ncol(dummies), labels = header) |> str(max.level = 2, give.attr = TRUE)
 factor(dummies %*% 1:ncol(dummies), labels = header) |> as_tibble()
 factor(dummies %*% 1:ncol(dummies), labels = header) %>% {.[0:(length(.)/10-1) * 10 + 1]} #----
-# > factor(dummies %*% 1:ncol(dummies), labels = header) |> str()
+# > factor(dummies %*% 1:ncol(dummies), labels = header) |> str(max.level = 2, give.attr = TRUE)
 #  Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 # > factor(dummies %*% 1:ncol(dummies), labels = header) |> as_tibble()
 # # A tibble: 150 x 1

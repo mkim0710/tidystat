@@ -36,10 +36,10 @@ df_example <- tibble(
 )
 attributes(df_example)$test = "test"
 rownames(df_example) = LETTERS[1:nrow(df_example)]
-df_example %>% attributes |> str()
+df_example %>% attributes |> str(max.level = 2, give.attr = TRUE)
 input_df_factor.model.matrix_example <- function.df_factor.one_hot_encode(df_example)
-input_df_factor.model.matrix_example %>% attributes |> str()
-input_df_factor.model.matrix_example |> str()
+input_df_factor.model.matrix_example %>% attributes |> str(max.level = 2, give.attr = TRUE)
+input_df_factor.model.matrix_example |> str(max.level = 2, give.attr = TRUE)
 # > df_example <- tibble(
 # +     id = 1:4,
 # +     color = as.factor(c("red", "blue", "green", "red")),
@@ -48,7 +48,7 @@ input_df_factor.model.matrix_example |> str()
 # > attributes(df_example)$test = "test"
 # > rownames(df_example) = LETTERS[1:nrow(df_example)]
 # 경고: Setting row names on a tibble is deprecated.
-# > df_example %>% attributes |> str()
+# > df_example %>% attributes |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ class    : chr [1:3] "tbl_df" "tbl" "data.frame"
 #  $ row.names: chr [1:4] "A" "B" "C" "D"
@@ -56,7 +56,7 @@ input_df_factor.model.matrix_example |> str()
 #  $ test     : chr "test"
 # > input_df_factor.model.matrix_example <- function.df_factor.one_hot_encode(df_example)
 # 경고: Setting row names on a tibble is deprecated.
-# > input_df_factor.model.matrix_example %>% attributes |> str()
+# > input_df_factor.model.matrix_example %>% attributes |> str(max.level = 2, give.attr = TRUE)
 # List of 6
 #  $ names                                : chr [1:6] "id" "color_blue" "color_green" "color_red" ...
 #  $ row.names                            : chr [1:4] "A" "B" "C" "D"
@@ -64,7 +64,7 @@ input_df_factor.model.matrix_example |> str()
 #  $ test                                 : chr "test"
 #  $ input_df_factor.colnames             : chr [1:2] "color" "size"
 #  $ input_df_factor.model.matrix.colnames: chr [1:5] "color_blue" "color_green" "color_red" "size_medium" ...
-# > input_df_factor.model.matrix_example |> str()
+# > input_df_factor.model.matrix_example |> str(max.level = 2, give.attr = TRUE)
 # tibble [4 × 6] (S3: tbl_df/tbl/data.frame)
 #  $ id         : int [1:4] 1 2 3 4
 #  $ color_blue : num [1:4] 0 1 0 0

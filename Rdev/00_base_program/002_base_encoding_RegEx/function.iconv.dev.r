@@ -21,12 +21,12 @@ dput(Sys.info()) #----
 
 
 
-korpopmap1 |> str(max.level = 1) #----
-korpopmap1 |> str(max.level = 2) #----
+korpopmap1 |> str(max.level = 1, give.attr = TRUE) #----
+korpopmap1 |> str(max.level = 2, give.attr = TRUE) #----
 korpopmap1@data |> str() #----
-# > korpopmap1 |> str(max.level = 1) #----  
+# > korpopmap1 |> str(max.level = 1, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
-# > korpopmap1 |> str(max.level = 2) #----  
+# > korpopmap1 |> str(max.level = 2, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -88,10 +88,10 @@ Sys.setlocale("LC_ALL", "korean") #----
 # [1] "LC_COLLATE=Korean_Korea.949;LC_CTYPE=Korean_Korea.949;LC_MONETARY=Korean_Korea.949;LC_NUMERIC=C;LC_TIME=Korean_Korea.949"
 
 
-# korpopmap1 |> str(max.level = 1) #----  
-korpopmap1 |> str(max.level = 2) #----
+# korpopmap1 |> str(max.level = 1, give.attr = TRUE) #----  
+korpopmap1 |> str(max.level = 2, give.attr = TRUE) #----
 korpopmap1@data |> str() #----
-# > korpopmap1 |> str(max.level = 2) #----  
+# > korpopmap1 |> str(max.level = 2, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16

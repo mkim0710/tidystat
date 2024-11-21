@@ -114,8 +114,8 @@ f_vecID.nestedSample <- function(vecID, seed=123) {
     out
 }
 PERSON_ID <- 1:283798 
-PERSON_ID %>% f_vecID.nestedSample() %>% str()
-# > PERSON_ID %>% f_vecID.nestedSample() %>% str()
+PERSON_ID %>% f_vecID.nestedSample() |> str(max.level = 2, give.attr = TRUE)
+# > PERSON_ID %>% f_vecID.nestedSample() |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ vecID.10sample: int [1:28379] 188942 134058 124022 160997 226318 124507 193627 45404 65161 59134 ...
 #  $ vecID.05sample: int [1:14189] 188942 134058 124022 160997 226318 124507 193627 45404 65161 59134 ...
@@ -136,8 +136,8 @@ PERSON_ID %>% f_vecID.nestedSample() %>% str()
 .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 if(file.exists(paste0(.path4read,"/",.objectname,".rds"))) assign( .objectname, read_rds(paste0(.path4read,"/",.objectname,".rds")) )
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% str()
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% str()
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds |> str(max.level = 2, give.attr = TRUE)
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds |> str(max.level = 2, give.attr = TRUE)
 # tibble [283,798 × 104] (S3: tbl_df/tbl/data.frame)
 #  $ PERSON_ID                    : chr [1:283798] "10003179" "10007522" "10016502" "10025016" ...
 #  $ EnrollYear                   : Factor w/ 2 levels "2009","2010": 1 1 1 1 1 1 1 1 1 1 ...
@@ -250,8 +250,8 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% str()
 
 
 vecID.nestedSample = CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds$PERSON_ID %>% f_vecID.nestedSample() 
-vecID.nestedSample %>% str()
-# > vecID.nestedSample %>% str()
+vecID.nestedSample |> str(max.level = 2, give.attr = TRUE)
+# > vecID.nestedSample |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ vecID.10sample: chr [1:28379] "25690129" "80103262" "76738028" "89527365" ...
 #  $ vecID.05sample: chr [1:14189] "25690129" "80103262" "76738028" "89527365" ...

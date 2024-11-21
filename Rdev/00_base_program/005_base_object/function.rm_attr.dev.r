@@ -5,10 +5,10 @@ list.sas7bdat = list.sas7bdat %>% map(function(ob) {attr(ob, "label") = NULL ; o
 
 
 
-list.sas7bdat |> str(max.level = 1) #----
-list.sas7bdat$temp1 |> str(max.level = 1) #----
-list.sas7bdat$temp1$HCHK_YEAR |> str(max.level = 1) #----
-# > list.sas7bdat |> str(max.level = 1) #----  
+list.sas7bdat |> str(max.level = 1, give.attr = TRUE) #----
+list.sas7bdat$temp1 |> str(max.level = 1, give.attr = TRUE) #----
+list.sas7bdat$temp1$HCHK_YEAR |> str(max.level = 1, give.attr = TRUE) #----
+# > list.sas7bdat |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 9
 #  $ temp1: tibble [264,777 x 75] (S3: tbl_df/tbl/data.frame)
 #  $ temp2: tibble [264,777 x 76] (S3: tbl_df/tbl/data.frame)
@@ -19,9 +19,9 @@ list.sas7bdat$temp1$HCHK_YEAR |> str(max.level = 1) #----
 #  $ temp7: tibble [40,562 x 93] (S3: tbl_df/tbl/data.frame)
 #  $ temp8: tibble [38,113 x 93] (S3: tbl_df/tbl/data.frame)
 #  $ temp9: tibble [38,113 x 96] (S3: tbl_df/tbl/data.frame)
-# > list.sas7bdat$temp1 |> str(max.level = 1) #----  
+# > list.sas7bdat$temp1 |> str(max.level = 1, give.attr = TRUE) #----  
 # tibble [264,777 x 75] (S3: tbl_df/tbl/data.frame)
-# > list.sas7bdat$temp1$HCHK_YEAR |> str(max.level = 1) #----  
+# > list.sas7bdat$temp1$HCHK_YEAR |> str(max.level = 1, give.attr = TRUE) #----  
 #  chr [1:264777] "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2002" "2003" "2003" "2003" ...
 #  - attr(*, "label")= chr "EXMD_BZ_YYYY"
 #  - attr(*, "format.sas")= chr "$"
@@ -35,7 +35,7 @@ list.sas7bdat$temp1$dth_dt %>% attributes |> str() #-----
 # > list.sas7bdat %>% attributes |> str() #-----  
 # List of 1
 #  $ names: chr [1:9] "temp1" "temp2" "temp3" "temp4" ...
-# > list.sas7bdat$temp1 %>% attributes |> str()
+# > list.sas7bdat$temp1 %>% attributes |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ names    : chr [1:75] "HCHK_YEAR" "PERSON_ID" "YKIHO_GUBUN_CD" "hme_dt1" ...
 #  $ row.names: int [1:264777] 1 2 3 4 5 6 7 8 9 10 ...
@@ -128,10 +128,10 @@ list.sas7bdat2 = list.sas7bdat %>% map(function(df) {
     out
 })
 
-list.sas7bdat2 |> str(max.level = 1) #----
-list.sas7bdat2$temp1 |> str(max.level = 1) #----
-list.sas7bdat2$temp1$HCHK_YEAR |> str(max.level = 1) #----
-# > list.sas7bdat2 |> str(max.level = 1) #----  
+list.sas7bdat2 |> str(max.level = 1, give.attr = TRUE) #----
+list.sas7bdat2$temp1 |> str(max.level = 1, give.attr = TRUE) #----
+list.sas7bdat2$temp1$HCHK_YEAR |> str(max.level = 1, give.attr = TRUE) #----
+# > list.sas7bdat2 |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 9
 #  $ temp1: tibble [264,777 x 75] (S3: tbl_df/tbl/data.frame)
 #  $ temp2: tibble [264,777 x 76] (S3: tbl_df/tbl/data.frame)
@@ -142,9 +142,9 @@ list.sas7bdat2$temp1$HCHK_YEAR |> str(max.level = 1) #----
 #  $ temp7: tibble [40,562 x 93] (S3: tbl_df/tbl/data.frame)
 #  $ temp8: tibble [38,113 x 93] (S3: tbl_df/tbl/data.frame)
 #  $ temp9: tibble [38,113 x 96] (S3: tbl_df/tbl/data.frame)
-# > list.sas7bdat2$temp1 |> str(max.level = 1) #----  
+# > list.sas7bdat2$temp1 |> str(max.level = 1, give.attr = TRUE) #----  
 # tibble [264,777 x 75] (S3: tbl_df/tbl/data.frame)
-# > list.sas7bdat2$temp1$HCHK_YEAR |> str(max.level = 1) #----  
+# > list.sas7bdat2$temp1$HCHK_YEAR |> str(max.level = 1, give.attr = TRUE) #----  
 #  chr [1:264777] "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2003" "2002" "2003" "2003" "2003" ...
 
 list.sas7bdat2[1:2] %>% map(function(df) df[1:3,1:2]) |> dput() #----

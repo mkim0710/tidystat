@@ -272,7 +272,7 @@ for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)
 data("titanic_train")
 
 # View the first few rows
-titanic_train %>% str
+titanic_train |> str(max.level = 2, give.attr = TRUE)
 titanic_train %>% as_tibble
 
 # Select relevant variables
@@ -285,7 +285,7 @@ titanic_data <- na.omit(titanic_data)
 # Convert 'Survived' and 'Sex' to factors
 titanic_data$Survived <- factor(titanic_data$Survived)
 titanic_data$Sex <- factor(titanic_data$Sex)
-titanic_data %>% str
+titanic_data |> str(max.level = 2, give.attr = TRUE)
 titanic_data %>% as_tibble
 ```
   

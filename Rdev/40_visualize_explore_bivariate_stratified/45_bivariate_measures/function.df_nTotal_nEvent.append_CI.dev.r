@@ -19,7 +19,7 @@ prop.test(10, 100) |> str() #-----
 #   p 
 # 0.1 
 # 
-# > prop.test(10, 100) |> str()
+# > prop.test(10, 100) |> str(max.level = 2, give.attr = TRUE)
 # List of 9
 #  $ statistic  : Named num 62.4
 #   ..- attr(*, "names")= chr "X-squared"

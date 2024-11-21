@@ -116,8 +116,8 @@ space_between_vec_elements="\n  "
 list_vec.formatted <- map(names(list_vec), function(name) {
         paste0('"', name, '" = ', f_vec.format_line_by_line(list_vec[[name]], space_between_vec_elements))
     })
-list_vec.formatted %>% str
-# > list_vec.formatted %>% str
+list_vec.formatted |> str(max.level = 2, give.attr = TRUE)
+# > list_vec.formatted |> str(max.level = 2, give.attr = TRUE)
 # List of 6
 #  $ : chr "\"Roboto Condensed\" = c(\"\ttexmf-dist/fonts/opentype/google/roboto\",\n  \"\ttexmf-dist/fonts/tfm/google/robo"| __truncated__
 #  $ : chr "\"Roboto Serif\" = c(\"\ttexmf-dist/fonts/opentype/google/roboto\",\n  \"\ttexmf-dist/fonts/tfm/google/roboto\""| __truncated__

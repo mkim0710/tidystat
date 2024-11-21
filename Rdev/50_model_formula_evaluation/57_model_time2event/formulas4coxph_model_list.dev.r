@@ -164,8 +164,8 @@ formulas4coxph_model_list.Cigar_ge50 =
     varnames4coxph_model_list.Cigar_ge50 %>% map(function(vec) {
         vec %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
     })
-formulas4coxph_model_list.Cigar_ge50 |> str()
-# > formulas4coxph_model_list.Cigar_ge50 |> str()
+formulas4coxph_model_list.Cigar_ge50 |> str(max.level = 2, give.attr = TRUE)
+# > formulas4coxph_model_list.Cigar_ge50 |> str(max.level = 2, give.attr = TRUE)
 # List of 11
 #  $ Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition:Class 'formula'  language Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category + PMHx_diabetes + PMH| __truncated__
 #   .. ..- attr(*, ".Environment")=<environment: 0x000000003a807628> 

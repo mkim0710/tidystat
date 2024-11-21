@@ -181,17 +181,17 @@ mydb.dbListTables.dbListFields =
     }) %>% setNames(mydb %>% {DBI::dbListTables(.)})
 
 
-mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
-# > mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
+mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str(max.level = 2, give.attr = TRUE)
+# > mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:149] "enrolid" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
 
 
 # mydb.dbListTables.dbListFields %>% map(function(vec) {
 #     if_else(vec %in% (mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique()), T, F)
-# }) |> str()
+# }) |> str(max.level = 2, give.attr = TRUE)
 # # > mydb.dbListTables.dbListFields %>% map(function(vec) {
 # # +     if_else(vec %in% (mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique()), T, F)
-# # + }) |> str()
+# # + }) |> str(max.level = 2, give.attr = TRUE)
 # # List of 18
 # #  $ infant_pregcohort_d_r4.sas7bdat    : logi [1:33] TRUE TRUE TRUE TRUE TRUE TRUE ...
 # #  $ infant_pregcohort_i_r4.sas7bdat    : logi [1:64] TRUE TRUE TRUE TRUE TRUE TRUE ...
@@ -215,10 +215,10 @@ mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
 
 mydb.dbListTables.dbListFields %>% map(function(vec) {
     if_else((mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() %in% vec), T, F)
-}) |> str()
+}) |> str(max.level = 2, give.attr = TRUE)
 # > mydb.dbListTables.dbListFields %>% map(function(vec) {
 # +     if_else((mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() %in% vec), T, F)
-# + }) |> str()
+# + }) |> str(max.level = 2, give.attr = TRUE)
 # List of 18
 #  $ infant_pregcohort_d_r4.sas7bdat    : logi [1:149] TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ infant_pregcohort_i_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE FALSE TRUE TRUE ...
@@ -334,11 +334,11 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(
 
 ## @ mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() ------  
 # ?unique
-mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
-mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() |> str()
-# > mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
+mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str(max.level = 2, give.attr = TRUE)
+mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() |> str(max.level = 2, give.attr = TRUE)
+# > mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:149] "enrolid" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
-# > mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() |> str()
+# > mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:146] "ENROLID" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
 
 

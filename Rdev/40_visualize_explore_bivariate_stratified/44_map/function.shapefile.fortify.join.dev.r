@@ -4,12 +4,12 @@
 # https://rpubs.com/cardiomoon/159183
 # https://rpubs.com/cardiomoon/159305
 
-korpopmap1.CP949 |> str(max.level = 1) #----
-korpopmap1.CP949 |> str(max.level = 2) #----
+korpopmap1.CP949 |> str(max.level = 1, give.attr = TRUE) #----
+korpopmap1.CP949 |> str(max.level = 2, give.attr = TRUE) #----
 korpopmap1.CP949@data |> str() #----
-# > korpopmap1 |> str(max.level = 1) #----  
+# > korpopmap1 |> str(max.level = 1, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
-# > korpopmap1 |> str(max.level = 2) #----  
+# > korpopmap1 |> str(max.level = 2, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -63,9 +63,9 @@ korpopmap1.CP949@data |> str() #----
 #  $ code1.data             : chr  "11" "21" "22" "23" ...
 
 
-korpopmap2.CP949 |> str(max.level = 2) #----
-korpopmap3.CP949 |> str(max.level = 2) #----
-# > korpopmap2.CP949 |> str(max.level = 2) #----  
+korpopmap2.CP949 |> str(max.level = 2, give.attr = TRUE) #----
+korpopmap3.CP949 |> str(max.level = 2, give.attr = TRUE) #----
+# > korpopmap2.CP949 |> str(max.level = 2, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	251 obs. of  42 variables:
 #   ..@ polygons   :List of 251
@@ -73,7 +73,7 @@ korpopmap3.CP949 |> str(max.level = 2) #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap3.CP949 |> str(max.level = 2) #----  
+# > korpopmap3.CP949 |> str(max.level = 2, give.attr = TRUE) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	3472 obs. of  42 variables:
 #   ..@ polygons   :List of 3472

@@ -24,8 +24,8 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
-# # > as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
+# as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2, give.attr = TRUE)
+# # > as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2, give.attr = TRUE)
 # # List of 7
 # #  $ DM_C     :List of 2
 # #   ..$ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
@@ -50,10 +50,10 @@ options(width=120)
 # #   ..$ df_wave_cumulative: tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 as1_7.na.Date.fct.cumulative_DM.list$EverDMv3_byWavei = as1_7.na.Date.fct.EverDMv3_byWavei |> set_names(paste0("EverDMv3_byWave", 1:7))
 as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei = as1_7.na.Date.fct.NewDMv3_atWavei |> set_names(paste0("NewDMv3_atWave", 1:7))
-as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
-as1_7.na.Date.fct.cumulative_DM.list$EverDMv3_byWavei |> str(max.level = 2)
-as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
-# > as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
+as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2, give.attr = TRUE)
+as1_7.na.Date.fct.cumulative_DM.list$EverDMv3_byWavei |> str(max.level = 2, give.attr = TRUE)
+as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2, give.attr = TRUE)
+# > as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2, give.attr = TRUE)
 # List of 9
 #  $ DM_C            :List of 2
 #   ..$ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
@@ -78,7 +78,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
 #   ..$ df_wave_cumulative: tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ EverDMv3_byWavei: tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ NewDMv3_atWavei : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
-# > as1_7.na.Date.fct.cumulative_DM.list$EverDMv3_byWavei |> str(max.level = 2)
+# > as1_7.na.Date.fct.cumulative_DM.list$EverDMv3_byWavei |> str(max.level = 2, give.attr = TRUE)
 # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ EverDMv3_byWave1: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 #  $ EverDMv3_byWave2: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
@@ -87,7 +87,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
 #  $ EverDMv3_byWave5: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 #  $ EverDMv3_byWave6: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 #  $ EverDMv3_byWave7: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
-# > as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
+# > as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2, give.attr = TRUE)
 # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ NewDMv3_atWave1: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 #  $ NewDMv3_atWave2: logi [1:10030] FALSE FALSE FALSE FALSE FALSE FALSE ...
@@ -102,8 +102,8 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
 # \$ -dev as1_7.na.Date.fct.cumulative_DM.list\$Time2Censor_NewDMv3 ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
-# # > as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
+# as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2, give.attr = TRUE)
+# # > as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2, give.attr = TRUE)
 # # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 # #  $ NewDMv3_atWave1: logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 # #  $ NewDMv3_atWave2: logi [1:10030] FALSE FALSE FALSE FALSE FALSE FALSE ...

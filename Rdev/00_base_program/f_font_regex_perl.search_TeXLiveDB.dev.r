@@ -882,8 +882,8 @@ f_font_regex_perl.search_TeXLiveDB <- function(font_regex_perl) {
 }
 
 vec_font_regex_perl.TexLiveDB_list = vec_font_regex_perl %>% map(f_font_regex_perl.search_TeXLiveDB)
-vec_font_regex_perl.TexLiveDB_list %>% str
-# > vec_font_regex_perl.TexLiveDB_list %>% str
+vec_font_regex_perl.TexLiveDB_list |> str(max.level = 2, give.attr = TRUE)
+# > vec_font_regex_perl.TexLiveDB_list |> str(max.level = 2, give.attr = TRUE)
 # List of 6
 #  $ Roboto Condensed      : chr [1:1845] "tlmgr: package repository https://mirror.navercorp.com/CTAN/systems/texlive/tlnet (not verified: gpg unavailable)" "roboto:" "\ttexmf-dist/fonts/tfm/google/roboto/RobotoSerifCondensed-BoldItalic-lf-ts1--base.tfm" "\ttexmf-dist/fonts/vf/google/roboto/RobotoSerifCondensed-Italic-tosf-lgr.vf" ...
 #  $ Roboto Serif          : chr [1:2475] "tlmgr: package repository https://mirror.navercorp.com/CTAN/systems/texlive/tlnet (not verified: gpg unavailable)" "roboto:" "\ttexmf-dist/fonts/type1/google/roboto/RobotoSerif-ExtraBoldItalic.pfb" "\ttexmf-dist/fonts/vf/google/roboto/RobotoSerif-LightItalic-lf-ts1.vf" ...

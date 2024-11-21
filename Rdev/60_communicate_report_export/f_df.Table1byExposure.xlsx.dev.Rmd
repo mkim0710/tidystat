@@ -315,7 +315,7 @@ DataSet.Date.NA.rmAllNA = get(DataSetName) %>% select(matches(VarName.suffix.reg
     select(matches("A0[0-3]"))
 DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA[sort(names(DataSet.Date.NA.rmAllNA))]
 DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
-DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
+DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

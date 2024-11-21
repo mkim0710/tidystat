@@ -381,7 +381,7 @@ options(width=120)
 # library(glmnet)
 # # load(system.file("data", "CoxExample.rda", package = "glmnet"))
 # data(CoxExample)
-# CoxExample %>% str
+# CoxExample |> str(max.level = 2, give.attr = TRUE)
 # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
 
 # .objectname = "glmnet_coxExample_tibble"
@@ -398,7 +398,7 @@ glmnet_coxExample_tibble.round3
 ```
   
   
-    > glmnet_coxExample_tibble %>% str()
+    > glmnet_coxExample_tibble |> str(max.level = 2, give.attr = TRUE)
     tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
      $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
      $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...
@@ -444,7 +444,7 @@ options(width=120)
 # library(glmnet)
 # # load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
 # data(QuickStartExample)
-# QuickStartExample %>% str
+# QuickStartExample |> str(max.level = 2, give.attr = TRUE)
 # glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
 # glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
 # glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
@@ -455,7 +455,7 @@ options(width=120)
 # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
 
-glmnet_gaussianExample_tibble %>% str
+glmnet_gaussianExample_tibble |> str(max.level = 2, give.attr = TRUE)
 glmnet_gaussianExample_tibble
 # glmnet_gaussianExample_tibble.round3 = glmnet_gaussianExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
 # glmnet_gaussianExample_tibble.round3
@@ -517,7 +517,7 @@ options(width=120)
 # library(glmnet)
 # # load(system.file("data", "BinomialExample.rda", package = "glmnet"))
 # data(BinomialExample)
-# BinomialExample %>% str
+# BinomialExample |> str(max.level = 2, give.attr = TRUE)
 # glmnet_binomialExample_tibble = BinomialExample$x %>% as.data.frame()%>% as.tibble()
 # glmnet_binomialExample_tibble$y = BinomialExample$y
 # glmnet_binomialExample_tibble = glmnet_binomialExample_tibble %>% select(y, everything())
@@ -528,7 +528,7 @@ options(width=120)
 # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_binomialExample_tibble.rda"))
 
-glmnet_binomialExample_tibble %>% str
+glmnet_binomialExample_tibble |> str(max.level = 2, give.attr = TRUE)
 glmnet_binomialExample_tibble
 # glmnet_binomialExample_tibble.round3 = glmnet_binomialExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
 # glmnet_binomialExample_tibble.round3
@@ -864,17 +864,17 @@ TheTrainSet.cv.glmnet.alphas <- f_df.cv.glmnet.alphas(
 # saveRDS(TheTrainSet.cv.glmnet.alphas, file = "TheTrainSet.cv.glmnet.alphas.rds")
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-TheTrainSet.cv.glmnet.alphas %>% str(max.level = 1)
+TheTrainSet.cv.glmnet.alphas |> str(max.level = 1, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet.alphas[[1]] %>% str(max.level = 1)
+TheTrainSet.cv.glmnet.alphas[[1]] |> str(max.level = 1, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet.alphas[[1]]$glmnet.fit %>% str(max.level = 1)
+TheTrainSet.cv.glmnet.alphas[[1]]$glmnet.fit |> str(max.level = 1, give.attr = TRUE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 
 # TheTrainSet.cv.glmnet.alphas.coef_list_list = list()
 # TheTrainSet.cv.glmnet.alphas.coef_list_list[["min"]] = TheTrainSet.cv.glmnet.alphas %>% map(coef, s = "lambda.min")
 # TheTrainSet.cv.glmnet.alphas.coef_list_list[["1se"]] = TheTrainSet.cv.glmnet.alphas %>% map(coef, s = "lambda.1se")
-# TheTrainSet.cv.glmnet.alphas.coef_list_list %>% str
+# TheTrainSet.cv.glmnet.alphas.coef_list_list |> str(max.level = 2, give.attr = TRUE)
 # 
 # cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 # TheTrainSet.cv.glmnet.alphas.coef = TheTrainSet.cv.glmnet.alphas.coef_list_list %>% (function(ls_ls) { 
@@ -888,7 +888,7 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #     out2
 # })()
 # 
-# TheTrainSet.cv.glmnet.alphas.coef %>% str()
+# TheTrainSet.cv.glmnet.alphas.coef |> str(max.level = 2, give.attr = TRUE)
 # TheTrainSet.cv.glmnet.alphas.coef %>% print()
 # 
 cat("    ________________________________________________________________________    \n")

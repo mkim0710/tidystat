@@ -291,16 +291,16 @@ print(named_vector_custom)
 value_options <- "ValueA=LabelA, ValueB=LabelB"
 
 str_split(value_options, ", ") %>% 
-  unlist() %>% str
+  unlist() |> str(max.level = 2, give.attr = TRUE)
 
 str_split(value_options, ", ") %>% 
   unlist() %>% 
-  str_split("=") %>% str
+  str_split("=") |> str(max.level = 2, give.attr = TRUE)
 
 str_split(value_options, ", ") %>% 
   unlist() %>% 
   str_split("=") %>% 
-  map(~ set_names(.x[1], .x[2])) %>% str
+  map(~ set_names(.x[1], .x[2])) |> str(max.level = 2, give.attr = TRUE)
 
 # Create the named vector using tidyverse functions
 named_vector <- str_split(value_options, ", ") %>% 

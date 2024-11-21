@@ -185,9 +185,9 @@ fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #-
 #   .. ..- attr(*, ".drop")= logi TRUE
 
 
-nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----
-nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----
-# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----  
+nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1, give.attr = TRUE) %>% system.time #----
+nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1, give.attr = TRUE) %>% system.time #----
+# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1, give.attr = TRUE) %>% system.time #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 6933650 13
 #   ..- attr(*, "Formated")= chr [1:2] "6,933,650" "       13"
@@ -205,7 +205,7 @@ nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(
 #   .. ..- attr(*, ".drop")= logi TRUE
 #  사용자  시스템 elapsed 
 #    3.31    0.11    5.50 
-# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----  
+# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1, give.attr = TRUE) %>% system.time #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 6933650 13
 #   ..- attr(*, "Formated")= chr [1:2] "6,933,650" "       13"

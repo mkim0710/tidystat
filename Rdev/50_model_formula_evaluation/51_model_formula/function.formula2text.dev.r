@@ -2,14 +2,14 @@
 
 
 formula4MainModel = Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year
-formula4MainModel |> str()
-# > formula4MainModel |> str()
+formula4MainModel |> str(max.level = 2, give.attr = TRUE)
+# > formula4MainModel |> str(max.level = 2, give.attr = TRUE)
 # Class 'formula'  language Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4| __truncated__
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
 formula4MainModel |> as.list()
-formula4MainModel |> as.list() |> str()
-# > formula4MainModel |> as.list() |> str()
+formula4MainModel |> as.list() |> str(max.level = 2, give.attr = TRUE)
+# > formula4MainModel |> as.list() |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : symbol ~
 #  $ : symbol Depressed
@@ -18,8 +18,8 @@ formula4MainModel |> as.list() |> str()
 #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
 
-formula4MainModel[[3]] |> str()
-# > formula4MainModel[[3]] |> str()
+formula4MainModel[[3]] |> str(max.level = 2, give.attr = TRUE)
+# > formula4MainModel[[3]] |> str(max.level = 2, give.attr = TRUE)
 #  language SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college | __truncated__
 formula4MainModel[[3]]
 
@@ -40,8 +40,8 @@ formula4MainModel |> deparse()
 # [2] "    AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + "   
 # [3] "    HIQ_6 + HUQ_3_lt_1year"                
 
-formula4MainModel |> dput() |> str()
-# > formula4MainModel |> dput() |> str()
+formula4MainModel |> dput() |> str(max.level = 2, give.attr = TRUE)
+# > formula4MainModel |> dput() |> str(max.level = 2, give.attr = TRUE)
 # Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + 
 #     AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + 
 #     HIQ_6 + HUQ_3_lt_1year

@@ -134,10 +134,10 @@ grep(pattern, x, value = T)
 
 ## Match data from regexpr() ----  
 m <- regexpr(pattern, x)
-m |> str()
+m |> str(max.level = 2, give.attr = TRUE)
 m |> dput()
 m
-# > m |> str()
+# > m |> str(max.level = 2, give.attr = TRUE)
 #  int [1:4] 2 2 2 -1
 #  - attr(*, "match.length")= int [1:4] 5 2 2 -1
 #  - attr(*, "index.type")= chr "chars"
@@ -154,13 +154,13 @@ m
 # attr(,"useBytes")
 # [1] TRUE
 
-regmatches(x, m) |> str()
-regmatches(x, m, invert = TRUE) |> str()
+regmatches(x, m) |> str(max.level = 2, give.attr = TRUE)
+regmatches(x, m, invert = TRUE) |> str(max.level = 2, give.attr = TRUE)
 regmatches(x, m)
 regmatches(x, m, invert = TRUE)
-# > regmatches(x, m) |> str()
+# > regmatches(x, m) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:3] " and " ", " ", "
-# > regmatches(x, m, invert = TRUE) |> str()
+# > regmatches(x, m, invert = TRUE) |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ : chr [1:2] "A" "B"
 #  $ : chr [1:2] "A" "B and C"
@@ -184,11 +184,11 @@ regmatches(x, m, invert = TRUE)
 
 ## Match data from gregexpr() ----  
 m <- gregexpr(pattern, x)
-m |> str()
+m |> str(max.level = 2, give.attr = TRUE)
 m |> dput()
 m
 # > m <- gregexpr(pattern, x)
-# > m |> str()
+# > m |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ : int 2
 #   ..- attr(*, "match.length")= int 5
@@ -248,18 +248,18 @@ m
 # attr(,"useBytes")
 # [1] TRUE
 
-regmatches(x, m) |> str()
-regmatches(x, m, invert = TRUE) |> str()
+regmatches(x, m) |> str(max.level = 2, give.attr = TRUE)
+regmatches(x, m, invert = TRUE) |> str(max.level = 2, give.attr = TRUE)
 regmatches(x, m)
 regmatches(x, m, invert = TRUE)
 # > m <- gregexpr(pattern, x)
-# > regmatches(x, m) |> str()
+# > regmatches(x, m) |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ : chr " and "
 #  $ : chr [1:2] ", " " and "
 #  $ : chr [1:3] ", " ", " " and "
 #  $ : chr(0) 
-# > regmatches(x, m, invert = TRUE) |> str()
+# > regmatches(x, m, invert = TRUE) |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ : chr [1:2] "A" "B"
 #  $ : chr [1:3] "A" "B" "C"
@@ -302,9 +302,9 @@ x <- "John (fishing, hunting), Paul (hiking, biking)"
 ## non-matched parts.
 ## First, match the parenthesized hobby lists.
 m <- gregexpr("\\([^)]*\\)", x)
-m |> str()
+m |> str(max.level = 2, give.attr = TRUE)
 m
-# > m |> str()
+# > m |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ : int -1
 #   ..- attr(*, "match.length")= int -1
@@ -366,18 +366,18 @@ blanks <- function(n) strrep(" ", n)
 x <- "John (fishing, hunting), Paul (hiking, biking)"
 s <- x
 regmatches(s, m) <- Map(blanks, lapply(regmatches(s, m), nchar))
-s |> str()
+s |> str(max.level = 2, give.attr = TRUE)
 s
-# > s |> str()
+# > s |> str(max.level = 2, give.attr = TRUE)
 #  chr "John                   , Paul                 "
 # > s
 # [1] "John                   , Paul                 "
 
 ## Compute the positions of the split matches (note that we cannot call strsplit() on x with match data from s). ----  
 m <- gregexpr(", *", s)
-m |> str()
+m |> str(max.level = 2, give.attr = TRUE)
 m
-# > m |> str()
+# > m |> str(max.level = 2, give.attr = TRUE)
 # List of 1
 #  $ : int 24
 #   ..- attr(*, "match.length")= int 2
@@ -404,29 +404,29 @@ regmatches(x, m, invert = TRUE)
 
 
 # @@@@ library(stringr) ======  
-fruit |> str()
-sentences |> str()
-letters |> str()
-LETTERS |> str()
-# > fruit |> str()
+fruit |> str(max.level = 2, give.attr = TRUE)
+sentences |> str(max.level = 2, give.attr = TRUE)
+letters |> str(max.level = 2, give.attr = TRUE)
+LETTERS |> str(max.level = 2, give.attr = TRUE)
+# > fruit |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] "apple" "apricot" "avocado" "banana" "bell pepper" "bilberry" "blackberry" "blackcurrant" "blood orange" ...
-# > sentences |> str()
+# > sentences |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:720] "The birch canoe slid on the smooth planks." "Glue the sheet to the dark blue background." ...
-# > letters |> str()
+# > letters |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:26] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
-# > LETTERS |> str()
+# > LETTERS |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:26] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 
 
 ## @ str_length() == nchar() ====  
-fruit |> str()
-fruit %>% nchar |> str()
-fruit |> str_length |> str()
-# > fruit |> str()
+fruit |> str(max.level = 2, give.attr = TRUE)
+fruit %>% nchar |> str(max.level = 2, give.attr = TRUE)
+fruit |> str_length |> str(max.level = 2, give.attr = TRUE)
+# > fruit |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] "apple" "apricot" "avocado" "banana" "bell pepper" "bilberry" "blackberry" "blackcurrant" "blood orange" ...
-# > fruit %>% nchar |> str()
+# > fruit %>% nchar |> str(max.level = 2, give.attr = TRUE)
 #  int [1:80] 5 7 7 6 11 8 10 12 12 9 ...
-# > fruit |> str_length |> str()
+# > fruit |> str_length |> str(max.level = 2, give.attr = TRUE)
 #  int [1:80] 5 7 7 6 11 8 10 12 12 9 ...
 
 
@@ -504,16 +504,16 @@ right = function(text, num_char) {
 string <- c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics")
 pattern <- "t.m"
 
-regexpr(pattern, string) |> str()
-gregexpr(pattern, string) |> str()
-regmatches(string, regexpr(pattern, string)) |> str()
-regmatches(string, gregexpr(pattern, string)) |> str()
-# > regexpr(pattern, string) |> str()
+regexpr(pattern, string) |> str(max.level = 2, give.attr = TRUE)
+gregexpr(pattern, string) |> str(max.level = 2, give.attr = TRUE)
+regmatches(string, regexpr(pattern, string)) |> str(max.level = 2, give.attr = TRUE)
+regmatches(string, gregexpr(pattern, string)) |> str(max.level = 2, give.attr = TRUE)
+# > regexpr(pattern, string) |> str(max.level = 2, give.attr = TRUE)
 #  int [1:3] 10 -1 1
 #  - attr(*, "match.length")= int [1:3] 3 -1 3
 #  - attr(*, "index.type")= chr "chars"
 #  - attr(*, "useBytes")= logi TRUE
-# > gregexpr(pattern, string) |> str()
+# > gregexpr(pattern, string) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : int 10
 #   ..- attr(*, "match.length")= int 3
@@ -527,9 +527,9 @@ regmatches(string, gregexpr(pattern, string)) |> str()
 #   ..- attr(*, "match.length")= int [1:2] 3 3
 #   ..- attr(*, "index.type")= chr "chars"
 #   ..- attr(*, "useBytes")= logi TRUE
-# > regmatches(string, regexpr(pattern, string)) |> str()
+# > regmatches(string, regexpr(pattern, string)) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:2] "tam" "tim"
-# > regmatches(string, gregexpr(pattern, string)) |> str()
+# > regmatches(string, gregexpr(pattern, string)) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr "tam"
 #  $ : chr(0) 
@@ -588,17 +588,17 @@ regmatches(string, gregexpr(pattern, string))
 # [1] "tim" "tom"
 
 
-stringr::str_extract(string, pattern) |> str()
-stringr::str_extract_all(string, pattern) |> str()
-stringr::str_extract_all(string, pattern, simplify = TRUE) |> str()
-# > stringr::str_extract(string, pattern) |> str()
+stringr::str_extract(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+stringr::str_extract_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+stringr::str_extract_all(string, pattern, simplify = TRUE) |> str(max.level = 2, give.attr = TRUE)
+# > stringr::str_extract(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:3] "tam" NA "tim"
-# > stringr::str_extract_all(string, pattern) |> str()
+# > stringr::str_extract_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr "tam"
 #  $ : chr(0) 
 #  $ : chr [1:2] "tim" "tom"
-# > stringr::str_extract_all(string, pattern, simplify = TRUE) |> str()
+# > stringr::str_extract_all(string, pattern, simplify = TRUE) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:3, 1:2] "tam" "" "tim" "" "" "tom"
 
 stringr::str_extract(string, pattern)
@@ -623,11 +623,11 @@ stringr::str_extract_all(string, pattern, simplify = TRUE)
 # [3,] "tim" "tom"
 
 
-stringr::str_match(string, pattern) |> str()
-stringr::str_match_all(string, pattern) |> str()
-# > stringr::str_match(string, pattern) |> str()
+stringr::str_match(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+stringr::str_match_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# > stringr::str_match(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:3, 1] "tam" NA "tim"
-# > stringr::str_match_all(string, pattern) |> str()
+# > stringr::str_match_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr [1, 1] "tam"
 #  $ : chr[0 , 1] 
@@ -655,31 +655,31 @@ stringr::str_match_all(string, pattern)
 
 
 
-fruit |> str()
-fruit |> str_extract("[aeiou]") |> str()
-fruit |> str_extract("[bcd]") |> str()
-# > fruit |> str()
+fruit |> str(max.level = 2, give.attr = TRUE)
+fruit |> str_extract("[aeiou]") |> str(max.level = 2, give.attr = TRUE)
+fruit |> str_extract("[bcd]") |> str(max.level = 2, give.attr = TRUE)
+# > fruit |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] "apple" "apricot" "avocado" "banana" "bell pepper" "bilberry" "blackberry" "blackcurrant" "blood orange" ...
-# > fruit |> str_extract("[aeiou]") |> str()
+# > fruit |> str_extract("[aeiou]") |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] "a" "a" "a" "a" "e" "i" "a" "a" "o" "u" "o" "e" "a" "a" "e" "e" "i" "e" "o" "o" "a" "u" "u" "a" "a" "a" ...
-# > fruit |> str_extract("[bcd]") |> str()
+# > fruit |> str_extract("[bcd]") |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] NA "c" "c" "b" "b" "b" "b" "b" "b" "b" "b" "b" "c" "c" "c" "c" "c" "c" "c" "c" "c" "c" "c" "d" "d" "d" ...
 
 pattern = "[aeiou]"
-fruit %>% {regmatches(., regexpr(pattern, .))} |> str()
+fruit %>% {regmatches(., regexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 pattern = "[bcd]"
-fruit %>% {regmatches(., regexpr(pattern, .))} |> str()
+fruit %>% {regmatches(., regexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 # > pattern = "[aeiou]"
-# > fruit %>% {regmatches(., regexpr(pattern, .))} |> str()
+# > fruit %>% {regmatches(., regexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] "a" "a" "a" "a" "e" "i" "a" "a" "o" "u" "o" "e" "a" "a" "e" "e" "i" "e" "o" "o" "a" "u" "u" "a" "a" "a" ...
 # > pattern = "[bcd]"
-# > fruit %>% {regmatches(., regexpr(pattern, .))} |> str()
+# > fruit %>% {regmatches(., regexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:46] "c" "c" "b" "b" "b" "b" "b" "b" "b" "b" "b" "c" "c" "c" "c" "c" "c" "c" "c" "c" "c" "c" "d" "d" "d" "d" ...
 
 
-fruit |> str_extract_all("[aeiou]") |> str()
-fruit |> str_extract_all("[bcd]") |> str()
-# > fruit |> str_extract_all("[aeiou]") |> str()
+fruit |> str_extract_all("[aeiou]") |> str(max.level = 2, give.attr = TRUE)
+fruit |> str_extract_all("[bcd]") |> str(max.level = 2, give.attr = TRUE)
+# > fruit |> str_extract_all("[aeiou]") |> str(max.level = 2, give.attr = TRUE)
 # List of 80
 #  $ : chr [1:2] "a" "e"
 #  $ : chr [1:3] "a" "i" "o"
@@ -761,7 +761,7 @@ fruit |> str_extract_all("[bcd]") |> str()
 #  $ : chr [1:4] "a" "e" "i" "e"
 #  $ : chr [1:4] "u" "i" "u" "i"
 #  $ : chr [1:4] "a" "e" "e" "o"
-# > fruit |> str_extract_all("[bcd]") |> str()
+# > fruit |> str_extract_all("[bcd]") |> str(max.level = 2, give.attr = TRUE)
 # List of 80
 #  $ : chr(0) 
 #  $ : chr "c"
@@ -846,11 +846,11 @@ fruit |> str_extract_all("[bcd]") |> str()
 
 
 pattern = "[aeiou]"
-fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
+fruit %>% {regmatches(., gregexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 pattern = "[bcd]"
-fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
+fruit %>% {regmatches(., gregexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 # > pattern = "[aeiou]"
-# > fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
+# > fruit %>% {regmatches(., gregexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 # List of 80
 #  $ : chr [1:2] "a" "e"
 #  $ : chr [1:3] "a" "i" "o"
@@ -933,7 +933,7 @@ fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
 #  $ : chr [1:4] "u" "i" "u" "i"
 #  $ : chr [1:4] "a" "e" "e" "o"
 # > pattern = "[bcd]"
-# > fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
+# > fruit %>% {regmatches(., gregexpr(pattern, .))} |> str(max.level = 2, give.attr = TRUE)
 # List of 80
 #  $ : chr(0) 
 #  $ : chr "c"
@@ -1027,20 +1027,20 @@ string <- c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics")
 pattern <- "t.m"
 
 
-# stringr::str_extract(string, pattern) |> str()
-# stringr::str_extract_all(string, pattern) |> str()
-# stringr::str_extract_all(string, pattern, simplify = TRUE) |> str()
+# stringr::str_extract(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# stringr::str_extract_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# stringr::str_extract_all(string, pattern, simplify = TRUE) |> str(max.level = 2, give.attr = TRUE)
 # stringr::str_extract(string, pattern)
 # stringr::str_extract_all(string, pattern)
 # stringr::str_extract_all(string, pattern, simplify = TRUE)
-# # > stringr::str_extract(string, pattern) |> str()
+# # > stringr::str_extract(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # #  chr [1:3] "tam" NA "tim"
-# # > stringr::str_extract_all(string, pattern) |> str()
+# # > stringr::str_extract_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # # List of 3
 # #  $ : chr "tam"
 # #  $ : chr(0) 
 # #  $ : chr [1:2] "tim" "tom"
-# # > stringr::str_extract_all(string, pattern, simplify = TRUE) |> str()
+# # > stringr::str_extract_all(string, pattern, simplify = TRUE) |> str(max.level = 2, give.attr = TRUE)
 # #  chr [1:3, 1:2] "tam" "" "tim" "" "" "tom"
 # # > stringr::str_extract(string, pattern)
 # # [1] "tam" NA    "tim"
@@ -1061,11 +1061,11 @@ pattern <- "t.m"
 # # [3,] "tim" "tom"
 # 
 # 
-# stringr::str_match(string, pattern) |> str()
-# stringr::str_match_all(string, pattern) |> str()
-# # > stringr::str_match(string, pattern) |> str()
+# stringr::str_match(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# stringr::str_match_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# # > stringr::str_match(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # #  chr [1:3, 1] "tam" NA "tim"
-# # > stringr::str_match_all(string, pattern) |> str()
+# # > stringr::str_match_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # # List of 3
 # #  $ : chr [1, 1] "tam"
 # #  $ : chr[0 , 1] 
@@ -1091,21 +1091,21 @@ pattern <- "t.m"
 # # [1,] "tim"
 # # [2,] "tom"
 
-stringr::str_extract(string, pattern) |> str()
-stringr::str_extract_all(string, pattern) |> str()
-# > stringr::str_extract(string, pattern) |> str()
+stringr::str_extract(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+stringr::str_extract_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# > stringr::str_extract(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:3] "tam" NA "tim"
-# > stringr::str_extract_all(string, pattern) |> str()
+# > stringr::str_extract_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr "tam"
 #  $ : chr(0) 
 #  $ : chr [1:2] "tim" "tom"
 
-stringr::str_match(string, pattern) |> str()
-stringr::str_match_all(string, pattern) |> str()
-# > stringr::str_match(string, pattern) |> str()
+stringr::str_match(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+stringr::str_match_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
+# > stringr::str_match(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:3, 1] "tam" NA "tim"
-# > stringr::str_match_all(string, pattern) |> str()
+# > stringr::str_match_all(string, pattern) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : chr [1, 1] "tam"
 #  $ : chr[0 , 1] 
@@ -1113,16 +1113,16 @@ stringr::str_match_all(string, pattern) |> str()
 
 
 
-sentences |> str()
+sentences |> str(max.level = 2, give.attr = TRUE)
 pattern = "(a|the) ([^ ]+)"
-sentences |> str_extract(pattern) |> str()
-sentences |> str_match(pattern) |> str()
-# > sentences |> str()
+sentences |> str_extract(pattern) |> str(max.level = 2, give.attr = TRUE)
+sentences |> str_match(pattern) |> str(max.level = 2, give.attr = TRUE)
+# > sentences |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:720] "The birch canoe slid on the smooth planks." "Glue the sheet to the dark blue background." ...
 # > pattern = "(a|the) ([^ ]+)"
-# > sentences |> str_extract(pattern) |> str()
+# > sentences |> str_extract(pattern) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:720] "the smooth" "the sheet" "the depth" "a chicken" NA NA "the parked" NA NA NA "the sun" NA "the huge" ...
-# > sentences |> str_match(pattern) |> str()
+# > sentences |> str_match(pattern) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:720, 1:3] "the smooth" "the sheet" "the depth" "a chicken" NA NA "the parked" NA NA NA "the sun" NA ...
 
 

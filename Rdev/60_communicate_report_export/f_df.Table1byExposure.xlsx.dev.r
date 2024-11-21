@@ -754,8 +754,8 @@ df %>%
 
 
 ## @ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1 -----  
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1 |> str(max.level = 1)
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1 |> str(max.level = 1)
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1 |> str(max.level = 1, give.attr = TRUE)
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1 |> str(max.level = 1, give.attr = TRUE)
 # List of 5
 #  $ _3yr:List of 3
 #   ..- attr(*, "class")= chr "tableone"
@@ -769,7 +769,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
 #   ..- attr(*, "class")= chr "tableone"
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is |> str()
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is |> str(max.level = 2, give.attr = TRUE)
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level == "DTH_MDY")
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is
 #       n miss p.miss          level  freq   percent cum.percent
@@ -777,7 +777,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
 # 2 53377    0      0        DTH_MDY  4920  9.217453   11.396294
 # 3 53377    0      0   RECU_FR_DT_C 40873 76.574180   87.970474
 # 4 53377    0      0 RECU_FR_DT_C16  6421 12.029526  100.000000
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is |> str()
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable$`TRUE`$enddate.is |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	4 obs. of  7 variables:
 #  $ n          : int  53377 53377 53377 53377
 #  $ miss       : int  0 0 0 0
@@ -795,7 +795,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
 # 1 53377    0      0 DTH_MDY 4920 9.217453    11.39629
 
 attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is
-attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is |> str()
+attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is |> str(max.level = 2, give.attr = TRUE)
 attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is %>% sum
 # > attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is
 #                 is.dropped_5yr
@@ -804,7 +804,7 @@ attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_3456
 #   DTH_MDY         12341   4920
 #   RECU_FR_DT_C    56833  40873
 #   RECU_FR_DT_C16   6737   6421
-# > attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is |> str()
+# > attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1$`_5yr`$CatTable,"xtabs")$enddate.is |> str(max.level = 2, give.attr = TRUE)
 #  'xtabs' int [1:4, 1:2] 385578 12341 56833 6737 1163 4920 40873 6421
 #  - attr(*, "dimnames")=List of 2
 #   ..$ enddate.is    : chr [1:4] "2013-12-31" "DTH_MDY" "RECU_FR_DT_C" "RECU_FR_DT_C16"
@@ -956,8 +956,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
 # 4   _6yr 63438    0      0 RECU_FR_DT_C16 7333 11.55932         100       10061            912
 # 5   _7yr 74397    0      0 RECU_FR_DT_C16 8312 11.17249         100       10959            979
 
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is |> str()
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is |> str()
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is |> str(max.level = 2, give.attr = TRUE)
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	20 obs. of  8 variables:
 #  $ parent     : chr  "_3yr" "_3yr" "_3yr" "_3yr" ...
 #  $ n          : int  33330 33330 33330 33330 43643 43643 43643 43643 53377 53377 ...

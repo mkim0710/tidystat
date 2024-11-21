@@ -67,19 +67,19 @@ char_to_quo(mtcars, "mpg")
 ## @ txt = "Variable1" ====  
 Variable1 = 111
 txt = "Variable1"
-txt |> str()
+txt |> str(max.level = 2, give.attr = TRUE)
 txt |> dput()
-# > txt |> str()
+# > txt |> str(max.level = 2, give.attr = TRUE)
 #  chr "Variable1"
 # > txt |> dput()
 # "Variable1"
 
 parse(text = txt)
-parse(text = txt) |> str()
+parse(text = txt) |> str(max.level = 2, give.attr = TRUE)
 parse(text = txt) |> dput()
 # > parse(text = txt)
 # expression(Variable1)
-# > parse(text = txt) |> str()
+# > parse(text = txt) |> str(max.level = 2, give.attr = TRUE)
 # length 1 expression(Variable1)
 #  - attr(*, "srcref")=List of 1
 #   ..$ : 'srcref' int [1:8] 1 1 1 9 1 9 1 1
@@ -93,11 +93,11 @@ parse(text = txt) |> dput()
 
 
 eval(parse(text = txt))
-eval(parse(text = txt)) |> str()
+eval(parse(text = txt)) |> str(max.level = 2, give.attr = TRUE)
 eval(parse(text = txt)) |> dput()
 # > eval(parse(text = txt))
 # [1] 111
-# > eval(parse(text = txt)) |> str()
+# > eval(parse(text = txt)) |> str(max.level = 2, give.attr = TRUE)
 #  num 111
 # > eval(parse(text = txt)) |> dput()
 # 111
@@ -105,23 +105,23 @@ eval(parse(text = txt)) |> dput()
 
 txt
 get(txt)
-get(txt) |> str()
+get(txt) |> str(max.level = 2, give.attr = TRUE)
 get(txt) |> dput()
 # > txt
 # [1] "Variable1"
 # > get(txt)
 # [1] 111
-# > get(txt) |> str()
+# > get(txt) |> str(max.level = 2, give.attr = TRUE)
 #  num 111
 # > get(txt) |> dput()
 # 111
 
 expr(txt)
-expr(txt) |> str()
+expr(txt) |> str(max.level = 2, give.attr = TRUE)
 expr(txt) |> dput()
 # > expr(txt)
 # txt
-# > expr(txt) |> str()
+# > expr(txt) |> str(max.level = 2, give.attr = TRUE)
 #  symbol txt
 # > expr(txt) |> dput()
 # txt
@@ -129,13 +129,13 @@ expr(txt) |> dput()
 
 txt
 eval(expr(txt))
-eval(expr(txt)) |> str()
+eval(expr(txt)) |> str(max.level = 2, give.attr = TRUE)
 eval(expr(txt)) |> dput()
 # > txt
 # [1] "Variable1"
 # > eval(expr(txt))
 # [1] "Variable1"
-# > eval(expr(txt)) |> str()
+# > eval(expr(txt)) |> str(max.level = 2, give.attr = TRUE)
 #  chr "Variable1"
 # > eval(expr(txt)) |> dput()
 # "Variable1"
@@ -143,11 +143,11 @@ eval(expr(txt)) |> dput()
 
 
 rlang::sym(txt)
-rlang::sym(txt) |> str()
+rlang::sym(txt) |> str(max.level = 2, give.attr = TRUE)
 rlang::sym(txt) |> dput()
 # > rlang::sym(txt)
 # Variable1
-# > rlang::sym(txt) |> str()
+# > rlang::sym(txt) |> str(max.level = 2, give.attr = TRUE)
 #  symbol Variable1
 # > rlang::sym(txt) |> dput()
 # Variable1
@@ -155,11 +155,11 @@ rlang::sym(txt) |> dput()
 
 
 expr(txt)
-expr(txt) |> str()
+expr(txt) |> str(max.level = 2, give.attr = TRUE)
 expr(txt) |> dput()
 # > expr(txt)
 # txt
-# > expr(txt) |> str()
+# > expr(txt) |> str(max.level = 2, give.attr = TRUE)
 #  symbol txt
 # > expr(txt) |> dput()
 # txt
@@ -167,13 +167,13 @@ expr(txt) |> dput()
 
 txt
 eval(expr(txt))
-eval(expr(txt)) |> str()
+eval(expr(txt)) |> str(max.level = 2, give.attr = TRUE)
 eval(expr(txt)) |> dput()
 # > txt
 # [1] "Variable1"
 # > eval(expr(txt))
 # [1] "Variable1"
-# > eval(expr(txt)) |> str()
+# > eval(expr(txt)) |> str(max.level = 2, give.attr = TRUE)
 #  chr "Variable1"
 # > eval(expr(txt)) |> dput()
 # "Variable1"
@@ -183,7 +183,7 @@ eval(expr(txt)) |> dput()
 
 txt
 eval(quo(txt))
-eval(quo(txt)) |> str()
+eval(quo(txt)) |> str(max.level = 2, give.attr = TRUE)
 eval(quo(txt)) |> dput()
 # > txt
 # [1] "Variable1"
@@ -191,7 +191,7 @@ eval(quo(txt)) |> dput()
 # <quosure>
 # expr: ^txt
 # env:  global
-# > eval(quo(txt)) |> str()
+# > eval(quo(txt)) |> str(max.level = 2, give.attr = TRUE)
 #  language ~txt
 #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
 # > eval(quo(txt)) |> dput()
@@ -202,7 +202,7 @@ eval(quo(txt)) |> dput()
 ~txt
 str(~txt)
 eval(~txt)
-eval(~txt) |> str()
+eval(~txt) |> str(max.level = 2, give.attr = TRUE)
 eval(~txt) |> dput()
 # > ~txt
 # ~txt
@@ -211,7 +211,7 @@ eval(~txt) |> dput()
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
 # > eval(~txt)
 # ~txt
-# > eval(~txt) |> str()
+# > eval(~txt) |> str(max.level = 2, give.attr = TRUE)
 # Class 'formula'  language ~txt
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
 # > eval(~txt) |> dput()

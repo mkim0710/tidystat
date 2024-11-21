@@ -26,12 +26,12 @@ if (is.null(colnames(input_matrix))) {
     colnames(input_matrix) = paste0("C", 1:ncol(input_matrix))
 }
 input_matrix
-input_matrix %>% str
+input_matrix |> str(max.level = 2, give.attr = TRUE)
 # > input_matrix
 #    C1     C2     C3    
 # R1 "R1C1" "R1C2" "R1C3"
 # R2 "R2C1" "R2C2" "R2C3"
-# > input_matrix %>% str
+# > input_matrix |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:2, 1:3] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:2] "R1" "R2"
@@ -50,12 +50,12 @@ if (is.null(colnames(input_matrix))) {
     colnames(input_matrix) = paste0("C", 1:ncol(input_matrix))
 }
 input_matrix
-input_matrix %>% str
+input_matrix |> str(max.level = 2, give.attr = TRUE)
 # > input_matrix
 #    C1 C2 C3
 # R1  0  0  0
 # R2  0  0  0
-# > input_matrix %>% str
+# > input_matrix |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2, 1:3] 0 0 0 0 0 0
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:2] "R1" "R2"
@@ -63,14 +63,14 @@ input_matrix %>% str
 
 
 input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0))
-input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) %>% str
+input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) |> str(max.level = 2, give.attr = TRUE)
 # > input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0))
 #    C1 C2 C3
 # R1  0  0  0
 # R2  0  0  0
 # attr(,"names")
 # [1] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
-# > input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) %>% str
+# > input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2, 1:3] 0 0 0 0 0 0
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:2] "R1" "R2"

@@ -93,10 +93,10 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
         out = list(unadjusted_cor = unadjusted_cor, partial_cor = partial_cor) |> unlist()
     } else if (p.value == T) {
         #@ cf) output from cor.test() ----
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
         # # List of 9
         # #  $ statistic  : Named num 5.47
         # #   ..- attr(*, "names")= chr "t"
@@ -121,7 +121,7 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
         # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         # #   Cannot compute exact p-value with ties
         #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
         # List of 4
         #  $ estimate : Named num 0.733
         #   ..- attr(*, "names")= chr "rho"
@@ -157,7 +157,7 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 #              0.7818523              0.7356413
 
 x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T)
-x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str()
+x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str(max.level = 2, give.attr = TRUE)
 # > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T)
 #             unadjusted_cor_pearson unadjusted_cor.conf.int.LL_pearson 
 #                       7.818523e-01                       5.285640e-01 
@@ -169,7 +169,7 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 #                       4.453981e-01                       8.859727e-01 
 #        partial_cor.p.value_pearson    partial_cor.statistic.t_pearson 
 #                       1.444546e-04                       4.733867e+00 
-# > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str()
+# > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:10] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #  - attr(*, "names")= chr [1:10] "unadjusted_cor_pearson" "unadjusted_cor.conf.int.LL_pearson" "unadjusted_cor.conf.int.UL_pearson" "unadjusted_cor.p.value_pearson" ...
 
@@ -218,7 +218,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 
 
 x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T)
-x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) |> str()
+x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) |> str(max.level = 2, give.attr = TRUE)
 # > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T)
 #             unadjusted_cor_pearson unadjusted_cor.conf.int.LL_pearson 
 #                        -0.01201250                        -0.23391796 
@@ -230,7 +230,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 #                        -0.23862629                         0.20631299 
 #        partial_cor.p.value_pearson    partial_cor.statistic.t_pearson 
 #                         0.88257114                        -0.14820801 
-# > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) |> str()
+# > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:10] -0.012 -0.234 0.211 0.917 -0.105 ...
 #  - attr(*, "names")= chr [1:10] "unadjusted_cor_pearson" "unadjusted_cor.conf.int.LL_pearson" "unadjusted_cor.conf.int.UL_pearson" "unadjusted_cor.p.value_pearson" ...
 

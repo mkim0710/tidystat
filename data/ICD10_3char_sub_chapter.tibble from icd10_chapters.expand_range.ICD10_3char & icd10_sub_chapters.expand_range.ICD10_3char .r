@@ -4,9 +4,9 @@
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd10_chapters.expand_range.ICD10_3char.rda"))
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd10_sub_chapters.expand_range.ICD10_3char.rda"))
 
-icd10_chapters.expand_range.ICD10_3char |> str()
-icd10_sub_chapters.expand_range.ICD10_3char |> str()
-# > icd10_chapters.expand_range.ICD10_3char |> str()
+icd10_chapters.expand_range.ICD10_3char |> str(max.level = 2, give.attr = TRUE)
+icd10_sub_chapters.expand_range.ICD10_3char |> str(max.level = 2, give.attr = TRUE)
+# > icd10_chapters.expand_range.ICD10_3char |> str(max.level = 2, give.attr = TRUE)
 # List of 21
 #  $ Certain infectious and parasitic diseases                                                          : chr [1:167] "A00" "A01" "A02" "A03" ...
 #  $ Neoplasms                                                                                          : chr [1:141] "C00" "C01" "C02" "C03" ...
@@ -29,7 +29,7 @@ icd10_sub_chapters.expand_range.ICD10_3char |> str()
 #  $ Injury, poisoning and certain other consequences of external causes                                : chr [1:171] "S00" "S01" "S02" "S03" ...
 #  $ External causes of morbidity                                                                       : chr [1:271] "V00" "V01" "V02" "V03" ...
 #  $ Factors influencing health status and contact with health services                                 : chr [1:86] "Z00" "Z01" "Z02" "Z03" ...
-# > icd10_sub_chapters.expand_range.ICD10_3char |> str()
+# > icd10_sub_chapters.expand_range.ICD10_3char |> str(max.level = 2, give.attr = TRUE)
 # List of 279
 #  $ Intestinal Infectious Diseases                                                                                                                                                : chr [1:10] "A00" "A01" "A02" "A03" ...
 #  $ Tuberculosis                                                                                                                                                                  : chr [1:4] "A15" "A17" "A18" "A19"
@@ -144,13 +144,13 @@ icd10_sub_chapters.expand_range.ICD10_3char |> str()
 
 
 ## @ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----  
-icd10_chapters.expand_range.ICD10_3char |> str()
-icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str()
-icd10_chapters.expand_range.ICD10_3char |> names() |> str()
-icd10_chapters.expand_range.ICD10_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
-icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str()
+icd10_chapters.expand_range.ICD10_3char |> str(max.level = 2, give.attr = TRUE)
+icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str(max.level = 2, give.attr = TRUE)
+icd10_chapters.expand_range.ICD10_3char |> names() |> str(max.level = 2, give.attr = TRUE)
+icd10_chapters.expand_range.ICD10_3char %>% {rep(names(.), times = map_dbl(., length))} |> str(max.level = 2, give.attr = TRUE)
+icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str(max.level = 2, give.attr = TRUE)
 icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe
-# > icd10_chapters.expand_range.ICD10_3char |> str()
+# > icd10_chapters.expand_range.ICD10_3char |> str(max.level = 2, give.attr = TRUE)
 # List of 21
 #  $ Certain infectious and parasitic diseases                                                          : chr [1:167] "A00" "A01" "A02" "A03" ...
 #  $ Neoplasms                                                                                          : chr [1:141] "C00" "C01" "C02" "C03" ...
@@ -173,13 +173,13 @@ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.
 #  $ Injury, poisoning and certain other consequences of external causes                                : chr [1:171] "S00" "S01" "S02" "S03" ...
 #  $ External causes of morbidity                                                                       : chr [1:271] "V00" "V01" "V02" "V03" ...
 #  $ Factors influencing health status and contact with health services                                 : chr [1:86] "Z00" "Z01" "Z02" "Z03" ...
-# > icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str()
+# > icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:1903] "A00" "A01" "A02" "A03" "A04" "A05" "A06" "A07" "A08" "A09" "A15" "A17" "A18" "A19" "A20" "A21" "A22" "A23" ...
-# > icd10_chapters.expand_range.ICD10_3char |> names() |> str()
+# > icd10_chapters.expand_range.ICD10_3char |> names() |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:21] "Certain infectious and parasitic diseases" "Neoplasms" ...
-# > icd10_chapters.expand_range.ICD10_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
+# > icd10_chapters.expand_range.ICD10_3char %>% {rep(names(.), times = map_dbl(., length))} |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:1903] "Certain infectious and parasitic diseases" "Certain infectious and parasitic diseases" ...
-# > icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str()
+# > icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str(max.level = 2, give.attr = TRUE)
 #  Named chr [1:1903] "A00" "A01" "A02" "A03" "A04" "A05" "A06" "A07" "A08" "A09" "A15" "A17" "A18" "A19" "A20" "A21" "A22" ...
 #  - attr(*, "names")= chr [1:1903] "Certain infectious and parasitic diseases" "Certain infectious and parasitic diseases" "Certain infectious and parasitic diseases" "Certain infectious and parasitic diseases" ...
 # > icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe

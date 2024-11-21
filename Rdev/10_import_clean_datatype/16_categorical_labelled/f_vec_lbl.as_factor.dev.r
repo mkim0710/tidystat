@@ -169,7 +169,7 @@ env0 = env1
     # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     #
     # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-    # MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+    # MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
@@ -227,9 +227,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # \% library(haven) ----
 ## \% haven::labelled() ----
 s1 <- haven::labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
-s1 %>% str
+s1 |> str(max.level = 2, give.attr = TRUE)
 s1 %>% dput
-#' > s1 %>% str
+#' > s1 |> str(max.level = 2, give.attr = TRUE)
 #'  chr+lbl [1:3] M, M, F
 #'  @ labels: Named chr [1:2] "M" "F"
 #'   ..- attr(*, "names")= chr [1:2] "Male" "Female"
@@ -237,9 +237,9 @@ s1 %>% dput
 #' structure(c("M", "M", "F"), labels = c(Male = "M", Female = "F"), class = c("haven_labelled", "vctrs_vctr", "character"))
 
 s2 <- haven::labelled(c(1, 1, 2), c(Male = 1, Female = 2))
-s2 %>% str
+s2 |> str(max.level = 2, give.attr = TRUE)
 s2 %>% dput
-#' > s2 %>% str
+#' > s2 |> str(max.level = 2, give.attr = TRUE)
 #'  dbl+lbl [1:3] 1, 1, 2
 #'  @ labels: Named num [1:2] 1 2
 #'   ..- attr(*, "names")= chr [1:2] "Male" "Female"
@@ -252,9 +252,9 @@ s3 <- haven::labelled(
   c(Male = 1, Female = 2),
   label = "Assigned sex at birth"
 )
-s3 %>% str
+s3 |> str(max.level = 2, give.attr = TRUE)
 s3 %>% dput
-#' > s3 %>% str
+#' > s3 |> str(max.level = 2, give.attr = TRUE)
 #'  chr+lbl [1:5] M  , M  , F  , X  , N/A
 #'  @ labels: Named chr [1:4] "M" "F" "X" "N/A"
 #'   ..- attr(*, "names")= chr [1:4] "Male" "Female" "Refused" "Not applicable"
@@ -610,9 +610,9 @@ labelled:::recode.haven_labelled(y, `2` = 1L, `4` = 3L, .combine_value_labels = 
 #@@ START) data -----
 
 ## \$ fruit ====
-# > fruit %>% str
+# > fruit |> str(max.level = 2, give.attr = TRUE)
 #  chr [1:80] "apple" "apricot" "avocado" "banana" "bell pepper" "bilberry" "blackberry" "blackcurrant" "blood orange" "blueberry" ...
-# > fruit %>% as.factor %>% str
+# > fruit %>% as.factor |> str(max.level = 2, give.attr = TRUE)
 #  Factor w/ 80 levels "apple","apricot",..: 1 2 3 4 5 6 7 8 9 10 ...
 # > fruit %>% as.factor %>% is.factor
 # [1] TRUE
@@ -623,8 +623,8 @@ labelled:::recode.haven_labelled(y, `2` = 1L, `4` = 3L, .combine_value_labels = 
 ## \$ vec_lbl_sex ====
 vec_lbl_sex = structure(c(1, 2, 2, 1, 2), label = "성별", labels = c(남자 = 1, 여자 = 2), class = c("haven_labelled", "vctrs_vctr", "double"))
 
-vec_lbl_sex %>% str
-#' > vec_lbl_sex %>% str
+vec_lbl_sex |> str(max.level = 2, give.attr = TRUE)
+#' > vec_lbl_sex |> str(max.level = 2, give.attr = TRUE)
 #'  dbl+lbl [1:5] 1, 2, 2, 1, 2
 #'  @ label : chr "성별"
 #'  @ labels: Named num [1:2] 1 2
@@ -672,13 +672,13 @@ vec_lbl_sex %>% as_factor
 # Levels: 남자 여자
 
 
-vec_lbl_sex %>% haven::zap_label() %>% str
-vec_lbl_sex %>% haven::zap_labels() %>% str
-#' > vec_lbl_sex %>% haven::zap_label() %>% str
+vec_lbl_sex %>% haven::zap_label() |> str(max.level = 2, give.attr = TRUE)
+vec_lbl_sex %>% haven::zap_labels() |> str(max.level = 2, give.attr = TRUE)
+#' > vec_lbl_sex %>% haven::zap_label() |> str(max.level = 2, give.attr = TRUE)
 #'  dbl+lbl [1:5] 1, 2, 2, 1, 2
 #'  @ labels: Named num [1:2] 1 2
 #'   ..- attr(*, "names")= chr [1:2] "남자" "여자"
-#' > vec_lbl_sex %>% haven::zap_labels() %>% str
+#' > vec_lbl_sex %>% haven::zap_labels() |> str(max.level = 2, give.attr = TRUE)
 #'  num [1:5] 1 2 2 1 2
 #'  - attr(*, "label")= chr "성별"
 
@@ -687,8 +687,8 @@ vec_lbl_sex %>% haven::zap_labels() %>% str
 ## \$ vec_lbl_age ====
 vec_lbl_age = structure(c(22, 43, 42, 41, 41), label = "나이")
 
-vec_lbl_age %>% str
-# > vec_lbl_age %>% str
+vec_lbl_age |> str(max.level = 2, give.attr = TRUE)
+# > vec_lbl_age |> str(max.level = 2, give.attr = TRUE)
 #  num [1:5] 22 43 42 41 41
 #  - attr(*, "label")= chr "나이"
 

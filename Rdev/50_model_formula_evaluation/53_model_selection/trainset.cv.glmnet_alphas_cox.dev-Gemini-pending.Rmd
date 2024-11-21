@@ -272,7 +272,7 @@ for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)
 data("titanic_train")
 
 # View the first few rows
-titanic_train %>% str
+titanic_train |> str(max.level = 2, give.attr = TRUE)
 titanic_train %>% as_tibble
 
 # Select relevant variables
@@ -285,7 +285,7 @@ titanic_data <- na.omit(titanic_data)
 # Convert 'Survived' and 'Sex' to factors
 titanic_data$Survived <- factor(titanic_data$Survived)
 titanic_data$Sex <- factor(titanic_data$Sex)
-titanic_data %>% str
+titanic_data |> str(max.level = 2, give.attr = TRUE)
 titanic_data %>% as_tibble
 ```
   
@@ -481,7 +481,7 @@ options(width=120)
 # library(glmnet)
 # # load(system.file("data", "CoxExample.rda", package = "glmnet"))
 # data(CoxExample)
-# CoxExample %>% str
+# CoxExample |> str(max.level = 2, give.attr = TRUE)
 # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
 
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_glmnet_coxExample_tibble.rda"))
@@ -493,7 +493,7 @@ glmnet_coxExample_tibble.round3
 ```
   
   
-    > glmnet_coxExample_tibble %>% str()
+    > glmnet_coxExample_tibble |> str(max.level = 2, give.attr = TRUE)
     tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
      $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
      $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...

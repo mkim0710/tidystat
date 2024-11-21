@@ -156,7 +156,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
             , Code4MergeFrom.current = Code4MergeFrom[1]
             , Code4MergeInto.current = Code4MergeInto
             , time_passed.cumulative = Sys.time() - .t0
-        ) # list inside attr() is not shown with str(max.level = 1)
+        ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
         return(iteration.out)
     }
     
@@ -221,7 +221,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     attr(Results.iteration.list[[1]], "iteration_info") = list(
         type_of_iteration = "initial data before iteration"
         , time_passed.cumulative = Sys.time() - .t0
-    ) # list inside attr() is not shown with str(max.level = 1)
+    ) # list inside attr() is not shown with str(max.level = 1, give.attr = TRUE)
     
     
     

@@ -474,11 +474,11 @@ for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marri
 }
 
 if(exists(".MetaData0", envir=.GlobalEnv)) { 
-    ".MetaData0 %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
-    .MetaData0 %>% str(max.level = 2)
+    ".MetaData0 |> str(max.level = 2, give.attr = TRUE)" %>% {cat("> ", ., "  \n", sep = "")}
+    .MetaData0 |> str(max.level = 2, give.attr = TRUE)
 } else { .MetaData0 = MetaData }
-"MetaData %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
-MetaData %>% str(max.level = 2)
+"MetaData |> str(max.level = 2, give.attr = TRUE)" %>% {cat("> ", ., "  \n", sep = "")}
+MetaData |> str(max.level = 2, give.attr = TRUE)
 ```
   
   
@@ -561,7 +561,7 @@ options(width=120)
 # --> Now included in "f_df.t.tribble_construct.source.r"
   
 varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str(max.level = 2, give.attr = TRUE)
 get(DataSetName) |> dim()
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$f$f_df.NotNA_p_df()
@@ -608,7 +608,7 @@ options(width=120)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if(exists(paste0(DataSetName,".Date"))) DataSetName2 = paste0(DataSetName,".Date") else DataSetName2 = DataSetName
 .vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
-.vec_nlevel_lt20.value_number.unique %>% str
+.vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 DataSetName2.NA = DataSetName2 |> paste0(".NA"); assign( DataSetName2.NA, get(DataSetName2) |> mutate_if(is.factor, as.character) ); MetaData$DataSetNames[[DataSetName2.NA]] = list(DataSetName = DataSetName2.NA)

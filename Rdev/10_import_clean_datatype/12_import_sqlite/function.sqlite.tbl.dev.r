@@ -177,8 +177,8 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 KNHIS.02ID.2089.sqlite.tbl = mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% tbl(chr)
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)})
-KNHIS.02ID.2089.sqlite.tbl |> str()
-# > KNHIS.02ID.2089.sqlite.tbl |> str()
+KNHIS.02ID.2089.sqlite.tbl |> str(max.level = 2, give.attr = TRUE)
+# > KNHIS.02ID.2089.sqlite.tbl |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ NHID_GJ_0213.bind_rows.integer         :List of 2
 #   ..$ src:List of 2

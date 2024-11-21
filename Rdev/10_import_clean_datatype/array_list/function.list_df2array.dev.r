@@ -146,8 +146,8 @@ example_list <- list(df1, df2, df3)
 
 # Applying the function
 tmp_array <- function.list_df2array(example_list)
-tmp.array |> str()
-# > tmp.array |> str()
+tmp.array |> str(max.level = 2, give.attr = TRUE)
+# > tmp.array |> str(max.level = 2, give.attr = TRUE)
 #  num [1:3, 1:2, 1:3] 1 NA 3 4 NA NA NA 2 3 4 ...
 
 

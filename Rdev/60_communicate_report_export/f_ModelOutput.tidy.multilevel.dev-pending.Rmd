@@ -249,7 +249,7 @@ GermanBreastCancerStudyGroup <- GermanBreastCancerStudyGroup %>%
 GermanBreastCancerStudyGroup$`Hormone treatment` <- fct_recode(GermanBreastCancerStudyGroup$`Hormone treatment`,
                                                                Treated = "1",
                                                                Placebo = "0")
-GermanBreastCancerStudyGroup %>% str
+GermanBreastCancerStudyGroup |> str(max.level = 2, give.attr = TRUE)
 GermanBreastCancerStudyGroup %>% as_tibble
 ```
   

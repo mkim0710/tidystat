@@ -154,7 +154,7 @@ f_df.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
 #        dimnames = list(Guess = c("Milk", "Tea"),
 #                        Truth = c("Milk", "Tea")))
 # fisher.test(TeaTasting)
-# fisher.test(TeaTasting) |> str()
+# fisher.test(TeaTasting) |> str(max.level = 2, give.attr = TRUE)
 # List of 7
 #  $ p.value    : num 0.486
 #  $ conf.int   : atomic [1:2] 0.212 621.934
@@ -167,8 +167,8 @@ f_df.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
 #  $ method     : chr "Fisher's Exact Test for Count Data"
 #  $ data.name  : chr "TeaTasting"
 #  - attr(*, "class")= chr "htest"
-chisq.test(TeaTasting) |> str()
-# > chisq.test(TeaTasting) |> str()
+chisq.test(TeaTasting) |> str(max.level = 2, give.attr = TRUE)
+# > chisq.test(TeaTasting) |> str(max.level = 2, give.attr = TRUE)
 # List of 9
 #  $ statistic: Named num 0.5
 #   ..- attr(*, "names")= chr "X-squared"

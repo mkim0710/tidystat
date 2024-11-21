@@ -158,7 +158,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     #
     # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-    # MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+    # MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
@@ -181,7 +181,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # 
 # MetaData$ModelList$time2event = MetaData$ModelList$time2event |> c(env1$f$f_formula.lhs_rhs_vars(MetaData$ModelList$time2event$formula))
-# MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+# MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
 # # List of 8
 # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
@@ -202,7 +202,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # 
 # MetaData$ModelList$time2event = MetaData$ModelList$time2event |> c(MetaData$ModelList$time2event$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-# MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+# MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
 # # List of 7
 # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE

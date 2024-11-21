@@ -45,8 +45,8 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 #     rm(list = i)
 # }
 # 
-# out |> str()
-# # > out |> str()
+# out |> str(max.level = 2, give.attr = TRUE)
+# # > out |> str(max.level = 2, give.attr = TRUE)
 # # List of 4
 # #  $ addicts.dta :List of 3
 # #   ..$ nrow       : int 238
@@ -84,8 +84,8 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 # # 4: In bind_rows_(x, .id) :
 # #   Vectorizing 'object_size' elements may not preserve their attributes
 # 
-# object.size(diet) |> str()
-# # > object.size(diet) |> str()
+# object.size(diet) |> str(max.level = 2, give.attr = TRUE)
+# # > object.size(diet) |> str(max.level = 2, give.attr = TRUE)
 # #  'object_size' num 63544
 
 
@@ -172,9 +172,9 @@ list.files.rda.data.frame %>% na.omit |> as.vector() |> dput()
 #     rm(list = i, envir=.GlobalEnv)
 #     out.list
 # }
-# out.list |> str()
+# out.list |> str(max.level = 2, give.attr = TRUE)
 # out.list %>% bind_rows(.id = ".id")
-# # > out.list |> str()
+# # > out.list |> str(max.level = 2, give.attr = TRUE)
 # # List of 6
 # #  $ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)          :List of 1
 # #   ..$ object.size: logi NA
@@ -242,7 +242,7 @@ for (i in list.files.rda) {
     }
     rm(list = i, envir=.GlobalEnv)
 }
-out.list |> str()
+out.list |> str(max.level = 2, give.attr = TRUE)
 out.list %>% bind_rows(.id = ".id")
 # > out.list = list()
 # > for (i in list.files.rda) {
@@ -279,7 +279,7 @@ out.list %>% bind_rows(.id = ".id")
 # Warning message:
 # In rm(list = i, envir=.GlobalEnv) :
 #   .object 'trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)' not found
-# > out.list |> str()
+# > out.list |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather                  :List of 7
 #   ..$ object.size : 'object_size' num 356480

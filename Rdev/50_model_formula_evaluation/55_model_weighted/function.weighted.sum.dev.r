@@ -87,8 +87,8 @@ sum(province$wt * province$ue91)
 # [1] 26440
 
 
-province.prelim.design.without_fpc %>% svytotal(~ue91, .) |> str()
-# > province.prelim.design.without_fpc %>% svytotal(~ue91, .) |> str()
+province.prelim.design.without_fpc %>% svytotal(~ue91, .) |> str(max.level = 2, give.attr = TRUE)
+# > province.prelim.design.without_fpc %>% svytotal(~ue91, .) |> str(max.level = 2, give.attr = TRUE)
 #  'svystat' Named num 26440
 #  - attr(*, "names")= chr "ue91"
 #  - attr(*, "var")= num [1, 1] 2.35e+08
@@ -121,8 +121,8 @@ sum(province$wt * province$ue91_gt500)
 # > sum(province$wt * province$ue91_gt500)
 # [1] 12
 
-province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str()
-# > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str()
+province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str(max.level = 2, give.attr = TRUE)
+# > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str(max.level = 2, give.attr = TRUE)
 #  'svystat' Named num [1:2] 20 12
 #  - attr(*, "names")= chr [1:2] "ue91_gt500FALSE" "ue91_gt500TRUE"
 #  - attr(*, "var")= num [1:2, 1:2] 34.3 -34.3 -34.3 34.3

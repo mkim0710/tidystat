@@ -153,7 +153,7 @@ out.list = filenames %>% map(function(i) {
     # Sys.time() - .t0
     out
 }) %>% set_names(filenames)
-out.list |> str(max.level = 1)
+out.list |> str(max.level = 1, give.attr = TRUE)
 # > out.list = filenames %>% map(function(i) {
 # +     .extension = ".csv"
 # +     # i = gsub(".rds$", "", i)
@@ -281,7 +281,7 @@ out.list |> str(max.level = 1)
 #   vocabulary_version = col_character(),
 #   vocabulary_concept_id = col_integer()
 # )
-# > out.list |> str(max.level = 1)
+# > out.list |> str(max.level = 1, give.attr = TRUE)
 # List of 9
 #  $ CONCEPT.csv             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #   ..- attr(*, "spec")=List of 2

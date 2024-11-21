@@ -172,9 +172,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # @@ START) data -----  
 
 ## \$ survival::lung ----  
-survival::lung |> str()
+survival::lung |> str(max.level = 2, give.attr = TRUE)
 survival::lung |> summary()
-# > survival::lung |> str()
+# > survival::lung |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	228 obs. of  10 variables:
 #  $ inst     : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time     : num  306 455 1010 210 883 ...

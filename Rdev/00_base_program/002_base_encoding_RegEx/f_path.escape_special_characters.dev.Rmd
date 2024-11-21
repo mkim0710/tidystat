@@ -287,7 +287,7 @@ f_path.escape_special_characters.str_replace_all <- function(input_path) {
 }
 
 result.str_replace_all = vec_path.test |> map(f_path.escape_special_characters.str_replace_all)
-result.str_replace_all |> str()
+result.str_replace_all |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -299,7 +299,7 @@ f_path.escape_special_characters.str_replace_all_v2 <- function(input_path) {
 }
 
 result.str_replace_all = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_v2)
-result.str_replace_all |> str()
+result.str_replace_all |> str(max.level = 2, give.attr = TRUE)
 result.str_replace_all |> identical(result.str_replace_all)
 ```
   
@@ -314,7 +314,7 @@ f_path.escape_special_characters.gsub <- function(input_path) {
 }
 
 result.gsub = vec_path.test |> map(f_path.escape_special_characters.gsub)
-result.gsub |> str()
+result.gsub |> str(max.level = 2, give.attr = TRUE)
 result.gsub |> identical(result.str_replace_all)
 ```
 
@@ -334,7 +334,7 @@ options(width=120)
 # }
 # 
 # result.gsub_v2 = vec_path.test |> map(f_path.escape_special_characters.gsub_v2)
-# result.gsub_v2 |> str()
+# result.gsub_v2 |> str(max.level = 2, give.attr = TRUE)
 # result.gsub_v2 |> identical(result.str_replace_all)
 # 
 # # > result.gsub_v2 = vec_path.test |> map(f_path.escape_special_characters.gsub_v2)
@@ -368,7 +368,7 @@ f_path.escape_special_characters.manual <- function(input_path) {
 
 # Apply the function using purrr::map
 result.manual <- vec_path.test |> map(f_path.escape_special_characters.manual)
-result.manual |> str()
+result.manual |> str(max.level = 2, give.attr = TRUE)
 result.manual |> identical(result.str_replace_all)
 ```
 
@@ -391,7 +391,7 @@ file_name_without_shell_chars <- function(file) {
   else
     name
 }
-vec_path.test |> map(file_name_without_shell_chars) |> str()
+vec_path.test |> map(file_name_without_shell_chars) |> str(max.level = 2, give.attr = TRUE)
 
 
 improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
@@ -401,7 +401,7 @@ f_path.escape_special_characters.str_replace_all_improved <- function(input_path
 }
 
 result.str_replace_all_improved = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_improved)
-result.str_replace_all_improved |> str()
+result.str_replace_all_improved |> str(max.level = 2, give.attr = TRUE)
 ```
   
   
@@ -418,7 +418,7 @@ f_path.escape_special_characters.shell_chars_regex <- function(input_path) {
 }
 
 f_path.escape_special_characters.shell_chars_regex = vec_path.test |> map(f_path.escape_special_characters.shell_chars_regex)
-f_path.escape_special_characters.shell_chars_regex |> str()
+f_path.escape_special_characters.shell_chars_regex |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -434,7 +434,7 @@ f_path.escape_special_characters.str_replace_all_improved <- function(input_path
 }
 
 result.str_replace_all_improved = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_improved)
-result.str_replace_all_improved |> str()
+result.str_replace_all_improved |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -448,7 +448,7 @@ result.str_replace_all_improved |> str()
 # }
 # 
 # result.gsub_improved = vec_path.test |> map(f_path.escape_special_characters.gsub_improved)
-# result.gsub_improved |> str()
+# result.gsub_improved |> str(max.level = 2, give.attr = TRUE)
 # result.gsub_improved |> identical(result.str_replace_all)
 # # Warning: TRE pattern compilation error 'Invalid contents of {}'Error in `map()`:
 # # ℹ In index: 1.

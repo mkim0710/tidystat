@@ -277,11 +277,11 @@ for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marri
 }
 
 if(exists(".MetaData0", envir=.GlobalEnv)) { 
-    ".MetaData0 %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
-    .MetaData0 %>% str(max.level = 2)
+    ".MetaData0 |> str(max.level = 2, give.attr = TRUE)" %>% {cat("> ", ., "  \n", sep = "")}
+    .MetaData0 |> str(max.level = 2, give.attr = TRUE)
 } else { .MetaData0 = MetaData }
-"MetaData %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
-MetaData %>% str(max.level = 2)
+"MetaData |> str(max.level = 2, give.attr = TRUE)" %>% {cat("> ", ., "  \n", sep = "")}
+MetaData |> str(max.level = 2, give.attr = TRUE)
 ```
   
 
@@ -324,7 +324,7 @@ attributes(tblVarName)$n_distinct =
          VarName = n_distinct(tblVarName$VarName),
          Wave = n_distinct(tblVarName$Wave),
          VarName.suffix = n_distinct(tblVarName$VarName.suffix) )
-tblVarName %>% str()
+tblVarName |> str(max.level = 2, give.attr = TRUE)
 MetaData$tblVarName$tblVarName = tblVarName
 ```
   
@@ -335,7 +335,7 @@ options(width=120)
 ### \% KoGES201806vars.CLEAN_TRIM \%>\% {cat(" > ",deparse(substitute(.))," |> str()","\\n", sep=""); str(.)} #----  
 MetaData$tblVarName$tblVarName.suffix %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)} #----  
 MetaData$VarNames$VarName.suffix503 = KoGES201806vars.CLEAN_TRIM$VarName.suffix |> as.character() |> unique()
-MetaData$VarNames$VarName.suffix503 |> str()
+MetaData$VarNames$VarName.suffix503 |> str(max.level = 2, give.attr = TRUE)
 ### \% KoGES201806vars_waves.rev.CLEAN \%>\% {cat(" > ",deparse(substitute(.))," |> str()","\\n", sep=""); str(.)} #----  
 MetaData$tblVarName$tblWAVE_VARNAME %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)} #----  
 MetaData$VarNames$WAVE_VARNAME3293 = KoGES201806vars_waves.rev.CLEAN$WAVE_VARNAME |> as.character() |> unique()
@@ -408,7 +408,7 @@ DataSet.Date.NA.rmAllNA = get(DataSetName) %>% select(matches(VarName.suffix.reg
     select(matches("A0[0-3]"))
 DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA[sort(names(DataSet.Date.NA.rmAllNA))]
 DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
-DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
+DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -432,20 +432,20 @@ A variable label could be specified for any vector using `var_label()`.
 ### **ECHO** :: var_label(df$Var1) = "VarDescription1" ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 iris = datasets::iris
-iris %>% str
+iris |> str(max.level = 2, give.attr = TRUE)
 var_label(iris$Sepal.Length) <- "Length of sepal"
-iris %>% str
+iris |> str(max.level = 2, give.attr = TRUE)
 ```
 
 ### **ECHO** :: var_label(df) <- list(Var1 = "VarDescription1", Var2 = "VarDescription2") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 iris = datasets::iris
-iris %>% str
+iris |> str(max.level = 2, give.attr = TRUE)
     var_label(iris) <- list(
       Petal.Length = "Length of petal",
       Petal.Width = "Width of Petal"
     )
-iris %>% str
+iris |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -655,10 +655,10 @@ for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
         env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str()
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str()
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
 ```
   
@@ -701,10 +701,10 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #         env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
 # }
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str()
+# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str(max.level = 2, give.attr = TRUE)
 # DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str()
+# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str(max.level = 2, give.attr = TRUE)
 # DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
 ```
     # Error in `vec_cast_named()`:
@@ -803,7 +803,7 @@ DataSet = get(DataSetName)
 # DataSet = DataSet %>% select(matches("^A0[0-1]"))
 # DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.lbl(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
 DataSet.fct = DataSet %>% mutate_if(is.character, as.factor)
-DataSet.fct %>% str
+DataSet.fct |> str(max.level = 2, give.attr = TRUE)
 DataSet.fct.lbl = DataSet.fct %>% env1$f$f_CodeBook_DataSet.lbl(tblVarName, vecNamed.swap = TRUE)
 DataSet.fct.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
 DataSet.fct.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
@@ -970,7 +970,7 @@ DataSetName
 DataSetName %>% paste0(".lbl")
 DataSetName %>% paste0(".lbl.fct")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet.lbl.fct %>% select(1) %>% str
+DataSet.lbl.fct %>% select(1) |> str(max.level = 2, give.attr = TRUE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 for (i.suffix in c(".lbl", ".lbl.fct")) {
     .objectname = DataSetName %>% paste0(i.suffix)

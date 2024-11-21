@@ -475,7 +475,7 @@ options(width=120)
 # # library(glmnet)
 # # # load(system.file("data", "CoxExample.rda", package = "glmnet"))
 # # data(CoxExample)
-# # CoxExample %>% str
+# # CoxExample |> str(max.level = 2, give.attr = TRUE)
 # # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
 # 
 # # .objectname = "glmnet_coxExample_tibble"
@@ -492,7 +492,7 @@ options(width=120)
 ```
   
   
-    > glmnet_coxExample_tibble %>% str()
+    > glmnet_coxExample_tibble |> str(max.level = 2, give.attr = TRUE)
     tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
      $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
      $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...
@@ -538,7 +538,7 @@ options(width=120)
 # # library(glmnet)
 # # # load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
 # # data(QuickStartExample)
-# # QuickStartExample %>% str
+# # QuickStartExample |> str(max.level = 2, give.attr = TRUE)
 # # glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
 # # glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
 # # glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
@@ -549,7 +549,7 @@ options(width=120)
 # # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 # load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
 # 
-# glmnet_gaussianExample_tibble %>% str
+# glmnet_gaussianExample_tibble |> str(max.level = 2, give.attr = TRUE)
 # glmnet_gaussianExample_tibble
 # # glmnet_gaussianExample_tibble.round3 = glmnet_gaussianExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
 # # glmnet_gaussianExample_tibble.round3
@@ -611,7 +611,7 @@ options(width=120)
 # library(glmnet)
 # # load(system.file("data", "BinomialExample.rda", package = "glmnet"))
 # data(BinomialExample)
-# BinomialExample %>% str
+# BinomialExample |> str(max.level = 2, give.attr = TRUE)
 # glmnet_binomialExample_tibble = BinomialExample$x %>% as.data.frame()%>% as.tibble()
 # glmnet_binomialExample_tibble$y = BinomialExample$y
 # glmnet_binomialExample_tibble = glmnet_binomialExample_tibble %>% select(y, everything())
@@ -622,7 +622,7 @@ options(width=120)
 # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_binomialExample_tibble.rda"))
 
-glmnet_binomialExample_tibble %>% str
+glmnet_binomialExample_tibble |> str(max.level = 2, give.attr = TRUE)
 glmnet_binomialExample_tibble
 # glmnet_binomialExample_tibble.round3 = glmnet_binomialExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
 # glmnet_binomialExample_tibble.round3
@@ -911,9 +911,9 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% str()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% as.data.frame() %>% str()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% as.data.frame() |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -1034,7 +1034,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_1se.vec_VarName(lambda = "lambda.1se") %>% dput
 
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() %>% str()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() |> str(max.level = 2, give.attr = TRUE)
 
 ```
 
@@ -1103,7 +1103,7 @@ TheTrainSet.cv.glmnet_a10.lambda_list.glm <-
         family = "binomial", 
         test_data = TheTrainSet
     )
-TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% str(max.level = 2, give.attr = FALSE)
+TheTrainSet.cv.glmnet_a10.lambda_list.glm |> str(max.level = 2, give.attr = FALSE)
 TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% map(function(ob) ob %>% tbl_regression(exponentiate = TRUE) %>% as_tibble() ) %>% f_list_tibble.print_by_element() %>% f_expression.eval.withCallingHandlers.attr_warnings.summary()
 ```
 

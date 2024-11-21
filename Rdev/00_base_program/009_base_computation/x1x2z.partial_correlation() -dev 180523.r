@@ -47,8 +47,8 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # spearman      0.7330699   0.5976564
 # kendall       0.5955500   0.4455219
 
-x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
-# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
+x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str(max.level = 2, give.attr = TRUE)
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	3 obs. of  2 variables:
 #  $ unadjusted_cor: num  0.782 0.733 0.596
 #  $ partial_cor   : num  0.736 0.598 0.446
@@ -68,24 +68,24 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 x1 = stackloss$Air.Flow
 x2 = stackloss$Water.Temp
 z = stackloss$Acid.Conc.
-x1 |> str()
-x2 |> str()
-z |> str()
-# > x1 |> str()
+x1 |> str(max.level = 2, give.attr = TRUE)
+x2 |> str(max.level = 2, give.attr = TRUE)
+z |> str(max.level = 2, give.attr = TRUE)
+# > x1 |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 80 80 75 62 62 62 62 62 58 58 ...
-# > x2 |> str()
+# > x2 |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 27 27 25 24 22 23 24 24 23 18 ...
-# > z |> str()
+# > z |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 89 88 90 87 87 87 93 93 87 80 ...
 cor_method = c("pearson", "spearman", "kendall")
 
 x1.binary2numeric = function.binary2numeric(x1)
 x2.binary2numeric = function.binary2numeric(x2)
-x1.binary2numeric |> str()
-x2.binary2numeric |> str()
-# > x1.binary2numeric |> str()
+x1.binary2numeric |> str(max.level = 2, give.attr = TRUE)
+x2.binary2numeric |> str(max.level = 2, give.attr = TRUE)
+# > x1.binary2numeric |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 80 80 75 62 62 62 62 62 58 58 ...
-# > x2.binary2numeric |> str()
+# > x2.binary2numeric |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 27 27 25 24 22 23 24 24 23 18 ...
 
 resid1 = lm(x1.binary2numeric ~ z)$residuals
@@ -211,10 +211,10 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 
 # ?cor.test
 ## @ cor.test() -----  
-cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
 # List of 9
 #  $ statistic  : Named num 5.47
 #   ..- attr(*, "names")= chr "t"
@@ -231,7 +231,7 @@ cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
 #  $ conf.int   : atomic [1:2] 0.529 0.907
 #   ..- attr(*, "conf.level")= num 0.95
 #  - attr(*, "class")= chr "htest"
-# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
+# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
 # List of 8
 #  $ statistic  : Named num 411
 #   ..- attr(*, "names")= chr "S"
@@ -248,7 +248,7 @@ cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
 # Warning message:
 # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
 #   Cannot compute exact p-value with ties
-# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
+# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
 # List of 8
 #  $ statistic  : Named num 3.4
 #   ..- attr(*, "names")= chr "z"
@@ -266,8 +266,8 @@ cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
 # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") :
 #   Cannot compute exact p-value with ties
 
-cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
-# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
+# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
 # List of 4
 #  $ estimate : Named num 0.733
 #   ..- attr(*, "names")= chr "rho"
@@ -285,24 +285,24 @@ cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c
 x1 = stackloss$Air.Flow
 x2 = stackloss$Water.Temp
 z = stackloss$Acid.Conc.
-x1 |> str()
-x2 |> str()
-z |> str()
-# > x1 |> str()
+x1 |> str(max.level = 2, give.attr = TRUE)
+x2 |> str(max.level = 2, give.attr = TRUE)
+z |> str(max.level = 2, give.attr = TRUE)
+# > x1 |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 80 80 75 62 62 62 62 62 58 58 ...
-# > x2 |> str()
+# > x2 |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 27 27 25 24 22 23 24 24 23 18 ...
-# > z |> str()
+# > z |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 89 88 90 87 87 87 93 93 87 80 ...
 cor_method = c("pearson", "spearman", "kendall")
 
 x1.binary2numeric = function.binary2numeric(x1)
 x2.binary2numeric = function.binary2numeric(x2)
-x1.binary2numeric |> str()
-x2.binary2numeric |> str()
-# > x1.binary2numeric |> str()
+x1.binary2numeric |> str(max.level = 2, give.attr = TRUE)
+x2.binary2numeric |> str(max.level = 2, give.attr = TRUE)
+# > x1.binary2numeric |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 80 80 75 62 62 62 62 62 58 58 ...
-# > x2.binary2numeric |> str()
+# > x2.binary2numeric |> str(max.level = 2, give.attr = TRUE)
 #  num [1:21] 27 27 25 24 22 23 24 24 23 18 ...
 
 resid1 = lm(x1.binary2numeric ~ z)$residuals
@@ -331,7 +331,7 @@ out = map(
     }
 )
 names(out) = cor_method
-out |> str()
+out |> str(max.level = 2, give.attr = TRUE)
 # Warning messages:
 # 1: In cor.test.default(x1.binary2numeric, x2.binary2numeric, method = cor_method[i]) :
 #   Cannot compute exact p-value with ties
@@ -342,7 +342,7 @@ out |> str()
 # 4: In cor.test.default(resid1, resid2, method = cor_method[i]) :
 #   Cannot compute exact p-value with ties
 # > names(out) = cor_method
-# > out |> str()
+# > out |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ pearson :List of 10
 #   ..$ unadjusted_cor           : num 0.782
@@ -371,8 +371,8 @@ out |> str()
 #   ..$ partial_corstatistic.z   : num 2.79
 
 # out = out %>% map(unlist)
-# out |> str()
-# # > out |> str()
+# out |> str(max.level = 2, give.attr = TRUE)
+# # > out |> str(max.level = 2, give.attr = TRUE)
 # # List of 3
 # #  $ pearson : Named num [1:10] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 # #   ..- attr(*, "names")= chr [1:10] "unadjusted_cor" "unadjusted_corconf.int1" "unadjusted_corconf.int2" "unadjusted_corp.value" ...
@@ -393,9 +393,9 @@ out |> str()
 # # kendall       0.5955500   0.4455219
 
 
-out |> str()
-out %>% map(unlist) |> str()
-# > out %>% map(unlist) |> str()
+out |> str(max.level = 2, give.attr = TRUE)
+out %>% map(unlist) |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(unlist) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ pearson : Named num [1:10] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #   ..- attr(*, "names")= chr [1:10] "unadjusted_cor" "unadjusted_corconf.int1" "unadjusted_corconf.int2" "unadjusted_corp.value" ...
@@ -428,14 +428,14 @@ out %>% map(unlist) %>% enframe %>% unnest |> as.data.frame()
 # 20  kendall 4.455219e-01
 # 21  kendall 5.306637e-03
 # 22  kendall 2.787806e+00
-out |> unlist() |> str()
-# > out |> unlist() |> str()
+out |> unlist() |> str(max.level = 2, give.attr = TRUE)
+# > out |> unlist() |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:22] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #  - attr(*, "names")= chr [1:22] "pearson.unadjusted_cor" "pearson.unadjusted_corconf.int1" "pearson.unadjusted_corconf.int2" "pearson.unadjusted_corp.value" ...
 
 # ?flatten
-out %>% flatten |> str()
-# > out %>% flatten |> str()
+out %>% flatten |> str(max.level = 2, give.attr = TRUE)
+# > out %>% flatten |> str(max.level = 2, give.attr = TRUE)
 # List of 22
 #  $ unadjusted_cor           : num 0.782
 #  $ unadjusted_corconf.int1  : num 0.529
@@ -460,8 +460,8 @@ out %>% flatten |> str()
 #  $ partial_corp.value       : num 0.00531
 #  $ partial_corstatistic.z   : num 2.79
 
-out %>% flatten_dfr(.id = ".id") |> str()
-# > out %>% flatten_dfr(.id = ".id") |> str()
+out %>% flatten_dfr(.id = ".id") |> str(max.level = 2, give.attr = TRUE)
+# > out %>% flatten_dfr(.id = ".id") |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	1 obs. of  15 variables:
 #  $ .id                      : chr "1"
 #  $ unadjusted_cor           : num 0.596
@@ -480,8 +480,8 @@ out %>% flatten_dfr(.id = ".id") |> str()
 #  $ partial_corstatistic.z   : num 2.79
 
 
-out %>% map(flatten) |> str()
-# > out %>% map(flatten) |> str()
+out %>% map(flatten) |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(flatten) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ pearson :List of 10
 #   ..$ unadjusted_cor           : num 0.782
@@ -521,8 +521,8 @@ out %>% bind_rows |> rownames_to_column()
 # #   partial_corstatistic.S <dbl>, unadjusted_corstatistic.z <dbl>, partial_corstatistic.z <dbl>
 
 
-out %>% bind_rows |> as.data.frame() |> str()
-# > out %>% bind_rows |> as.data.frame() |> str()
+out %>% bind_rows |> as.data.frame() |> str(max.level = 2, give.attr = TRUE)
+# > out %>% bind_rows |> as.data.frame() |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	3 obs. of  14 variables:
 #  $ unadjusted_cor           : num  0.782 0.733 0.596
 #  $ unadjusted_corconf.int1  : num  0.529 NA NA
@@ -541,8 +541,8 @@ out %>% bind_rows |> as.data.frame() |> str()
 
 
 
-out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
-# > out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
+out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str(max.level = 2, give.attr = TRUE)
+# > out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	3 obs. of  14 variables:
 #  $ unadjusted_cor           : num  0.782 0.733 0.596
 #  $ unadjusted_corconf.int1  : num  0.529 NA NA
@@ -561,7 +561,7 @@ out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), start
 
 cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% {.$conf.int}
 
-cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
+cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
 
 
 tmp2 = cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} 
@@ -572,7 +572,7 @@ tmp2$`NA`
 # > tmp2$`NA`
 # NULL
 
-# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
+# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
 # List of 8
 #  $ statistic  : Named num 411
 #   ..- attr(*, "names")= chr "S"
@@ -592,8 +592,8 @@ tmp2$`NA`
 
 
 
-cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% compact |> str()
-# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% compact |> str()
+cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% compact |> str(max.level = 2, give.attr = TRUE)
+# > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% compact |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ estimate : Named num 0.733
 #   ..- attr(*, "names")= chr "rho"
@@ -612,8 +612,8 @@ cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% conf
 # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
 #   Cannot compute exact p-value with ties
 
-lm(stackloss$Air.Flow ~ stackloss$Water.Temp) |> str()
-# > lm(stackloss$Air.Flow ~ stackloss$Water.Temp) |> str()
+lm(stackloss$Air.Flow ~ stackloss$Water.Temp) |> str(max.level = 2, give.attr = TRUE)
+# > lm(stackloss$Air.Flow ~ stackloss$Water.Temp) |> str(max.level = 2, give.attr = TRUE)
 # List of 12
 #  $ coefficients : Named num [1:2] 12.59 2.27
 #   ..- attr(*, "names")= chr [1:2] "(Intercept)" "stackloss$Water.Temp"
@@ -678,8 +678,8 @@ lm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint
 # (Intercept)          -5.925957 31.10041
 # stackloss$Water.Temp  1.399508  3.13624
 
-lm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str()
-# > lm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str()
+lm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str(max.level = 2, give.attr = TRUE)
+# > lm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str(max.level = 2, give.attr = TRUE)
 #  num [1:2, 1:2] -5.93 1.4 31.1 3.14
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:2] "(Intercept)" "stackloss$Water.Temp"
@@ -706,8 +706,8 @@ lm(stackloss$Air.Flow ~ stackloss$Water.Temp) |> summary()
 # Multiple R-squared:  0.6113,	Adjusted R-squared:  0.5908 
 # F-statistic: 29.88 on 1 and 19 DF,  p-value: 2.837e-05
 
-glm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str()
-# > glm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str()
+glm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str(max.level = 2, give.attr = TRUE)
+# > glm(stackloss$Air.Flow ~ stackloss$Water.Temp) %>% confint |> str(max.level = 2, give.attr = TRUE)
 # Waiting for profiling to be done...
 #  num [1:2, 1:2] -4.75 1.45 29.92 3.08
 #  - attr(*, "dimnames")=List of 2
@@ -749,10 +749,10 @@ out = map(
     seq_along(cor_method)
     , function(i) {
         #@ cf) output from cor.test() ----
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
         # # List of 9
         # #  $ statistic  : Named num 5.47
         # #   ..- attr(*, "names")= chr "t"
@@ -777,7 +777,7 @@ out = map(
         # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         # #   Cannot compute exact p-value with ties
         #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
         # List of 4
         #  $ estimate : Named num 0.733
         #   ..- attr(*, "names")= chr "rho"
@@ -800,37 +800,37 @@ out = map(
 ) %>% setNames(cor_method)
 
 out$pearson$unadjusted_cor.conf.int
-out$pearson$unadjusted_cor.conf.int |> str()
+out$pearson$unadjusted_cor.conf.int |> str(max.level = 2, give.attr = TRUE)
 # > out$pearson$unadjusted_cor.conf.int
 #        LL        UL 
 # 0.5285640 0.9073086 
 # attr(,"conf.level")
 # [1] 0.95
-# > out$pearson$unadjusted_cor.conf.int |> str()
+# > out$pearson$unadjusted_cor.conf.int |> str(max.level = 2, give.attr = TRUE)
 #  atomic [1:2] 0.529 0.907
 #  - attr(*, "conf.level")= num 0.95
 
 out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL"))
-out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL")) |> str()
+out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL")) |> str(max.level = 2, give.attr = TRUE)
 # > out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL"))
 #        LL        UL 
 # 0.5285640 0.9073086 
 # attr(,"conf.level")
 # [1] 0.95
-# > out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL")) |> str()
+# > out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL")) |> str(max.level = 2, give.attr = TRUE)
 #  atomic [1:2] 0.529 0.907
 #  - attr(*, "conf.level")= num 0.95
 
 out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL"))
-out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL")) |> str()
+out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL")) |> str(max.level = 2, give.attr = TRUE)
 # > out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL"))
 #        LL        UL 
 # 0.5285640 0.9073086 
-# > out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL")) |> str()
+# > out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL")) |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:2] 0.529 0.907
 #  - attr(*, "names")= chr [1:2] "LL" "UL"
-out |> str()
-# > out |> str()
+out |> str(max.level = 2, give.attr = TRUE)
+# > out |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ pearson :List of 8
 #   ..$ unadjusted_cor          : Named num 0.782
@@ -876,36 +876,36 @@ out |> str()
 
 
 cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(estimate, conf.int, p.value, statistic) |> str() 
-# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(estimate, conf.int, p.value, statistic) |> str()
+# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(estimate, conf.int, p.value, statistic) |> str(max.level = 2, give.attr = TRUE)
 # Error in dots_splice(...) : object 'estimate' not found
 # In addition: Warning message:
 # In cor.test.default(x1.binary2numeric, x2.binary2numeric, method = "kendall") :
 #   Cannot compute exact p-value with ties
 
 cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(c("estimate", "conf.int", "p.value", "statistic")) |> str() 
-# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(c("estimate", "conf.int", "p.value", "statistic")) |> str()
+# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(c("estimate", "conf.int", "p.value", "statistic")) |> str(max.level = 2, give.attr = TRUE)
 # Error: Index 1 must have length 1
 # In addition: Warning message:
 # In cor.test.default(x1.binary2numeric, x2.binary2numeric, method = "kendall") :
 #   Cannot compute exact p-value with ties
 
-cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(("estimate", "conf.int", "p.value", "statistic")) |> str()
-# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(("estimate", "conf.int", "p.value", "statistic")) |> str()
+cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(("estimate", "conf.int", "p.value", "statistic")) |> str(max.level = 2, give.attr = TRUE)
+# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(("estimate", "conf.int", "p.value", "statistic")) |> str(max.level = 2, give.attr = TRUE)
 # Error: unexpected ',' in "cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck(("estimate","
 
 cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck("estimate", "conf.int", "p.value", "statistic") |> str() 
-# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck("estimate", "conf.int", "p.value", "statistic") |> str()
+# > cor.test(x1.binary2numeric, x2.binary2numeric, method = "kendall") %>% pluck("estimate", "conf.int", "p.value", "statistic") |> str(max.level = 2, give.attr = TRUE)
 #  NULL
 # Warning message:
 # In cor.test.default(x1.binary2numeric, x2.binary2numeric, method = "kendall") :
 #   Cannot compute exact p-value with ties
 
-out$spearman |> str()
+out$spearman |> str(max.level = 2, give.attr = TRUE)
 
 
 
-out |> unlist() |> str()
-# > out |> unlist() |> str()
+out |> unlist() |> str(max.level = 2, give.attr = TRUE)
+# > out |> unlist() |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:22] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #  - attr(*, "names")= chr [1:22] "pearson.unadjusted_cor.cor" "pearson.unadjusted_cor.conf.int1" "pearson.unadjusted_cor.conf.int2" "pearson.unadjusted_cor.p.value" ...
 
@@ -946,8 +946,8 @@ out %>% bind_rows(.id = ".id")
 # > out %>% bind_rows(.id = ".id")
 # Error in bind_rows_(x, .id) : Argument 2 must be length 1, not 2
 
-out %>% map(unname) |> str()
-# > out %>% map(unname) |> str()
+out %>% map(unname) |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(unname) |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ pearson :List of 8
 #   ..$ : Named num 0.782
@@ -991,11 +991,11 @@ out %>% map(unname) |> str()
 #   ..$ : Named num 2.79
 #   .. ..- attr(*, "names")= chr "z"
 
-out %>% map(function(ls) ls %>% map(unname)) |> str()
+out %>% map(function(ls) ls %>% map(unname)) |> str(max.level = 2, give.attr = TRUE)
 
 
 
-# > out %>% bind_rows |> as.data.frame() |> str()
+# > out %>% bind_rows |> as.data.frame() |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	3 obs. of  14 variables:
 #  $ unadjusted_cor           : num  0.782 0.733 0.596
 #  $ unadjusted_corconf.int1  : num  0.529 NA NA
@@ -1025,10 +1025,10 @@ out = map(
     seq_along(cor_method)
     , function(i) {
         #@ cf) output from cor.test() ----
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
         # # List of 9
         # #  $ statistic  : Named num 5.47
         # #   ..- attr(*, "names")= chr "t"
@@ -1053,7 +1053,7 @@ out = map(
         # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         # #   Cannot compute exact p-value with ties
         #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
         # List of 4
         #  $ estimate : Named num 0.733
         #   ..- attr(*, "names")= chr "rho"
@@ -1073,12 +1073,12 @@ out = map(
         c(unadjusted_cor, partial_cor)  # concategate two lists
     }
 ) %>% setNames(cor_method)
-out |> str()
+out |> str(max.level = 2, give.attr = TRUE)
 
 
 
 
-out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
+out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str(max.level = 2, give.attr = TRUE)
 
   
   
@@ -1088,10 +1088,10 @@ out = map(
     seq_along(cor_method)
     , function(i) {
         #@ cf) output from cor.test() ----
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
         # # List of 9
         # #  $ statistic  : Named num 5.47
         # #   ..- attr(*, "names")= chr "t"
@@ -1116,7 +1116,7 @@ out = map(
         # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         # #   Cannot compute exact p-value with ties
         #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
         # List of 4
         #  $ estimate : Named num 0.733
         #   ..- attr(*, "names")= chr "rho"
@@ -1140,15 +1140,15 @@ out = map(
 ) %>% setNames(cor_method)
 
 out$pearson$unadjusted_cor.conf.int
-out$pearson$unadjusted_cor.conf.int |> str()
+out$pearson$unadjusted_cor.conf.int |> str(max.level = 2, give.attr = TRUE)
 # > out$pearson$unadjusted_cor.conf.int
 #        LL        UL 
 # 0.5285640 0.9073086 
-# > out$pearson$unadjusted_cor.conf.int |> str()
+# > out$pearson$unadjusted_cor.conf.int |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:2] 0.529 0.907
 #  - attr(*, "names")= chr [1:2] "LL" "UL"
 
-out |> str()
+out |> str(max.level = 2, give.attr = TRUE)
 # > out |> str() -----  
 # List of 3
 #  $ pearson :List of 8
@@ -1272,8 +1272,8 @@ out %>% map(unlist) %>% map(as_tibble) %>% map(rownames_to_column) %>% bind_rows
 # # ... with 12 more rows
 
 
-out %>% map(unlist) %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str()
-# > out %>% map(unlist) %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str()
+out %>% map(unlist) %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(unlist) %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  19 variables:
 #  $ method                    : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor.cor        : num  0.782 NA NA
@@ -1305,10 +1305,10 @@ out = map(
     seq_along(cor_method)
     , function(i) {
         #@ cf) output from cor.test() ----
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
         # # List of 9
         # #  $ statistic  : Named num 5.47
         # #   ..- attr(*, "names")= chr "t"
@@ -1333,7 +1333,7 @@ out = map(
         # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         # #   Cannot compute exact p-value with ties
         #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
         # List of 4
         #  $ estimate : Named num 0.733
         #   ..- attr(*, "names")= chr "rho"
@@ -1359,15 +1359,15 @@ out = map(
 ) %>% setNames(cor_method)
 
 out$pearson$unadjusted_cor.conf.int
-out$pearson$unadjusted_cor.conf.int |> str()
+out$pearson$unadjusted_cor.conf.int |> str(max.level = 2, give.attr = TRUE)
 # > out$pearson$unadjusted_cor.conf.int
 #        LL        UL 
 # 0.5285640 0.9073086 
-# > out$pearson$unadjusted_cor.conf.int |> str()
+# > out$pearson$unadjusted_cor.conf.int |> str(max.level = 2, give.attr = TRUE)
 #  Named num [1:2] 0.529 0.907
 #  - attr(*, "names")= chr [1:2] "LL" "UL"
 
-out |> str()
+out |> str(max.level = 2, give.attr = TRUE)
 
 out %>% map(as_tibble)
 
@@ -1387,8 +1387,8 @@ out %>% map(t)
 #      unadjusted_cor unadjusted_cor.p.value unadjusted_cor.statistic.z partial_cor partial_cor.p.value partial_cor.statistic.z
 # [1,]        0.59555           0.0006705318                   3.401353   0.4455219         0.005306637                2.787806
 
-out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_column() |> str()
-# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_column() |> str()
+out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_column() |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_column() |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  16 variables:
 #  $ rowname                   : chr  "1" "2" "3"
 #  $ .id                       : chr  "pearson" "spearman" "kendall"
@@ -1408,8 +1408,8 @@ out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_colu
 #  $ partial_cor.statistic.z   : num  NA NA 2.79
 
 
-out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str()
-# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str()
+out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  15 variables:
 #  $ method                    : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor            : num  0.782 0.733 0.596
@@ -1427,8 +1427,8 @@ out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") |> str()
 #  $ unadjusted_cor.statistic.z: num  NA NA 3.4
 #  $ partial_cor.statistic.z   : num  NA NA 2.79
 
-out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(method, starts_with("unadjusted_cor"), starts_with("partial_cor")) |> str()
-# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(method, starts_with("unadjusted_cor"), starts_with("partial_cor")) |> str()
+out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(method, starts_with("unadjusted_cor"), starts_with("partial_cor")) |> str(max.level = 2, give.attr = TRUE)
+# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(method, starts_with("unadjusted_cor"), starts_with("partial_cor")) |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  15 variables:
 #  $ method                    : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor            : num  0.782 0.733 0.596
@@ -1474,10 +1474,10 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
             seq_along(cor_method)
             , function(i) {
                 #@ cf) output from cor.test() ----
-                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
-                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
-                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
-                # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
+                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str(max.level = 2, give.attr = TRUE)
+                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str(max.level = 2, give.attr = TRUE)
+                # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str(max.level = 2, give.attr = TRUE)
                 # # List of 9
                 # #  $ statistic  : Named num 5.47
                 # #   ..- attr(*, "names")= chr "t"
@@ -1502,7 +1502,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
                 # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
                 # #   Cannot compute exact p-value with ties
                 #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-                # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
+                # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str(max.level = 2, give.attr = TRUE)
                 # List of 4
                 #  $ estimate : Named num 0.733
                 #   ..- attr(*, "names")= chr "rho"
@@ -1551,8 +1551,8 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # 2 spearman          0.733       0.598
 # 3 kendall           0.596       0.446
 
-x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
-# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
+x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str(max.level = 2, give.attr = TRUE)
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  3 variables:
 #  $ method        : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor: num  0.782 0.733 0.596
@@ -1578,8 +1578,8 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # 4: In cor.test.default(resid1, resid2, method = cor_method[i]) :
 #   Cannot compute exact p-value with ties
 
-x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str()
-# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
+x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str(max.level = 2, give.attr = TRUE)
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  15 variables:
 #  $ method                    : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor            : num  0.782 0.733 0.596

@@ -876,7 +876,7 @@ expr_text <- "dim(get(DataSetName))"
 
 # Use the function to substitute and evaluate the expression
 result <- substitute_and_evaluate(expr_text)
-result %>% str
+result |> str(max.level = 2, give.attr = TRUE)
 
 # Print the results
 cat("@ Step 1: Original expression  \n")
@@ -894,7 +894,7 @@ cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 DataSet <- "analyticDF"
 result <- substitute_and_evaluate(expr_text)
-result %>% str
+result |> str(max.level = 2, give.attr = TRUE)
 ```
   
   

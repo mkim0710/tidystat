@@ -3,7 +3,7 @@
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ## @ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow") ====  
-analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample %>% str
+analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample |> str(max.level = 2, give.attr = TRUE)
 df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
 vec = c("evnttrth_C24_r", "fuduration_yr"
         , "AGE"
@@ -23,9 +23,9 @@ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r
 
 
 ## @ object.coxph %>% str #----  
-object.coxph %>% str(max.level = 1) #----
+object.coxph |> str(max.level = 1, give.attr = TRUE) #----
 object.coxph %>% str #----
-# > object.coxph %>% str(max.level = 1) #----  
+# > object.coxph |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 21
 #  $ coefficients     : Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #   ..- attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
@@ -147,12 +147,12 @@ object.coxph$coefficients |> names() |> dput()
 
 
 ## @ object.coxph$formula %>% str ----  
-object.coxph$formula %>% str
-object.coxph$formula |> as.list() %>% str
-# > object.coxph$formula %>% str
+object.coxph$formula |> str(max.level = 2, give.attr = TRUE)
+object.coxph$formula |> as.list() |> str(max.level = 2, give.attr = TRUE)
+# > object.coxph$formula |> str(max.level = 2, give.attr = TRUE)
 # Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-# > object.coxph$formula |> as.list() %>% str
+# > object.coxph$formula |> as.list() |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ : symbol ~
 #  $ : language Surv(time = fuduration_yr, event = evnttrth_C24_r)
@@ -161,16 +161,16 @@ object.coxph$formula |> as.list() %>% str
 #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
 ## @ object.coxph$terms %>% str ----  
-object.coxph$terms %>% str
-object.coxph$terms %>% attr(., "dataClasses") %>% str
+object.coxph$terms |> str(max.level = 2, give.attr = TRUE)
+object.coxph$terms %>% attr(., "dataClasses") |> str(max.level = 2, give.attr = TRUE)
 which(object.coxph$terms %>% attr(., "dataClasses") == "logical")
 which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() |> dput()
 (which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names()) %*% c(F, T)
-which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
-which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str(max.level = 2, give.attr = TRUE)
+which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str(max.level = 2, give.attr = TRUE)
 which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
 which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
-# > object.coxph$terms %>% str
+# > object.coxph$terms |> str(max.level = 2, give.attr = TRUE)
 # Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
 #   ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
 #   ..- attr(*, "factors")= int [1:8, 1:7] 0 1 0 0 0 0 0 0 0 0 ...
@@ -189,7 +189,7 @@ which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %
 #   ..- attr(*, "predvars")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
 #   ..- attr(*, "dataClasses")= Named chr [1:8] "nmatrix.2" "numeric" "factor" "logical" ...
 #   .. ..- attr(*, "names")= chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
-# > object.coxph$terms %>% attr(., "dataClasses") %>% str
+# > object.coxph$terms %>% attr(., "dataClasses") |> str(max.level = 2, give.attr = TRUE)
 #  Named chr [1:8] "nmatrix.2" "numeric" "factor" "logical" "factor" "numeric" "logical" "factor"
 #  - attr(*, "names")= chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
 # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical")
@@ -200,11 +200,11 @@ which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %
 # > (which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names()) %*% c(F, T)
 # Error in (which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>%  : 
 #   requires numeric/complex matrix/vector arguments
-# > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
+# > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ CigaretteCurrentSmoker  : logi [1:2] FALSE TRUE
 #  $ pmhx_DM_OR_glucose_ge126: logi [1:2] FALSE TRUE
-# > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+# > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ CigaretteCurrentSmoker  : chr [1:2] "FALSE" "TRUE"
 #  $ pmhx_DM_OR_glucose_ge126: chr [1:2] "FALSE" "TRUE"
@@ -216,9 +216,9 @@ which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %
 
 
 
-## @ object.coxph$xlevels %>% str(max.level = 1) ----  
-object.coxph$xlevels %>% str(max.level = 1)
-# > object.coxph$xlevels %>% str(max.level = 1)
+## @ object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE) ----  
+object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE)
+# > object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE)
 # List of 3
 #  $ SEX                        : chr [1:2] "Male" "Female"
 #  $ BMI_Q_yr                   : chr [1:5] "0-" "18.5-" "23-" "25-" ...
@@ -261,8 +261,8 @@ tbl_varname_level_coefficients
 ## @ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====  
 list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
 list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
-list_levels %>% str
-# > list_levels %>% str
+list_levels |> str(max.level = 2, give.attr = TRUE)
+# > list_levels |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ SEX                        : chr [1:2] "Male" "Female"
 #  $ BMI_Q_yr                   : chr [1:5] "0-" "18.5-" "23-" "25-" ...
@@ -306,9 +306,9 @@ tbl_varname_level_coefficients %>% print(n=99) #----
 
 
 ## @ object.coxph$coefficients %>% str ----  
-object.coxph$coefficients %>% str
-object.coxph$means %>% str
-object.coxph$residuals %>% str
+object.coxph$coefficients |> str(max.level = 2, give.attr = TRUE)
+object.coxph$means |> str(max.level = 2, give.attr = TRUE)
+object.coxph$residuals |> str(max.level = 2, give.attr = TRUE)
 # > object.coxph$coefficients %>% str ----  
 #  Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
@@ -321,8 +321,8 @@ object.coxph$residuals %>% str
 
 
 ## @ object.coxph |> coef() %>% str -----  
-object.coxph |> coef() %>% str
-object.coxph %>% confint %>% str
+object.coxph |> coef() |> str(max.level = 2, give.attr = TRUE)
+object.coxph %>% confint |> str(max.level = 2, give.attr = TRUE)
 # > object.coxph |> coef() %>% str ----  
 #  Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
@@ -334,8 +334,8 @@ object.coxph %>% confint %>% str
 
 ## @ object.coxph.summary = summary(object.coxph) -----  
 object.coxph.summary = summary(object.coxph)
-object.coxph.summary %>% str
-# > object.coxph.summary %>% str
+object.coxph.summary |> str(max.level = 2, give.attr = TRUE)
+# > object.coxph.summary |> str(max.level = 2, give.attr = TRUE)
 # List of 14
 #  $ call        : language coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ ., data = df, method = "breslow")
 #  $ fail        : NULL
@@ -365,8 +365,8 @@ object.coxph.summary %>% str
 #   ..- attr(*, "names")= chr [1:2] "C" "se(C)"
 #  - attr(*, "class")= chr "summary.coxph"
 
-object.coxph.summary$coef %>% str
-object.coxph.summary$conf.int %>% str
+object.coxph.summary$coef |> str(max.level = 2, give.attr = TRUE)
+object.coxph.summary$conf.int |> str(max.level = 2, give.attr = TRUE)
 # > object.coxph.summary$coef %>% str ----  
 #  num [1:10, 1:5] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "dimnames")=List of 2
@@ -528,7 +528,7 @@ digits = 3
     # > tbl_varname_level_coefficients_res |> names() |> dput()
     # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
-    # txt %>% str_extract_all("[A-Za-z0-9_]+") %>% str
+    # txt %>% str_extract_all("[A-Za-z0-9_]+") |> str(max.level = 2, give.attr = TRUE)
     # txt %>% str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
     # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     

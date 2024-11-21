@@ -44,10 +44,10 @@ function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, 
 
 # Example usage with vectors
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
-tmp.df |> str()
-# tmp.df |> as.matrix() |> str()
+tmp.df |> str(max.level = 2, give.attr = TRUE)
+# tmp.df |> as.matrix() |> str(max.level = 2, give.attr = TRUE)
 # tmp.df |> head()
-# > tmp.df |> str()
+# > tmp.df |> str(max.level = 2, give.attr = TRUE)
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
 #   ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
@@ -55,7 +55,7 @@ tmp.df |> str()
 #   ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
 #  $ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
 #   ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
-# > tmp.df |> as.matrix() |> str()
+# > tmp.df |> as.matrix() |> str(max.level = 2, give.attr = TRUE)
 #  logi [1:10030, 1:3] FALSE FALSE FALSE NA FALSE FALSE ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
@@ -82,9 +82,9 @@ tmp.df |> str()
 # tmp_df_wave <- function.df2df_wave(tmp.df, as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(tmp.df))), VERBOSE = TRUE)
 # tmp_df_wave <- tmp.df %>% {function.df2df_wave(., as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), VERBOSE = TRUE)}
 tmp_df_wave <- tmp.df %>% function.df2df_wave(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), VERBOSE = TRUE)
-tmp_df_wave |> str()
+tmp_df_wave |> str(max.level = 2, give.attr = TRUE)
 tmp_df_wave |> head()
-# > tmp_df_wave |> str()
+# > tmp_df_wave |> str(max.level = 2, give.attr = TRUE)
 # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
 #   ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
@@ -112,10 +112,10 @@ tmp_df_wave |> head()
 list_df_wave <- list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>%
     map(function(dfi) {dfi %>% function.df2df_wave(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), VERBOSE = F)})
 
-list_df_wave |> str(max.level = 1)
-list_df_wave$DM_C |> str()
-list_df_wave$GLU0_TR |> str()
-# > list_df_wave |> str(max.level = 1)
+list_df_wave |> str(max.level = 1, give.attr = TRUE)
+list_df_wave$DM_C |> str(max.level = 2, give.attr = TRUE)
+list_df_wave$GLU0_TR |> str(max.level = 2, give.attr = TRUE)
+# > list_df_wave |> str(max.level = 1, give.attr = TRUE)
 # List of 7
 #  $ DM_C     : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ GLU0_TR  : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
@@ -124,7 +124,7 @@ list_df_wave$GLU0_TR |> str()
 #  $ HBA1C    : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ DRUGDM   : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ DRUGINS  : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
-# > list_df_wave$DM_C |> str()
+# > list_df_wave$DM_C |> str(max.level = 2, give.attr = TRUE)
 # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ A01_DM_C_eq2: Named logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 #   ..- attr(*, "names")= chr [1:10030] "1 ==2" "1 ==2" "1 ==2" "2 ==2" ...
@@ -140,7 +140,7 @@ list_df_wave$GLU0_TR |> str()
 #   ..- attr(*, "names")= chr [1:10030] "1 ==2" "NA ==2" "1 ==2" "2 ==2" ...
 #  $ A07_DM_C_eq2: Named logi [1:10030] NA NA FALSE TRUE FALSE NA ...
 #   ..- attr(*, "names")= chr [1:10030] "NA ==2" "NA ==2" "1 ==2" "2 ==2" ...
-# > list_df_wave$GLU0_TR |> str()
+# > list_df_wave$GLU0_TR |> str(max.level = 2, give.attr = TRUE)
 # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU0_TR_ge126: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
 #   ..- attr(*, "names")= chr [1:10030] "80 >=126" "77 >=126" "84 >=126" "NA >=126" ...

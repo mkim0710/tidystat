@@ -175,8 +175,8 @@ env0 = env1
 
 MetaData <- readRDS("rstudio-prefs/templates/templates-00env1.minimum.MetaData.rds")
 .objectname = "MetaData"
-get(.objectname) %>% str(max.level = 2)
-# > get(.objectname) %>% str(max.level = 2)
+get(.objectname) |> str(max.level = 2, give.attr = TRUE)
+# > get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ tblVarName     : list()
 #  $ DataSetNames   :List of 2

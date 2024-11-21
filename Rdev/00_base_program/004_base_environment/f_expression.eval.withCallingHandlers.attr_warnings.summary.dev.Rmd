@@ -227,7 +227,7 @@ for (i in 1:3) {
 
 
 warnings()
-warnings() %>% str
+warnings() |> str(max.level = 2, give.attr = TRUE)
 warnings() %>% dput
 # > warnings()
 # Warning messages:
@@ -237,7 +237,7 @@ warnings() %>% dput
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
 # 3: In matrix(1:7, 3, 4) :
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# > warnings() %>% str
+# > warnings() |> str(max.level = 2, give.attr = TRUE)
 # List of 3
 #  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
 #  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
@@ -253,13 +253,13 @@ warnings() %>% dput
 
 # Get the summary of warnings
 summary(warnings())
-summary(warnings()) %>% str
+summary(warnings()) |> str(max.level = 2, give.attr = TRUE)
 summary(warnings()) %>% dput()
 # > summary(warnings())
 # 3 identical warnings:
 # In matrix(1:7, 3, 4) :
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# > summary(warnings()) %>% str
+# > summary(warnings()) |> str(max.level = 2, give.attr = TRUE)
 # List of 1
 #  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
 #  - attr(*, "class")= chr "summary.warnings"

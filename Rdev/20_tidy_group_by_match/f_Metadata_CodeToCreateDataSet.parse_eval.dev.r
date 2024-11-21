@@ -78,16 +78,16 @@ assign(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName, eval(parse(text = M
 
 MetaData$DataSets[[DataSetNameShortcut]]$VarNames = names(get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName))
 MetaData$DataSets[[DataSetNameShortcut]]$dim = dim(get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName))
-MetaData %>% str
-# > MetaData %>% str
+MetaData |> str(max.level = 2, give.attr = TRUE)
+# > MetaData |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ CodeBook: list()
 #  $ DataSets:List of 1
 #   ..$ DataSet0:List of 2
 #   .. ..$ DataSetName: chr "analyticDF_time2event"
 #   .. ..$ VarNames   : chr [1:12] "inst" "time" "age" "sex" ...
-get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) %>% str
-# > get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) %>% str
+get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) |> str(max.level = 2, give.attr = TRUE)
+# > get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
@@ -114,12 +114,12 @@ MetaData$DataSets[[DataSetNameShortcut.new]] = list()
 MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName = MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName |> paste0(DataSetNameShortcut.new.suffix)
 MetaData$DataSets[[DataSetNameShortcut.new]]$CodeToCreateDataSet = "get(MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName) |> na.omit()"
 
-MetaData %>% str
+MetaData |> str(max.level = 2, give.attr = TRUE)
 assign(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName, eval(parse(text = MetaData$DataSets[[DataSetNameShortcut.new]]$CodeToCreateDataSet)))
 MetaData$DataSets[[DataSetNameShortcut.new]]$VarNames = names(get(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName))
 MetaData$DataSets[[DataSetNameShortcut.new]]$dim = dim(get(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName))
-MetaData %>% str
-# > MetaData %>% str
+MetaData |> str(max.level = 2, give.attr = TRUE)
+# > MetaData |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ CodeBook: list()
 #  $ DataSets:List of 2

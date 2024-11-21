@@ -7,9 +7,9 @@
 # library(survminer)
 # ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
-# AnalyticDataset %>% select(sex, Group) |> str()
+# AnalyticDataset %>% select(sex, Group) |> str(max.level = 2, give.attr = TRUE)
 # AnalyticDataset %>% select(sex, Group) |> table()
-# # > AnalyticDataset %>% select(sex, Group) |> str()
+# # > AnalyticDataset %>% select(sex, Group) |> str(max.level = 2, give.attr = TRUE)
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...

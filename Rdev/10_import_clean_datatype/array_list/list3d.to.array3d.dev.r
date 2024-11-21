@@ -17,7 +17,7 @@ identical(
     , structure(as.list(1L:24L), dim = c(3L, 4L, 2L))
 ) # TRUE 
 list3d
-list3d |> str()
+list3d |> str(max.level = 2, give.attr = TRUE)
 # > list3d
 # , , 1
 # 
@@ -33,7 +33,7 @@ list3d |> str()
 # [2,] 14   17   20   23  
 # [3,] 15   18   21   24  
 # 
-# > list3d |> str()
+# > list3d |> str(max.level = 2, give.attr = TRUE)
 # List of 24
 #  $ : int 1
 #  $ : int 2
@@ -82,8 +82,8 @@ list3d.to.array3d(list3d)
 # [2,]   14   17   20   23
 # [3,]   15   18   21   24
 
-list3d.to.array3d(list3d) |> str()
-# > list3d.to.array3d(list3d) |> str()
+list3d.to.array3d(list3d) |> str(max.level = 2, give.attr = TRUE)
+# > list3d.to.array3d(list3d) |> str(max.level = 2, give.attr = TRUE)
 #  int [1:3, 1:4, 1:2] 1 2 3 4 5 6 7 8 9 10 ...
 list3d.to.array3d(list3d) %>% as.vector()
 # > list3d.to.array3d(list3d) %>% as.vector()

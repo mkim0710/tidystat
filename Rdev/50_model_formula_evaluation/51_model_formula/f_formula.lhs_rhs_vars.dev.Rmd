@@ -311,17 +311,17 @@ options(width=120)
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 MetaData$ModelList$time2event$formula %>% print
-MetaData$ModelList$time2event$formula %>% str
+MetaData$ModelList$time2event$formula |> str(max.level = 2, give.attr = TRUE)
 MetaData$ModelList$time2event$formula %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 MetaData$ModelList$time2event$formula[[1]]
-MetaData$ModelList$time2event$formula[[1]] %>% str
+MetaData$ModelList$time2event$formula[[1]] |> str(max.level = 2, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 MetaData$ModelList$time2event$formula[[2]]
-MetaData$ModelList$time2event$formula[[2]] %>% str
+MetaData$ModelList$time2event$formula[[2]] |> str(max.level = 2, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 MetaData$ModelList$time2event$formula[[3]]
-MetaData$ModelList$time2event$formula[[3]] %>% str
+MetaData$ModelList$time2event$formula[[3]] |> str(max.level = 2, give.attr = TRUE)
 ```
   
   
@@ -332,7 +332,7 @@ MetaData$ModelList$time2event$terms = MetaData$ModelList$time2event$formula |> t
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$terms %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-MetaData$ModelList$time2event$terms %>% str
+MetaData$ModelList$time2event$terms |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$terms %>% dput
 ```
@@ -345,7 +345,7 @@ MetaData$ModelList$time2event$all.vars = MetaData$ModelList$time2event$formula |
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$all.vars %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-MetaData$ModelList$time2event$all.vars %>% str
+MetaData$ModelList$time2event$all.vars |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$all.vars %>% dput
 ```
@@ -359,7 +359,7 @@ MetaData$ModelList$time2event$lhs.vars = MetaData$ModelList$time2event$lhs %>% a
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$lhs.vars %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-MetaData$ModelList$time2event$lhs.vars %>% str
+MetaData$ModelList$time2event$lhs.vars |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$lhs.vars %>% dput
 ```
@@ -373,7 +373,7 @@ MetaData$ModelList$time2event$rhs.vars = MetaData$ModelList$time2event$rhs %>% a
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$rhs.vars %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-MetaData$ModelList$time2event$rhs.vars %>% str
+MetaData$ModelList$time2event$rhs.vars |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 MetaData$ModelList$time2event$rhs.vars %>% dput
 ```
@@ -427,13 +427,13 @@ MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~
 
 MetaData$ModelList$time2event = MetaData$ModelList$time2event |> c(f_formula.lhs_rhs_vars(MetaData$ModelList$time2event$formula))
 
-MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
 MetaData$ModelList$time2event$formula
 
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 MetaData$ModelList$time2event$formula = NULL
-MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
 MetaData$ModelList$time2event$formula
 ```
   
@@ -449,12 +449,12 @@ MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~
 
 MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
 
-MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
 MetaData$ModelList$time2event$formula
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 MetaData$ModelList$time2event$formula = NULL
-MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 1, give.attr = F)
 MetaData$ModelList$time2event$formula
 ```
   
@@ -469,7 +469,7 @@ MetaData$ModelList$time2event = NULL
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 MetaData$ModelList$time2event$formula.lhs_rhs_vars = 
     MetaData$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
-MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 2, give.attr = F)
 ```
   
   
@@ -516,12 +516,12 @@ options(width=120)
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event = NULL
 MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
-MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 2, give.attr = F)
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
-MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+MetaData$ModelList$time2event |> str(max.level = 2, give.attr = F)
 
 ```
 

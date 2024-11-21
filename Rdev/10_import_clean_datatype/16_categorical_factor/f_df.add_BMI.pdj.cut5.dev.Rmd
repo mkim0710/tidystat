@@ -222,7 +222,7 @@ options(width=120)
 DataSet = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
     rownames_to_column() 
-DataSet %>% str
+DataSet |> str(max.level = 2, give.attr = TRUE)
 ```
 
 #### \$ A01_BMI.cut4 =  
@@ -245,7 +245,7 @@ for(i in 1:7) {
         env1$f$f_df.add_BMI.cut4(varname_BMI = paste0("A0",i,"_","BMI"))
 }
 
-DataSet %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
+DataSet %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -257,7 +257,7 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI"
 i = 2
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 for (i in 2:7) {
@@ -269,7 +269,7 @@ for (i in 2:7) {
             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
     }
 }
-DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
+DataSet %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 2, give.attr = TRUE)
 ```
   
 #### \$ A03_BMI.delta2 =  
@@ -279,7 +279,7 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI"
 i = 3
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 for (i in 3:7) {
@@ -290,7 +290,7 @@ for (i in 3:7) {
             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
     }
 }
-DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
+DataSet %>% select(matches("BMI")) %>% select(matches("A03")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
   
@@ -301,7 +301,7 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
@@ -315,7 +315,7 @@ for (j in 1:(7-1)) {
         }
     }
 }
-DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -326,7 +326,7 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
@@ -340,7 +340,7 @@ for (j in 1:(7-1)) {
         }
     }
 }
-DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -382,7 +382,7 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "\\.pd[1-6]"
 
-DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 
 DataSet <- DataSet %>%

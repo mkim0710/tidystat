@@ -362,12 +362,12 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # > df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # c(0, 1, 0, 1, 1, 0, NA, 1, 0, 0)
-df$FamilyIncome_ge7000 |> str()
+df$FamilyIncome_ge7000 |> str(max.level = 2, give.attr = TRUE)
 df$FamilyIncome_ge7000 |> unique()
 df$FamilyIncome_ge7000 |> unique() |> length()
 df$FamilyIncome_ge7000 %>% na.omit |> unique()
 df$FamilyIncome_ge7000 %>% na.omit |> unique() |> length()
-# > df$FamilyIncome_ge7000 |> str()
+# > df$FamilyIncome_ge7000 |> str(max.level = 2, give.attr = TRUE)
 #  num [1:14407] 0 1 0 1 1 0 NA 1 0 0 ...
 #  - attr(*, "format.stata")= chr "%9.0g"
 # > df$FamilyIncome_ge7000 |> unique()
@@ -458,11 +458,11 @@ attributes(data4FullModel.by_varname_level.list_list)$attributes =
         , data.map.levels = data %>% map(levels)
     )
 
-data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----
-data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----
-# data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----  
-data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----
-# > data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----  
+data4FullModel.by_varname_level.list_list |> str(max.level = 1, give.attr = TRUE) #----
+data4FullModel.by_varname_level.list_list |> str(max.level = 2, give.attr = TRUE) #----
+# data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1, give.attr = TRUE) #----  
+data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1, give.attr = TRUE) #----
+# > data4FullModel.by_varname_level.list_list |> str(max.level = 1, give.attr = TRUE) #----  
 # List of 14
 #  $ AllSubjects        :List of 1
 #  $ Cigar.cut100       :List of 3
@@ -479,7 +479,7 @@ data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #---
 #  $ nutrition_fat      : list()
 #  $ nutrition_carb     : list()
 #  - attr(*, "attributes")=List of 11
-# > data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----  
+# > data4FullModel.by_varname_level.list_list |> str(max.level = 2, give.attr = TRUE) #----  
 # List of 14
 #  $ AllSubjects        :List of 1
 #   ..$ AllSubjects:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	14407 obs. of  15 variables:
@@ -531,8 +531,8 @@ data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #---
 #   ..$ data.map.typeof   :List of 15
 #   ..$ data.map.class    :List of 15
 #   ..$ data.map.levels   :List of 15
-# > # data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----  
-# > data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----  
+# > # data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1, give.attr = TRUE) #----  
+# > data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1, give.attr = TRUE) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5810 obs. of  15 variables:
 #  $ ihd                : Factor w/ 2 levels "FALSE","TRUE": 2 1 1 1 1 2 1 1 1 1 ...
 #  $ timeihd            : num  59 253 0 94 253 104 253 253 196 54 ...

@@ -14,7 +14,7 @@
 # trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
 # identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-# trainsetCC69agg4i07_829.Ctrl.lgl.comat |> str()
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat |> str(max.level = 2, give.attr = TRUE)
 # # > trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
 # #    AcquiredHypothyroidism        AdjustmentDisorder                    Anemia                   Anxiety                 Arthritis        AtrialFibrillation           BenignProstatic 
 # #                        29                         1                        20                       106                       599                         0                         1 
@@ -30,7 +30,7 @@
 # # [1] TRUE
 # # > identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # # [1] TRUE
-# # > trainsetCC69agg4i07_829.Ctrl.lgl.comat |> str()
+# # > trainsetCC69agg4i07_829.Ctrl.lgl.comat |> str(max.level = 2, give.attr = TRUE)
 # #  num [1:31, 1:31] 29 0 1 5 20 0 0 0 9 1 ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:31] "AcquiredHypothyroidism" "AdjustmentDisorder" "Anemia" "Anxiety" ...
@@ -249,8 +249,8 @@ trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logi
 # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()
 # trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums
 # # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums
-trainsetCC69agg4i07_829.Ctrl.lgl |> str()
-# > trainsetCC69agg4i07_829.Ctrl.lgl |> str()
+trainsetCC69agg4i07_829.Ctrl.lgl |> str(max.level = 2, give.attr = TRUE)
+# > trainsetCC69agg4i07_829.Ctrl.lgl |> str(max.level = 2, give.attr = TRUE)
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	829 obs. of  31 variables:
 #  $ AcquiredHypothyroidism   : logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
 #  $ AdjustmentDisorder       : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...

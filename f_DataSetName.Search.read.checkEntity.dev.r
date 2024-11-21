@@ -137,14 +137,14 @@ out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .p
 
 ## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
 out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
-out %>% str
+out |> str(max.level = 2, give.attr = TRUE)
 # getwd() == .path4read[1] == "."  
 # Found .path_filename.ext == "data/fhs.index100le10.rds"  
 # Warning message:
 # In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName,  :
 #   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")  
 # 
-# > out %>% str
+# > out |> str(max.level = 2, give.attr = TRUE)
 # List of 6
 #  $ DataSetName  : chr "fhs.index100le10"
 #  $ df_size_files:'data.frame':	1 obs. of  2 variables:
@@ -159,8 +159,8 @@ out %>% str
 
 ## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
 out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
-out %>% str
-# > out %>% str
+out |> str(max.level = 2, give.attr = TRUE)
+# > out |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ DataSetName  : chr "fhs.index100le10"
 #  $ df_size_files:'data.frame':	1 obs. of  2 variables:
