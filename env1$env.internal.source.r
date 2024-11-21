@@ -263,7 +263,12 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     # out = expression |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
     t0 <- proc.time()
     out <- withCallingHandlers(
-        eval(expression),
+        {
+            output <- capture.output(eval(expr, envir = parent.frame()))
+            if (length(output) > 0) {
+                cat(output, sep = "\n")
+            }
+        },
         warning = function(w) {
             message("Warning: ", conditionMessage(w))
             invokeRestart("muffleWarning")
