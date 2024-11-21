@@ -262,7 +262,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$object = function(expression) {
     # out = expression |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
     t0 <- proc.time()
-    result <- withCallingHandlers(
+    out <- withCallingHandlers(
         eval(expression),
         warning = function(w) {
             message("Warning: ", conditionMessage(w))
