@@ -55,6 +55,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
         seed = 1,
         ...
 ) {
+    library(glmnet)
     set.seed(seed)
     
     # Prepare model matrix
@@ -109,6 +110,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
 .tmp$objectname = "f_cv_glmnet_object.lamda_1se.vec_VarName"
 .tmp$object = function(cv_glmnet_object, lambda = "lambda.1se") {
+    library(glmnet)
     # Extract coefficients at specified lambda
     coef_matrix <- coef(cv_glmnet_object, s = lambda)
     
@@ -145,7 +147,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
 .tmp$objectname = "f_cv_glmnet_object.lamda_1se.glm"
 .tmp$object = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se", attr_warnings.summary = TRUE) {
-
+    library(glmnet)
     vec_VarName_lamda <- f_cv_glmnet_object.lamda_1se.vec_VarName(cv_glmnet_object, lambda = lambda)
     
     # Construct new formula
