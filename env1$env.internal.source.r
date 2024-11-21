@@ -257,9 +257,19 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_expression.system.time.round.dput ====
-.tmp$objectname = "f_expression.system.time.round.dput"
-.tmp$object = function(expression, gcFirst = TRUE) {
-    out = expression |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# https://chatgpt.com/c/673f2c22-d85c-800e-a877-e296fa53f7cc
+.tmp$objectname = "f_expression.system.time.withCallingHandlers.round.dput"
+.tmp$object = function(expression) {
+    # out = expression |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+    t0 <- proc.time()
+    result <- withCallingHandlers(
+        eval(expression),
+        warning = function(w) {
+            message("Warning: ", conditionMessage(w))
+            invokeRestart("muffleWarning")
+        }
+    )
+    (proc.time() - t0) |> round(3) |> unclass() |> deparse() |> cat("\n")  
     invisible(out)
 }
 
