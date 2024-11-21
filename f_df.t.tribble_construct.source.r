@@ -1106,7 +1106,13 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## :: f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.deltaT0"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0") {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0", logical_as_numeric = FALSE) {
+    if(logical_as_numeric && is.logical(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.logical(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+    } else if(is.numeric(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.numeric(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+    } else if(lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarName0]]) && lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+    } else {
+        stop("Both ",VarName0," and ",VarNameT," must be in the same class, either numeric or Date.")
+    }
     DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
@@ -1115,7 +1121,13 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## :: f_df.add_VarNameT.pdT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.pdT0"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0") {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0", logical_as_numeric = FALSE) {
+    if(logical_as_numeric && is.logical(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.logical(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+    } else if(is.numeric(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.numeric(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+    } else if(lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarName0]]) && lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+    } else {
+        stop("Both ",VarName0," and ",VarNameT," must be in the same class, either numeric or Date.")
+    }
     DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
