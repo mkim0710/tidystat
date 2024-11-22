@@ -149,7 +149,7 @@ env1$env.internal.attach$warnings.summary = function() {summary(warnings())}
 env1$env.internal.attach$warnings.last = function() {last.warning}
 env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_environment.list_objects.map_get.str ====  
+## :: f_environment.list_objectnames.map_get.str ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.list_objectnames.map_get.str"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame(), all.names = FALSE, pattern, sorted = TRUE, run_dput = FALSE, run_str = TRUE, max.level = 2, give.attr = FALSE, return_map_get = FALSE) {
@@ -172,18 +172,18 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_environment.list_objectnames_incl_hidden.map_get.str ====  
+## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.list_objectnames_incl_hidden.map_get.str"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame(), all.names = TRUE, pattern, sorted = TRUE, run_dput = FALSE, run_str = TRUE, max.level = 2, give.attr = FALSE, return_map_get = FALSE) {
-    list_objectnames <- ls(envir = envir, all.names = all.names, pattern = pattern, sorted = sorted)   # Get object names, including hidden ones if all.names = TRUE
-    if (run_dput)  list_objectnames |> deparse(width.cutoff = 500L) |> cat("  \n", sep="")
-    if (run_str)  list_objectnames |> set_names() |> map(get) |> str(max.level = max.level, give.attr = give.attr)
-    invisible(list_objectnames)
+    # args <- as.list(environment())  # Capture all arguments in the current environment
+    list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
+    args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
+    do.call(env1$f$f_environment.list_objectnames.map_get.str, args)   # Dynamically pass the args to another function
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = list_objectnames.map_get.str  ----  
-.tmp$aliasname = "list_objectnames.map_get.str"
+### & alias = ls.all.names.map_get.str  ----  
+.tmp$aliasname = "ls.all.names.map_get.str"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
