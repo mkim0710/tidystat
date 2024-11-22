@@ -1,4 +1,4 @@
-#%% f_df.add_BMI.5category() ====  
+#%% f_df.add_BMI.5bins() ====  
 library(dplyr)
 
 
@@ -21,7 +21,7 @@ data.add_BMI_calculated <- function(dataset, varname_Height = "HEIGHT", varname_
   return(dataset)
 }
 
-f_df.add_BMI.5category <- function(dataset, varname_BMI = "BMI") {
+f_df.add_BMI.5bins <- function(dataset, varname_BMI = "BMI") {
 
   # Compute additional BMI-related columns
   dataset <- dataset %>%
@@ -34,7 +34,7 @@ f_df.add_BMI.5category <- function(dataset, varname_BMI = "BMI") {
       BMI_ge300 = !!sym(varname_BMI) >= 30,
       BMI_ge350 = !!sym(varname_BMI) >= 35,
       BMI_ge400 = !!sym(varname_BMI) >= 40,
-      BMI.4category = cut(!!sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+      BMI.4bins = cut(!!sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
     )
   
   return(dataset)
@@ -44,7 +44,7 @@ f_df.add_BMI.5category <- function(dataset, varname_BMI = "BMI") {
 gj_jk.Date.DTH.recode = 
     gj_jk.Date.DTH.recode %>% 
     data.add_BMI_calculated(varname_Height = "HEIGHT", varname_Weight = "WEIGHT") %>% 
-    f_df.add_BMI.5category
+    f_df.add_BMI.5bins
 gj_jk.Date.DTH.recode %>% select(matches("BMI")) |> summary()
 all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
 
@@ -53,8 +53,8 @@ all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
 
 
 
-## @ function.df_add_BMI.4category ======  
-function.df_add_BMI.4category = function(df) {
+## @ function.df_add_BMI.4bins ======  
+function.df_add_BMI.4bins = function(df) {
     df %>% mutate(
         BMI = as.numeric(WEIGHT) / (as.numeric(HEIGHT)/100)^2
         , BMI_lt185 = BMI < 18.5
@@ -65,11 +65,11 @@ function.df_add_BMI.4category = function(df) {
         , BMI_ge300 = BMI >= 30
         , BMI_ge350 = BMI >= 35
         , BMI_ge400 = BMI >= 40
-        , BMI.4category = BMI %>% cut(breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+        , BMI.4bins = BMI %>% cut(breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
     )
 }
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_add_BMI.4category %>% select(matches("BMI")) |> summary() #----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_add_BMI.4bins %>% select(matches("BMI")) |> summary() #----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_add_BMI %>% select(matches("BMI")) |> summary() #----  
 #       BMI        BMI_lt185       BMI_ge185lt230  BMI_ge230lt250  BMI_ge185lt250  BMI_ge250lt300  BMI_ge300       BMI_ge350       BMI_ge400            BMI_4cat     
 #  Min.   :11.96   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   [0,18.5) : 11948  

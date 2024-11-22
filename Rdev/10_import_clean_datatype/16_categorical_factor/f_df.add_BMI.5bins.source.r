@@ -1,10 +1,10 @@
-#%% f_df.add_BMI.5category() ====  
+#%% f_df.add_BMI.5bins() ====  
 # library(dplyr)
 # library(rlang)
 
 
 ## \$ f_df.add_BMI_calculated =  ----  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5category.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5bins.source.r
 .tmp$objectname = "f_df.add_BMI_calculated"
 .tmp$object = function(DataSet.Date.NA.rmAllNA, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
 
@@ -29,9 +29,9 @@
 
 
 
-## \$ f_df.add_BMI.5category =  ----  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5category.source.r
-.tmp$objectname = "f_df.add_BMI.5category"
+## \$ f_df.add_BMI.5bins =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5bins.source.r
+.tmp$objectname = "f_df.add_BMI.5bins"
 .tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI", one_hot_encoding = FALSE, add_4category = FALSE, add_logical_thresholds = TRUE) {
 
     # Compute additional BMI-related columns
@@ -40,13 +40,13 @@
     } else {
         DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
             mutate(
-                !!rlang::sym(paste0(varname_BMI,".5category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
+                !!rlang::sym(paste0(varname_BMI,".5bins")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
             )
     }
     if(add_4category) {
         DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
             mutate(
-                !!rlang::sym(paste0(varname_BMI,".5category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+                !!rlang::sym(paste0(varname_BMI,".5bins")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
             )
     }
     if(one_hot_encoding) {
@@ -81,14 +81,14 @@
 # gj_jk.Date.DTH.recode = 
 #     gj_jk.Date.DTH.recode %>% 
 #     data.add_BMI_calculated(varname_Height = "HEIGHT", varname_Weight = "WEIGHT") %>% 
-#     f_df.add_BMI.5category
+#     f_df.add_BMI.5bins
 # gj_jk.Date.DTH.recode %>% select(matches("BMI")) |> summary()
 # all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
 
 
 
-# # @ function.df_add_BMI.4category ======  
-# function.df_add_BMI.4category = function(df) {
+# # @ function.df_add_BMI.4bins ======  
+# function.df_add_BMI.4bins = function(df) {
 #     df %>% mutate(
 #         BMI = as.numeric(WEIGHT) / (as.numeric(HEIGHT)/100)^2
 #         , BMI_lt185 = BMI < 18.5
@@ -99,11 +99,11 @@
 #         , BMI_ge300 = BMI >= 30
 #         , BMI_ge350 = BMI >= 35
 #         , BMI_ge400 = BMI >= 40
-#         , BMI.4category = BMI %>% cut(breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+#         , BMI.4bins = BMI %>% cut(breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
 #     )
 # }
 # 
-# # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_add_BMI.4category %>% select(matches("BMI")) |> summary() #----
+# # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_add_BMI.4bins %>% select(matches("BMI")) |> summary() #----
 # # # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_add_BMI %>% select(matches("BMI")) |> summary() #----  
 # # #       BMI        BMI_lt185       BMI_ge185lt230  BMI_ge230lt250  BMI_ge185lt250  BMI_ge250lt300  BMI_ge300       BMI_ge350       BMI_ge400            BMI_4cat     
 # # #  Min.   :11.96   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   [0,18.5) : 11948  

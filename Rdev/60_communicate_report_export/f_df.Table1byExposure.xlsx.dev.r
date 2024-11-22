@@ -102,7 +102,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 # HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, 
 # WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, 
 # CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, 
-# BMI.4category, FPG, 
+# BMI.4bins, FPG, 
 # FPG_ge100, FPG_ge126, 
 # SBP, DBP, BP_ESCESH2018, 
 # FPG_ge100lt126, 
@@ -117,7 +117,7 @@ DataSet.Date.NA.rmAllNA %>%
     select(
         SEX,
         HEIGHT, WEIGHT, 
-        BMI.4category, 
+        BMI.4bins, 
         WAIST, 
         WAIST_ge9080, WAIST_ge9085, 
         SBP, DBP, BP_ESCESH2018, 
@@ -453,7 +453,7 @@ DataSet.Table1byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=9
 # 128   128 ""    ""    factor  "BMI_ge300 = TRUE"                     NA             "BMI >=300"                        ""                   "9270 (3.3)"           "5272 (3.6)"        "3998 (2.9)"         
 # 129   129 ""    ""    factor  "BMI_ge350 = TRUE"                     NA             "BMI >=350"                        ""                   "768 (0.3)"            "368 (0.2)"         "400 (0.3)"          
 # 130   130 ""    ""    factor  "BMI_ge400 = TRUE"                     NA             "BMI >=400"                        ""                   "101 (0.0)"            "44 (0.0)"          "57 (0.0)"           
-# 131   131 ""    ""    factor  "BMI.4category"                             NA             "BMI cut4"                         ""                   ""                     ""                  ""                   
+# 131   131 ""    ""    factor  "BMI.4bins"                             NA             "BMI cut4"                         ""                   ""                     ""                  ""                   
 # 132   132 ""    ""    level   "   [0,18.5)"                          NA             ""                                 "[0,18.5)"           "11948 (4.2)"          "3598 (2.4)"        "8350 (6.2)"         
 # 133   133 ""    ""    level   "   [18.5,25)"                         NA             ""                                 "[18.5,25)"          "185640 (65.4)"        "90614 (61.2)"      "95026 (70.0)"       
 # 134   134 ""    ""    level   "   [25,30)"                           NA             ""                                 "[25,30)"            "76940 (27.1)"         "48558 (32.8)"      "28382 (20.9)"       
