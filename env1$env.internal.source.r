@@ -384,8 +384,12 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         CodeEqualsOutput = TRUE,
-        VERBOSE = options()$verbose) {
+        VERBOSE = options()$verbose,
+        ...) {
     if(is.null(VERBOSE)) VERBOSE = FALSE
+    
+    if(is.null(.CodeText)) { stop("is.null(.CodeText)") }
+    if(is.na(.CodeText)) { stop("is.na(.CodeText)") }
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
