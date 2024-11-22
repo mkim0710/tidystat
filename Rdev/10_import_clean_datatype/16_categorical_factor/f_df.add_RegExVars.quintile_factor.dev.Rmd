@@ -356,7 +356,7 @@ for (j in 1:(7-1)) {
 ```
   
   
-#### \$ A0{1+j}_BMI.pdeltaj.cut5 =  
+#### \$ A0{1+j}_BMI.pdeltaj.5bins =  
 ##### \% f_df.add_RegExVars.kbins()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
