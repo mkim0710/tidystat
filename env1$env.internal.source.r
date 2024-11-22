@@ -95,7 +95,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##________________________________________________________________________________  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ system ----  
+# @@ system, environment ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: get_system_info ====  
@@ -148,7 +148,23 @@ env1$env.internal$get_software_versions = function(library_names = c("tidyverse"
 env1$env.internal.attach$warnings.summary = function() {summary(warnings())}
 env1$env.internal.attach$warnings.last = function() {last.warning}
 env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
-
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_environment.list_objects_incl_hidden ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_environment.list_objects_incl_hidden"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(name, pos = -1L, envir = as.environment(pos), all.names = TRUE, pattern, sorted = TRUE) {
+    # args <- as.list(environment())  # Capture all arguments in the current environment
+    ls.all.names <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
+    args <- mget(ls.all.names, envir = environment())    # Use mget() to get all these objects as a list
+    do.call(ls, args)   # Dynamically pass the args to another function
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = ls.all.names  ----  
+.tmp$aliasname = "ls.all.names"
+attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
+    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
+env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_function, f_expression, f_CodeText ----  
@@ -456,7 +472,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## ::OPTION:: f_CodeText.parse.eval.dput.echo  ----  
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
 .tmp$object = function(.CodeText, Execute = TRUE, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
-    args <- as.list(environment())  # Capture all arguments in the current environment
+    # args <- as.list(environment())  # Capture all arguments in the current environment
+    ls.all.names <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
+    args <- mget(ls.all.names, envir = environment())    # Use mget() to get all these objects as a list
     do.call(env1$f$f_CodeText.echo, args)   # Dynamically pass the args to another function
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
