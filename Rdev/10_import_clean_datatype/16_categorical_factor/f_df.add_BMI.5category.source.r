@@ -32,13 +32,17 @@
 ## \$ f_df.add_BMI.5category =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5category.source.r
 .tmp$objectname = "f_df.add_BMI.5category"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI", one_hot_encoding = FALSE, add_4category = FALSE) {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI", one_hot_encoding = FALSE, add_4category = FALSE, add_logical_thresholds = TRUE) {
 
     # Compute additional BMI-related columns
-    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
-        mutate(
-            !!rlang::sym(paste0(varname_BMI,".5category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
-        )
+    if(!varname_BMI %in% names(DataSet.Date.NA.rmAllNA)) {
+        stop(paste0("Column ", varname_BMI, " does not exist in the dataset"))
+    } else {
+        DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+            mutate(
+                !!rlang::sym(paste0(varname_BMI,".5category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
+            )
+    }
     if(add_4category) {
         DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
             mutate(
@@ -56,15 +60,18 @@
                 !!rlang::sym(paste0(varname_BMI,"_ge250lt300")) := !!rlang::sym(varname_BMI) >= 25 & !!rlang::sym(varname_BMI) < 30
             )
     }
-    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
-        mutate(
-            !!rlang::sym(paste0(varname_BMI,"_ge230")) := !!rlang::sym(varname_BMI) >= 23,
-            !!rlang::sym(paste0(varname_BMI,"_ge250")) := !!rlang::sym(varname_BMI) >= 25,
-            !!rlang::sym(paste0(varname_BMI,"_ge300")) := !!rlang::sym(varname_BMI) >= 30,
-            !!rlang::sym(paste0(varname_BMI,"_ge350")) := !!rlang::sym(varname_BMI) >= 35,
-            !!rlang::sym(paste0(varname_BMI,"_ge400")) := !!rlang::sym(varname_BMI) >= 40
-        )
-
+    if(add_logical_thresholds) {
+        DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+            mutate(
+                !!rlang::sym(paste0(varname_BMI,"_lt185")) := !!rlang::sym(varname_BMI) < 18.5,
+                
+                !!rlang::sym(paste0(varname_BMI,"_ge230")) := !!rlang::sym(varname_BMI) >= 23,
+                !!rlang::sym(paste0(varname_BMI,"_ge250")) := !!rlang::sym(varname_BMI) >= 25,
+                !!rlang::sym(paste0(varname_BMI,"_ge300")) := !!rlang::sym(varname_BMI) >= 30,
+                !!rlang::sym(paste0(varname_BMI,"_ge350")) := !!rlang::sym(varname_BMI) >= 35,
+                !!rlang::sym(paste0(varname_BMI,"_ge400")) := !!rlang::sym(varname_BMI) >= 40
+            )
+    }
     return(DataSet.Date.NA.rmAllNA)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
