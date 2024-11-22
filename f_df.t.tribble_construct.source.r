@@ -1138,7 +1138,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
 # Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.kbins"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"category")) {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"bins")) {
     if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
         stop("DataSet.Date.NA.rmAllNA must be a data frame.")
     }
