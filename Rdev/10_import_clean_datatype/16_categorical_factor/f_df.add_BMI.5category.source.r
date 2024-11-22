@@ -32,14 +32,19 @@
 ## \$ f_df.add_BMI.5category =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5category.source.r
 .tmp$objectname = "f_df.add_BMI.5category"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI", one_hot_encoding = FALSE) {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI", one_hot_encoding = FALSE, add_4category = FALSE) {
 
     # Compute additional BMI-related columns
     DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
         mutate(
-            !!rlang::sym(paste0(varname_BMI,".4category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F),
             !!rlang::sym(paste0(varname_BMI,".5category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
         )
+    if(add_4category) {
+        DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+            mutate(
+                !!rlang::sym(paste0(varname_BMI,".5category")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+            )
+    }
     if(one_hot_encoding) {
         DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
             mutate(
