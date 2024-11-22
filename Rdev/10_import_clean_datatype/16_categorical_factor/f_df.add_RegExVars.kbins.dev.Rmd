@@ -392,9 +392,9 @@ for (j in 1:(7-1)) {
 #   mutate(across(
 #     .cols = matches(paste0(.RegEx2match,"$")), 
 #     .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
-#     .names = "{.col}.cut5"
+#     .names = "{.col}.5bins"
 #   ))
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
+# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.5bins$"))) %>% summary
 ```
   
   
