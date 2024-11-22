@@ -1391,7 +1391,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         } 
     }
     if (object.size(get(.objectname)) >= 1e8) {
-        "object.size(get(.objectname)) >= 1e8 --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file." |> warning(call. = FALSE, immediate. = TRUE)
+        paste0("object.size(get(.objectname)) == ",object.size(get(.objectname))|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
     }
     if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) >= 1e6 && object.size(get(.objectname)) < 1e8, ".xz", ""))
     if(is.null(CompressionMethod))      CompressionMethod = case_when(.filename.ext4write == "xz" ~ "xz", 
@@ -1408,7 +1408,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(Execute) {
         if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (object.size(get(.objectname)) >= 1e8) {
-            "object.size(get(.objectname)) >= 1e8 --> No Auto-execution." |> warning(call. = FALSE, immediate. = TRUE)
+            paste0("object.size(get(.objectname)) == ",object.size(get(.objectname))|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
             get(.objectname) |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
