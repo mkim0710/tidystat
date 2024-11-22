@@ -1,4 +1,4 @@
-#%% f_df.add_BMI.4category() ====  
+#%% f_df.add_BMI.5category() ====  
 library(dplyr)
 
 
@@ -21,7 +21,7 @@ data.add_BMI_calculated <- function(dataset, varname_Height = "HEIGHT", varname_
   return(dataset)
 }
 
-f_df.add_BMI.4category <- function(dataset, varname_BMI = "BMI") {
+f_df.add_BMI.5category <- function(dataset, varname_BMI = "BMI") {
 
   # Compute additional BMI-related columns
   dataset <- dataset %>%
@@ -44,7 +44,7 @@ f_df.add_BMI.4category <- function(dataset, varname_BMI = "BMI") {
 gj_jk.Date.DTH.recode = 
     gj_jk.Date.DTH.recode %>% 
     data.add_BMI_calculated(varname_Height = "HEIGHT", varname_Weight = "WEIGHT") %>% 
-    f_df.add_BMI.4category
+    f_df.add_BMI.5category
 gj_jk.Date.DTH.recode %>% select(matches("BMI")) |> summary()
 all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
 

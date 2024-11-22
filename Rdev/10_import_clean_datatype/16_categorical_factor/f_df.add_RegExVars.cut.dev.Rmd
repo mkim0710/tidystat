@@ -189,7 +189,7 @@ options(width=120)
 options(function.reload = TRUE);  # getOption("function.reload")
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_df.add_BMI.4category" |> paste0(".source.r")
+.sourcename = "f_df.add_BMI.5category" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
 .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 ```
@@ -227,14 +227,14 @@ DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
 
 #### \$ A01_BMI.4category =  
 ##### \% f_df.add_BMI_calculated()  
-##### \% f_df.add_BMI.4category()  
+##### \% f_df.add_BMI.5category()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_df.add_BMI.4category" |> paste0(".source.r") |> source() ----  
+## @ "f_df.add_BMI.5category" |> paste0(".source.r") |> source() ----  
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
-.sourcename = "f_df.add_BMI.4category" |> paste0(".source.r")
+.sourcename = "f_df.add_BMI.5category" |> paste0(".source.r")
 .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); 
 if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])  }
 
@@ -242,7 +242,7 @@ for(i in 1:7) {
     DataSet.Date.NA.rmAllNA =
         DataSet.Date.NA.rmAllNA %>% 
         env1$f$f_df.add_BMI_calculated(varname_Height = paste0("A0",i,"_","HEIGHT"), varname_Weight = paste0("A0",i,"_","WEIGHT"), varname_BMI = paste0("A0",i,"_","BMI")) %>% 
-        env1$f$f_df.add_BMI.4category(varname_BMI = paste0("A0",i,"_","BMI"))
+        env1$f$f_df.add_BMI.5category(varname_BMI = paste0("A0",i,"_","BMI"))
 }
 
 DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
