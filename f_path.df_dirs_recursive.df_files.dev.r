@@ -506,7 +506,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' @		16_categorical_factor/
 #' 			add.Date_ICD_chapter.dev.r
 #' 			f_df.add_AgeGroup_Decade.dev.r
-#' 			f_df.add_BMI.cut4.dev.r
+#' 			f_df.add_BMI.4category.dev.r
 #' 			f_df.add_BP_HTN_140_90.dev.r
 #' 			f_df.add_FPG_ge100lt126.dev.r
 #' 			f_df.add_IncomeQuartile_MedicalAid.dev.r
