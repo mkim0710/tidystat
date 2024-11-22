@@ -1133,11 +1133,11 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_df.add_RegExVars.kcategory =  ----  
+## :: f_df.add_RegExVars.kbins =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
-# Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kcategory.dev.Rmd
-.tmp$objectname = "f_df.add_RegExVars.kcategory"
+# Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
+.tmp$objectname = "f_df.add_RegExVars.kbins"
 .tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"category")) {
     if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
         stop("DataSet.Date.NA.rmAllNA must be a data frame.")
