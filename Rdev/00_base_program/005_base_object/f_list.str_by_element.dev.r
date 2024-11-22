@@ -66,7 +66,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-#   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0")  
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
 #   ..$ f_df.add_RegExVars.cut                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), 
 #     suffix = paste0(".cut", length(breaks) - 1))  
 #   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
@@ -144,7 +144,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-#   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0")  
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
 #   ..$ f_df.add_RegExVars.cut                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, 
 #     -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) - 
 #     1))  
@@ -224,7 +224,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
-#   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
 #   ..$ f_df.add_RegExVars.cut                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", br..
 #     suffix = paste0(".cut", length(breaks) - 1))  
 #   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.o..
@@ -302,7 +302,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NU..
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA."..
-#   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA."..
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA."..
 #   ..$ f_df.add_RegExVars.cut                      :function (DataSet.Date.NA."..
 #     -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) - 
 #     1))  
@@ -387,8 +387,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
 # ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix =
 #    ".deltaT0")
-# ..$ f_df.add_VarNameT.pdT0 :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix =
-#    ".pdT0")
+# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix =
+#    ".pdeltaT0")
 # ..$ f_df.add_RegExVars.cut :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1,
 #    -0.05, 0.05, 0.1, Inf),
 # suffix = paste0(".cut", length(breaks) - 1))
@@ -486,8 +486,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
 # ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0,
 #    VarNameT, prefix = "", suffix = ".deltaT0")
-# ..$ f_df.add_VarNameT.pdT0 :function (DataSet.Date.NA.rmAllNA, VarName0,
-#    VarNameT, prefix = "", suffix = ".pdT0")
+# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0,
+#    VarNameT, prefix = "", suffix = ".pdeltaT0")
 # ..$ f_df.add_RegExVars.cut :function (DataSet.Date.NA.rmAllNA, regex_pattern =
 #    ".", breaks = c(-Inf,
 # -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) -
@@ -611,7 +611,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 ## $ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 ## $ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-## $ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0")  
+## $ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
 ## $ f_df.add_RegExVars.cut                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, 
 ##    Inf), suffix = paste0(".cut", length(breaks) - 1))  
 ## $ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  

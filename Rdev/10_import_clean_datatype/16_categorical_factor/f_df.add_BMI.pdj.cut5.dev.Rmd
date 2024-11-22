@@ -319,7 +319,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level =
 ```
 
 
-#### \$ A0{1+j}_BMI.pdj =  
+#### \$ A0{1+j}_BMI.pdeltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
@@ -336,7 +336,7 @@ for (j in 1:(7-1)) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".pd",j)))
             DataSet = 
                 DataSet |> 
-                env1$f$f_df.add_VarNameT.pdT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pd",j))
+                env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pd",j))
         }
     }
 }
@@ -344,7 +344,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level =
 ```
 
 
-##### \%  print() A0{1+j}_BMI.deltaj, A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj 
+##### \%  print() A0{1+j}_BMI.deltaj, A0{1+j}_BMI.pdeltaj, A0{1+j}_WEIGHT.pdj 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 for (j in 1:(7-1)) {
@@ -375,7 +375,7 @@ for (j in 1:(7-1)) {
 ```
   
   
-#### \$ A0{1+j}_BMI.pdj.cut5 =  
+#### \$ A0{1+j}_BMI.pdeltaj.cut5 =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
@@ -434,7 +434,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
   
   
-#### \$ A0{1+j}_BMI.pdj.quintile =  
+#### \$ A0{1+j}_BMI.pdeltaj.quintile =  
 ## \% f_df.add_RegExVars.quintile_factor ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
