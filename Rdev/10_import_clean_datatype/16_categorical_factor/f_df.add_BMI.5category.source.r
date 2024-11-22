@@ -1,10 +1,10 @@
-#%% f_df.add_BMI.4category() ====  
+#%% f_df.add_BMI.5category() ====  
 # library(dplyr)
 # library(rlang)
 
 
 ## \$ f_df.add_BMI_calculated =  ----  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.4category.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5category.source.r
 .tmp$objectname = "f_df.add_BMI_calculated"
 .tmp$object = function(DataSet.Date.NA.rmAllNA, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
 
@@ -29,9 +29,9 @@
 
 
 
-## \$ f_df.add_BMI.4category =  ----  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.4category.source.r
-.tmp$objectname = "f_df.add_BMI.4category"
+## \$ f_df.add_BMI.5category =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5category.source.r
+.tmp$objectname = "f_df.add_BMI.5category"
 .tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI", one_hot_encoding = FALSE) {
 
     # Compute additional BMI-related columns
@@ -69,7 +69,7 @@
 # gj_jk.Date.DTH.recode = 
 #     gj_jk.Date.DTH.recode %>% 
 #     data.add_BMI_calculated(varname_Height = "HEIGHT", varname_Weight = "WEIGHT") %>% 
-#     f_df.add_BMI.4category
+#     f_df.add_BMI.5category
 # gj_jk.Date.DTH.recode %>% select(matches("BMI")) |> summary()
 # all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
 
