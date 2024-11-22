@@ -333,10 +333,10 @@ DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
-            print(paste0("A0",i,"_",.VarName.suffix,paste0(".pd",j)))
+            print(paste0("A0",i,"_",.VarName.suffix,paste0(".pdelta",j)))
             DataSet = 
                 DataSet |> 
-                env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pd",j))
+                env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pdelta",j))
         }
     }
 }
@@ -360,7 +360,7 @@ for (j in 1:(7-1)) {
         #     paste0("A0",i-j,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix,".delta",j), 
-        #     paste0("A0",i,"_",.VarName.suffix,".pd",j) 
+        #     paste0("A0",i,"_",.VarName.suffix,".pdelta",j) 
         # )] |> head() |> as.data.frame() |> print()
         DataSet[c(
             paste0("A0",i-j,"_"), 
@@ -368,7 +368,7 @@ for (j in 1:(7-1)) {
             paste0("A0",i,"_"), 
             paste0("A0",i,"_") 
         ) %>% outer(.VarName.suffix, paste0) %>% 
-            paste0(c("", "", paste0(".delta",j), paste0(".pd",j)))
+            paste0(c("", "", paste0(".delta",j), paste0(".pdelta",j)))
         ] |> head() |> as.data.frame() |> print()
     }
 }
@@ -380,7 +380,7 @@ for (j in 1:(7-1)) {
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "\\.pd[1-6]"
+.RegEx2match = "\\.pdelta[1-6]"
 
 DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput

@@ -336,10 +336,10 @@ DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(pas
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
-            print(paste0("A0",i,"_",.VarName.suffix,paste0(".pd",j)))
+            print(paste0("A0",i,"_",.VarName.suffix,paste0(".pdelta",j)))
             DataSet.Date.NA.rmAllNA = 
                 DataSet.Date.NA.rmAllNA |> 
-                env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pd",j))
+                env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pdelta",j))
         }
     }
 }
@@ -363,7 +363,7 @@ for (j in 1:(7-1)) {
         #     paste0("A0",i-j,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix,".delta",j), 
-        #     paste0("A0",i,"_",.VarName.suffix,".pd",j) 
+        #     paste0("A0",i,"_",.VarName.suffix,".pdelta",j) 
         # )] |> head() |> as.data.frame() |> print()
         DataSet.Date.NA.rmAllNA[c(
             paste0("A0",i-j,"_"), 
@@ -371,7 +371,7 @@ for (j in 1:(7-1)) {
             paste0("A0",i,"_"), 
             paste0("A0",i,"_") 
         ) %>% outer(.VarName.suffix, paste0) %>% 
-            paste0(c("", "", paste0(".delta",j), paste0(".pd",j)))
+            paste0(c("", "", paste0(".delta",j), paste0(".pdelta",j)))
         ] |> head() |> as.data.frame() |> print()
     }
 }
@@ -383,7 +383,7 @@ for (j in 1:(7-1)) {
 # options(width=120)
 # ## \$ f_df.add_VarNameT.dpT0 =  ----  
 # ## -> included in "f_df.t.tribble_construct.source.r"
-# .RegEx2match = "\\.pd[1-6]"
+# .RegEx2match = "\\.pdelta[1-6]"
 # 
 # DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 # DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
@@ -429,9 +429,9 @@ options(width=120)
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 
 
-.regex_pattern_part = "\\.pd[1-6]"
+.regex_pattern_part = "\\.pdelta[1-6]"
 .breaks4cut = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf)
-.suffix = paste0(".cut",length(.breaks4cut)-1)
+.suffix = paste0(".",length(.breaks4cut)-1,"bins")
 DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA |> env1$f$f_df.add_RegExVars.kbins(regex_pattern = paste0(.regex_pattern_part,"$"), breaks = .breaks4cut, suffix = .suffix)
 DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.regex_pattern_part,"\\.cut"))) %>% summary
 
