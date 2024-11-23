@@ -166,6 +166,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(subenv_name4object, 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(environment = parent.frame(), all.names = FALSE, pattern, sorted = TRUE, run_dput = FALSE, run_str = TRUE, max.level = 2, give.attr = FALSE, return_map_get = FALSE) {
     # environment.list = environment |> as.list(all.names = all.names, sorted = sorted)
     list_objectnames <- ls(envir = environment, all.names = all.names, pattern = pattern, sorted = sorted)   # Get object names, including hidden ones if all.names = TRUE
+    # browser()
+    
     if (run_dput)  list_objectnames |> deparse(width.cutoff = 500L) |> cat("  \n", sep="")
     
     list_objectnames.map_get = list_objectnames |> set_names() |> map(get)
@@ -184,17 +186,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.list_objectnames_incl_hidden.map_get.str"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(environment = parent.frame(), all.names = TRUE, pattern, sorted = TRUE, run_dput = FALSE, run_str = TRUE, max.level = 2, give.attr = FALSE, return_map_get = FALSE) {
-    # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
-    # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
-    # args = as.list(formals())
-    args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
-    if ("..." %in% names(args)) {
-        args$... = NULL
-        args.additional = list(...)
-        args = args.additional |> c(args[!names(args) %in% names(args.additional)])
-    }
-    do.call(env1$f$f_environment.list_objectnames.map_get.str, args)   # Dynamically pass the args to another function
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(environment = parent.frame(), ...) {
+    env1$f$f_environment.list_objectnames.map_get.str(environment = environment, all.names = TRUE, ...)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = ls.all.names.map_get.str  ----  
