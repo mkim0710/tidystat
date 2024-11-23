@@ -15,7 +15,7 @@
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
-# .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ----  

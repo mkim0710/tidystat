@@ -1,5 +1,5 @@
-.sourcename = "templates-00env1.minimum-Chunks" |> paste0(".source.r")  
-if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+.filename.source.r = "templates-00env1.minimum-Chunks" |> paste0(".source.r")  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
 # rstudio-prefs/templates/f_df.t.tribble_construct.dev.r  
 # rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd  
 # rstudio-prefs/templates/f_df.t.tribble_construct.source.r  
@@ -65,16 +65,16 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
-# ### @ .subpath, .sourcename ======  
+# ### @ .subpath, .filename.source.r ======  
 # # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(!is.null(.LastSourceEditorContext.path_filename.ext)) if(.LastSourceEditorContext.path_filename.ext != "") {.subpath = .LastSourceEditorContext.path_filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# # .sourcename = "default.template" |> paste0(".source.r")
-# if(!is.null(.LastSourceEditorContext.path_filename.ext)) if(.LastSourceEditorContext.path_filename.ext != "") {.sourcename = .LastSourceEditorContext.path_filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+# # .filename.source.r = "default.template" |> paste0(".source.r")
+# if(!is.null(.LastSourceEditorContext.path_filename.ext)) if(.LastSourceEditorContext.path_filename.ext != "") {.filename.source.r = .LastSourceEditorContext.path_filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".filename.source.r" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # env1$path$.subpath = .subpath
-# if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-# if(exists(".sourcename_root") && !exists(".sourcename")) .sourcename = .sourcename_root |> paste0(".source.r")
+# if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
+# if(exists(".sourcename_root") && !exists(".filename.source.r")) .filename.source.r = .sourcename_root |> paste0(".source.r")
 # env1$path$.sourcename_root = .sourcename_root
 # env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
@@ -93,8 +93,8 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # # \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----
-# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+# .subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# if(isTRUE(options()$function.reload) || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])}
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  

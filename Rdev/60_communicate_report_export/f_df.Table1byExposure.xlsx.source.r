@@ -1,4 +1,4 @@
-# .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+# .filename.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
 # f_df.Table1byExposure.xlsx.dev.r
 # f_df.Table1byExposure.xlsx.source.r
 # utils::browseURL("/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.r")
@@ -58,12 +58,12 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # https://chatgpt.com/c/8aa3dbae-b089-410e-8f06-54dcfea1a0af
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
-## @ .subpath, .sourcename ======  
+## @ .subpath, .filename.source.r ======  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+.filename.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
-# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
+# .subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.filename.source.r %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.filename.source.r]] = TRUE}
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
 

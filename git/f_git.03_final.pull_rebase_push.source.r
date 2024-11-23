@@ -1,4 +1,4 @@
-# .sourcename = "f_git.03_final.pull_rebase_push" |> paste0(".source.r")
+# .filename.source.r = "f_git.03_final.pull_rebase_push" |> paste0(".source.r")
 # f_git.03_final.pull_rebase_push.dev.r
 # f_git.03_final.pull_rebase_push.source.r
 # utils::browseURL("/git/f_git.03_final.pull_rebase_push.dev.r")
@@ -52,17 +52,17 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
-## @ .subpath, .sourcename ======  
+## @ .subpath, .filename.source.r ======  
 # .subpath = r"(git)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "f_git.03_final.pull_rebase_push" |> paste0(".source.r")
+# .filename.source.r = "f_git.03_final.pull_rebase_push" |> paste0(".source.r")
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.subpath = .subpath
-# .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 # env1$path$.sourcename_root = .sourcename_root  
 # env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# env1$path$.subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
 #     "# ",sourcename_root,".dev.r", "\n",
 #     "# ",sourcename_root,".source.r", "\n",
@@ -82,7 +82,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# if(.sourcename == "default.template") { warning('.sourcename == "default.template"') } else {
+# if(.filename.source.r == "default.template") { warning('.filename.source.r == "default.template"') } else {
 #     # # if(!file.exists(env1$path$subpath_filename.dev.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath_filename.dev.r); env1$path$subpath_filename.dev.r %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
 #     # if(!file.exists(env1$path$subpath_filename.dev.Rmd)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath_filename.dev.Rmd); env1$path$subpath_filename.dev.Rmd %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
 #     # if(!file.exists(env1$path$subpath_filename.source.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath_filename.source.r); env1$path$subpath_filename.source.r %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))

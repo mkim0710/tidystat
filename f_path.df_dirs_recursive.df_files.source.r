@@ -1,6 +1,6 @@
-.sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")  
-if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
-# # .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
+.filename.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
+# # .filename.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
 # # f_path.df_dirs_recursive.df_files.dev.r
 # # f_path.df_dirs_recursive.df_files.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_path.df_dirs_recursive.df_files.dev.r
@@ -51,17 +51,17 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
-## @ .subpath, .sourcename ======  
+## @ .subpath, .filename.source.r ======  
 # .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
+# .filename.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.subpath = .subpath
-# .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 # env1$path$.sourcename_root = .sourcename_root  
 # env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# env1$path$.subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #     "# ",env1$path$.subpath_filename.dev.r, "  \n",
 #     "# ",env1$path$.subpath_filename.dev.Rmd, "  \n",
