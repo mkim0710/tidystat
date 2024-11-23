@@ -64,7 +64,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # env1$path$.sourcename_root = .sourcename_root  
 # env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
 # cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #     "# ",env1$path$.subpath_filename.dev.r, "  \n",
 #     "# ",env1$path$.subpath_filename.dev.Rmd, "  \n",
