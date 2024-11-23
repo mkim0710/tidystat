@@ -1347,7 +1347,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
-                assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
+                assign(".object", structure(.object, MetaData = as.environment(MetaData)))
             }
         } 
     }
@@ -1406,17 +1408,17 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     
     if(Execute) {
         if(createBackup) env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
-        if (object.size(get(.objectname)) >= 1e8) {
-            paste0("object.size(get(.objectname)) == ",object.size(get(.objectname))|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
+        if (object.size(.object) >= 1e8) {
+            paste0("object.size(.object) == ",object.size(.object)|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
-            get(.objectname) |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+            .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
         }
     }
     
     if(git_add_f) {
         if (git_lfs_track == "determine based on object size") {
-            if(object.size(get(.objectname)) > 1e7) {
+            if(object.size(.object) > 1e7) {
                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
                 env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
