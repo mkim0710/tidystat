@@ -1302,7 +1302,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
-                assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
+                assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
             }
         } 
     }

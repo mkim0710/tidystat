@@ -1118,7 +1118,7 @@ TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
 
 # # Save all glmnet models for future use
 # .objectname = "TheTrainSet.cv.glmnet_a10"
-# assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
+# assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
 
 cat("    ________________________________________________________________________    \n")
@@ -2073,7 +2073,7 @@ if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
     cat("    ________________________________________________________________________    \n")
     for (.objectname in names(MetaData$DataSetNames)) {
-        assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
+        assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
         env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     }
