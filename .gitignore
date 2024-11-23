@@ -194,6 +194,8 @@ archive/
 *-Min-Hyung’s MacBook Pro*
 *-MAGB760M13700KF*
 
+# lock files
+sync.ffs_lock
 
 # MHahk
 msedgeprofile_autocoder/
@@ -221,4 +223,3 @@ bin/
 !*.js.html
 !*.js-call.html
 !*-edit.md
-sync.ffs_lock
