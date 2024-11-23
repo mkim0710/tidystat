@@ -1242,9 +1242,10 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
-        .object = NULL, .objectname = NULL, .path_file = NULL, 
-        .path4write = env1$path$.path4write, 
+        .object = NULL, .objectname = NULL, 
         .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), 
+        .path4write = env1$path$.path4write,
+        .path_file = NULL, 
         createBackup = FALSE, 
         .backup_to_path="-backup", 
         Execute = FALSE, 
@@ -1256,6 +1257,24 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         LinePrefix4CodeText = "\t", 
         VERBOSE = options()$verbose) {
     
+    # browser()
+    # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
+    # List of 15
+    #  $ .object            : NULL
+    #  $ .objectname        : chr "df_NewDMv3.CensorEND.n8845.select971"
+    #  $ .filename.ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
+    #  $ .path4write        : chr "."
+    #  $ .path_file         : NULL
+    #  $ createBackup       : logi FALSE
+    #  $ .backup_to_path    : chr "-backup"
+    #  $ Execute            : logi FALSE
+    #  $ path.size_files    : logi TRUE
+    #  $ git_lfs_track      : logi TRUE
+    #  $ git_add_f          : logi TRUE
+    #  $ SkipIfAlreadyAdded : logi TRUE
+    #  $ CompressionMethod  : chr "xz"
+    #  $ LinePrefix4CodeText: chr "\t"
+    #  $ VERBOSE            : logi FALSE
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
             # .objectname <- .object
