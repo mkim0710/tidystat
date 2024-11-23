@@ -60,7 +60,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # .LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -116,7 +116,7 @@ env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi 
             if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
             .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
             .destination_path_filename.ext = file.path(.destination_path, env1$path$RTemplate.filename.ext)
-            .backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .destination_path_filename.ext, .backup_to_path=.backup_to_path) 
+            .backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .destination_path_filename.ext, .backup_to_path=.backup_to_path) 
             if(Sys.info()["sysname"] == "Windows") {browseURL(.backup_to_path)}
             
             if(file.copy(from=.LastSourceEditorContext.path_filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename.ext)) else warning(paste0("Update failed: ", .destination_path_filename.ext))

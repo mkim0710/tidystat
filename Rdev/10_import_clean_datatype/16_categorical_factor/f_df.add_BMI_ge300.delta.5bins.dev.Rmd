@@ -165,7 +165,7 @@ env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
 #   
 # ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
-env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+env1$info$info_software_versions = env1$env.internal.attach$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
 # str(env1$info$info_software_versions)
 ```
   
@@ -508,8 +508,8 @@ if(exists("MetaData")) {
 ```{r createBackup, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```

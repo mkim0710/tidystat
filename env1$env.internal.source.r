@@ -100,7 +100,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: get_system_info ====  
 # Rdev/00_base_program/get_system_info.source.r
-env1$env.internal$get_system_info = function() {
+env1$env.internal.attach$get_system_info = function() {
     summary_list = list(
         GUI = .Platform$GUI,
         os_type = .Platform$OS.type,
@@ -132,7 +132,7 @@ env1$env.internal$get_system_info = function() {
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: get_software_versions ====  
-env1$env.internal$get_software_versions = function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
+env1$env.internal.attach$get_software_versions = function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
   version_list <- list(OS.type = .Platform$OS.type, R.version = R.version$version.string)
   version_list$RStudio_version <- ifelse(!is.null(.Platform$GUI) && .Platform$GUI == "RStudio" && exists("RStudio.Version"), paste(unlist(RStudio.Version()$version), collapse = "."), NA)
   version_list$library_versions <- setNames(map(library_names, function(lib) {
@@ -697,7 +697,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.size_files =  ----  
@@ -1075,7 +1075,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.open_in_edge_app"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
-    if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
+    if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal.attach$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = browseURL_in_edge_app  ----  
@@ -1090,7 +1090,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.open_in_edge_app.printRCode"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
-    # URL %>% cat('env1$env.internal$f_URL.open_in_edge_app("',.,'")  \n', sep="")
+    # URL %>% cat('env1$env.internal.attach$f_URL.open_in_edge_app("',.,'")  \n', sep="")
     # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
     URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
 }
@@ -1152,7 +1152,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     # If no valid Sumatra executable found, use the system default application
     if (is.null(path.SumatraPDF.exe) || !file.exists(path.SumatraPDF.exe)) {
         warning("SumatraPDF.exe not found. Opening file with the system default viewer instead.", call. = FALSE)
-        return(invisible(env1$env.internal$f_file.systemStart(file)))
+        return(invisible(env1$env.internal.attach$f_file.systemStart(file)))
     }
     file <- normalizePath(file, winslash = "/")
     path.SumatraPDF.exe <- normalizePath(path.SumatraPDF.exe, winslash = "/")
@@ -1268,7 +1268,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_filename.ext, .destination_path_filename.ext, .backup_to_path = dirname(.destination_path_filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path_filename.ext)) {
         if(!is.null(.backup_to_path)) {
-            env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .destination_path_filename.ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
+            env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .destination_path_filename.ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
         }
         if(file.copy(from=.overwrite_from_path_filename.ext, to=.destination_path_filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename.ext)) else warning(paste0("Update failed: ", .destination_path_filename.ext))
     } else {warning(paste0("File does not exist: ", .destination_path_filename.ext))}
@@ -1324,7 +1324,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = getwd(), chec
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### :: env1\$path\$git_path =  =======  
-env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
+env1$path$git_path = env1$env.internal.attach$f_path.is_git_tracked()
 # env1$path$no_git = is.na(env1$path$git_path)
 
 
@@ -1458,12 +1458,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path_file))             .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)
 
-    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(Execute) {
-        if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+        if(createBackup) env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (object.size(get(.objectname)) >= 1e8) {
             paste0("object.size(get(.objectname)) == ",object.size(get(.objectname))|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
@@ -1545,7 +1545,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         
         # Compare the local file and the remote file (if local file exists)
         if (file.exists(destfile)) {
-            files_are_identical <- env1$env.internal$f_file2.compare(destfile, temp_file, chunk_size)
+            files_are_identical <- env1$env.internal.attach$f_file2.compare(destfile, temp_file, chunk_size)
             
             if (files_are_identical) {
                 message(paste0("No update needed for: ", destfile))
@@ -1593,7 +1593,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .filename.ext)
         }
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.filename.ext)
-        env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+        env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         
         if (Sys.info()["sysname"] == "Windows") {
             # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
@@ -1601,8 +1601,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             
             .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename.ext)
             .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
-            env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
-            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+            env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
+            env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         }
     }
     if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
@@ -1613,7 +1613,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
         # for (.file.copy.to in c(file.path(env1$path$path1,.filename.ext), file.path("~",.filename.ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename.ext))) {
         for (.file.copy.to in file.path(env1$path$path1,.filename.ext)) {
             if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename.ext)) {
-                env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+                env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
             }
         }
     }
@@ -1622,7 +1622,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     for (.filename.ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
         .file.copy.to = file.path(env1$path$path1,.filename.ext)
-        env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+        env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
     }
     
     # remove old files
@@ -1642,7 +1642,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #         } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
     #             .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
     #             .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
-    #             env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+    #             env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
     #         } else if(Sys.info()["sysname"] == "Darwin") {
     #             
     #         }
@@ -1665,7 +1665,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### \$ list_path_hierarchy  =======  
 .max_hierarchy = 5
-env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, VERBOSE = FALSE)
+env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, VERBOSE = FALSE)
 # for (i in 1:(.max_hierarchy)) {
 #     # if(!is.na(env1$path$list_path_hierarchy[[i+1]]))
 #     env1$path[[paste0("path", i)]] = env1$path$list_path_hierarchy[[i+1]]

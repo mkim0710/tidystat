@@ -37,7 +37,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
@@ -54,9 +54,9 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### \$ .gitignore -----  
 # # ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
-# # ".gitignore" |> env1$env.internal$f_file.edit_vscode()
-# .file2edit = ".gitignore" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))} }
-# .file2edit = ".git/hooks/pre-commit" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))} }
+# # ".gitignore" |> env1$env.internal.attach$f_file.edit_vscode()
+# .file2edit = ".gitignore" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))} }
+# .file2edit = ".git/hooks/pre-commit" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))} }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #### \% f_path_file.backup_copy_overwrite -----  
 f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_from_filename.ext, .vec_destination_paths, VERBOSE = FALSE, restrict_execution_path = "D:/OneDrive/[][Rproject]/github_tidystat", createFile = FALSE) {
@@ -64,11 +64,11 @@ f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_fr
     .overwrite_from_path_filename.ext = paste0(.overwrite_from_path, "/", .overwrite_from_filename.ext)
     # if (basename(getwd()) == "github_tidystat") {
     if (getwd() |> normalizePath(winslash="/") %in% restrict_execution_path) {
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = paste0(.vec_destination_paths, "/", .overwrite_from_filename.ext) |> keep(file.exists) |> first(default = ""), .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
+        env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = paste0(.vec_destination_paths, "/", .overwrite_from_filename.ext) |> keep(file.exists) |> first(default = ""), .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
         for (.destination_path in unique(.vec_destination_paths)) {
             if(VERBOSE) cat(".destination_path: ", .destination_path, "\n", sep="")
             .destination_path_filename.ext = paste0(.destination_path, "/", .overwrite_from_filename.ext) 
-            env1$env.internal$f_path_path.backup.overwrite(.overwrite_from_path_filename.ext=.overwrite_from_path_filename.ext, .destination_path_filename.ext=.destination_path_filename.ext, .backup_to_path=NULL, timeFormat = "%y%m%d", createFile = createFile)
+            env1$env.internal.attach$f_path_path.backup.overwrite(.overwrite_from_path_filename.ext=.overwrite_from_path_filename.ext, .destination_path_filename.ext=.destination_path_filename.ext, .backup_to_path=NULL, timeFormat = "%y%m%d", createFile = createFile)
         }
     } else {
         stop("The run from github_tidystat as the working directory")

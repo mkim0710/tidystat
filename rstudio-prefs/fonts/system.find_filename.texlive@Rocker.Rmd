@@ -155,7 +155,7 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 #   
 # ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
-env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+env1$info$info_software_versions = env1$env.internal.attach$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
 # str(env1$info$info_software_versions)
 ```
 env1\$info\$info_system_info\$machine_nodename = "15687d125320"  @Rocker  

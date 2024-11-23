@@ -56,7 +56,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
@@ -99,7 +99,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 # Function to open PDF with Sumatra PDF
-env1$env.internal$f_file_PDF.sumatra <- function(
+env1$env.internal.attach$f_file_PDF.sumatra <- function(
         file,
         path.SumatraPDF.exe = NULL,
         ...
@@ -114,7 +114,7 @@ env1$env.internal$f_file_PDF.sumatra <- function(
     # If no valid Sumatra executable found, use the system default application
     if (is.null(path.SumatraPDF.exe) || !file.exists(path.SumatraPDF.exe)) {
         warning("SumatraPDF.exe not found. Opening file with the system default viewer instead.", call. = FALSE)
-        return(invisible(env1$env.internal$f_file.systemStart(file)))
+        return(invisible(env1$env.internal.attach$f_file.systemStart(file)))
     }
     file <- normalizePath(file, winslash = "/")
     path.SumatraPDF.exe <- normalizePath(path.SumatraPDF.exe, winslash = "/")
@@ -135,7 +135,7 @@ env1$env.internal$f_file_PDF.sumatra <- function(
 }
 
 # Function to open files with the system's default application (fallback)
-env1$env.internal$f_file.systemStart <- function(file) {
+env1$env.internal.attach$f_file.systemStart <- function(file) {
     system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 }
 
