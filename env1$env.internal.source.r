@@ -561,6 +561,19 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path_file.paste0_if_not_empty ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path_file.paste0_if_not_empty"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, filename.ext) {  paste0(path,ifelse(path=="","","/"),filename.ext)  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = paste0.path_file.if_not_empty  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste0.path_file.if_not_empty")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = file.path.paste0_if_not_empty  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.path.paste0_if_not_empty")
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.relative ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.relative"
