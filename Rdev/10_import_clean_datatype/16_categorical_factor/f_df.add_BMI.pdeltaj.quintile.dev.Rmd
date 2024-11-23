@@ -235,8 +235,7 @@ options(width=120)
 ## @ "f_df.add_BMI.5bins" |> paste0(".source.r") |> source() ----  
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
 .filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
-.subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); 
-if(isTRUE(options()$function.reload) || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
+env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 
 for(i in 1:7) {
     DataSet =
