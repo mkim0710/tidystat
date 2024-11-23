@@ -1527,7 +1527,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     #  $ option.function.reload    : logi TRUE
     if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.filename.source.r)) .subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
     if(is.null(.filename.source.r)) .filename.source.r = basename(.subpath_filename.source.r)
-    if(option.function.reload || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
+    if(option.function.reload || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
 }
 ## Example Usage: 
 # env1$source$f_CodeBook_DataSet.lbl.source.r = NULL
