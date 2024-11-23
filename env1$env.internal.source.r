@@ -188,6 +188,19 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_env1_subenv_objectname.set_alias ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_env1_subenv_objectname.set_alias"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(subenv_name4object, objectname, subenv_name4alias = "env.internal.attach", aliasname) {
+  attributes(.GlobalEnv$env1[[subenv_name4object]][[objectname]])$alias = 
+      attributes(.GlobalEnv$env1[[subenv_name4object]][[objectname]])$alias |>
+      c(  paste0("env1$", subenv_name4alias,"$",aliasname," = env1$",subenv_name4object,"$",objectname)  )
+  .GlobalEnv$env1[[subenv_name4alias]][[aliasname]] = .GlobalEnv$env1[[subenv_name4object]][[objectname]]
+  invisible()
+}
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_function, f_expression, f_CodeText ----  
