@@ -185,9 +185,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.list_objectnames_incl_hidden.map_get.str"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(environment = parent.frame(), all.names = TRUE, pattern, sorted = TRUE, run_dput = FALSE, run_str = TRUE, max.level = 2, give.attr = FALSE, return_map_get = FALSE) {
-    # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
-    # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
-    args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
+    # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
+    # args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    args = as.list(formals())
     do.call(env1$f$f_environment.list_objectnames.map_get.str, args)   # Dynamically pass the args to another function
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -470,9 +471,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.CodeText, Execute = TRUE, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
-    # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
-    # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
-    args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
+    # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
+    # args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    args = as.list(formals())
     do.call(env1$f$f_CodeText.echo, args)   # Dynamically pass the args to another function
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1534,9 +1536,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute.force_reload"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame(), all.names = TRUE, pattern, sorted = TRUE, run_dput = FALSE, run_str = TRUE, max.level = 2, give.attr = FALSE, return_map_get = FALSE) {
-    # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
-    # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
-    args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
+    # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
+    # args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    args = as.list(formals())
     do.call(env1$f$f_env1_subenv_objectname.set_alias, args)   # Dynamically pass the args to another function
 }
 
