@@ -629,9 +629,10 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: setLastSourceEditorContext.path_filename.ext =  ----  
-.tmp$objectname = "setLastSourceEditorContext.path_filename.ext"
-.tmp$object = function(
+## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         check_rstudioapi = TRUE, 
         overwrite = FALSE, 
         LinePrefix4CodeText = "\t",
@@ -682,13 +683,6 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = set_LastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "set_LastSourceEditorContext.path_filename.ext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = update_LastSourceEditorContext.path_filename.ext  ----  
 .tmp$aliasname = "update_LastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
@@ -696,13 +690,13 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext"
+### & alias = setLastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "setLastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
