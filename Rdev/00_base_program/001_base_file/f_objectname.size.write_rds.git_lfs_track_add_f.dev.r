@@ -151,7 +151,7 @@ env0 = env1
 # # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 # cat("    ________________________________________________________________________    \n")
 # for (.objectname in names(MetaData$DataSetNames)) {
-#     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+#     assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
 #     .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz")
 #     cat(.objectname, ' |> write_rds(',shQuote(.path_file),', compress = "xz", compression = 9L) |> system.time()', "  \n", sep="")
 #     # system.time(write_rds( get(.objectname), .path_file, compress = "xz", compression = 9L ))
