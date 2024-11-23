@@ -149,6 +149,16 @@ env1$env.internal.attach$warnings.summary = function() {summary(warnings())}
 env1$env.internal.attach$warnings.last = function() {last.warning}
 env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: message_if_VERBOSE ====  
+env1$env.internal.attach$message_if_VERBOSE = 
+    env1$env.internal.attach$VERBOSE_message =
+    function(..., VERBOSE = isTRUE(options()$verbose)) { if(VERBOSE) message(...) }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: cat_if_VERBOSE ====  
+env1$env.internal.attach$cat0_if_VERBOSE = 
+    env1$env.internal.attach$VERBOSE_cat0 =
+    function(..., VERBOSE = isTRUE(options()$verbose)) { if(VERBOSE) cat(..., "  \n", sep = "") }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_env1_subenv_objectname.set_alias ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_env1_subenv_objectname.set_alias"
@@ -1255,9 +1265,10 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         git_add_f = TRUE, 
         SkipIfAlreadyAdded = TRUE, 
         LinePrefix4CodeText = "\t", 
-        VERBOSE = isTRUE(options()$verbose)) {
+        VERBOSE = isTRUE(options()$verbose),
+        DEBUGMODE = isTRUE(options()$DEBUGMODE)) {
     
-    # browser()
+    if(DEBUGMODE) browser()
     # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
     # List of 15
     #  $ .object            : NULL
@@ -1295,11 +1306,10 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # Error in str(.) : 
     #   promise already under evaluation: recursive default argument reference or earlier problems?
     
-    if(is.null(.object) && is.null(.objectname)) {
-        "Both .object and .objectname are NULL. Please provide either .object or .objectname." |> stop(call. = FALSE); return(invisible())
-    }
-    
-    if(!is.null(.object)) {
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    ##@ Check if the .object and .objectname are confused.
+    if (!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
             # .objectname <- .object
             # .object <- get(.object)
@@ -1307,42 +1317,54 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         } 
     }
     
-    # # If the object name is provided but not the object itself, retrieve the object 
-    # if (!is.null(.objectname) && is.null(.object)) {.object <- get(.objectname)}
-    # --> Not necessary to duplicate the .object, because the .object can be retrieved by get(.objectname). 
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    if(is.null(.object) && is.null(.objectname)) {
+        "Both .object and .objectname are NULL. Please provide either .object or .objectname." |> stop(call. = FALSE); return(invisible())
+    }
     
-    if (!is.null(.object)) {
-        if (is.null(.objectname)) {  # If the object is provided but not the object name, create an object name
-            .objectname <- deparse(substitute(.object))
-            if (.objectname == ".") {
-                warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe(), "  \n", immediate. = TRUE)
-                # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(.object, parent.frame(n = n)))}) |> str(max.level = 2, give.attr = TRUE)
-                if (VERBOSE) 0:sys.nframe() %>% set_names() %>% map(function(n) { ls(envir = sys.frame(which = n)) }) %>% dput()
-                # message('-> Trying: ','deparse(substitute(.object, parent.frame(n = 2)))')
-                # .objectname <- deparse(substitute(.object, parent.frame(n = 2)))
-                message('-> Trying: ','ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names')
-                .objectname = ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
-                if (length(.objectname) > 1) {
-                    warning('length(.objectname) > 1', "  \n", immediate. = TRUE)
-                    .objectname %>% dput()
-                    if (any(!.objectname %in% c(".", ".object"))) {
-                        .objectname = .objectname[!.objectname %in% c(".", ".object")][1]
-                    } else {
-                        .objectname = .objectname[1]
-                    }
-                }
-                if (.objectname %in% c(".", ".object")) {
-                    warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe())
-                    "Try using `|>` instead of` `%>%`, or provide a valid object." |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
+    ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+    ##@ When both .object and .objectname are provided, assign the .object to the .objectname to avoid the problematic cases when .object != get(.objectname).
+    if(!is.null(.object) && !is.null(.objectname)) {
+        assign(.objectname, .object)
+    }
+    
+    ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+    ##@ If only .objectname is provided, get .object from get(.objectname)
+    if (is.null(.object) && !is.null(.objectname)) {.object <- get(.objectname)}
+    # --> Not necessary to duplicate the .object, because the .object can be retrieved by get(.objectname)? 
+
+    ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+    ##@ Infer .objectname from .object, if .objectname is NULL.
+    if (!is.null(.object) & is.null(.objectname)) { 
+        .objectname <- deparse(substitute(.object))
+        if (.objectname == ".") {
+            warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe(), "  \n", immediate. = TRUE)
+            # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(.object, parent.frame(n = n)))}) |> str(max.level = 2, give.attr = TRUE)
+            if (VERBOSE) 0:sys.nframe() %>% set_names() %>% map(function(n) { ls(envir = sys.frame(which = n)) }) %>% dput()
+            # message('-> Trying: ','deparse(substitute(.object, parent.frame(n = 2)))')
+            # .objectname <- deparse(substitute(.object, parent.frame(n = 2)))
+            message('-> Trying: ','ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names')
+            .objectname = ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
+            if (length(.objectname) > 1) {
+                warning('length(.objectname) > 1', "  \n", immediate. = TRUE)
+                .objectname %>% dput()
+                if (any(!.objectname %in% c(".", ".object"))) {
+                    .objectname = .objectname[!.objectname %in% c(".", ".object")][1]
+                } else {
+                    .objectname = .objectname[1]
                 }
             }
-        } else {  # If both the object and object name are provided, assign the object to the object name to avoid the problematic cases when .object != get(.objectname.
-            assign(.objectname, .object)
+            if (.objectname %in% c(".", ".object")) {
+                warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe())
+                "Try using `|>` instead of` `%>%`, or provide a valid object." |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
+            }
         }
+    } 
 
-    }
-    ##@ -> Here, both .object and .objectname are available.
     ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    ##@ -> By here, both .object and .objectname are available.
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
