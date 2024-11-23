@@ -173,6 +173,11 @@ env1$env.internal.attach$f_function.call_function_with_altered_options = functio
     # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
     # args = as.list(formals())
     args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    if ("..." %in% names(args)) {
+        args$... = NULL
+        args.additional = list(...)
+        args = args.additional |> c(args[!names(args) %in% names(args.additional)])
+    }
     
     args$function_original = NULL  # Remove the target function from arguments
     do.call(function_original, args)   # Dynamically pass the args to another function
@@ -201,6 +206,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
     # args = as.list(formals())
     args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    if ("..." %in% names(args)) {
+        args$... = NULL
+        args.additional = list(...)
+        args = args.additional |> c(args[!names(args) %in% names(args.additional)])
+    }
     do.call(env1$f$f_env1_subenv_objectname.set_alias, args)   # Dynamically pass the args to another function
 }
 
@@ -269,6 +279,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame
     # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
     # args = as.list(formals())
     args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
+    if ("..." %in% names(args)) {
+        args$... = NULL
+        args.additional = list(...)
+        args = args.additional |> c(args[!names(args) %in% names(args.additional)])
+    }
     do.call(env1$f$f_environment.list_objectnames.map_get.str, args)   # Dynamically pass the args to another function
 }
 
