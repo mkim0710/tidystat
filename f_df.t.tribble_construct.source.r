@@ -109,12 +109,12 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 ## :: str_max_level2 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_max_level2"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, max.level = 2, ...)  }
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 2)  }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: str_give_attr_F =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_give_attr_F"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, give.attr = FALSE, ...)  }
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., give.attr = FALSE)  }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: paste_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
