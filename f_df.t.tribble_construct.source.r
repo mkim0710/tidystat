@@ -616,54 +616,38 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 # @@ env1\$f\$f_object ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: str_max_level2 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_max_level2"
-.tmp$object = function(object, ...) {  str(object, max.level = 2, ...)  }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, max.level = 2, ...)  }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: str_give_attr_F =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_give_attr_F"
-.tmp$object = function(object, ...) {  str(object, give.attr = FALSE, ...)  }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: cat0 =  ----  
-# .tmp$objectname = "cat0"
-# .tmp$object = function(string, ...) {  
-#     if(length(string) > 1) {
-#         stop("length(string) > 1: this function only accepts a single string")
-#     }
-#     string |> cat("  \n", sep="")
-# }
-# ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-# .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, give.attr = FALSE, ...)  }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: paste_collapse0 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste_collapse0"
-.tmp$object = function(...) {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     paste0(..., collapse = "")
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: paste_collapse0.print =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste_collapse0.print"
-.tmp$object = function(...) {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     print(paste0(..., collapse = ""))
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.paste_collapse0  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: cat0 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "cat0"
-.tmp$object = function(...) {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     cat(..., "  \n", sep="")
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.paste_collapse0.cat0  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0.cat0")
@@ -672,10 +656,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste_collapse0.cat0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: deparse.cat0 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "deparse.cat0"
-.tmp$object = function(object, width.cutoff = 500L) {  object |> deparse(width.cutoff = width.cutoff) |> cat("  \n", sep="")  }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, width.cutoff = 500L) {  object |> deparse(width.cutoff = width.cutoff) |> cat("  \n", sep="")  }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput.deparse.cat0  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.deparse.cat0")
@@ -730,7 +713,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
     })
     paste0("list(", ifelse(sep_parentheses,space_between_list_elements,""), paste0(list_vec.formatted, collapse = paste0(",",space_between_list_elements)), ifelse(sep_parentheses,str_extract(space_between_list_elements,"\n"),""), ")", end_of_text)
 }
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_list.dput_line_by_line =  ----  
 .tmp$objectname = "f_list.dput_line_by_line"
 .tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
