@@ -1243,7 +1243,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .object = NULL, .objectname = NULL, 
-        CompressionMethod = {  if(is.null(.object)) {.object = get(.objectname)}; case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz")  }, 
+        CompressionMethod = {  if(is.null(.object)) {.object = get(.objectname)}; case_when(object.size(.object) >= 1e8 ~ "none", object.size(.object) >= 1e6 ~ "xz", TRUE ~ "gz")  }, 
         .filename.ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }, 
         .path4write = env1$path$.path4write,
         .path_file = if(is.null(.path4write) || is.null(.filename.ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }, 
@@ -1341,7 +1341,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         }
 
     }
-    
+    ##@ -> Here, both .object and .objectname are available.
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
@@ -1349,26 +1351,52 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
             }
         } 
     }
-    if (object.size(get(.objectname)) >= 1e8) {
-        paste0("object.size(get(.objectname)) == ",object.size(get(.objectname))|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    if (object.size(.object) >= 1e8) {
+        paste0("object.size(.object) == ",object.size(.object)|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
     }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    ##@ If .path_file is provided, it determines the .filename.ext4write (& CompressionMethod). 
+    ## Caution) when .objectname is provided, .filename.ext4write & .path_file could have been auto-generated. 
     
+    if(!is.null(.path_file)) {
+        .filename.ext4write = basename(.path_file)
+    }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(is.null(CompressionMethod))      CompressionMethod = 
-            {
-                if(is.null(.object)) {.object = get(.objectname)}; 
-                case_when(object.size(get(.objectname)) >= 1e8 ~ "none",
-                          object.size(get(.objectname)) >= 1e6 ~ "xz",
-                          TRUE ~ "gz")  
-            }
+    ##@ If .filename.ext4write is provided, it may determine the CompressionMethod. 
+    ## Caution) When .filename.ext4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
+    if(!is.null(.filename.ext4write)) {
+        if(grepl("\\.xz$", .filename.ext4write)) {
+            CompressionMethod = "xz"
+        } else if(grepl("\\.gz$", .filename.ext4write)) {
+            CompressionMethod = "gz"
+        # } else {
+        #     CompressionMethod = "none" | "gz"  # gz compression may be done without ".gz" extension. 
+        }
+    }
+
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    ##@ CompressionMethod should not be NULL by now 
+    # if(is.null(CompressionMethod))      CompressionMethod = 
+    #         {
+    #             if(is.null(.object)) {.object = get(.objectname)}; 
+    #             case_when(object.size(.object) >= 1e8 ~ "none",
+    #                       object.size(.object) >= 1e6 ~ "xz",
+    #                       TRUE ~ "gz")  
+    #         }
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+    ##@ .filename.ext4write may still be NULL if .objectname is not provided. But now, .objectname should be auto-generated from deparse(substitute(.object)).  
     if(is.null(.filename.ext4write))    .filename.ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-    if(is.null(.path4write))            .path4write = env1$path$.path4write
+    ##@ .path4write may still be NULL if env1$path$.path4write was NULL.
+    # if(is.null(.path4write))            .path4write = env1$path$.path4write
+    if(is.null(.path4write))            .path4write = ""
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+    ##@ .path_file may still be NULL if either .path4write or .filename.ext4write was NULL.
     if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename.ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
