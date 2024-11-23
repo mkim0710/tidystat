@@ -234,6 +234,17 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     }
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_condition1.if_null_condition2 ====
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_condition1.if_null_condition2"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(condition1, condition2) {
+  if (!is.null(condition1)) condition1 else condition2
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = "%||%"  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "%||%")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_expression.eval.withCallingHandlers.attr_warnings.summary ====
 # Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.Rmd
 .tmp$objectname = "f_expression.eval.withCallingHandlers.attr_warnings.summary"
