@@ -655,11 +655,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.paste_collapse0  ----  
-.tmp$aliasname = "print.paste_collapse0"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: cat0 =  ----  
 .tmp$objectname = "cat0"
@@ -670,18 +666,10 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.paste_collapse0.cat0  ----  
-.tmp$aliasname = "print.paste_collapse0.cat0"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0.cat0")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = paste_collapse0.cat0  ----  
-.tmp$aliasname = "paste_collapse0.cat0"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste_collapse0.cat0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: deparse.cat0 =  ----  
 .tmp$objectname = "deparse.cat0"
@@ -690,11 +678,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput.deparse.cat0  ----  
-.tmp$aliasname = "dput.deparse.cat0"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.deparse.cat0")
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
@@ -729,11 +713,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput.vec.line_by_line  ----  
-.tmp$aliasname = "dput.vec.line_by_line"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.vec.line_by_line")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
 ## :: env.internal\$f_list.format_line_by_line =  ----  
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -760,11 +740,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput.list.line_by_line  ----  
-.tmp$aliasname = "dput.list.line_by_line"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.list.line_by_line")
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -787,11 +763,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = str.list_by_element  ----  
-.tmp$aliasname = "str.list_by_element"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "str.list_by_element")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_list.print_by_element =  ----  
 .tmp$objectname = "f_list.print_by_element"
@@ -812,11 +784,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.list.by_element  ----  
-.tmp$aliasname = "print.list.by_element"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.list.by_element")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_list_tibble.print_by_element =  ----  
 .tmp$objectname = "f_list_tibble.print_by_element"
@@ -837,11 +805,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.list_tibble.by_element  ----  
-.tmp$aliasname = "print.list_tibble.by_element"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.list_tibble.by_element")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_chrNameValuePairs2vector =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
@@ -874,11 +838,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = setdiff_list.vec1_vec2  ----  
-.tmp$aliasname = "setdiff_list.vec1_vec2"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "setdiff_list.vec1_vec2")
 
 
 ##________________________________________________________________________________  
@@ -1160,11 +1120,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = f_df.add_RegExVars.cut  ----  
-.tmp$aliasname = "f_df.add_RegExVars.cut"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_df.add_RegExVars.cut")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"

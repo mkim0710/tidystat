@@ -166,11 +166,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = ls.map_get.str  ----  
-.tmp$aliasname = "ls.map_get.str"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ls.map_get.str")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str  ----  
 .tmp$env1_subenv_name = "f"
@@ -183,11 +179,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = ls.all.names.map_get.str  ----  
-.tmp$aliasname = "ls.all.names.map_get.str"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ls.all.names.map_get.str")
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_env1_subenv_objectname.set_alias ====  
@@ -281,32 +273,16 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = eval.attr_warnings.summary  ----  
-.tmp$aliasname = "eval.attr_warnings.summary"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "eval.attr_warnings.summary")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = attr_warnings.summary  ----  
-.tmp$aliasname = "attr_warnings.summary"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "attr_warnings.summary")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = warnings.summary.expression_attr  ----  
-.tmp$aliasname = "warnings.summary.expression_attr"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "warnings.summary.expression_attr")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = suppressWarnings.summary.as_attributes  ----  
-.tmp$aliasname = "suppressWarnings.summary.as_attributes"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "suppressWarnings.summary.as_attributes")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_expression.system.time.round.dput ====
 # https://chatgpt.com/c/673f2c22-d85c-800e-a877-e296fa53f7cc
@@ -334,11 +310,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = system.time.round.dput  ----  
-.tmp$aliasname = "system.time.round.dput"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "system.time.round.dput")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_ObjectName.get.dput.echo ====
 # Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
@@ -364,25 +336,13 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = get_ObjectName.dput.echo  ----  
-.tmp$aliasname = "get_ObjectName.dput.echo"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "get_ObjectName.dput.echo")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput_get_ObjectName.echo  ----  
-.tmp$aliasname = "dput_get_ObjectName.echo"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput_get_ObjectName.echo")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = echo.ObjectName.get.dput  ----  
-.tmp$aliasname = "echo.ObjectName.get.dput"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.ObjectName.get.dput")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_CodeText.echo ====
 # Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.echo.dev.r
@@ -503,11 +463,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = echo.CodeText  ----  
-.tmp$aliasname = "echo.CodeText"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.CodeText")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_CodeText.parse.eval.dput.echo  ----  
 .tmp$env1_subenv_name = "f"
@@ -520,18 +476,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.CodeText, Execute =
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = eval_parse_CodeText.dput.echo  ----  
-.tmp$aliasname = "eval_parse_CodeText.dpu.echo"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "eval_parse_CodeText.dpu.echo")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = echo.CodeText.parse.eval.dput  ----  
-.tmp$aliasname = "echo.CodeText.parse.eval.dput"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.CodeText.parse.eval.dput")
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -578,11 +526,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = system.TerminalFromRCodeText.echo  ----  
-.tmp$aliasname = "system.TerminalFromRCodeText.echo"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "system.TerminalFromRCodeText.echo")
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -612,11 +556,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = CurrentSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "CurrentSourceEditorContext.path_filename.ext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "CurrentSourceEditorContext.path_filename.ext")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -628,18 +568,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, basepath = env
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = path.relative  ----  
-.tmp$aliasname = "path.relative"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "path.relative")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = relative_path  ----  
-.tmp$aliasname = "relative_path"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "relative_path")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext =  ----  
@@ -694,18 +626,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = update_LastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "update_LastSourceEditorContext.path_filename.ext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "update_LastSourceEditorContext.path_filename.ext")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = setLastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "setLastSourceEditorContext.path_filename.ext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "setLastSourceEditorContext.path_filename.ext")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -759,18 +683,10 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = list.files.size  ----  
-.tmp$aliasname = "list.files.size"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "list.files.size")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dir.size  ----  
-.tmp$aliasname = "dir.size"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.size")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path0.list_path_hierarchy =  ----  
@@ -955,25 +871,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = ".", gsub.pat
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = f_ObjectName.f_file.str_replace_all  ----  
-.tmp$aliasname = "f_ObjectName.f_file.str_replace_all"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_ObjectName.f_file.str_replace_all")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = find_and_replace_ObjectName  ----  
-.tmp$aliasname = "find_and_replace_ObjectName"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "find_and_replace_ObjectName")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = replace_ObjectName  ----  
-.tmp$aliasname = "replace_ObjectName"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "replace_ObjectName")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName  ----  
 .tmp$objectname = "f_CurrentSourceEditorContext.str_replace_all.old.ObjectName"
@@ -985,32 +889,16 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = CurrentSourceEditorContext.str_replace_all.old.ObjectName  ----  
-.tmp$aliasname = "CurrentSourceEditorContext.str_replace_all.ObjectName"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "CurrentSourceEditorContext.str_replace_all.ObjectName")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = f_ObjectName.str_replace_all.CurrentSourceEditorContext  ----  
-.tmp$aliasname = "f_ObjectName.str_replace_all.CurrentSourceEditorContext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_ObjectName.str_replace_all.CurrentSourceEditorContext")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = find_and_replace_ObjectName.CurrentSourceEditorContext  ----  
-.tmp$aliasname = "find_and_replace_ObjectName.CurrentSourceEditorContext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "find_and_replace_ObjectName.CurrentSourceEditorContext")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = replace_ObjectName.CurrentSourceEditorContext  ----  
-.tmp$aliasname = "replace_ObjectName.CurrentSourceEditorContext"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "replace_ObjectName.CurrentSourceEditorContext")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -1024,25 +912,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_if_exists  ----  
-.tmp$aliasname = "file.edit_if_exists"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_if_exists")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.open_if_exists  ----  
-.tmp$aliasname = "file.open_if_exists"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.open_if_exists")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = open_if_exists  ----  
-.tmp$aliasname = "open_if_exists"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "open_if_exists")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: f_file.edit_windows ====  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1050,11 +926,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {  shell.exec(shQuote(.file2edit))  }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_windows  ----  
-.tmp$aliasname = "file.edit_windows"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_windows")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_notepad ====  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1064,11 +936,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_notepad  ----  
-.tmp$aliasname = "file.edit_notepad"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_notepad")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_vscode ====  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1078,11 +946,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_vscode  ----  
-.tmp$aliasname = "file.edit_vscode"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_vscode")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_URL.open_in_edge_app =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1092,11 +956,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = browseURL_in_edge_app  ----  
-.tmp$aliasname = "browseURL_in_edge_app"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "browseURL_in_edge_app")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### ::: f_URL.open_in_edge_app.printRCode =  ----  
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
@@ -1109,11 +969,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = browseURL_in_edge_app.printRCode  ----
-.tmp$aliasname = "browseURL_in_edge_app.printRCode"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "browseURL_in_edge_app.printRCode")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### ::: f_URL.open_in_edge_app.printPowerShellCode =  ----  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
@@ -1124,11 +980,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = browseURL_in_edge_app.printPowerShellCode  ----  
-.tmp$aliasname = "browseURL_in_edge_app.printPowerShellCode"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "browseURL_in_edge_app.printPowerShellCode")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
@@ -1140,10 +992,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file) {
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.open.systemStart  ----  
-.tmp$aliasname = "file.open.systemStart"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.open.systemStart")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_file_PDF.sumatra ====  
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
@@ -1186,10 +1035,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.open.PDF.sumatra  ----  
-.tmp$aliasname = "file.open.PDF.sumatra"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.open.PDF.sumatra")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.system_switch_open ====  
 .tmp$objectname = "f_file.system_switch_open"
@@ -1216,16 +1062,10 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.open.system_switch  ----  
-.tmp$aliasname = "file.open.system_switch"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.open.system_switch")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = system_switch.file.open  ----  
-.tmp$aliasname = "system_switch.file.open"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "system_switch.file.open")
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.backup, f_path.backup ====  
@@ -1264,16 +1104,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(backup_from_path_fil
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.backup  ----  
-.tmp$aliasname = "file.backup"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.backup")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.copy_createBackup  ----  
-.tmp$aliasname = "file.copy_createBackup"
-attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
-    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
-env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.copy_createBackup")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_path_path.backup.overwrite ====  
 .tmp$env1_subenv_name = "env.internal.attach"
