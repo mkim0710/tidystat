@@ -1518,9 +1518,21 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = NULL, .subpath = NULL, .filename.source.r = NULL,  option.function.reload = isTRUE(options()$function.reload)) {
+    # browser()
+    # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str
+    # List of 4
+    #  $ .subpath_filename.source.r: chr "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
+    #  $ .subpath                  : NULL
+    #  $ .filename.source.r        : NULL
+    #  $ option.function.reload    : logi TRUE
     if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.filename.source.r)) .subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+    if(is.null(.filename.source.r)) .filename.source.r = basename(.subpath_filename.source.r)
     if(option.function.reload || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
 }
+## Example Usage: 
+# env1$source$f_CodeBook_DataSet.lbl.source.r = NULL
+# env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r")
+# env1$source$f_CodeBook_DataSet.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = source_if_not_sourced  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "source_if_not_sourced")
@@ -1530,8 +1542,18 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute.force_reload"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
+    # browser()
+    # Browse[1]> ls(all.names = TRUE)
+    # [1] "..."
+    # Browse[1]> list(...)
+    # $.subpath_filename.source.r
+    # [1] "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
     env1$f$f_sourcePath.execute_if_not_sourced(option.function.reload = TRUE, ...)
 }
+## Example Usage: 
+# env1$source$f_CodeBook_DataSet.lbl.source.r = ""
+# env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r")
+# env1$source$f_CodeBook_DataSet.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = source.force_reload  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "source.force_reload")
