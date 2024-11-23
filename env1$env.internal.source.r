@@ -497,15 +497,14 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_CodeText.parse.eval.dput.echo  ----  
+.tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
-.tmp$object = function(.CodeText, Execute = TRUE, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.CodeText, Execute = TRUE, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
     # args <- as.list(environment())  # Capture all arguments in the current environment
     list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
     args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
     do.call(env1$f$f_CodeText.echo, args)   # Dynamically pass the args to another function
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = eval_parse_CodeText.dput.echo  ----  
 .tmp$aliasname = "eval_parse_CodeText.dpu.echo"
@@ -573,6 +572,15 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_object.substitute.deparse2objectname ====  
+# Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
+# https://chatgpt.com/c/67414018-5af8-800e-8f52-d7ab9467d69d
+.tmp$objectname = "f_object.substitute.deparse2objectname"
+.tmp$object = function(object) {  deparse(substitute(object))  }
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_file, f_URL, f_path ----  
@@ -588,7 +596,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     return(SourceEditorContext.path_filename.ext)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = CurrentSourceEditorContext.path_filename.ext  ----  
 .tmp$aliasname = "CurrentSourceEditorContext.path_filename.ext"
@@ -925,7 +933,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     return(output_path_file)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = f_ObjectName.f_file.str_replace_all  ----  
 .tmp$aliasname = "f_ObjectName.f_file.str_replace_all"
@@ -987,15 +995,14 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ f_file.edit, f_file.open ====  
+## @ f_file.edit, f_file.open, f_URL.open ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: f_file.edit_if_exists ====  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_if_exists"
-.tmp$object <- function(path_file) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file) {
     if(file.exists(path_file)) file.edit(path_file) else warning(paste0("The file does not exist: ", path_file))
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_if_exists  ----  
 .tmp$aliasname = "file.edit_if_exists"
@@ -1019,10 +1026,9 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: f_file.edit_windows ====  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_windows"
-.tmp$object <- function(.file2edit) {
-    shell.exec(shQuote(.file2edit))
-}
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {  shell.exec(shQuote(.file2edit))  }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_windows  ----  
 .tmp$aliasname = "file.edit_windows"
@@ -1032,8 +1038,9 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_notepad ====  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_notepad"
-.tmp$object <- function(.file2edit) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1045,7 +1052,9 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_vscode ====  
-env1$env.internal$f_file.edit_vscode <- function(.file2edit) {
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_file.edit_vscode"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1057,12 +1066,11 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_URL.open_in_edge_app =  ----  
+.tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_URL.open_in_edge_app"
-.tmp$object = function(URL) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
     if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = browseURL_in_edge_app  ----  
 .tmp$aliasname = "browseURL_in_edge_app"
@@ -1073,31 +1081,28 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### ::: f_URL.open_in_edge_app.printRCode =  ----  
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.open_in_edge_app.printRCode"
-.tmp$object <- function(URL) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
+    # URL %>% cat('env1$env.internal$f_URL.open_in_edge_app("',.,'")  \n', sep="")
     # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
     URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
 }
-# env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
-#     URL %>% cat('env1$env.internal$f_URL.open_in_edge_app("',.,'")  \n', sep="")
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = browseURL_in_edge_app.printRCode  ----
+.tmp$aliasname = "browseURL_in_edge_app.printRCode"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = browseURL_in_edge_app.printRCode  ----
-.tmp$aliasname = "browseURL_in_edge_app.printRCode"
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### ::: f_URL.open_in_edge_app.printPowerShellCode =  ----  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.open_in_edge_app.printPowerShellCode"
-.tmp$object = function(URL) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"  \n', sep="")
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = browseURL_in_edge_app.printPowerShellCode  ----  
 .tmp$aliasname = "browseURL_in_edge_app.printPowerShellCode"
@@ -1108,13 +1113,12 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.systemStart"
-.tmp$object = function(file) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file) {
     system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
     # file |> shQuote() %>% paste0("start ",.) |> system(wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.open.systemStart  ----  
 .tmp$aliasname = "file.open.systemStart"
@@ -1125,8 +1129,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### :: f_file_PDF.sumatra ====  
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # Function to open PDF with Sumatra PDF
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file_PDF.sumatra"
-.tmp$object <- function(
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         file,
         path.SumatraPDF.exe = NULL,
         ...
@@ -1160,8 +1165,6 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     out <- try(system(sumafile, wait = FALSE, ...), silent = TRUE)
     return(invisible(out))
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.open.PDF.sumatra  ----  
 .tmp$aliasname = "file.open.PDF.sumatra"
@@ -1209,8 +1212,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## @ f_file.backup, f_path.backup ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_filename.ext.createBackup ====  
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_filename.ext.createBackup"
-.tmp$object = function(backup_from_path_filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(backup_from_path_filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     # Wrap the main backup logic in a tryCatch for error handling
     tryCatch({
         # Determine the filename and extension if not provided
@@ -1239,8 +1243,6 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
         message("Error:", e$message)
     })
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.backup  ----  
 .tmp$aliasname = "file.backup"
@@ -1255,7 +1257,9 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_path_path.backup.overwrite ====  
-env1$env.internal$f_path_path.backup.overwrite <- function(.overwrite_from_path_filename.ext, .destination_path_filename.ext, .backup_to_path = dirname(.destination_path_filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_path_path.backup.overwrite"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_filename.ext, .destination_path_filename.ext, .backup_to_path = dirname(.destination_path_filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path_filename.ext)) {
         if(!is.null(.backup_to_path)) {
             env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .destination_path_filename.ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
