@@ -1497,8 +1497,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: env.internal\$f_file2.compare ====  
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file2.compare"
-.tmp$object <- function(file1, file2, chunk_size = 65536) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file1, file2, chunk_size = 65536) {
     # Open both files in binary mode
     con1 <- file(file1, "rb")
     con2 <- file(file2, "rb")
@@ -1529,15 +1530,13 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # If all chunks are identical and EOF is reached for both files, return TRUE
     return(TRUE)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
-
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: env.internal\$f_url_destfile.DownloadIfDifferent ====  
 # Function to download a file only if the web file is different from the local file
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_url_destfile.DownloadIfDifferent"
-.tmp$object <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
     tryCatch({
         # Temporary file to download the remote file for comparison
         temp_file <- tempfile()
@@ -1564,9 +1563,6 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         return(FALSE)
     })
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
-
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### \$f\$f.updateTemplates ====  
