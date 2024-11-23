@@ -149,6 +149,17 @@ env1$env.internal.attach$warnings.summary = function() {summary(warnings())}
 env1$env.internal.attach$warnings.last = function() {last.warning}
 env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_env1_subenv_objectname.set_alias ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_env1_subenv_objectname.set_alias"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(subenv_name4object, objectname, subenv_name4alias = "env.internal.attach", aliasname) {
+  attributes(.GlobalEnv$env1[[subenv_name4object]][[objectname]])$alias = 
+      attributes(.GlobalEnv$env1[[subenv_name4object]][[objectname]])$alias |>
+      c(  paste0("env1$", subenv_name4alias,"$",aliasname," = env1$",subenv_name4object,"$",objectname)  )
+  .GlobalEnv$env1[[subenv_name4alias]][[aliasname]] = .GlobalEnv$env1[[subenv_name4object]][[objectname]]
+  invisible()
+}
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_environment.list_objectnames.map_get.str ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.list_objectnames.map_get.str"
@@ -180,18 +191,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = ls.all.names.map_get.str  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ls.all.names.map_get.str")
-
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_env1_subenv_objectname.set_alias ====  
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_env1_subenv_objectname.set_alias"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(subenv_name4object, objectname, subenv_name4alias = "env.internal.attach", aliasname) {
-  attributes(.GlobalEnv$env1[[subenv_name4object]][[objectname]])$alias = 
-      attributes(.GlobalEnv$env1[[subenv_name4object]][[objectname]])$alias |>
-      c(  paste0("env1$", subenv_name4alias,"$",aliasname," = env1$",subenv_name4object,"$",objectname)  )
-  .GlobalEnv$env1[[subenv_name4alias]][[aliasname]] = .GlobalEnv$env1[[subenv_name4object]][[objectname]]
-  invisible()
-}
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
