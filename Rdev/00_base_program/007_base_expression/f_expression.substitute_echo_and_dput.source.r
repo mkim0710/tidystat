@@ -64,7 +64,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$objectname = "f_expression.substitute_echo_and_dput"
-.tmp$object = function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = options()$verbose) {
+.tmp$object = function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = isTRUE(options()$verbose)) {
   # Get all character variables from .GlobalEnv
   char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(function(x) is.character(x) && length(x) == 1)]
   if(.VERBOSE) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")

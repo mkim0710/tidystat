@@ -618,7 +618,7 @@ options(width=120)
 library(purrr)
 
 # Generalized substitute_and_evaluate function
-f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = options()$verbose) {
+f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = isTRUE(options()$verbose)) {
   # Get all character variables from .GlobalEnv
   # env_vars <- as.list(.GlobalEnv)
   # char_vars <- env_vars[map_lgl(env_vars, is.character)]
@@ -764,9 +764,9 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
     cat("    ________________________________________________________________________    \n")
-    for (.objectname in names(MetaData$DataSetNames)) {
-        assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
-        env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = .path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
+    for (DataSetName in names(MetaData$DataSetNames)) {
+        assign(DataSetName, structure(get(DataSetName), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+        env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     }
 }
