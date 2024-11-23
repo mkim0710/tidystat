@@ -315,7 +315,7 @@ f_CallPrintValues2(arg1 = "special1", arg3 = "extra3", verbose = TRUE)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_CallPrintValues3 <- function(arg1 = "override1", arg2 = "override2", ..., verbose = TRUE) {
-    args <- as.list(environment())  # Capture all arguments in the current environment
+    args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
     do.call(f_PrintValues, args)   # Dynamically pass them to f_PrintValues
 }
 
