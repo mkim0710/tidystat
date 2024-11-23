@@ -897,7 +897,7 @@ options(width=120)
 # <environment: namespace:openxlsx2>
 
 
-f_file.switch_open <- function(file) {
+f_file.system_switch_open <- function(file) {
     stopifnot(file.exists(file))
     
     file <- normalizePath(file, mustWork = TRUE)

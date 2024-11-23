@@ -1,7 +1,7 @@
 # @@ Now included in env1$env.internal.source.r ----
 
 
-f_file.switch_open <- function(file) {
+f_file.system_switch_open <- function(file) {
     stopifnot(file.exists(file))
     
     file <- normalizePath(file, mustWork = TRUE)

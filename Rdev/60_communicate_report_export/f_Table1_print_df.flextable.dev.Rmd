@@ -472,7 +472,7 @@ save_as_docx(flextable1, path = "library(flextable) flextable1.docx",
                                          gutter = 0)  # Small margins in inches and no gutter
              ))
 
-f_file.switch_open <- function(file) {
+f_file.system_switch_open <- function(file) {
     stopifnot(file.exists(file))
     
     file <- normalizePath(file, mustWork = TRUE)
@@ -491,7 +491,7 @@ f_file.switch_open <- function(file) {
         stop("Operating system not handled: ", toString(userSystem))
     )
 }
-env1$f$f_file.switch_open("library(flextable) flextable1.docx")
+env1$f$f_file.system_switch_open("library(flextable) flextable1.docx")
 ```
   
  
