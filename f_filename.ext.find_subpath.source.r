@@ -126,7 +126,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     # # # }
     # # # <bytecode: 0x0000020ed66821a0>
     # # # <environment: namespace:tools>
-    ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
+    ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
     if (is.na(ext)) {stop("Error: filename.ext must have an extension.")}
     
     if (VERBOSE) {

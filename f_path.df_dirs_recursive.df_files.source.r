@@ -150,7 +150,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
                 # # # }
                 # # # <bytecode: 0x0000020ed66821a0>
                 # # # <environment: namespace:tools>
-                # path.basename |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
+                # path.basename |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
             ) %>% 
             mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) |> paste0(path.basename) ) %>%
             # arrange(path.parent, path.basename) %>% 
