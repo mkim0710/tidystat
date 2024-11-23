@@ -586,7 +586,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if (check_rstudioapi) {
         if (requireNamespace("rstudioapi")) {
-            if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}  }
+            if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",deparse(eval(parse(text=.CodeText2Print)))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}  }
             
             if (rstudioapi::isAvailable()) {
                 # GO TO: if(overwrite)
@@ -612,7 +612,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         env1$path$LastSourceEditorContext.path = env1$path$LastSourceEditorContext.path_filename.ext |> dirname()
         
         # cat(LinePrefix4CodeText, "env1$path$LastSourceEditorContext.path_filename.ext == ", deparse(env1$path$LastSourceEditorContext.path_filename.ext), "  \n", sep="")
-        .CodeText2Print = 'env1$path$LastSourceEditorContext.path_filename.ext'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
+        .CodeText2Print = 'env1$path$LastSourceEditorContext.path_filename.ext'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",deparse(eval(parse(text=.CodeText2Print)))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
         
         if(!".path4write" %in% names(env1$path)) {
             .path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path
