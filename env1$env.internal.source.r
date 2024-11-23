@@ -1532,6 +1532,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     env1$env.internal.attach$f_sourcePath.execute_if_not_sourced(option.function.reload = TRUE, ...)
 }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = source.force_reload  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "source.force_reload")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
