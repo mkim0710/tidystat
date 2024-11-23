@@ -199,7 +199,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_DataSet_CodeBook.walk2factor.source.r"
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
-# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
+# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 
 
 

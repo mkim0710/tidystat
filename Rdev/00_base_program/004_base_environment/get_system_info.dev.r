@@ -683,7 +683,7 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) {
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
 if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
-    .sourcename = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
+    .sourcename = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath_filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 }
 
 
