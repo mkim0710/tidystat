@@ -1531,7 +1531,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
 }
 ## Example Usage: 
 # env1$source$f_CodeBook_DataSet.lbl.source.r = NULL
-# env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r")
+# .filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r"); .subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled" ; env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # env1$source$f_CodeBook_DataSet.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = source_if_not_sourced  ----  
@@ -1552,7 +1552,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 }
 ## Example Usage: 
 # env1$source$f_CodeBook_DataSet.lbl.source.r = ""
-# env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r")
+# .filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r"); .subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled" ; env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # env1$source$f_CodeBook_DataSet.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = source.force_reload  ----  
