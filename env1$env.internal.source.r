@@ -1243,9 +1243,9 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .object = NULL, .objectname = NULL, 
-        .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), 
+        .filename.ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", ""))  }, 
         .path4write = env1$path$.path4write,
-        .path_file = NULL, 
+        .path_file = if(is.null(.objectname) || is.null(.path4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }, 
         createBackup = FALSE, 
         .backup_to_path="-backup", 
         Execute = FALSE, 
@@ -1275,6 +1275,27 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     #  $ CompressionMethod  : chr "xz"
     #  $ LinePrefix4CodeText: chr "\t"
     #  $ VERBOSE            : logi FALSE
+    
+    # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
+    # debug at #3: NULL
+    # Browse[3]> environment() %>% as.list(all.names = TRUE) %>% str()
+    # Error in as.list.environment(., all.names = TRUE) : 
+    #   promise already under evaluation: recursive default argument reference or earlier problems?
+    # Browse[3]> ls(all.names = TRUE) |> dput()
+    # c(".backup_to_path", ".filename.ext4write", ".object", ".objectname", 
+    # ".path_file", ".path4write", "CompressionMethod", "createBackup", 
+    # "Execute", "git_add_f", "git_lfs_track", "LinePrefix4CodeText", 
+    # "path.size_files", "SkipIfAlreadyAdded", "VERBOSE")
+    # Browse[3]> .filename.ext4write %>% str()
+    # Error in str(.) : 
+    #   promise already under evaluation: recursive default argument reference or earlier problems?
+    # Browse[3]> .path_file %>% str()
+    # debug at #5: NULL
+    # Browse[4]> .path_file %>% str()
+    # Error in str(.) : 
+    #   promise already under evaluation: recursive default argument reference or earlier problems?
+    
+    
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
             # .objectname <- .object
@@ -1366,7 +1387,10 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     
     invisible()
 }
-
+## Example Use :
+# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
+# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
+# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
