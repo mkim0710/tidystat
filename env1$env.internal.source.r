@@ -679,9 +679,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     return(invisible())
 }
-
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = update_LastSourceEditorContext.path_filename.ext  ----  
 .tmp$aliasname = "update_LastSourceEditorContext.path_filename.ext"
@@ -765,8 +762,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path0.list_path_hierarchy =  ----  
 # Rdev/00_base_program/internal.f_path0.list_path_hierarchy.source.r
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_path0.list_path_hierarchy"
-.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     
@@ -800,13 +798,12 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     
     return(list_path_hierarchy)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_fileRegEX.rename =  ----  
 # Rdev/00_base_program/001_base_file/f_path_fileRegEX.rename.dev.Rmd
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_path_fileRegEX.rename"
-.tmp$object <- function(path = ".", gsub.pattern_from, gsub.replacement_to, full.names = TRUE, recursive = FALSE, move_to_renamed_path = FALSE, execute = FALSE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = ".", gsub.pattern_from, gsub.replacement_to, full.names = TRUE, recursive = FALSE, move_to_renamed_path = FALSE, execute = FALSE) {
 
     if(move_to_renamed_path) stop("move_to_renamed_path not yet implemented.")
 
@@ -872,8 +869,6 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     }
 
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_filename.ext.append_suffix =  ----  
@@ -1077,7 +1072,7 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_URL.open_in_edge_app =  ----  
-.tmp$env1_subenv_name = "f"
+.tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.open_in_edge_app"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
     if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
@@ -1287,7 +1282,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.is_git_tracked  =======  
 # Function to check if the current project or any of its parent directories are tracked by Git
-env1$env.internal$f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_path.is_git_tracked"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = getwd(), check_parents = TRUE) {
     # Normalize the path
     path <- normalizePath(path, winslash = "/", mustWork = TRUE)
     
