@@ -150,6 +150,14 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     # if(print2console) return.list$read.proc_time |> print()
     .read.proc_time = system.time(assign(DataSetName, read_rds(.path_file), envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
+    
+    
+    ##@ MetaData needs to be restored to .GlobalEnv first: it will be updated within .GlobalEnv as needed.
+    if (!is.null(attributes(.GlobalEnv[[DataSetName]])$MetaData)) {
+        .GlobalEnv$MetaData = as.list(attributes(.GlobalEnv[[DataSetName]])$MetaData)
+    }
+        
+    ##@ attributes(.GlobalEnv[[DataSetName]])$DataSetName or attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file need to be updated.
     attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
     attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file = .path_file |> normalizePath(winslash = "/") |> str_replace_all(env1$path$path1|>fixed(ignore_case=TRUE), "") |> str_replace("^/", "")
 
