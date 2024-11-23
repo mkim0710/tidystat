@@ -1243,9 +1243,10 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .object = NULL, .objectname = NULL, 
-        .filename.ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", ""))  }, 
+        CompressionMethod = {  if(is.null(.object)) {.object = get(.objectname)}; case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz")  }, 
+        .filename.ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }, 
         .path4write = env1$path$.path4write,
-        .path_file = if(is.null(.objectname) || is.null(.path4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }, 
+        .path_file = if(is.null(.path4write) || is.null(.filename.ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }, 
         createBackup = FALSE, 
         .backup_to_path="-backup", 
         Execute = FALSE, 
@@ -1253,7 +1254,6 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         git_lfs_track = "determine based on object size", 
         git_add_f = TRUE, 
         SkipIfAlreadyAdded = TRUE, 
-        CompressionMethod = NULL, 
         LinePrefix4CodeText = "\t", 
         VERBOSE = isTRUE(options()$verbose)) {
     
@@ -1295,6 +1295,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # Error in str(.) : 
     #   promise already under evaluation: recursive default argument reference or earlier problems?
     
+    if(is.null(.object) && is.null(.objectname)) {
+        "Both .object and .objectname are NULL. Please provide either .object or .objectname." |> stop(call. = FALSE); return(invisible())
+    }
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -1349,14 +1352,26 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if (object.size(get(.objectname)) >= 1e8) {
         paste0("object.size(get(.objectname)) == ",object.size(get(.objectname))|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
     }
-    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) >= 1e6 && object.size(get(.objectname)) < 1e8, ".xz", ""))
-    if(is.null(CompressionMethod))      CompressionMethod = case_when(.filename.ext4write == "xz" ~ "xz", 
-                                                                      object.size(get(.objectname)) >= 1e8 ~ "",
-                                                                      object.size(get(.objectname)) >= 1e6 ~ "xz",
-                                                                      TRUE ~ "gz")  
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    if(is.null(CompressionMethod))      CompressionMethod = 
+            {
+                if(is.null(.object)) {.object = get(.objectname)}; 
+                case_when(object.size(get(.objectname)) >= 1e8 ~ "none",
+                          object.size(get(.objectname)) >= 1e6 ~ "xz",
+                          TRUE ~ "gz")  
+            }
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+    if(is.null(.filename.ext4write))    .filename.ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     if(is.null(.path4write))            .path4write = env1$path$.path4write
-    if(is.null(.path_file))             .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)
-
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+    if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename.ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }
+    ##________________________________________________________________________________  
+    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
