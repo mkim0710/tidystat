@@ -228,7 +228,7 @@ f_CodeText.echo = function(.CodeText,
                           deparse_cat = TRUE,
                           substitute_ObjectNames = FALSE,
                           ObjectNames4substitute = NULL,
-                          VERBOSE = options()$verbose) {
+                          VERBOSE = isTRUE(options()$verbose)) {
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -566,7 +566,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
                                       Execute = FALSE,
                                       deparse_cat = TRUE,
                                       ObjectNames4substitute = NULL,
-                                      VERBOSE = options()$verbose) {
+                                      VERBOSE = isTRUE(options()$verbose)) {
     
     # Get all objects defined in the parent frame
     parent_env <- parent.frame()
@@ -670,7 +670,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## \$f_CodeText.echo ====
 # Rdev/00_base_program/f_CodeText.echo.dev.r
-env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, VERBOSE = options()$verbose) {
+env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, VERBOSE = isTRUE(options()$verbose)) {
 
     
     if(substitute_ObjectNames) {

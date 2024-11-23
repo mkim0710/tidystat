@@ -267,7 +267,7 @@ options(width=120)
 DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode"
 # paste0(.path4read,"/",DataSetName,".rds") |> env1$f$f_DataSet_path_filename_ext.read.checkEntity()
 
-env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = options()$verbose)
+env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(options()$verbose))
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

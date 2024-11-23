@@ -102,7 +102,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 
 # #% f_path0.list_path_hierarchy =======  
 # .tmp$objectname = "f_path0.list_path_hierarchy"
-# .tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
+# .tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = isTRUE(options()$verbose)) {
 #     # Initialize a list to hold the path hierarchy
 #     list_path = list()
     

@@ -96,7 +96,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 
 
 # .tmp$objectname = "f_path.size_files"
-# .tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = options()$verbose) {
+# .tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(options()$verbose)) {
 
 #     for (.dependancy in c("f_df.t.tribble_construct")) {
 #         if(!.dependancy %in% names(.GlobalEnv$env1)) {

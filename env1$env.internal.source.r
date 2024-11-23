@@ -357,7 +357,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         CodeEqualsOutput = TRUE,
-        VERBOSE = options()$verbose,
+        VERBOSE = isTRUE(options()$verbose),
         ...) {
     if(is.null(VERBOSE)) VERBOSE = FALSE
     
@@ -653,7 +653,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## :: f_path.size_files =  ----  
 # Rdev/00_base_program/f_path.size_files.source.r
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = options()$verbose) {
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(options()$verbose)) {
     
     for (.dependancy in c("f_df.t.tribble_construct")) {
         if(!.dependancy %in% names(.GlobalEnv$env1)) {
@@ -706,7 +706,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 # Rdev/00_base_program/internal.f_path0.list_path_hierarchy.source.r
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_path0.list_path_hierarchy"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = isTRUE(options()$verbose)) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     
@@ -1254,7 +1254,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         SkipIfAlreadyAdded = TRUE, 
         CompressionMethod = NULL, 
         LinePrefix4CodeText = "\t", 
-        VERBOSE = options()$verbose) {
+        VERBOSE = isTRUE(options()$verbose)) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
