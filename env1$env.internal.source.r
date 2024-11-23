@@ -1515,7 +1515,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
-.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = NULL, .subpath = NULL, .sourcename = NULL,  option.function.reload = isTRUE(options()$function.reload)) {
     if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.sourcename)) .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
@@ -1530,7 +1530,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute.force_reload"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
-    env1$env.internal.attach$f_sourcePath.execute_if_not_sourced(option.function.reload = TRUE, ...)
+    env1$f$f_sourcePath.execute_if_not_sourced(option.function.reload = TRUE, ...)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = source.force_reload  ----  
