@@ -173,7 +173,7 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
     ##### env1\$info\$get_system_info() ----  
     # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/get_system_info.source.r"  
     if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
-        .filename.source.r = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .filename.source.r %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]]);}
+        .filename.source.r = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
     }  
     .GlobalEnv$env1$info = env1$env.internal.attach$get_system_info()
     cat("> .tmp |> str(max.level = 1, give.attr = TRUE)", "  \n", sep="") 
