@@ -468,18 +468,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ## ::OPTION:: f_CodeText.parse.eval.dput.echo  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.CodeText, Execute = TRUE, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
-    # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
-    # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
-    # args = as.list(formals())
-    args = environment() |> as.list(all.names = TRUE)  # Capture all arguments in the current environment
-    if ("..." %in% names(args)) {
-        args$... = NULL
-        args.additional = list(...)
-        args = args.additional |> c(args[!names(args) %in% names(args.additional)])
-    }
-    do.call(env1$f$f_CodeText.echo, args)   # Dynamically pass the args to another function
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
+    env1$f$f_CodeText.echo(Execute = TRUE, ...)
 }
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = eval_parse_CodeText.dput.echo  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "eval_parse_CodeText.dpu.echo")
