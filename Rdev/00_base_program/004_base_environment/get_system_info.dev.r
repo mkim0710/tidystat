@@ -70,7 +70,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
@@ -687,7 +687,7 @@ if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
 }
 
 
-env1$info$info_system_info = env1$env.internal$get_system_info()
+env1$info$info_system_info = env1$env.internal.attach$get_system_info()
 # str(env1$info$info_system_info)
 .CodeText = "env1$info$machine_nodename"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
 .CodeText = "env1$info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")

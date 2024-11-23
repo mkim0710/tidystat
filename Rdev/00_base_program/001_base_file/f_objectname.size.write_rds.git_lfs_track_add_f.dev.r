@@ -50,7 +50,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
@@ -225,7 +225,7 @@ MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_fil
 # 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
 # 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBackup = TRUE)
-# 	env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = "Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
+# 	env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = "Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
 # 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
 # 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
 # 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
