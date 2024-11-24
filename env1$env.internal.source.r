@@ -1649,7 +1649,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = if(!is.null(.subpath) && !is.null(.filename.source.r)) paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r) else NULL, .subpath = NULL, .filename.source.r = NULL, option.function.reload = isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = if(!is.null(.subpath) && !is.null(.filename.source.r)) paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r) else NULL, .subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     # options(DEBUGMODE = TRUE)
     # options(DEBUGMODE = FALSE)
     if(DEBUGMODE) browser()
@@ -1658,10 +1658,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     #  $ .subpath_filename.source.r: chr "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
     #  $ .subpath                  : NULL
     #  $ .filename.source.r        : NULL
-    #  $ option.function.reload    : logi TRUE
+    #  $ RELOAD_FUNCTION    : logi TRUE
     # if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.filename.source.r)) .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
     if(is.null(.filename.source.r)) .filename.source.r = basename(.subpath_filename.source.r)
-    if(option.function.reload || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
+    if(RELOAD_FUNCTION || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
 }
 ## *** Example Usage:  
 env1$source$f_CodeBook_DataSet.lbl.source.r = NULL
@@ -1683,7 +1683,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     # Browse[1]> list(...)
     # $.subpath_filename.source.r
     # [1] "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
-    env1$f$f_sourcePath.execute_if_not_sourced(..., option.function.reload = TRUE)
+    env1$f$f_sourcePath.execute_if_not_sourced(..., RELOAD_FUNCTION = TRUE)
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DataSet.lbl.source.r = ""
