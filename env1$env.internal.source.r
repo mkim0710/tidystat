@@ -1680,11 +1680,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
                 .subpath_filename.source.r
             } else if (file.exists(paste0(env1$path$source_base_local, "/", .subpath_filename.source.r))) {
                 paste0(env1$path$source_base_local, "/", .subpath_filename.source.r)
-            } else if (  
-                grepl("^http", .subpath_filename.source.r, ignore.case = TRUE) || 
-                grepl("githubusercontent.com", .subpath_filename.source.r, ignore.case = TRUE, fixed = TRUE) ||
-                grepl("github.com", .subpath_filename.source.r, ignore.case = TRUE, fixed = TRUE) 
-            ) {
+            } else if (  grepl("^http", .subpath_filename.source.r, ignore.case = TRUE) || 
+                         grepl("githubusercontent.com", .subpath_filename.source.r, ignore.case = TRUE, fixed = TRUE) ||
+                         grepl("github.com", .subpath_filename.source.r, ignore.case = TRUE, fixed = TRUE)  ) {
                 .subpath_filename.source.r
             } else {
                 paste0(env1$path$source_base_github, "/", .subpath_filename.source.r)
