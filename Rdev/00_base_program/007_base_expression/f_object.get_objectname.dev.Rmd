@@ -597,10 +597,55 @@ tmp_object %>% f_object.get_objectname()
 ```
   
   
-###### ECHO \% |> () ----  
+## :: f_object.get_objectname <- function(input_object) { ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+# Define the refined function
+f_object.get_objectname <- function(input_object) {
+  # Capture the expression passed to the function
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Check if the object is the magrittr placeholder '.'
+  if (obj_name == ".") {
+    # Retrieve the parent call (the call to the pipe)
+    parent_call <- sys.call(-1)
+    
+    # Determine the type of pipe used
+    pipe_operator <- as.character(parent_call[[1]])
+    is_magrittr_pipe <- pipe_operator == "%>%"
+    is_base_pipe <- pipe_operator == "|>"
+    
+    if (is_magrittr_pipe || is_base_pipe) {
+      # Extract the left-hand side (lhs) of the pipe
+      lhs <- parent_call[[2]]
+      
+      # Attempt to retrieve the name of the lhs
+      lhs_name <- deparse(lhs)
+      
+      # Handle cases where lhs is more complex (e.g., expressions)
+      # If lhs is a symbol, deparse returns its name; otherwise, it returns the expression as a string
+      if (length(lhs_name) > 1) {
+        # If the expression is complex, return a placeholder or handle accordingly
+        lhs_name <- "complex_expression"
+      }
+      
+      return(lhs_name)
+    } else {
+      # If not a recognized pipe operator, return the placeholder
+      return(obj_name)
+    }
+  }
+  
+  return(obj_name)
+}
 
+# Create test objects
+tmp_object <- 42
+another_object <- "Hello, World!"
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
 ```
   
   
