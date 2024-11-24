@@ -101,7 +101,7 @@ get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 options(DEVMODE = TRUE)
 options(DEBUGMODE = TRUE)
 options(DEBUGMODE = FALSE)
-if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
+if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_collapse_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
 
 ## *** Example Usage:  
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
