@@ -1665,13 +1665,32 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     if(RELOAD_FUNCTION || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  
         RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). -> Caution: Even if getOption("RELOAD_FUNCTION") was NULL or FALSE, options(RELOAD_FUNCTION = TRUE) should be passed to the functions inside source(). 
         
-        # message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); 
-        # .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  
+        #@ DEBUG) .subpath_filename.source.r is given as the full path or URL
+        # > .subpath_filename.source.r = "https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r"
+        # > .subpath_filename.source.r %>% relative_path()
+        # [1] "https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r"
+        # Warning message:
+        # In normalizePath(path, winslash = "/") :
+        #   path[1]="https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r": No such file or directory
         # > file.exists("https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r")
         # [1] FALSE
-        .source_base.subpath_filename.source.r = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); 
+        
+        .source_base.subpath_filename.source.r = 
+            if (file.exists(.subpath_filename.source.r)) {
+                .subpath_filename.source.r
+            } else if (file.exists(paste0(env1$path$source_base_local, "/", .subpath_filename.source.r))) {
+                paste0(env1$path$source_base_local, "/", .subpath_filename.source.r)
+            } else if (  
+                grepl("^http", .subpath_filename.source.r, ignore.case = TRUE) || 
+                grepl("githubusercontent.com", .subpath_filename.source.r, ignore.case = TRUE, fixed = TRUE) ||
+                grepl("github.com", .subpath_filename.source.r, ignore.case = TRUE, fixed = TRUE) 
+            ) {
+                .subpath_filename.source.r
+            } else {
+                paste0(env1$path$source_base_github, "/", .subpath_filename.source.r)
+            }
+        .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.subpath_filename.source.r
         message('> source("',.source_base.subpath_filename.source.r,'")');
-        .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.subpath_filename.source.r; 
         source(.source_base.subpath_filename.source.r)
         
         options(RELOAD_FUNCTION = RELOAD_FUNCTION0)  # Restore previous options value for getOption("RELOAD_FUNCTION").
