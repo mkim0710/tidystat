@@ -413,12 +413,39 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 # }
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_ObjectName.dput.echo ====
+# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
+.tmp$objectname = "f_ObjectName.dput.echo"
+.tmp$object = function(ObjectName, envir = parent.frame(), LinePrefix4CodeText = "\t") {
+    # *** 1-liner ***
+    # cat("ObjectName == ", deparse(ObjectName), "  \n", sep = "")
+    # Caution) not to be confused with: 
+    # cat(ObjectName, " == ", deparse(get(ObjectName)), "  \n", sep = "")
+    if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
+    cat(LinePrefix4CodeText); cat("ObjectName == ", deparse(ObjectName), "  \n", sep = "")
+    invisible()
+}
+
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = ObjectName.dput.echo  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ObjectName.dput.echo")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = dput_ObjectName.echo  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput_ObjectName.echo")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = echo.ObjectName.dput  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.ObjectName.dput")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_ObjectName.get.dput.echo ====
 # Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
 .tmp$objectname = "f_ObjectName.get.dput.echo"
 .tmp$object = function(ObjectName, envir = parent.frame(), ObjectName.parse.eval = FALSE, LinePrefix4CodeText = "\t") {
     # *** 1-liner ***
     # cat(ObjectName, " == ", deparse(get(ObjectName)), "  \n", sep = "")
+    # Caution) not to be confused with: 
+    # cat("ObjectName == ", deparse(ObjectName), "  \n", sep = "")
     if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
     if(ObjectName.parse.eval) {
         ObjectName.get = parse(text = ObjectName) |> eval(envir = envir)
