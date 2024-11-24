@@ -235,6 +235,19 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = search_path.attached_environments.dput  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "search_path.attached_environments.dput")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: Sys.time.set_t0 ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "Sys.time.set_t0"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  .GlobalEnv$.tmp$t0 = Sys.time(); cat(".tmp$t0 == ", deparse(.tmp$t0), "  \n", sep="")  }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: Sys.time.set_t1 ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "Sys.time.set_t1"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  .GlobalEnv$.tmp$t1 = Sys.time(); .GlobalEnv$.tmp$t1_from_t0 = .GlobalEnv$.tmp$t1 - .GlobalEnv$.tmp$t0; cat(".GlobalEnv$.tmp$t1 - .GlobalEnv$.tmp$t0 == ", deparse(.GlobalEnv$.tmp$t1_from_t0), "  \n", sep="")  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = Sys.time.from_t0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "Sys.time.from_t0")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
