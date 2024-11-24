@@ -103,11 +103,24 @@ options(DEBUGMODE = TRUE)
 options(DEBUGMODE = FALSE)
 if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_collapse_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
 
+
+fhs.index100le10 = read_rds("data/fhs.index100le10.rds")
 ## *** Example Usage:  
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
-
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
+# 	fhs.index100le10 |> write_rds('NANAfhs.index100le10.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	env1$f$f_path.size_files(.path4read = 'NA', regex4filename = 'fhs.index100le10')  
+# 	"git add -f 'NANAfhs.index100le10.rds'" |> system(intern=TRUE)  
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
+# 	fhs.index100le10 |> write_rds('NANAfhs.index100le10.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	env1$f$f_path.size_files(.path4read = 'NA', regex4filename = 'fhs.index100le10')  
+# 	"git add -f 'NANAfhs.index100le10.rds'" |> system(intern=TRUE)  
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
+# 	fhs.index100le10 |> write_rds('./data/fhs.index100le10.rds.xz', compress = 'xz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	env1$f$f_path.size_files(.path4read = 'NA', regex4filename = 'fhs.index100le10')  
+# 	"git add -f './data/fhs.index100le10.rds.xz'" |> system(intern=TRUE)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

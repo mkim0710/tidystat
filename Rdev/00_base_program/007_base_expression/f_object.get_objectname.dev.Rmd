@@ -361,9 +361,6 @@ options(width=120)
 ```
   
   
-
-
-
 ## :: *** f_object.get_objectname <- function(input_object) { ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -392,22 +389,152 @@ tmp_object <- 42
 f_object.get_objectname(tmp_object)
 tmp_object |> f_object.get_objectname()
 tmp_object %>% f_object.get_objectname()
-# > f_object.get_objectname(tmp_object)
-# [1] "tmp_object"
-# > tmp_object |> f_object.get_objectname()
-# [1] "tmp_object"
-# > tmp_object %>% f_object.get_objectname()
-# [1] "tmp_object"
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
 ```
   
   
-###### ECHO \% |> () ----  
+## :: *** f_object.get_objectname <- function(input_object) { ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+f_object.get_objectname <- function(input_object) {
+  # Capture the expression passed to the function
+  obj_expr <- substitute(input_object)
+  obj_name <- deparse(obj_expr)
+  
+  # Check if the function was called using a pipe
+  if (identical(obj_expr, quote(.))) {
+    # Retrieve the parent call (the call to the pipe)
+    parent_call <- sys.call(-1)
+    if (!is.null(parent_call)) {
+      obj_name <- deparse(parent_call[[2]])  # Left-hand side of the pipe
+    }
+  } else {
+    # Check if we're inside another function
+    parent_call <- sys.call(-1)
+    if (!is.null(parent_call)) {
+      # Retrieve the parent frame
+      parent_frame <- parent.frame()
+      if (exists(as.character(obj_expr), envir = parent_frame)) {
+        obj_name <- as.character(obj_expr)
+      }
+    }
+  }
+  
+  return(obj_name)
+}
 
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
 ```
-  
-  
+
+
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -730,6 +857,431 @@ tmp_object %>% f_object.get_objectname()
 # [1] "tmp_object"
 # > tmp_object %>% f_object.get_objectname()
 # [1] "tmp_object"
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+#@@ Usage Inside Another Function ====
+## :: process_data <- function(data) { ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Define the enhanced get_objectname function
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Helper function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the left-hand side (lhs) of the pipe
+          lhs <- current_call[[2]]
+          
+          # Attempt to retrieve the name of the lhs
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            # Assign a placeholder name for complex expressions
+            lhs_name <- placeholder
+          }
+          
+          return(lhs_name)
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# # 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+
+```
+  
+  
+## :: process_data <- function(data) { ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Define the enhanced get_objectname function
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Helper function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the left-hand side (lhs) of the pipe
+          lhs <- current_call[[2]]
+          
+          # Attempt to retrieve the name of the lhs
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            # Assign a placeholder name for complex expressions
+            lhs_name <- placeholder
+          }
+          
+          return(lhs_name)
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+
+```
+
+
+## :: process_data <- function(data) { ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Helper function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the left-hand side (lhs) of the pipe
+          lhs <- current_call[[2]]
+          
+          # Attempt to retrieve the name of the lhs
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            # Assign a placeholder name for complex expressions
+            lhs_name <- placeholder
+          }
+          
+          return(lhs_name)
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it, from the parent frame
+  expr <- substitute(input_object, parent.frame())
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
 ```
   
   
