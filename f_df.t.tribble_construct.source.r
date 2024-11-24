@@ -104,6 +104,11 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ env1\$f\$f_object ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: str_max_level1 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "str_max_level1"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 1)  }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: str_max_level2 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_max_level2"
@@ -113,6 +118,22 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_give_attr_F"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., give.attr = FALSE)  }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: str_max_level1.give_attr_F =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "str_max_level1.give_attr_F"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 1, give.attr = FALSE)  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = str_give_attr_F.max_level1  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "str_give_attr_F.max_level1")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: str_max_level2.give_attr_F =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "str_max_level2.give_attr_F"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 2, give.attr = FALSE)  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = str_give_attr_F.max_level2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "str_give_attr_F.max_level2")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: paste0_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
