@@ -85,8 +85,8 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
   cat("  > ", deparse(substituted_expr), sep_between_echo_and_dput, deparse(evaluated_expr), "\n", sep="")
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-# .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+# .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION")) || isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION")) || isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 
