@@ -1665,7 +1665,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     if(is.null(.filename.source.r)) .filename.source.r = basename(.subpath_filename.source.r)
     if(RELOAD_FUNCTION || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  
         message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); 
-        RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). 
+        RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). -> Caution: Even if getOption("RELOAD_FUNCTION") was NULL or FALSE, options(RELOAD_FUNCTION = TRUE) should be passed to the functions inside source(). 
         .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  
         options(RELOAD_FUNCTION = RELOAD_FUNCTION0)  # Restore previous options value for getOption("RELOAD_FUNCTION").
     }
