@@ -117,19 +117,32 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 ## :: paste0_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste0_collapse0"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "") {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "", DEBUGMODE = isTRUE(options()$DEBUGMODE)) {  
+    # options(DEBUGMODE = TRUE)
+    if(DEBUGMODE) browser()
+    # Browse[1]> ls(all.names = TRUE)
+    # [1] "..."       "collapse"  "DEBUGMODE"
+    # Browse[1]> list(...) %>% str
+    # List of 3
+    #  $ : chr "a"
+    #  $ : chr "b"
+    #  $ : int [1:3] 1 2 3
+    if(any(list(...) %>% map_lgl(function(Element) length(Element) > 1))) {
+        warning("Some elements have length > 1. Be cautious about recycled vector term-by-term paste!")
+    }
     paste0(..., collapse = collapse)
 }
 ## Example Usage:
 # paste("a", "b", 1:3, collapse = "")  # "a b 1a b 2a b 3"
 # paste0("a", "b", 1:3, collapse = "")  # "ab1ab2ab3"
-# paste_collapse0("a", "b", 1:3)  # "ab1ab2ab3"
+# paste0_collapse0("a", "b", 1:3)  # "ab1ab2ab3"
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: paste0_collapse0.print =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste0_collapse0.print"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "") {  
-    print(paste0(..., collapse = collapse))
+    # print(paste0(..., collapse = collapse))
+    print(env1$env.internal.attach$paste0_collapse0(..., collapse = collapse))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.paste0_collapse0  ----  
