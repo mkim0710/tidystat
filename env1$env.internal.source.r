@@ -1650,6 +1650,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = if(!is.null(.subpath) && !is.null(.filename.source.r)) paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r) else NULL, .subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+    # options(DEVMODE = TRUE)
+    # options(DEVMODE = FALSE)
     # options(DEBUGMODE = TRUE)
     # options(DEBUGMODE = FALSE)
     if(DEBUGMODE) browser()
