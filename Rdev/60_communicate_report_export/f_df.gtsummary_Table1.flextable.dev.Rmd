@@ -632,7 +632,7 @@ DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .VarNames4Exposure =  c("A01_BMI.5bins")  
 .DataSetName4output = DataSetName
-# DataSet.Date.NA.rmAllNA |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = .DataSetName4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES")
+# DataSet.Date.NA.rmAllNA |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = .DataSetName4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES") |> env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
 ```
 
 
