@@ -117,15 +117,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 ## :: paste0_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste0_collapse0"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
-    paste0(..., collapse = "")
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "") {  
+    paste0(..., collapse = collapse)
 }
+## Example Usage:
+# paste("a", "b", 1:3, collapse = "")  # "a b 1a b 2a b 3"
+# paste0("a", "b", 1:3, collapse = "")  # "ab1ab2ab3"
+# paste_collapse0("a", "b", 1:3)  # "ab1ab2ab3"
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: paste0_collapse0.print =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste0_collapse0.print"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
-    print(paste0(..., collapse = ""))
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "") {  
+    print(paste0(..., collapse = collapse))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = print.paste0_collapse0  ----  
