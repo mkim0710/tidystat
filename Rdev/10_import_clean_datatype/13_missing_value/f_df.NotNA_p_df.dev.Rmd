@@ -152,7 +152,7 @@ if(!exists("env1", envir=.GlobalEnv))
     assign("env1", new.env(), envir=.GlobalEnv)
 ### .GlobalEnv$env1$info = list() ====  
 .sublistname = "info"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+env1$info$options.width = getOption("width"); cat('\tgetOption("width") == ', env1$info$options.width, "  \n", sep="")
 
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
