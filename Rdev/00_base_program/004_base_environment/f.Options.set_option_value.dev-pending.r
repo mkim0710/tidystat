@@ -31,28 +31,28 @@ options()$DoesNotExist
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .Options$DEBUGMODE = "input via .Options$DEBUGMODE = value"
 options(DEBUGMODE = "input via options(DEBUGMODE = value)")
-options()$DEBUGMODE = "input via options()$DEBUGMODE = value"
-# > options()$DEBUGMODE = "input via options()$DEBUGMODE = value"
-# Error in options()$DEBUGMODE = "input via options()$DEBUGMODE = value" : 
+isTRUE(getOption("DEBUGMODE")) = "input via isTRUE(getOption("DEBUGMODE")) = value"
+# > isTRUE(getOption("DEBUGMODE")) = "input via isTRUE(getOption("DEBUGMODE")) = value"
+# Error in isTRUE(getOption("DEBUGMODE")) = "input via isTRUE(getOption("DEBUGMODE")) = value" : 
 #   invalid (NULL) left side of assignment
 
 .Options$DEBUGMODE
 getOption("DEBUGMODE")
-options()$DEBUGMODE
+isTRUE(getOption("DEBUGMODE"))
 # > .Options$DEBUGMODE
 # [1] "input via .Options$DEBUGMODE = value"
 # > getOption("DEBUGMODE")
 # [1] "input via options(DEBUGMODE = value)"
-# > options()$DEBUGMODE
+# > isTRUE(getOption("DEBUGMODE"))
 # [1] "input via options(DEBUGMODE = value)"
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .Options$DEBUGMODE = "input via .Options$DEBUGMODE = value"
 options(DEBUGMODE = "input via options(DEBUGMODE = value)")
-options()$DEBUGMODE = NULL
-# > options()$DEBUGMODE = NULL
-# Error in options()$DEBUGMODE = NULL : 
+isTRUE(getOption("DEBUGMODE")) = NULL
+# > isTRUE(getOption("DEBUGMODE")) = NULL
+# Error in isTRUE(getOption("DEBUGMODE")) = NULL : 
 #   invalid (NULL) left side of assignment
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -61,12 +61,12 @@ options(DEBUGMODE = "input via options(DEBUGMODE = value)")
 options(DEBUGMODE = NULL)
 .Options$DEBUGMODE
 getOption("DEBUGMODE")
-options()$DEBUGMODE
+isTRUE(getOption("DEBUGMODE"))
 # > .Options$DEBUGMODE
 # [1] "input via .Options$DEBUGMODE = value"
 # > getOption("DEBUGMODE")
 # NULL
-# > options()$DEBUGMODE
+# > isTRUE(getOption("DEBUGMODE"))
 # NULL
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -75,12 +75,12 @@ options(DEBUGMODE = "input via options(DEBUGMODE = value)")
 .Options$DEBUGMODE = NULL
 .Options$DEBUGMODE
 getOption("DEBUGMODE")
-options()$DEBUGMODE
+isTRUE(getOption("DEBUGMODE"))
 # > .Options$DEBUGMODE
 # NULL
 # > getOption("DEBUGMODE")
 # [1] "input via options(DEBUGMODE = value)"
-# > options()$DEBUGMODE
+# > isTRUE(getOption("DEBUGMODE"))
 # [1] "input via options(DEBUGMODE = value)"
 
 

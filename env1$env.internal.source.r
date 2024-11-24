@@ -1286,7 +1286,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         SkipIfAlreadyAdded = TRUE, 
         LinePrefix4CodeText = "\t", 
         VERBOSE = isTRUE(getOption("verbose")),
-        DEBUGMODE = isTRUE(options()$DEBUGMODE)) {
+        DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     
     # options(DEBUGMODE = TRUE)
     if(DEBUGMODE) browser()

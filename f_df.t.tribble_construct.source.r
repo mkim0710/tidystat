@@ -117,7 +117,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 ## :: paste0_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "paste0_collapse0"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "", DEBUGMODE = isTRUE(options()$DEBUGMODE)) {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "", DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {  
     # options(DEBUGMODE = TRUE)
     if(DEBUGMODE) browser()
     # Browse[1]> ls(all.names = TRUE)
