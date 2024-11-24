@@ -31,9 +31,9 @@ options()$DoesNotExist
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .Options$DEBUGMODE = "input via .Options$DEBUGMODE = value"
 options(DEBUGMODE = "input via options(DEBUGMODE = value)")
-isTRUE(getOption("DEBUGMODE")) = "input via isTRUE(getOption("DEBUGMODE")) = value"
-# > isTRUE(getOption("DEBUGMODE")) = "input via isTRUE(getOption("DEBUGMODE")) = value"
-# Error in isTRUE(getOption("DEBUGMODE")) = "input via isTRUE(getOption("DEBUGMODE")) = value" : 
+options()$DEBUGMODE = "input via options()$DEBUGMODE = value"
+# > options()$DEBUGMODE = "input via options()$DEBUGMODE = value"
+# Error in options()$DEBUGMODE = "input via options()$DEBUGMODE = value" : 
 #   invalid (NULL) left side of assignment
 
 .Options$DEBUGMODE
@@ -50,9 +50,9 @@ isTRUE(getOption("DEBUGMODE"))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .Options$DEBUGMODE = "input via .Options$DEBUGMODE = value"
 options(DEBUGMODE = "input via options(DEBUGMODE = value)")
-isTRUE(getOption("DEBUGMODE")) = NULL
-# > isTRUE(getOption("DEBUGMODE")) = NULL
-# Error in isTRUE(getOption("DEBUGMODE")) = NULL : 
+options()$DEBUGMODE = NULL
+# > options()$DEBUGMODE = NULL
+# Error in options()$DEBUGMODE = NULL : 
 #   invalid (NULL) left side of assignment
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
