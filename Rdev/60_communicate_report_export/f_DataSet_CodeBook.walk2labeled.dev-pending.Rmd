@@ -247,7 +247,7 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
 )))
 
 # Function to create labelled vectors using haven::labelled()
-create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(options()$verbose)) {
+create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   if (is.na(value_options) || value_options == "") {
     return(var)
   }
@@ -282,7 +282,7 @@ create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4n
 }
 
 # Function to apply the codebook transformations for labelled data
-apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(options()$verbose)) {
+apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   labeled_data <- data  # Copy original data
   # Iterate over the codebook and apply transformations
   for (i in 1:nrow(codebook)) {

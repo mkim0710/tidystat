@@ -243,7 +243,7 @@ env1$f$f_CodeText.echo = function(
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         CodeEqualsOutput = TRUE,
-        VERBOSE = isTRUE(options()$verbose)) {
+        VERBOSE = isTRUE(getOption("verbose"))) {
     if(is.null(VERBOSE)) VERBOSE = FALSE
     out = NULL
     

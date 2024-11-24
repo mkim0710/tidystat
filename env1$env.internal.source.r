@@ -152,12 +152,12 @@ env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
 ## :: message_if_VERBOSE ====  
 env1$env.internal.attach$message_if_VERBOSE = 
     env1$env.internal.attach$VERBOSE_message =
-    function(..., VERBOSE = isTRUE(options()$verbose)) { if(VERBOSE) message(...) }
+    function(..., VERBOSE = isTRUE(getOption("verbose"))) { if(VERBOSE) message(...) }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: cat_if_VERBOSE ====  
 env1$env.internal.attach$cat0_if_VERBOSE = 
     env1$env.internal.attach$VERBOSE_cat0 =
-    function(..., VERBOSE = isTRUE(options()$verbose)) { if(VERBOSE) cat(..., "  \n", sep = "") }
+    function(..., VERBOSE = isTRUE(getOption("verbose"))) { if(VERBOSE) cat(..., "  \n", sep = "") }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_env1_subenv_objectname.set_alias ====  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -379,7 +379,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         CodeEqualsOutput = TRUE,
-        VERBOSE = isTRUE(options()$verbose),
+        VERBOSE = isTRUE(getOption("verbose")),
         ...) {
     if(is.null(VERBOSE)) VERBOSE = FALSE
     
@@ -623,7 +623,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         check_rstudioapi = TRUE, 
         overwrite = FALSE, 
         LinePrefix4CodeText = "\t",
-        VERBOSE = ifelse(!is.null(Sys.getenv("VERBOSE")), ifelse(Sys.getenv("VERBOSE")!="", Sys.getenv("VERBOSE"), options()$verbose), options()$verbose)
+        VERBOSE = ifelse(!is.null(Sys.getenv("VERBOSE")), ifelse(Sys.getenv("VERBOSE")!="", Sys.getenv("VERBOSE"), isTRUE(getOption("verbose"))), isTRUE(getOption("verbose")))
 ) {
     if(is.null(env1$path$LastSourceEditorContext.path_filename.ext) || is.na(env1$path$LastSourceEditorContext.path_filename.ext) || env1$path$LastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
     
@@ -682,7 +682,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## :: f_path.size_files =  ----  
 # Rdev/00_base_program/f_path.size_files.source.r
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(options()$verbose)) {
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
     
     for (.dependancy in c("f_df.t.tribble_construct")) {
         if(!.dependancy %in% names(.GlobalEnv$env1)) {
@@ -735,7 +735,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 # Rdev/00_base_program/internal.f_path0.list_path_hierarchy.source.r
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_path0.list_path_hierarchy"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = isTRUE(options()$verbose)) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = isTRUE(getOption("verbose"))) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     
@@ -1285,7 +1285,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         git_add_f = TRUE, 
         SkipIfAlreadyAdded = TRUE, 
         LinePrefix4CodeText = "\t", 
-        VERBOSE = isTRUE(options()$verbose),
+        VERBOSE = isTRUE(getOption("verbose")),
         DEBUGMODE = isTRUE(options()$DEBUGMODE)) {
     
     # options(DEBUGMODE = TRUE)

@@ -289,7 +289,7 @@ f_path.list_subpath.DepthFirstSearch_recursive(getwd()) |> as.list() |> str() #-
 
 
 #% f_path.list_subpath.BreathFirstSearch =====  
-f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, VERBOSE = isTRUE(options()$verbose)) {
+f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
     if (!file.exists(input_path) || !file.info(input_path)$isdir) {
         stop("The specified input_path does not exist or is not a directory.")
     }

@@ -23,7 +23,7 @@
 ## \$ f_CodeBook_DataSet_VarName.lbl =  ----
 # https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r
 .tmp$objectname = "f_CodeBook_DataSet_VarName.lbl"
-.tmp$object = function(DataSet, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", output.select = FALSE, VERBOSE = isTRUE(options()$verbose)) {
+.tmp$object = function(DataSet, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", output.select = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
     .packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     for (i.Varname in vec.VarName) {
 
@@ -77,7 +77,7 @@
 ## \$ f_CodeBook_DataSet.lbl =  ----
 # https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r
 .tmp$objectname = "f_CodeBook_DataSet.lbl"
-.tmp$object = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", VERBOSE = isTRUE(options()$verbose)) {
+.tmp$object = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", VERBOSE = isTRUE(getOption("verbose"))) {
     
     DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] =
         DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] %>% mutate_if(is.factor, as.character)

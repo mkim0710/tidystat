@@ -138,7 +138,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## \$ f_vec_ValueOptions.factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_vec_ValueOptions.factor"
-.tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(options()$verbose)) {
+.tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
   }
@@ -171,7 +171,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## \$ f_DataSet_CodeBook.walk2factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_DataSet_CodeBook.walk2factor"
-.tmp$object = function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(options()$verbose)) {
+.tmp$object = function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DataSet in place
   walk2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
