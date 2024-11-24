@@ -418,7 +418,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$objectname = "f_ObjectName.get.dput.echo"
 .tmp$object = function(ObjectName, envir = parent.frame(), ObjectName.parse.eval = FALSE, LinePrefix4CodeText = "\t") {
     # *** 1-liner ***
-    # cat(ObjectName, " == ", get(ObjectName), "  \n", sep = "")
+    # cat(ObjectName, " == ", deparse(get(ObjectName)), "  \n", sep = "")
     if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
     if(ObjectName.parse.eval) {
         ObjectName.get = parse(text = ObjectName) |> eval(envir = envir)
