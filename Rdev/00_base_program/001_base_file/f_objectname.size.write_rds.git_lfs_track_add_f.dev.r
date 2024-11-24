@@ -85,6 +85,12 @@ get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
 ## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
 # Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
 # Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
@@ -93,8 +99,18 @@ get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 
 
 options(DEVMODE = TRUE)
+options(DEBUGMODE = TRUE)
+options(DEBUGMODE = FALSE)
 if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
 
+## *** Example Usage:  
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # > MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # Warning in env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.) :
