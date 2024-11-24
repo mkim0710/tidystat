@@ -114,22 +114,22 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 .tmp$objectname = "str_give_attr_F"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., give.attr = FALSE)  }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: paste_collapse0 =  ----  
+## :: paste0_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "paste_collapse0"
+.tmp$objectname = "paste0_collapse0"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     paste0(..., collapse = "")
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: paste_collapse0.print =  ----  
+## :: paste0_collapse0.print =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "paste_collapse0.print"
+.tmp$objectname = "paste0_collapse0.print"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     print(paste0(..., collapse = ""))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.paste_collapse0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0")
+### & alias = print.paste0_collapse0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste0_collapse0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: cat0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -138,11 +138,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     cat(..., "  \n", sep="")
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.paste_collapse0.cat0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0.cat0")
+### & alias = print.paste0_collapse0.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste0_collapse0.cat0")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = paste_collapse0.cat0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste_collapse0.cat0")
+### & alias = paste0_collapse0.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste0_collapse0.cat0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: deparse.cat0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
