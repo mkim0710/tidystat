@@ -590,7 +590,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/")
     # paste0(path,ifelse(path=="","","/"),filename.ext)
     c(...)[c(...) != ""] |> paste0(collapse = collapse)  
 }
-## Example Usage:
+## *** Example Usage:  
 # f_path_file.paste0_collapse_if_not_empty("a", "b", "", "d")  # "a/b/d"
 # f_path_file.paste0_collapse_if_not_empty("", "b/c")  # "b/c"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1475,7 +1475,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     
     invisible()
 }
-## Example Use :
+## *** Example Usage:  
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
@@ -1660,7 +1660,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     if(is.null(.filename.source.r)) .filename.source.r = basename(.subpath_filename.source.r)
     if(option.function.reload || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
 }
-## Example Usage: 
+## *** Example Usage:  
 # env1$source$f_CodeBook_DataSet.lbl.source.r = NULL
 # .filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # env1$source$f_CodeBook_DataSet.lbl.source.r
@@ -1681,7 +1681,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     # [1] "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
     env1$f$f_sourcePath.execute_if_not_sourced(..., option.function.reload = TRUE)
 }
-## Example Usage: 
+## *** Example Usage:  
 # env1$source$f_CodeBook_DataSet.lbl.source.r = ""
 # .filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # env1$source$f_CodeBook_DataSet.lbl.source.r
