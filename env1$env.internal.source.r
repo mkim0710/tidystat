@@ -211,8 +211,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(what, ...) {  detach
 ### & alias = detach_and_reattach  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "detach_and_reattach")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = reattach  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "reattach")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = attach_again_after_detach  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "attach_again_after_detach")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: reattach.env1_f_env.internal.attach ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "reattach.env1_f_env.internal.attach"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  detach(env1$env.internal.attach); detach(env1$f); attach(env1$f); attach(env1$env.internal.attach); search() |> deparse(width.cutoff = 500L) |> cat("  \n", sep="")  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = detach_and_reattach.env1_f_env.internal.attach  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "detach_and_reattach.env1_f_env.internal.attach")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_environment.attached_search_path.dput ====  
 .tmp$env1_subenv_name = "f"
