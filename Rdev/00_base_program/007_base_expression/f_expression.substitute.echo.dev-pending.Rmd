@@ -775,9 +775,6 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
     cat("    ________________________________________________________________________    \n")
-if(exists("MetaData")) {
-    # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-    cat("    ________________________________________________________________________    \n")
     for (DataSetName in names(MetaData$DataSetNames)) {    
         if(exists(DataSetName)) {
             assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
@@ -792,7 +789,6 @@ if(exists("MetaData")) {
         } else {  message("!exists(",deparse(DataSetName),")")  }
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     }
-}
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
