@@ -1,51 +1,7 @@
 # @@ Now included in env1$env.internal.source.r ----
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-# #@ The templates at source_base_github (default.R, templates-00env1.minimum.Rmd) ++++++++++++   
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
-# # \% Source the source_base_github templates & check if there is no error  ~~~~~~~~~~~~  
-# if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "YES"); options(expressions = 500); "default.R" %>% paste0(env1$path$source_base,"/rstudio-prefs/templates/",.) |> source(); Sys.setenv(PARENT_RENDERING = "NO")  }
-if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "YES"); options(expressions = 500); "default.R" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> source(); Sys.setenv(PARENT_RENDERING = "NO")  }
-# if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "YES"); options(expressions = 500); "templates-00env1.minimum.Rmd" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> download.file("templates-00env1.minimum-test.Rmd") ; "templates-00env1.minimum-test.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename.ext), output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO"); "templates-00env1.minimum-test.html" |> browseURL()  }
+# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
+# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
 
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##________________________________________________________________________________  
-#|________________________________________________________________________________|#  ----  
-#| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
-#| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
-#| Ctrl+Alt+Shift+Left/Right: First/Last tab
-#| Ctrl+Alt+D: Show diff between current and last commit
-#| Ctrl+Alt+M: Commit changes to Git
-#| Ctrl+Shift+O: Show/Hide Document Outline
-#| Alt+Shift+Drag: Multiline Cursor
-#| Ctrl+Shift+F10: Restart R Session 
-#| Ctrl+Alt+B: Run from start to current line 
-#| Shift+F9: Toggle Breakpoint 
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit( paste0("[Working Files List] ",basename(getwd()),".r") )  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# rm(list=ls())
-# rstudioapi::restartSession()  # ctrl+shift+f10
-# https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .filename.source.r = "function.detachAllPackages" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
-#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
-if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
-if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## env1\$path ====  
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
-# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -54,78 +10,6 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
-# .filename.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
-# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
-# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
-# env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")
-# # Rdev
-# # Rdev/-dev
-# # Rdev/00_base_program
-# # Rdev/00_base_program/001_base_file
-# # Rdev/00_base_program/002_base_encoding_RegEx
-# # Rdev/00_base_program/004_base_environment
-# # Rdev/00_base_program/005_base_object
-# # Rdev/00_base_program/007_base_expression
-# # Rdev/00_base_program/009_base_computation
-# # Rdev/00_protocol
-# # Rdev/00_protocol/01_sample_size
-# # Rdev/10_import_clean_datatype
-# # Rdev/10_import_clean_datatype/11_literature
-# # Rdev/10_import_clean_datatype/11_metadata
-# # Rdev/10_import_clean_datatype/12_import_files
-# # Rdev/10_import_clean_datatype/12_import_sqlite
-# # Rdev/10_import_clean_datatype/12_import_vocabulary
-# # Rdev/10_import_clean_datatype/13_duplicated
-# # Rdev/10_import_clean_datatype/13_missing_value
-# # Rdev/10_import_clean_datatype/13_split_fold
-# # Rdev/10_import_clean_datatype/15_cleaning_text
-# # Rdev/10_import_clean_datatype/15_cleaning_time
-# # Rdev/10_import_clean_datatype/16_categorical_factor
-# # Rdev/10_import_clean_datatype/16_categorical_labelled
-# # Rdev/10_import_clean_datatype/17_categorical_indicators
-# # Rdev/10_import_clean_datatype/18_dichotomous_logical
-# # Rdev/10_import_clean_datatype/19_datetime
-# # Rdev/10_import_clean_datatype/19_numeric_integer
-# # Rdev/10_import_clean_datatype/array_list
-# # Rdev/20_tidy_group_by_match
-# # Rdev/20_tidy_group_by_match/23_group_by_PersonID
-# # Rdev/20_tidy_group_by_match/25_study_population
-# # Rdev/20_tidy_group_by_match/27_match
-# # Rdev/30_transform_scale_categorical
-# # Rdev/40_visualize_explore_bivariate_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/43_network
-# # Rdev/40_visualize_explore_bivariate_stratified/44_map
-# # Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
-# # Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/49_time
-# # Rdev/50_model_formula_evaluation
-# # Rdev/50_model_formula_evaluation/51_model_formula
-# # Rdev/50_model_formula_evaluation/52_model_estimation
-# # Rdev/50_model_formula_evaluation/53_model_selection
-# # Rdev/50_model_formula_evaluation/55_model_weighted
-# # Rdev/50_model_formula_evaluation/56_model_bootstrap
-# # Rdev/50_model_formula_evaluation/57_model_time2event
-# # Rdev/50_model_formula_evaluation/57_model_trajectory
-# # Rdev/50_model_formula_evaluation/59_model_evaluation
-# # Rdev/60_communicate_report_export
-# # Rdev/Rmd
-# # Rdev/examples
-# # Rdev/others
-# # Rdev/others/Batch
-# # Rdev/others/VBA
-# # data
-# # git
-# # git/hooks
-# # git/hooks/sample
-# # rstudio-prefs
-# # rstudio-prefs/Rocker
-# # rstudio-prefs/VScode-R
-# # rstudio-prefs/fonts
-# # rstudio-prefs/templates
-# # rstudio-prefs/themes
-# # rstudio-prefs/themes/GitHub 
 ##________________________________________________________________________________  
 "ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
@@ -201,11 +85,15 @@ get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_objectname.size.write_rds.git_lfs_track_add_f ====  
-# Rdev/00_base_terminal/f_objectname.size.write_rds.git_lfs_track_add_f
+## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
+# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
+# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 
+
+options(DEVMODE = TRUE)
+if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
 
 MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # > MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()

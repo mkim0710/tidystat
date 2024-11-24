@@ -1688,7 +1688,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = source.force_reload  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "source.force_reload")
-
+## Example Usage: 
+# options(DEVMODE = TRUE)
+# if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
