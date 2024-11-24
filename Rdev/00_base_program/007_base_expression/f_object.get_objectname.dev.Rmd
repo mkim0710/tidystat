@@ -361,7 +361,10 @@ options(width=120)
 ```
   
   
-## :: f_object.get_objectname <- function(input_object) { ----
+
+
+
+## :: *** f_object.get_objectname <- function(input_object) { ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_object.get_objectname <- function(input_object) {
@@ -597,7 +600,7 @@ tmp_object %>% f_object.get_objectname()
 ```
   
   
-## :: f_object.get_objectname <- function(input_object) { ----
+## :: *** f_object.get_objectname <- function(input_object) { ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Define the refined function
@@ -642,17 +645,91 @@ f_object.get_objectname <- function(input_object) {
 
 # Create test objects
 tmp_object <- 42
-another_object <- "Hello, World!"
 f_object.get_objectname(tmp_object)
 tmp_object |> f_object.get_objectname()
 tmp_object %>% f_object.get_objectname()
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "tmp_object"
 ```
   
   
-###### ECHO \% |> () ----  
+## :: *** f_object.get_objectname <- function(input_object) { ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the lhs of the pipe
+          lhs <- current_call[[2]]
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            return(placeholder)
+          } else {
+            return(lhs_name)
+          }
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "tmp_object"
 ```
   
   
