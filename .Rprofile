@@ -130,7 +130,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     ### env1\$env.internal ----  
     # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/env1%24env.internal.source.r"  
     if(!"env.internal" %in% names(.GlobalEnv$env1)) {
-        .filename.source.r = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r); if(!.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }  
+        .filename.source.r = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r); if(!.filename.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.subpath_filename.source.r = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); message('> source("',.source_base.subpath_filename.source.r,'")'); source(.source_base.subpath_filename.source.r)  }  
     }  
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     # ###### \% env1\$env.internal\$f_path0.list_path_hierarchy() ----  
