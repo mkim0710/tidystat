@@ -238,7 +238,8 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_condition1.if_null_condition2"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(condition1, condition2) {
-  if (!is.null(condition1)) condition1 else condition2
+    # if (!is.null(condition1)) condition1 else condition2
+    rlang::`%||%`(condition1, condition2)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = "%||%"  ----  
@@ -581,16 +582,23 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path_file.paste0_if_not_empty ====  
+## :: f_path_file.paste0_collapse_if_not_empty ====  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path_file.paste0_if_not_empty"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, filename.ext) {  paste0(path,ifelse(path=="","","/"),filename.ext)  }
+.tmp$objectname = "f_path_file.paste0_collapse_if_not_empty"
+# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, filename.ext) {  paste0(path,ifelse(path=="","","/"),filename.ext)  }
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") {  
+    # paste0(path,ifelse(path=="","","/"),filename.ext)
+    c(...)[c(...) != ""] |> paste0(collapse = collapse)  
+}
+## Example Usage:
+# f_path_file.paste0_collapse_if_not_empty("a", "b", "", "d")  # "a/b/d"
+# f_path_file.paste0_collapse_if_not_empty("", "b/c")  # "b/c"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = paste0.path_file.if_not_empty  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste0.path_file.if_not_empty")
+### & alias = paste0_collapse.path_file.if_not_empty  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste0_collapse.path_file.if_not_empty")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = file.path.paste0_if_not_empty  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.path.paste0_if_not_empty")
+### & alias = file.path.paste0_collapse_if_not_empty  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.path.paste0_collapse_if_not_empty")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -1259,7 +1267,8 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
-# Rdev/00_base_terminal/f_objectname.size.write_rds.git_lfs_track_add_f
+# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
+# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
@@ -1669,7 +1678,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     # Browse[1]> list(...)
     # $.subpath_filename.source.r
     # [1] "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
-    env1$f$f_sourcePath.execute_if_not_sourced(option.function.reload = TRUE, ...)
+    env1$f$f_sourcePath.execute_if_not_sourced(..., option.function.reload = TRUE)
 }
 ## Example Usage: 
 # env1$source$f_CodeBook_DataSet.lbl.source.r = ""
