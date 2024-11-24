@@ -186,7 +186,7 @@ options(width=120)
 
 ```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
-options(function.reload = TRUE);  # getOption("function.reload")
+options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
@@ -425,7 +425,7 @@ options(width=120)
     return(DataSet.Date.NA.rmAllNA)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 .regex_pattern_part = "\\.pdelta[1-6]"

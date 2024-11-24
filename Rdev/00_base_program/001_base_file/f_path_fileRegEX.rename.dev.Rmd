@@ -225,7 +225,7 @@ options(width=120)
 
 ```{r .subpath_file.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
-options(function.reload = TRUE);  # getOption("function.reload")
+options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(!is.null(env1$path$LastSourceEditorContext.path_file.ext)) if(env1$path$LastSourceEditorContext.path_file.ext != "") {.subpath = env1$path$LastSourceEditorContext.path_file.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))

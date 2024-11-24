@@ -136,7 +136,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 #     )
 # }
 # ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
-# .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+# .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 
@@ -152,7 +152,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 #   return(version_list)
 # }
 # ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
-# .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+# .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
   
   
 # __________|------  
