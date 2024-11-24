@@ -1289,6 +1289,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     
     # options(DEBUGMODE = TRUE)
+    # options(DEBUGMODE = FALSE)
     if(DEBUGMODE) browser()
     # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
     # List of 15
