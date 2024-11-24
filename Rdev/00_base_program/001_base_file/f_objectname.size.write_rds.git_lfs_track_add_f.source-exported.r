@@ -211,7 +211,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     
     invisible()
 }
-## Example Use :
+## *** Example Usage:  
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
