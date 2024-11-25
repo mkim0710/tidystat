@@ -1358,6 +1358,8 @@ if(exists("MetaData")) {
     "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     
+    MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
+    
     "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     if(!identical(.MetaData0, MetaData)) {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
