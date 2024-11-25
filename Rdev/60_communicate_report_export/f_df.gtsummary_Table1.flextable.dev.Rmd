@@ -722,6 +722,7 @@ DataSet = DataSet.Date.NA.rmAllNA %>%
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
+env1$env.internal.attach$Sys.time.set_t0()
 gtsummary_Table1 = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -745,6 +746,7 @@ gtsummary_Table1 = DataSet %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
+env1$env.internal.attach$Sys.time.from_t0()
 gtsummary_Table1 %>% show_header_names
 gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
 gtsummary_Table1 |>
@@ -938,6 +940,7 @@ if(exists("MetaData")) {
     MetaData$DataSetNames = MetaData$DataSetNames %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DataSetName.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
     MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
     
+    if(!exists(".MetaData0")) .MetaData0 = MetaData
     "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     if(!identical(.MetaData0, MetaData)) {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
