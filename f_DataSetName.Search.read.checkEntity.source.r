@@ -211,6 +211,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     if(print2console) { invisible_or_not = function(x) x } else { invisible_or_not = function(x) invisible(x) }
     # return.list$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
     attributes(return.list)$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
+    attributes(return.list)$str = as.environment(list(DataSetName.get.str.capture.output = attributes(return.list)$str))
     if(print2console) {cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)}
     
     ## \% return.list$head_tail ====
