@@ -694,7 +694,7 @@ gtsummary_Table1 = trial %>%
     bold_labels() |>
     italicize_levels()
 gtsummary_Table1 %>% show_header_names
-gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), test_result , statistic, parameter , p.value) |> print(n=99)
+gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
 gtsummary_Table1 |>
     print() |> invisible()
 ```
@@ -746,7 +746,7 @@ gtsummary_Table1 = DataSet %>%
     bold_labels() |>
     italicize_levels()
 gtsummary_Table1 %>% show_header_names
-gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), test_result , statistic, parameter , p.value) |> print(n=99)
+gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
 gtsummary_Table1 |>
     print() |> invisible()
 ```
