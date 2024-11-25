@@ -1928,6 +1928,7 @@ options(width=120)
   
   
 ```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+if(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
 if(exists("MetaData")) {
     "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
