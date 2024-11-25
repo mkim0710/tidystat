@@ -694,7 +694,7 @@ if(exists("MetaData")) {
     "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     if(!identical(.MetaData0, MetaData)) {
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        .path_file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)}
+        .path_file = paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.MetaData.rds)
         # cat('env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = "', .path_file, '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
         # cat('MetaData |> write_rds("', .path_file, '", compress = "xz") |> system.time()', "  \n", sep="")
         # cat("'git lfs track ",shQuote(.path_file),"' |> system(intern=TRUE)  \n", sep=""); cat("'git add -f ",shQuote(.path_file),"' |> system(intern=TRUE)  \n", sep="")
