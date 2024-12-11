@@ -818,7 +818,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.dir.file.info"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, all.files = TRUE,
+        input_path = ".", pattern = NULL, all.files = FALSE,
         full.names = TRUE, recursive = FALSE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE, 
         arrange_by = c("mtime")) {
@@ -870,7 +870,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.dir.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, all.files = TRUE,
+        input_path = ".", pattern = NULL, all.files = FALSE,
         full.names = TRUE, recursive = FALSE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
