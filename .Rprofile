@@ -168,6 +168,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     attach(env1$f)
     # attach(env1$env.internal)
     attach(env1$env.internal.attach)
+    env1$f$f_path.Rcode_documents.file.info.xlsx(overwrite = FALSE)
 
     attributes(.GlobalEnv$env1$source$.Rprofile)$complete = TRUE
 
