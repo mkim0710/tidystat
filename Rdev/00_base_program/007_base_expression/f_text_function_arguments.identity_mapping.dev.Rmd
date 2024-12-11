@@ -286,8 +286,12 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 options(width=120)
 # @@ Now included in env1$env.internal.source.r ----
 
-# Rdev/00_base_program/007_base_expression/f_text_function_arguments.identity_mapping.dev.Rmd
-f_text_function_arguments.identity_mapping = function(input_text) {
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_text_function_arguments.identity_mapping ====
+## Rdev/00_base_program/007_base_expression/f_text_function_arguments.identity_mapping.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_text_function_arguments.identity_mapping"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_text) {
     # Split the input text by commas to extract each argument
     arguments <- strsplit(input_text, ",\\s*") |> unlist()
     
@@ -301,12 +305,19 @@ f_text_function_arguments.identity_mapping = function(input_text) {
     cat(result); cat("\n")
     invisible(result)
 }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = "f_function_arguments.identity_mapping"  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_function_arguments.identity_mapping")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = "f_arguments.identity_mapping"  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_arguments.identity_mapping")
 
 
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # Example usage
 input_text <- "all.files = TRUE, full.names = TRUE, recursive = FALSE, 
                ignore.case = TRUE, include.dirs = FALSE"
-input_text %>% f_text_function_arguments.identity_mapping
+input_text %>% env1$f$f_text_function_arguments.identity_mapping()
 # all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs
 ```
   
