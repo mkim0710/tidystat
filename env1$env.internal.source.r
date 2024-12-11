@@ -874,11 +874,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         full.names = TRUE, recursive = FALSE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", xl_open = TRUE) {
+        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = TRUE, xl_open = TRUE) {
     
     input_path = input_path |> normalizePath(winslash = "/")
-    
-    input_path.dir.file.info = input_path |> env1$f$f_path.dir.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
     
     if(output_filename.xlsx %>% str_detect("FolderName")) {
         FolderName = input_path |> basename()
@@ -888,8 +886,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         YYMMDD = format(Sys.Date(), "%y%m%d")
         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), YYMMDD)
     }
-    # openxlsx2::write_xlsx(input_path.dir.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
     
+    if(!overwrite && file.exists(output_filename.xlsx)) {
+        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+    }
+    
+    input_path.dir.file.info = input_path |> env1$f$f_path.dir.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+    
+    # openxlsx2::write_xlsx(input_path.dir.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
     DataSet = input_path.dir.file.info
     wb = openxlsx2::write_xlsx(DataSet, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
     # columns_to_hide.index = colnames(DataSet) %>% str_which(paste0(columns_to_hide, collapse = "|"))
@@ -921,8 +925,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-dir.file_Rcode.info-YYMMDD.xlsx"), xl_open = TRUE) {
-    env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, xl_open = xl_open)
+        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-dir.file_Rcode.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+    env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_path.dir.file_documents.info.xlsx  ----  
@@ -933,8 +937,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-dir.file_documents.info-YYMMDD.xlsx"), xl_open = TRUE) {
-    env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, xl_open = xl_open)
+        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-dir.file_documents.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+    env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.size_files =  ----  
