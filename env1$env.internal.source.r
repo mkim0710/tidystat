@@ -813,6 +813,100 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.dir.file.info ====
+## Rdev/00_base_program/001_base_file/f_path.dir.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.dir.file.info"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_path = ".", pattern = NULL, all.files = TRUE,
+        full.names = TRUE, recursive = FALSE,
+        ignore.case = FALSE, include.dirs = TRUE, no.. = TRUE) {
+    library(openxlsx2)
+    
+    # Check if input_path exists
+    if (!dir.exists(input_path)) {
+        stop("The specified input_path does not exist.")
+    }
+    input_path = input_path |> normalizePath(winslash = "/")
+    
+    # List files in the input_path
+    input_path.list.files <- list.files(input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..) 
+    
+    input_path.list.files.file.info = 
+        input_path.list.files |> 
+        file.info() |> 
+        rownames_to_column("path_file") %>% 
+        # select(path_file, size, isdir, mode, mtime, ctime, atime, exe) %>% 
+        transmute(
+            path_file = path_file
+            , path = dirname(path_file) |> as.factor()
+            , path.relative = env1$f$f_path.relative(as.character(path)) |> as.factor()
+            , filename.ext = basename(path_file)
+            , filename = tools::file_path_sans_ext(filename.ext)
+            , ext = tools::file_ext(filename.ext) |> as.factor()
+            , size = size
+            , size_KiB = round(size / 2^10, 2)
+            , size_MiB = round(size / 2^20, 2)
+            , size_GiB = round(size / 2^30, 2)
+            , isdir = isdir
+            , mtime = mtime
+            , ModifiedDate = as.Date(mtime)
+        )
+    input_path.list.files.file.info
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = f_path.list.file.info  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_path.list.file.info")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = list.file.info  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "list.file.info")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = dir.file.info  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.dir.file.info.xlsx ====
+## Rdev/00_base_program/001_base_file/f_path.dir.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.dir.file.info.xlsx"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_path = ".", pattern = NULL, all.files = TRUE,
+        full.names = TRUE, recursive = FALSE,
+        ignore.case = FALSE, include.dirs = TRUE, no.. = TRUE,
+        output_filename.xlsx = "FolderName-dir.file.info.xlsx", xl_open = TRUE) {
+    
+    input_path = input_path |> normalizePath(winslash = "/")
+    
+    input_path.dir.file.info = input_path |> env1$f$f_path.dir.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..)
+    
+    if(output_filename.xlsx == "FolderName-dir.file.info.xlsx") {
+        FolderName = input_path |> basename()
+        output_filename.xlsx = paste0(input_path, "/", FolderName, "-dir.file.info.xlsx")
+    }
+    # openxlsx2::write_xlsx(input_path.dir.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
+    
+    DataSet = input_path.dir.file.info
+    wb = openxlsx2::write_xlsx(DataSet, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
+    # columns_to_hide.index = colnames(DataSet) %>% str_which(paste0(columns_to_hide, collapse = "|"))
+    # columns_to_hide <- c("path_file", "path", "filename")
+    # columns_to_hide.index = which(colnames(DataSet) %in% columns_to_hide)
+    columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+    columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
+    wb$set_col_widths(sheet = 1, cols = columns_to_hide.index, hidden = TRUE)
+    wb %>% wb_save(output_filename.xlsx)
+
+    if(xl_open) openxlsx2::xl_open(output_filename.xlsx)
+    invisible(input_path.dir.file.info)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = f_path.list.file.info.xlsx  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_path.list.file.info")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = list.file.info.xlsx  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "list.file.info")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = dir.file.info.xlsx  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.size_files =  ----  
 # Rdev/00_base_program/f_path.size_files.source.r
 .tmp$objectname = "f_path.size_files"
