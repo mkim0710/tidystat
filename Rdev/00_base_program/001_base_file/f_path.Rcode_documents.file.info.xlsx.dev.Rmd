@@ -458,6 +458,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     # openxlsx2::write_xlsx(input_path.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
     DataSet = input_path.file.info
+    library(openxlsx2)
     wb = openxlsx2::write_xlsx(setNames(list(DataSet), "file.info"), as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
     # columns_to_hide.index = colnames(DataSet) %>% str_which(paste0(columns_to_hide, collapse = "|"))
     # columns_to_hide <- c("path_file", "path", "filename")
@@ -483,7 +484,7 @@ options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Now included in env1$env.internal.source.r ----
 
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_path.Rcode_documents.file.info.xlsx ====
 ## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
@@ -495,6 +496,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         arrange_by = c("mtime"), 
         output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
     
+    library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
     
     if(output_filename.xlsx %>% str_detect("FolderName")) {
@@ -513,33 +515,29 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     wb <- wb_workbook()
     
-    DataSetName = "Rcode"
-    DataSet = input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    wb$add_worksheet(DataSetName)
-    wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
-    wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
-    wb$set_active(sheet = DataSetName, row = 2, col = 5)
-    columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-    columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
-    wb$set_col_widths(sheet = DataSetName, cols = columns_to_hide.index, hidden = TRUE)
     
-    DataSetName = "documents"
-    DataSet = input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    wb$add_worksheet(DataSetName)
-    wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
-    wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
-    wb$set_active(sheet = DataSetName, row = 2, col = 5)
-    columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-    columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
-    wb$set_col_widths(sheet = DataSetName, cols = columns_to_hide.index, hidden = TRUE)
+    vec.DataSetName = c("Rcode", "documents")
+    vec.pattern = c(pattern, "\\.(txt|csv|docx?|xlsx?|pptx?|pdf)$")
     
+    for (i in seq_along(vec.DataSetName)) {
+        DataSetName = vec.DataSetName[i]
+        DataSet = input_path |> env1$f$f_path.file.info(pattern = vec.pattern[i], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+        wb$add_worksheet(DataSetName)
+        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+        wb$freeze_pane(sheet = DataSetName, first_active_row = 2, first_active_col = 5)
+        columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+        columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
+        wb$set_col_widths(sheet = DataSetName, cols = columns_to_hide.index, hidden = TRUE)
+    }
+
     wb %>% wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
-    invisible(input_path.file.info)
+    invisible()
 }
 
-env1$f$f_path.file.info.xlsx()
+env1$f$f_path.Rcode_documents.file.info.xlsx()
 ```
   
   
