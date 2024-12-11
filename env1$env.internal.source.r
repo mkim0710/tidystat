@@ -279,6 +279,32 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     }
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_text_function_arguments.identity_mapping ====
+## Rdev/00_base_program/007_base_expression/f_text_function_arguments.identity_mapping.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_text_function_arguments.identity_mapping"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_text) {
+    # Split the input text by commas to extract each argument
+    arguments <- strsplit(input_text, ",\\s*") |> unlist()
+    
+    # Extract the variable names by splitting on "=" and trimming whitespace
+    variable_names <- gsub("\\s*=.*", "", arguments)
+    variable_names <- trimws(variable_names)
+    
+    # Generate the new text by concatenating "name = name"
+    result <- paste0(variable_names, " = ", variable_names, collapse = ", ")
+    
+    cat(result); cat("\n")
+    invisible(result)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = "f_function_arguments.identity_mapping"  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_function_arguments.identity_mapping")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = "f_arguments.identity_mapping"  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_arguments.identity_mapping")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_condition1.if_null_condition2 ====
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_condition1.if_null_condition2"
