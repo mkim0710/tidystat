@@ -930,15 +930,15 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## ::OPTION:: f_path.dir.file_documents.info.xlsx  ----  
+## ::OPTION:: f_path.dir_documents.file.info.xlsx  ----  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.dir.file_documents.info.xlsx"
+.tmp$objectname = "f_path.dir_documents.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, pattern = "\\.(txt|csv|docx?|xlsx?|pptx?)$", all.files = FALSE,
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-dir.file_documents.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-dir_documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
     env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
