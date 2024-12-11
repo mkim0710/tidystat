@@ -893,6 +893,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     # openxlsx2::write_xlsx(input_path.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
     DataSet = input_path.file.info
+    library(openxlsx2)
     wb = openxlsx2::write_xlsx(setNames(list(DataSet), "file.info"), as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
     # columns_to_hide.index = colnames(DataSet) %>% str_which(paste0(columns_to_hide, collapse = "|"))
     # columns_to_hide <- c("path_file", "path", "filename")
@@ -928,7 +929,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.documents.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = env1$path$path1, pattern = "\\.(txt|csv|docx?|xlsx?|pptx?)$", all.files = FALSE,
+        input_path = env1$path$path1, pattern = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf)$", all.files = FALSE,
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
