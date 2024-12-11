@@ -889,6 +889,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        return(invisible())
     }
     
     input_path.dir.file.info = input_path |> env1$f$f_path.dir.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
