@@ -913,9 +913,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### & alias = dir.file.info.xlsx  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## ::OPTION:: f_path.list.file_Rcode.info.xlsx  ----  
+## ::OPTION:: f_path.dir.file_Rcode.info.xlsx  ----  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.list.file_Rcode.info.xlsx"
+.tmp$objectname = "f_path.dir.file_Rcode.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, pattern = "\\.(r|rmd)$", all.files = FALSE,
         full.names = TRUE, recursive = TRUE,
@@ -925,9 +925,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     env1$f$f_path.dir.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, xl_open = xl_open)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## ::OPTION:: f_path.list.file_documents.info.xlsx  ----  
+## ::OPTION:: f_path.dir.file_documents.info.xlsx  ----  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.list.file_documents.info.xlsx"
+.tmp$objectname = "f_path.dir.file_documents.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, pattern = "\\.(txt|csv|docx?|xlsx?|pptx?)$", all.files = FALSE,
         full.names = TRUE, recursive = TRUE,
