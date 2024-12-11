@@ -913,18 +913,6 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### & alias = dir.file.info.xlsx  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## ::OPTION:: f_path.Rcode_documents.file.info.xlsx  ----  
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.Rcode_documents.file.info.xlsx"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = env1$path$path1, pattern = "\\.(r|rmd)$", all.files = FALSE,
-        full.names = TRUE, recursive = TRUE,
-        ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
-        arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
-    env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
-}
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_path.documents.file.info.xlsx  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.documents.file.info.xlsx"
@@ -936,6 +924,59 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
     env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_path.Rcode_documents.file.info.xlsx ====
+## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.Rcode_documents.file.info.xlsx"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_path = env1$path$path1, pattern = "\\.(r|rmd)$", all.files = FALSE,
+        full.names = TRUE, recursive = TRUE,
+        ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
+        arrange_by = c("mtime"), 
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+    
+    library(openxlsx2)
+    input_path = input_path |> normalizePath(winslash = "/")
+    
+    if(output_filename.xlsx %>% str_detect("FolderName")) {
+        FolderName = input_path |> basename()
+        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
+    }
+    if(output_filename.xlsx %>% str_detect("YYMMDD")) {
+        YYMMDD = format(Sys.Date(), "%y%m%d")
+        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), YYMMDD)
+    }
+    
+    if(!overwrite && file.exists(output_filename.xlsx)) {
+        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        return(invisible())
+    }
+    
+    wb <- wb_workbook()
+    
+    
+    vec.DataSetName = c("Rcode", "documents")
+    vec.pattern = c(pattern, "\\.(txt|csv|docx?|xlsx?|pptx?|pdf)$")
+    
+    for (i in seq_along(vec.DataSetName)) {
+        DataSetName = vec.DataSetName[i]
+        DataSet = input_path |> env1$f$f_path.file.info(pattern = vec.pattern[i], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+        wb$add_worksheet(DataSetName)
+        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+        wb$freeze_pane(sheet = DataSetName, first_active_row = 2, first_active_col = 5)
+        columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+        columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
+        wb$set_col_widths(sheet = DataSetName, cols = columns_to_hide.index, hidden = TRUE)
+    }
+
+    wb %>% wb_save(output_filename.xlsx)
+
+    if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    invisible()
+}
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.size_files =  ----  
 # Rdev/00_base_program/f_path.size_files.source.r
