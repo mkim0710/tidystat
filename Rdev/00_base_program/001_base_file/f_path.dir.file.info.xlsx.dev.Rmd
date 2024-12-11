@@ -1,4 +1,5 @@
 ---
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
 title: "`r params$doc_title`"
 author: "MHKim"
@@ -182,10 +183,10 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd()) #----   
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_file.ext ====  
+### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_file.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$LastSourceEditorContext.path_file.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
@@ -213,6 +214,63 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+  
+  
+## dir() |> file.info() |> rownames_to_column("FileName") |> str() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+# dir() |> file.info() |> str()
+dir() |> file.info() %>% dimnames() %>% str
+dir() |> file.info() |> rownames_to_column("filename.ext") |> str()
+dir(full.names = TRUE) |> file.info() |> rownames_to_column("path_file") |> str()
+# > dir() |> file.info() %>% dimnames() %>% str
+# List of 2
+#  $ : chr [1:33] "f_file.encrypt_hybrid.dev.r" "f_file.git_lfs_track_add_f.dev.r" "f_file.remove.dev.r" "f_file.switch_open.dev.r" ...
+#  $ : chr [1:7] "size" "isdir" "mode" "mtime" ...
+# > dir() |> file.info() |> rownames_to_column("filename.ext") |> str()
+# 'data.frame':	33 obs. of  8 variables:
+#  $ filename.ext: chr  "f_file.encrypt_hybrid.dev.r" "f_file.git_lfs_track_add_f.dev.r" "f_file.remove.dev.r" "f_file.switch_open.dev.r" ...
+#  $ size        : num  10061 4358 11012 554 15952 ...
+#  $ isdir       : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+#  $ mode        : 'octmode' int  666 666 666 666 666 666 666 666 666 666 ...
+#  $ mtime       : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
+#  $ ctime       : POSIXct, format: "2024-10-28 01:10:41" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-10-28 01:10:41" ...
+#  $ atime       : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 08:13:33" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
+#  $ exe         : chr  "no" "no" "no" "no" ...
+# > dir(full.names = TRUE) |> file.info() |> rownames_to_column("path_file") |> str()
+# 'data.frame':	33 obs. of  8 variables:
+#  $ path_file: chr  "./f_file.encrypt_hybrid.dev.r" "./f_file.git_lfs_track_add_f.dev.r" "./f_file.remove.dev.r" "./f_file.switch_open.dev.r" ...
+#  $ size     : num  10061 4358 11012 554 15952 ...
+#  $ isdir    : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+#  $ mode     : 'octmode' int  666 666 666 666 666 666 666 666 666 666 ...
+#  $ mtime    : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
+#  $ ctime    : POSIXct, format: "2024-10-28 01:10:41" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-10-28 01:10:41" ...
+#  $ atime    : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 08:13:33" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
+#  $ exe      : chr  "no" "no" "no" "no" ...
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
 # @@ START) source ----  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -220,198 +278,190 @@ options(width=120)
 ```
 
 
-```{r .subpath_file.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$LastSourceEditorContext.path_file.ext)) if(env1$path$LastSourceEditorContext.path_file.ext != "") {.subpath = env1$path$LastSourceEditorContext.path_file.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") {.subpath = env1$path$LastSourceEditorContext.path_filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # .filename.source.r = "default.template" |> paste0(".source.r")
-if(!is.null(env1$path$LastSourceEditorContext.path_file.ext)) if(env1$path$LastSourceEditorContext.path_file.ext != "") {.sourcename_root = env1$path$LastSourceEditorContext.path_file.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") {.sourcename_root = env1$path$LastSourceEditorContext.path_filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 env1$path$.subpath = .subpath
 if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 .filename.source.r = .sourcename_root |> paste0(".source.r")
 env1$path$.sourcename_root = .sourcename_root
-env1$path$.subpath_file.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath_file.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath_file.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
+env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
+env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
+env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
 cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.subpath_file.dev.r, "----  \n",
-    "#### ",env1$path$.subpath_file.dev.Rmd, "----  \n",
-    "#### ",env1$path$.subpath_file.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_file.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_file.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_file.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_file.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_file.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_file.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_file.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_file.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_file.ext)) if(env1$path$LastSourceEditorContext.path_file.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_file.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_file.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_file.ext)) if(env1$path$LastSourceEditorContext.path_file.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_file.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_file.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_file.ext)) if(env1$path$LastSourceEditorContext.path_file.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_file.ext));', "  \n",
+    "#### ",env1$path$.subpath_filename.dev.r, "----  \n",
+    "#### ",env1$path$.subpath_filename.dev.Rmd, "----  \n",
+    "#### ",env1$path$.subpath_filename.source.r, "----  \n",
+    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath_file.source.r) ) ----  
+# # \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 ```
   
   
 # __________|------  
 # @@ START) function ----  
-# https://chatgpt.com/c/6718b61e-2950-800e-aaa3-8b082eec127f
-## :: f_path_fileRegEX.rename()  
+## :: f_path.dir.file.info = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+
+?list.files
+# list.files(path = ".", pattern = NULL, all.files = FALSE,
+#            full.names = FALSE, recursive = FALSE,
+#            ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)
+# 
+#        dir(path = ".", pattern = NULL, all.files = FALSE,
+#            full.names = FALSE, recursive = FALSE,
+#            ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)
+
+env1$f$f_text_function_arguments.identity_mapping("pattern = NULL, all.files = FALSE,
+           full.names = FALSE, recursive = FALSE,
+           ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE")
+# pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..
+
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Now included in env1$env.internal.source.r ----
 
-# f_path_fileRegEX.rename <- function(path = ".", gsub.pattern_from, gsub.replacement_to, full.names = TRUE, recursive = FALSE, move_to_renamed_path = FALSE, execute = FALSE) {
-#     
-#     if(move_to_renamed_path) stop("move_to_renamed_path not yet implemented.")
-#     
-#     cat("path == ", deparse(path), "\n", sep="")
-#     cat("path |> normalizePath() == ", deparse(path |> normalizePath()), "\n", sep="")
-#     
-#     # path.normalizePath = path |> normalizePath()
-#     
-#     # Get a list of files that match the old pattern, recursively if specified
-#     old_path_files <- list.files(path, pattern = gsub.pattern_from, full.names = full.names, recursive = recursive)
-#     
-#     # Check if there are any files to rename
-#     if (length(old_path_files) == 0) {
-#         message("No files found to rename.")
-#         return(NULL)
-#     }
-#     
-#     # Generate the new filenames by replacing the pattern in the old filenames
-#     old_filename.ext = basename(old_path_files)
-#     old_path = ifelse(old_path_files == basename(old_path_files), "", dirname(old_path_files))
-#     new_filename.ext = gsub(gsub.pattern_from, gsub.replacement_to, old_filename.ext)
-#     new_path_files <- ifelse(old_path == "", "", paste0(old_path, "/")) |> paste0(new_filename.ext)
-#     
-#     # Check if any directories are involved, warn user if necessary
-#     old_dirs <- old_path_files[file.info(old_path_files)$isdir]
-#     if (length(old_dirs) > 0) {
-#         warning("The following directories are being renamed. Be cautious, especially if they are not empty:  \n", deparse(old_dirs), "\n")
-#     }
-#     
-#     
-#     # Normalize paths only if full.names is TRUE
-#     if (full.names) {
-#         old_path_files <- old_path_files |> normalizePath(mustWork = TRUE)
-#         new_path_files <- new_path_files |> normalizePath(mustWork = FALSE)
-#     }
-#     
-#     # Check if the old files exist before renaming
-#     files_exist <- file.exists(old_path_files)
-#     if (!all(files_exist)) {
-#         warning("Some files do not exist or cannot be accessed:  \n", deparse(old_path_files[!files_exist]),  "\n")
-#         # return(NULL)
-#     }
-#     
-#     # If preview is requested, just return the proposed changes without executing
-#     if (!execute) {
-#         message("\n  *** Preview mode: No paths or files have been renamed. ***  ")
-#         # return(data.frame(old_path_files, new_path_files))
-#         # return(set_names(old_path_files, new_path_files))
-#         return(data.frame(old_path_files, new_path_files) |> t())
-#     } else {
-#         # If execute is TRUE, perform the renaming (after normalizing paths)
-#         renamed <- file.rename(from = old_path_files, to = new_path_files)
-#         
-#         # Check the result and provide feedback
-#         if (all(renamed)) {
-#             message("All paths and files renamed successfully.")
-#         } else {
-#             # Handle renaming errors (due to file system issues, permissions, etc.)
-#             warning("Some files could not be renamed, likely due to file system limitations or permissions:  \n", deparse(old_path_files[!renamed]), "\n")
-#         }
-#         return(data.frame(old_path_files, new_path_files, renamed))
-#     
-#     }
-#     
-# }
-
-# Example usage:
-# Preview the renaming (no changes applied):
-# f_path_fileRegEX.rename("path/to/your/directory", "old", "new", recursive = TRUE, execute = FALSE)
-
-# Execute the renaming:
-# f_path_fileRegEX.rename("path/to/your/directory", "old", "new", recursive = TRUE, execute = TRUE)
-
-```
-  
-  
-### env1$path$path1 |> f_path_fileRegEX.rename(gsub.pattern_from = "source", gsub.replacement_to = "dev") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-gsub.pattern_from = "source"
-gsub.replacement_to = "dev"
-
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
-
-
-```
-  
-  
-### env1$path$path1 |> f_path_fileRegEX.rename(gsub.pattern_from = "data", gsub.replacement_to = "DataSet") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-gsub.pattern_from = "data"
-gsub.replacement_to = "DataSet"
-
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = FALSE)
-
-
-```
-  
-  
-### env1$path$path1 |> f_path_fileRegEX.rename(gsub.pattern_from = "labelled", gsub.replacement_to = "lbl") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-gsub.pattern_from = "labelled"
-gsub.replacement_to = "lbl"
-
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = FALSE)
-cat("    ________________________________________________________________________    \n")
-# env1$path$path1 %>% env1$env.internal.attach$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = TRUE)
-
-```
-  
-    path == "/home/rstudio/github_tidystat"
-    path |> normalizePath() == "/home/rstudio/github_tidystat"
-    No files found to rename.
-    NULL
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-    path == "/home/rstudio/github_tidystat"
-    path |> normalizePath() == "/home/rstudio/github_tidystat"
-    No files found to rename.
-    NULL
-        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-    path == "/home/rstudio/github_tidystat"
-    path |> normalizePath() == "/home/rstudio/github_tidystat"
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.dir.file.info ====
+## Rdev/00_base_program/001_base_file/f_path.dir.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.dir.file.info"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_path = ".", pattern = NULL, all.files = TRUE,
+        full.names = TRUE, recursive = FALSE,
+        ignore.case = FALSE, include.dirs = TRUE, no.. = TRUE) {
+    library(openxlsx2)
     
-      *** Preview mode: No paths or files have been renamed. ***  
-                   [,1]                                                                                                                
-    old_path_files "/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_vec_labelled.as_factor.dev.r"
-    new_path_files "/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_vec_lbl.as_factor.dev.r"     
-        ________________________________________________________________________    
-    path == "/home/rstudio/github_tidystat"
-    path |> normalizePath() == "/home/rstudio/github_tidystat"
-    All paths and files renamed successfully.
-                                                                                                          old_path_files
-    1 /home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_vec_labelled.as_factor.dev.r
-                                                                                                     new_path_files renamed
-    1 /home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_vec_lbl.as_factor.dev.r    TRUE
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # Check if input_path exists
+    if (!dir.exists(input_path)) {
+        stop("The specified input_path does not exist.")
+    }
+    input_path = input_path |> normalizePath(winslash = "/")
+    
+    # List files in the input_path
+    input_path.list.files <- list.files(input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..) 
+    
+    input_path.list.files.file.info = 
+        input_path.list.files |> 
+        file.info() |> 
+        rownames_to_column("path_file") %>% 
+        # select(path_file, size, isdir, mode, mtime, ctime, atime, exe) %>% 
+        transmute(
+            path_file = path_file
+            , path = dirname(path_file) |> as.factor()
+            , path.relative = env1$f$f_path.relative(as.character(path)) |> as.factor()
+            , filename.ext = basename(path_file)
+            , filename = tools::file_path_sans_ext(filename.ext)
+            , ext = tools::file_ext(filename.ext) |> as.factor()
+            , size = size
+            , size_KiB = round(size / 2^10, 2)
+            , size_MiB = round(size / 2^20, 2)
+            , size_GiB = round(size / 2^30, 2)
+            , isdir = isdir
+            , mtime = mtime
+            , ModifiedDate = as.Date(mtime)
+        )
+    input_path.list.files.file.info
+}
+env1$f$f_path.dir.file.info() %>% str()
+# > env1$f$f_path.dir.file.info() %>% str()
+# 'data.frame':	39 obs. of  13 variables:
+#  $ path_file    : chr  "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/~$001_base_file-dir.file.info.xlsx" "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/001_base_file-dir.file.info.xlsx" "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/f_file.encrypt_hybrid.dev.r" "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/f_file.git_lfs_track_add_f.dev.r" ...
+#  $ path         : Factor w/ 1 level "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file": 1 1 1 1 1 1 1 1 1 1 ...
+#  $ path.relative: Factor w/ 1 level "Rdev/00_base_program/001_base_file": 1 1 1 1 1 1 1 1 1 1 ...
+#  $ filename.ext : chr  "~$001_base_file-dir.file.info.xlsx" "001_base_file-dir.file.info.xlsx" "f_file.encrypt_hybrid.dev.r" "f_file.git_lfs_track_add_f.dev.r" ...
+#  $ filename     : chr  "~$001_base_file-dir.file.info" "001_base_file-dir.file.info" "f_file.encrypt_hybrid.dev" "f_file.git_lfs_track_add_f.dev" ...
+#  $ ext          : Factor w/ 5 levels "html","r","Rmd",..: 4 4 2 2 2 2 2 2 2 2 ...
+#  $ size         : num  165 9651 10061 4358 11012 ...
+#  $ size_KiB     : num  0.16 9.42 9.83 4.26 10.75 ...
+#  $ size_MiB     : num  0 0.01 0.01 0 0.01 0 0.02 0.01 0.02 0.02 ...
+#  $ size_GiB     : num  0 0 0 0 0 0 0 0 0 0 ...
+#  $ isdir        : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+#  $ mtime        : POSIXct, format: "2024-12-12 01:39:57" "2024-12-12 01:39:55" "2024-11-11 17:41:43" "2024-10-28 01:10:41" ...
+#  $ ModifiedDate : Date, format: "2024-12-11" "2024-12-11" "2024-11-11" "2024-10-27" ...
+```
+
+### \% |> f_path.dir.file.info()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+env1$path$path1 |> env1$f$f_path.dir.file.info() %>% str()
+# 'data.frame':	136 obs. of  12 variables:
+#  $ path_file   : chr  "D:/D_Repositories/github_tidystat/-info" "D:/D_Repositories/github_tidystat/-MAGB760M13700KF-3.Rhistory" "D:/D_Repositories/github_tidystat/-MAGB760M13700KF-4.Rhistory" "D:/D_Repositories/github_tidystat/-MAGB760M13700KF-5.Rhistory" ...
+#  $ path        : chr  "D:/D_Repositories/github_tidystat" "D:/D_Repositories/github_tidystat" "D:/D_Repositories/github_tidystat" "D:/D_Repositories/github_tidystat" ...
+#  $ filename.ext: chr  "-info" "-MAGB760M13700KF-3.Rhistory" "-MAGB760M13700KF-4.Rhistory" "-MAGB760M13700KF-5.Rhistory" ...
+#  $ filename    : chr  "-info" "-MAGB760M13700KF-3" "-MAGB760M13700KF-4" "-MAGB760M13700KF-5" ...
+#  $ ext         : chr  "" "Rhistory" "Rhistory" "Rhistory" ...
+#  $ size        : num  4096 44773 46221 47010 46944 ...
+#  $ size_KiB    : num  4 43.7 45.1 45.9 45.8 ...
+#  $ size_MiB    : num  0 0.04 0.04 0.04 0.04 0.04 0.01 0 0 0 ...
+#  $ size_GiB    : num  0 0 0 0 0 0 0 0 0 0 ...
+#  $ isdir       : logi  TRUE FALSE FALSE FALSE FALSE FALSE ...
+#  $ mtime       : POSIXct, format: "2024-10-28 09:09:19" "2024-05-21 02:35:34" "2024-05-23 22:22:49" "2024-06-05 21:16:50" ...
+#  $ ModifiedDate: Date, format: "2024-10-28" "2024-05-20" "2024-05-23" "2024-06-05" ...
+```
+  
+  
+## :: f_path.dir.file.info.xlsx = function() -dev -pending  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ Now included in env1$env.internal.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.dir.file.info.xlsx ====
+## Rdev/00_base_program/001_base_file/f_path.dir.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.dir.file.info.xlsx"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_path = ".", pattern = NULL, all.files = TRUE,
+        full.names = TRUE, recursive = FALSE,
+        ignore.case = FALSE, include.dirs = TRUE, no.. = TRUE,
+        output_filename.xlsx = "FolderName-dir.file.info.xlsx", xl_open = TRUE) {
+    
+    input_path = input_path |> normalizePath(winslash = "/")
+    
+    input_path.dir.file.info = input_path |> env1$f$f_path.dir.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..)
+    
+    if(output_filename.xlsx == "FolderName-dir.file.info.xlsx") {
+        FolderName = input_path |> basename()
+        output_filename.xlsx = paste0(input_path, "/", FolderName, "-dir.file.info.xlsx")
+    }
+    # openxlsx2::write_xlsx(input_path.dir.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
+    
+    DataSet = input_path.dir.file.info
+    wb = openxlsx2::write_xlsx(DataSet, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
+    # columns_to_hide.index = colnames(DataSet) %>% str_which(paste0(columns_to_hide, collapse = "|"))
+    # columns_to_hide <- c("path_file", "path", "filename")
+    # columns_to_hide.index = which(colnames(DataSet) %in% columns_to_hide)
+    columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+    columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
+    wb$set_col_widths(sheet = 1, cols = columns_to_hide.index, hidden = TRUE)
+    wb %>% wb_save(output_filename.xlsx)
+
+    if(xl_open) openxlsx2::xl_open(output_filename.xlsx)
+    invisible(input_path.dir.file.info)
+}
+
+env1$f$f_path.dir.file.info.xlsx()
+```
   
   
 ###### ECHO \% |> () ----  
@@ -426,56 +476,6 @@ options(width=120)
 options(width=120)
 
 ```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
   
   
 # __________|------  
@@ -603,46 +603,24 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 ```{r createBackup, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_file.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_file.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```
   
   
-```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-env1$path$LastSourceEditorContext.path_file.pdf = env1$path$LastSourceEditorContext.path_file.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-env1$path$LastSourceEditorContext.path_file.html = env1$path$LastSourceEditorContext.path_file.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-if (Sys.getenv("PARENT_RENDERING") != "YES") {
-    if (Sys.info()["sysname"] == "Windows") {
-        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
-
-        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_file.ext)),', output_format = "pdf_document")  \n')
-        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_file.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
-        .path_file = env1$path$LastSourceEditorContext.path_file.pdf %>% {paste0(env1$path$path1,"/",.)}
-        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE)
-        env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_file.ext = .path_file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
-    }
-}
-# env1$path$LastSourceEditorContext.path_file.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_file.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_file.ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
-# cat("    ________________________________________________________________________    \n")
-env1$path$LastSourceEditorContext.path_file.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_file.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_file.ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
-```
-  
-  
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
-env1$path$LastSourceEditorContext.path_file.nb.html = env1$path$LastSourceEditorContext.path_file.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_file.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$LastSourceEditorContext.path_file.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_file.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_file.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_file.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_file.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+env1$path$LastSourceEditorContext.path_filename.nb.html = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_file.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_file.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   
