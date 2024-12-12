@@ -873,7 +873,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     library(openxlsx2)
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
-        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
@@ -938,7 +938,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
-        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
@@ -1010,7 +1010,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
-        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
