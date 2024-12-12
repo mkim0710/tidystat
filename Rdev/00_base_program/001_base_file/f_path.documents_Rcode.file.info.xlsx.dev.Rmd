@@ -470,13 +470,129 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
     vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
-    wb$wb_save(output_filename.xlsx)
+    wb |> wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible(input_path.file.info)
 }
 
 env1$f$f_path.file.info.xlsx()
+```
+  
+  
+## :: f_path.dir.file_documents_Rcode.info.xlsx = function() -dev -pending  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# # @@ Now included in env1$env.internal.source.r ----
+# 
+# ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# ## :: f_path.documents_Rcode.file.info.xlsx ====
+# ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
+# ## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+# .tmp$env1_subenv_name = "f"
+# .tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
+# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+#         input_path = env1$path$path1,
+#         list_DataSetName_pattern = list(documents = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"),
+#         all.files = FALSE, full.names = TRUE, recursive = TRUE,
+#         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
+#         arrange_by = c("mtime"),
+#         output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-documents_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
+# 
+#     library(openxlsx2)
+#     input_path = input_path |> normalizePath(winslash = "/")
+# 
+#     if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
+# 
+#     if(output_filename.xlsx %>% str_detect("FolderName")) {
+#         FolderName = input_path |> basename()
+#         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
+#     }
+#     if(output_filename.xlsx %>% str_detect("YYMMDD")) {
+#         YYMMDD = format(Sys.Date(), "%y%m%d")
+#         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), YYMMDD)
+#     }
+# 
+#     if(!overwrite && file.exists(output_filename.xlsx)) {
+#         warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+#         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+#         return(invisible())
+#     }
+# 
+#     wb <- wb_workbook()
+# 
+# 
+#     for (DataSetName in names(list_DataSetName_pattern)) {
+# 
+#         DataSet = input_path |> env1$f$f_path.file.info(pattern = list_DataSetName_pattern[[DataSetName]], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+#         wb$add_worksheet(DataSetName)
+#         wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+#         wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+#         wb$freeze_pane(sheet = DataSetName, first_active_row = 2, first_active_col = 5)
+#         vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+#         vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
+#         wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
+#     }
+# 
+#     wb |> wb_save(output_filename.xlsx)
+# 
+#     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+#     invisible()
+# }
+# 
+# env1$f$f_path.documents_Rcode.file.info.xlsx(overwrite = TRUE)
+```
+  
+  
+## :: f_list_df.write_xlsx_table = function() -dev -pending  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_list_df.write_xlsx_table ====
+## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_list_df.write_xlsx_table" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xl_open = TRUE) {
+    library(openxlsx2)
+    
+    if(!overwrite && file.exists(output_filename.xlsx)) {
+        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        return(invisible())
+    }
+    
+    wb <- wb_workbook()
+    
+    # Add each data.frame to a new worksheet
+    for (DataSetName in names(list_df)) {
+        DataSet <- list_df[[DataSetName]]
+        
+        # Add worksheet and data table
+        wb$add_worksheet(DataSetName)
+        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+        
+        # Auto-adjust column widths
+        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+        
+        # Freeze panes (optional configuration)
+        wb$freeze_pane(sheet = DataSetName, first_active_row = first_active_row, first_active_col = first_active_col)
+        
+        # Hide unwanted columns, if specified
+        if (!is.null(vec_colnames_to_show)) {
+            vec_col_index_to_hide <- which(!colnames(DataSet) %in% vec_colnames_to_show)
+            wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
+        }
+    }
+    
+    wb |> wb_save(output_filename.xlsx)
+    
+    if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    invisible(output_filename.xlsx)
+}
 ```
   
   
@@ -522,30 +638,25 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         return(invisible())
     }
     
-    wb <- wb_workbook()
+    list_df = list_DataSetName_pattern %>% map(function(pattern) {
+        input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+    })
     
-
-    for (DataSetName in names(list_DataSetName_pattern)) {
-        
-        DataSet = input_path |> env1$f$f_path.file.info(pattern = list_DataSetName_pattern[[DataSetName]], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-        wb$add_worksheet(DataSetName)
-        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
-        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
-        wb$freeze_pane(sheet = DataSetName, first_active_row = 2, first_active_col = 5)
-        vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-        vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
-        wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
-    }
-
-    wb$wb_save(output_filename.xlsx)
-
-    if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    env1$f$f_list_df.write_xlsx_table(list_df = list_df, output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xl_open = xl_open)
+    
     invisible()
 }
 
 env1$f$f_path.documents_Rcode.file.info.xlsx(overwrite = TRUE)
 ```
-  
+
+
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+
   
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}

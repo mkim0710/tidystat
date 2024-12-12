@@ -990,7 +990,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
         output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-documents_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) { 
-    
+
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
     
@@ -1011,24 +1011,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         return(invisible())
     }
     
-    wb <- wb_workbook()
+    list_df = list_DataSetName_pattern %>% map(function(pattern) {
+        input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+    })
     
-
-    for (DataSetName in names(list_DataSetName_pattern)) {
-        
-        DataSet = input_path |> env1$f$f_path.file.info(pattern = list_DataSetName_pattern[[DataSetName]], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-        wb$add_worksheet(DataSetName)
-        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
-        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
-        wb$freeze_pane(sheet = DataSetName, first_active_row = 2, first_active_col = 5)
-        vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-        vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
-        wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
-    }
-
-    wb |> wb_save(output_filename.xlsx)
-
-    if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    env1$f$f_list_df.write_xlsx_table(list_df = list_df, output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xl_open = xl_open)
+    
     invisible()
 }
 
