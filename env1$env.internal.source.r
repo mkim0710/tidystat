@@ -818,8 +818,8 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, all.files = FALSE,
-        full.names = TRUE, recursive = FALSE,
+        input_path = ".", pattern = NULL, 
+        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE, 
         arrange_by = c("mtime")) {
     library(openxlsx2)
@@ -865,10 +865,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ## :: f_path.file.info.xlsx ====
 ## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.file.info.xlsx"
+.tmp$objectname = "f_path.file.info.xlsx" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, all.files = FALSE,
-        full.names = TRUE, recursive = FALSE,
+        input_path = ".", pattern = NULL, 
+        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
         output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = FALSE, xl_open = TRUE) {
@@ -921,8 +921,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$objectname = "f_path.documents.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
-        list_DataSetName_pattern = list(documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
-        all.files = FALSE, full.names = TRUE, recursive = TRUE,
+        pattern = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$", 
+        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
         output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {

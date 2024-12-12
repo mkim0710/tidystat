@@ -342,8 +342,8 @@ env1$f$f_text_function_arguments.identity_mapping("pattern = NULL, all.files = F
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, all.files = FALSE,
-        full.names = TRUE, recursive = FALSE,
+        input_path = ".", pattern = NULL, 
+        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE, 
         arrange_by = c("mtime")) {
     library(openxlsx2)
@@ -432,8 +432,8 @@ options(width=120)
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, all.files = TRUE,
-        full.names = TRUE, recursive = FALSE,
+        input_path = ".", pattern = NULL, 
+        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
         output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = TRUE, xl_open = TRUE) {
