@@ -1013,16 +1013,16 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     list_df = list_DataSetName_pattern %>% map(function(pattern) {
         input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    }) %>% set_names(paste0(names(list_DataSetName_pattern),"_subdirs"))
+    }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"subdirs"))
     
     list_df_path1 = list_DataSetName_pattern %>% map(function(pattern) {
         input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = FALSE, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    }) %>% set_names(paste0(names(list_DataSetName_pattern),"_path1"))
+    }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"path1"))
 
     list_df_ProjectDocuments = map2(list_df, list_df_path1, function(df, df_path1) {
         bind_rows(df_path1, df %>% filter(path %>% str_detect("ProjectDocuments")))
-    # }) %>% set_names(paste0(names(list_DataSetName_pattern),"_PrjDoc"))
-    }) %>% set_names(paste0(names(list_DataSetName_pattern),"_path1"))
+    # }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"PrjDoc"))
+    }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD))
     
     env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xl_open = xl_open)
     
