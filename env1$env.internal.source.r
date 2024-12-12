@@ -871,7 +871,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         full.names = TRUE, recursive = FALSE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = TRUE, xl_open = TRUE) {
+        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = FALSE, xl_open = TRUE) {
     
     input_path = input_path |> normalizePath(winslash = "/")
     
@@ -886,6 +886,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
     
@@ -921,7 +922,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
     env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -934,7 +935,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
     
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
@@ -950,6 +951,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
     
