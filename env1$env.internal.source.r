@@ -814,7 +814,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
-## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -863,7 +863,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info.xlsx ====
-## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -875,6 +875,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     input_path = input_path |> normalizePath(winslash = "/")
     
+    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
+
     if(output_filename.xlsx %>% str_detect("FolderName")) {
         FolderName = input_path |> basename()
         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
@@ -918,27 +920,30 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.documents.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = env1$path$path1, pattern = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf)$", all.files = FALSE,
-        full.names = TRUE, recursive = TRUE,
+        input_path = env1$path$path1, 
+        list_DataSetName_pattern = list(Rcode = "\\.(r|rmd)$", documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$"), 
+        all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
         output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
     env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_path.Rcode_documents.file.info.xlsx ====
-## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+## :: f_path.documents_Rcode.file.info.xlsx ====
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.Rcode_documents.file.info.xlsx"
+.tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, pattern = "\\.(r|rmd)$", all.files = FALSE,
         full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-documents_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
     
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
+    
+    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
     
     if(output_filename.xlsx %>% str_detect("FolderName")) {
         FolderName = input_path |> basename()
@@ -956,6 +961,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     
     wb <- wb_workbook()
+    
+    
     
     
     vec.DataSetName = c("Rcode", "documents")

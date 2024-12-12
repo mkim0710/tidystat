@@ -338,7 +338,7 @@ env1$f$f_text_function_arguments.identity_mapping("pattern = NULL, all.files = F
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
-## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -428,7 +428,7 @@ options(width=120)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info.xlsx ====
-## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -439,6 +439,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = TRUE, xl_open = TRUE) {
     
     input_path = input_path |> normalizePath(winslash = "/")
+    
+    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
     
     if(output_filename.xlsx %>% str_detect("FolderName")) {
         FolderName = input_path |> basename()
@@ -476,7 +478,7 @@ env1$f$f_path.file.info.xlsx()
 ```
   
   
-## :: f_path.dir.file_Rcode_documents.info.xlsx = function() -dev -pending  
+## :: f_path.dir.file_documents_Rcode.info.xlsx = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
@@ -485,19 +487,22 @@ options(width=120)
 # @@ Now included in env1$env.internal.source.r ----
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_path.Rcode_documents.file.info.xlsx ====
-## Rdev/00_base_program/001_base_file/f_path.Rcode_documents.file.info.xlsx.dev.Rmd
+## :: f_path.documents_Rcode.file.info.xlsx ====
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.Rcode_documents.file.info.xlsx"
+.tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = env1$path$path1, pattern = "\\.(r|rmd)$", all.files = FALSE,
-        full.names = TRUE, recursive = TRUE,
+        input_path = env1$path$path1, 
+        list_DataSetName_pattern = list(Rcode = "\\.(r|rmd)$", documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$"), 
+        all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-Rcode_documents.file.info-YYMMDD.xlsx"), overwrite = TRUE, xl_open = TRUE) {
+        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
     
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
+    
+    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
     
     if(output_filename.xlsx %>% str_detect("FolderName")) {
         FolderName = input_path |> basename()
@@ -515,13 +520,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     wb <- wb_workbook()
     
-    
-    vec.DataSetName = c("Rcode", "documents")
-    vec.pattern = c(pattern, "\\.(txt|csv|docx?|xlsx?|pptx?|pdf)$")
-    
-    for (i in seq_along(vec.DataSetName)) {
-        DataSetName = vec.DataSetName[i]
-        DataSet = input_path |> env1$f$f_path.file.info(pattern = vec.pattern[i], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+
+    for (DataSetName in names(list_DataSetName_pattern)) {
+        
+        DataSet = input_path |> env1$f$f_path.file.info(pattern = list_DataSetName_pattern[[DataSetName]], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
         wb$add_worksheet(DataSetName)
         wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
         wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
@@ -537,7 +539,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     invisible()
 }
 
-env1$f$f_path.Rcode_documents.file.info.xlsx()
+env1$f$f_path.documents_Rcode.file.info.xlsx(overwrite = TRUE)
 ```
   
   
