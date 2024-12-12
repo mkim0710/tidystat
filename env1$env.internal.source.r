@@ -921,7 +921,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$objectname = "f_path.documents.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
-        pattern = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$", 
+        pattern = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", 
         all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
@@ -935,7 +935,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
-        list_DataSetName_pattern = list(documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
+        list_DataSetName_pattern = list(documents = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
