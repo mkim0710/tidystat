@@ -924,6 +924,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     input_path = input_path |> normalizePath(winslash = "/")
     
+    output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
+    if (Sys.info()["sysname"] == "Windows") {  output_filename.xlsx = output_filename.xlsx |> str_replace("D:/D_Repositories", paste0(Sys.getenv("OneDriveConsumer"),"/[][Rproject]")|>str_replace_all("\\\\","/"))  }
     if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
 
     if(output_filename.xlsx %>% str_detect("FolderName")) {
@@ -994,6 +996,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
     
+    output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
+    if (Sys.info()["sysname"] == "Windows") {  output_filename.xlsx = output_filename.xlsx |> str_replace("D:/D_Repositories", paste0(Sys.getenv("OneDriveConsumer"),"/[][Rproject]")|>str_replace_all("\\\\","/"))  }
     if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
     
     if(output_filename.xlsx %>% str_detect("FolderName")) {
