@@ -901,7 +901,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
         }
     }
     
-    wb$wb_save(output_filename.xlsx)
+    wb |> wb_save(output_filename.xlsx)
     
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible(output_filename.xlsx)
@@ -953,7 +953,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
     vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
-    wb$wb_save(output_filename.xlsx)
+    wb |> wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible(input_path.file.info)
@@ -1026,7 +1026,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
     }
 
-    wb$wb_save(output_filename.xlsx)
+    wb |> wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible()

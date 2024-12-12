@@ -327,7 +327,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
         }
     }
     
-    wb$wb_save(output_filename.xlsx)
+    wb |> wb_save(output_filename.xlsx)
     
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible(output_filename.xlsx)
