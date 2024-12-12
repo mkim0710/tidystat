@@ -657,7 +657,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"path1"))
 
     list_df_ProjectDocuments = map2(list_df, list_df_path1, function(df, df_path1) {
-        bind_rows(df_path1, df %>% filter(path %>% str_detect("ProjectDocuments")))
+        bind_rows(df_path1, df %>% filter(path %>% str_detect("ProjectDocuments"))) |> arrange(desc(!!sym(arrange_by)))
     # }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"PrjDoc"))
     }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD))
     
