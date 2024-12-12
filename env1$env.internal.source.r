@@ -934,11 +934,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = env1$path$path1, pattern = "\\.(r|rmd)$", all.files = FALSE,
-        full.names = TRUE, recursive = TRUE,
+        input_path = env1$path$path1, 
+        list_DataSetName_pattern = list(documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
+        all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-documents_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-documents_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) { 
     
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
@@ -962,15 +963,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     wb <- wb_workbook()
     
-    
-    
-    
-    vec.DataSetName = c("Rcode", "documents")
-    vec.pattern = c(pattern, "\\.(txt|csv|docx?|xlsx?|pptx?|pdf)$")
-    
-    for (i in seq_along(vec.DataSetName)) {
-        DataSetName = vec.DataSetName[i]
-        DataSet = input_path |> env1$f$f_path.file.info(pattern = vec.pattern[i], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
+
+    for (DataSetName in names(list_DataSetName_pattern)) {
+        
+        DataSet = input_path |> env1$f$f_path.file.info(pattern = list_DataSetName_pattern[[DataSetName]], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
         wb$add_worksheet(DataSetName)
         wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
         wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
