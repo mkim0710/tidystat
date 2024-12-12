@@ -814,7 +814,6 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
-## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
 ## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
@@ -862,6 +861,52 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dir.file.info  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_list_df.write_xlsx_table ====
+## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_list_df.write_xlsx_table" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xl_open = TRUE) {
+    library(openxlsx2)
+    
+    if(!overwrite && file.exists(output_filename.xlsx)) {
+        warning(paste0(output_filename.xlsx, " already exists. Please set overwrite = TRUE to overwrite the file."))
+        if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        return(invisible())
+    }
+    
+    wb <- wb_workbook()
+    
+    # Add each data.frame to a new worksheet
+    for (DataSetName in names(list_df)) {
+        DataSet <- list_df[[DataSetName]]
+        
+        # Add worksheet and data table
+        wb$add_worksheet(DataSetName)
+        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+        
+        # Auto-adjust column widths
+        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+        
+        # Freeze panes (optional configuration)
+        wb$freeze_pane(sheet = DataSetName, first_active_row = first_active_row, first_active_col = first_active_col)
+        
+        # Hide unwanted columns, if specified
+        if (!is.null(vec_colnames_to_show)) {
+            vec_col_index_to_hide <- which(!colnames(DataSet) %in% vec_colnames_to_show)
+            wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
+        }
+    }
+    
+    wb$wb_save(output_filename.xlsx)
+    
+    if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    invisible(output_filename.xlsx)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = write_xlsx_table  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "write_xlsx_table")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info.xlsx ====
 ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
