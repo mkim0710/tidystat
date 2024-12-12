@@ -816,7 +816,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
-## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -866,7 +866,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_list_df.write_xlsx_table ====
 ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_list_df.write_xlsx_table" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xl_open = TRUE) {
@@ -912,7 +912,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info.xlsx ====
 ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info.xlsx" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -978,18 +978,18 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open = xl_open)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_path.documents_Rcode.file.info.xlsx ====
+## :: f_path.DOCs_Rcode.file.info.xlsx ====
 ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
+.tmp$objectname = "f_path.DOCs_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
         list_DataSetName_pattern = list(DOCs = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-documents_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) { 
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) { 
 
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")

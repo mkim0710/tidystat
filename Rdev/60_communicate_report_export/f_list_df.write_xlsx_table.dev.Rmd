@@ -292,7 +292,7 @@ options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_list_df.write_xlsx_table ====
 ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
+## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_list_df.write_xlsx_table" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xl_open = TRUE) {
