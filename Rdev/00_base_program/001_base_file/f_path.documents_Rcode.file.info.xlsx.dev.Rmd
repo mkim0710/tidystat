@@ -462,12 +462,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     DataSet = input_path.file.info
     library(openxlsx2)
     wb = openxlsx2::write_xlsx(setNames(list(DataSet), "file.info"), as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
-    # columns_to_hide.index = colnames(DataSet) %>% str_which(paste0(columns_to_hide, collapse = "|"))
-    # columns_to_hide <- c("path_file", "path", "filename")
-    # columns_to_hide.index = which(colnames(DataSet) %in% columns_to_hide)
-    columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-    columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
-    wb$set_col_widths(sheet = 1, cols = columns_to_hide.index, hidden = TRUE)
+    # vec_col_index_to_hide = colnames(DataSet) %>% str_which(paste0(vec_colnames_to_hide, collapse = "|"))
+    # vec_colnames_to_hide <- c("path_file", "path", "filename")
+    # vec_col_index_to_hide = which(colnames(DataSet) %in% vec_colnames_to_hide)
+    vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+    vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
+    wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
     wb %>% wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
@@ -529,9 +529,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
         wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
         wb$freeze_pane(sheet = DataSetName, first_active_row = 2, first_active_col = 5)
-        columns_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-        columns_to_hide.index = which(!colnames(DataSet) %in% columns_to_show)
-        wb$set_col_widths(sheet = DataSetName, cols = columns_to_hide.index, hidden = TRUE)
+        vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+        vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
+        wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
     }
 
     wb %>% wb_save(output_filename.xlsx)
