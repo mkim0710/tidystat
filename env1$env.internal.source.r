@@ -814,6 +814,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
+## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
 ## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info"
@@ -863,6 +864,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dir.file.info")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info.xlsx ====
+## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
 ## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.file.info.xlsx" 
@@ -904,7 +906,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
     vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
-    wb %>% wb_save(output_filename.xlsx)
+    wb$wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible(input_path.file.info)
@@ -930,6 +932,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_path.documents_Rcode.file.info.xlsx ====
+## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
 ## Rdev/00_base_program/001_base_file/f_path.documents_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
@@ -976,7 +979,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
     }
 
-    wb %>% wb_save(output_filename.xlsx)
+    wb$wb_save(output_filename.xlsx)
 
     if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible()
