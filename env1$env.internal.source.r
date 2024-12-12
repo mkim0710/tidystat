@@ -921,7 +921,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$objectname = "f_path.documents.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
-        list_DataSetName_pattern = list(Rcode = "\\.(r|rmd)$", documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$"), 
+        list_DataSetName_pattern = list(documents = "\\.(txt|csv|docx?|xlsx?|pptx?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
