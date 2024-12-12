@@ -985,7 +985,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$objectname = "f_path.documents_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
-        list_DataSetName_pattern = list(documents = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
+        list_DataSetName_pattern = list(DOCs = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
@@ -1000,9 +1000,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         FolderName = input_path |> basename()
         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
     }
+    Sys.Date.YYMMDD = format(Sys.Date(), "%y%m%d")
     if(output_filename.xlsx %>% str_detect("YYMMDD")) {
-        YYMMDD = format(Sys.Date(), "%y%m%d")
-        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), YYMMDD)
+        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), Sys.Date.YYMMDD)
     }
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
