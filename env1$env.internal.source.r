@@ -946,7 +946,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
-    if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = TRUE)
+    if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)
     
     input_path.file.info = input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
     
@@ -1019,7 +1019,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
-    if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = TRUE)
+    if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)
     
     list_df = list_DataSetName_pattern %>% map(function(pattern) {
         input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
