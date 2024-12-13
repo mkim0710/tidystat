@@ -324,7 +324,19 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## :: function_name = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ Not Yet included in env1$env.internal.source.r ----
+# @@ Not Yet included in f_df.t.tribble_construct.source.r ----
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: function_name = function() ====
+## Rdev/00_base_program/001_base_file/function_name.dev.Rmd
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "function_name" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_object) {
+    output_object = input_object
+    invisible()
+}
 ```
   
   
