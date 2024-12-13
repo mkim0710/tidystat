@@ -303,8 +303,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
     }
 
     # List all .Rmd and .nb.html files in the project directory
-    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE)
-    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE)
+    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-backup[/\\\\]", negate = TRUE)
+    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-backup[/\\\\]", negate = TRUE)
 
     # Extract base names without extensions
     vec_filename_sans_ext_extended.rmd <- str_remove(basename(vec_path_file.rmd), "(?i)\\.Rmd$")
