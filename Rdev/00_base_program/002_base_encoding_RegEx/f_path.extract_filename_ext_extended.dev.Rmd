@@ -495,13 +495,20 @@ ext = path_filename.ext |> basename() |> str_extract("\\.([[:alnum:]]+)$") |> st
 
 ##https://chatgpt.com/c/675c040e-89b0-800e-b784-653b257df2ee
 
-###### ECHO \% |> () ----  
+### :: f_path.extract_filename_ext_extended = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ Now included in env1$env.internal.source.r ----
 
-f_path.extract_filename_ext_extended <- function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.xz$", "\\.nb\\.html$")) {
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.extract_filename_ext_extended =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_path.extract_filename_ext_extended.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.extract_filename_ext_extended"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) {
     
     input_filename.ext = basename(input_path)
     input_ext = 
@@ -520,6 +527,8 @@ f_path.extract_filename_ext_extended <- function(input_path, vec_RegEx4ext_exten
     )
 }
 
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Example usage:
 input_path <- c(
   "data/sample.123.xz",
