@@ -1138,6 +1138,48 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = g
     return(list_path_hierarchy)
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_path.vec_filename_sans_ext_extended =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_path.df_filename_ext_extended.dev.Rmd
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_path.vec_filename_sans_ext_extended"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) {
+    
+    input_filename_ext = basename(input_path)
+    input_ext = 
+        map2_chr(
+            input_filename_ext %>% str_extract(vec_RegEx4ext_extended %>% paste0(collapse = "|")) %>% str_remove("^\\."), 
+            input_filename_ext %>% tools::file_ext(), 
+            function(x, y) ifelse(is.na(x), y, x)
+        )
+    input_filename = str_remove(input_filename_ext, paste0("\\.", input_ext, "$"))
+    input_filename
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = filename_sans_ext_extended.vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "filename_sans_ext_extended.vec")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = file_path_sans_ext_extended.vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file_path_sans_ext_extended.vec")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_path.vec_ext_extended =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_path.df_filename_ext_extended.dev.Rmd
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_path.vec_ext_extended"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) {
+    
+    input_filename_ext = basename(input_path)
+    input_ext = 
+        map2_chr(
+            input_filename_ext %>% str_extract(vec_RegEx4ext_extended %>% paste0(collapse = "|")) %>% str_remove("^\\."), 
+            input_filename_ext %>% tools::file_ext(), 
+            function(x, y) ifelse(is.na(x), y, x)
+        )
+    input_ext
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = file_ext_extended.vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file_ext_extended.vec")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.df_filename_ext_extended =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_path.df_filename_ext_extended.dev.Rmd
 .tmp$env1_subenv_name = "f"
