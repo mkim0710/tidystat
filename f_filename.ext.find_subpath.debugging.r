@@ -1,8 +1,8 @@
-# .objectname = "f_filename.ext.find_subpath"
-# f_filename.ext.find_subpath.dev.r
-# f_filename.ext.find_subpath.source.r
-#         https://github.com/mkim0710/tidystat/blob/master/f_filename.ext.find_subpath.dev.r
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_filename.ext.find_subpath.source.r")
+# .objectname = "f_filename_ext.find_subpath"
+# f_filename_ext.find_subpath.dev.r
+# f_filename_ext.find_subpath.source.r
+#         https://github.com/mkim0710/tidystat/blob/master/f_filename_ext.find_subpath.dev.r
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_filename_ext.find_subpath.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -39,20 +39,20 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
+### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+# file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ## @ .subpath, .filename.source.r ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_filename.ext.find_subpath" |> paste0(".source.r")
+.filename.source.r = "f_filename_ext.find_subpath" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 env1$path$.subpath = .subpath
 .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
@@ -68,9 +68,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
@@ -86,19 +86,19 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_filename.ext.find_subpath.source.r")
-filename.ext = "fhs"
-env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
-# > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
-# Error in env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T) : 
-#   Error: filename.ext must have an extension.
+source("f_filename_ext.find_subpath.source.r")
+filename_ext = "fhs"
+env1$f$f_filename_ext.find_subpath(filename_ext, VERBOSE = T)
+# > env1$f$f_filename_ext.find_subpath(filename_ext, VERBOSE = T)
+# Error in env1$f$f_filename_ext.find_subpath(filename_ext, VERBOSE = T) : 
+#   Error: filename_ext must have an extension.
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_filename.ext.find_subpath.source.r")
-filename.ext = "fhs.index100le10"
-env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
-# > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+source("f_filename_ext.find_subpath.source.r")
+filename_ext = "fhs.index100le10"
+env1$f$f_filename_ext.find_subpath(filename_ext, VERBOSE = T)
+# > env1$f$f_filename_ext.find_subpath(filename_ext, VERBOSE = T)
 # Searching: .                                                 	 at depth 0
 # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -169,16 +169,16 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_filename.ext.find_subpath.source.r")
+source("f_filename_ext.find_subpath.source.r")
 .tmp = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, VERBOSE = TRUE)
 # > MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, VERBOSE = TRUE)
 # getwd() == .path4read[1] == "/home/rstudio/Rproject_Rmd"  
 # DataSetName = "NationalFamilyAndFertiltySurvey2021_230314"  
 # i.path4read = "/home/rstudio/Rproject_Rmd"  
 # !.tmp.file.found && BreathFirstSearch  
-# > source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_filename.ext.find_subpath.source.r")  
-# Loading: .GlobalEnv$env1$f$f_filename.ext.find_subpath
-# Loading: .GlobalEnv$env1$f$f_filename.ext.find_subpath.BreathFirstSearch
+# > source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_filename_ext.find_subpath.source.r")  
+# Loading: .GlobalEnv$env1$f$f_filename_ext.find_subpath
+# Loading: .GlobalEnv$env1$f$f_filename_ext.find_subpath.BreathFirstSearch
 # Searching: /home/rstudio/Rproject_Rmd                        	 at depth 0  
 #  >  i_files_subpath == "/home/rstudio/Rproject_Rmd/-backup"  
 # Searching: /home/rstudio/Rproject_Rmd/-backup                	 at depth 1; Queue length: 1  

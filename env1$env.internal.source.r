@@ -701,29 +701,29 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 # @@ f_file, f_URL, f_path ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: getSourceEditorContext.path_filename.ext ====  
-.tmp$objectname = "getSourceEditorContext.path_filename.ext"
+## :: getSourceEditorContext.path_filename_ext ====  
+.tmp$objectname = "getSourceEditorContext.path_filename_ext"
 .tmp$object = function(relative_path = TRUE) {
-    SourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/")
+    SourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/")
     if(relative_path) {
-        SourceEditorContext.path_filename.ext = SourceEditorContext.path_filename.ext |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        SourceEditorContext.path_filename_ext = SourceEditorContext.path_filename_ext |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     }
-    return(SourceEditorContext.path_filename.ext)
+    return(SourceEditorContext.path_filename_ext)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = CurrentSourceEditorContext.path_filename.ext  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "CurrentSourceEditorContext.path_filename.ext")
+### & alias = CurrentSourceEditorContext.path_filename_ext  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "CurrentSourceEditorContext.path_filename_ext")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_file.paste0_collapse_if_not_empty ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path_file.paste0_collapse_if_not_empty"
-# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, filename.ext) {  paste0(path,ifelse(path=="","","/"),filename.ext)  }
+# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, filename_ext) {  paste0(path,ifelse(path=="","","/"),filename_ext)  }
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") {  
-    # paste0(path,ifelse(path=="","","/"),filename.ext)
+    # paste0(path,ifelse(path=="","","/"),filename_ext)
     c(...)[c(...) != ""] |> paste0(collapse = collapse)  
 }
 ## *** Example Usage:  
@@ -752,16 +752,16 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "relative_path")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext =  ----  
+## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext"
+.tmp$objectname = "getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         check_rstudioapi = TRUE, 
         overwrite = FALSE, 
         LinePrefix4CodeText = "\t",
         VERBOSE = ifelse(!is.null(Sys.getenv("VERBOSE")), ifelse(Sys.getenv("VERBOSE")!="", Sys.getenv("VERBOSE"), isTRUE(getOption("verbose"))), isTRUE(getOption("verbose")))
 ) {
-    if(is.null(env1$path$LastSourceEditorContext.path_filename.ext) || is.na(env1$path$LastSourceEditorContext.path_filename.ext) || env1$path$LastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
+    if(is.null(env1$path$LastSourceEditorContext.path_filename_ext) || is.na(env1$path$LastSourceEditorContext.path_filename_ext) || env1$path$LastSourceEditorContext.path_filename_ext == "") overwrite = TRUE
     
     if (check_rstudioapi) {
         if (requireNamespace("rstudioapi")) {
@@ -775,7 +775,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
                 } else if (!is.null(attributes(.GlobalEnv$env1$source$.Rprofile)$complete)) {
                     if(attributes(.GlobalEnv$env1$source$.Rprofile)$complete) print('!rstudioapi::isAvailable()');
                 }
-                env1$path$LastSourceEditorContext.path_filename.ext = NA
+                env1$path$LastSourceEditorContext.path_filename_ext = NA
                 return(invisible())
             }
             
@@ -786,33 +786,33 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     } 
     
     if(overwrite) {
-        # env1$path$LastSourceEditorContext.path_filename.ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-        env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-        env1$path$LastSourceEditorContext.path = env1$path$LastSourceEditorContext.path_filename.ext |> dirname()
+        # env1$path$LastSourceEditorContext.path_filename_ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        env1$path$LastSourceEditorContext.path = env1$path$LastSourceEditorContext.path_filename_ext |> dirname()
         
-        # cat(LinePrefix4CodeText, "env1$path$LastSourceEditorContext.path_filename.ext == ", deparse(env1$path$LastSourceEditorContext.path_filename.ext), "  \n", sep="")
-        .CodeText2Print = 'env1$path$LastSourceEditorContext.path_filename.ext'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",deparse(eval(parse(text=.CodeText2Print)))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
+        # cat(LinePrefix4CodeText, "env1$path$LastSourceEditorContext.path_filename_ext == ", deparse(env1$path$LastSourceEditorContext.path_filename_ext), "  \n", sep="")
+        .CodeText2Print = 'env1$path$LastSourceEditorContext.path_filename_ext'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",deparse(eval(parse(text=.CodeText2Print)))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
         
         if(!".path4write" %in% names(env1$path)) {
             .path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path
             cat(LinePrefix4CodeText, ".path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path", "  \n", sep="")
         }  
     } else {
-        env1$f$f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_filename.ext", 'rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")')
+        env1$f$f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_filename_ext", 'rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")')
     }
     return(invisible())
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = update_LastSourceEditorContext.path_filename.ext  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "update_LastSourceEditorContext.path_filename.ext")
+### & alias = update_LastSourceEditorContext.path_filename_ext  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "update_LastSourceEditorContext.path_filename_ext")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = setLastSourceEditorContext.path_filename.ext  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "setLastSourceEditorContext.path_filename.ext")
+### & alias = setLastSourceEditorContext.path_filename_ext  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "setLastSourceEditorContext.path_filename_ext")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
+### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
@@ -844,9 +844,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
             path_file = path_file
             , path = dirname(path_file) |> as.factor()
             , path.relative = env1$f$f_path.relative(as.character(path)) |> as.factor()
-            , filename.ext = basename(path_file)
-            , filename = tools::file_path_sans_ext(filename.ext)
-            , ext = tools::file_ext(filename.ext) |> as.factor()
+            , filename_ext = basename(path_file)
+            , filename = tools::file_path_sans_ext(filename_ext)
+            , ext = tools::file_ext(filename_ext) |> as.factor()
             , size = size
             , size_KiB = round(size / 2^10, 2)
             , size_MiB = round(size / 2^20, 2)
@@ -956,7 +956,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     # vec_col_index_to_hide = colnames(DataSet) %>% str_which(paste0(vec_colnames_to_hide, collapse = "|"))
     # vec_colnames_to_hide <- c("path_file", "path", "filename")
     # vec_col_index_to_hide = which(colnames(DataSet) %in% vec_colnames_to_hide)
-    vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate")
+    vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate")
     vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
     wb |> wb_save(output_filename.xlsx)
@@ -1032,7 +1032,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     # }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"PrjDoc"))
     }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD))
     
-    env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename.ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xl_open = xl_open)
+    env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xl_open = xl_open)
     
     invisible()
 }
@@ -1144,14 +1144,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = g
 .tmp$objectname = "f_path.extract_filename_ext_extended"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) {
     
-    input_filename.ext = basename(input_path)
+    input_filename_ext = basename(input_path)
     input_ext = 
         map2_chr(
-            input_filename.ext %>% str_extract(vec_RegEx4ext_extended %>% paste0(collapse = "|")) %>% str_remove("^\\."), 
-            input_filename.ext %>% tools::file_ext(), 
+            input_filename_ext %>% str_extract(vec_RegEx4ext_extended %>% paste0(collapse = "|")) %>% str_remove("^\\."), 
+            input_filename_ext %>% tools::file_ext(), 
             function(x, y) ifelse(is.na(x), y, x)
         )
-    input_filename = str_remove(input_filename.ext, paste0("\\.", input_ext, "$"))
+    input_filename = str_remove(input_filename_ext, paste0("\\.", input_ext, "$"))
     
     # Return a data frame for easy further manipulation
     data.frame(
@@ -1200,10 +1200,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = ".", gsub.pat
     }
 
     # Generate the new filenames by replacing the pattern in the old filenames
-    old_filename.ext = basename(old_path_files)
+    old_filename_ext = basename(old_path_files)
     old_path = ifelse(old_path_files == basename(old_path_files), "", dirname(old_path_files))
-    new_filename.ext = gsub(gsub.pattern_from, gsub.replacement_to, old_filename.ext)
-    new_path_files <- ifelse(old_path == "", "", paste0(old_path, "/")) |> paste0(new_filename.ext)
+    new_filename_ext = gsub(gsub.pattern_from, gsub.replacement_to, old_filename_ext)
+    new_path_files <- ifelse(old_path == "", "", paste0(old_path, "/")) |> paste0(new_filename_ext)
 
     # Check if any directories are involved, warn user if necessary
     old_dirs <- old_path_files[file.info(old_path_files)$isdir]
@@ -1249,35 +1249,35 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = ".", gsub.pat
 }
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_filename.ext.append_suffix =  ----  
-# Rdev/00_base_program/002_base_encoding_RegEx/f_filename.ext.append_suffix.dev.r
-.tmp$objectname = "f_filename.ext.append_suffix"
-.tmp$object <- function(path_filename.ext, append_suffix, compression = TRUE, VERBOSE = getOption("verbose")) {
+## :: f_filename_ext.append_suffix =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_filename_ext.append_suffix.dev.r
+.tmp$objectname = "f_filename_ext.append_suffix"
+.tmp$object <- function(path_filename_ext, append_suffix, compression = TRUE, VERBOSE = getOption("verbose")) {
     # Extract the path, filename, and extension
-    if(VERBOSE) "path_filename.ext" %>% echo.dput_get_ObjectName()
+    if(VERBOSE) "path_filename_ext" %>% echo.dput_get_ObjectName()
     
-    path = path_filename.ext |> dirname()
+    path = path_filename_ext |> dirname()
     if(VERBOSE) "path" %>% echo.dput_get_ObjectName()
-    filename.ext = path_filename.ext |> basename()
-    if(VERBOSE) "filename.ext" %>% echo.dput_get_ObjectName()
+    filename_ext = path_filename_ext |> basename()
+    if(VERBOSE) "filename_ext" %>% echo.dput_get_ObjectName()
     if(compression) {
-        filename = filename.ext |> str_remove("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$")
-        ext = filename.ext |> str_extract("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$") |> str_remove("^\\.")
+        filename = filename_ext |> str_remove("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$")
+        ext = filename_ext |> str_extract("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$") |> str_remove("^\\.")
     } else {
-        filename = filename.ext |> str_remove("\\.([[:alnum:]]+)$")
-        ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+        filename = filename_ext |> str_remove("\\.([[:alnum:]]+)$")
+        ext = filename_ext |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
     }
     if(VERBOSE) "filename" %>% echo.dput_get_ObjectName()
     if(VERBOSE) "ext" %>% echo.dput_get_ObjectName()
     
     # Construct the new filename with appended text
-    filename.ext2 = paste0(filename, append_suffix, ".", ext)
-    if(VERBOSE) "filename.ext2" %>% echo.dput_get_ObjectName()
+    filename_ext2 = paste0(filename, append_suffix, ".", ext)
+    if(VERBOSE) "filename_ext2" %>% echo.dput_get_ObjectName()
     
     # Construct the new path with the updated filename
-    path_filename.ext2 = file.path(path, filename.ext2)
+    path_filename_ext2 = file.path(path, filename_ext2)
     
-    return(path_filename.ext2)
+    return(path_filename_ext2)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -1306,7 +1306,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = ".", gsub.pat
         if(replace_input_path_file) {
             output_path_file <- input_path_file # Overwrite the original file
         } else {
-            output_path_file = input_path_file %>% f_filename.ext.append_suffix(paste0(".", new.ObjectName))
+            output_path_file = input_path_file %>% f_filename_ext.append_suffix(paste0(".", new.ObjectName))
         }
     }
     
@@ -1518,35 +1518,35 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.backup, f_path.backup ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_filename.ext.createBackup ====  
+## :: f_filename_ext.createBackup ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_filename.ext.createBackup"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(backup_from_path_filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
+.tmp$objectname = "f_filename_ext.createBackup"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(backup_from_path_filename_ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     # Wrap the main backup logic in a tryCatch for error handling
     tryCatch({
         # Determine the filename and extension if not provided
         if(is.na(backup_from_ext)) {
-            backup_from_path_filename = basename(backup_from_path_filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-            backup_from_ext = basename(backup_from_path_filename.ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+            backup_from_path_filename = basename(backup_from_path_filename_ext) |> str_remove("\\.([[:alnum:]]+)$")
+            backup_from_ext = basename(backup_from_path_filename_ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
         } else {
-            backup_from_path_filename = basename(backup_from_path_filename.ext) |> str_remove(paste0("\\.",backup_from_ext|>str_replace_all("\\.","\\\\."),"$"))
+            backup_from_path_filename = basename(backup_from_path_filename_ext) |> str_remove(paste0("\\.",backup_from_ext|>str_replace_all("\\.","\\\\."),"$"))
         }
         
         # Construct the destination backup path with timestamp
-        .backup_to_path_filename.ext = file.path( .backup_to_path, paste0(backup_from_path_filename,"-",format(Sys.time(),timeFormat),".",backup_from_ext) )
+        .backup_to_path_filename_ext = file.path( .backup_to_path, paste0(backup_from_path_filename,"-",format(Sys.time(),timeFormat),".",backup_from_ext) )
         
         # Create the backup directory if it doesn't exist
         if(!dir.exists(.backup_to_path)) dir.create(.backup_to_path, recursive = TRUE)
         
 
-        if(!file.exists(backup_from_path_filename.ext)) stop(paste0("File to backup does not exist: ", backup_from_path_filename.ext))
-        if(file.exists(.backup_to_path_filename.ext) && !overwrite) stop(paste0("Backup file already exists: ", .backup_to_path_filename.ext))
+        if(!file.exists(backup_from_path_filename_ext)) stop(paste0("File to backup does not exist: ", backup_from_path_filename_ext))
+        if(file.exists(.backup_to_path_filename_ext) && !overwrite) stop(paste0("Backup file already exists: ", .backup_to_path_filename_ext))
         
         # Copy the file to the backup location; if successful, print a message. Otherwise, stop with an error. 
-        if (file.copy(from=backup_from_path_filename.ext, to=.backup_to_path_filename.ext, overwrite=overwrite)) {message(paste0("- Backup file created: ", .backup_to_path_filename.ext))} else {stop("File copy failed for unknown reasons.")}
+        if (file.copy(from=backup_from_path_filename_ext, to=.backup_to_path_filename_ext, overwrite=overwrite)) {message(paste0("- Backup file created: ", .backup_to_path_filename_ext))} else {stop("File copy failed for unknown reasons.")}
     }, error = function(e) {
         # Error handling block to catch any issues during the backup process
-        message(paste("Failed to create backup for:", backup_from_path_filename.ext))
+        message(paste("Failed to create backup for:", backup_from_path_filename_ext))
         message("Error:", e$message)
     })
 }
@@ -1560,13 +1560,13 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ## :: f_path_path.backup.overwrite ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_path_path.backup.overwrite"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_filename.ext, .destination_path_filename.ext, .backup_to_path = dirname(.destination_path_filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
-    if(createFile || file.exists(.destination_path_filename.ext)) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_filename_ext, .destination_path_filename_ext, .backup_to_path = dirname(.destination_path_filename_ext), timeFormat = "%y%m%d", createFile = FALSE) {
+    if(createFile || file.exists(.destination_path_filename_ext)) {
         if(!is.null(.backup_to_path)) {
-            env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .destination_path_filename.ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
+            env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .destination_path_filename_ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
         }
-        if(file.copy(from=.overwrite_from_path_filename.ext, to=.destination_path_filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename.ext)) else warning(paste0("Update failed: ", .destination_path_filename.ext))
-    } else {warning(paste0("File does not exist: ", .destination_path_filename.ext))}
+        if(file.copy(from=.overwrite_from_path_filename_ext, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
+    } else {warning(paste0("File does not exist: ", .destination_path_filename_ext))}
 }
 
 
@@ -1681,9 +1681,9 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .objectname, 
         CompressionMethod = case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz"), 
-        .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
+        .filename_ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
         .path4write = env1$path$.path4write,
-        .path_file = if(is.null(.path4write) || is.null(.filename.ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }, 
+        .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
         createBackup = FALSE, 
         .backup_to_path="-backup", 
         Execute = FALSE, 
@@ -1701,7 +1701,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
     # List of 15
     #  $ .objectname        : chr "df_NewDMv3.CensorEND.n8845.select971"
-    #  $ .filename.ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
+    #  $ .filename_ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
     #  $ .path4write        : chr "."
     #  $ .path_file         : NULL
     #  $ createBackup       : logi FALSE
@@ -1741,20 +1741,20 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ If .path_file is provided, it determines the .filename.ext4write (& CompressionMethod). 
-    ## Caution) when .objectname is provided, .filename.ext4write & .path_file could have been auto-generated. 
+    ##@ If .path_file is provided, it determines the .filename_ext4write (& CompressionMethod). 
+    ## Caution) when .objectname is provided, .filename_ext4write & .path_file could have been auto-generated. 
     
     if(!is.null(.path_file)) {
-        .filename.ext4write = basename(.path_file)
+        .filename_ext4write = basename(.path_file)
     }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ If .filename.ext4write is provided, it may determine the CompressionMethod. 
-    ## Caution) When .filename.ext4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
-    if(!is.null(.filename.ext4write)) {
-        if(grepl("\\.xz$", .filename.ext4write)) {
+    ##@ If .filename_ext4write is provided, it may determine the CompressionMethod. 
+    ## Caution) When .filename_ext4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
+    if(!is.null(.filename_ext4write)) {
+        if(grepl("\\.xz$", .filename_ext4write)) {
             CompressionMethod = "xz"
-        } else if(grepl("\\.gz$", .filename.ext4write)) {
+        } else if(grepl("\\.gz$", .filename_ext4write)) {
             CompressionMethod = "gz"
         # } else {
         #     CompressionMethod = "none" | "gz"  # gz compression may be done without ".gz" extension. 
@@ -1767,16 +1767,16 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path4write))            .path4write = ""
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-    ##@ .path_file may still be NULL if either .path4write or .filename.ext4write was NULL.
-    if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename.ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)  }
+    ##@ .path_file may still be NULL if either .path4write or .filename_ext4write was NULL.
+    if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(Execute) {
-        if(createBackup) env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+        if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
@@ -1918,46 +1918,46 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
     
     # # \% Edit the templates of RStudio (default.R, notebook.Rmd) ~~~~~~~~~~~~
-    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
-    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
     
     # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
-    for (.filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-        if (.filename.ext == "templates-00env1.minimum.Rmd") {
+    for (.filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
+        if (.filename_ext == "templates-00env1.minimum.Rmd") {
             .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd")
         } else {
-            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .filename.ext)
+            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .filename_ext)
         }
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.filename.ext)
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.filename_ext)
         env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         
         if (Sys.info()["sysname"] == "Windows") {
             # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
-            # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
+            # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename_ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
             
-            .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename.ext)
+            .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename_ext)
             .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
-            env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
+            env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
             env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         }
     }
     if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
     
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
-    for (.filename.ext in c(".Rprofile")) {
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
-        # for (.file.copy.to in c(file.path(env1$path$path1,.filename.ext), file.path("~",.filename.ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename.ext))) {
-        for (.file.copy.to in file.path(env1$path$path1,.filename.ext)) {
-            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename.ext)) {
+    for (.filename_ext in c(".Rprofile")) {
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
+        # for (.file.copy.to in c(file.path(env1$path$path1,.filename_ext), file.path("~",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename_ext))) {
+        for (.file.copy.to in file.path(env1$path$path1,.filename_ext)) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename_ext)) {
                 env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
             }
         }
     }
     
     # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
-    for (.filename.ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
-        .file.copy.to = file.path(env1$path$path1,.filename.ext)
+    for (.filename_ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
+        .file.copy.to = file.path(env1$path$path1,.filename_ext)
         env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
     }
     

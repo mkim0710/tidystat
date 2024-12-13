@@ -216,7 +216,7 @@ ensure_package("tidyverse")
 ### \% trainset_cost.gradient_descent.dev-GPT.Rmd -----  
 .subpath_filename.r = "Rdev/50_model_formula_evaluation/52_model_estimation/trainset_cost.gradient_descent.dev-GPT.Rmd"
 .subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 
 
 
@@ -231,7 +231,7 @@ file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |>
 ### \% trainset.cv.glm.dev-GPT.Rmd -----  
 .subpath_filename.r = "Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glm.dev-GPT.Rmd"
 .subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 
 
 
@@ -246,7 +246,7 @@ file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |>
 ### \% f_DataSet.SMOTE.dev-GPT.Rmd -----  
 .subpath_filename.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DataSet.SMOTE.dev-GPT.Rmd"
 .subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 
 
 
