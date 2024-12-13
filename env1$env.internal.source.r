@@ -1289,7 +1289,68 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = ".", gsub.pat
     }
 
 }
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.list.files_orphan_nb_html.remove ====
+## Rdev/00_base_program/001_base_file/f_path.list.files_orphan_nb_html.remove.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.list.files_orphan_nb_html.remove" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$path$path1, execute = FALSE) {
+    library(stringr)
 
+    # Ensure the directory exists
+    if (!dir.exists(project_path)) {
+        stop("The specified directory does not exist.")
+    }
+
+    # List all .Rmd and .nb.html files in the project directory
+    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE)
+    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE)
+
+    # Extract base names without extensions
+    vec_filename_sans_ext_extended.rmd <- str_remove(basename(vec_path_file.rmd), "(?i)\\.Rmd$")
+    vec_filename_sans_ext_extended.nb.html <- str_remove(basename(vec_path_file.nb.html), "(?i)\\.nb\\.html$")
+
+    # Find orphan .nb.html files
+    vec_path_file.nb.html.orphan <- vec_path_file.nb.html[!vec_filename_sans_ext_extended.nb.html %in% vec_filename_sans_ext_extended.rmd]
+
+    if (length(vec_path_file.nb.html.orphan) > 0) {
+        message("The following orphan .nb.html files were found:")
+        print(vec_path_file.nb.html.orphan)
+
+        if (execute) {
+            message("Moving orphan files to '-backup' folder...")
+
+            # Create backup directories and move files
+            for (i.file in vec_path_file.nb.html.orphan) {
+                backup_dir <- file.path(dirname(i.file), "-backup")
+
+                if (!dir.exists(backup_dir)) {
+                    dir.create(backup_dir)
+                }
+
+                file.rename(i.file, file.path(backup_dir, basename(i.file)))
+            }
+        } else {
+            message("Set execute = TRUE to move the orphan files to a '-backup' folder.")
+        }
+    } else {
+        message("No orphan .nb.html files found.")
+    }
+
+    return(vec_path_file.nb.html.orphan)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = orphan_nb_html.remove  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "orphan_nb_html.remove")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = remove_orphan_nb_html  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "remove_orphan_nb_html")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = nb.html.orphan.remove  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "nb.html.orphan.remove")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = clean_orphan_nb_html  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "clean_orphan_nb_html")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_filename_ext.append_suffix =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_filename_ext.append_suffix.dev.r
