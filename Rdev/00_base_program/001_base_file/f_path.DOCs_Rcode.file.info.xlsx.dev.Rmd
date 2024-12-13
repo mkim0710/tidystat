@@ -502,7 +502,7 @@ options(width=120)
 #         all.files = FALSE, full.names = TRUE, recursive = TRUE,
 #         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
 #         arrange_by = c("mtime"),
-#         output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) {
+#         output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE, orphan_nb_html.remove = TRUE) {
 # 
 #     library(openxlsx2)
 #     input_path = input_path |> normalizePath(winslash = "/")
@@ -515,11 +515,11 @@ options(width=120)
 #         FolderName = input_path |> basename()
 #         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
 #     }
+#     Sys.Date.YYMMDD = format(Sys.Date(), "%y%m%d")
 #     if(output_filename.xlsx %>% str_detect("YYMMDD")) {
-#         YYMMDD = format(Sys.Date(), "%y%m%d")
-#         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), YYMMDD)
+#         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), Sys.Date.YYMMDD)
 #     }
-# 
+#     
 #     if(!overwrite && file.exists(output_filename.xlsx)) {
 #         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
 #         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
@@ -624,7 +624,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE) { 
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open = TRUE, orphan_nb_html.remove = TRUE) { 
 
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
@@ -647,6 +647,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         if(xl_open) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
+    if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = TRUE)
     
     list_df = list_DataSetName_pattern %>% map(function(pattern) {
         input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
