@@ -450,9 +450,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         FolderName = input_path |> basename()
         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
     }
+    Sys.Date.YYMMDD = format(Sys.Date(), "%y%m%d")
     if(output_filename.xlsx %>% str_detect("YYMMDD")) {
-        YYMMDD = format(Sys.Date(), "%y%m%d")
-        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), YYMMDD)
+        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), Sys.Date.YYMMDD)
     }
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
