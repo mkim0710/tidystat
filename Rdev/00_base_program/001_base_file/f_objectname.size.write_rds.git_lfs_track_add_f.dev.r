@@ -45,7 +45,7 @@ env0 = env1
 # }
 # # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
-# # openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, row_names=TRUE, table_style="none", col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
+# # openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
 # # if (Sys.info()["sysname"] == "Linux") browseURL(FileName) else openxlsx2::xl_open(FileName)
 # ```
 

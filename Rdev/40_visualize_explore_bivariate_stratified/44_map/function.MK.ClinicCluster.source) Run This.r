@@ -261,7 +261,7 @@ function.MK.output.nest_sigungu.SouthKorea.metadata =
     }) %>% bind_rows(.id = "Min.SC")
 dir.create(path.output, showWarnings = F)
 saveRDS(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.rds"))
-openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE)
+openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 
 
 
