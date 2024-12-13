@@ -1337,7 +1337,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
         message("No orphan .nb.html files found.")
     }
 
-    return(vec_path_file.nb.html.orphan)
+    invisible(vec_path_file.nb.html.orphan)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = orphan_nb_html.remove  ----  
