@@ -1138,6 +1138,45 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = g
     return(list_path_hierarchy)
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.extract_filename_ext_extended =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_path.extract_filename_ext_extended.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.extract_filename_ext_extended"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) {
+    
+    input_filename.ext = basename(input_path)
+    input_ext = 
+        map2_chr(
+            input_filename.ext %>% str_extract(vec_RegEx4ext_extended %>% paste0(collapse = "|")) %>% str_remove("^\\."), 
+            input_filename.ext %>% tools::file_ext(), 
+            function(x, y) ifelse(is.na(x), y, x)
+        )
+    input_filename = str_remove(input_filename.ext, paste0("\\.", input_ext, "$"))
+    
+    # Return a data frame for easy further manipulation
+    data.frame(
+        dirname = dirname(input_path),
+        filename = input_filename,
+        ext = input_ext
+    )
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = extract_filename_ext_extended  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "extract_filename_ext_extended")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = file_path_sans_ext.ext_extended.df  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file_path_sans_ext.ext_extended.df")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = path_filename_ext_extended.df  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "path_filename_ext_extended.df")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = filename_ext_extended.df  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "filename_ext_extended.df")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = file_ext_extended.df  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file_ext_extended.df")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_fileRegEX.rename =  ----  
 # Rdev/00_base_program/001_base_file/f_path_fileRegEX.rename.dev.Rmd
 .tmp$env1_subenv_name = "env.internal.attach"
