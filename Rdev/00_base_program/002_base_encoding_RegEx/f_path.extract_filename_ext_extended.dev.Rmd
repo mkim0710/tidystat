@@ -217,11 +217,22 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # @@ START) references ----  
 
 ## https://github.com/wch/r-source/blob/trunk/src/library/tools/R/utils.R
+### https://chatgpt.com/c/675c0b51-f51c-800e-b102-678d5d54528f
 
 ### :: file_ext = function()
 ### :: file_path_as_absolute = function()
 ### :: file_path_relative_to = function()
 ### :: file_path_sans_ext = function()
+
+
+-   **`file_ext(x)`**: Extracts the file extension from a file name or path. It identifies purely alphanumeric extensions, returning an empty string if none is found.
+    
+-   **`file_path_as_absolute(x)`**: Converts a potentially relative file path to an absolute path. It also checks for file existence and expands `~` to the home directory.
+    
+-   **`file_path_relative_to(x, start, parent)`**: Computes a relative file path from `x` to the `start` directory. If `parent = TRUE`, it resolves paths relative to the nearest common parent directory.
+    
+-   **`file_path_sans_ext(x, compression)`**: Removes the file extension (and optionally compression extensions like `.gz`, `.bz2`, `.xz`) from file paths, returning the base name without the extension.
+    
 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -296,6 +307,16 @@ function(x, start = getwd(), parent = TRUE)
 ### :: list_files_with_exts = function()
 ### :: list_files_with_type = function()
 ### :: list_code_files_in_package = function()
+
+-   **`file_test(op, x, y)`**: Implements shell-style file tests (e.g., checking if a file exists, is a directory, is newer than another file, etc.).
+    
+-   **`list_files_with_exts(dir, exts, all.files, full.names)`**: Lists files in a directory that match specified extensions. It can return either full paths or just file names.
+    
+-   **`list_files_with_type(dir, type, all.files, full.names, OS_subdirs)`**: Lists files of a specified "type" (e.g., R code, documentation) from a directory, including platform-specific subdirectories when applicable.
+    
+-   **`list_code_files_in_package(dir)`**: Lists R code files in a package directory. It respects collation fields in the package metadata and adjusts for files generated during the build process.
+
+
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 ### ** file_path_sans_ext
 
@@ -430,26 +451,20 @@ function(dir) {
   
   
 # __________|------  
-# @@ START) dev ----  
+# @@ START) dev -old ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
   
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-
-path_filename = path_filename.ext |> basename() |> str_remove("\\.([[:alnum:]]+)$")
-# ext = path_filename.ext |> basename() |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
-ext = path_filename.ext |> basename() |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
-
 #@@ https://github.com/search?q=repo%3Amkim0710%2Ftidystat+%3Aalnum%3A&type=code
 
 ##@ https://github.com/mkim0710/tidystat/blob/e73c5da0bad1901a9c2421da1351238fec8c0d00/env1%24env.internal.source.r#L828
 ## :: f_filename.ext.append_suffix =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_filename.ext.append_suffix.dev.r
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
     if(compression) {
         filename = filename.ext |> str_remove("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$")
         ext = filename.ext |> str_extract("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$") |> str_remove("^\\.")
@@ -457,6 +472,69 @@ ext = path_filename.ext |> basename() |> str_extract("\\.([[:alnum:]]+)$") |> st
         filename = filename.ext |> str_remove("\\.([[:alnum:]]+)$")
         ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
     }
+
+```
+  
+  
+# __________|------  
+# @@ START) dev ----  
+
+### basename() |> str_remove("\\.([[:alnum:]]+)$") ----  
+### basename() |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.") ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+path_filename = path_filename.ext |> basename() |> str_remove("\\.([[:alnum:]]+)$")
+# ext = path_filename.ext |> basename() |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
+ext = path_filename.ext |> basename() |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+```
+  
+  
+# __________|------  
+# @@ START) dev ----  
+
+##https://chatgpt.com/c/675c040e-89b0-800e-b784-653b257df2ee
+
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+library(stringr)
+
+
+f_path.extract_filename_ext_extended <- function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.xz$", "\\.nb\\.html$")) {
+    
+    input_filename.ext = basename(input_path)
+    input_ext = 
+        map2_chr(
+            input_filename.ext %>% str_extract(vec_RegEx4ext_extended %>% paste0(collapse = "|")) %>% str_remove("^\\."), 
+            input_filename.ext %>% tools::file_ext(), 
+            function(x, y) ifelse(is.na(x), y, x)
+        )
+    input_filename = str_remove(input_filename.ext, paste0("\\.", input_ext, "$"))
+    
+    # Return a data frame for easy further manipulation
+    data.frame(
+        dirname = dirname(input_path),
+        filename = input_filename,
+        ext = input_ext
+    )
+}
+
+# Example usage:
+input_path <- c(
+  "data/sample.123.xz",
+  "report.nb.html",
+  "example.txt"
+)
+
+f_path.extract_filename_ext_extended(input_path)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
 
 ```
   
