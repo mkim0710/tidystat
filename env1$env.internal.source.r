@@ -1138,10 +1138,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = g
     return(list_path_hierarchy)
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.extract_filename_ext_extended =  ----  
-# Rdev/00_base_program/002_base_encoding_RegEx/f_path.extract_filename_ext_extended.dev.Rmd
+## :: f_path.df_filename_ext_extended =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_path.df_filename_ext_extended.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.extract_filename_ext_extended"
+.tmp$objectname = "f_path.df_filename_ext_extended"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, vec_RegEx4ext_extended = c("\\.[^.]*\\.[gx]z$", "\\.nb\\.html$")) {
     
     input_filename_ext = basename(input_path)
