@@ -19,11 +19,11 @@
 #   fi
 # done
 ################################################
-# *** Auto detect text files and perform LF normalization ***
+# *** Auto detect text files and perform LF normalization *** --------
 * text=auto
 #==========================================#
 # *** Ensure consistent line endings for text files ***
-# R and R-related files
+# R and R-related files --------
 *.R text eol=lf
 *.r text eol=lf
 *.RMD text eol=lf
@@ -34,17 +34,17 @@
 *.rmD text eol=lf
 *.rMd text eol=lf
 *.rmd text eol=lf
-# Python scripts
+# Python scripts --------
 *.PY text eol=lf
 *.Py text eol=lf
 *.pY text eol=lf
 *.py text eol=lf
-# Shell scripts
+# Shell scripts --------
 *.SH text eol=lf
 *.Sh text eol=lf
 *.sH text eol=lf
 *.sh text eol=lf
-# JavaScript and TypeScript files
+# JavaScript and TypeScript files --------
 *.JS text eol=lf
 *.Js text eol=lf
 *.jS text eol=lf
@@ -63,7 +63,7 @@
 *.Ts text eol=lf
 *.tS text eol=lf
 *.ts text eol=lf
-# CSS and related files
+# CSS and related files --------
 *.CSS text eol=lf
 *.cSS text eol=lf
 *.Css text eol=lf
@@ -78,7 +78,7 @@
 *.leSS text eol=lf
 *.Less text eol=lf
 *.less text eol=lf
-# HTML, XML, and related files
+# HTML, XML, and related files --------
 *.HTML text eol=lf
 *.hTML text eol=lf
 *.Html text eol=lf
@@ -91,7 +91,7 @@
 *.xML text eol=lf
 *.Xml text eol=lf
 *.xml text eol=lf
-# JSON and YAML files
+# JSON and YAML files --------
 *.JSON text eol=lf
 *.jSON text eol=lf
 *.Json text eol=lf
@@ -104,7 +104,7 @@
 *.yML text eol=lf
 *.Yml text eol=lf
 *.yml text eol=lf
-# Markdown files
+# Markdown files --------
 *.MD text eol=lf
 *.Md text eol=lf
 *.mD text eol=lf
@@ -113,7 +113,7 @@
 *.mARKDOWN text eol=lf
 *.Markdown text eol=lf
 *.markdown text eol=lf
-# C/C++ source and header files
+# C/C++ source and header files --------
 *.C text eol=lf
 *.c text eol=lf
 *.CPP text eol=lf
@@ -128,7 +128,7 @@
 *.hpp text eol=lf
 #==========================================#
 # *** Ensure CRLF line endings for Windows script files ***
-# Batch scripts
+# Batch scripts --------
 *.BAT text eol=crlf
 *.BAt text eol=crlf
 *.BaT text eol=crlf
@@ -137,7 +137,7 @@
 *.bAt text eol=crlf
 *.baT text eol=crlf
 *.bat text eol=crlf
-# Command scripts
+# Command scripts --------
 *.CMD text eol=crlf
 *.CMd text eol=crlf
 *.CmD text eol=crlf
@@ -146,14 +146,14 @@
 *.cMd text eol=crlf
 *.cmD text eol=crlf
 *.cmd text eol=crlf
-# PowerShell scripts
+# PowerShell scripts --------
 *.PS1 text eol=crlf
 *.Ps1 text eol=crlf
 *.pS1 text eol=crlf
 *.ps1 text eol=crlf
 #==========================================#
 # *** Treat binary files correctly ***
-# Image files
+# Image files --------
 *.GIF binary
 *.GIf binary
 *.GiF binary
@@ -178,7 +178,7 @@
 *.pNg binary
 *.pnG binary
 *.png binary
-# Dynamic-link library files
+# Dynamic-link library files --------
 *.DLL binary
 *.DLl binary
 *.DlL binary
@@ -187,7 +187,7 @@
 *.dLl binary
 *.dlL binary
 *.dll binary
-# Executable files
+# Executable files --------
 *.EXE binary
 *.EXe binary
 *.ExE binary
@@ -196,7 +196,7 @@
 *.eXe binary
 *.exE binary
 *.exe binary
-# PDF files
+# PDF files --------
 *.PDF binary
 *.PDf binary
 *.PdF binary
@@ -205,7 +205,7 @@
 *.pDf binary
 *.pdF binary
 *.pdf binary
-# Word documents
+# Word documents --------
 *.DOC binary
 *.DOc binary
 *.DoC binary
@@ -228,7 +228,7 @@
 *.doCX binary
 *.doCx binary
 *.docx binary
-# PowerPoint files
+# PowerPoint files --------
 *.PPT binary
 *.PPt binary
 *.PpT binary
@@ -250,7 +250,7 @@
 *.ppTX binary
 *.ppTx binary
 *.pptx binary
-# Excel files
+# Excel files --------
 *.XLS binary
 *.XLs binary
 *.XlS binary
@@ -273,7 +273,7 @@
 *.xlSX binary
 *.xlSx binary
 *.xlsx binary
-# Compressed files
+# Compressed files --------
 *.7Z binary
 *.7z binary
 *.BZ2 binary
@@ -312,17 +312,17 @@
 *.zIp binary
 *.ziP binary
 *.zip binary
-# Python scripts
+# Python scripts --------
 *.PY text eol=lf
 *.Py text eol=lf
 *.pY text eol=lf
 *.py text eol=lf
-# Shell scripts
+# Shell scripts --------
 *.SH text eol=lf
 *.Sh text eol=lf
 *.sH text eol=lf
 *.sh text eol=lf
-# JavaScript and TypeScript files
+# JavaScript and TypeScript files --------
 *.JS text eol=lf
 *.Js text eol=lf
 *.jS text eol=lf
@@ -341,7 +341,7 @@
 *.Ts text eol=lf
 *.tS text eol=lf
 *.ts text eol=lf
-# CSS and related files
+# CSS and related files --------
 *.CSS text eol=lf
 *.cSS text eol=lf
 *.Css text eol=lf
@@ -356,7 +356,7 @@
 *.leSS text eol=lf
 *.Less text eol=lf
 *.less text eol=lf
-# HTML, XML, and related files
+# HTML, XML, and related files --------
 *.HTML text eol=lf
 *.hTML text eol=lf
 *.Html text eol=lf
@@ -369,7 +369,7 @@
 *.xML text eol=lf
 *.Xml text eol=lf
 *.xml text eol=lf
-# JSON and YAML files
+# JSON and YAML files --------
 *.JSON text eol=lf
 *.jSON text eol=lf
 *.Json text eol=lf
@@ -382,7 +382,7 @@
 *.yML text eol=lf
 *.Yml text eol=lf
 *.yml text eol=lf
-# Markdown files
+# Markdown files --------
 *.MD text eol=lf
 *.Md text eol=lf
 *.mD text eol=lf
@@ -391,7 +391,7 @@
 *.mARKDOWN text eol=lf
 *.Markdown text eol=lf
 *.markdown text eol=lf
-# C/C++ source and header files
+# C/C++ source and header files --------
 *.C text eol=lf
 *.c text eol=lf
 *.CPP text eol=lf
@@ -406,7 +406,7 @@
 *.hpp text eol=lf
 #==========================================#
 # *** Ensure CRLF line endings for Windows script files ***
-# Batch scripts
+# Batch scripts --------
 *.BAT text eol=crlf
 *.BAt text eol=crlf
 *.BaT text eol=crlf
@@ -415,7 +415,7 @@
 *.bAt text eol=crlf
 *.baT text eol=crlf
 *.bat text eol=crlf
-# Command scripts
+# Command scripts --------
 *.CMD text eol=crlf
 *.CMd text eol=crlf
 *.CmD text eol=crlf
@@ -424,14 +424,14 @@
 *.cMd text eol=crlf
 *.cmD text eol=crlf
 *.cmd text eol=crlf
-# PowerShell scripts
+# PowerShell scripts --------
 *.PS1 text eol=crlf
 *.Ps1 text eol=crlf
 *.pS1 text eol=crlf
 *.ps1 text eol=crlf
 #==========================================#
 # *** Treat binary files correctly ***
-# Image files
+# Image files --------
 *.GIF binary
 *.GIf binary
 *.GiF binary
@@ -456,7 +456,7 @@
 *.pNg binary
 *.pnG binary
 *.png binary
-# Dynamic-link library files
+# Dynamic-link library files --------
 *.DLL binary
 *.DLl binary
 *.DlL binary
@@ -465,7 +465,7 @@
 *.dLl binary
 *.dlL binary
 *.dll binary
-# Executable files
+# Executable files --------
 *.EXE binary
 *.EXe binary
 *.ExE binary
@@ -474,7 +474,7 @@
 *.eXe binary
 *.exE binary
 *.exe binary
-# PDF files
+# PDF files --------
 *.PDF binary
 *.PDf binary
 *.PdF binary
@@ -483,7 +483,7 @@
 *.pDf binary
 *.pdF binary
 *.pdf binary
-# Word documents
+# Word documents --------
 *.DOC binary
 *.DOc binary
 *.DoC binary
@@ -506,7 +506,7 @@
 *.doCX binary
 *.doCx binary
 *.docx binary
-# PowerPoint files
+# PowerPoint files --------
 *.PPT binary
 *.PPt binary
 *.PpT binary
@@ -528,7 +528,7 @@
 *.ppTX binary
 *.ppTx binary
 *.pptx binary
-# Excel files
+# Excel files --------
 *.XLS binary
 *.XLs binary
 *.XlS binary
@@ -551,7 +551,7 @@
 *.xlSX binary
 *.xlSx binary
 *.xlsx binary
-# Compressed files
+# Compressed files --------
 *.7Z binary
 *.7z binary
 *.BZ2 binary
