@@ -1998,7 +1998,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk
         }
         
         # If files are different or local file doesn't exist, proceed with the download
-        if(VERBOSE) message(paste0("Update needed for: ", destfile))
+        if(VERBOSE||!EXECUTE) message(paste0("* Update needed for: ", destfile))
         if(VERBOSE||!EXECUTE) cat("> file.copy(from = ", deparse(temp_file), ", to = ", deparse(destfile), ", overwrite = TRUE)", "  \n", sep="") 
         if(EXECUTE) {file.copy(from = temp_file, to = destfile, overwrite = TRUE); message(paste0("Downloaded & updated: ", destfile))}
         return(EXECUTE)
