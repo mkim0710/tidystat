@@ -2013,7 +2013,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### \$f\$f.updateTemplates ====  
 # https://github.com/mkim0710/f.updateTemplates.exe.r
-env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = FALSE) {
+env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = TRUE) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
