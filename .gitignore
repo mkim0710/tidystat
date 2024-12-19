@@ -1,3 +1,22 @@
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# .gitignore is case-sensitive by default, but behavior may vary based on your filesystem. 
+# To configure git to ignore case, run the following command:
+# git config core.ignorecase true
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Caution) Different from RegEx~!! (especially be cautious with the question mark (?))
+# ab        : The the exact string "ab", either in file name or directory name. There should be no other characters before or after the string. (Caution: does not match "ab.xy" nor "xy.ab". Does match "ab/xy"?? Does match "xy/ab"??)
+# [Aa][Bb]  : The string "ab", case ignored, either in the file name or the directory name. There should be no other characters before or after the string. (Caution: does not match "ab.xy" nor "xy.ab". Does match "ab/xy"?? Does match "xy/ab"??)
+# *         : The asterisk(*) means "any character" zero or more times (Cf. In RegEx, the aristerisk (*) means "zero or more times" of the PRECEDING CHARACTER.)
+# .*        : Litteral dot(.), followed by "any character" zero or more times. (Caution: does not match "ab.c". Does match ".gitignore")
+# ab*       : The exact string "ab" followed by any characters, either in file name or directory name. There should be no other characters before the string. (Caution: Does not match "a" as in RegEx. Does match "ab.xy". Does match "abc/xy")
+# ?         : The question mark(?) means "any character" EXACTLY ONE TIME. (Cf. In RegEx, the question mark(?) means "zero or one time" of the PRECEDING CHARACTER.)
+# .?        : Litteral dot(.), followed by "any character" EXACTLY ONE TIME. (Caution: Does not match "c" as in RegEx. Does not match "." as in RegEx. Does match ".c".)
+# [Aa]?     : The character "a", case ignored, followed by "any character" EXACTLY ONE TIME. (Caution: Does not match "a" as in RegEx. Does match "ab".)
+# a?b       : The character "a", followed by "any character" EXACTLY ONE TIME, followed by "b". (Caution: Does not match "ab" as in RegEx. Does not match "b" as in RegEx. Does match "axb". Does match "a.b".)
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ https://git-scm.com/docs/gitignore
 # Literal Matches: Simple file or directory names can be ignored directly.
 # file.txt
@@ -46,145 +65,109 @@ rsconnect/
 
 # knitr and R markdown default cache directories/temporary files
 *_cache/
-/cache/
+cache/
 *.utf8.md
 *.knit.md
-
-# Output files from R CMD build/check
-/*.tar.gz
-/*.Rcheck/
-
-# translation temp files
-po/*~
 
 # Ignore MacOS system files
 .DS_Store
 
 # Private files
-*KEY*
-MH)*.r
-*-personal*
-*-private*
-*-annotate*
-*- annotate*
-*-edit*
-*- edit*
-*- info*
-*-info*
+*[Kk][Ee][Yy]
+*[Kk][Ee][Yy].*
+[Mm][Hh])*.[Rr]
+*-[Pp][Ee][Rr][Ss][Oo][Nn][Aa][Ll]*
+*-[Pp][Rr][Ii][Vv][Aa][Tt][Ee]*
+*-[Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ee]*
+*- [Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ee]*
+*-[Ee][Dd][Ii][Tt]*
+*- [Ee][Dd][Ii][Tt]*
+*-[Ii][Nn][Ff][Oo]*
+*- [Ii][Nn][Ff][Oo]*
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
+.[Hh][Tt][Tt][Rr]-[Oo][Aa][Uu][Tt][Hh]
 
 # Quarto files
-.quarto
+.[Qq][Uu][Aa][Rr][Tt][Oo]
 
 # Editor-specific files
-.vscode
-.history/
+#.[Vv][Ss][Cc][Oo][Dd][Ee]
+*[Hh][Ii][Ss][Tt][Oo][Rr][Yy]/
 
 # Compressed files
-*.zip
+*.[Zz][Ii][Pp]
 *.7z
 *.tar
-*.gz
-*.bz
-*.xz
-*.r.gz
-*.r.xz
-*.rmd.gz
-*.rmd.xz
+*.[gx]z
 
 # Link or alias files
-*.lnk
+*.[Ll][Nn][Kk]
 *alias
 
 # Document files
-*.ppt
-*.pptx
-*.pptm
+*.[Pp][Pp][Tt]
+*.[Pp][Pp][Tt][XxMm]
 # *.xls *.xlsx # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
-*.xls
-*.xlsx
-*.xlsm
-*.doc
-*.docx
-*.docm
-*.rtf
-*.pdf
-*.pdf.*
-*.nb.html
-*.nb.html.*
-*.html
-*.html.*
-*_files/
+*.[Xx][Ll][Ss]
+*.[Xx][Ll][Ss][XxMm]
+*.[Dd][Oo][Cc]
+*.[Dd][Oo][Cc][XxMm]
+*.[Rr][Tt][Ff]
+*.[Pp][Dd][Ff]
+*.[Nn][Bb].[Hh][Tt][Mm][Ll]
+*.[Hh][Tt][Mm][Ll]
+*_[Ff][Ii][Ll][Ee][Ss]/
 
-*.rdata
-*.rdata
-*.rda
-*.rda
-*.rds
-*.rds
-*.csv
+*.[Rr][Dd][Aa][Tt][Aa]
+*.[Rr][Dd][Aa]
+*.[Rr][Dd][Ss]
+*.[Cc][Ss][Vv]
 
 # Temporary and debug files
-void/
-*- void*
-*-void*
-temp/
-tmp/
--tmp
-*- tmp*
-*-tmp*
-# dev/
-# *-dev*
-# debug/
-# *debug*
-backup/
-*-backup/
-*-backup*
-archive/
-*-archive*
-# old/
-# *- old*
-# *-old*
+[Tt][Ee][Mm][Pp]
+[Tt][Mm][Pp]
+*-[Tt][Mm][Pp]*
+*-[Vv][Oo][Ii][Dd]*
+# *-[Dd][Ee][Vv]*
+# *-[Dd][Ee][Bb][Uu][Gg]*
+[Bb][Aa][Cc][Kk][Uu][Pp]
+*-[Bb][Aa][Cc][Kk][Uu][Pp]*
+*-[Aa][Rr][Cc][Hh][Ii][Vv][Ee]*
+# [Oo][Ll][Dd]
+# *-[Oo][Ll][Dd]*
 
 # Log files
-# *-log*.*
-# *.log
+# *-[Ll][Oo][Gg]*
+# *.[Ll][Oo][Gg]
 
 # data files
-*.sqlite
-*.sas7bdat
-*.RDataTmp
+*.[Ss][Qq][Ll][Ii][Tt][Ee]
+*.[Ss][Aa][Ss]7[Bb][Dd][Aa][Tt]
 # *.rdata *.rda *.rds # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
-*.rdata
-*.rda
-*.rds
-# *.csv # -> use pre-commit hook to block commit based on the size limit
-*.ffs_db
+*.[Rr][Dd][Aa][Tt][Aa]
+*.[Rr][Dd][Aa]
+*.[Rr][Dd][Ss]
+# *.[Cc][Ss][Vv] # -> use pre-commit hook to block commit based on the size limit
+*.[Ff][Ff][Ss]_[Dd][Bb]
 
 # Executable files & Binary files
-*.exe
-*.dll
-*.so
-*.bin
-*.reg
-*.msi
-*.jar
-*.download
-*.MTA
-
-# Object files
-*.o
-*.obj
+*.[Ee][Xx][Ee]
+*.[Dd][Ll][Ll]
+*.[Bb][Ii][Nn]
+*.[Rr][Ee][Gg]
+*.[Mm][Ss][Ii]
+*.[Jj][Aa][Rr]
+*.[Dd][Oo][Ww][Nn][Ll][Oo][Aa][Dd]
+*.[Mm][Tt][Aa]
 
 # Image files
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.tif
-*.bmp
-*.svg
+*.[Pp][Nn][Gg]
+*.[Jj][Pp][Ee][Gg]
+*.[Jj][Pp][Gg]
+*.[Gg][Ii][Ff]
+*.[Tt][Ii][Ff]
+*.[Bb][Mm][Pp]
+*.[Ss][Vv][Gg]
 
 # Machine-specific backup files
 *-ID92i5-4570T*
