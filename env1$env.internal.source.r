@@ -1784,29 +1784,30 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = paste0(env1$path$path1,"/.gitattributes"), 
         output_path.lfs = paste0(env1$path$path1,"/.lfs.gitattributes"), 
+        split_non_lfs = TRUE,
         output_path.non_lfs = paste0(env1$path$path1,"/.non_lfs.gitattributes"), 
         OPEN_OUTPUT = FALSE) {
     # Read the .gitattributes file
     input_path.lines <- readLines(input_path)
 
     # Separate input_path.lines into LFS and non-LFS groups
-    input_path.lines.lfs <- input_path.lines %>% str_subset("\\blfs\\b")
-    input_path.lines.non_lfs <- input_path.lines %>% str_subset("\\blfs\\b", negate = TRUE)
-
-    # Write LFS input_path.lines to a new file
-    writeLines(input_path.lines.lfs, output_path.lfs)
-
-    # Write non-LFS input_path.lines to another new file
-    writeLines(input_path.lines.non_lfs, output_path.non_lfs)
-
-    cat("Splitting completed:\n",
-        "LFS lines saved to     \t:", deparse(output_path.lfs), "\n",
-        "Non-LFS lines saved to \t:", deparse(output_path.non_lfs), "\n")
     
-    if(OPEN_OUTPUT) {
-        file.edit(output_path.lfs)
-        file.edit(output_path.non_lfs)
+    if(TRUE) {
+        input_path.lines.lfs <- input_path.lines %>% str_subset("\\blfs\\b")
+        # Write LFS input_path.lines to a new file
+        writeLines(input_path.lines.lfs, output_path.lfs)
+        cat("LFS lines extracted to \t:", deparse(output_path.lfs), "  \n", sep="")
+        if(OPEN_OUTPUT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path.lfs)
     }
+
+    if(split_non_lfs) {
+        input_path.lines.non_lfs <- input_path.lines %>% str_subset("\\blfs\\b", negate = TRUE)
+        # Write non-LFS input_path.lines to another new file
+        writeLines(input_path.lines.non_lfs, output_path.non_lfs)
+        cat("Non-LFS lines extracted to \t:", deparse(output_path.non_lfs), "  \n", sep="")
+        if(OPEN_OUTPUT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path.non_lfs)
+    }
+    
     invisible()
 }
 
