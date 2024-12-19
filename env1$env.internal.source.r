@@ -1981,7 +1981,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file1, file2, chunk_
 # Function to download a file only if the web file is different from the local file
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_url_destfile.DownloadIfDifferent"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk_size = 65536, VERBOSE = getOption("verbose"), EXECUTE = FALSE) {  # Default 64KB chunk size
     tryCatch({
         # Temporary file to download the remote file for comparison
         temp_file <- tempfile()
@@ -1998,9 +1998,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk
         }
         
         # If files are different or local file doesn't exist, proceed with the download
-        file.copy(from = temp_file, to = destfile, overwrite = TRUE)
-        message(paste0("Downloaded & updated: ", destfile))
-        return(TRUE)
+        if(VERBOSE) cat("<VERBOSE> file.copy(from = ", deparse(temp_file), ", to = ", deparse(destfile), ", overwrite = TRUE)", "  \n", sep="") 
+        if(EXECUTE) {file.copy(from = temp_file, to = destfile, overwrite = TRUE); message(paste0("Downloaded & updated: ", destfile))}
+        return(EXECUTE)
         
     }, error = function(e) {
         message(paste0("Failed to download or update: ", url))
@@ -2012,7 +2012,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### \$f\$f.updateTemplates ====  
 # https://github.com/mkim0710/f.updateTemplates.exe.r
-env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
+env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = FALSE) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
@@ -2059,15 +2059,6 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
         }
     }
     
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
-        # for (.file.copy.to in c(file.path(env1$path$path1,.filename_ext), file.path("~",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename_ext))) {
-        for (.file.copy.to in file.path(env1$path$path1,.filename_ext)) {
-            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename_ext)) {
-                env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
-            }
-        }
-    }
-
     # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
     for (.filename_ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
