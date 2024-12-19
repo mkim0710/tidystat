@@ -85,7 +85,7 @@ env1$env.internal$f.update_rstudio_prefs = function(.file.copy.from = NULL, .fil
             if (is.null(.file.copy.to)) {
                 .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
             }
-            env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+            env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
         } else if(Sys.info()["sysname"] == "Darwin") {
             if (is.null(.file.copy.from)) {
                 warning("f.update_rstudio_prefs() not available for macOS")
