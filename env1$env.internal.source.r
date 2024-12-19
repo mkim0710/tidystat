@@ -2049,7 +2049,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
     
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
-    for (.filename_ext in c(".Rprofile")) {
+    for (.filename_ext in c(".Rprofile", ".gitignore")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
         # for (.file.copy.to in c(file.path(env1$path$path1,.filename_ext), file.path("~",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename_ext))) {
         for (.file.copy.to in file.path(env1$path$path1,.filename_ext)) {
@@ -2066,13 +2066,13 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
         env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
     }
     
-    # remove old files
-    for (.file.old in c("updateTemplates.R", "f.updateTemplates.source.r")) {
-        if (file.exists(.file.old) && file.exists("f.updateTemplates.exe.r")) {
-            file.remove(.file.old)
-            warning(paste0("Removed old file: ", .file.old))
-        }
-    }
+    # # remove old files
+    # for (.file.old in c("updateTemplates.R", "f.updateTemplates.source.r")) {
+    #     if (file.exists(.file.old) && file.exists("f.updateTemplates.exe.r")) {
+    #         file.remove(.file.old)
+    #         warning(paste0("Removed old file: ", .file.old))
+    #     }
+    # }
     
     # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
     
