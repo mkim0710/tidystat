@@ -128,17 +128,21 @@ cache/
 [Tt][Mm][Pp]
 *-[Tt][Mm][Pp]*
 *-[Vv][Oo][Ii][Dd]*
+# *-[Pp][Ee][Nn][Dd][Ii][Nn][Gg]*
 # *-[Dd][Ee][Vv]*
-# *-[Dd][Ee][Bb][Uu][Gg]*
+*-[Dd][Ee][Bb][Uu][Gg]*
 [Bb][Aa][Cc][Kk][Uu][Pp]
 *-[Bb][Aa][Cc][Kk][Uu][Pp]*
 *-[Aa][Rr][Cc][Hh][Ii][Vv][Ee]*
-# [Oo][Ll][Dd]
-# *-[Oo][Ll][Dd]*
+[Oo][Ll][Dd]
+*-[Oo][Ll][Dd]*
 
 # Log files
 # *-[Ll][Oo][Gg]*
-# *.[Ll][Oo][Gg]
+*.[Ll][Oo][Gg]
+
+# dump files
+*.[Dd][Mm][Pp]
 
 # data files
 *.[Ss][Qq][Ll][Ii][Tt][Ee]
@@ -148,7 +152,6 @@ cache/
 *.[Rr][Dd][Aa]
 *.[Rr][Dd][Ss]
 # *.[Cc][Ss][Vv] # -> use pre-commit hook to block commit based on the size limit
-*.[Ff][Ff][Ss]_[Dd][Bb]
 
 # Executable files & Binary files
 *.[Ee][Xx][Ee]
@@ -177,8 +180,9 @@ cache/
 *-Min-Hyung’s MacBook Pro*
 *-MAGB760M13700KF*
 
-# lock files
+# lock files & sync database files
 sync.ffs_lock
+*.ffs_db
 
 # MHahk
 msedgeprofile_autocoder/
