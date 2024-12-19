@@ -2049,7 +2049,16 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
     
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
-    for (.filename_ext in c(".Rprofile", ".gitignore")) {
+    for (.filename_ext in c(".gitignore", ".gitattributes", ".Rprofile")) {
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
+        # for (.file.copy.to in file.path(env1$path$path1,.filename_ext)) {
+        for (.file.copy.to in c(file.path(env1$path$path1,.filename_ext), file.path("~",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename_ext))) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename_ext)) {
+                env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+            }
+        }
+    }
+    
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
         # for (.file.copy.to in c(file.path(env1$path$path1,.filename_ext), file.path("~",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename_ext))) {
         for (.file.copy.to in file.path(env1$path$path1,.filename_ext)) {
@@ -2058,7 +2067,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             }
         }
     }
-    
+
     # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
     for (.filename_ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
