@@ -1473,33 +1473,37 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### & alias = open_if_exists  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "open_if_exists")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### :: f_file.edit_windows ====  
+### :: f_file.edit_windows.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_file.edit_windows"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {  shell.exec(shQuote(.file2edit))  }
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = file.edit_windows  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_windows")
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### ::: f_file.edit_notepad ====  
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_file.edit_notepad"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
-    if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
+.tmp$objectname = "f_file.edit_windows.or_browseURL"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {  
+    if (Sys.info()["sysname"] == "Windows") {  shell.exec(shQuote(.file2edit))  } else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = file.edit_notepad  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_notepad")
+### & alias = file.edit_windows.or_browseURL  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_windows.or_browseURL")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### ::: f_file.edit_vscode ====  
+### ::: f_file.edit_windows_notepad.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_file.edit_vscode"
+.tmp$objectname = "f_file.edit_windows_notepad.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
-    if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
+    if (Sys.info()["sysname"] == "Windows") {  shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )  }  else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = file.edit_vscode  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_vscode")
+### & alias = file.edit_windows_notepad.or_browseURL  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_windows_notepad.or_browseURL")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+### ::: f_file.edit_windows_vscode.or_browseURL ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_file.edit_windows_vscode.or_browseURL"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
+    if (Sys.info()["sysname"] == "Windows") {
+        .path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )
+    } else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = file.edit_windows_vscode.or_browseURL  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "file.edit_windows_vscode.or_browseURL")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_URL.open_in_edge_app =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1771,6 +1775,39 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
             ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
         ))
     }
+}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: function_name = f_gitattributes.split() ====
+## git/f_gitattributes.split_lfs.dev.Rmd
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_gitattributes.split" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_path = paste0(env1$path$path1,"/.gitattributes"), 
+        output_path.lfs = paste0(env1$path$path1,"/.lfs.gitattributes"), 
+        output_path.non_lfs = paste0(env1$path$path1,"/.non_lfs.gitattributes"), 
+        OPEN_OUTPUT = FALSE) {
+    # Read the .gitattributes file
+    input_path.lines <- readLines(input_path)
+
+    # Separate input_path.lines into LFS and non-LFS groups
+    input_path.lines.lfs <- input_path.lines %>% str_subset("\\blfs\\b")
+    input_path.lines.non_lfs <- input_path.lines %>% str_subset("\\blfs\\b", negate = TRUE)
+
+    # Write LFS input_path.lines to a new file
+    writeLines(input_path.lines.lfs, output_path.lfs)
+
+    # Write non-LFS input_path.lines to another new file
+    writeLines(input_path.lines.non_lfs, output_path.non_lfs)
+
+    cat("Splitting completed:\n",
+        "LFS lines saved to     \t:", deparse(output_path.lfs), "\n",
+        "Non-LFS lines saved to \t:", deparse(output_path.non_lfs), "\n")
+    
+    if(OPEN_OUTPUT) {
+        file.edit(output_path.lfs)
+        file.edit(output_path.non_lfs)
+    }
+    invisible()
 }
 
 #_________________________________________________________________________________|----  
