@@ -5,6 +5,10 @@
 # git config core.ignorecase true
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# * When a file matches both the global and project .gitignore: The project .gitignore overrides the global .gitignore
+# * When a file matches only the global .gitignore: If the project .gitignore has no explicitly matching pattern, the global .gitignore rule takes effect. (Caution~!!!)
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # Caution) Different from RegEx~!! (especially be cautious with the question mark (?))
 # ab        : The the exact string "ab", either in file name or directory name. There should be no other characters before or after the string. (Caution: does not match "ab.xy" nor "xy.ab". Does match "ab/xy"?? Does match "xy/ab"??)
 # [Aa][Bb]  : The string "ab", case ignored, either in the file name or the directory name. There should be no other characters before or after the string. (Caution: does not match "ab.xy" nor "xy.ab". Does match "ab/xy"?? Does match "xy/ab"??)
