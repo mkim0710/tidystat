@@ -1498,7 +1498,16 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) input.readLines.except_TOC.str_replace_all = ifelse(input.readLines.except_TOC.str_replace_all == "", "", paste0(input.readLines.except_TOC.str_replace_all, strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all))), "...", 1:length(input.readLines.except_TOC.str_replace_all)))
+    if(add_line_numbers) input.readLines.except_TOC.str_replace_all.new_TOC = 
+            ifelse(
+                input.readLines.except_TOC.str_replace_all.new_TOC == "", "", 
+                paste0(
+                    input.readLines.except_TOC.str_replace_all.new_TOC, 
+                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.new_TOC))),
+                    "...", 
+                    1:length(input.readLines.except_TOC.str_replace_all.new_TOC)
+                )
+            )
 
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
     if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")

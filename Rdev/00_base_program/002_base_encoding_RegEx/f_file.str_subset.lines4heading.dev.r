@@ -126,8 +126,19 @@ replace_input_path_file = FALSE
 input.readLines <- readLines(input_path_file, warn = FALSE)
 input.readLines %>% str
 
+input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS") %>% min
+input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS") %>% max
+
+min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS")) %>% dput
+-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS")) %>% dput
+
+input.readLines %>% str
+input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))] %>% str
+
+input.readLines.except_TOC = input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
+
 input.readLines.except_TOC.str_replace_all <- str_replace_all(
-    string = input.readLines,
+    string = input.readLines.except_TOC,
     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
     replacement = "\\1"
 )
@@ -136,29 +147,41 @@ input.readLines.except_TOC.str_replace_all %>% str
 input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 input.readLines.except_TOC.str_replace_all %>% str
 
-input.readLines.except_TOC.str_replace_all = ifelse(input.readLines.except_TOC.str_replace_all == "", "", paste0(input.readLines.except_TOC.str_replace_all, strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all))), "...", 1:length(input.readLines.except_TOC.str_replace_all)))
-input.readLines.except_TOC.str_replace_all %>% str
+vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
+if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
+vec_new_TOC %>% str
 
-vec_lines4heading = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
-if (remove_lines_with_no_alphabet) vec_lines4heading = vec_lines4heading %>% str_subset("[a-zA-Z]")
-vec_lines4heading %>% str
-
-vec_lines4heading = vec_lines4heading %>% 
+vec_new_TOC = vec_new_TOC %>% 
     str_subset("# TABLE OF CONTENTS", negate = TRUE)
-vec_lines4heading = vec_lines4heading %>% 
+vec_new_TOC = vec_new_TOC %>% 
     str_subset("@@ END", negate = TRUE)
-vec_lines4heading %>% str
+vec_new_TOC %>% str
 
-vec_lines4heading = 
+vec_new_TOC = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        vec_lines4heading,
+        vec_new_TOC,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-vec_lines4heading %>% str
-vec_lines4heading %>% paste0(collapse = "\n") %>% cat("\n")
+vec_new_TOC %>% str
+vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 
+
+input.readLines.except_TOC.str_replace_all.new_TOC =
+    c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
+
+input.readLines.except_TOC.str_replace_all.new_TOC = 
+            ifelse(
+                input.readLines.except_TOC.str_replace_all.new_TOC == "", "", 
+                paste0(
+                    input.readLines.except_TOC.str_replace_all.new_TOC, 
+                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.new_TOC))),
+                    "...", 
+                    1:length(input.readLines.except_TOC.str_replace_all.new_TOC)
+                )
+            )
+input.readLines.except_TOC.str_replace_all.new_TOC %>% str
 
 
 
@@ -253,32 +276,48 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     # Read the file content
     input.readLines <- readLines(input_path_file, warn = FALSE)
+    
+    input.readLines.except_TOC = input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
 
     input.readLines.except_TOC.str_replace_all <- str_replace_all(
-        string = input.readLines,
+        string = input.readLines.except_TOC,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
         replacement = "\\1"
     )
 
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) input.readLines.except_TOC.str_replace_all = ifelse(input.readLines.except_TOC.str_replace_all == "", "", paste0(input.readLines.except_TOC.str_replace_all, strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all))), "...", 1:length(input.readLines.except_TOC.str_replace_all)))
+    vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
+    if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 
-    vec_lines4heading = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
-    if (remove_lines_with_no_alphabet) vec_lines4heading = vec_lines4heading %>% str_subset("[a-zA-Z]")
-
-    vec_lines4heading = vec_lines4heading %>% 
+    vec_new_TOC = vec_new_TOC %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    vec_lines4heading = vec_lines4heading %>% 
+    vec_new_TOC = vec_new_TOC %>% 
         str_subset("@@ END", negate = TRUE)
 
-    vec_lines4heading = 
+    vec_new_TOC = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_lines4heading,
+            vec_new_TOC,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
+    
+    input.readLines.except_TOC.str_replace_all.new_TOC =
+    c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
+    
+    if(add_line_numbers) {
+        input.readLines.except_TOC.str_replace_all.new_TOC = 
+            ifelse(
+                input.readLines.except_TOC.str_replace_all.new_TOC == "", "", 
+                paste0(
+                    input.readLines.except_TOC.str_replace_all.new_TOC, 
+                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.new_TOC))),
+                    "...", 
+                    1:length(input.readLines.except_TOC.str_replace_all.new_TOC)
+                )
+            )
+    }
     
     if(replace_input_path_file) {
         if (!is.null(output_path_file)) {warning("replace_input_path_file == TRUE -> output_path_file will be ignored.")}
@@ -290,12 +329,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(vec_lines4heading, input.readLines), con = output_path_file)
+    writeLines(input.readLines.except_TOC.str_replace_all.new_TOC, con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) vec_lines4heading %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(vec_lines4heading)
+    invisible(vec_new_TOC)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
