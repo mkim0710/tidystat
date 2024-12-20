@@ -139,25 +139,25 @@ vec_lines4heading %>% str
 vec_lines4heading = ifelse(vec_lines4heading == "", "", paste0(vec_lines4heading, strrep(" ",pmax(4, 70-nchar(vec_lines4heading))), "...", 1:length(vec_lines4heading)))
 vec_lines4heading %>% str
 
-vec_lines4heading = vec_lines4heading[!vec_lines4heading == ""]
-if (remove_lines_with_no_alphabet) vec_lines4heading = vec_lines4heading %>% str_subset("[a-zA-Z]")
-vec_lines4heading %>% str
+vec_lines4heading.subset = vec_lines4heading[!vec_lines4heading == ""]
+if (remove_lines_with_no_alphabet) vec_lines4heading.subset = vec_lines4heading.subset %>% str_subset("[a-zA-Z]")
+vec_lines4heading.subset %>% str
 
-vec_lines4heading = vec_lines4heading %>% 
+vec_lines4heading.subset = vec_lines4heading.subset %>% 
     str_subset("# TABLE OF CONTENTS", negate = TRUE)
-vec_lines4heading = vec_lines4heading %>% 
+vec_lines4heading.subset = vec_lines4heading.subset %>% 
     str_subset("@@ END", negate = TRUE)
-vec_lines4heading %>% str
+vec_lines4heading.subset %>% str
 
-vec_lines4heading = 
+vec_lines4heading.subset = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        vec_lines4heading,
+        vec_lines4heading.subset,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-vec_lines4heading %>% str
-vec_lines4heading %>% paste0(collapse = "\n") %>% cat("\n")
+vec_lines4heading.subset %>% str
+vec_lines4heading.subset %>% paste0(collapse = "\n") %>% cat("\n")
 
 
 
@@ -264,19 +264,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     if(add_line_numbers) vec_lines4heading = ifelse(vec_lines4heading == "", "", paste0(vec_lines4heading, strrep(" ",pmax(4, 70-nchar(vec_lines4heading))), "...", 1:length(vec_lines4heading)))
 
-    vec_lines4heading = vec_lines4heading[!vec_lines4heading == ""]
-    if (remove_lines_with_no_alphabet) vec_lines4heading = vec_lines4heading %>% str_subset("[a-zA-Z]")
+    vec_lines4heading.subset = vec_lines4heading[!vec_lines4heading == ""]
+    if (remove_lines_with_no_alphabet) vec_lines4heading.subset = vec_lines4heading.subset %>% str_subset("[a-zA-Z]")
 
-    vec_lines4heading = vec_lines4heading %>% 
+    vec_lines4heading.subset = vec_lines4heading.subset %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    vec_lines4heading = vec_lines4heading %>% 
+    vec_lines4heading.subset = vec_lines4heading.subset %>% 
         str_subset("@@ END", negate = TRUE)
 
-    vec_lines4heading = 
+    vec_lines4heading.subset = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_lines4heading,
+            vec_lines4heading.subset,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -290,12 +290,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(vec_lines4heading, input_path_file.readLines), con = output_path_file)
+    writeLines(c(vec_lines4heading.subset, input_path_file.readLines), con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) vec_lines4heading %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_lines4heading.subset %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(vec_lines4heading)
+    invisible(vec_lines4heading.subset)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -305,17 +305,17 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$f$f_file.str_subset.lines4heading()
-env1$f$f_file.str_subset.lines4heading(add_line_numbers = FALSE)
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL()
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(add_line_numbers = FALSE)
 
-# env1$f$f_file.str_subset.lines4heading(replace_input_path_file = TRUE)
+# env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
-### env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+### env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
-### env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+### env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
