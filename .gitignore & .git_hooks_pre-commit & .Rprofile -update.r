@@ -31,12 +31,12 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
-# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
+# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
 env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -63,7 +63,7 @@ f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_fr
     .vec_destination_paths = .vec_destination_paths |> unique()
     .overwrite_from_path_filename_ext = paste0(.overwrite_from_path, "/", .overwrite_from_filename_ext)
     # if (basename(getwd()) == "github_tidystat") {
-    if (getwd() |> normalizePath(winslash="/") %in% restrict_execution_path) {
+    if (getwd() |> normalizePath(winslash="/",mustWork=NA) %in% restrict_execution_path) {
         env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = paste0(.vec_destination_paths, "/", .overwrite_from_filename_ext) |> keep(file.exists) |> first(default = ""), .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
         for (.destination_path in unique(.vec_destination_paths)) {
             if(VERBOSE) cat(".destination_path: ", .destination_path, "\n", sep="")
@@ -84,9 +84,9 @@ vec_Rproject_names.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject
 .vec_destination_paths = c(
     env1$path$path0
     , "~" 
-    , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
-    , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/")
-    , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
+    , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/",mustWork=NA)
+    , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/",mustWork=NA)
+    , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/",mustWork=NA)
     , "D:/OneDrive/MHShell"
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
@@ -98,9 +98,9 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
 .vec_destination_paths = c(
     env1$path$path0
     , "~" 
-    , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
-    , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/")
-    , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
+    , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/",mustWork=NA)
+    , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/",mustWork=NA)
+    , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/",mustWork=NA)
     , "D:/OneDrive/MHShell"
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
@@ -111,7 +111,7 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
 .overwrite_from_filename_ext = ".Rprofile"
 .vec_destination_paths = c(
     env1$path$path0
-    , "~" |> normalizePath(winslash="/")
+    , "~" |> normalizePath(winslash="/",mustWork=NA)
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
 f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE, createFile = TRUE)
