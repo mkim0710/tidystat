@@ -1495,10 +1495,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_windows_vscode.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_file.edit_windows_vscode.or_browseURL"normalizePath(winslash="/",mustWork=NA)
+.tmp$objectname = "f_file.edit_windows_vscode.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {
-        .path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )
+        .path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )
     } else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
