@@ -204,26 +204,37 @@ vec_new_TOC =
     )
 vec_new_TOC %>% str
 vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_new_TOC %>% str
+#  chr [1:17] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
+input.readLines.except_TOC.add_new_TOC =
+    c(vec_new_TOC, input.readLines.except_TOC)
+input.readLines.except_TOC.add_new_TOC %>% str
+# > input.readLines.except_TOC.add_new_TOC %>% str
+#  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
-input.readLines.except_TOC.str_replace_all.new_TOC =
-    c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
-input.readLines.except_TOC.str_replace_all.new_TOC %>% str
-
-input.readLines.except_TOC.str_replace_all.new_TOC = 
+input.readLines.except_TOC.add_new_TOC = 
             ifelse(
-                input.readLines.except_TOC.str_replace_all.new_TOC == "", "", 
+                input.readLines.except_TOC.add_new_TOC == "", "", 
                 paste0(
-                    input.readLines.except_TOC.str_replace_all.new_TOC, 
-                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.new_TOC))),
+                    input.readLines.except_TOC.add_new_TOC, 
+                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.add_new_TOC))),
                     "...", 
-                    1:length(input.readLines.except_TOC.str_replace_all.new_TOC)
+                    1:length(input.readLines.except_TOC.add_new_TOC)
                 )
             )
-input.readLines.except_TOC.str_replace_all.new_TOC %>% str
+input.readLines.except_TOC.add_new_TOC %>% str
+# > input.readLines.except_TOC.add_new_TOC %>% str
+#  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##      ...1" ...
 
+output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
+output_path_file %>% str
+# > output_path_file %>% str
+#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.str_subset.lines4heading.dev.r-TableOfContents-11874623757f.txt"
 
-
+writeLines(input.readLines.except_TOC.add_new_TOC, con = output_path_file)
+env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
+    
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function.old -----  
@@ -344,21 +355,21 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
-    input.readLines.except_TOC.str_replace_all.new_TOC =
+    input.readLines.except_TOC.add_new_TOC =
         c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
     
     if(add_line_numbers) {
-        input.readLines.except_TOC.str_replace_all.new_TOC = 
+        input.readLines.except_TOC.add_new_TOC = 
             ifelse(
-                input.readLines.except_TOC.str_replace_all.new_TOC == "", "", 
+                input.readLines.except_TOC.add_new_TOC == "", "", 
                 paste0(
-                    input.readLines.except_TOC.str_replace_all.new_TOC, 
-                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.new_TOC))),
+                    input.readLines.except_TOC.add_new_TOC, 
+                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.add_new_TOC))),
                     "...", 
-                    1:length(input.readLines.except_TOC.str_replace_all.new_TOC)
+                    1:length(input.readLines.except_TOC.add_new_TOC)
                 )
             )
-        vec_new_TOC.add_line_numbers = input.readLines.except_TOC.str_replace_all.new_TOC[min(input.readLines.except_TOC.str_replace_all.new_TOC %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines.except_TOC.str_replace_all.new_TOC %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
+        vec_new_TOC.add_line_numbers = input.readLines.except_TOC.add_new_TOC[min(input.readLines.except_TOC.add_new_TOC %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines.except_TOC.add_new_TOC %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
     }
     
     if(replace_input_path_file) {
@@ -371,7 +382,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(input.readLines.except_TOC.str_replace_all.new_TOC, con = output_path_file)
+    writeLines(input.readLines.except_TOC.add_new_TOC, con = output_path_file)
     # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
     if(add_line_numbers) vec_new_TOC = vec_new_TOC.add_line_numbers
