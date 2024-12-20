@@ -3,8 +3,8 @@
 
 # Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
-# Rdev/00_base_program/007_base_expression/f_expression.substitute.echo.dev-pending.Rmd
+# Rdev/00_base_program/007_base_expression/f_CodeText.substitute.ECHO.dev.r -> incorporated in f_CodeText.ECHO.dev.r
+# Rdev/00_base_program/007_base_expression/f_expression.substitute.ECHO.dev-pending.Rmd
 
 
 

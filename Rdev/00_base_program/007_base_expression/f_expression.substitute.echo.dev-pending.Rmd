@@ -213,7 +213,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # Rdev/00_base_program/f_CodeText.ECHO.dev.r
-# Rdev/00_base_program/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r  
+# Rdev/00_base_program/f_CodeText.substitute.ECHO.dev.r -> incorporated in f_CodeText.ECHO.dev.r  
   
 # __________|------  
 # @@ START) data example ----  
