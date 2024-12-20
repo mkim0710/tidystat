@@ -1,6 +1,6 @@
 # @@ Now included in env1$env.internal.source.r ----
 
-# Rdev/00_base_program/f_CodeText.echo.dev.r
+# Rdev/00_base_program/f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
 ##________________________________________________________________________________  

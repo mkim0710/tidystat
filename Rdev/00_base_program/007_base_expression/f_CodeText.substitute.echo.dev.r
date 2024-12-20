@@ -1,7 +1,7 @@
 # @@ Now included in env1$env.internal.source.r ----
 
-# Rdev/00_base_program/f_CodeText.echo.dev.r
-# Rdev/00_base_program/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.echo.dev.r
+# Rdev/00_base_program/f_CodeText.ECHO.dev.r
+# Rdev/00_base_program/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/f_expression.substitute.echo.dev-pending.Rmd
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
@@ -210,7 +210,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# f_CodeText.echo = function(.CodeText, EXECUTE = FALSE, deparse_cat = TRUE) {
+# f_CodeText.ECHO = function(.CodeText, EXECUTE = FALSE, deparse_cat = TRUE) {
 #     .CodeText |> cat("  \n", sep="")
 #     if(EXECUTE) {
 #         if(deparse_cat) {
@@ -223,7 +223,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 # }
 
 
-f_CodeText.echo = function(.CodeText,
+f_CodeText.ECHO = function(.CodeText,
                           EXECUTE = FALSE,
                           deparse_cat = TRUE,
                           substitute_ObjectNames = FALSE,
@@ -269,34 +269,34 @@ f_CodeText.echo = function(.CodeText,
 ## .CodeText = "dim(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))" 
-.CodeText |> f_CodeText.echo()
-.CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+.CodeText |> f_CodeText.ECHO()
+.CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # > .CodeText = "dim(get(.objectname))" 
-# > .CodeText |> f_CodeText.echo()
+# > .CodeText |> f_CodeText.ECHO()
 # dim(get(.objectname))  
-# > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # dim(analyticDF_time2event)  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
 # dim(get(.objectname))  
 # c(228L, 12L)  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # dim(get(.objectname))  
 # [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
-.CodeText |> f_CodeText.echo()
-.CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> f_CodeText.echo()
+.CodeText |> f_CodeText.ECHO()
+.CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.ECHO()
 # str(get(.objectname), max.level = 2, give.attr = F)  
-# > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -312,7 +312,7 @@ f_CodeText.echo = function(.CodeText,
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # NULL  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -614,12 +614,12 @@ f_CodeText.substitute.echo <- function(.CodeText,
 .CodeText |> f_CodeText.substitute.echo(EXECUTE = TRUE)
 .CodeText |> f_CodeText.substitute.echo(EXECUTE = TRUE, deparse_cat = FALSE)
 # > .CodeText = "dim(get(.objectname))" 
-# > .CodeText |> f_CodeText.echo()
+# > .CodeText |> f_CodeText.ECHO()
 # dim(get(.objectname))  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
 # dim(get(.objectname))  
 # c(228L, 12L)  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # dim(get(.objectname))  
 # [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -630,9 +630,9 @@ f_CodeText.substitute.echo <- function(.CodeText,
 .CodeText |> f_CodeText.substitute.echo(EXECUTE = TRUE)
 .CodeText |> f_CodeText.substitute.echo(EXECUTE = TRUE, deparse_cat = FALSE)
 # > .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
-# > .CodeText |> f_CodeText.echo()
+# > .CodeText |> f_CodeText.ECHO()
 # str(get(.objectname), max.level = 2, give.attr = F)  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -648,7 +648,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # NULL  
-# > .CodeText |> f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -668,9 +668,9 @@ f_CodeText.substitute.echo <- function(.CodeText,
 
 #|________________________________________________________________________________|#
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-## \$f_CodeText.echo ====
-# Rdev/00_base_program/f_CodeText.echo.dev.r
-env1$f$f_CodeText.echo = function(.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, VERBOSE = isTRUE(getOption("verbose"))) {
+## \$f_CodeText.ECHO ====
+# Rdev/00_base_program/f_CodeText.ECHO.dev.r
+env1$f$f_CodeText.ECHO = function(.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, VERBOSE = isTRUE(getOption("verbose"))) {
 
     
     if(substitute_ObjectNames) {

@@ -502,10 +502,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### & alias = echo.ObjectName.get.dput  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.ObjectName.get.dput")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_CodeText.echo ====
+## :: f_CodeText.ECHO ====
 # Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.echo.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.echo.dev.r
-.tmp$objectname = "f_CodeText.echo"
+# Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
+.tmp$objectname = "f_CodeText.ECHO"
 .tmp$object = function(
         .CodeText,
         EXECUTE = FALSE,
@@ -627,7 +627,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
-    env1$f$f_CodeText.echo(EXECUTE = TRUE, ...)
+    env1$f$f_CodeText.ECHO(EXECUTE = TRUE, ...)
 }
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

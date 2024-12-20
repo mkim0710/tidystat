@@ -2,31 +2,31 @@
 # --> Now included in "env1$env.internal.source.r"
 
 # Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.echo.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.echo.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.echo.dev.r
+# Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
+# Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_expression.substitute.echo.dev-pending.Rmd
 
 
 
 .objectname = "analyticDF_time2event"
 
-".objectname" |> env1$f$f_CodeText.echo()
-".objectname" |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
-# > ".objectname" |> env1$f$f_CodeText.echo()
+".objectname" |> env1$f$f_CodeText.ECHO()
+".objectname" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO()
 # 	"analyticDF_time2event"  
-# > ".objectname" |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	"analyticDF_time2event" == "analyticDF_time2event"  
-# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	.objectname  
-# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # 	.objectname == "analyticDF_time2event" 
 
 
 myObject = LETTERS[1:5]
-"myObject" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
-# > "myObject" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+"myObject" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > "myObject" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # 	myObject == c("A", "B", "C", "D", "E")  
 
 "myObject" %>% get()
@@ -37,8 +37,8 @@ myObject = LETTERS[1:5]
 
 
 # attr(,"alias")
-# [1] "env1$env.internal.attach$eval_parse_CodeText.echo = env1$f$f_CodeText.echo"
-# [2] "env1$env.internal.attach$echo.eval_parse_CodeText = env1$f$f_CodeText.echo"
+# [1] "env1$env.internal.attach$eval_parse_CodeText.echo = env1$f$f_CodeText.ECHO"
+# [2] "env1$env.internal.attach$echo.eval_parse_CodeText = env1$f$f_CodeText.ECHO"
 
 
 # "f_ObjectName.get.dput.echo"

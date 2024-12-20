@@ -47,7 +47,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
+#   ..$ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 #     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
@@ -123,7 +123,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", 
+#   ..$ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", 
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, 
 #     VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
@@ -205,7 +205,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,"..
+#   ..$ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,"..
 #     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
@@ -281,7 +281,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, Execu"..
+#   ..$ f_CodeText.ECHO                             :function (.CodeText, Execu"..
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4su..
 #     VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText..
@@ -363,7 +363,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ Sys.getlocale :List of 4
 # ..$ l10n_info :List of 5
 # $ f :List of 29
-# ..$ f_CodeText.echo :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t",
+# ..$ f_CodeText.ECHO :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t",
 #    LinePrefix4Output = "\t## ",
 # substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)
 # ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, EXECUTE = FALSE)
@@ -459,7 +459,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ Sys.getlocale :List of 4
 # ..$ l10n_info :List of 5
 # $ f :List of 29
-# ..$ f_CodeText.echo :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,
+# ..$ f_CodeText.ECHO :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,
 #    LinePrefix4CodeText = "\t",
 # LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE,
 #    ObjectNames4substitute = NULL,
@@ -592,7 +592,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ l10n_info       :List of 5
 # ________________________________________________________________________________    
 # $ f		:List of 29
-## $ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
+## $ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 ##    substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
 ## $ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 ## $ f_file.system_switch_open                          :function (file)  
@@ -660,8 +660,8 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 
 
 
-### "env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") ----
-"env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+### "env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") ----
+"env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 
 
 

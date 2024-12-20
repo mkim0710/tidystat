@@ -2,8 +2,8 @@
 
 # Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
 # Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.echo.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.echo.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.echo.dev.r
+# Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
+# Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_expression.substitute.echo.dev-pending.Rmd
 # Rdev/00_base_program/007_base_expression/f_TerminalFromRCodeText.echo.dev.r
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
@@ -158,7 +158,7 @@ cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objec
 # > .CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")'; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 # ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  
 # ", sep="")  
-# c(".CodeText", ".dependancy", ".envname", ".First", ".GlobalEnv", ".Last", ".listname", ".max_hierarchy", ".objectname", ".packagename", ".parentname", ".path4read", ".path4write", ".filename.source.r", ".sourcename_root", ".subenvname", ".sublistname", ".subpath", ".subpath_filename.source.r", ".t0", ".tmp", "analyticDF_time2event", "DataSetName", "env0", "env1", "f_CodeText.echo", "MetaData", "object", "params") 
+# c(".CodeText", ".dependancy", ".envname", ".First", ".GlobalEnv", ".Last", ".listname", ".max_hierarchy", ".objectname", ".packagename", ".parentname", ".path4read", ".path4write", ".filename.source.r", ".sourcename_root", ".subenvname", ".sublistname", ".subpath", ".subpath_filename.source.r", ".t0", ".tmp", "analyticDF_time2event", "DataSetName", "env0", "env1", "f_CodeText.ECHO", "MetaData", "object", "params") 
 
 
 ##________________________________________________________________________________  
@@ -217,7 +217,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# f_CodeText.echo = function(.CodeText, EXECUTE = FALSE, deparse_cat = TRUE) {
+# f_CodeText.ECHO = function(.CodeText, EXECUTE = FALSE, deparse_cat = TRUE) {
 #     .CodeText |> cat("  \n", sep="")
 #     if(EXECUTE) {
 #         if(deparse_cat) {
@@ -234,7 +234,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-env1$f$f_CodeText.echo = function(
+env1$f$f_CodeText.ECHO = function(
         .CodeText,
         EXECUTE = FALSE,
         deparse_cat = TRUE,
@@ -347,32 +347,32 @@ options(verbose = TRUE);  # getOption("verbose");
 options(verbose = FALSE);  # getOption("verbose");  
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))"
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	dim(get(.objectname))  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	dim(analyticDF_time2event)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	dim(analyticDF_time2event) == c(228L, 12L)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	dim(analyticDF_time2event)  
 # 	## [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	str(get(.objectname), max.level = 2, give.attr = F)  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -388,7 +388,7 @@ options(verbose = FALSE);  # getOption("verbose");
 #  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # 	## NULL  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 	## 'data.frame':	228 obs. of  12 variables:
 # 	##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -407,76 +407,76 @@ options(verbose = FALSE);  # getOption("verbose");
 ## Multi-statement .CodeText  ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname)); nrow(get(.objectname))" 
-.CodeText |> env1$f$f_CodeText.echo()
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo()
+.CodeText |> env1$f$f_CodeText.ECHO()
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO()
 # 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 #   
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 #   
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 # 	## c(228L, 12L)  
 #   
 # 	## 228L  
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 # 	## [1] 228  12
 #   
 # 	## [1] 228
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## Multi-line .CodeText  ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))
 nrow(get(.objectname))" 
-.CodeText |> env1$f$f_CodeText.echo()
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo()
+.CodeText |> env1$f$f_CodeText.ECHO()
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO()
 # 	dim(analyticDF_time2event)  
 # 	nrow(analyticDF_time2event)  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	dim(analyticDF_time2event)  
 # 	nrow(analyticDF_time2event)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	dim(analyticDF_time2event) == c(228L, 12L)  
 # 	nrow(analyticDF_time2event) == 228L  
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	dim(analyticDF_time2event)  
 # 	## [1] 228  12
 # 	nrow(analyticDF_time2event)  
 # 	## [1] 228
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "summary(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "get(.objectname) |> select_if(is.logical) |> summary()"
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	get(.objectname) |> select_if(is.logical) |> summary()  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	analyticDF_time2event |> select_if(is.logical) |> summary()  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	analyticDF_time2event |> select_if(is.logical) |> summary() == structure(c("Mode :logical  ", "FALSE:63       ", "TRUE :165      ", "Mode :logical  ", "FALSE:9        ", "TRUE :219      "), dim = 3:2, dimnames = list(    c("", "", ""), c("  event", "StudyPopulation")), class = "table")  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	analyticDF_time2event |> select_if(is.logical) |> summary()  
 # 	##    event         StudyPopulation
 # 	##  Mode :logical   Mode :logical  
@@ -486,24 +486,24 @@ nrow(get(.objectname))"
 ## .CodeText = "summary(get(.objectname))" ----
 DataSetName2 = "analyticDF_time2event"
 .CodeText = '.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort'
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort == c("0", "1", "10", "100", "11", "12", "13", "15", "16", "2", "21", "22", "26", "3", "30", "32", "33", "4", "40", "5", "50", "6", "60", "7", "70", "80", "90")  
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
 # 	## 
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
 
 
@@ -518,7 +518,7 @@ DataSetName2 = "analyticDF_time2event"
 # @@ START) function v2 (expression) -----  
 # https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643?model=o1-preview
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# env1$f$f_CodeText.echo <- function(
+# env1$f$f_CodeText.ECHO <- function(
 #     .CodeText,
 #     EXECUTE = FALSE,
 #     deparse_cat = TRUE,
@@ -637,32 +637,32 @@ DataSetName2 = "analyticDF_time2event"
 ## .CodeText = "dim(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))"
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	dim(get(.objectname))  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	dim(analyticDF_time2event)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	dim(analyticDF_time2event) == c(228L, 12L)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	dim(analyticDF_time2event)  
 # 	## [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	str(get(.objectname), max.level = 2, give.attr = F)  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -678,7 +678,7 @@ DataSetName2 = "analyticDF_time2event"
 #  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # 	## NULL  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 	## 'data.frame':	228 obs. of  12 variables:
 # 	##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -697,15 +697,15 @@ DataSetName2 = "analyticDF_time2event"
 ## Multi-statement .CodeText  ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname)); nrow(get(.objectname))" 
-.CodeText |> env1$f$f_CodeText.echo()
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO()
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	str(get(.objectname), max.level = 2, give.attr = F)  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -721,7 +721,7 @@ DataSetName2 = "analyticDF_time2event"
 #  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # 	## NULL  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 	## 'data.frame':	228 obs. of  12 variables:
 # 	##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -741,45 +741,45 @@ DataSetName2 = "analyticDF_time2event"
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))
 nrow(get(.objectname))" 
-.CodeText |> env1$f$f_CodeText.echo()
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo()
+.CodeText |> env1$f$f_CodeText.ECHO()
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO()
 # 	dim(analyticDF_time2event)  
 # 	nrow(analyticDF_time2event)  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	dim(analyticDF_time2event)  
 # 	nrow(analyticDF_time2event)  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	dim(analyticDF_time2event) == c(228L, 12L)  
 # 	nrow(analyticDF_time2event) == 228L  
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	dim(analyticDF_time2event)  
 # 	## [1] 228  12
 # 	nrow(analyticDF_time2event)  
 # 	## [1] 228
 # Warning message:
-# In env1$f$f_CodeText.echo(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
+# In env1$f$f_CodeText.ECHO(.CodeText, EXECUTE = TRUE, deparse_cat = FALSE) :
 #   EXECUTE not fully implemented for line feed (\n) or semicolon (;)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "summary(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "get(.objectname) |> select_if(is.logical) |> summary()"
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	get(.objectname) |> select_if(is.logical) |> summary()  
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	analyticDF_time2event |> select_if(is.logical) |> summary()  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	analyticDF_time2event |> select_if(is.logical) |> summary() == structure(c("Mode :logical  ", "FALSE:63       ", "TRUE :165      ", "Mode :logical  ", "FALSE:9        ", "TRUE :219      "), dim = 3:2, dimnames = list(    c("", "", ""), c("  event", "StudyPopulation")), class = "table")  
-# > .CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+# > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # 	analyticDF_time2event |> select_if(is.logical) |> summary()  
 # 	##    event         StudyPopulation
 # 	##  Mode :logical   Mode :logical  
@@ -789,10 +789,10 @@ nrow(get(.objectname))"
 ## .CodeText = "summary(get(.objectname))" ----
 DataSetName2 = "analyticDF_time2event"
 .CodeText = '.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort'
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-.CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-.CodeText |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+.CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+.CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 
 
 
@@ -804,36 +804,36 @@ DataSetName2 = "analyticDF_time2event"
 ##________________________________________________________________________________  
 # @@ START) function v3 (.objectname) -----  
 
-'get(".objectname")' |> env1$f$f_CodeText.echo()
-'get(".objectname")' |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-# > 'get(".objectname")' |> env1$f$f_CodeText.echo()
+'get(".objectname")' |> env1$f$f_CodeText.ECHO()
+'get(".objectname")' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+# > 'get(".objectname")' |> env1$f$f_CodeText.ECHO()
 # 	get(""analyticDF_time2event"")  
-# > 'get(".objectname")' |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > 'get(".objectname")' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	get(""analyticDF_time2event"") == 
 # Error in parse(text = .CodeText.split_LF.split_semicolon[i]) : 
 #   <text>:1:7: unexpected symbol
 # 1: get(""analyticDF_time2event
 #           ^
 
-'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
-# > 'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+'get(".objectname")' |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+'get(".objectname")' |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > 'get(".objectname")' |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	get(".objectname")  
-# > 'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > 'get(".objectname")' |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # 	get(".objectname") == "analyticDF_time2event"  
 
 
-".objectname" |> env1$f$f_CodeText.echo()
-".objectname" |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
-".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
-# > ".objectname" |> env1$f$f_CodeText.echo()
+".objectname" |> env1$f$f_CodeText.ECHO()
+".objectname" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
+".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
+".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO()
 # 	"analyticDF_time2event"  
-# > ".objectname" |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 # 	"analyticDF_time2event" == "analyticDF_time2event"  
-# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	.objectname  
-# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # 	.objectname == "analyticDF_time2event" 
 
 

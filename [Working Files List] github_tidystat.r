@@ -288,8 +288,8 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ## @ .subpath = r"(Rdev/10_import_clean_datatype/13_missing_value)" |> str_replace_all("\\\\","/") -----  
-#### \% f_CodeText.echo -----  
-.subpath = r"(Rdev/10_import_clean_datatype/13_missing_value)"; .filename.r = "f_CodeText.echo" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); .subpath_filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+#### \% f_CodeText.ECHO -----  
+.subpath = r"(Rdev/10_import_clean_datatype/13_missing_value)"; .filename.r = "f_CodeText.ECHO" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); .subpath_filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 

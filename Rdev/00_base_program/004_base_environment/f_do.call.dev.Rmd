@@ -201,11 +201,11 @@ env1$path$.path4write = getwd()
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
 ## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
-"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
@@ -603,7 +603,7 @@ options(width=120)
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if(!exists("DataSetName2")) DataSetName2 = ifelse(exists(paste0(DataSetName,".Date")), paste0(DataSetName,".Date"), DataSetName)
-.vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+.vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -617,7 +617,7 @@ cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="")
 cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
 DataSet.Date.NA.rmAllNA = get(DataSetName2.NA.rmAllNA)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-"get(DataSetName2.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"get(DataSetName2.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
@@ -630,16 +630,16 @@ for (varname in vec_candidate4ID) {if(varname %in% names(get(DataSetName2.NA.rmA
   
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-"analyticDF_time2event.NA.rmAllNA |> select_if(is.numeric) |> summary()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"analyticDF_time2event.NA.rmAllNA |> select_if(is.numeric) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-"analyticDF_time2event.NA.rmAllNA |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"analyticDF_time2event.NA.rmAllNA |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); 
 DataSetName2.NA = DataSetName2 |> paste0(".NA"); 
 DataSetName2.NA.rmAllNA = paste0(DataSetName2,".NA",".rmAllNA"); 
 DataSetName2.NA.rmAllNA.lbl_pending.fct = paste0(DataSetName2,".NA",".rmAllNA",".fct"); 
-"assign( DataSetName2.NA.rmAllNA.lbl_pending.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"assign( DataSetName2.NA.rmAllNA.lbl_pending.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); 
-"get(DataSetName2.NA.rmAllNA.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"get(DataSetName2.NA.rmAllNA.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
   
