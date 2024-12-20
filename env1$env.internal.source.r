@@ -1,10 +1,10 @@
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
-# @@@ TABLE OF CONTENTS @@@ ----  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS ----  
 # @@ system, environment   
 # @@ f_function, f_expression, f_CodeText   
 # @@ f_file, f_URL, f_path   
 # @@ source()   
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .filename.source.r = "env1$env.internal" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
 # # env1$env.internal.dev.r
@@ -1417,17 +1417,16 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     if (remove_lines_with_no_alphabet) input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% str_subset("[a-zA-Z]")
     
     input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% 
-        str_subset("# @@@ TABLE OF CONTENTS @@@", negate = TRUE)
+        str_subset("# TABLE OF CONTENTS", negate = TRUE)
     input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% 
         str_subset("@@ END", negate = TRUE)
 
     input_path_file.readLines.str_subset = 
         c(
-            "##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  ",
-            "# @@@ TABLE OF CONTENTS @@@ ----  ", 
+            "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
+            "# TABLE OF CONTENTS ----  ", 
             input_path_file.readLines.str_subset,
-            "# @@@ END OF TABLE OF CONTENTS @@@  ",
-            "##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  "
+            "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
     if(replace_input_path_file) {
