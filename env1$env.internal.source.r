@@ -1498,14 +1498,14 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) input.readLines.except_TOC.add_new_TOC = 
+    if(add_line_numbers) input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = 
             ifelse(
-                input.readLines.except_TOC.add_new_TOC == "", "", 
+                input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank == "", "", 
                 paste0(
-                    input.readLines.except_TOC.add_new_TOC, 
-                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.add_new_TOC))),
+                    input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank, 
+                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank))),
                     "...", 
-                    1:length(input.readLines.except_TOC.add_new_TOC)
+                    1:length(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank)
                 )
             )
 
