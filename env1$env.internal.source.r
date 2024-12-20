@@ -1779,6 +1779,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: function_name = f_gitattributes.split() ====
 ## git/f_gitattributes.split_lfs.dev.Rmd
+## git/f_gitattributes.update_non_lfs.dev.Rmd
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_gitattributes.split" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
