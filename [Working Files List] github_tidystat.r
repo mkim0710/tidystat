@@ -317,6 +317,72 @@ if (getwd() |> normalizePath(winslash="/") == .overwrite_from_path) {
 
 
 
+
+
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+#@ 2024-12-19 -----
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
+# ~/github_tidystat/Rdev/00_base_program/002_base_encoding_RegEx/f_path.df_filename_ext_extended.dev.Rmd
+# 
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.dev.Rmd
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.r
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.Rmd
+# 
+# ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source-dev.Rmd
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-GPT-pending.Rmd
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-Gemini-pending.Rmd
+# ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glmnet_alphas_cox.dev.Rmd
+# ~/github_tidystat/DataSet.Date.NA.rmAllNA.lbl.fct.select_.n_.recode.dev.Rmd
+# ~/github_tidystat/Rdev/60_communicate_report_export/f_df.gtsummary_Table1.flextable.dev.Rmd
+# ~/github_tidystat/git/f_gitattributes.update_non_lfs.dev.Rmd
+# 
+# 
+# ~/github_tidystat/Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
+# ~/github_tidystat/Rdev/00_base_program/001_base_file/f_path.list.files_orphan_nb_html.remove.dev.Rmd
+# 
+
+
+
+# D:/D_Repositories/github_tidystat/Rdev/40_visualize_explore_bivariate_stratified/49_time/plotCumulativeVisitsOverTime.dev.Rmd
+# D:/D_Repositories/github_tidystat/.gitignore & .git_hooks_pre-commit & .Rprofile -update.r
+# D:/D_Repositories/github_tidystat/f_path.df_dirs_recursive.df_files.source.r
+# D:/D_Repositories/github_tidystat/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
+# D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# D:/D_Repositories/github_tidystat/Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
+# D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
+# D:/D_Repositories/github_tidystat/Rdev/00_base_program/002_base_encoding_RegEx/f_path.df_filename_ext_extended.dev.Rmd
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+#@ 2024-12-20 -----
+# ~/github_tidystat/[Working Files List] github_tidystat.r
+# ~/github_tidystat/[Pending Files List] github_tidystat.r
+# ~/github_tidystat/.Rprofile
+# ~/github_tidystat/env1$env.internal.source.r
+# ~/github_tidystat/f_df.t.tribble_construct.source.r
+# ~/github_tidystat/.gitattributes
+# ~/github_tidystat/git/f_gitattributes.update_non_lfs.dev.Rmd
+# ~/github_tidystat/Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
+
+
+
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
