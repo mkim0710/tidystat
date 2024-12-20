@@ -667,10 +667,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_CodeText2.is_equal")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_TerminalFromRCodeText.echo ====  
-# Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
-# env1$f$f_TerminalFromRCodeText.echo
-.tmp$objectname = "f_TerminalFromRCodeText.echo"
+## :: f_TerminalFromRCodeText.ECHO ====  
+# Rdev/00_base_program/f_TerminalFromRCodeText.ECHO.dev.r
+# env1$f$f_TerminalFromRCodeText.ECHO
+.tmp$objectname = "f_TerminalFromRCodeText.ECHO"
 .tmp$object = function(.TerminalCodeText, EXECUTE = FALSE, LinePrefix4CodeText = "\t") {
     .TerminalCodeText |> deparse() %>% {cat(LinePrefix4CodeText, ., " |> system(intern=TRUE)  \n", sep="")}
     if(EXECUTE) {
@@ -683,13 +683,13 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = system.TerminalFromRCodeText.echo  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "system.TerminalFromRCodeText.echo")
+### & alias = system.TerminalFromRCodeText.ECHO  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "system.TerminalFromRCodeText.ECHO")
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_object.substitute.deparse2objectname ====  
-# Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
+# Rdev/00_base_program/f_TerminalFromRCodeText.ECHO.dev.r
 # https://chatgpt.com/c/67414018-5af8-800e-8f52-d7ab9467d69d
 .tmp$objectname = "f_object.substitute.deparse2objectname"
 .tmp$object = function(object) {  deparse(substitute(object))  }
@@ -1748,12 +1748,12 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE, SkipIf
     #         list(
     #             paste0( "git lfs track ",shQuote(.path_file) )
     #             , paste0( "git add -f ",shQuote(.path_file) )
-    #         ) |> map(env1$f$f_TerminalFromRCodeText.echo, EXECUTE)
+    #         ) |> map(env1$f$f_TerminalFromRCodeText.ECHO, EXECUTE)
     #     )
     # } else {
     #     warning("git lfs is not available  \n")
     #     invisible(
-    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(EXECUTE = EXECUTE)
+    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.ECHO(EXECUTE = EXECUTE)
     #     )
     # }
     
@@ -1772,7 +1772,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE, SkipIf
             list(
                 paste0( "git lfs track ",shQuote(.path_file) )
                 , paste0( "git add -f ",shQuote(.path_file) )
-            ) |> map(env1$f$f_TerminalFromRCodeText.echo, EXECUTE)
+            ) |> map(env1$f$f_TerminalFromRCodeText.ECHO, EXECUTE)
         ))
     }
 }
@@ -1934,12 +1934,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
             if(.object.size > 1e7) {
                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
-                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
+                env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
             }
         } else if (git_lfs_track == TRUE) {
                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
         } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
+            env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
         }
     }
     

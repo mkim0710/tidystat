@@ -5,7 +5,7 @@
 # Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_expression.substitute.echo.dev-pending.Rmd
-# Rdev/00_base_program/007_base_expression/f_TerminalFromRCodeText.echo.dev.r
+# Rdev/00_base_program/007_base_expression/f_TerminalFromRCodeText.ECHO.dev.r
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

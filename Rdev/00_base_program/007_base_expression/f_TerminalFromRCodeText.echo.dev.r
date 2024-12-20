@@ -3,7 +3,7 @@
 # Rdev/00_base_program/f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/f_expression.substitute.echo.dev-pending.Rmd
-# Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
+# Rdev/00_base_program/f_TerminalFromRCodeText.ECHO.dev.r
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -32,7 +32,7 @@
 
 
 
-f_TerminalFromRCodeText.echo = function(.TerminalCodeText, EXECUTE = FALSE) {
+f_TerminalFromRCodeText.ECHO = function(.TerminalCodeText, EXECUTE = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     if(EXECUTE) {
         .TerminalCodeText |> system(intern=TRUE)
@@ -50,7 +50,7 @@ f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE) {
         , paste0( "git add -f ",shQuote(.path_file) )
     )
     invisible(        
-        list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, EXECUTE)
+        list_TerminalCodeText |> map(f_TerminalFromRCodeText.ECHO, EXECUTE)
     )
 }
 

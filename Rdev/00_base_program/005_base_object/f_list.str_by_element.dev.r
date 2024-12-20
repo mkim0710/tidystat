@@ -49,7 +49,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #  $ f           :List of 29
 #   ..$ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 #     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
+#   ..$ f_TerminalFromRCodeText.ECHO                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
@@ -126,7 +126,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", 
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, 
 #     VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
+#   ..$ f_TerminalFromRCodeText.ECHO                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
@@ -207,7 +207,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #  $ f           :List of 29
 #   ..$ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,"..
 #     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
+#   ..$ f_TerminalFromRCodeText.ECHO                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
@@ -284,7 +284,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_CodeText.ECHO                             :function (.CodeText, Execu"..
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4su..
 #     VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText..
+#   ..$ f_TerminalFromRCodeText.ECHO                :function (.TerminalCodeText..
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
@@ -366,7 +366,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_CodeText.ECHO :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t",
 #    LinePrefix4Output = "\t## ",
 # substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)
-# ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, EXECUTE = FALSE)
+# ..$ f_TerminalFromRCodeText.ECHO :function (.TerminalCodeText, EXECUTE = FALSE)
 # ..$ f_file.system_switch_open :function (file)
 # ..$ f_URL.open_in_edge_app :function (URL)
 # ..$ f_URL.open_in_edge_app.printPowerShellCode :function (URL)
@@ -464,7 +464,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE,
 #    ObjectNames4substitute = NULL,
 # VERBOSE = FALSE)
-# ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, EXECUTE = FALSE)
+# ..$ f_TerminalFromRCodeText.ECHO :function (.TerminalCodeText, EXECUTE = FALSE)
 # ..$ f_file.system_switch_open :function (file)
 # ..$ f_URL.open_in_edge_app :function (URL)
 # ..$ f_URL.open_in_edge_app.printPowerShellCode :function (URL)
@@ -594,7 +594,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 # $ f		:List of 29
 ## $ f_CodeText.ECHO                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 ##    substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
-## $ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
+## $ f_TerminalFromRCodeText.ECHO                :function (.TerminalCodeText, EXECUTE = FALSE)  
 ## $ f_file.system_switch_open                          :function (file)  
 ## $ f_URL.open_in_edge_app                      :function (URL)  
 ## $ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  

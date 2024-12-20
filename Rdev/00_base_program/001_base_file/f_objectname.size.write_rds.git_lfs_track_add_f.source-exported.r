@@ -119,12 +119,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
             if(.object.size > 1e7) {
                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
-                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
+                env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
             }
         } else if (git_lfs_track == TRUE) {
                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
         } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
+            env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
         }
     }
     
@@ -339,12 +339,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #             if(.object.size > 1e7) {
 #                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
 #             } else {
-#                 env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
+#                 env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
 #             }
 #         } else if (git_lfs_track == TRUE) {
 #                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
 #         } else {
-#             env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
+#             env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
 #         }
 #     }
 #     

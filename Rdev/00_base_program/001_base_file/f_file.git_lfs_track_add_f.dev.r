@@ -1,7 +1,7 @@
 # @@ Now included in env1$env.internal.source.r ----
 
 # Rdev/00_base_program/f_CodeText.ECHO.dev.r
-# Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
+# Rdev/00_base_program/f_TerminalFromRCodeText.ECHO.dev.r
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -30,7 +30,7 @@
 
 
 
-# f_TerminalFromRCodeText.echo = function(.TerminalCodeText, EXECUTE = FALSE) {
+# f_TerminalFromRCodeText.ECHO = function(.TerminalCodeText, EXECUTE = FALSE) {
 #     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 #     if(EXECUTE) {
 #         .TerminalCodeText |> system(intern=TRUE)
@@ -46,7 +46,7 @@
 #         , paste0( "git add -f ",shQuote(.path_file) )
 #     )
 #     invisible(        
-#         list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, EXECUTE)
+#         list_TerminalCodeText |> map(f_TerminalFromRCodeText.ECHO, EXECUTE)
 #     )
 # }
 
@@ -56,8 +56,8 @@
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_TerminalFromRCodeText.echo ====  
-env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, EXECUTE = FALSE) {
+## \$f_TerminalFromRCodeText.ECHO ====  
+env1$f$f_TerminalFromRCodeText.ECHO = function(.TerminalCodeText, EXECUTE = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     if(EXECUTE) {
         .TerminalCodeText |> system(intern=TRUE)
@@ -79,12 +79,12 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE) {
     #         list(
     #             paste0( "git lfs track ",shQuote(.path_file) )
     #             , paste0( "git add -f ",shQuote(.path_file) )
-    #         ) |> map(env1$f$f_TerminalFromRCodeText.echo, EXECUTE)
+    #         ) |> map(env1$f$f_TerminalFromRCodeText.ECHO, EXECUTE)
     #     )
     # } else {
     #     warning("git lfs is not available  \n")
     #     invisible(
-    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(EXECUTE = EXECUTE)
+    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.ECHO(EXECUTE = EXECUTE)
     #     )
     # }
     
@@ -94,7 +94,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE) {
         list(
             paste0( "git lfs track ",shQuote(.path_file) )
             , paste0( "git add -f ",shQuote(.path_file) )
-        ) |> map(env1$f$f_TerminalFromRCodeText.echo, EXECUTE)
+        ) |> map(env1$f$f_TerminalFromRCodeText.ECHO, EXECUTE)
     )
 }
 
@@ -102,7 +102,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE) {
 # ## \$f_file.git_add_f ====  
 # env1$f$f_file.git_add_f = function(.path_file, EXECUTE = FALSE) {
 #     invisible(
-#         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(EXECUTE = EXECUTE)
+#         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.ECHO(EXECUTE = EXECUTE)
 #     )
 # }
 
