@@ -119,14 +119,14 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
             if(Sys.info()["sysname"] == "Windows") {browseURL(.backup_to_path)}
             
             if(file.copy(from=.LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
-            # if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
+            # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
             
             for ( .destination_path_filename_ext in c(
                 file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.filename_ext)
                 , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.filename_ext)
             )) {if(dir.exists(dirname(.destination_path_filename_ext)) & .LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=NA) != .destination_path_filename_ext) {
                 if(file.copy(from=.LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
-                # if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
+                # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
             }}
             if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext))
         }

@@ -1,4 +1,3 @@
-# > env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
 #| ------------------------- < To be covered at .Rprofile >           ...130
@@ -10,7 +9,6 @@
 # ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2385
 # \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2422
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
-# > env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
 #| ------------------------- < To be covered at .Rprofile >           ...130
@@ -1646,7 +1644,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_windows_notepad.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
-    if (Sys.info()["sysname"] == "Windows") {  shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )  }  else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
+    if (Sys.info()["sysname"] == "Windows") {  paste0("notepad.exe"," ",shQuote(.file2edit)) |> shell(wait=FALSE)  }  else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = file.edit_windows_notepad.or_browseURL  ----  
@@ -1657,7 +1655,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$objectname = "f_file.edit_windows_vscode.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {
-        .path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )
+        .path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""') |> shell(wait=FALSE)
     } else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

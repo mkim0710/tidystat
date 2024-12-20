@@ -303,7 +303,7 @@ LastSourceEditorContext.path_filename_ext=rstudioapi::getSourceEditorContext()$p
     if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
     if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates")) 
     
-    .destination_path_filename_ext = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=LastSourceEditorContext.path_filename_ext, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext)); if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
+    .destination_path_filename_ext = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=LastSourceEditorContext.path_filename_ext, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext)); if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
     for ( .destination_path_filename_ext in c(
         file.path(env1$path$source_base_local, "rstudio-prefs", "templates", template.filename_ext)
         , file.path(env1$path$path0, "Rproject_Rmd", template.filename_ext)
@@ -313,7 +313,7 @@ LastSourceEditorContext.path_filename_ext=rstudioapi::getSourceEditorContext()$p
         backup.path_filename = file.path(env1$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
         file.copy(from=.destination_path_filename_ext, to=backup.path_filename, overwrite=TRUE); message(paste0("- Backup file created: ",backup.path_filename))
         if(file.copy(from=LastSourceEditorContext.path_filename_ext, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
-        if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
+        if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
     }}
     file.edit(LastSourceEditorContext.path_filename_ext)
 }

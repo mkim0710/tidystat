@@ -222,8 +222,8 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 
 ### @ sourceTemplate.path_filename_ext -----  
 # env1$path$sourceTemplate.path_filename_ext = paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"); env1$path$sourceTemplate.path_filename_ext |> source(local=FALSE, echo=TRUE, print.eval=TRUE, spaced=FALSE, verbose=FALSE, max.deparse.length=150, width.cutoff=500L, chdir=TRUE, prompt.echo="> ", continue.echo="+ ", skip.echo=Inf)
-# # if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(env1$path$sourceTemplate.path_filename_ext)) )}
-# if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); shell( paste0('cmd /c ""',.path4editor, '" "',env1$path$sourceTemplate.path_filename_ext, '""')  )}
+# # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(env1$path$sourceTemplate.path_filename_ext)) |> shell(wait=FALSE)}
+# if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); paste0('cmd /c ""',.path4editor, '" "',env1$path$sourceTemplate.path_filename_ext, '""') |> shell(wait=FALSE)}
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
 #### @ default.R -----  
