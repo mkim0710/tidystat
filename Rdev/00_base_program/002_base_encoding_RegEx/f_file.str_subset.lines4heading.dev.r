@@ -30,8 +30,8 @@
 ## :: f_file.str_subset.lines4heading.old =    
 # @@ START) function   
 # ->> Now included in env1$env.internal.source.r 
-## :: f_file.str_subset.lines4heading =    
-##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =    
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
 
@@ -72,44 +72,44 @@
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev.old -----  
 ## env0 = env1 ----
-input_path_file = rstudioapi::getSourceEditorContext()$path
-RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$"
-add_line_numbers = TRUE
-remove_lines_with_no_alphabet = TRUE
-output_path_file = NULL
-replace_input_path_file = FALSE
-
-input.readLines <- readLines(input_path_file, warn = FALSE)
-input.readLines %>% str
-
-input.readLines.except_TOC.str_replace_all <- str_subset(
-    string = input.readLines,
-    pattern = RegEx4heading,
-    negate = FALSE
-)
-input.readLines.except_TOC.str_replace_all %>% str
-
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-input.readLines.except_TOC.str_replace_all %>% str
-
-if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
-input.readLines.except_TOC.str_replace_all %>% str
-
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-    str_subset("# TABLE OF CONTENTS", negate = TRUE)
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-    str_subset("@@ END", negate = TRUE)
-input.readLines.except_TOC.str_replace_all %>% str
-
-input.readLines.except_TOC.str_replace_all = 
-    c(
-        "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
-        "# TABLE OF CONTENTS ----  ", 
-        input.readLines.except_TOC.str_replace_all,
-        "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
-    )
-input.readLines.except_TOC.str_replace_all %>% str
-input.readLines.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
+# input_path_file = rstudioapi::getSourceEditorContext()$path
+# RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$"
+# add_line_numbers = TRUE
+# remove_lines_with_no_alphabet = TRUE
+# output_path_file = NULL
+# replace_input_path_file = FALSE
+# 
+# input.readLines <- readLines(input_path_file, warn = FALSE)
+# input.readLines %>% str
+# 
+# input.readLines.except_TOC.str_replace_all <- str_subset(
+#     string = input.readLines,
+#     pattern = RegEx4heading,
+#     negate = FALSE
+# )
+# input.readLines.except_TOC.str_replace_all %>% str
+# 
+# input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+# input.readLines.except_TOC.str_replace_all %>% str
+# 
+# if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
+# input.readLines.except_TOC.str_replace_all %>% str
+# 
+# input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
+#     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
+# input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
+#     str_subset("^# @@ END", negate = TRUE)
+# input.readLines.except_TOC.str_replace_all %>% str
+# 
+# input.readLines.except_TOC.str_replace_all = 
+#     c(
+#         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
+#         "# TABLE OF CONTENTS ----  ", 
+#         input.readLines.except_TOC.str_replace_all,
+#         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
+#     )
+# input.readLines.except_TOC.str_replace_all %>% str
+# input.readLines.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
 
 
 #_________________________________________________________________________________|----  
@@ -125,17 +125,43 @@ replace_input_path_file = FALSE
 
 input.readLines <- readLines(input_path_file, warn = FALSE)
 input.readLines %>% str
+# > input.readLines %>% str
+#  chr [1:422] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS") %>% min
 input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS") %>% max
 
 min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS")) %>% dput
 -min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS")) %>% dput
+# > min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS")) %>% dput
+# 1:34
+# > -min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS")) %>% dput
+# -1:-34
 
-input.readLines %>% str
+vec_index4TOC = min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))
+vec_index4TOC %>% dput
+# > vec_index4TOC %>% dput
+# 1:34
+
 input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))] %>% str
+str(!1:length(input.readLines) %in% vec_index4TOC)
+summary(!1:length(input.readLines) %in% vec_index4TOC)
+# > input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))] %>% str
+#  chr [1:388] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+# > str(!1:length(input.readLines) %in% vec_index4TOC)
+#  logi [1:422] FALSE FALSE FALSE FALSE FALSE FALSE ...
+# > summary(!1:length(input.readLines) %in% vec_index4TOC)
+#    Mode   FALSE    TRUE 
+# logical      34     388 
+
+input.readLines[!1:length(input.readLines) %in% vec_index4TOC] %>% str
+# > input.readLines[!1:length(input.readLines) %in% vec_index4TOC] %>% str
+#  chr [1:388] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 input.readLines.except_TOC = input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
+input.readLines.except_TOC %>% str
+# > input.readLines.except_TOC %>% str
+#  chr [1:388] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 input.readLines.except_TOC.str_replace_all <- str_replace_all(
     string = input.readLines.except_TOC,
@@ -143,19 +169,31 @@ input.readLines.except_TOC.str_replace_all <- str_replace_all(
     replacement = "\\1"
 )
 input.readLines.except_TOC.str_replace_all %>% str
+# > input.readLines.except_TOC.str_replace_all %>% str
+#  chr [1:340] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
 input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 input.readLines.except_TOC.str_replace_all %>% str
+# > input.readLines.except_TOC.str_replace_all %>% str
+#  chr [1:388] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
 vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
+vec_new_TOC %>% str
+# > vec_new_TOC %>% str
+#  chr [1:23] "#|________________________________________________________________________________|#  ----  " "#@@ Heading 1 ----" ...
+
 if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 vec_new_TOC %>% str
+# > vec_new_TOC %>% str
+#  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 ----" ...
 
 vec_new_TOC = vec_new_TOC %>% 
-    str_subset("# TABLE OF CONTENTS", negate = TRUE)
+    str_subset("^# TABLE OF CONTENTS", negate = TRUE)
 vec_new_TOC = vec_new_TOC %>% 
-    str_subset("@@ END", negate = TRUE)
+    str_subset("^# @@ END", negate = TRUE)
 vec_new_TOC %>% str
+# > vec_new_TOC %>% str
+#  chr [1:14] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 ----" ...
 
 vec_new_TOC = 
     c(
@@ -170,6 +208,7 @@ vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 
 input.readLines.except_TOC.str_replace_all.new_TOC =
     c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
+input.readLines.except_TOC.str_replace_all.new_TOC %>% str
 
 input.readLines.except_TOC.str_replace_all.new_TOC = 
             ifelse(
@@ -221,9 +260,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
     
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-        str_subset("# TABLE OF CONTENTS", negate = TRUE)
+        str_subset("^# TABLE OF CONTENTS", negate = TRUE)
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-        str_subset("@@ END", negate = TRUE)
+        str_subset("^# @@ END", negate = TRUE)
 
     input.readLines.except_TOC.str_replace_all = 
         c(
@@ -277,7 +316,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     # Read the file content
     input.readLines <- readLines(input_path_file, warn = FALSE)
     
-    input.readLines.except_TOC = input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
+    vec_index4TOC = min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))
+    
+    input.readLines.except_TOC = input.readLines[!1:length(input.readLines) %in% vec_index4TOC] 
 
     input.readLines.except_TOC.str_replace_all <- str_replace_all(
         string = input.readLines.except_TOC,
@@ -291,9 +332,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 
     vec_new_TOC = vec_new_TOC %>% 
-        str_subset("# TABLE OF CONTENTS", negate = TRUE)
+        str_subset("^# TABLE OF CONTENTS", negate = TRUE)
     vec_new_TOC = vec_new_TOC %>% 
-        str_subset("@@ END", negate = TRUE)
+        str_subset("^# @@ END", negate = TRUE)
 
     vec_new_TOC = 
         c(
@@ -304,7 +345,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         )
     
     input.readLines.except_TOC.str_replace_all.new_TOC =
-    c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
+        c(vec_new_TOC, input.readLines.except_TOC.str_replace_all)
     
     if(add_line_numbers) {
         input.readLines.except_TOC.str_replace_all.new_TOC = 
@@ -317,6 +358,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
                     1:length(input.readLines.except_TOC.str_replace_all.new_TOC)
                 )
             )
+        vec_new_TOC.add_line_numbers = input.readLines.except_TOC.str_replace_all.new_TOC[min(input.readLines.except_TOC.str_replace_all.new_TOC %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS")):max(input.readLines.except_TOC.str_replace_all.new_TOC %>% str_which("^##H+ THE END OF TABLE OF CONTENTS"))]
     }
     
     if(replace_input_path_file) {
@@ -330,8 +372,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
     writeLines(input.readLines.except_TOC.str_replace_all.new_TOC, con = output_path_file)
-    env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
+    # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
+    if(add_line_numbers) vec_new_TOC = vec_new_TOC.add_line_numbers
     if(cat2console) vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
     
     invisible(vec_new_TOC)
@@ -344,8 +387,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL()
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(add_line_numbers = FALSE)
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(cat2console = TRUE)
+env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
 
 # env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
@@ -357,4 +400,31 @@ env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$e
 ### env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
 env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
 env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+
+
+##////////////////////////////////////////////////////////////////////////////////  
+##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##********************************************************************************  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
+# @@ END -----  
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat("* To revert to the last commited file, run the following terminal command:  \n")
+paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
 

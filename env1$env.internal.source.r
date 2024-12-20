@@ -1513,9 +1513,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
 
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-        str_subset("# TABLE OF CONTENTS", negate = TRUE)
+        str_subset("^# TABLE OF CONTENTS", negate = TRUE)
     input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-        str_subset("@@ END", negate = TRUE)
+        str_subset("^# @@ END", negate = TRUE)
 
     input.readLines.except_TOC.str_replace_all = 
         c(
