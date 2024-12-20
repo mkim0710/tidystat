@@ -58,7 +58,7 @@ f_ObjectName.get.dput.ECHO = function(ObjectName, LinePrefix4CodeText = "\t") {
 }
 
 tmp_function = function(input) {
-    echo.dput_get_ObjectName("input")
+    ECHO.dput_get_ObjectName("input")
 }
 tmp_function("test")
 
@@ -71,7 +71,7 @@ f_ObjectName.get.dput.ECHO = function(ObjectName, envir = parent.frame(), LinePr
 }
 
 tmp_function = function(input) {
-    echo.dput_get_ObjectName("input")
+    ECHO.dput_get_ObjectName("input")
 }
 tmp_function("test")
 
