@@ -1,4 +1,4 @@
-# @@ Now included in env1$env.internal.source.r ----
+# ->> Now included in env1$env.internal.source.r ----
 
 .filename.source.r = "get_system_info" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  

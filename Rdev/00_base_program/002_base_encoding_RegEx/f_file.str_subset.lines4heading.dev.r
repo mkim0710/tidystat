@@ -1,33 +1,34 @@
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
-# @@@ TABLE OF CONTENTS @@@ ----  
-# @@@ TABLE OF CONTENTS @@@   
-# @@@ TABLE OF CONTENTS @@@   
-#|________________________________________________________________________________|#    
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
 # @@ Heading 2 
 ## @ Heading 2.1 
-# @@@ END OF TABLE OF CONTENTS @@@  
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
-# @@@ TABLE OF CONTENTS @@@ ----  
-# @@@ TABLE OF CONTENTS @@@   
-#|________________________________________________________________________________|#    
+# @@ START) dev   
+## env0 = env1 
+# @@ START) function   
+# ->> Now included in env1$env.internal.source.r 
+## :: f_file.str_subset.lines4heading.old =    
+# @@ START) function   
+# ->> Now included in env1$env.internal.source.r 
+## :: f_file.str_subset.lines4heading =    
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
 # @@ Heading 2 
 ## @ Heading 2.1 
-# @@@ END OF TABLE OF CONTENTS @@@  
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
-# @@@ TABLE OF CONTENTS @@@ ----  
-#|________________________________________________________________________________|#    
-#@@ Heading 1 
-##@ Heading 1.1 
-# @@ Heading 2 
-## @ Heading 2.1 
-# @@@ END OF TABLE OF CONTENTS @@@  
-##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+# @@ START) dev   
+## env0 = env1 
+# @@ START) function   
+# ->> Now included in env1$env.internal.source.r 
+## :: f_file.str_subset.lines4heading.old =    
+# @@ START) function   
+# ->> Now included in env1$env.internal.source.r 
+## :: f_file.str_subset.lines4heading =    
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+
 
 # --> Now included in "env1$env.internal.source.r"
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -77,7 +78,7 @@
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ Now included in env1$env.internal.source.r ----
+# ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"
@@ -144,7 +145,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ Now included in env1$env.internal.source.r ----
+# ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"

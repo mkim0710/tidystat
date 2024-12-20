@@ -1,4 +1,4 @@
-# @@ Now included in env1$env.internal.source.r ----
+# ->> Now included in env1$env.internal.source.r ----
 
 # Rdev/00_base_program/f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/f_CodeText.substitute.ECHO.dev.r -> incorporated in f_CodeText.ECHO.dev.r
