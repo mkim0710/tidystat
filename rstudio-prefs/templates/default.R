@@ -197,6 +197,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_formula.lhs_rhs_vars"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
