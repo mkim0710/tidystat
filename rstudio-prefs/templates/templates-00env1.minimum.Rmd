@@ -202,11 +202,11 @@ env1$path$.path4write = getwd()
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
 ## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
-"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
@@ -563,7 +563,7 @@ options(width=120)
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if(!exists("DataSetName2")) DataSetName2 = ifelse(exists(paste0(DataSetName,".Date")), paste0(DataSetName,".Date"), DataSetName)
-.vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+.vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -577,7 +577,7 @@ cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="")
 cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
 DataSet.Date.NA.rmAllNA = get(DataSetName2.NA.rmAllNA)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-"get(DataSetName2.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"get(DataSetName2.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
@@ -590,16 +590,16 @@ for (varname in vec_candidate4ID) {if(varname %in% names(get(DataSetName2.NA.rmA
   
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-"analyticDF_time2event.NA.rmAllNA |> select_if(is.numeric) |> summary()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"analyticDF_time2event.NA.rmAllNA |> select_if(is.numeric) |> summary()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-"analyticDF_time2event.NA.rmAllNA |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"analyticDF_time2event.NA.rmAllNA |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); 
 DataSetName2.NA = DataSetName2 |> paste0(".NA"); 
 DataSetName2.NA.rmAllNA = paste0(DataSetName2,".NA",".rmAllNA"); 
 DataSetName2.NA.rmAllNA.lbl_pending.fct = paste0(DataSetName2,".NA",".rmAllNA",".fct"); 
-"assign( DataSetName2.NA.rmAllNA.lbl_pending.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"assign( DataSetName2.NA.rmAllNA.lbl_pending.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); 
-"get(DataSetName2.NA.rmAllNA.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"get(DataSetName2.NA.rmAllNA.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
   
@@ -696,28 +696,28 @@ options(width=120)
 if(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     if(exists("MetaData")) {
-        "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # "MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        "MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        "MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         
         if(!exists(".MetaData0")) .MetaData0 = MetaData
         MetaData$DataSetNames = MetaData$DataSetNames %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DataSetName.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
         MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
-        "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         if(!identical(.MetaData0, MetaData)) {
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
             .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds), NULL, paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.MetaData.rds))
-            # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBackup = TRUE, Execute = TRUE)
-            env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBackup = TRUE, Execute = TRUE)
+            # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBackup = TRUE, EXECUTE = TRUE)
+            env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBackup = TRUE, EXECUTE = TRUE)
         }
     } else {warning("> !exists(MetaData)  \n")}
 }
@@ -739,9 +739,9 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
                 if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
                 if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
                     message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBackup = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBackup = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
             } else {  message("!exists(",deparse(DataSetName),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
@@ -788,14 +788,14 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_filename_ext)),', output_format = "pdf_document")  \n')
         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
         .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
-        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE)
+        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
         env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
         try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
     }
 }
-# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
+# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
 # cat("    ________________________________________________________________________    \n")
-env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
+env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
 ```
   
   

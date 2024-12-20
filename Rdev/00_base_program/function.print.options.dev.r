@@ -136,7 +136,7 @@ options() |> str(list.len=Inf) #-----
 #   ..$ terminalRunning :function (id)  
 #   ..$ terminalKill    :function (id)  
 #   ..$ terminalSend    :function (id, text)  
-#   ..$ terminalExecute :function (command, workingDir = NULL, env = character(), show = TRUE)  
+#   ..$ terminalEXECUTE :function (command, workingDir = NULL, env = character(), show = TRUE)  
 #   ..$ terminalExitCode:function (id)  
 #  $ timeout                             : num 60
 #  $ ts.eps                              : num 1e-05

@@ -337,7 +337,7 @@ path0 <- "D:/OneDrive/[][Rproject]"
 .max_hierarchy <- 5
 print_intermediate <- TRUE
 
-# Execute the function with debugging prints
+# EXECUTE the function with debugging prints
 list_paths <- f_path0.list_path_hierarchy.v4(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, VERBOSE = print_intermediate)
 
 # Print the final result

@@ -327,7 +327,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     options(warn = 0)  # Set 'warn' to 0 to collect warnings
     list_warning <- list()  # Initialize an empty list to store warnings
     
-    # Execute the expression.eval and capture warnings
+    # EXECUTE the expression.eval and capture warnings
     expression.eval.output <- withCallingHandlers(
         expr = expression.eval,
         warning = function(w) {
@@ -508,7 +508,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$objectname = "f_CodeText.echo"
 .tmp$object = function(
         .CodeText,
-        Execute = FALSE,
+        EXECUTE = FALSE,
         deparse_cat = TRUE,
         LinePrefix4CodeText = "\t",
         LinePrefix4Output = "\t## ",
@@ -546,11 +546,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         if(VERBOSE) cat("<VERBOSE> .CodeText == ", deparse(.CodeText), "  \n", sep="") 
     }
     
-    if(.CodeText |> str_detect("[\n;]") && Execute) {
+    if(.CodeText |> str_detect("[\n;]") && EXECUTE) {
         # warning('The newline character(s) will be substituted by "; "')
         # .CodeText = .CodeText |> str_replace_all('\n', "; ")
         # 'The newline character(s) is not allowed' |> stop(call. = FALSE) |> tryCatch(error = function(e) {message("stop: ", e); return(invisible())})
-        'Execute not fully implemented for line feed (\\n) or semicolon (;)' |> warning("  \n", call. = FALSE, immediate. = TRUE)
+        'EXECUTE not fully implemented for line feed (\\n) or semicolon (;)' |> warning("  \n", call. = FALSE, immediate. = TRUE)
         # return(invisible())
     }
 
@@ -587,7 +587,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         # if (i <= length(.CodeText.split_LF.addPrefix)) cat(.CodeText.split_LF.addPrefix[i], "  \n", sep="")
         if (i <= length(.CodeText.split_LF.addPrefix)) cat(.CodeText.split_LF.addPrefix[i], sep="")
         
-        if(Execute) {
+        if(EXECUTE) {
             if(deparse_cat) {
                 # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse = eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse()
                 # if(CodeEqualsOutput && .CodeText.split_LF.split_semicolon.i.parse.eval.deparse != "NULL") {
@@ -627,7 +627,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
-    env1$f$f_CodeText.echo(Execute = TRUE, ...)
+    env1$f$f_CodeText.echo(EXECUTE = TRUE, ...)
 }
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -671,9 +671,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
 # env1$f$f_TerminalFromRCodeText.echo
 .tmp$objectname = "f_TerminalFromRCodeText.echo"
-.tmp$object = function(.TerminalCodeText, Execute = FALSE, LinePrefix4CodeText = "\t") {
+.tmp$object = function(.TerminalCodeText, EXECUTE = FALSE, LinePrefix4CodeText = "\t") {
     .TerminalCodeText |> deparse() %>% {cat(LinePrefix4CodeText, ., " |> system(intern=TRUE)  \n", sep="")}
-    if(Execute) {
+    if(EXECUTE) {
         .TerminalCodeText |> system(intern=TRUE)
     }
     invisible(        
@@ -1740,7 +1740,7 @@ env1$path$git_path = env1$env.internal.attach$f_path.is_git_tracked()
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
 # https://chatgpt.com/c/6719a3d0-9a2c-800e-8651-2ae6901ae573
 # https://gemini.google.com/app/c1606939ea272140
-env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIfAlreadyAdded = TRUE) {
+env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE, SkipIfAlreadyAdded = TRUE) {
     git_lfs_available = try(system2("git", args = "lfs version", stdout = FALSE, stderr = FALSE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
     
     # if(git_lfs_available) {
@@ -1748,12 +1748,12 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
     #         list(
     #             paste0( "git lfs track ",shQuote(.path_file) )
     #             , paste0( "git add -f ",shQuote(.path_file) )
-    #         ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
+    #         ) |> map(env1$f$f_TerminalFromRCodeText.echo, EXECUTE)
     #     )
     # } else {
     #     warning("git lfs is not available  \n")
     #     invisible(
-    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
+    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(EXECUTE = EXECUTE)
     #     )
     # }
     
@@ -1772,7 +1772,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
             list(
                 paste0( "git lfs track ",shQuote(.path_file) )
                 , paste0( "git add -f ",shQuote(.path_file) )
-            ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
+            ) |> map(env1$f$f_TerminalFromRCodeText.echo, EXECUTE)
         ))
     }
 }
@@ -1830,7 +1830,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
         createBackup = FALSE, 
         .backup_to_path="-backup", 
-        Execute = FALSE, 
+        EXECUTE = FALSE, 
         path.size_files = TRUE, 
         git_lfs_track = "determine based on object size", 
         git_add_f = TRUE, 
@@ -1850,7 +1850,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     #  $ .path_file         : NULL
     #  $ createBackup       : logi FALSE
     #  $ .backup_to_path    : chr "-backup"
-    #  $ Execute            : logi FALSE
+    #  $ EXECUTE            : logi FALSE
     #  $ path.size_files    : logi TRUE
     #  $ git_lfs_track      : logi TRUE
     #  $ git_add_f          : logi TRUE
@@ -1919,7 +1919,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
-    if(Execute) {
+    if(EXECUTE) {
         if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
@@ -1932,14 +1932,14 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(git_add_f) {
         if (git_lfs_track == "determine based on object size") {
             if(.object.size > 1e7) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
-                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
+                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
             }
         } else if (git_lfs_track == TRUE) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
         } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
+            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
         }
     }
     

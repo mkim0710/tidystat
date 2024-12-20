@@ -15,7 +15,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
         createBackup = FALSE, 
         .backup_to_path="-backup", 
-        Execute = FALSE, 
+        EXECUTE = FALSE, 
         path.size_files = TRUE, 
         git_lfs_track = "determine based on object size", 
         git_add_f = TRUE, 
@@ -35,7 +35,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     #  $ .path_file         : NULL
     #  $ createBackup       : logi FALSE
     #  $ .backup_to_path    : chr "-backup"
-    #  $ Execute            : logi FALSE
+    #  $ EXECUTE            : logi FALSE
     #  $ path.size_files    : logi TRUE
     #  $ git_lfs_track      : logi TRUE
     #  $ git_add_f          : logi TRUE
@@ -104,7 +104,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
-    if(Execute) {
+    if(EXECUTE) {
         if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
@@ -117,14 +117,14 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(git_add_f) {
         if (git_lfs_track == "determine based on object size") {
             if(.object.size > 1e7) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
-                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
+                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
             }
         } else if (git_lfs_track == TRUE) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
         } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
+            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
         }
     }
     
@@ -152,7 +152,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
 #         createBackup = FALSE, 
 #         .backup_to_path="-backup", 
-#         Execute = FALSE, 
+#         EXECUTE = FALSE, 
 #         path.size_files = TRUE, 
 #         git_lfs_track = "determine based on object size", 
 #         git_add_f = TRUE, 
@@ -173,7 +173,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     #  $ .path_file         : NULL
 #     #  $ createBackup       : logi FALSE
 #     #  $ .backup_to_path    : chr "-backup"
-#     #  $ Execute            : logi FALSE
+#     #  $ EXECUTE            : logi FALSE
 #     #  $ path.size_files    : logi TRUE
 #     #  $ git_lfs_track      : logi TRUE
 #     #  $ git_add_f          : logi TRUE
@@ -190,7 +190,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     # Browse[3]> ls(all.names = TRUE) |> dput()
 #     # c(".backup_to_path", ".filename_ext4write", ".object", ".objectname", 
 #     # ".path_file", ".path4write", "CompressionMethod", "createBackup", 
-#     # "Execute", "git_add_f", "git_lfs_track", "LinePrefix4CodeText", 
+#     # "EXECUTE", "git_add_f", "git_lfs_track", "LinePrefix4CodeText", 
 #     # "path.size_files", "SkipIfAlreadyAdded", "VERBOSE")
 #     # Browse[3]> .filename_ext4write %>% str()
 #     # Error in str(.) : 
@@ -324,7 +324,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
 #     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
 #     
-#     if(Execute) {
+#     if(EXECUTE) {
 #         if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
 #         if (.object.size >= 1e8) {
 #             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
@@ -337,14 +337,14 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     if(git_add_f) {
 #         if (git_lfs_track == "determine based on object size") {
 #             if(.object.size > 1e7) {
-#                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+#                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
 #             } else {
-#                 env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
+#                 env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
 #             }
 #         } else if (git_lfs_track == TRUE) {
-#                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+#                 env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
 #         } else {
-#             env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
+#             env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
 #         }
 #     }
 #     

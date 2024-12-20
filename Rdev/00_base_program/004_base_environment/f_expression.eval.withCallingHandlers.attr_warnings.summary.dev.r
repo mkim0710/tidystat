@@ -10,7 +10,7 @@ f_expression.eval.withCallingHandlers.attr_warnings.summary <- function(expressi
     options(warn = 0)  # Set 'warn' to 0 to collect warnings
     list_warning <- list()  # Initialize an empty list to store warnings
     
-    # Execute the expression.eval and capture warnings
+    # EXECUTE the expression.eval and capture warnings
     expression.eval.output <- withCallingHandlers(
         expr = expression.eval,
         warning = function(w) {

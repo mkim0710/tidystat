@@ -11,22 +11,22 @@
 .objectname = "analyticDF_time2event"
 
 ".objectname" |> env1$f$f_CodeText.echo()
-".objectname" |> env1$f$f_CodeText.echo(Execute = TRUE)
+".objectname" |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
 ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # > ".objectname" |> env1$f$f_CodeText.echo()
 # 	"analyticDF_time2event"  
-# > ".objectname" |> env1$f$f_CodeText.echo(Execute = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.echo(EXECUTE = TRUE)
 # 	"analyticDF_time2event" == "analyticDF_time2event"  
 # > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
 # 	.objectname  
-# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # 	.objectname == "analyticDF_time2event" 
 
 
 myObject = LETTERS[1:5]
-"myObject" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
-# > "myObject" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+"myObject" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
+# > "myObject" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # 	myObject == c("A", "B", "C", "D", "E")  
 
 "myObject" %>% get()

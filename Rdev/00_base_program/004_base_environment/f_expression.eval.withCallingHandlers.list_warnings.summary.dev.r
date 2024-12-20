@@ -15,7 +15,7 @@ f_expression.eval.withCallingHandlers.list_warnings.summary <- function(expressi
   # Initialize an empty list to store warnings
   list_warning <- list()
   
-  # Execute the expression.eval and capture warnings
+  # EXECUTE the expression.eval and capture warnings
   result <- withCallingHandlers(
     expr = expression.eval,
     warning = function(w) {

@@ -47,14 +47,14 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
+#   ..$ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 #     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
+#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -123,15 +123,15 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", 
+#   ..$ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", 
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, 
 #     VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
+#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -205,14 +205,14 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ Sys.getlocale   :List of 4
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
-#   ..$ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE,"..
+#   ..$ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,"..
 #     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
-#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
+#   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 #   ..$ f_file.system_switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE,..
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -363,15 +363,15 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ Sys.getlocale :List of 4
 # ..$ l10n_info :List of 5
 # $ f :List of 29
-# ..$ f_CodeText.echo :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t",
+# ..$ f_CodeText.echo :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t",
 #    LinePrefix4Output = "\t## ",
 # substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)
-# ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, Execute = FALSE)
+# ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, EXECUTE = FALSE)
 # ..$ f_file.system_switch_open :function (file)
 # ..$ f_URL.open_in_edge_app :function (URL)
 # ..$ f_URL.open_in_edge_app.printPowerShellCode :function (URL)
 # ..$ f_path.relative :function (path, basepath = env1$path$path1)
-# ..$ f_file.git_lfs_track_add_f :function (.path_file, Execute = FALSE)
+# ..$ f_file.git_lfs_track_add_f :function (.path_file, EXECUTE = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
 # ..$ f_expression.substitute_echo_and_dput :function (expr_text, expression_equals_evaluation = FALSE,
 #    .VERBOSE = FALSE)
@@ -459,17 +459,17 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ Sys.getlocale :List of 4
 # ..$ l10n_info :List of 5
 # $ f :List of 29
-# ..$ f_CodeText.echo :function (.CodeText, Execute = FALSE, deparse_cat = TRUE,
+# ..$ f_CodeText.echo :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE,
 #    LinePrefix4CodeText = "\t",
 # LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE,
 #    ObjectNames4substitute = NULL,
 # VERBOSE = FALSE)
-# ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, Execute = FALSE)
+# ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, EXECUTE = FALSE)
 # ..$ f_file.system_switch_open :function (file)
 # ..$ f_URL.open_in_edge_app :function (URL)
 # ..$ f_URL.open_in_edge_app.printPowerShellCode :function (URL)
 # ..$ f_path.relative :function (path, basepath = env1$path$path1)
-# ..$ f_file.git_lfs_track_add_f :function (.path_file, Execute = FALSE)
+# ..$ f_file.git_lfs_track_add_f :function (.path_file, EXECUTE = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
 # ..$ f_expression.substitute_echo_and_dput :function (expr_text,
 #    expression_equals_evaluation = FALSE, .VERBOSE = FALSE)
@@ -592,14 +592,14 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ l10n_info       :List of 5
 # ________________________________________________________________________________    
 # $ f		:List of 29
-## $ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
+## $ f_CodeText.echo                             :function (.CodeText, EXECUTE = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 ##    substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
-## $ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
+## $ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, EXECUTE = FALSE)  
 ## $ f_file.system_switch_open                          :function (file)  
 ## $ f_URL.open_in_edge_app                      :function (URL)  
 ## $ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 ## $ f_path.relative                             :function (path, basepath = env1$path$path1)  
-## $ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
+## $ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 ## $ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 ## $ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 ## $ f_df.tribble_construct                      :function (df)  
@@ -660,8 +660,8 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 
 
 
-### "env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") ----
-"env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+### "env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") ----
+"env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 
 
 

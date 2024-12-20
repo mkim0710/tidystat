@@ -13,7 +13,7 @@
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-# f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
+# f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE) {
 #     list_TerminalCodeText = list(
 #         paste0( "git lfs track ",shQuote(.path_file) )
 #         , paste0( "git add -f ",shQuote(.path_file) )
@@ -21,7 +21,7 @@
 # 
 #     list_TerminalCodeText |> 
 #         map(function(.TerminalCodeText) .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""))
-#     if(Execute) {
+#     if(EXECUTE) {
 #         list_TerminalCodeText |> 
 #             map(function(.TerminalCodeText) .TerminalCodeText |> system(intern=TRUE))
 #     } 
@@ -32,9 +32,9 @@
 
 
 
-f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALSE) {
+f_TerminalFromRCodeText.echo = function(.TerminalCodeText, EXECUTE = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-    if(Execute) {
+    if(EXECUTE) {
         .TerminalCodeText |> system(intern=TRUE)
     }
     invisible(        
@@ -44,13 +44,13 @@ f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALSE) {
 
 
 
-f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
+f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE) {
     list_TerminalCodeText = list(
         paste0( "git lfs track ",shQuote(.path_file) )
         , paste0( "git add -f ",shQuote(.path_file) )
     )
     invisible(        
-        list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, Execute)
+        list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, EXECUTE)
     )
 }
 
