@@ -1,3 +1,33 @@
+##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+# @@@ TABLE OF CONTENTS @@@ ----  
+# @@@ TABLE OF CONTENTS @@@   
+# @@@ TABLE OF CONTENTS @@@   
+#|________________________________________________________________________________|#    
+#@@ Heading 1 
+##@ Heading 1.1 
+# @@ Heading 2 
+## @ Heading 2.1 
+# @@@ END OF TABLE OF CONTENTS @@@  
+##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+# @@@ TABLE OF CONTENTS @@@ ----  
+# @@@ TABLE OF CONTENTS @@@   
+#|________________________________________________________________________________|#    
+#@@ Heading 1 
+##@ Heading 1.1 
+# @@ Heading 2 
+## @ Heading 2.1 
+# @@@ END OF TABLE OF CONTENTS @@@  
+##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
+# @@@ TABLE OF CONTENTS @@@ ----  
+#|________________________________________________________________________________|#    
+#@@ Heading 1 
+##@ Heading 1.1 
+# @@ Heading 2 
+## @ Heading 2.1 
+# @@@ END OF TABLE OF CONTENTS @@@  
+##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  
 
 # --> Now included in "env1$env.internal.source.r"
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -18,6 +48,8 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
 
@@ -29,12 +61,15 @@
 ## @ Heading 2.1 ----
 
 
-# Load the stringr package
-library(stringr)
 
-# Define the function
-f_file.str_subset.lines4heading <- function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#.*(-{4}|={4}) *$", new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE) {
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_file.str_subset.lines4heading =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
+.tmp$objectname = "f_file.str_subset.lines4heading"
+.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE) {
     
+    library(stringr)
+
     # Read the file content
     input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
     
@@ -47,6 +82,13 @@ f_file.str_subset.lines4heading <- function(input_path_file = rstudioapi::getSou
     
     input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
     
+    if (remove_lines_with_no_alphabet) input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% str_subset("[a-zA-Z]")
+    
+    input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% 
+        str_subset("# @@@ TABLE OF CONTENTS @@@", negate = TRUE)
+    input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% 
+        str_subset("@@ END", negate = TRUE)
+
     input_path_file.readLines.str_subset = 
         c(
             "##HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH##  ",
@@ -63,15 +105,22 @@ f_file.str_subset.lines4heading <- function(input_path_file = rstudioapi::getSou
     
     if (!is.null(output_path_file)) {
         writeLines(c(input_path_file.readLines.str_subset, input_path_file.readLines), con = output_path_file)
-        message(paste0("Added TABLE OF CONTENTS in the beginning of ", deparse(input_path_file), " and saved to : ", deparse(output_path_file)))
-    } else {
-        input_path_file.readLines.str_subset %>% paste0(collapse = "\n") %>% cat("\n")
+        message(paste0("Added TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saved to : \n", deparse(output_path_file), "\n"))
     }
+    
+    input_path_file.readLines.str_subset %>% paste0(collapse = "\n") %>% cat("\n")
     
     invisible(input_path_file.readLines.str_subset)
 }
-
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 f_file.str_subset.lines4heading()
 
+f_file.str_subset.lines4heading(replace_input_path_file = TRUE)
 
