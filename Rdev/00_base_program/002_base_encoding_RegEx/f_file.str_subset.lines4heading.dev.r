@@ -82,7 +82,7 @@ replace_input_path_file = FALSE
 input.readLines <- readLines(input_path_file, warn = FALSE)
 input.readLines %>% str
 # > input.readLines %>% str
-#  chr [1:422] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+#  chr [1:348] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$") %>% min
 input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$") %>% max
@@ -103,21 +103,26 @@ input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF 
 str(!1:length(input.readLines) %in% vec_index4TOC)
 summary(!1:length(input.readLines) %in% vec_index4TOC)
 # > input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))] %>% str
-#  chr [1:388] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+#  chr [1:314] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 # > str(!1:length(input.readLines) %in% vec_index4TOC)
-#  logi [1:422] FALSE FALSE FALSE FALSE FALSE FALSE ...
+#  logi [1:348] FALSE FALSE FALSE FALSE FALSE FALSE ...
 # > summary(!1:length(input.readLines) %in% vec_index4TOC)
 #    Mode   FALSE    TRUE 
-# logical      34     388 
+# logical      34     314 
 
 input.readLines[!1:length(input.readLines) %in% vec_index4TOC] %>% str
 # > input.readLines[!1:length(input.readLines) %in% vec_index4TOC] %>% str
-#  chr [1:388] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+#  chr [1:314] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 input.readLines.except_TOC = input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
 input.readLines.except_TOC %>% str
 # > input.readLines.except_TOC %>% str
-#  chr [1:388] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+#  chr [1:314] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+
+
+RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")}
+# > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")}
+# [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
 
 input.readLines.except_TOC.str_replace_all <- str_replace_all(
     string = input.readLines.except_TOC,
@@ -126,20 +131,23 @@ input.readLines.except_TOC.str_replace_all <- str_replace_all(
 )
 input.readLines.except_TOC.str_replace_all %>% str
 # > input.readLines.except_TOC.str_replace_all %>% str
-#  chr [1:340] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-input.readLines.except_TOC.str_replace_all %>% str
-# > input.readLines.except_TOC.str_replace_all %>% str
-#  chr [1:388] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
 vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
 vec_new_TOC %>% str
+vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
+vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+vec_new_TOC %>% str
+vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_new_TOC %>% str
 #  chr [1:23] "#|________________________________________________________________________________|#  ----  " "#@@ Heading 1 ----" ...
 
+
+
 if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 vec_new_TOC %>% str
+vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_new_TOC %>% str
 #  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 ----" ...
 
@@ -232,7 +240,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         replacement = "\\1"
     )
 
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
     vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
     if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")

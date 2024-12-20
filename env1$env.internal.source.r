@@ -1496,7 +1496,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         replacement = "\\1"
     )
 
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
     if(add_line_numbers) input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = 
             ifelse(
