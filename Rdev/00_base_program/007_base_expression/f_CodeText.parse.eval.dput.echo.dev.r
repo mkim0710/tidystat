@@ -1,7 +1,7 @@
 # @@ Now included in env1$env.internal.source.r ----
 
-# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
-# Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.echo.dev.r
+# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.ECHO.dev.r
+# Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_expression.substitute.echo.dev-pending.Rmd

@@ -441,9 +441,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 # }
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_ObjectName.dput.echo ====
-# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
-.tmp$objectname = "f_ObjectName.dput.echo"
+## :: f_ObjectName.dput.ECHO ====
+# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.ECHO.dev.r
+.tmp$objectname = "f_ObjectName.dput.ECHO"
 .tmp$object = function(ObjectName, envir = parent.frame(), LinePrefix4CodeText = "\t") {
     # *** 1-liner ***
     # cat("ObjectName == ", deparse(ObjectName), "  \n", sep = "")
@@ -457,8 +457,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = ObjectName.dput.echo  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ObjectName.dput.echo")
+### & alias = ObjectName.dput.ECHO  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ObjectName.dput.ECHO")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput_ObjectName.echo  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput_ObjectName.echo")
@@ -466,9 +466,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### & alias = echo.ObjectName.dput  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.ObjectName.dput")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_ObjectName.get.dput.echo ====
-# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
-.tmp$objectname = "f_ObjectName.get.dput.echo"
+## :: f_ObjectName.get.dput.ECHO ====
+# Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.ECHO.dev.r
+.tmp$objectname = "f_ObjectName.get.dput.ECHO"
 .tmp$object = function(ObjectName, envir = parent.frame(), ObjectName.parse.eval = FALSE, LinePrefix4CodeText = "\t") {
     # *** 1-liner ***
     # cat(ObjectName, " == ", deparse(get(ObjectName)), "  \n", sep = "")
@@ -493,8 +493,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = get_ObjectName.dput.echo  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "get_ObjectName.dput.echo")
+### & alias = get_ObjectName.dput.ECHO  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "get_ObjectName.dput.ECHO")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = dput_get_ObjectName.echo  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput_get_ObjectName.echo")
@@ -503,7 +503,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.ObjectName.get.dput")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_CodeText.ECHO ====
-# Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.echo.dev.r
+# Rdev/00_base_program/007_base_expression/f_CodeText.parse.eval.dput.ECHO.dev.r
 # Rdev/00_base_program/007_base_expression/f_CodeText.ECHO.dev.r
 .tmp$objectname = "f_CodeText.ECHO"
 .tmp$object = function(
@@ -623,15 +623,15 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ### & alias = echo.CodeText  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "echo.CodeText")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## ::OPTION:: f_CodeText.parse.eval.dput.echo  ----  
+## ::OPTION:: f_CodeText.parse.eval.dput.ECHO  ----  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_CodeText.parse.eval.dput.echo"
+.tmp$objectname = "f_CodeText.parse.eval.dput.ECHO"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     env1$f$f_CodeText.ECHO(EXECUTE = TRUE, ...)
 }
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = eval_parse_CodeText.dput.echo  ----  
+### & alias = eval_parse_CodeText.dput.ECHO  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "eval_parse_CodeText.dpu.echo")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = echo.CodeText.parse.eval.dput  ----  
