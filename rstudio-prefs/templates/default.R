@@ -196,7 +196,11 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
-# --> Now included in "f_df.t.tribble_construct.source.r"
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ Not Yet included in env1$env.internal.source.r ----
+# @@ Not Yet included in f_df.t.tribble_construct.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_formula.lhs_rhs_vars"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
