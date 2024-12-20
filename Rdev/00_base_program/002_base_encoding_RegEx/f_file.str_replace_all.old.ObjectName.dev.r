@@ -33,13 +33,13 @@ f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.Obje
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
     # Read the file content
-    file_content <- readLines(input_path_file, warn = FALSE)
+    input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
     
     # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    updated_content <- gsub(
+    input_path_file.readLines.str_replace_all <- gsub(
         pattern = regex_pattern,
         replacement = new.ObjectName,
-        x = file_content,
+        x = input_path_file.readLines,
         perl = TRUE # Enable Perl-compatible regex for lookbehind
     )
     
@@ -53,7 +53,7 @@ f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.Obje
     }
     
     # Write the updated content back to the file
-    writeLines(updated_content, con = output_path_file)
+    writeLines(input_path_file.readLines.str_replace_all, con = output_path_file)
     
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
     return(output_path_file)
@@ -82,11 +82,11 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
     # Read the file content
-    file_content <- readLines(input_path_file, warn = FALSE)
+    input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
     
     # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    updated_content <- str_replace_all(
-        string = file_content,
+    input_path_file.readLines.str_replace_all <- str_replace_all(
+        string = input_path_file.readLines,
         pattern = regex_pattern,
         replacement = new.ObjectName
     )
@@ -101,7 +101,7 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
     }
     
     # Write the updated content back to the file
-    writeLines(updated_content, con = output_path_file)
+    writeLines(input_path_file.readLines.str_replace_all, con = output_path_file)
     
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
     return(output_path_file)
