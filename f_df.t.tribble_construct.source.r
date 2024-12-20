@@ -1,3 +1,91 @@
+# > env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS ----  
+#| ------------------------- < To be covered at .Rprofile >           ...122
+# @@ START) source                                                    ...139
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B             ...170
+# @@ env1\$f\$f_object                                                ...193
+# @@ env1\$f\$f_vec                                                   ...285
+# @@ env1\$f\$f_list                                                  ...286
+# @@ env1\$f\$f_list_list                                             ...446
+# @@ env1\$f\$f_matrix                                                ...447
+# @@ env1\$f\$f_array                                                 ...448
+# @@ env1\$f\$f_formula                                               ...537
+# @@ env1\$f\$f_df                                                    ...616
+# @@ env1\$env.internal functions                                     ...790
+# @@ source()                                                         ...1266
+# ls.str(env1) #                                                      ...1335
+# ls.str(env1$env.internal) #                                         ...1336
+# # > ls.str(env1) #                                                  ...1337
+# # > ls.str(env1$env.internal) #                                     ...1343
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+# > env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS ----  
+#| ------------------------- < To be covered at .Rprofile >           ...122
+## env1\$path                                                         ...127
+# @@ START) source                                                    ...139
+## @ .subpath, .filename.source.r                                     ...140
+## env1 = env0                                                        ...164
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B             ...170
+## .GlobalEnv$.tmp = list()                                           ...177
+## .GlobalEnv$env1 = new.env()                                        ...179
+# @@ env1\$f\$f_object                                                ...193
+## :: str_max_level1 =                                                ...195
+## :: str_max_level2 =                                                ...200
+## :: str_give_attr_F =                                               ...205
+## :: str_max_level1.give_attr_F =                                    ...210
+## :: str_max_level2.give_attr_F =                                    ...218
+## :: paste0_collapse0 =                                              ...226
+## :: paste0_collapse0.print =                                        ...250
+## :: cat0 =                                                          ...261
+## :: deparse.cat0 =                                                  ...274
+# @@ env1\$f\$f_vec                                                   ...285
+# @@ env1\$f\$f_list                                                  ...286
+## :: env.internal\$f_vec.format_line_by_line =                       ...288
+## :: f_vec.dput_line_by_line =                                       ...299
+## :: env.internal\$f_list.format_line_by_line =                      ...317
+## :: f_list.dput_line_by_line =                                      ...333
+## :: f_list.str_by_element =                                         ...346
+## :: f_list.print_by_element =                                       ...367
+## :: f_list_tibble.print_by_element =                                ...388
+## :: f_chrNameValuePairs2vector =                                    ...409
+## :: f_vec1_vec2.setdiff_list =                                      ...422
+# @@ env1\$f\$f_list_list                                             ...446
+# @@ env1\$f\$f_matrix                                                ...447
+# @@ env1\$f\$f_array                                                 ...448
+## :: f_list_list.to_matrix =                                         ...450
+## :: f_list_list.to_data_frame =                                     ...469
+## :: f_matrix.to_list_list =                                         ...489
+## :: f_matrix.set_names.to_vector =                                  ...516
+# @@ env1\$f\$f_formula                                               ...537
+## :: f_formula.lhs_rhs_vars =                                        ...539
+## :: f_list_formula.append_lhs_rhs_vars =                            ...574
+# @@ env1\$f\$f_df                                                    ...616
+## :: f_df.tribble_construct =                                        ...618
+## :: f_df.transpose =                                                ...630
+## :: f_df.t.tribble_construct =                                      ...640
+## :: f_df.print_byVar =                                              ...650
+## :: f_df.add_VarNameT.deltaT0 =                                     ...665
+## :: f_df.add_VarNameT.pdeltaT0 =                                    ...680
+## :: f_df.add_RegExVars.kbins =                                      ...695
+## :: f_df.add_RegExVars.quintile_factor =                            ...724
+## :: f_df.add_RegExVars.quartile_factor =                            ...755
+# @@ env1\$env.internal functions                                     ...790
+# @@ source()                                                         ...1266
+## @ for (.dependancy in c("")) {                                     ...1268
+## @ "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r") |> source()       ...1277
+## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()             ...1283
+## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       ...1290
+## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()       ...1296
+## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source()              ...1302
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!!       ...1309
+## @ "f_CodeBook_DataSet.lbl" |> paste0(".source.r") |> source()       ...1311
+# ls.str(env1) #                                                      ...1335
+# ls.str(env1$env.internal) #                                         ...1336
+# # > ls.str(env1) #                                                  ...1337
+# # > ls.str(env1$env.internal) #                                     ...1343
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
 # # f_df.t.tribble_construct.source.r

@@ -1,10 +1,96 @@
+# > env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
-# @@ system, environment   
-# @@ f_function, f_expression, f_CodeText   
-# @@ f_file, f_URL, f_path   
-# @@ source()   
-##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+#| ------------------------- < To be covered at .Rprofile >           ...130
+#| ------------------------- < If .Rprofile not available >           ...133
+# @@ system, environment                                              ...191
+# @@ f_function, f_expression, f_CodeText                             ...347
+# @@ f_file, f_URL, f_path                                            ...794
+# @@ source()                                                         ...2299
+# ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2385
+# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2422
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+# > env1$f$f_file.str_subset.lines4heading("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS ----  
+#| ------------------------- < To be covered at .Rprofile >           ...130
+#| ------------------------- < If .Rprofile not available >           ...133
+## .GlobalEnv$.tmp = list()                                           ...150
+## .GlobalEnv$env1 = new.env()                                        ...152
+# @@ system, environment                                              ...191
+## :: get_system_info                                                 ...194
+## :: get_software_versions                                           ...227
+## :: warnings.summary                                                ...238
+## :: warnings.last                                                   ...239
+## :: warnings.last10                                                 ...240
+## :: message_if_VERBOSE                                              ...245
+## :: cat_if_VERBOSE                                                  ...250
+## :: f_env1_subenv_objectname.set_alias                              ...255
+## :: f_environment.list_objectnames.map_get.str                      ...266
+## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        ...289
+## :: f_environment.detach_and_reattach                               ...299
+## :: reattach.env1_f_env.internal.attach                             ...313
+## :: f_environment.attached_search_path.dput                         ...321
+## :: Sys.time.set_t0                                                 ...332
+## :: Sys.time.set_t1                                                 ...337
+# @@ f_function, f_expression, f_CodeText                             ...347
+## :: f_function.load2env.internal                                    ...349
+## :: f_text_function_arguments.identity_mapping                      ...375
+## :: f_condition1.if_null_condition2                                 ...403
+## :: f_expression.eval.withCallingHandlers.attr_warnings.summary     ...415
+## :: f_expression.system.time.round.dput                             ...475
+## :: f_object.get_objectname -PENDING                                ...503
+## :: f_ObjectName.dput.ECHO                                          ...537
+## :: f_ObjectName.get.dput.ECHO                                      ...562
+## :: f_CodeText.ECHO                                                 ...598
+## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                         ...719
+## :: f_CodeTexts.parse.eval.identical                                ...735
+## :: f_TerminalFromRCodeText.ECHO                                    ...763
+## :: f_object.substitute.deparse2objectname                          ...784
+# @@ f_file, f_URL, f_path                                            ...794
+## :: getSourceEditorContext.path_filename_ext                        ...797
+## :: f_path_file.paste0_collapse_if_not_empty                        ...814
+## :: f_path.relative                                                 ...834
+## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext =        ...848
+## :: f_path.file.info                                                ...911
+## :: f_list_df.write_xlsx_table                                      ...960
+## :: f_path.file.info.xlsx                                           ...1010
+## ::OPTION:: f_path.documents.file.info.xlsx                         ...1068
+## :: f_path.DOCs_Rcode.file.info.xlsx                                ...1081
+## :: f_path.size_files =                                             ...1145
+## :: f_path0.list_path_hierarchy =                                   ...1197
+## :: f_vec_path.vec_filename_sans_ext_extended =                     ...1236
+## :: f_vec_path.vec_ext_extended =                                   ...1259
+## :: f_path.df_filename_ext_extended =                               ...1278
+## :: f_path_fileRegEX.rename =                                       ...1317
+## :: f_path.list.files_orphan_nb_html.remove                         ...1388
+## :: f_filename_ext.append_suffix =                                  ...1450
+## :: f_file.str_subset.lines4heading =                               ...1484
+## ::OPTION:: f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS        ...1540
+## :: f_file.str_replace_all.old.ObjectName =                         ...1551
+## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        ...1595
+## @ f_file.edit, f_file.open, f_URL.open                             ...1617
+## :: f_file.system_switch_open                                       ...1756
+## @ f_file.backup, f_path.backup                                     ...1787
+## :: f_filename_ext.createBackup                                     ...1789
+## :: f_path_path.backup.overwrite                                    ...1828
+## @ f_git                                                            ...1843
+## :: f_path.is_git_tracked                                           ...1846
+## :: f_file.git_lfs_track_add_f                                      ...1897
+## :: function_name = f_gitattributes.split()                         ...1939
+## @ f_file.save                                                      ...1976
+## :: f_objectname.size.write_rds.git_lfs_track_add_f                 ...1979
+## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       ...2114
+## @ f_file.update                                                    ...2138
+## :: env.internal\$f_file2.compare                                   ...2141
+## :: env.internal\$f_url_destfile.DownloadIfDifferent                ...2178
+# @@ source()                                                         ...2299
+## :: f_sourcePath.execute_if_not_sourced =                           ...2302
+## ::OPTION:: f_sourcePath.execute.force_reload                       ...2361
+# ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2385
+## @ .filename.source.r = "f_expression.substitute_echo_and_dput" |> paste0(".source.r")       ...2403
+# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2422
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 .filename.source.r = "env1$env.internal" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
 # # env1$env.internal.dev.r
@@ -1398,34 +1484,36 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
 ## :: f_file.str_subset.lines4heading =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 .tmp$objectname = "f_file.str_subset.lines4heading"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE) {
+.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE) {
     
     library(stringr)
 
     # Read the file content
     input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
-    
-    # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    input_path_file.readLines.str_subset <- str_subset(
+
+    vec_lines4heading <- str_replace_all(
         string = input_path_file.readLines,
-        pattern = RegEx4heading,
-        negate = FALSE
+        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+        replacement = "\\1"
     )
-    
-    input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-    
-    if (remove_lines_with_no_alphabet) input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% str_subset("[a-zA-Z]")
-    
-    input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% 
+
+    vec_lines4heading = vec_lines4heading %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+
+    if(add_line_numbers) vec_lines4heading = ifelse(vec_lines4heading == "", "", paste0(vec_lines4heading, strrep(" ",pmax(4, 70-nchar(vec_lines4heading))), "...", 1:length(vec_lines4heading)))
+
+    vec_lines4heading = vec_lines4heading[!vec_lines4heading == ""]
+    if (remove_lines_with_no_alphabet) vec_lines4heading = vec_lines4heading %>% str_subset("[a-zA-Z]")
+
+    vec_lines4heading = vec_lines4heading %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    input_path_file.readLines.str_subset = input_path_file.readLines.str_subset %>% 
+    vec_lines4heading = vec_lines4heading %>% 
         str_subset("@@ END", negate = TRUE)
 
-    input_path_file.readLines.str_subset = 
+    vec_lines4heading = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            input_path_file.readLines.str_subset,
+            vec_lines4heading,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -1435,13 +1523,13 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     } 
     
     if (!is.null(output_path_file)) {
-        writeLines(c(input_path_file.readLines.str_subset, input_path_file.readLines), con = output_path_file)
+        writeLines(c(vec_lines4heading, input_path_file.readLines), con = output_path_file)
         message(paste0("Added TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saved to : \n", deparse(output_path_file), "\n"))
     }
     
-    input_path_file.readLines.str_subset %>% paste0(collapse = "\n") %>% cat("\n")
+    vec_lines4heading %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(input_path_file.readLines.str_subset)
+    invisible(vec_lines4heading)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
