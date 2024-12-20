@@ -350,7 +350,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path.lines.lfs <- input_path.lines %>% str_subset("\\blfs\\b")
         # Write LFS input_path.lines to a new file
         writeLines(input_path.lines.lfs, output_path.lfs)
-        cat("LFS lines extracted to \t:", deparse(output_path.lfs), "\n  ", sep="")
+        cat("LFS lines extracted to     \t:", deparse(output_path.lfs), "  \n", sep="")
         if(OPEN_OUTPUT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path.lfs)
     }
 
@@ -358,7 +358,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path.lines.non_lfs <- input_path.lines %>% str_subset("\\blfs\\b", negate = TRUE)
         # Write non-LFS input_path.lines to another new file
         writeLines(input_path.lines.non_lfs, output_path.non_lfs)
-        cat("Non-LFS lines extracted to \t:", deparse(output_path.non_lfs), "\n  ", sep="")
+        cat("Non-LFS lines extracted to \t:", deparse(output_path.non_lfs), "  \n", sep="")
         if(OPEN_OUTPUT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path.non_lfs)
     }
     
@@ -366,7 +366,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 }
 
 
-f_gitattributes.split(
+env1$env.internal.attach$f_gitattributes.split(
     input_path = paste0(env1$path$path1,"/.gitattributes"), 
     output_path.lfs = paste0(env1$path$path1,"/.lfs.gitattributes"), 
     output_path.non_lfs = paste0(env1$path$path1,"/.non_lfs.gitattributes"), 
