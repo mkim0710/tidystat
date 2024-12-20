@@ -1490,29 +1490,29 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     # Read the file content
     input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
 
-    vec_lines4heading <- str_replace_all(
+    input_path_file.readLines.str_replace_all <- str_replace_all(
         string = input_path_file.readLines,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
         replacement = "\\1"
     )
 
-    vec_lines4heading = vec_lines4heading %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_path_file.readLines.str_replace_all = input_path_file.readLines.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) vec_lines4heading = ifelse(vec_lines4heading == "", "", paste0(vec_lines4heading, strrep(" ",pmax(4, 70-nchar(vec_lines4heading))), "...", 1:length(vec_lines4heading)))
+    if(add_line_numbers) input_path_file.readLines.str_replace_all = ifelse(input_path_file.readLines.str_replace_all == "", "", paste0(input_path_file.readLines.str_replace_all, strrep(" ",pmax(4, 70-nchar(input_path_file.readLines.str_replace_all))), "...", 1:length(input_path_file.readLines.str_replace_all)))
 
-    vec_lines4heading = vec_lines4heading[!vec_lines4heading == ""]
-    if (remove_lines_with_no_alphabet) vec_lines4heading = vec_lines4heading %>% str_subset("[a-zA-Z]")
+    input_path_file.readLines.str_replace_all = input_path_file.readLines.str_replace_all[!input_path_file.readLines.str_replace_all == ""]
+    if (remove_lines_with_no_alphabet) input_path_file.readLines.str_replace_all = input_path_file.readLines.str_replace_all %>% str_subset("[a-zA-Z]")
 
-    vec_lines4heading = vec_lines4heading %>% 
+    input_path_file.readLines.str_replace_all = input_path_file.readLines.str_replace_all %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    vec_lines4heading = vec_lines4heading %>% 
+    input_path_file.readLines.str_replace_all = input_path_file.readLines.str_replace_all %>% 
         str_subset("@@ END", negate = TRUE)
 
-    vec_lines4heading = 
+    input_path_file.readLines.str_replace_all = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_lines4heading,
+            input_path_file.readLines.str_replace_all,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -1526,12 +1526,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(vec_lines4heading, input_path_file.readLines), con = output_path_file)
+    writeLines(c(input_path_file.readLines.str_replace_all, input_path_file.readLines), con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) vec_lines4heading %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) input_path_file.readLines.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(vec_lines4heading)
+    invisible(input_path_file.readLines.str_replace_all)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
