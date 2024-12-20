@@ -38,18 +38,18 @@ myObject = LETTERS[1:5]
 
 # attr(,"alias")
 # [1] "env1$env.internal.attach$eval_parse_CodeText.ECHO = env1$f$f_CodeText.ECHO"
-# [2] "env1$env.internal.attach$echo.eval_parse_CodeText = env1$f$f_CodeText.ECHO"
+# [2] "env1$env.internal.attach$ECHO.eval_parse_CodeText = env1$f$f_CodeText.ECHO"
 
 
 # "f_ObjectName.get.dput.ECHO"
-# "f_ObjectName.get.deparse.cat.echo"
-# "f_ObjectName.parse.eval.deparse.cat.echo"
+# "f_ObjectName.get.deparse.cat.ECHO"
+# "f_ObjectName.parse.eval.deparse.cat.ECHO"
 # 
 # "get_ObjectName.dput.ECHO"
-# "echo.get_ObjectName.dput"
+# "ECHO.get_ObjectName.dput"
 # 
 # "Object.dput.ECHO"
-# "echo.Object.dput"
+# "ECHO.Object.dput"
 
 f_ObjectName.get.dput.ECHO = function(ObjectName, LinePrefix4CodeText = "\t") {
     cat(LinePrefix4CodeText); cat(ObjectName); cat(" == "); 
