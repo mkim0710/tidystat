@@ -1,4 +1,3 @@
-# > env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
 #| ------------------------- < To be covered at .Rprofile >           ...122
@@ -19,7 +18,6 @@
 # # > ls.str(env1) #                                                  ...1337
 # # > ls.str(env1$env.internal) #                                     ...1343
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
-# > env1$f$f_file.str_subset.lines4heading("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
 #| ------------------------- < To be covered at .Rprofile >           ...122
