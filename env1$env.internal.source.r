@@ -2254,7 +2254,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
             if(UPDATED) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .file.copy.to, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
         }
     }
-    if (Sys.info()["sysname"] == "Windows")  cat('browseURL("D:/OneDrive/[][Rproject]/-BACKUP")', "\n")
+    if (Sys.info()["sysname"] == "Windows" && UPDATED)  cat('browseURL("D:/OneDrive/[][Rproject]/-BACKUP")', "\n")
     
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     for (.filename_ext in c(".gitignore", ".Rprofile")) {
