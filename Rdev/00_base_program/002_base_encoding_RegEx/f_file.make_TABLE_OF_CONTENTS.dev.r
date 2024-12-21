@@ -10,10 +10,10 @@
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
-## :: f_file.make_TABLE_OF_CONTENTS.old =                           ...180
+## :: f_file.vec_TABLE_OF_CONTENTS.old =                           ...180
 # @@ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
-## :: f_file.make_TABLE_OF_CONTENTS =                               ...246
+## :: f_file.vec_TABLE_OF_CONTENTS =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
@@ -27,10 +27,10 @@
 ## env0 = env1 
 # @@ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.make_TABLE_OF_CONTENTS.old =    
+## :: f_file.vec_TABLE_OF_CONTENTS.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
+## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -94,7 +94,7 @@ input.readLines %>% str
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
+# @@ START) dev-part1 -----  
 ## env0 = env1 ----
 
 
@@ -110,7 +110,7 @@ input.readLines.list_SECTION_nonSECTION %>% str
 #  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 
-## \% 1nd iteration: make_TABLE_OF_CONTENTS_without_line_numbers ====
+## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
 ### input.readLines.except_TOC ====
 input.readLines.except_TOC = input.readLines.list_SECTION_nonSECTION$nonSECTION
 input.readLines.except_TOC %>% str
@@ -195,13 +195,133 @@ vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # # @@ START) function   
 # ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
+# ## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
 # # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
 
-## \% 2nd iteration: make_TABLE_OF_CONTENTS_with_line_numbers ====
+## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
+### input.readLines.except_TOC.add_new_TOC_as_blank ====
+input.readLines.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC)
+input.readLines.except_TOC.add_new_TOC_as_blank %>% str
+# > input.readLines.except_TOC.add_new_TOC_as_blank %>% str
+#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+
+input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers = input.readLines.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
+# > input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
+#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+
+
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) function-part1 -----  
+# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
+## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## ->> Now included in env1$env.internal.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.vec_TABLE_OF_CONTENTS =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr = readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE), RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
+    
+    library(stringr)
+
+    input.readLines = input_vec_chr
+    
+    vec_index4TOC = min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))
+    
+    input.readLines.except_TOC = input.readLines[!1:length(input.readLines) %in% vec_index4TOC] 
+
+    input.readLines.except_TOC.str_replace_all <- str_replace_all(
+        string = input.readLines.except_TOC,
+        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+        replacement = "\\1"
+    )
+
+    vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+
+    vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
+    if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
+
+    vec_new_TOC = vec_new_TOC %>% 
+        str_subset("^# TABLE OF CONTENTS", negate = TRUE)
+    vec_new_TOC = vec_new_TOC %>% 
+        str_subset("^# @@ END", negate = TRUE)
+
+    vec_new_TOC = 
+        c(
+            "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
+            "# TABLE OF CONTENTS ----  ", 
+            vec_new_TOC,
+            "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
+        )
+    
+    input.readLines.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC.str_replace_all)
+    
+    if(add_line_numbers) {
+        input.readLines.except_TOC.add_new_TOC_as_blank = input.readLines.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+        vec_new_TOC.add_line_numbers = input.readLines.except_TOC.add_new_TOC_as_blank[min(input.readLines.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
+    }
+    
+    if(replace_input_path_file) {
+        if (!is.null(output_path_file)) {warning("replace_input_path_file == TRUE -> output_path_file will be ignored.")}
+        output_path_file <- input_path_file # Overwrite the original file
+    } 
+    
+    if (!is.null(output_path_file)) {
+        message(paste0("Adding TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saving to : \n", deparse(output_path_file), "\n"))
+    } else {
+        output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
+    }
+    
+    if(!add_line_numbers) vec_new_TOC.add_line_numbers = vec_new_TOC
+
+    input.readLines.except_TOC.add_new_TOC.add_line_numbers = c(vec_new_TOC.add_line_numbers, input.readLines.except_TOC)
+    writeLines(input.readLines.except_TOC.add_new_TOC.add_line_numbers, con = output_path_file)
+    # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
+    
+    if(cat2console) vec_new_TOC.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    
+    invisible(vec_new_TOC.add_line_numbers)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+
+
+
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) dev-part2 -----  
+## env0 = env1 ----
+
+
+
+
+
+### input.readLines.list_SECTION_nonSECTION ====
+input.readLines.list_SECTION_nonSECTION = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input.readLines)
+input.readLines.list_SECTION_nonSECTION %>% str
+# > input.readLines.list_SECTION_nonSECTION %>% str
+# List of 2
+#  $ SECTION   : chr [1:34] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#@@ Heading 1                                                         ...60" "##@ Heading 1.1                                                       ...63" ...
+#  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+
+
+## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
+
+
+
+## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
 ### input.readLines.except_TOC.add_new_TOC_as_blank ====
 input.readLines.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC)
 input.readLines.except_TOC.add_new_TOC_as_blank %>% str
@@ -218,7 +338,7 @@ input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
 output_path_file %>% str
 # > output_path_file %>% str
-#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.make_TABLE_OF_CONTENTS.dev.r-TableOfContents-11874623757f.txt"
+#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.vec_TABLE_OF_CONTENTS.dev.r-TableOfContents-11874623757f.txt"
 
 
 input.readLines.except_TOC.add_new_TOC.add_line_numbers = c(vec_new_TOC.add_line_numbers, input.readLines.except_TOC)
@@ -227,9 +347,15 @@ input.readLines.except_TOC.add_new_TOC.add_line_numbers %>% str
 writeLines(input.readLines.except_TOC.add_new_TOC.add_line_numbers, con = output_path_file)
 env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
 
+
+
+
+
+
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function -----  
+# @@ START) function-part2 -----  
 # .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -239,13 +365,13 @@ env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_fi
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =  ----  
+## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.make_TABLE_OF_CONTENTS.dev.r
-.tmp$objectname = "f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
 .tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
     
     library(stringr)
@@ -320,19 +446,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2console = TRUE)
-env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2console = TRUE)
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
 
-# env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
+# env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
-### env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+### env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
-### env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+### env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
 
 ##////////////////////////////////////////////////////////////////////////////////  
