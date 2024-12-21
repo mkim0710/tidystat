@@ -1489,19 +1489,19 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     library(stringr)
 
     # Read the file content
-    input.readLines <- readLines(input_path_file, warn = FALSE)
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
 
-    input.readLines.except_TOC.str_replace_all <- str_replace_all(
-        string = input.readLines,
+    input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
+        string = input_vec_chr,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
         replacement = "\\1"
     )
 
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
+    if(add_line_numbers) input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
 
-    vec_new_TOC = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
+    vec_new_TOC = input_vec_chr.except_TOC.str_replace_all |> na_if("") |> na.omit()
     if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 
     vec_new_TOC = vec_new_TOC %>% 
@@ -1527,7 +1527,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(vec_new_TOC, input.readLines), con = output_path_file)
+    writeLines(c(vec_new_TOC, input_vec_chr), con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
     if(cat2console) vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
@@ -1565,11 +1565,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
     # Read the file content
-    input.readLines <- readLines(input_path_file, warn = FALSE)
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    input.readLines.except_TOC.str_replace_all <- str_replace_all(
-        string = input.readLines,
+    input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
+        string = input_vec_chr,
         pattern = regex_pattern,
         replacement = new.ObjectName
     )
@@ -1584,7 +1584,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     }
     
     # Write the updated content back to the file
-    writeLines(input.readLines.except_TOC.str_replace_all, con = output_path_file)
+    writeLines(input_vec_chr.except_TOC.str_replace_all, con = output_path_file)
     
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
     return(output_path_file)

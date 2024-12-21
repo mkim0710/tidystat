@@ -80,37 +80,37 @@ remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
-input.readLines <- readLines(input_path_file, warn = FALSE)
-input.readLines %>% str
+input_vec_chr <- readLines(input_path_file, warn = FALSE)
+input_vec_chr %>% str
 
-input.readLines.except_TOC.str_replace_all <- str_subset(
-    string = input.readLines,
+input_vec_chr.except_TOC.str_replace_all <- str_subset(
+    string = input_vec_chr,
     pattern = RegEx4heading,
     negate = FALSE
 )
-input.readLines.except_TOC.str_replace_all %>% str
+input_vec_chr.except_TOC.str_replace_all %>% str
 
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-input.readLines.except_TOC.str_replace_all %>% str
+input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+input_vec_chr.except_TOC.str_replace_all %>% str
 
-if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
-input.readLines.except_TOC.str_replace_all %>% str
+if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
+input_vec_chr.except_TOC.str_replace_all %>% str
 
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>%
+input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>%
     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>%
+input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>%
     str_subset("^# @@ END", negate = TRUE)
-input.readLines.except_TOC.str_replace_all %>% str
+input_vec_chr.except_TOC.str_replace_all %>% str
 
-input.readLines.except_TOC.str_replace_all =
+input_vec_chr.except_TOC.str_replace_all =
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ",
-        input.readLines.except_TOC.str_replace_all,
+        input_vec_chr.except_TOC.str_replace_all,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-input.readLines.except_TOC.str_replace_all %>% str
-input.readLines.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
+input_vec_chr.except_TOC.str_replace_all %>% str
+input_vec_chr.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -137,28 +137,28 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     library(stringr)
 
     # Read the file content
-    input.readLines <- readLines(input_path_file, warn = FALSE)
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
-    input.readLines.except_TOC.str_replace_all <- str_subset(
-        string = input.readLines,
+    input_vec_chr.except_TOC.str_replace_all <- str_subset(
+        string = input_vec_chr,
         pattern = RegEx4heading,
         negate = FALSE
     )
     
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
     
-    if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
+    if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
     
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
+    input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
+    input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% 
         str_subset("^# @@ END", negate = TRUE)
 
-    input.readLines.except_TOC.str_replace_all = 
+    input_vec_chr.except_TOC.str_replace_all = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            input.readLines.except_TOC.str_replace_all,
+            input_vec_chr.except_TOC.str_replace_all,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -168,13 +168,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } 
     
     if (!is.null(output_path_file)) {
-        writeLines(c(input.readLines.except_TOC.str_replace_all, input.readLines), con = output_path_file)
+        writeLines(c(input_vec_chr.except_TOC.str_replace_all, input_vec_chr), con = output_path_file)
         message(paste0("Added TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saved to : \n", deparse(output_path_file), "\n"))
     }
     
-    input.readLines.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
+    input_vec_chr.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(input.readLines.except_TOC.str_replace_all)
+    invisible(input_vec_chr.except_TOC.str_replace_all)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
