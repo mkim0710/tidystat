@@ -2242,7 +2242,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
             .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .filename_ext)
         }
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.filename_ext)
-        env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+        UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
         
         if (Sys.info()["sysname"] == "Windows") {
             # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
@@ -2250,8 +2250,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
             
             .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename_ext)
             .BACKUP_to_path = "D:/OneDrive/[][Rproject]/-BACKUP"
-            env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .file.copy.to, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
-            env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+            UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+            if(UPDATED) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .file.copy.to, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
         }
     }
     if (Sys.info()["sysname"] == "Windows")  cat('browseURL("D:/OneDrive/[][Rproject]/-BACKUP")', "\n")
@@ -2262,7 +2262,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
         # for (.file.copy.to in file.path(env1$path$path1,.filename_ext)) {
         for (.file.copy.to in c(file.path(env1$path$path1,.filename_ext), file.path("~",.filename_ext)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.filename_ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename_ext))) {
             if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename_ext)) {
-                env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+                UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
             }
         }
     }
@@ -2271,7 +2271,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     for (.filename_ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename_ext)
         .file.copy.to = file.path(env1$path$path1,.filename_ext)
-        env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+        UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     }
     
     # # remove old files
@@ -2291,7 +2291,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     #         } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
     #             .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
     #             .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
-    #             env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+    #             UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     #         } else if(Sys.info()["sysname"] == "Darwin") {
     #             
     #         }
