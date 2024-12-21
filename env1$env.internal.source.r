@@ -1493,7 +1493,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
     input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
         string = input_vec_chr,
-        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
     )
 

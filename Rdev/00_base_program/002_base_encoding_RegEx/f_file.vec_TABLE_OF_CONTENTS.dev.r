@@ -118,15 +118,15 @@ input_vec_chr.except_TOC %>% str
 #  chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 
-RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")}
-# > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")}
+RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
 # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
 
 
 ### input_vec_chr.except_TOC.str_replace_all ====
 input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
     string = input_vec_chr.except_TOC,
-    pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+    pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
     replacement = "\\1"
 )
 input_vec_chr.except_TOC.str_replace_all %>% str
@@ -240,7 +240,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
         string = input_vec_chr.except_TOC,
-        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
     )
     
@@ -264,10 +264,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     invisible(vec_TABLE_OF_CONTENTS)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
+env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
+# > env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+#  chr [1:36] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 
 #_________________________________________________________________________________|----  
@@ -361,7 +363,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
         string = input_vec_chr.except_TOC,
-        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
     )
 
