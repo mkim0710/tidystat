@@ -123,18 +123,45 @@ RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste
 # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
 
 
-### input_vec_chr.except_TOC.str_replace_all ====
-input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
-    string = input_vec_chr.except_TOC,
-    pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
-    replacement = "\\1"
-)
-input_vec_chr.except_TOC.str_replace_all %>% str
-# > input_vec_chr.except_TOC.str_replace_all %>% str
-#  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+# ### input_vec_chr.except_TOC.str_replace_all ====
+# input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
+#     string = input_vec_chr.except_TOC,
+#     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
+#     replacement = "\\1"
+# )
+# input_vec_chr.except_TOC.str_replace_all %>% str
+# # > input_vec_chr.except_TOC.str_replace_all %>% str
+# #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+
+
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
+#  logi [1:433] FALSE FALSE FALSE FALSE FALSE FALSE ...
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
+#    Mode   FALSE    TRUE 
+# logical     397      36 
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
+#  logi [1:433] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
+#    Mode   FALSE    TRUE 
+# logical      36     397 
+
+
+### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
+#  chr [1:453] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA ...
+
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit
 
 ### vec_TABLE_OF_CONTENTS ====
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
+# vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
+vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
 vec_TABLE_OF_CONTENTS %>% str
 vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS %>% str
@@ -243,7 +270,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
     )
-    
+    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
     vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
     
