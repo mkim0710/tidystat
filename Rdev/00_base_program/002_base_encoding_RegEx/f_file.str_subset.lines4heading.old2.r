@@ -97,25 +97,27 @@ input.readLines.except_TOC.str_replace_all %>% str
 input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
 input.readLines.except_TOC.str_replace_all %>% str
 
-input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
-if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% str_subset("[a-zA-Z]")
-input.readLines.except_TOC.str_replace_all.subset %>% str
+input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
+input.readLines.except_TOC.str_replace_all.na.omit %>% str
 
-input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% 
+if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% str_subset("[a-zA-Z]")
+input.readLines.except_TOC.str_replace_all.na.omit %>% str
+
+input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
     str_subset("# TABLE OF CONTENTS", negate = TRUE)
-input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% 
+input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
     str_subset("@@ END", negate = TRUE)
-input.readLines.except_TOC.str_replace_all.subset %>% str
+input.readLines.except_TOC.str_replace_all.na.omit %>% str
 
-input.readLines.except_TOC.str_replace_all.subset = 
+input.readLines.except_TOC.str_replace_all.na.omit = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        input.readLines.except_TOC.str_replace_all.subset,
+        input.readLines.except_TOC.str_replace_all.na.omit,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-input.readLines.except_TOC.str_replace_all.subset %>% str
-input.readLines.except_TOC.str_replace_all.subset %>% paste0(collapse = "\n") %>% cat("\n")
+input.readLines.except_TOC.str_replace_all.na.omit %>% str
+input.readLines.except_TOC.str_replace_all.na.omit %>% paste0(collapse = "\n") %>% cat("\n")
 
 
 #_________________________________________________________________________________|----  
@@ -155,19 +157,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     if(add_line_numbers) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
 
-    input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
-    if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% str_subset("[a-zA-Z]")
+    input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
+    if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% str_subset("[a-zA-Z]")
 
-    input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% 
+    input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% 
+    input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
         str_subset("@@ END", negate = TRUE)
 
-    input.readLines.except_TOC.str_replace_all.subset = 
+    input.readLines.except_TOC.str_replace_all.na.omit = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            input.readLines.except_TOC.str_replace_all.subset,
+            input.readLines.except_TOC.str_replace_all.na.omit,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -181,12 +183,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(input.readLines.except_TOC.str_replace_all.subset, input.readLines), con = output_path_file)
+    writeLines(c(input.readLines.except_TOC.str_replace_all.na.omit, input.readLines), con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) input.readLines.except_TOC.str_replace_all.subset %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) input.readLines.except_TOC.str_replace_all.na.omit %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(input.readLines.except_TOC.str_replace_all.subset)
+    invisible(input.readLines.except_TOC.str_replace_all.na.omit)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
