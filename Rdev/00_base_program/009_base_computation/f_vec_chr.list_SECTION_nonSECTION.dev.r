@@ -141,6 +141,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) data example ----  
+
 ## \% input_vec_chr = fruit[1:8*10] ----
 input_vec_chr = fruit[1:8*10]
 input_vec_chr[3:7] = ""
@@ -148,121 +149,37 @@ input_vec_chr %>% dput
 # > input_vec_chr %>% dput
 # c("blueberry", "coconut", "", "", "", "", "", "watermelon")
 
+
+## \% env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+# env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") %>% dput
+
+input_vec_chr.SECTION_removed = input_vec_chr
+input_vec_chr.SECTION_extracted = 
+    c("##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ", 
+      "# TABLE OF CONTENTS ----  ", "#| ------------------------- < To be covered at .Rprofile >                 ...128", 
+      "#| ------------------------- < If .Rprofile not available >                 ...131", 
+      "# @@ system, environment                                                    ...189", 
+      "# @@ f_function, f_expression, f_CodeText                                   ...345", 
+      "# @@ f_file, f_URL, f_path                                                  ...792", 
+      "# ## ::OPTION:: f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS       ...1549", 
+      "# ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS      ...1556", 
+      "# @@ source()                                                               ...2308", 
+      "# ## @ .filename.source.r = \"internal.f_path0.list_path_hierarchy\" |> paste0(\".source.r\")       ...2394", 
+      "# \\% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2431", 
+      "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
+    )
+
+input_vec_chr = c(input_vec_chr.SECTION_extracted, input_vec_chr.SECTION_removed)
+input_vec_chr %>% str
+# > input_vec_chr %>% str
+#  chr [1:21] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
 ## env0 = env1 ----
 env0 = env1
-
-
-## % paste0(strrep(" ",pmax())) -----
-paste0(
-    input_vec_chr, 
-    strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
-    "...", 
-    1:length(input_vec_chr)
-)
-# [1] "blueberry                                                                   ...1"
-# [2] "coconut                                                                     ...2"
-# [3] "                                                                            ...3"
-# [4] "                                                                            ...4"
-# [5] "                                                                            ...5"
-# [6] "                                                                            ...6"
-# [7] "                                                                            ...7"
-# [8] "watermelon                                                                  ...8"
-
-
-##@ %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))} ----
-input_vec_chr %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
-# > input_vec_chr %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
-# [1] "blueberry                                                                   ...1"
-# [2] "coconut                                                                     ...2"
-# [3] "                                                                            ...3"
-# [4] "                                                                            ...4"
-# [5] "                                                                            ...5"
-# [6] "                                                                            ...6"
-# [7] "                                                                            ...7"
-# [8] "watermelon                                                                  ...8"
-
-
-
-
-
-## % ifelse() -----
-width.cutoff = 80L - 4L
-ifelse(
-    input_vec_chr == "", "", 
-    paste0(
-        input_vec_chr, 
-        strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
-        "...", 
-        1:length(input_vec_chr)
-    )
-)
-# > ifelse(
-# +     input_vec_chr == "", "", 
-# +     paste0(
-# +         input_vec_chr, 
-# +         strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
-# +         "...", 
-# +         1:length(input_vec_chr)
-# +     )
-# + )
-# [1] "blueberry                                                                   ...1"
-# [2] "coconut                                                                     ...2"
-# [3] ""                                                                                
-# [4] ""                                                                                
-# [5] ""                                                                                
-# [6] ""                                                                                
-# [7] ""                                                                                
-# [8] "watermelon                                                                  ...8"
-
-
-##@ input_vec_chr %>% na_if("") %>% discard(is.na) ----
-input_vec_chr %>% na_if("") %>% discard(is.na)
-input_vec_chr %>% na_if("") %>% discard(is.na) %>% str
-# > input_vec_chr %>% na_if("") %>% discard(is.na)
-# [1] "blueberry"  "coconut"    "watermelon"
-# > input_vec_chr %>% na_if("") %>% discard(is.na) %>% str
-#  chr [1:3] "blueberry" "coconut" "watermelon"
-
-
-##@ input_vec_chr %>% na_if("") %>% na.omit() ----
-input_vec_chr %>% na_if("")
-input_vec_chr %>% na_if("") %>% na.omit()
-input_vec_chr %>% na_if("") %>% na.omit() %>% str
-# > input_vec_chr %>% na_if("")
-# [1] "blueberry"  "coconut"    NA           NA           NA           NA           NA           "watermelon"
-# > input_vec_chr %>% na_if("") %>% na.omit()
-# [1] "blueberry"  "coconut"    "watermelon"
-# attr(,"na.action")
-# [1] 3 4 5 6 7
-# attr(,"class")
-# [1] "omit"
-# > input_vec_chr %>% na_if("") %>% na.omit() %>% str
-#  chr [1:3] "blueberry" "coconut" "watermelon"
-#  - attr(*, "na.action")= 'omit' int [1:5] 3 4 5 6 7
-
-
-##@ %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))} ----
-input_vec_chr %>% na_if("") %>% na.omit() %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
-# > input_vec_chr %>% na_if("") %>% na.omit() %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
-# [1] "blueberry                                                                   ...1"
-# [2] "coconut                                                                     ...2"
-# [3] "watermelon                                                                  ...3"
-
-##@ %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))} ----
-input_vec_chr %>% na_if("") %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
-# > input_vec_chr %>% na_if("") %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
-# [1] "blueberry                                                                   ...1"
-# [2] "coconut                                                                     ...2"
-# [3] "NANA...3"                                                                        
-# [4] "NANA...4"                                                                        
-# [5] "NANA...5"                                                                        
-# [6] "NANA...6"                                                                        
-# [7] "NANA...7"                                                                        
-# [8] "watermelon                                                                  ...8"
-
 
 
 
@@ -300,6 +217,44 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 
+
+
+
+
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) function by GPT -----  
+
+#@ https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627
+#' Separate SECTION_extracted and non-SECTION_extracted Lines
+#'
+#' This function takes a vector of lines (e.g., from a file), along with 
+#' start and end patterns for a Table of Contents (SECTION_extracted). It returns a list 
+#' with two elements:
+#' \itemize{
+#'   \item \code{SECTION_extracted}   - lines belonging to the SECTION_extracted SECTION_extracted
+#'   \item \code{SECTION_removed} - lines outside of the SECTION_extracted SECTION_extracted
+#' }
+#'
+#' @param input_vec_chr A character vector of lines (e.g., from \code{\link{readLines}}).
+#' @param RegEx4SECTION_start A regular expression pattern indicating the start of SECTION_extracted.
+#' @param RegEx4SECTION_end A regular expression pattern indicating the end of SECTION_extracted.
+#'
+#' @return A named list with two elements: \code{SECTION_extracted} and \code{SECTION_removed}.
+#' @importFrom stringr str_detect
+#' @references 
+#'   \href{https://cran.r-project.org/web/packages/stringr/stringr.pdf}{stringr Package Reference}
+#'   \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/readLines.html}{Base R \code{readLines} Documentation}
+#' @examples
+#' \dontrun{
+#' input_vec_chr_from_file <- readLines("path_to_your_file.txt")
+#' start_ptn <- "^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$"
+#' end_ptn   <- "^##H+ THE END OF TABLE OF CONTENTS H+## *$"
+#' result <- f_vec_chr.list_SECTION_nonSECTION(input_vec_chr_from_file, start_ptn, end_ptn)
+#' }
+
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
@@ -312,56 +267,51 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_vec_chr.add_line_numbers =  ----
-# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
+## :: f_vec_chr.list_SECTION_nonSECTION =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.list_SECTION_nonSECTION.dev.r
 .tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "f_vec_chr.add_line_numbers"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
-    input_vec_chr = 
-        ifelse(
-            input_vec_chr == "", "", 
-            paste0(
-                input_vec_chr, 
-                strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
-                "...", 
-                1:length(input_vec_chr)
-            )
-        )
-    input_vec_chr
+.tmp$objectname = "f_vec_chr.list_SECTION_nonSECTION"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx4SECTION_start = "^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$", RegEx4SECTION_end = "^##H+ THE END OF TABLE OF CONTENTS H+## *$") {
+    # Validate input
+    if (!is.character(input_vec_chr) || length(input_vec_chr) == 0) {
+        stop("Input 'input_vec_chr' must be a non-empty character vector.")
+    }
+    
+    # Reference: https://cran.r-project.org/web/packages/stringr/stringr.pdf
+    library(stringr)
+    
+    # Locate all start and end markers
+    vec_indices.SECTION_start <- which(str_detect(input_vec_chr, RegEx4SECTION_start))
+    vec_indices.SECTION_end   <- which(str_detect(input_vec_chr, RegEx4SECTION_end))
+    
+    if (length(vec_indices.SECTION_start) == 0 || length(vec_indices.SECTION_end) == 0) {
+        # No existing SECTION_extracted markers found
+        warning("No existing SECTION_extracted markers found. The entire content will be considered non-SECTION_extracted.")
+        return(list(
+            SECTION = character(0),
+            nonSECTION = input_vec_chr
+        ))
+    } else {
+        # Create a range from the first start marker to the last end marker
+        SECTION_range <- min(vec_indices.SECTION_start):max(vec_indices.SECTION_end)
+        # Extract lines belonging to the SECTION_extracted
+        input_vec_chr.SECTION_extracted <- input_vec_chr[SECTION_range]
+        # All other lines are non-SECTION_extracted
+        input_vec_chr.SECTION_removed <- input_vec_chr[-SECTION_range]
+        
+        return(list(
+            SECTION    = input_vec_chr.SECTION_extracted,
+            nonSECTION = input_vec_chr.SECTION_removed
+        ))
+    }
 }
 
-env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr)
-# > env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr)
-# [1] "blueberry                                                                   ...1"
-# [2] "coconut                                                                     ...2"
-# [3] ""                                                                                
-# [4] ""                                                                                
-# [5] ""                                                                                
-# [6] ""                                                                                
-# [7] ""                                                                                
-# [8] "watermelon                                                                  ...8"
 
-
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =  ----
-# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
-.tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "f_vec_chr.add_line_numbers.paste_collapse_LF_cat"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
-    out = env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr, width.cutoff)
-    out %>% paste(collapse = "\n") %>% cat("\n", sep="")
-    invisible(out)
-}
-env1$env.internal$f_vec_chr.add_line_numbers.paste_collapse_LF_cat(input_vec_chr)
-# > env1$env.internal$f_vec_chr.add_line_numbers.paste_collapse_LF_cat(input_vec_chr)
-# blueberry                                                                   ...1
-# coconut                                                                     ...2
-# 
-# 
-# 
-# 
-# 
-# watermelon                                                                  ...8
+env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input_vec_chr) %>% str
+# > env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input_vec_chr) %>% str
+# List of 2
+#  $ SECTION   : chr [1:13] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#| ------------------------- < To be covered at .Rprofile >                 ...128" "#| ------------------------- < If .Rprofile not available >                 ...131" ...
+#  $ nonSECTION: chr [1:8] "blueberry" "coconut" "" "" ...
 
 
 ##////////////////////////////////////////////////////////////////////////////////  

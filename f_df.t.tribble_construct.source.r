@@ -465,6 +465,47 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width
     invisible(out)
 }
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.list_SECTION_nonSECTION =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.list_SECTION_nonSECTION.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.list_SECTION_nonSECTION"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx4SECTION_start = "^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$", RegEx4SECTION_end = "^##H+ THE END OF TABLE OF CONTENTS H+## *$") {
+    # Validate input
+    if (!is.character(input_vec_chr) || length(input_vec_chr) == 0) {
+        stop("Input 'input_vec_chr' must be a non-empty character vector.")
+    }
+    
+    # Reference: https://cran.r-project.org/web/packages/stringr/stringr.pdf
+    library(stringr)
+    
+    # Locate all start and end markers
+    vec_indices.SECTION_start <- which(str_detect(input_vec_chr, RegEx4SECTION_start))
+    vec_indices.SECTION_end   <- which(str_detect(input_vec_chr, RegEx4SECTION_end))
+    
+    if (length(vec_indices.SECTION_start) == 0 || length(vec_indices.SECTION_end) == 0) {
+        # No existing SECTION_extracted markers found
+        warning("No existing SECTION_extracted markers found. The entire content will be considered non-SECTION_extracted.")
+        return(list(
+            SECTION = character(0),
+            nonSECTION = input_vec_chr
+        ))
+    } else {
+        # Create a range from the first start marker to the last end marker
+        SECTION_range <- min(vec_indices.SECTION_start):max(vec_indices.SECTION_end)
+        # Extract lines belonging to the SECTION_extracted
+        input_vec_chr.SECTION_extracted <- input_vec_chr[SECTION_range]
+        # All other lines are non-SECTION_extracted
+        input_vec_chr.SECTION_removed <- input_vec_chr[-SECTION_range]
+        
+        return(list(
+            SECTION    = input_vec_chr.SECTION_extracted,
+            nonSECTION = input_vec_chr.SECTION_removed
+        ))
+    }
+}
+
+
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
