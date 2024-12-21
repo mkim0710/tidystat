@@ -133,47 +133,47 @@ input_vec_chr.except_TOC.str_replace_all %>% str
 # > input_vec_chr.except_TOC.str_replace_all %>% str
 #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-### vec_new_TOC ====
-vec_new_TOC = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
-vec_new_TOC %>% str
-vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_new_TOC %>% str
+### vec_TABLE_OF_CONTENTS ====
+vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
+vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS %>% str
 #  chr [1:31] "#_________________________________________________________________________________|----  " "# @@ REFERENCES) ----  " ...
 #  - attr(*, "na.action")= 'omit' int [1:259] 1 2 3 4 5 6 7 8 9 10 ...
 
-vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-vec_new_TOC %>% str
-vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-# > vec_new_TOC %>% str
+vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+# > vec_TABLE_OF_CONTENTS %>% str
 #  chr [1:31] "#_________________________________________________________________________________|  " "# @@ REFERENCES)   " ...
 
-if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
-vec_new_TOC %>% str
-vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_new_TOC %>% str
+if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
+vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS %>% str
 #  chr [1:22] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
 
-vec_new_TOC = vec_new_TOC %>% 
+vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-vec_new_TOC = vec_new_TOC %>% 
+vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
     str_subset("^# @@ END", negate = TRUE)
-vec_new_TOC %>% str
-# > vec_new_TOC %>% str
+vec_TABLE_OF_CONTENTS %>% str
+# > vec_TABLE_OF_CONTENTS %>% str
 #  chr [1:21] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
 
-vec_new_TOC = 
+vec_TABLE_OF_CONTENTS = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        vec_new_TOC,
+        vec_TABLE_OF_CONTENTS,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-vec_new_TOC %>% str
-vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_new_TOC %>% str
+vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS %>% str
 #  chr [1:24] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ REFERENCES)   
@@ -203,7 +203,7 @@ vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 
 ## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
 ### input_vec_chr.except_TOC.add_new_TOC_as_blank ====
-input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input_vec_chr.except_TOC)
+input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC)
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
@@ -232,71 +232,37 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_vec_chr = readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE), 
+        input_vec_chr.except_TOC = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE))$nonSECTION, 
         RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE) {
     
     library(stringr)
-
     
-    
-    input_vec_chr = input_vec_chr
-    
-    vec_index4TOC = min(input_vec_chr %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input_vec_chr %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))
-    
-    input_vec_chr.except_TOC = input_vec_chr[!1:length(input_vec_chr) %in% vec_index4TOC] 
-
     input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
         string = input_vec_chr.except_TOC,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
         replacement = "\\1"
     )
-
-    vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-
-    vec_new_TOC = input_vec_chr.except_TOC.str_replace_all[!input_vec_chr.except_TOC.str_replace_all == ""]
-    if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
-
-    vec_new_TOC = vec_new_TOC %>% 
+    
+    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
+    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    
+    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
+    
+    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-    vec_new_TOC = vec_new_TOC %>% 
+    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("^# @@ END", negate = TRUE)
-
-    vec_new_TOC = 
+    
+    vec_TABLE_OF_CONTENTS = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_new_TOC,
+            vec_TABLE_OF_CONTENTS,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
-    input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input_vec_chr.except_TOC.str_replace_all)
-    
-    if(add_line_numbers) {
-        input_vec_chr.except_TOC.add_new_TOC_as_blank = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
-        vec_new_TOC.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank[min(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
-    }
-    
-    if(replace_input_path_file) {
-        if (!is.null(output_path_file)) {warning("replace_input_path_file == TRUE -> output_path_file will be ignored.")}
-        output_path_file <- input_path_file # Overwrite the original file
-    } 
-    
-    if (!is.null(output_path_file)) {
-        message(paste0("Adding TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saving to : \n", deparse(output_path_file), "\n"))
-    } else {
-        output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
-    }
-    
-    if(!add_line_numbers) vec_new_TOC.add_line_numbers = vec_new_TOC
-
-    input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = c(vec_new_TOC.add_line_numbers, input_vec_chr.except_TOC)
-    writeLines(input_vec_chr.except_TOC.add_new_TOC.add_line_numbers, con = output_path_file)
-    # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
-    
-    if(cat2console) vec_new_TOC.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
-    
-    invisible(vec_new_TOC.add_line_numbers)
+    invisible(vec_TABLE_OF_CONTENTS)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -328,7 +294,7 @@ input_vec_chr.list_SECTION_nonSECTION %>% str
 
 ## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
 ### input_vec_chr.except_TOC.add_new_TOC_as_blank ====
-input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input_vec_chr.except_TOC)
+input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC)
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
@@ -346,7 +312,7 @@ output_path_file %>% str
 #  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.vec_TABLE_OF_CONTENTS.dev.r-TableOfContents-11874623757f.txt"
 
 
-input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = c(vec_new_TOC.add_line_numbers, input_vec_chr.except_TOC)
+input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = c(vec_TABLE_OF_CONTENTS.add_line_numbers, input_vec_chr.except_TOC)
 input_vec_chr.except_TOC.add_new_TOC.add_line_numbers %>% str
 
 writeLines(input_vec_chr.except_TOC.add_new_TOC.add_line_numbers, con = output_path_file)
@@ -399,29 +365,29 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         replacement = "\\1"
     )
 
-    vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    vec_new_TOC = input_vec_chr.except_TOC.str_replace_all[!input_vec_chr.except_TOC.str_replace_all == ""]
-    if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
+    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all[!input_vec_chr.except_TOC.str_replace_all == ""]
+    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
 
-    vec_new_TOC = vec_new_TOC %>% 
+    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-    vec_new_TOC = vec_new_TOC %>% 
+    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("^# @@ END", negate = TRUE)
 
-    vec_new_TOC = 
+    vec_TABLE_OF_CONTENTS = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_new_TOC,
+            vec_TABLE_OF_CONTENTS,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
-    input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input_vec_chr.except_TOC.str_replace_all)
+    input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC.str_replace_all)
     
     if(add_line_numbers) {
         input_vec_chr.except_TOC.add_new_TOC_as_blank = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
-        vec_new_TOC.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank[min(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
+        vec_TABLE_OF_CONTENTS.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank[min(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
     }
     
     if(replace_input_path_file) {
@@ -435,15 +401,15 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
     
-    if(!add_line_numbers) vec_new_TOC.add_line_numbers = vec_new_TOC
+    if(!add_line_numbers) vec_TABLE_OF_CONTENTS.add_line_numbers = vec_TABLE_OF_CONTENTS
 
-    input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = c(vec_new_TOC.add_line_numbers, input_vec_chr.except_TOC)
+    input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = c(vec_TABLE_OF_CONTENTS.add_line_numbers, input_vec_chr.except_TOC)
     writeLines(input_vec_chr.except_TOC.add_new_TOC.add_line_numbers, con = output_path_file)
     # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) vec_new_TOC.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(vec_new_TOC.add_line_numbers)
+    invisible(vec_TABLE_OF_CONTENTS.add_line_numbers)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
