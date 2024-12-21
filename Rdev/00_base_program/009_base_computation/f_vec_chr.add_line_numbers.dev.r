@@ -154,6 +154,117 @@ input_vec_chr %>% dput
 env0 = env1
 
 
+## % paste0(strrep(" ",pmax())) -----
+paste0(
+    input_vec_chr, 
+    strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
+    "...", 
+    1:length(input_vec_chr)
+)
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] "                                                                            ...3"
+# [4] "                                                                            ...4"
+# [5] "                                                                            ...5"
+# [6] "                                                                            ...6"
+# [7] "                                                                            ...7"
+# [8] "watermelon                                                                  ...8"
+
+
+##@ %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))} ----
+input_vec_chr %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
+# > input_vec_chr %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] "                                                                            ...3"
+# [4] "                                                                            ...4"
+# [5] "                                                                            ...5"
+# [6] "                                                                            ...6"
+# [7] "                                                                            ...7"
+# [8] "watermelon                                                                  ...8"
+
+
+
+
+
+## % ifelse() -----
+width.cutoff = 80L - 4L
+ifelse(
+    input_vec_chr == "", "", 
+    paste0(
+        input_vec_chr, 
+        strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
+        "...", 
+        1:length(input_vec_chr)
+    )
+)
+# > ifelse(
+# +     input_vec_chr == "", "", 
+# +     paste0(
+# +         input_vec_chr, 
+# +         strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
+# +         "...", 
+# +         1:length(input_vec_chr)
+# +     )
+# + )
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] ""                                                                                
+# [4] ""                                                                                
+# [5] ""                                                                                
+# [6] ""                                                                                
+# [7] ""                                                                                
+# [8] "watermelon                                                                  ...8"
+
+
+##@ input_vec_chr %>% na_if("") %>% discard(is.na) ----
+input_vec_chr %>% na_if("") %>% discard(is.na)
+input_vec_chr %>% na_if("") %>% discard(is.na) %>% str
+# > input_vec_chr %>% na_if("") %>% discard(is.na)
+# [1] "blueberry"  "coconut"    "watermelon"
+# > input_vec_chr %>% na_if("") %>% discard(is.na) %>% str
+#  chr [1:3] "blueberry" "coconut" "watermelon"
+
+
+##@ input_vec_chr %>% na_if("") %>% na.omit() ----
+input_vec_chr %>% na_if("")
+input_vec_chr %>% na_if("") %>% na.omit()
+input_vec_chr %>% na_if("") %>% na.omit() %>% str
+# > input_vec_chr %>% na_if("")
+# [1] "blueberry"  "coconut"    NA           NA           NA           NA           NA           "watermelon"
+# > input_vec_chr %>% na_if("") %>% na.omit()
+# [1] "blueberry"  "coconut"    "watermelon"
+# attr(,"na.action")
+# [1] 3 4 5 6 7
+# attr(,"class")
+# [1] "omit"
+# > input_vec_chr %>% na_if("") %>% na.omit() %>% str
+#  chr [1:3] "blueberry" "coconut" "watermelon"
+#  - attr(*, "na.action")= 'omit' int [1:5] 3 4 5 6 7
+
+
+##@ %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))} ----
+input_vec_chr %>% na_if("") %>% na.omit() %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
+# > input_vec_chr %>% na_if("") %>% na.omit() %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] "watermelon                                                                  ...3"
+
+##@ %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))} ----
+input_vec_chr %>% na_if("") %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
+# > input_vec_chr %>% na_if("") %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...", 1:length(.))}
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] "NANA...3"                                                                        
+# [4] "NANA...4"                                                                        
+# [5] "NANA...5"                                                                        
+# [6] "NANA...6"                                                                        
+# [7] "NANA...7"                                                                        
+# [8] "watermelon                                                                  ...8"
+
+
+
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
