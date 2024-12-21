@@ -191,7 +191,7 @@ input_vec_chr %>% {paste0(., strrep(" ",pmax(4, width.cutoff - nchar(.))),"...",
 ## % ifelse() -----
 width.cutoff = 80L - 4L
 ifelse(
-    input_vec_chr == "", "", 
+    is.na(input_vec_chr) | input_vec_chr == "", input_vec_chr, 
     paste0(
         input_vec_chr, 
         strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
@@ -200,7 +200,7 @@ ifelse(
     )
 )
 # > ifelse(
-# +     input_vec_chr == "", "", 
+# +     is.na(input_vec_chr) | input_vec_chr == "", input_vec_chr, 
 # +     paste0(
 # +         input_vec_chr, 
 # +         strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
@@ -216,6 +216,9 @@ ifelse(
 # [6] ""                                                                                
 # [7] ""                                                                                
 # [8] "watermelon                                                                  ...8"
+
+
+
 
 
 ##@ input_vec_chr %>% na_if("") %>% discard(is.na) ----
@@ -319,7 +322,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
     input_vec_chr = 
         ifelse(
-            input_vec_chr == "", "", 
+            is.na(input_vec_chr) | input_vec_chr == "", input_vec_chr, 
             paste0(
                 input_vec_chr, 
                 strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
@@ -341,6 +344,27 @@ env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr)
 # [7] ""                                                                                
 # [8] "watermelon                                                                  ...8"
 
+
+input_vec_chr %>% na_if("") %>% env1$env.internal$f_vec_chr.add_line_numbers()
+input_vec_chr %>% na_if("") %>% env1$env.internal$f_vec_chr.add_line_numbers() %>% replace_na("")
+# > input_vec_chr %>% na_if("") %>% env1$env.internal$f_vec_chr.add_line_numbers()
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] NA                                                                                
+# [4] NA                                                                                
+# [5] NA                                                                                
+# [6] NA                                                                                
+# [7] NA                                                                                
+# [8] "watermelon                                                                  ...8"
+# > input_vec_chr %>% na_if("") %>% env1$env.internal$f_vec_chr.add_line_numbers() %>% replace_na("")
+# [1] "blueberry                                                                   ...1"
+# [2] "coconut                                                                     ...2"
+# [3] ""                                                                                
+# [4] ""                                                                                
+# [5] ""                                                                                
+# [6] ""                                                                                
+# [7] ""                                                                                
+# [8] "watermelon                                                                  ...8"
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =  ----

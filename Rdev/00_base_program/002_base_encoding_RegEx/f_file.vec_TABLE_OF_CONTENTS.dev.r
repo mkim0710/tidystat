@@ -97,150 +97,7 @@ input_vec_chr %>% str
 # @@ START) dev-part1 -----  
 ## env0 = env1 ----
 
-
-
-
-
-### input_vec_chr.list_SECTION_nonSECTION ====
-input_vec_chr.list_SECTION_nonSECTION = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input_vec_chr)
-input_vec_chr.list_SECTION_nonSECTION %>% str
-# > input_vec_chr.list_SECTION_nonSECTION %>% str
-# List of 2
-#  $ SECTION   : chr [1:34] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#@@ Heading 1                                                         ...60" "##@ Heading 1.1                                                       ...63" ...
-#  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
-
-
-## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
-### input_vec_chr.except_TOC ====
-input_vec_chr.except_TOC = input_vec_chr.list_SECTION_nonSECTION$nonSECTION
-input_vec_chr.except_TOC %>% str
-# > input_vec_chr.except_TOC %>% str
-#  chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
-
-
-RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
-
-
-# ### input_vec_chr.except_TOC.na_if_NotMatching ====
-# input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
-#     string = input_vec_chr.except_TOC,
-#     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
-#     replacement = "\\1"
-# )
-# input_vec_chr.except_TOC.na_if_NotMatching %>% str
-# # > input_vec_chr.except_TOC.na_if_NotMatching %>% str
-# #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
-
-
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
-#  logi [1:433] FALSE FALSE FALSE FALSE FALSE FALSE ...
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
-#    Mode   FALSE    TRUE 
-# logical     397      36 
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
-#  logi [1:433] TRUE TRUE TRUE TRUE TRUE TRUE ...
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
-#    Mode   FALSE    TRUE 
-# logical      36     397 
-
-
-### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
-input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
-input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
-input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% paste0(collapse = "\n") %>% cat("\n")
-# > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
-#  chr [1:453] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA ...
-
-# input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
-
-### vec_TABLE_OF_CONTENTS ====
-# vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching %>% na_if("") %>% na.omit()
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
-#  chr [1:31] "#_________________________________________________________________________________|----  " "# @@ REFERENCES) ----  " ...
-#  - attr(*, "na.action")= 'omit' int [1:259] 1 2 3 4 5 6 7 8 9 10 ...
-
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-# > vec_TABLE_OF_CONTENTS %>% str
-#  chr [1:31] "#_________________________________________________________________________________|  " "# @@ REFERENCES)   " ...
-
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
-#  chr [1:22] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
-
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
-    str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
-    str_subset("^# @@ END", negate = TRUE)
-vec_TABLE_OF_CONTENTS %>% str
-# > vec_TABLE_OF_CONTENTS %>% str
-#  chr [1:21] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
-
-vec_TABLE_OF_CONTENTS = 
-    c(
-        "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
-        "# TABLE OF CONTENTS ----  ", 
-        vec_TABLE_OF_CONTENTS,
-        "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
-    )
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
-#  chr [1:24] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
-# # TABLE OF CONTENTS ----  
-# # @@ REFERENCES)   
-# # @@ START) data example   
-# #@@ Heading 1 
-# ##@ Heading 1.1 
-# # @@ Heading 2 
-# ## @ Heading 2.1 
-# #  chr [1:348] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
-# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 
-# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 
-# # @@ START) dev   
-# ## env0 = env1 
-# #  $ SECTION   : chr [1:13] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#| ------------------------- < To be covered at .Rprofile >                 ...128" "#|  
-# #  chr [1:23] "#|________________________________________________________________________________|#  ----  " "#@@ Heading 1 
-# #  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 
-# #  chr [1:14] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 
-# #  chr [1:17] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
-# #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
-# # @@ START) function   
-# ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
-# # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
-# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
-
-
-
-## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
-### input_vec_chr.except_TOC.add_new_TOC_as_blank ====
-input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC)
-input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
-# > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
-#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
-
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
-# > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
-#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
-
-
+# Rdev\00_base_program\002_base_encoding_RegEx\f_file.vec_TABLE_OF_CONTENTS.dev-part1.r
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -312,6 +169,44 @@ input_vec_chr.list_SECTION_nonSECTION %>% str
 
 
 ## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
+### input_vec_chr.except_TOC ====
+input_vec_chr.except_TOC = input_vec_chr.list_SECTION_nonSECTION$nonSECTION
+input_vec_chr.except_TOC %>% str
+# > input_vec_chr.except_TOC %>% str
+#  chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+
+
+vec_TABLE_OF_CONTENTS_without_line_numbers = 
+    input_vec_chr.except_TOC %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() 
+vec_TABLE_OF_CONTENTS_without_line_numbers %>% str
+vec_TABLE_OF_CONTENTS_without_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS_without_line_numbers %>% str
+#  chr [1:24] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+# > vec_TABLE_OF_CONTENTS_without_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ REFERENCES)   
+# # @@ START) data example   
+# #@@ Heading 1 
+# ##@ Heading 1.1 
+# # @@ Heading 2 
+# ## @ Heading 2.1 
+# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 
+# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 
+# # @@ START) dev-part1   
+# ## env0 = env1 
+# # @@ START) function-part1   
+# ## ->> Now included in env1$env.internal.source.r 
+# ## :: f_vec_chr.vec_TABLE_OF_CONTENTS =    
+# # @@ START) dev-part2   
+# ## env0 = env1 
+# ## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers 
+# ## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers 
+# # @@ START) function-part2   
+# ## ->> Now included in env1$env.internal.source.r 
+# ## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
+# # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
 

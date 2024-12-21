@@ -466,7 +466,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
     input_vec_chr = 
         ifelse(
-            input_vec_chr == "", "", 
+            is.na(input_vec_chr) | input_vec_chr == "", input_vec_chr, 
             paste0(
                 input_vec_chr, 
                 strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
