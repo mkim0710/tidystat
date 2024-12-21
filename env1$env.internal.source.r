@@ -63,8 +63,8 @@
 ## :: f_path_fileRegEX.rename =                                       ...1317
 ## :: f_path.list.files_orphan_nb_html.remove                         ...1388
 ## :: f_filename_ext.append_suffix =                                  ...1450
-## :: f_file.str_subset.lines4heading =                               ...1484
-## ::OPTION:: f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS        ...1540
+## :: f_file.make_TABLE_OF_CONTENTS =                               ...1484
+## ::OPTION:: f_file.make_TABLE_OF_CONTENTS.add_TABLE_OF_CONTENTS        ...1540
 ## :: f_file.str_replace_all.old.ObjectName =                         ...1551
 ## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        ...1595
 ## @ f_file.edit, f_file.open, f_URL.open                             ...1617
@@ -1479,11 +1479,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =  ----  
+## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.old2.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.dev.r
-.tmp$objectname = "f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL"
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.make_TABLE_OF_CONTENTS.old2.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.make_TABLE_OF_CONTENTS.dev.r
+.tmp$objectname = "f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
 .tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
     
     library(stringr)
@@ -1546,11 +1546,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ### (ALIAS) TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
 # ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ## ::OPTION:: f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----
+# ## ::OPTION:: f_file.make_TABLE_OF_CONTENTS.add_TABLE_OF_CONTENTS  ----
 # .tmp$env1_subenv_name = "f"
-# .tmp$objectname = "f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS"
+# .tmp$objectname = "f_file.make_TABLE_OF_CONTENTS.add_TABLE_OF_CONTENTS"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
-#     env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
+#     env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
 # }
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----

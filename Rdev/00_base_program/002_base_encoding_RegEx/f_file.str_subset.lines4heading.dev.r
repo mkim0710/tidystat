@@ -10,10 +10,10 @@
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
-## :: f_file.str_subset.lines4heading.old =                           ...180
+## :: f_file.make_TABLE_OF_CONTENTS.old =                           ...180
 # @@ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
-## :: f_file.str_subset.lines4heading =                               ...246
+## :: f_file.make_TABLE_OF_CONTENTS =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
@@ -27,10 +27,10 @@
 ## env0 = env1 
 # @@ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.str_subset.lines4heading.old =    
+## :: f_file.make_TABLE_OF_CONTENTS.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =    
+## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -99,6 +99,9 @@ input.readLines %>% str
 
 
 
+
+
+### input.readLines.list_SECTION_nonSECTION ====
 input.readLines.list_SECTION_nonSECTION = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input.readLines)
 input.readLines.list_SECTION_nonSECTION %>% str
 # > input.readLines.list_SECTION_nonSECTION %>% str
@@ -107,6 +110,8 @@ input.readLines.list_SECTION_nonSECTION %>% str
 #  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 
+## \% 1nd iteration: make_TABLE_OF_CONTENTS_without_line_numbers ====
+### input.readLines.except_TOC ====
 input.readLines.except_TOC = input.readLines.list_SECTION_nonSECTION$nonSECTION
 input.readLines.except_TOC %>% str
 # > input.readLines.except_TOC %>% str
@@ -117,6 +122,8 @@ RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste
 # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")}
 # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
 
+
+### input.readLines.except_TOC.str_replace_all ====
 input.readLines.except_TOC.str_replace_all <- str_replace_all(
     string = input.readLines.except_TOC,
     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
@@ -126,6 +133,7 @@ input.readLines.except_TOC.str_replace_all %>% str
 # > input.readLines.except_TOC.str_replace_all %>% str
 #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
+### vec_new_TOC ====
 vec_new_TOC = input.readLines.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
 vec_new_TOC %>% str
 vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
@@ -187,13 +195,14 @@ vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # # @@ START) function   
 # ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =    
+# ## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
 # # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
 
-
+## \% 2nd iteration: make_TABLE_OF_CONTENTS_with_line_numbers ====
+### input.readLines.except_TOC.add_new_TOC_as_blank ====
 input.readLines.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC)
 input.readLines.except_TOC.add_new_TOC_as_blank %>% str
 # > input.readLines.except_TOC.add_new_TOC_as_blank %>% str
@@ -209,7 +218,7 @@ input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
 output_path_file %>% str
 # > output_path_file %>% str
-#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.str_subset.lines4heading.dev.r-TableOfContents-11874623757f.txt"
+#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.make_TABLE_OF_CONTENTS.dev.r-TableOfContents-11874623757f.txt"
 
 
 input.readLines.except_TOC.add_new_TOC.add_line_numbers = c(vec_new_TOC.add_line_numbers, input.readLines.except_TOC)
@@ -230,13 +239,13 @@ env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_fi
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL"
+.tmp$objectname = "f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =  ----  
+## :: f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.dev.r
-.tmp$objectname = "f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL"
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.make_TABLE_OF_CONTENTS.dev.r
+.tmp$objectname = "f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
 .tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
     
     library(stringr)
@@ -311,19 +320,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(cat2console = TRUE)
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
+env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2console = TRUE)
+env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
 
-# env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
+# env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
-### env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+### env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
-### env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+### env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.make_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
 
 ##////////////////////////////////////////////////////////////////////////////////  
