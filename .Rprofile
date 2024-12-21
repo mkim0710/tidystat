@@ -86,10 +86,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     # for(.packagename in c("dplyr", "purrr", "stringr", "forcats", "readr", "ggplot2", "tibble", "lubridate", "tidyr")) {
     for(.packagename in c("dplyr", "purrr", "stringr")) {
         tryCatch({
-            if(!require(.packagename, character.only=TRUE)) {
-                stop(paste("Package", .packagename, "is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
-                # install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)   # makes error on Posit.Cloud?
-            }
+            if(!require(.packagename, character.only=TRUE)) stop(paste("Package", .packagename, "is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))    # install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)   # makes error on Posit.Cloud?
         }, error = function(e) {
             # Additional code to handle the error or provide fallback options
             # Print a warning message but allow R to continue
