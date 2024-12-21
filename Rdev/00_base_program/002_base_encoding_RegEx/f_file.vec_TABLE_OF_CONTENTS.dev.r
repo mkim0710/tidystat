@@ -231,7 +231,10 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr = readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE), RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        input_vec_chr = readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE), 
+        RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", 
+        remove_lines_with_no_alphabet = TRUE, cat2console = FALSE) {
     
     library(stringr)
 
@@ -374,7 +377,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
+.tmp$object = function(
+        input_path_file = rstudioapi::getSourceEditorContext()$path, 
+        RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", 
+        remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
+        add_line_numbers = TRUE, 
+        output_path_file = NULL, replace_input_path_file = FALSE) {
     
     library(stringr)
 
