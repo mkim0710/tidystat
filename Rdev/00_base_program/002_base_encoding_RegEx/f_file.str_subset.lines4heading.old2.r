@@ -97,27 +97,27 @@ input.readLines.except_TOC.str_replace_all %>% str
 input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
 input.readLines.except_TOC.str_replace_all %>% str
 
-input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
-input.readLines.except_TOC.str_replace_all.na.omit %>% str
+vec_new_TOC = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
+vec_new_TOC %>% str
 
-if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% str_subset("[a-zA-Z]")
-input.readLines.except_TOC.str_replace_all.na.omit %>% str
+if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
+vec_new_TOC %>% str
 
-input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
+vec_new_TOC = vec_new_TOC %>% 
     str_subset("# TABLE OF CONTENTS", negate = TRUE)
-input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
+vec_new_TOC = vec_new_TOC %>% 
     str_subset("@@ END", negate = TRUE)
-input.readLines.except_TOC.str_replace_all.na.omit %>% str
+vec_new_TOC %>% str
 
-input.readLines.except_TOC.str_replace_all.na.omit = 
+vec_new_TOC = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        input.readLines.except_TOC.str_replace_all.na.omit,
+        vec_new_TOC,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-input.readLines.except_TOC.str_replace_all.na.omit %>% str
-input.readLines.except_TOC.str_replace_all.na.omit %>% paste0(collapse = "\n") %>% cat("\n")
+vec_new_TOC %>% str
+vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 
 
 #_________________________________________________________________________________|----  
@@ -157,19 +157,19 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     if(add_line_numbers) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
 
-    input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
-    if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% str_subset("[a-zA-Z]")
+    vec_new_TOC = input.readLines.except_TOC.str_replace_all |> na_if("") |> na.omit()
+    if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 
-    input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
+    vec_new_TOC = vec_new_TOC %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    input.readLines.except_TOC.str_replace_all.na.omit = input.readLines.except_TOC.str_replace_all.na.omit %>% 
+    vec_new_TOC = vec_new_TOC %>% 
         str_subset("@@ END", negate = TRUE)
 
-    input.readLines.except_TOC.str_replace_all.na.omit = 
+    vec_new_TOC = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            input.readLines.except_TOC.str_replace_all.na.omit,
+            vec_new_TOC,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -183,12 +183,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(input.readLines.except_TOC.str_replace_all.na.omit, input.readLines), con = output_path_file)
+    writeLines(c(vec_new_TOC, input.readLines), con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) input.readLines.except_TOC.str_replace_all.na.omit %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(input.readLines.except_TOC.str_replace_all.na.omit)
+    invisible(vec_new_TOC)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
