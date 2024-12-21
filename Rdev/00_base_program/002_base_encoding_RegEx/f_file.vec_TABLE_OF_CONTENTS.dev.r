@@ -212,26 +212,41 @@ vec_TABLE_OF_CONTENTS_without_line_numbers %>% paste0(collapse = "\n") %>% cat("
 
 ## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
 ### input_vec_chr.except_TOC.add_new_TOC_as_blank ====
-input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC)
+input_vec_chr.except_TOC.add_new_TOC_as_blank = 
+    c(
+        rep("", length(vec_TABLE_OF_CONTENTS_without_line_numbers)), 
+        input_vec_chr.except_TOC
+    )
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = 
+    input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
 input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
+vec_TABLE_OF_CONTENTS_with_line_numbers =
+    input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% 
+    env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS()
+
+vec_TABLE_OF_CONTENTS_with_line_numbers %>% str
+
+
+
+
+## \% Final: add vec_TABLE_OF_CONTENTS_with_line_numbers to input_vec_chr.except_TOC ====
+
+input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = 
+    c(vec_TABLE_OF_CONTENTS_with_line_numbers, input_vec_chr.except_TOC)
+input_vec_chr.except_TOC.add_new_TOC.add_line_numbers %>% str
 
 
 output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
 output_path_file %>% str
 # > output_path_file %>% str
 #  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.vec_TABLE_OF_CONTENTS.dev.r-TableOfContents-11874623757f.txt"
-
-
-input_vec_chr.except_TOC.add_new_TOC.add_line_numbers = c(vec_TABLE_OF_CONTENTS.add_line_numbers, input_vec_chr.except_TOC)
-input_vec_chr.except_TOC.add_new_TOC.add_line_numbers %>% str
 
 writeLines(input_vec_chr.except_TOC.add_new_TOC.add_line_numbers, con = output_path_file)
 env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
