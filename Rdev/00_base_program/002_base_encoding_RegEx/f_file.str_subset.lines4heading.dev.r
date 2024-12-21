@@ -56,6 +56,17 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ REFERENCES) ----  
+##  ----  
+## 
+## 
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) data example ----  
+
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
 
@@ -66,13 +77,6 @@
 
 ## @ Heading 2.1 ----
 
-
-# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
-# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
-#_________________________________________________________________________________|----  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
-## env0 = env1 ----
 input_path_file = rstudioapi::getSourceEditorContext()$path
 RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$"
 add_line_numbers = TRUE
@@ -83,42 +87,30 @@ replace_input_path_file = FALSE
 input.readLines <- readLines(input_path_file, warn = FALSE)
 input.readLines %>% str
 # > input.readLines %>% str
-#  chr [1:348] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+#  chr [1:324] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
-input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$") %>% min
-input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$") %>% max
 
-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$")) %>% dput
--min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$")) %>% dput
-# > min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$")) %>% dput
-# 1:34
-# > -min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$")) %>% dput
-# -1:-34
+# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
+# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) dev -----  
+## env0 = env1 ----
 
-vec_index4TOC = min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))
-vec_index4TOC %>% dput
-# > vec_index4TOC %>% dput
-# 1:34
 
-input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))] %>% str
-str(!1:length(input.readLines) %in% vec_index4TOC)
-summary(!1:length(input.readLines) %in% vec_index4TOC)
-# > input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))] %>% str
-#  chr [1:314] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
-# > str(!1:length(input.readLines) %in% vec_index4TOC)
-#  logi [1:348] FALSE FALSE FALSE FALSE FALSE FALSE ...
-# > summary(!1:length(input.readLines) %in% vec_index4TOC)
-#    Mode   FALSE    TRUE 
-# logical      34     314 
 
-input.readLines[!1:length(input.readLines) %in% vec_index4TOC] %>% str
-# > input.readLines[!1:length(input.readLines) %in% vec_index4TOC] %>% str
-#  chr [1:314] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+input.readLines.list_SECTION_nonSECTION = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input.readLines)
+input.readLines.list_SECTION_nonSECTION %>% str
+# > input.readLines.list_SECTION_nonSECTION %>% str
+# List of 2
+#  $ SECTION   : chr [1:34] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#@@ Heading 1                                                         ...60" "##@ Heading 1.1                                                       ...63" ...
+#  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
-input.readLines.except_TOC = input.readLines[-min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):-max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
+
+input.readLines.except_TOC = input.readLines.list_SECTION_nonSECTION$nonSECTION
 input.readLines.except_TOC %>% str
 # > input.readLines.except_TOC %>% str
-#  chr [1:314] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+#  chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 
 RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")}
@@ -132,25 +124,27 @@ input.readLines.except_TOC.str_replace_all <- str_replace_all(
 )
 input.readLines.except_TOC.str_replace_all %>% str
 # > input.readLines.except_TOC.str_replace_all %>% str
-#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+#  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-
-vec_new_TOC = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
-vec_new_TOC %>% str
-vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
-vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+vec_new_TOC = input.readLines.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
 vec_new_TOC %>% str
 vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_new_TOC %>% str
-#  chr [1:23] "#|________________________________________________________________________________|#  ----  " "#@@ Heading 1 ----" ...
+#  chr [1:31] "#_________________________________________________________________________________|----  " "# @@ REFERENCES) ----  " ...
+#  - attr(*, "na.action")= 'omit' int [1:259] 1 2 3 4 5 6 7 8 9 10 ...
 
-
+vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+vec_new_TOC %>% str
+vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_new_TOC = vec_new_TOC %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+# > vec_new_TOC %>% str
+#  chr [1:31] "#_________________________________________________________________________________|  " "# @@ REFERENCES)   " ...
 
 if (remove_lines_with_no_alphabet) vec_new_TOC = vec_new_TOC %>% str_subset("[a-zA-Z]")
 vec_new_TOC %>% str
 vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_new_TOC %>% str
-#  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 ----" ...
+#  chr [1:22] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
 
 vec_new_TOC = vec_new_TOC %>% 
     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
@@ -158,7 +152,7 @@ vec_new_TOC = vec_new_TOC %>%
     str_subset("^# @@ END", negate = TRUE)
 vec_new_TOC %>% str
 # > vec_new_TOC %>% str
-#  chr [1:14] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 ----" ...
+#  chr [1:21] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
 
 vec_new_TOC = 
     c(
@@ -170,17 +164,45 @@ vec_new_TOC =
 vec_new_TOC %>% str
 vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_new_TOC %>% str
-#  chr [1:17] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+#  chr [1:24] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+# > vec_new_TOC %>% paste0(collapse = "\n") %>% cat("\n")
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ REFERENCES)   
+# # @@ START) data example   
+# #@@ Heading 1 
+# ##@ Heading 1.1 
+# # @@ Heading 2 
+# ## @ Heading 2.1 
+# #  chr [1:348] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
+# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 
+# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 
+# # @@ START) dev   
+# ## env0 = env1 
+# #  $ SECTION   : chr [1:13] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#| ------------------------- < To be covered at .Rprofile >                 ...128" "#|  
+# #  chr [1:23] "#|________________________________________________________________________________|#  ----  " "#@@ Heading 1 
+# #  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 
+# #  chr [1:14] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 
+# #  chr [1:17] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
+# #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
+# # @@ START) function   
+# ## ->> Now included in env1$env.internal.source.r 
+# ## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =    
+# # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
-input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC.str_replace_all)
-# > input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str
-#  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
-input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
-input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str
-# > input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str
-#  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##      ...1" ...
+
+input.readLines.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC)
+input.readLines.except_TOC.add_new_TOC_as_blank %>% str
+# > input.readLines.except_TOC.add_new_TOC_as_blank %>% str
+#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+
+input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers = input.readLines.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
+# > input.readLines.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
+#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
 
 
@@ -250,11 +272,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
-    input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC.str_replace_all)
+    input.readLines.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC.str_replace_all)
     
     if(add_line_numbers) {
-        input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
-        vec_new_TOC.add_line_numbers = input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank[min(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
+        input.readLines.except_TOC.add_new_TOC_as_blank = input.readLines.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+        vec_new_TOC.add_line_numbers = input.readLines.except_TOC.add_new_TOC_as_blank[min(input.readLines.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
     }
     
     if(replace_input_path_file) {
