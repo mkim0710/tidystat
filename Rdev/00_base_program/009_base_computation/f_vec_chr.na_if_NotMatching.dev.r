@@ -163,6 +163,20 @@ ifelse(str_detect(input_vec_chr, RegEx4keep), input_vec_chr, NA) |> dput()
 # > ifelse(str_detect(input_vec_chr, RegEx4keep), input_vec_chr, NA) |> dput()
 # c("abc123", "def456", NA, NA)
 
+### \% str_extract() ----  
+input_vec_chr |> str_extract(RegEx4keep) |> dput()
+# > input_vec_chr |> str_extract(RegEx4keep) |> dput()
+# c("123", "456", NA, NA)
+
+### \% str_extract(RegEx4keep.modified) ----  
+RegEx4keep.modified = RegEx4keep
+if(!str_detect(RegEx4keep, "^\\^")) RegEx4keep.modified = paste0("^.*",RegEx4keep)
+if(!str_detect(RegEx4keep, "\\$$")) RegEx4keep.modified = paste0(RegEx4keep,".*$")
+
+input_vec_chr |> str_extract(RegEx4keep.modified) |> dput()
+# > input_vec_chr |> str_extract(RegEx4keep.modified) |> dput()
+# c("abc123", "def456", NA, NA)
+
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -209,17 +223,26 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## ->> Now included in f_df.t.tribble_construct.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_vec_chr.na_if_NotMatching =  ----
 # https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.na_if_NotMatching.dev.r
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_vec_chr.na_if_NotMatching"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx4keep) {
+    # RegEx4keep.modified = RegEx4keep
+    # if(!str_detect(RegEx4keep, "^\\^")) RegEx4keep.modified = paste0("^.*",RegEx4keep)
+    # if(!str_detect(RegEx4keep, "\\$$")) RegEx4keep.modified = paste0(RegEx4keep,".*$")
+    # input_vec_chr |> str_extract(RegEx4keep.modified)
     ifelse(str_detect(input_vec_chr, RegEx4keep), input_vec_chr, NA)
 }
-
-
-
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) str_subset.keep_vector_length.na_if_NotMatching  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_subset.keep_vector_length.na_if_NotMatching")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) str_replace.na_if_NotMatching  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_replace.na_if_NotMatching")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) str_extract.na_if_NotMatching.return_whole_element_if_Matching  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_extract.na_if_NotMatching.return_whole_element_if_Matching")
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
