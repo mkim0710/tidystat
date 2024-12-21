@@ -214,7 +214,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 
 # __________|------  
-# @@ START) references ----  
+# @@ REFERENCES) ----  
 
 ## ?setdiff
 Each of union, intersect, setdiff and setequal will discard any duplicated values in the arguments, and they apply as.vector to their arguments (and so in particular coerce factors to character vectors).

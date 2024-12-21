@@ -214,7 +214,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# @@ START) references ----  
+# @@ REFERENCES) ----  
 
 ## https://github.com/wch/r-source/blob/trunk/src/library/tools/R/utils.R
 ### https://chatgpt.com/c/675c0b51-f51c-800e-b102-678d5d54528f
