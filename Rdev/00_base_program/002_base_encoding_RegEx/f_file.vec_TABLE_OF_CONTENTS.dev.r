@@ -150,6 +150,20 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 }
 
 
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+#  chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ START) dev   
+# ## env0 = env1 
+# # @@ START) function   
+# ## ->> Not Yet included in env1$env.internal.source.r 
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+
 env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
 env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
 # > env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
@@ -170,8 +184,8 @@ input_vec_chr.list_SECTION_nonSECTION = env1$env.internal$f_vec_chr.list_SECTION
 input_vec_chr.list_SECTION_nonSECTION %>% str
 # > input_vec_chr.list_SECTION_nonSECTION %>% str
 # List of 2
-#  $ SECTION   : chr [1:34] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#@@ Heading 1                                                         ...60" "##@ Heading 1.1                                                       ...63" ...
-#  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
+#  $ SECTION   : chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "# @@ START) dev                                                             ...4" "## env0 = env1                                                              ...5" ...
+#  $ nonSECTION: chr [1:29] "" "#_________________________________________________________________________________|----  " "##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  " "# @@ START) dev -----  " ...
 
 
 ## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
@@ -179,40 +193,23 @@ input_vec_chr.list_SECTION_nonSECTION %>% str
 input_vec_chr.except_TOC = input_vec_chr.list_SECTION_nonSECTION$nonSECTION
 input_vec_chr.except_TOC %>% str
 # > input_vec_chr.except_TOC %>% str
-#  chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
-
+#  chr [1:29] "" "#_________________________________________________________________________________|----  " ...
 
 vec_TABLE_OF_CONTENTS_without_line_numbers = 
     input_vec_chr.except_TOC %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() 
 vec_TABLE_OF_CONTENTS_without_line_numbers %>% str
 vec_TABLE_OF_CONTENTS_without_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS_without_line_numbers %>% str
-#  chr [1:24] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+#  chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 # > vec_TABLE_OF_CONTENTS_without_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ REFERENCES)   
-# # @@ START) data example   
-# #@@ Heading 1 
-# ##@ Heading 1.1 
-# # @@ Heading 2 
-# ## @ Heading 2.1 
-# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 
-# # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 
-# # @@ START) dev-part1   
+# # @@ START) dev   
 # ## env0 = env1 
-# # @@ START) function-part1   
-# ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_vec_chr.vec_TABLE_OF_CONTENTS =    
-# # @@ START) dev-part2   
-# ## env0 = env1 
-# ## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers 
-# ## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers 
-# # @@ START) function-part2   
-# ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
-# # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
-# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # @@ START) function   
+# ## ->> Not Yet included in env1$env.internal.source.r 
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
 
@@ -224,20 +221,59 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank =
         input_vec_chr.except_TOC
     )
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
+input_vec_chr.except_TOC.add_new_TOC_as_blank %>% paste0(collapse = "\n") %>% cat("\n")
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
-#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+#  chr [1:37] "" "" "" "" "" "" "" "" "" ...
 
 input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = 
     input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
 input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
-# > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
-#  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# #_________________________________________________________________________________|----      ...10
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...11
+# # @@ START) dev -----                                                       ...12
+# ## env0 = env1 ----                                                         ...13
+# env0 = env1                                                                 ...14
+# #_________________________________________________________________________________|----      ...15
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...16
+# # @@ START) function -----                                                  ...17
+# ## ->> Not Yet included in env1$env.internal.source.r ----                  ...18
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----           ...19
+# 
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...21
+# .tmp$env1_subenv_name = "env.internal.attach"                               ...22
+# .tmp$objectname = "f_formula.lhs_rhs_vars"                                  ...23
+# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(formula, include_input_in_output = TRUE) {    ...24
+#     return.list = list()                                                    ...25
+#     if(include_input_in_output) return.list$formula = formula               ...26
+#     return.list$terms = formula |> terms()                                  ...27
+#     return.list$all.vars = formula |> all.vars()                            ...28
+#     return.list$lhs = formula[[2]]                                          ...29
+#     return.list$lhs.vars = formula[[2]] |> all.vars()                       ...30
+#     return.list$rhs = formula[[3]]                                          ...31
+#     return.list$rhs.vars = formula[[3]] |> all.vars()                       ...32
+#     return(return.list)                                                     ...33
+# }                                                                           ...34
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...35
+# #|________________________________________________________________________________|#  ----      ...36
+# # @@ END -----                                                              ...37 
 
-vec_TABLE_OF_CONTENTS_with_line_numbers =
-    input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% 
-    env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS()
 
-vec_TABLE_OF_CONTENTS_with_line_numbers %>% str
+# vec_TABLE_OF_CONTENTS_with_line_numbers =
+#     input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% 
+#     env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS()
+# 
+# vec_TABLE_OF_CONTENTS_with_line_numbers %>% str
 
 
 

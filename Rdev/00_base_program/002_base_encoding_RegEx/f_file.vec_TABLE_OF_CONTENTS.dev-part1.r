@@ -293,6 +293,20 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 }
 
 
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+#  chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ START) dev   
+# ## env0 = env1 
+# # @@ START) function   
+# ## ->> Not Yet included in env1$env.internal.source.r 
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+
 env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
 env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
 # > env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
