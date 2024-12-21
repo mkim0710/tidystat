@@ -56,7 +56,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
 #   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
+#   ..$ f_expression.substitute_ECHO_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
 #   ..$ f_df.transpose                              :function (df, varname4rowname = "varname")  
 #   ..$ f_df.t.tribble_construct                    :function (df)  
@@ -90,7 +90,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
 #   ..$ env1$env.internal.source.r                    : chr "~/github_tidystat/env1$env.internal.source.r"
 #   ..$ internal.f_path0.list_path_hierarchy.source.r : chr "~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r"
-#   ..$ f_expression.substitute_echo_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r"
+#   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
 #   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
@@ -133,7 +133,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
 #   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
+#   ..$ f_expression.substitute_ECHO_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
 #   ..$ f_df.transpose                              :function (df, varname4rowname = "varname")  
 #   ..$ f_df.t.tribble_construct                    :function (df)  
@@ -172,7 +172,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
 #   ..$ env1$env.internal.source.r                    : chr "~/github_tidystat/env1$env.internal.source.r"
 #   ..$ internal.f_path0.list_path_hierarchy.source.r : chr "~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r"
-#   ..$ f_expression.substitute_echo_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r"
+#   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
 #   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
@@ -214,7 +214,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
 #   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE,..
+#   ..$ f_expression.substitute_ECHO_and_dput       :function (expr_text, expression_equals_evaluation = FALSE,..
 #   ..$ f_df.tribble_construct                      :function (df)  
 #   ..$ f_df.transpose                              :function (df, varname4rowname = "varname")  
 #   ..$ f_df.t.tribble_construct                    :function (df)  
@@ -248,7 +248,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
 #   ..$ env1$env.internal.source.r                    : chr "~/github_tidystat/env1$env.internal.source.r"
 #   ..$ internal.f_path0.list_path_hierarchy.source.r : chr "~/github_tidystat/internal.f_path0.list_path_hier"..
-#   ..$ f_expression.substitute_echo_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/f_expressi"..
+#   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/f_expressi"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
 #   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.check"..
@@ -291,7 +291,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_path.relative                             :function (path, basepath = ..
 #   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execu..
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RSt..
-#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expres..
+#   ..$ f_expression.substitute_ECHO_and_dput       :function (expr_text, expres..
 #   ..$ f_df.tribble_construct                      :function (df)  
 #   ..$ f_df.transpose                              :function (df, varname4rown"..
 #   ..$ f_df.t.tribble_construct                    :function (df)  
@@ -330,7 +330,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ .Rprofile                                     : chr "/home/rstudio/gith"..
 #   ..$ env1$env.internal.source.r                    : chr "~/github_tidystat/"..
 #   ..$ internal.f_path0.list_path_hierarchy.source.r : chr "~/github_tidystat/"..
-#   ..$ f_expression.substitute_echo_and_dput.source.r: chr "~/github_tidystat/"..
+#   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/"..
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/"..
 #   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/"..
@@ -373,7 +373,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_path.relative :function (path, basepath = env1$path$path1)
 # ..$ f_file.git_lfs_track_add_f :function (.path_file, EXECUTE = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
-# ..$ f_expression.substitute_echo_and_dput :function (expr_text, expression_equals_evaluation = FALSE,
+# ..$ f_expression.substitute_ECHO_and_dput :function (expr_text, expression_equals_evaluation = FALSE,
 #    .VERBOSE = FALSE)
 # ..$ f_df.tribble_construct :function (df)
 # ..$ f_df.transpose :function (df, varname4rowname = "varname")
@@ -421,8 +421,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ env1$env.internal.source.r : chr "~/github_tidystat/env1$env.internal.source.r"
 # ..$ internal.f_path0.list_path_hierarchy.source.r : chr
 #    "~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r"
-# ..$ f_expression.substitute_echo_and_dput.source.r: chr
-#    "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r"
+# ..$ f_expression.substitute_ECHO_and_dput.source.r: chr
+#    "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 # ..$ f_df.t.tribble_construct.source.r : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr "~/github_tidystat/f_path.size_files.source.r"
 # ..$ f_DataSetName.Search.read.checkEntity.source.r: chr
@@ -471,7 +471,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_path.relative :function (path, basepath = env1$path$path1)
 # ..$ f_file.git_lfs_track_add_f :function (.path_file, EXECUTE = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
-# ..$ f_expression.substitute_echo_and_dput :function (expr_text,
+# ..$ f_expression.substitute_ECHO_and_dput :function (expr_text,
 #    expression_equals_evaluation = FALSE, .VERBOSE = FALSE)
 # ..$ f_df.tribble_construct :function (df)
 # ..$ f_df.transpose :function (df, varname4rowname = "varname")
@@ -527,8 +527,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/env1$env.internal.source.r"
 # ..$ internal.f_path0.list_path_hierarchy.source.r : chr
 #    "~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r"
-# ..$ f_expression.substitute_echo_and_dput.source.r: chr
-#    "~/github_tidystat/Rdev/00_base_program/f_expression.substitute_echo_and_d"..
+# ..$ f_expression.substitute_ECHO_and_dput.source.r: chr
+#    "~/github_tidystat/Rdev/00_base_program/f_expression.substitute_ECHO_and_d"..
 # ..$ f_df.t.tribble_construct.source.r : chr
 #    "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr
@@ -601,7 +601,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_path.relative                             :function (path, basepath = env1$path$path1)  
 ## $ f_file.git_lfs_track_add_f                  :function (.path_file, EXECUTE = FALSE)  
 ## $ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-## $ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
+## $ f_expression.substitute_ECHO_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 ## $ f_df.tribble_construct                      :function (df)  
 ## $ f_df.transpose                              :function (df, varname4rowname = "varname")  
 ## $ f_df.t.tribble_construct                    :function (df)  
@@ -636,7 +636,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
 ## $ env1$env.internal.source.r                    : chr "~/github_tidystat/env1$env.internal.source.r"
 ## $ internal.f_path0.list_path_hierarchy.source.r : chr "~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r"
-## $ f_expression.substitute_echo_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r"
+## $ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 ## $ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 ## $ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
 ## $ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"

@@ -1,13 +1,13 @@
-# Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.r  
-# Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.Rmd  
-# Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r  
-# # source("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.Rmd")  
-# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r")  
-# file.edit("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.r  
+# Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.Rmd  
+# Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r  
+# # source("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.Rmd")  
+# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r")  
+# file.edit("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -178,14 +178,14 @@ env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.
 DataSetName <- "analyticDF_time2event"
 analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 
-"dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.VERBOSE = TRUE)
-"dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
-# > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.VERBOSE = TRUE)
+"dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
+"dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
+# > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
 #   > char_vars == list(DataSetName = "analyticDF_time2event")
 #   > pattern == "(?<![\\w.])DataSetName(?![\\w.])"
 #   > dim(get("analyticDF_time2event"))  
 #     c(24L, 12L)
-# > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
+# > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
 #   > dim(get("analyticDF_time2event")) == c(24L, 12L)
 
 

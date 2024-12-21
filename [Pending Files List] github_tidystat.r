@@ -87,7 +87,7 @@ ensure_package("tidyverse")
 
 ##@ f_CodeText.eval_cat.dev.r ----
 
-##@ f_expression.substitute_echo_and_dput.source.r ----
+##@ f_expression.substitute_ECHO_and_dput.source.r ----
 
 ##@ f_filename.unix_find_path_local.dev.r ----
 ##@ f_font.tlmgr_installed.dev.r ----

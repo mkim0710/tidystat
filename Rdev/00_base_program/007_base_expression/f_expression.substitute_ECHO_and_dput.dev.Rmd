@@ -548,12 +548,12 @@ options(width=120)
   
   
 #@@ START) function ----  
-## \% |> f_expression.substitute_echo_and_dput 
+## \% |> f_expression.substitute_ECHO_and_dput 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 .text_expression = "dim(get(DataSetName))"
-f_expression.substitute_echo_and_dput <- function(text_expression = "", vec_chr_names) {
+f_expression.substitute_ECHO_and_dput <- function(text_expression = "", vec_chr_names) {
     str(text_expression)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
     str( parse(text=text_expression)[[1]] )
@@ -573,16 +573,16 @@ f_expression.substitute_echo_and_dput <- function(text_expression = "", vec_chr_
     str(quote(text_expression.parse))
     str(substitute(text_expression.parse))
 }
-f_expression.substitute_echo_and_dput(text_expression = .text_expression)
+f_expression.substitute_ECHO_and_dput(text_expression = .text_expression)
 ```
   
 
 
-## \% |> f_expression.substitute_echo_and_dput 
+## \% |> f_expression.substitute_ECHO_and_dput 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-f_expression.substitute_echo_and_dput <- function(text_expression = "", vec_chr_names) {
+f_expression.substitute_ECHO_and_dput <- function(text_expression = "", vec_chr_names) {
     str(text_expression)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
     str( parse(text=text_expression)[[1]] )
@@ -604,7 +604,7 @@ f_expression.substitute_echo_and_dput <- function(text_expression = "", vec_chr_
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
     str(substitute( eval(eval(parse(text=text_expression)[[1]])) , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) ))
 }
-f_expression.substitute_echo_and_dput(text_expression = .text_expression)
+f_expression.substitute_ECHO_and_dput(text_expression = .text_expression)
 ```
   
   
@@ -615,7 +615,7 @@ options(width=120)
 library(purrr)
 
 # Generalized substitute_and_evaluate function
-f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = isTRUE(getOption("verbose"))) {
+f_expression.substitute_ECHO_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = isTRUE(getOption("verbose"))) {
   # Get all character variables from .GlobalEnv
   # env_vars <- as.list(.GlobalEnv)
   # char_vars <- env_vars[map_lgl(env_vars, is.character)]
@@ -640,16 +640,16 @@ f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_e
   # return(list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr))
   
   
-  if (expression_equals_evaluation) sep_between_echo_and_dput = " == " else sep_between_echo_and_dput = "  \n    "
+  if (expression_equals_evaluation) sep_between_ECHO_and_dput = " == " else sep_between_ECHO_and_dput = "  \n    "
   
-  cat("  > ", deparse(substituted_expr), sep_between_echo_and_dput, deparse(evaluated_expr), "\n", sep="")
+  cat("  > ", deparse(substituted_expr), sep_between_ECHO_and_dput, deparse(evaluated_expr), "\n", sep="")
 }
 
 DataSetName <- "analyticDF_time2event"
 analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 
-"dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.VERBOSE = TRUE)
-"dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
+"dim(get(DataSetName))" |> f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
+"dim(get(DataSetName))" |> f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
 
 ```
   

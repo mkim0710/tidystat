@@ -86,7 +86,7 @@
 ## :: f_sourcePath.execute_if_not_sourced =                           ...2302
 ## ::OPTION:: f_sourcePath.execute.force_reload                       ...2361
 # ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2385
-## @ .filename.source.r = "f_expression.substitute_echo_and_dput" |> paste0(".source.r")       ...2403
+## @ .filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       ...2403
 # \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2422
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 .filename.source.r = "env1$env.internal" |> paste0(".source.r")  
@@ -2413,9 +2413,9 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ .filename.source.r = "f_expression.substitute_echo_and_dput" |> paste0(".source.r") =======  
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/00_base_program/007_base_expression/f_expression.substitute_echo_and_dput")
-.filename.source.r = "f_expression.substitute_echo_and_dput" |> paste0(".source.r"); .subpath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+## @ .filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r") =======  
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput")
+.filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .subpath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
