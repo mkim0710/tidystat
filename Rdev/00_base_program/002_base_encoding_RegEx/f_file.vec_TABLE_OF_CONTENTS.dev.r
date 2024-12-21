@@ -225,48 +225,15 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank %>% paste0(collapse = "\n") %>% ca
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:37] "" "" "" "" "" "" "" "" "" ...
 
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = 
-    input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
-# > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# #_________________________________________________________________________________|----      ...10
-# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...11
-# # @@ START) dev -----                                                       ...12
-# ## env0 = env1 ----                                                         ...13
-# env0 = env1                                                                 ...14
-# #_________________________________________________________________________________|----      ...15
-# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...16
-# # @@ START) function -----                                                  ...17
-# ## ->> Not Yet included in env1$env.internal.source.r ----                  ...18
-# ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----           ...19
-# 
-# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...21
-# .tmp$env1_subenv_name = "env.internal.attach"                               ...22
-# .tmp$objectname = "f_formula.lhs_rhs_vars"                                  ...23
-# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(formula, include_input_in_output = TRUE) {    ...24
-#     return.list = list()                                                    ...25
-#     if(include_input_in_output) return.list$formula = formula               ...26
-#     return.list$terms = formula |> terms()                                  ...27
-#     return.list$all.vars = formula |> all.vars()                            ...28
-#     return.list$lhs = formula[[2]]                                          ...29
-#     return.list$lhs.vars = formula[[2]] |> all.vars()                       ...30
-#     return.list$rhs = formula[[3]]                                          ...31
-#     return.list$rhs.vars = formula[[3]] |> all.vars()                       ...32
-#     return(return.list)                                                     ...33
-# }                                                                           ...34
-# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      ...35
-# #|________________________________________________________________________________|#  ----      ...36
-# # @@ END -----                                                              ...37 
+# input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = 
+#     input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+# input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
+# input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+
+
+input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which(RegEx4heading) %>% dput
+# > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which(RegEx4heading) %>% dput
+# c(10L, 12L, 13L, 15L, 17L, 18L, 19L, 36L, 37L)
 
 
 # vec_TABLE_OF_CONTENTS_with_line_numbers =
