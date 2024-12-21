@@ -94,7 +94,7 @@ vec_lines4heading %>% str
 vec_lines4heading = vec_lines4heading %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 vec_lines4heading %>% str
 
-vec_lines4heading = ifelse(vec_lines4heading == "", "", paste0(vec_lines4heading, strrep(" ",pmax(4, 70-nchar(vec_lines4heading))), "...", 1:length(vec_lines4heading)))
+vec_lines4heading = vec_lines4heading |> env1$env.internal$f_vec_chr.add_line_numbers()
 vec_lines4heading %>% str
 
 vec_lines4heading.subset = vec_lines4heading[!vec_lines4heading == ""]
@@ -152,7 +152,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     vec_lines4heading = vec_lines4heading %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) vec_lines4heading = ifelse(vec_lines4heading == "", "", paste0(vec_lines4heading, strrep(" ",pmax(4, 70-nchar(vec_lines4heading))), "...", 1:length(vec_lines4heading)))
+    if(add_line_numbers) vec_lines4heading = vec_lines4heading |> env1$env.internal$f_vec_chr.add_line_numbers()
 
     vec_lines4heading.subset = vec_lines4heading[!vec_lines4heading == ""]
     if (remove_lines_with_no_alphabet) vec_lines4heading.subset = vec_lines4heading.subset %>% str_subset("[a-zA-Z]")

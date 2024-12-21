@@ -177,16 +177,7 @@ input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = c(rep("", leng
 # > input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str
 #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
-input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = 
-            ifelse(
-                input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank == "", "", 
-                paste0(
-                    input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank, 
-                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank))),
-                    "...", 
-                    1:length(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank)
-                )
-            )
+input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
 input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str
 # > input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str
 #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##      ...1" ...
@@ -262,16 +253,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = c(rep("", length(vec_new_TOC)), input.readLines.except_TOC.str_replace_all)
     
     if(add_line_numbers) {
-        input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = 
-            ifelse(
-                input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank == "", "", 
-                paste0(
-                    input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank, 
-                    strrep(" ",pmax(4, 70-nchar(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank))),
-                    "...", 
-                    1:length(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank)
-                )
-            )
+        input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank = input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
         vec_new_TOC.add_line_numbers = input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank[min(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines.except_TOC.str_replace_all.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
     }
     
