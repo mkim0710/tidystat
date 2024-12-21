@@ -115,7 +115,7 @@ gitignore = read_lines(".gitignore", skip_empty_rows = T)
 gitignore |> dput()
 c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip", 
 "*.7z", "*.r.gz", "*.r.xz", "*.rmd.gz", "*.rmd.xz", "*.Rproj", 
-".gitignore", ".git", ".github", "MH)*.r", "*.lnk", "*alias", 
+".gitignore", ".git", ".github", "MH)*.r", "*.lnk", "*ALIAS", 
 "*.ppt", "*.pptx", "*.xls", "*.xlsx", "*.doc", "*.docx", "*- void*.*", 
 "*-void*.*", "*- info.*", "*-info.*", "*-dev*.*", "*debug*.*", 
 "-tmp", "*- tmp*.*", "*-tmp*.*", "*- old.*", "*-old.*", "*-log*.*", 
@@ -143,7 +143,7 @@ gitignore_escaped |> dput()
 c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata", 
 ".*\\.zip", ".*\\.7z", ".*\\.r\\.gz", ".*\\.r\\.xz", ".*\\.rmd\\.gz", 
 ".*\\.rmd\\.xz", ".*\\.Rproj", "\\.gitignore", "\\.git", "\\.github", 
-"MH\\).*\\.r", ".*\\.lnk", ".*alias", ".*\\.ppt", ".*\\.pptx", 
+"MH\\).*\\.r", ".*\\.lnk", ".*ALIAS", ".*\\.ppt", ".*\\.pptx", 
 ".*\\.xls", ".*\\.xlsx", ".*\\.doc", ".*\\.docx", ".*\\- void.*\\..*", 
 ".*\\-void.*\\..*", ".*\\- info\\..*", ".*\\-info\\..*", ".*\\-dev.*\\..*", 
 ".*debug.*\\..*", "\\-tmp", ".*\\- tmp.*\\..*", ".*\\-tmp.*\\..*", 
@@ -162,7 +162,7 @@ gitignore_escaped_select |> dput() #----
 c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata", 
 ".*\\.zip", ".*\\.7z", ".*\\.r\\.gz", ".*\\.r\\.xz", ".*\\.rmd\\.gz", 
 ".*\\.rmd\\.xz", ".*\\.Rproj", "\\.gitignore", "\\.git", "\\.github", 
-"MH\\).*\\.r", ".*\\.lnk", ".*alias", ".*\\- void.*\\..*", ".*\\-void.*\\..*", 
+"MH\\).*\\.r", ".*\\.lnk", ".*ALIAS", ".*\\- void.*\\..*", ".*\\-void.*\\..*", 
 ".*\\- info\\..*", ".*\\-info\\..*", ".*\\-dev.*\\..*", ".*debug.*\\..*", 
 "\\-tmp", ".*\\- tmp.*\\..*", ".*\\-tmp.*\\..*", ".*\\- old\\..*", 
 ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf")

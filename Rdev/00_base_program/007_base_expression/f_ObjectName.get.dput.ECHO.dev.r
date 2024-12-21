@@ -36,7 +36,7 @@ myObject = LETTERS[1:5]
 
 
 
-# attr(,"alias")
+# attr(,"ALIAS")
 # [1] "env1$env.internal.attach$eval_parse_CodeText.ECHO = env1$f$f_CodeText.ECHO"
 # [2] "env1$env.internal.attach$ECHO.eval_parse_CodeText = env1$f$f_CodeText.ECHO"
 
