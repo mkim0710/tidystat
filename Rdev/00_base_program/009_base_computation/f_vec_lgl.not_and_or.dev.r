@@ -1,13 +1,13 @@
-# Rdev/00_base_program/f_lgl.not_and_or.dev.r  
-# Rdev/00_base_program/f_lgl.not_and_or.dev.Rmd  
-# Rdev/00_base_program/f_lgl.not_and_or.source.r 
-# # source("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.source.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.dev.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.dev.Rmd")  
-# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.source.r")  
-# file.edit("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/00_base_program/f_lgl.not_and_or.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext)); 
+# Rdev/00_base_program/f_vec_lgl.not_and_or.dev.r  
+# Rdev/00_base_program/f_vec_lgl.not_and_or.dev.Rmd  
+# Rdev/00_base_program/f_vec_lgl.not_and_or.source.r 
+# # source("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.source.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.dev.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.dev.Rmd")  
+# # if(!file.exists("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.source.r")  
+# file.edit("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/00_base_program/f_vec_lgl.not_and_or.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext)); 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -135,7 +135,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ## @ .subpath, .filename.source.r ======  
 .subpath=r"(Rdev/00_base_program)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_lgl.not_and_or" |> paste0(".source.r")
+.filename.source.r = "f_vec_lgl.not_and_or" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 env1$path$.subpath = .subpath
 if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")

@@ -93,7 +93,7 @@ ensure_package("tidyverse")
 ##@ f_font.tlmgr_installed.dev.r ----
 ##@ f_font_regex_perl.search_TeXLiveDB.dev.r ----
 
-##@ f_lgl.not_and_or.dev.r ----
+##@ f_vec_lgl.not_and_or.dev.r ----
 ##@ f_list.dput_line_by_line.dev.r ----
 ##@ f_list.substitute.deparse.dev.Rmd ----
 
