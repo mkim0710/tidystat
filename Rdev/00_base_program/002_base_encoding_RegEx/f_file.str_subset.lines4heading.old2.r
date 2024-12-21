@@ -81,11 +81,11 @@ remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
-input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
-input_path_file.readLines %>% str
+input.readLines <- readLines(input_path_file, warn = FALSE)
+input.readLines %>% str
 
 vec_lines4heading <- str_replace_all(
-    string = input_path_file.readLines,
+    string = input.readLines,
     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
     replacement = "\\1"
 )
@@ -142,10 +142,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     library(stringr)
 
     # Read the file content
-    input_path_file.readLines <- readLines(input_path_file, warn = FALSE)
+    input.readLines <- readLines(input_path_file, warn = FALSE)
 
     vec_lines4heading <- str_replace_all(
-        string = input_path_file.readLines,
+        string = input.readLines,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
         replacement = "\\1"
     )
@@ -180,7 +180,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(vec_lines4heading.subset, input_path_file.readLines), con = output_path_file)
+    writeLines(c(vec_lines4heading.subset, input.readLines), con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
     if(cat2console) vec_lines4heading.subset %>% paste0(collapse = "\n") %>% cat("\n")
