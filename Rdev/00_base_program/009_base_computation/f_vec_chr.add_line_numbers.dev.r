@@ -201,7 +201,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_vec_chr.add_line_numbers =  ----
+## :: f_vec_chr.add_line_numbers =  ----
 # https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.add_line_numbers"
@@ -232,7 +232,7 @@ env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr)
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_vec_chr.add_line_numbers.paste_collapse_LF_cat =  ----
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =  ----
 # https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.add_line_numbers.paste_collapse_LF_cat"

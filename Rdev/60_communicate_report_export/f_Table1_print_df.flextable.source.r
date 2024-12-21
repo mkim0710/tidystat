@@ -52,7 +52,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_DataSet.Table1.print.df =  ----  
+## :: f_DataSet.Table1.print.df =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
@@ -91,7 +91,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_Table1_print_df.flextable =  ----  
+## :: f_Table1_print_df.flextable =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r

@@ -3,7 +3,7 @@
 # library(rlang)
 
 
-## \$ f_df.add_BMI_calculated =  ----  
+## :: f_df.add_BMI_calculated =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5bins.source.r
 .tmp$objectname = "f_df.add_BMI_calculated"
 .tmp$object = function(DataSet, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
@@ -29,7 +29,7 @@
 
 
 
-## \$ f_df.add_BMI.5bins =  ----  
+## :: f_df.add_BMI.5bins =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5bins.source.r
 .tmp$objectname = "f_df.add_BMI.5bins"
 .tmp$object = function(DataSet, varname_BMI = "BMI") {

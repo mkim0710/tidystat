@@ -558,7 +558,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_list.str_by_element =  ----  
+## :: f_list.str_by_element =  ----  
 # Rdev/00_base_program/f_list.str_by_element.dev.r
 env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, tabInsteadOfSpace = FALSE, width = getOption("width") - 4, strict.width = strO$strict.width, ...) {
     cat("# List of ",length(ls),"  \n", sep="")

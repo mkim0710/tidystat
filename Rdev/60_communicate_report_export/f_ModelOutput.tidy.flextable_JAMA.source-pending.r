@@ -52,7 +52,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_ModelOutput.tidy.flextable_JAMA =  ----  
+## :: f_ModelOutput.tidy.flextable_JAMA =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
 # https://chatgpt.com/c/66f444ad-c638-800e-a884-e76216e05329
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r

@@ -154,7 +154,7 @@ env0 = env1
 .tmp$objectname = "f_formula.lhs_rhs_vars"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_formula.lhs_rhs_vars =  ----
+## :: f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
 .tmp$objectname = "f_formula.lhs_rhs_vars"
 .tmp$object = function(formula, include_input_in_output = TRUE) {

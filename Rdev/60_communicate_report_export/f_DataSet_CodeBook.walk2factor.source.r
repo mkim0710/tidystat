@@ -135,7 +135,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_vec_ValueOptions.factor =  ----  
+## :: f_vec_ValueOptions.factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_vec_ValueOptions.factor"
 .tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
@@ -168,7 +168,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_DataSet_CodeBook.walk2factor =  ----  
+## :: f_DataSet_CodeBook.walk2factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_DataSet_CodeBook.walk2factor"
 .tmp$object = function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {

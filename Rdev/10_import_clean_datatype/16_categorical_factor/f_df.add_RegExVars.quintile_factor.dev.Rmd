@@ -249,7 +249,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.leve
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# ## \$ f_df.add_VarNameT.deltaT0 =  ----  
+# ## :: f_df.add_VarNameT.deltaT0 =  ----  
 # ## -> included in "f_df.t.tribble_construct.source.r"
 # .RegEx2match = "BMI"
 # i = 2
@@ -273,7 +273,7 @@ options(width=120)
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----
+## :: f_df.add_VarNameT.deltaT0 =  ----
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
@@ -299,7 +299,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) |>
 ##### \% f_df.add_VarNameT.dpT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.dpT0 =  ----  
+## :: f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
@@ -356,7 +356,7 @@ for (j in 1:(7-1)) {
 ##### \% f_df.add_RegExVars.kbins()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_RegExVars.kbins =  ----  
+## :: f_df.add_RegExVars.kbins =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
 # Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
@@ -373,7 +373,7 @@ options(width=120)
 #### \$ A0{1+j}_BMI.pdeltaj.quintile =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.dpT0 =  ----  
+## :: f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # .RegEx2match = "\\.pdelta[1-6]"
 # 
@@ -410,7 +410,7 @@ options(width=120)
 ##### \% f_df.add_RegExVars.quintile_factor ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_RegExVars.quintile_factor =  ----  
+## :: f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
