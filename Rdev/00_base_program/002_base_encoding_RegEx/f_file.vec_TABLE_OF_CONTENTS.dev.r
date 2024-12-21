@@ -270,8 +270,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
     )
+    
     vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
-    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all %>% na_if("") %>% na.omit()
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
     
     if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
