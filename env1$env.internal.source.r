@@ -2254,7 +2254,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
             env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
         }
     }
-    if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-BACKUP")
+    if (Sys.info()["sysname"] == "Windows")  cat('browseURL("D:/OneDrive/[][Rproject]/-BACKUP")', "\n)")
     
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     for (.filename_ext in c(".gitignore", ".Rprofile")) {
