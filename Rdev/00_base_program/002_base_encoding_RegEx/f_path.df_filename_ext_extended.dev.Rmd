@@ -501,7 +501,7 @@ options(width=120)
 library(stringr)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ->> Now included in env1$env.internal.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.df_filename_ext_extended =  ----  
@@ -548,7 +548,7 @@ options(width=120)
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ->> Now included in env1$env.internal.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_path.vec_filename_sans_ext_extended =  ----  
@@ -586,7 +586,7 @@ env1$env.internal$f_vec_path.vec_filename_sans_ext_extended(input_path)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ->> Now included in env1$env.internal.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_path.vec_ext_extended =  ----  

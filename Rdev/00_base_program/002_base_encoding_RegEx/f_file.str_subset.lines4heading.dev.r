@@ -9,10 +9,10 @@
 # @@ START) dev                                                       ...117
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
-# ->> Now included in env1$env.internal.source.r                      ...173
+## ->> Now included in env1$env.internal.source.r                      ...173
 ## :: f_file.str_subset.lines4heading.old =                           ...180
 # @@ START) function                                                  ...233
-# ->> Now included in env1$env.internal.source.r                      ...239
+## ->> Now included in env1$env.internal.source.r                      ...239
 ## :: f_file.str_subset.lines4heading =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
@@ -26,10 +26,10 @@
 # @@ START) dev   
 ## env0 = env1 
 # @@ START) function.old   
-# ->> Now included in env1$env.internal.source.r 
+## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.str_subset.lines4heading.old =    
 # @@ START) function   
-# ->> Now included in env1$env.internal.source.r 
+## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
@@ -213,7 +213,7 @@ env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_fi
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ->> Now included in env1$env.internal.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"

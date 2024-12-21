@@ -260,7 +260,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## :: f_path_fileRegEX.rename()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# ->> Now included in env1$env.internal.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 # f_path_fileRegEX.rename <- function(path = ".", gsub.pattern_from, gsub.replacement_to, full.names = TRUE, recursive = FALSE, move_to_renamed_path = FALSE, execute = FALSE) {
 #     
