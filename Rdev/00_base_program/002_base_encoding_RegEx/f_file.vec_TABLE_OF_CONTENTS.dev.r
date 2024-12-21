@@ -157,8 +157,6 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
 #  chr [1:453] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA ...
 
-input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit
-
 # input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
 
 ### vec_TABLE_OF_CONTENTS ====
@@ -266,12 +264,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE) {
     
     library(stringr)
-    
-    input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
-        string = input_vec_chr.except_TOC,
-        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
-        replacement = "\\1"
-    )
     
     vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
