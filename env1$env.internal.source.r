@@ -1479,38 +1479,41 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.str_subset.lines4heading.old =  ----  
+## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.old.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.old2.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.dev.r
-.tmp$objectname = "f_file.str_subset.lines4heading.old"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE) {
+.tmp$objectname = "f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL"
+.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
     
     library(stringr)
 
     # Read the file content
     input.readLines <- readLines(input_path_file, warn = FALSE)
-    
-    input.readLines.except_TOC.str_replace_all <- str_subset(
-        string = input.readLines,
-        pattern = RegEx4heading,
-        negate = FALSE
-    )
-    
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
-    
-    if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_subset("[a-zA-Z]")
-    
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-        str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% 
-        str_subset("^# @@ END", negate = TRUE)
 
-    input.readLines.except_TOC.str_replace_all = 
+    input.readLines.except_TOC.str_replace_all <- str_replace_all(
+        string = input.readLines,
+        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*")},
+        replacement = "\\1"
+    )
+
+    input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+
+    if(add_line_numbers) input.readLines.except_TOC.str_replace_all = input.readLines.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
+
+    input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all[!input.readLines.except_TOC.str_replace_all == ""]
+    if (remove_lines_with_no_alphabet) input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% str_subset("[a-zA-Z]")
+
+    input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% 
+        str_subset("# TABLE OF CONTENTS", negate = TRUE)
+    input.readLines.except_TOC.str_replace_all.subset = input.readLines.except_TOC.str_replace_all.subset %>% 
+        str_subset("@@ END", negate = TRUE)
+
+    input.readLines.except_TOC.str_replace_all.subset = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            input.readLines.except_TOC.str_replace_all,
+            input.readLines.except_TOC.str_replace_all.subset,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -1520,44 +1523,37 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     } 
     
     if (!is.null(output_path_file)) {
-        writeLines(c(input.readLines.except_TOC.str_replace_all, input.readLines), con = output_path_file)
-        message(paste0("Added TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saved to : \n", deparse(output_path_file), "\n"))
+        message(paste0("Adding TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saving to : \n", deparse(output_path_file), "\n"))
+    } else {
+        output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
+    writeLines(c(input.readLines.except_TOC.str_replace_all.subset, input.readLines), con = output_path_file)
+    env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    input.readLines.except_TOC.str_replace_all %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) input.readLines.except_TOC.str_replace_all.subset %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(input.readLines.except_TOC.str_replace_all)
+    invisible(input.readLines.except_TOC.str_replace_all.subset)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL =  ----  
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_subset.lines4heading.dev.r
-.tmp$objectname = "f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
-    stop("pending")
-}
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
-# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# ### (ALIAS) f_file.TableOfContents.edit_windows_notepad.or_browseURL  ----  
-# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContents.edit_windows_notepad.or_browseURL")
-# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# ### (ALIAS) CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL  ----  
-# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL")
-# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# ### (ALIAS) TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----  
-# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
-# ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-# ## ::OPTION:: f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### (ALIAS) f_file.TableOfContents.edit_windows_notepad.or_browseURL  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContents.edit_windows_notepad.or_browseURL")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### (ALIAS) CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### (ALIAS) TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
+# ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# ## ::OPTION:: f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----
 # .tmp$env1_subenv_name = "f"
 # .tmp$objectname = "f_file.str_subset.lines4heading.add_TABLE_OF_CONTENTS"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 #     env1$f$f_file.str_subset.lines4heading.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
 # }
-# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----  
+# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----
 # env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
