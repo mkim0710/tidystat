@@ -235,6 +235,9 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which(RegEx4heading) %>% d
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which(RegEx4heading) %>% dput
 # c(10L, 12L, 13L, 15L, 17L, 18L, 19L, 36L, 37L)
 
+#_________________________________________________________________________________|----  
+#@@ PENDING -----
+#_________________________________________________________________________________|----  
 
 # vec_TABLE_OF_CONTENTS_with_line_numbers =
 #     input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% 
