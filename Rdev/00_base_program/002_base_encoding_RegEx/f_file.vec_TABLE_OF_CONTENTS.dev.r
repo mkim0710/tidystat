@@ -235,6 +235,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr = read
     
     library(stringr)
 
+    
+    
     input.readLines = input_vec_chr
     
     vec_index4TOC = min(input.readLines %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input.readLines %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))
