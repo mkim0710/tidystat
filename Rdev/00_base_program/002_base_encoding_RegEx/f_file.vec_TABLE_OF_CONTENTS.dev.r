@@ -67,6 +67,9 @@
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) data example ----  
 
+### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL() ----
+"Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL()
+
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
 
@@ -361,14 +364,17 @@ env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2consol
 # env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
-### env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+### "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
 env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
 env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
-### env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+### "f_df.t.tribble_construct.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
 env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
 env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
 
+
+### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
