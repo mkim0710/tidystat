@@ -124,7 +124,7 @@ out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .p
 # Loading: .GlobalEnv$env1$f$f_filename_ext.find_subpath
 # Loading: .GlobalEnv$env1$f$f_filename_ext.find_subpath.BreathFirstSearch
 # Searching: .                                                 	 at depth 0  
-# Searching: ./-backup                                         	 at depth 1; Queue length: 1  
+# Searching: ./-BACKUP                                         	 at depth 1; Queue length: 1  
 # Searching: ./data                                            	 at depth 1; Queue length: 2  
 # Found subpath: .path4read = "./data"  
 # filename_ext = "fhs.index100le10.rds"  

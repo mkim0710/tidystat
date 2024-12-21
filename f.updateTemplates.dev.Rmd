@@ -243,7 +243,7 @@ options(width=120)
 #     download.file("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"))
 #     # for (filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
 #     #     if (filename_ext %in% dir()) {
-#     #         env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = filename_ext, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#     #         env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = filename_ext, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
 #     #             download.file(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename_ext), destfile = filename_ext)
 #     #     }
 #     # }
@@ -251,9 +251,9 @@ options(width=120)
 #         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
 #         # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename_ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
 #         for (filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-#             env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename_ext), .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#             env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename_ext), .BACKUP_to_path="D:/OneDrive/[][Rproject]/-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
 #         }
-#         browseURL("D:/OneDrive/[][Rproject]/-backup")
+#         browseURL("D:/OneDrive/[][Rproject]/-BACKUP")
 #         
 #         for (filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
 #             download.file(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename_ext), destfile = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename_ext))
@@ -367,7 +367,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     env1$env.internal.attach$f_url_destfile.DownloadIfDifferent("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"))
     # for (filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
     #     if (filename_ext %in% dir()) {
-    #         env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = filename_ext, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    #         env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = filename_ext, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
     #             download.file(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename_ext), destfile = filename_ext)
     #     }
     # }
@@ -376,9 +376,9 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
         # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename_ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
         for (filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-            env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename_ext), .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+            env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename_ext), .BACKUP_to_path="D:/OneDrive/[][Rproject]/-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
         }
-        browseURL("D:/OneDrive/[][Rproject]/-backup")
+        browseURL("D:/OneDrive/[][Rproject]/-BACKUP")
 
         for (filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {
             env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename_ext), destfile = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename_ext))
@@ -989,11 +989,11 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
   
   
-```{r createBackup, eval=TRUE, include=FALSE}
+```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```
@@ -1011,13 +1011,13 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
         .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
         env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
-        env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
         try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
     }
 }
-# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
+# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
 # cat("    ________________________________________________________________________    \n")
-env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
+env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
 ```
   
   

@@ -58,17 +58,17 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # .file2edit = ".gitignore" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))} }
 # .file2edit = ".git/hooks/pre-commit" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))} }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-#### \% f_path_file.backup_copy_overwrite -----  
-f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = FALSE, restrict_execution_path = "D:/OneDrive/[][Rproject]/github_tidystat", createFile = FALSE) {
+#### \% f_path_file.BACKUP_copy_overwrite -----  
+f_path_file.BACKUP_copy_overwrite = function(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = FALSE, restrict_execution_path = "D:/OneDrive/[][Rproject]/github_tidystat", createFile = FALSE) {
     .vec_destination_paths = .vec_destination_paths |> unique()
     .overwrite_from_path_filename_ext = paste0(.overwrite_from_path, "/", .overwrite_from_filename_ext)
     # if (basename(getwd()) == "github_tidystat") {
     if (getwd() |> normalizePath(winslash="/",mustWork=NA) %in% restrict_execution_path) {
-        env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = paste0(.vec_destination_paths, "/", .overwrite_from_filename_ext) |> keep(file.exists) |> first(default = ""), .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
+        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = paste0(.vec_destination_paths, "/", .overwrite_from_filename_ext) |> keep(file.exists) |> first(default = ""), .BACKUP_to_path = paste0(env1$path$path0,"/-BACKUP"), timeFormat = "%y%m%d") 
         for (.destination_path in unique(.vec_destination_paths)) {
             if(VERBOSE) cat(".destination_path: ", .destination_path, "\n", sep="")
             .destination_path_filename_ext = paste0(.destination_path, "/", .overwrite_from_filename_ext) 
-            env1$env.internal.attach$f_path_path.backup.overwrite(.overwrite_from_path_filename_ext=.overwrite_from_path_filename_ext, .destination_path_filename_ext=.destination_path_filename_ext, .backup_to_path=NULL, timeFormat = "%y%m%d", createFile = createFile)
+            env1$env.internal.attach$f_path_path.BACKUP.overwrite(.overwrite_from_path_filename_ext=.overwrite_from_path_filename_ext, .destination_path_filename_ext=.destination_path_filename_ext, .BACKUP_to_path=NULL, timeFormat = "%y%m%d", createFile = createFile)
         }
     } else {
         stop("The run from github_tidystat as the working directory")
@@ -90,7 +90,7 @@ vec_Rproject_names.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject
     , "D:/OneDrive/MHShell"
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
-f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE)
+f_path_file.BACKUP_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##### .overwrite_from_filename_ext = ".gitattributes" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
@@ -104,7 +104,7 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
     , "D:/OneDrive/MHShell"
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
-f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE)
+f_path_file.BACKUP_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##### .overwrite_from_filename_ext = ".Rprofile" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
@@ -114,7 +114,7 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
     , "~" |> normalizePath(winslash="/",mustWork=NA)
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
-f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE, createFile = TRUE)
+f_path_file.BACKUP_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE, createFile = TRUE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##### .overwrite_from_filename_ext = "git/hooks/pre-commit" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat/git/hooks"
@@ -125,7 +125,7 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update,"/git/hooks")
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update,"/.git/hooks")
 )
-f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE)
+f_path_file.BACKUP_copy_overwrite(.overwrite_from_path, .overwrite_from_filename_ext, .vec_destination_paths, VERBOSE = TRUE)
 if(.Platform$OS.type == "unix") {
     for (.destination_path in paste0("../",vec_Rproject_names.gitignore_update,"/.git/hooks")) {
         .destination_path_filename_ext = paste0(.destination_path, "/", .overwrite_from_filename_ext) 
@@ -135,9 +135,9 @@ if(.Platform$OS.type == "unix") {
 # In Windows, you don't need to explicitly set executable permissions on the hook script because Git for Windows will execute the script as long as it has the correct shebang (#!/bin/sh) and is located in the correct directory (.git/hooks).
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-.backup_to_path = paste0(env1$path$path0,"/-backup")
-cat('%windir%\\explorer.exe "',.backup_to_path|>normalizePath(winslash="\\"),'"',"  \n", sep="")
-if(Sys.info()["sysname"] == "Windows") {browseURL(.backup_to_path)}
+.BACKUP_to_path = paste0(env1$path$path0,"/-BACKUP")
+cat('%windir%\\explorer.exe "',.BACKUP_to_path|>normalizePath(winslash="\\"),'"',"  \n", sep="")
+if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

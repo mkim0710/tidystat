@@ -69,9 +69,9 @@
 ## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        ...1595
 ## @ f_file.edit, f_file.open, f_URL.open                             ...1617
 ## :: f_file.system_switch_open                                       ...1756
-## @ f_file.backup, f_path.backup                                     ...1787
-## :: f_filename_ext.createBackup                                     ...1789
-## :: f_path_path.backup.overwrite                                    ...1828
+## @ f_file.BACKUP, f_path.BACKUP                                     ...1787
+## :: f_filename_ext.createBACKUP                                     ...1789
+## :: f_path_path.BACKUP.overwrite                                    ...1828
 ## @ f_git                                                            ...1843
 ## :: f_path.is_git_tracked                                           ...1846
 ## :: f_file.git_lfs_track_add_f                                      ...1897
@@ -1396,8 +1396,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
     }
 
     # List all .Rmd and .nb.html files in the project directory
-    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-backup[/\\\\]", negate = TRUE)
-    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-backup[/\\\\]", negate = TRUE)
+    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-BACKUP[/\\\\]", negate = TRUE)
+    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-BACKUP[/\\\\]", negate = TRUE)
 
     # Extract base names without extensions
     vec_filename_sans_ext_extended.rmd <- str_remove(basename(vec_path_file.rmd), "(?i)\\.Rmd$")
@@ -1411,20 +1411,20 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
         print(vec_path_file.nb.html.orphan)
 
         if (execute) {
-            message("Moving orphan files to '-backup' folder...")
+            message("Moving orphan files to '-BACKUP' folder...")
 
-            # Create backup directories and move files
+            # Create BACKUP directories and move files
             for (i.file in vec_path_file.nb.html.orphan) {
-                backup_dir <- file.path(dirname(i.file), "-backup")
+                BACKUP_dir <- file.path(dirname(i.file), "-BACKUP")
 
-                if (!dir.exists(backup_dir)) {
-                    dir.create(backup_dir)
+                if (!dir.exists(BACKUP_dir)) {
+                    dir.create(BACKUP_dir)
                 }
 
-                file.rename(i.file, file.path(backup_dir, basename(i.file)))
+                file.rename(i.file, file.path(BACKUP_dir, basename(i.file)))
             }
         } else {
-            message("Set execute = TRUE to move the orphan files to a '-backup' folder.")
+            message("Set execute = TRUE to move the orphan files to a '-BACKUP' folder.")
         }
     } else {
         message("No orphan .nb.html files found.")
@@ -1797,54 +1797,54 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "system_switch.file.open")
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ f_file.backup, f_path.backup ====  
+## @ f_file.BACKUP, f_path.BACKUP ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_filename_ext.createBackup ====  
+## :: f_filename_ext.createBACKUP ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_filename_ext.createBackup"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(backup_from_path_filename_ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
-    # Wrap the main backup logic in a tryCatch for error handling
+.tmp$objectname = "f_filename_ext.createBACKUP"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(BACKUP_from_path_filename_ext, BACKUP_from_ext = NA, .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
+    # Wrap the main BACKUP logic in a tryCatch for error handling
     tryCatch({
         # Determine the filename and extension if not provided
-        if(is.na(backup_from_ext)) {
-            backup_from_path_filename = basename(backup_from_path_filename_ext) |> str_remove("\\.([[:alnum:]]+)$")
-            backup_from_ext = basename(backup_from_path_filename_ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+        if(is.na(BACKUP_from_ext)) {
+            BACKUP_from_path_filename = basename(BACKUP_from_path_filename_ext) |> str_remove("\\.([[:alnum:]]+)$")
+            BACKUP_from_ext = basename(BACKUP_from_path_filename_ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
         } else {
-            backup_from_path_filename = basename(backup_from_path_filename_ext) |> str_remove(paste0("\\.",backup_from_ext|>str_replace_all("\\.","\\\\."),"$"))
+            BACKUP_from_path_filename = basename(BACKUP_from_path_filename_ext) |> str_remove(paste0("\\.",BACKUP_from_ext|>str_replace_all("\\.","\\\\."),"$"))
         }
         
-        # Construct the destination backup path with timestamp
-        .backup_to_path_filename_ext = file.path( .backup_to_path, paste0(backup_from_path_filename,"-",format(Sys.time(),timeFormat),".",backup_from_ext) )
+        # Construct the destination BACKUP path with timestamp
+        .BACKUP_to_path_filename_ext = file.path( .BACKUP_to_path, paste0(BACKUP_from_path_filename,"-",format(Sys.time(),timeFormat),".",BACKUP_from_ext) )
         
-        # Create the backup directory if it doesn't exist
-        if(!dir.exists(.backup_to_path)) dir.create(.backup_to_path, recursive = TRUE)
+        # Create the BACKUP directory if it doesn't exist
+        if(!dir.exists(.BACKUP_to_path)) dir.create(.BACKUP_to_path, recursive = TRUE)
         
 
-        if(!file.exists(backup_from_path_filename_ext)) stop(paste0("File to backup does not exist: ", backup_from_path_filename_ext))
-        if(file.exists(.backup_to_path_filename_ext) && !overwrite) stop(paste0("Backup file already exists: ", .backup_to_path_filename_ext))
+        if(!file.exists(BACKUP_from_path_filename_ext)) stop(paste0("File to BACKUP does not exist: ", BACKUP_from_path_filename_ext))
+        if(file.exists(.BACKUP_to_path_filename_ext) && !overwrite) stop(paste0("BACKUP file already exists: ", .BACKUP_to_path_filename_ext))
         
-        # Copy the file to the backup location; if successful, print a message. Otherwise, stop with an error. 
-        if (file.copy(from=backup_from_path_filename_ext, to=.backup_to_path_filename_ext, overwrite=overwrite)) {message(paste0("- Backup file created: ", .backup_to_path_filename_ext))} else {stop("File copy failed for unknown reasons.")}
+        # Copy the file to the BACKUP location; if successful, print a message. Otherwise, stop with an error. 
+        if (file.copy(from=BACKUP_from_path_filename_ext, to=.BACKUP_to_path_filename_ext, overwrite=overwrite)) {message(paste0("- BACKUP file created: ", .BACKUP_to_path_filename_ext))} else {stop("File copy failed for unknown reasons.")}
     }, error = function(e) {
-        # Error handling block to catch any issues during the backup process
-        message(paste("Failed to create backup for:", backup_from_path_filename_ext))
+        # Error handling block to catch any issues during the BACKUP process
+        message(paste("Failed to create BACKUP for:", BACKUP_from_path_filename_ext))
         message("Error:", e$message)
     })
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) file.backup  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.backup")
+### (ALIAS) file.BACKUP  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.BACKUP")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) file.copy_createBackup  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.copy_createBackup")
+### (ALIAS) file.copy_createBACKUP  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.copy_createBACKUP")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_path_path.backup.overwrite ====  
+## :: f_path_path.BACKUP.overwrite ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_path_path.backup.overwrite"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_filename_ext, .destination_path_filename_ext, .backup_to_path = dirname(.destination_path_filename_ext), timeFormat = "%y%m%d", createFile = FALSE) {
+.tmp$objectname = "f_path_path.BACKUP.overwrite"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_filename_ext, .destination_path_filename_ext, .BACKUP_to_path = dirname(.destination_path_filename_ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path_filename_ext)) {
-        if(!is.null(.backup_to_path)) {
-            env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .destination_path_filename_ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
+        if(!is.null(.BACKUP_to_path)) {
+            env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .destination_path_filename_ext, .BACKUP_to_path=.BACKUP_to_path, timeFormat=timeFormat)
         }
         if(file.copy(from=.overwrite_from_path_filename_ext, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
     } else {warning(paste0("File does not exist: ", .destination_path_filename_ext))}
@@ -2000,8 +2000,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .filename_ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
         .path4write = env1$path$.path4write,
         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
-        createBackup = FALSE, 
-        .backup_to_path="-backup", 
+        createBACKUP = FALSE, 
+        .BACKUP_to_path="-BACKUP", 
         EXECUTE = FALSE, 
         path.size_files = TRUE, 
         git_lfs_track = "determine based on object size", 
@@ -2020,8 +2020,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     #  $ .filename_ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
     #  $ .path4write        : chr "."
     #  $ .path_file         : NULL
-    #  $ createBackup       : logi FALSE
-    #  $ .backup_to_path    : chr "-backup"
+    #  $ createBACKUP       : logi FALSE
+    #  $ .BACKUP_to_path    : chr "-BACKUP"
     #  $ EXECUTE            : logi FALSE
     #  $ path.size_files    : logi TRUE
     #  $ git_lfs_track      : logi TRUE
@@ -2087,12 +2087,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+    if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(EXECUTE) {
-        if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+        if(createBACKUP) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
@@ -2253,12 +2253,12 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
             # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename_ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
             
             .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename_ext)
-            .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
-            env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
+            .BACKUP_to_path = "D:/OneDrive/[][Rproject]/-BACKUP"
+            env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .file.copy.to, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
             env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
         }
     }
-    if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
+    if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-BACKUP")
     
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     for (.filename_ext in c(".gitignore", ".Rprofile")) {

@@ -115,8 +115,8 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
             if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
             .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
             .destination_path_filename_ext = file.path(.destination_path, env1$path$RTemplate.filename_ext)
-            .backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .destination_path_filename_ext, .backup_to_path=.backup_to_path) 
-            if(Sys.info()["sysname"] == "Windows") {browseURL(.backup_to_path)}
+            .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .destination_path_filename_ext, .BACKUP_to_path=.BACKUP_to_path) 
+            if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
             
             if(file.copy(from=.LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
             # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  

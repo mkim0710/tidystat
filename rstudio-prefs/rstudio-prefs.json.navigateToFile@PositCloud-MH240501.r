@@ -22,14 +22,14 @@ file.edit(file.path(.path4APPDATA_RStudio, "rstudio-prefs.json"))
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # Specify the path to the RStudio preferences file
 rstudio_prefs_json_path <- file.path(.path4APPDATA_RStudio, "rstudio-prefs.json")
-# Specify the path for the backup file
-backup_file_path <- paste0(gsub(".json$","",rstudio_prefs_json_path), "-backup", format(Sys.Date(), "%Y%m%d"), ".json")
-# Copy the original file to the backup location
+# Specify the path for the BACKUP file
+BACKUP_file_path <- paste0(gsub(".json$","",rstudio_prefs_json_path), "-BACKUP", format(Sys.Date(), "%Y%m%d"), ".json")
+# Copy the original file to the BACKUP location
 if (file.exists(rstudio_prefs_json_path)) {
-  file.copy(rstudio_prefs_json_path, backup_file_path)
-  cat("Backup of the existing preferences file created at: ", backup_file_path, "\n")
+  file.copy(rstudio_prefs_json_path, BACKUP_file_path)
+  cat("BACKUP of the existing preferences file created at: ", BACKUP_file_path, "\n")
 }
-file.edit(backup_file_path)
+file.edit(BACKUP_file_path)
 # Define the JSON content as a string
 rstudio_prefs_json_new <- '{
     "jobs_tab_visibility": "shown",

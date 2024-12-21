@@ -303,8 +303,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
     }
 
     # List all .Rmd and .nb.html files in the project directory
-    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-backup[/\\\\]", negate = TRUE)
-    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-backup[/\\\\]", negate = TRUE)
+    vec_path_file.rmd <- list.files(project_path, pattern = "(?i)\\.Rmd$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-BACKUP[/\\\\]", negate = TRUE)
+    vec_path_file.nb.html <- list.files(project_path, pattern = "(?i)\\.nb\\.html$", recursive = TRUE, full.names = TRUE) |> str_subset("[/\\\\]-BACKUP[/\\\\]", negate = TRUE)
 
     # Extract base names without extensions
     vec_filename_sans_ext_extended.rmd <- str_remove(basename(vec_path_file.rmd), "(?i)\\.Rmd$")
@@ -318,20 +318,20 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
         print(vec_path_file.nb.html.orphan)
 
         if (execute) {
-            message("Moving orphan files to '-backup' folder...")
+            message("Moving orphan files to '-BACKUP' folder...")
 
-            # Create backup directories and move files
+            # Create BACKUP directories and move files
             for (i.file in vec_path_file.nb.html.orphan) {
-                backup_dir <- file.path(dirname(i.file), "-backup")
+                BACKUP_dir <- file.path(dirname(i.file), "-BACKUP")
 
-                if (!dir.exists(backup_dir)) {
-                    dir.create(backup_dir)
+                if (!dir.exists(BACKUP_dir)) {
+                    dir.create(BACKUP_dir)
                 }
 
-                file.rename(i.file, file.path(backup_dir, basename(i.file)))
+                file.rename(i.file, file.path(BACKUP_dir, basename(i.file)))
             }
         } else {
-            message("Set execute = TRUE to move the orphan files to a '-backup' folder.")
+            message("Set execute = TRUE to move the orphan files to a '-BACKUP' folder.")
         }
     } else {
         message("No orphan .nb.html files found.")
@@ -425,11 +425,11 @@ options(width=120)
 
   
   
-```{r createBackup, eval=TRUE, include=FALSE}
+```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```

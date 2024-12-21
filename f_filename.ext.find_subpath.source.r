@@ -168,7 +168,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
             # List subdirectories and enqueue them with incremented depth
             # vec_files_subpath <- list.files(list_path_depth.current$path, full.names = TRUE, recursive = FALSE)
             vec_files_subpath <- list.dirs(list_path_depth.current$path, full.names = TRUE, recursive = FALSE)
-            vec_files_subpath = vec_files_subpath[!basename(vec_files_subpath) %in% c(".git", ".Rproj.user", "-backup", "cache", ".history", "libs")]
+            vec_files_subpath = vec_files_subpath[!basename(vec_files_subpath) %in% c(".git", ".Rproj.user", "-BACKUP", "cache", ".history", "libs")]
             for (i_files_subpath in vec_files_subpath) {
                 if (VERBOSE) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
                 if (file.info(i_files_subpath)$isdir) {

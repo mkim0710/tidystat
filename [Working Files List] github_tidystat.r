@@ -179,7 +179,7 @@ paste0(env1$path$source_base,"/","f_file_PDF.sumatra.dev.r") %>% {.[file.exists(
 # ".gitignore" |> env1$env.internal.attach$f_file.edit_vscode()
 .file2edit = ".gitignore" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))} }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#### \% f_path_path.backup.overwrite -----  
+#### \% f_path_path.BACKUP.overwrite -----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 .overwrite_from_path_filename_ext = paste0(.overwrite_from_path, "/.gitignore")
 if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) {
@@ -194,7 +194,7 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
         , "../Rproject_KoGES_AA10030"
     ))) {
         .destination_path_filename_ext = paste0(.destination_path,"/.gitignore") 
-        env1$env.internal.attach$f_path_path.backup.overwrite(.overwrite_from_path_filename_ext=.overwrite_from_path_filename_ext, .destination_path_filename_ext=.destination_path_filename_ext, .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d")
+        env1$env.internal.attach$f_path_path.BACKUP.overwrite(.overwrite_from_path_filename_ext=.overwrite_from_path_filename_ext, .destination_path_filename_ext=.destination_path_filename_ext, .BACKUP_to_path = paste0(env1$path$path0,"/-BACKUP"), timeFormat = "%y%m%d")
     }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

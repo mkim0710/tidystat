@@ -13,8 +13,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .filename_ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
         .path4write = env1$path$.path4write,
         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
-        createBackup = FALSE, 
-        .backup_to_path="-backup", 
+        createBACKUP = FALSE, 
+        .BACKUP_to_path="-BACKUP", 
         EXECUTE = FALSE, 
         path.size_files = TRUE, 
         git_lfs_track = "determine based on object size", 
@@ -33,8 +33,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     #  $ .filename_ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
     #  $ .path4write        : chr "."
     #  $ .path_file         : NULL
-    #  $ createBackup       : logi FALSE
-    #  $ .backup_to_path    : chr "-backup"
+    #  $ createBACKUP       : logi FALSE
+    #  $ .BACKUP_to_path    : chr "-BACKUP"
     #  $ EXECUTE            : logi FALSE
     #  $ path.size_files    : logi TRUE
     #  $ git_lfs_track      : logi TRUE
@@ -100,12 +100,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+    if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(EXECUTE) {
-        if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+        if(createBACKUP) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
@@ -150,8 +150,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #         .filename_ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }, 
 #         .path4write = env1$path$.path4write,
 #         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
-#         createBackup = FALSE, 
-#         .backup_to_path="-backup", 
+#         createBACKUP = FALSE, 
+#         .BACKUP_to_path="-BACKUP", 
 #         EXECUTE = FALSE, 
 #         path.size_files = TRUE, 
 #         git_lfs_track = "determine based on object size", 
@@ -171,8 +171,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     #  $ .filename_ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
 #     #  $ .path4write        : chr "."
 #     #  $ .path_file         : NULL
-#     #  $ createBackup       : logi FALSE
-#     #  $ .backup_to_path    : chr "-backup"
+#     #  $ createBACKUP       : logi FALSE
+#     #  $ .BACKUP_to_path    : chr "-BACKUP"
 #     #  $ EXECUTE            : logi FALSE
 #     #  $ path.size_files    : logi TRUE
 #     #  $ git_lfs_track      : logi TRUE
@@ -188,8 +188,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     # Error in as.list.environment(., all.names = TRUE) : 
 #     #   promise already under evaluation: recursive default argument reference or earlier problems?
 #     # Browse[3]> ls(all.names = TRUE) |> dput()
-#     # c(".backup_to_path", ".filename_ext4write", ".object", ".objectname", 
-#     # ".path_file", ".path4write", "CompressionMethod", "createBackup", 
+#     # c(".BACKUP_to_path", ".filename_ext4write", ".object", ".objectname", 
+#     # ".path_file", ".path4write", "CompressionMethod", "createBACKUP", 
 #     # "EXECUTE", "git_add_f", "git_lfs_track", "LinePrefix4CodeText", 
 #     # "path.size_files", "SkipIfAlreadyAdded", "VERBOSE")
 #     # Browse[3]> .filename_ext4write %>% str()
@@ -320,12 +320,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }
 #     ##________________________________________________________________________________  
 #     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#     if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+#     if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
 #     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
 #     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
 #     
 #     if(EXECUTE) {
-#         if(createBackup) env1$env.internal.attach$f_filename_ext.createBackup(backup_from_path_filename_ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+#         if(createBACKUP) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
 #         if (.object.size >= 1e8) {
 #             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
 #         } else { 
