@@ -1491,17 +1491,17 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     # Read the file content
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
 
-    input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
+    input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
         string = input_vec_chr,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
     )
 
-    input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
 
-    if(add_line_numbers) input_vec_chr.except_TOC.str_replace_all = input_vec_chr.except_TOC.str_replace_all |> env1$env.internal$f_vec_chr.add_line_numbers()
+    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()
 
-    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.str_replace_all |> na_if("") |> na.omit()
+    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching |> na_if("") |> na.omit()
     if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
 
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
@@ -1568,7 +1568,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    input_vec_chr.except_TOC.str_replace_all <- str_replace_all(
+    input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
         string = input_vec_chr,
         pattern = regex_pattern,
         replacement = new.ObjectName
@@ -1584,7 +1584,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     }
     
     # Write the updated content back to the file
-    writeLines(input_vec_chr.except_TOC.str_replace_all, con = output_path_file)
+    writeLines(input_vec_chr.except_TOC.na_if_NotMatching, con = output_path_file)
     
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
     return(output_path_file)
