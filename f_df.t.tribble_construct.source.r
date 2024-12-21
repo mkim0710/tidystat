@@ -436,7 +436,34 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) setdiff_list.vec1_vec2  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_list.vec1_vec2")
-
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_vec_chr.add_line_numbers =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.add_line_numbers"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
+    input_vec_chr = 
+        ifelse(
+            input_vec_chr == "", "", 
+            paste0(
+                input_vec_chr, 
+                strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
+                "...", 
+                1:length(input_vec_chr)
+            )
+        )
+    input_vec_chr
+}
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.add_line_numbers.paste_collapse_LF_cat"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
+    out = env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr, width.cutoff)
+    out %>% paste(collapse = "\n") %>% cat("\n", sep="")
+    invisible(out)
+}
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
