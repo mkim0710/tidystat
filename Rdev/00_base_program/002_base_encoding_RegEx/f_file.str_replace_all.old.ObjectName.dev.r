@@ -28,7 +28,7 @@ input_path_file %>% file.edit_if_exists()
 
 
 # Define the function
-f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     # Construct the regex pattern for word boundary including dot and underscore
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
@@ -77,7 +77,7 @@ output_path_file %>% file.remove()
 library(stringr)
 
 # Define the function
-f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     # Construct the regex pattern for word boundary including dot and underscore
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     

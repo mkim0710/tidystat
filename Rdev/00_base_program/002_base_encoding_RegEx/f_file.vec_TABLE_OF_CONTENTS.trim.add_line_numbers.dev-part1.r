@@ -30,7 +30,7 @@
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -233,7 +233,7 @@ vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
 # #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # # @@ START) function   
 # ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =    
+# ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =    
 # # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 

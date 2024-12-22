@@ -58,7 +58,7 @@
 ## :: f_path_fileRegEX.rename =                                             ...1311
 ## :: f_path.list.files_orphan_nb_html.remove                               ...1382
 ## :: f_filename_ext.append_suffix =                                        ...1444
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =        ...1478
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =        ...1478
 ## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =                                 ...1558
 ## :: f_file.str_replace_all.old.ObjectName =                               ...1639
 ## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        ...1683
@@ -1475,19 +1475,19 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =  ----  
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_chr_RegEx4heading.dev.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old3.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part2-PENDING.r
 .tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         level4TOC = 2, RegEx4heading = paste0("^(?!# #)#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = (level4TOC == 1), 
         add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
-        output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+        output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     
     library(stringr)
 
@@ -1547,7 +1547,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
     writeLines(output_vec_chr, con = output_path_file)
-    if(edit_windows_notepad.or_browseURL) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
+    if(browseTXT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
     if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
@@ -1566,7 +1566,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         max.level4TOC = 2, 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
         add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
-        output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+        output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     
     
     library(stringr)
@@ -1580,12 +1580,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     vec_TABLE_OF_CONTENTS.list = list()
     for (i in 1:max.level4TOC) {
         vec_TABLE_OF_CONTENTS.list[[i]] = 
-            env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(
+            env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(
                 input_path_file = input_path_file, 
                 level4TOC = i, RegEx4heading = paste0("^(?!# #)#{1,",i,"}[^#].*(?:-{4}|={4}) *$"), 
                 remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
                 add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
-                output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = FALSE
+                output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = FALSE
             )
     }
     
@@ -1604,7 +1604,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
     writeLines(output_vec_chr, con = output_path_file)
-    if(edit_windows_notepad.or_browseURL) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
+    if(browseTXT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
     if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
@@ -1615,21 +1615,21 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### (ALIAS) f_file.TableOfContentsNESTED.edit_windows_notepad.or_browseURL  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContentsNESTED.edit_windows_notepad.or_browseURL")
+### (ALIAS) f_file.TableOfContentsNESTED.browseTXT  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContentsNESTED.browseTXT")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.edit_windows_notepad.or_browseURL  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContentsNESTED.edit_windows_notepad.or_browseURL")
+### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.browseTXT  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContentsNESTED.browseTXT")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### (ALIAS) TableOfContentsNESTED_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContentsNESTED_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
+### (ALIAS) TableOfContentsNESTED_CurrentSourceEditorContext.browseTXT  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContentsNESTED_CurrentSourceEditorContext.browseTXT")
 
 # ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC  ----
 # .tmp$env1_subenv_name = "f"
 # .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
-#     env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
+#     env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(replace_input_path_file = TRUE, ...)
 # }
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC  ----
@@ -1639,7 +1639,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_file.str_replace_all.old.ObjectName =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 .tmp$objectname = "f_file.str_replace_all.old.ObjectName"
-.tmp$object <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+.tmp$object <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     # Construct the regex pattern for word boundary including dot and underscore
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
@@ -1737,8 +1737,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {  paste0("notepad.exe"," ",shQuote(.file2edit)) |> shell(wait=FALSE)  }  else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) file.edit_windows_notepad.or_browseURL  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.edit_windows_notepad.or_browseURL")
+### (ALIAS) file.browseTXT  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.browseTXT")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_windows_vscode.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
