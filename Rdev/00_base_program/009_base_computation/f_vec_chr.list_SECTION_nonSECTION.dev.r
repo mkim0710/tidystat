@@ -150,8 +150,8 @@ input_vec_chr %>% dput
 # c("blueberry", "coconut", "", "", "", "", "", "watermelon")
 
 
-## \% env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-# env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") %>% dput
+## \% "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE, level4TOC = 1) ----
+# "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE, level4TOC = 1) %>% dput
 
 input_vec_chr.SECTION_removed = input_vec_chr
 input_vec_chr.SECTION_extracted = 
