@@ -166,7 +166,7 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 
 # input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
 
-### vec_TABLE_OF_CONTENTS ====
+## :: vec_TABLE_OF_CONTENTS ====
 # vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching %>% na_if("") %>% na.omit()
 vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
 vec_TABLE_OF_CONTENTS %>% str
@@ -242,7 +242,7 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()
+input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
 input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...

@@ -1491,15 +1491,15 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     # Read the file content
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
 
-    input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
-        string = input_vec_chr,
-        pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
-        replacement = "\\1"
-    )
+    # input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
+    #     string = input_vec_chr,
+    #     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
+    #     replacement = "\\1"
+    # )
 
     input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
-    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()
+    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
 
     vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching |> na_if("") |> na.omit()
     if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
