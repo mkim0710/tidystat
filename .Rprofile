@@ -165,7 +165,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     attach(env1$f)
     # attach(env1$env.internal)
     attach(env1$env.internal.attach)
-    if(require("openxlsx2", character.only=TRUE)) env1$f$f_path.DOCs_Rcode.file.info.xlsx(overwrite = FALSE, xl_open_or_browseURL = FALSE, orphan_nb_html.remove = FALSE)
+    if(require("openxlsx2", character.only=TRUE)) env1$f$f_path.DOCs_Rcode.file.info.xlsx(overwrite = FALSE, xls.open_or_browseURL = FALSE, orphan_nb_html.remove = FALSE)
 
     attributes(.GlobalEnv$env1$source$.Rprofile)$complete = TRUE
 

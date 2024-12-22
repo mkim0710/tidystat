@@ -960,7 +960,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_list_df.write_xlsx_table" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xl_open_or_browseURL = TRUE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xls.open_or_browseURL = TRUE) {
     library(openxlsx2)
     
     output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
@@ -969,7 +969,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-        if(xl_open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
     
@@ -998,7 +998,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     
     wb |> wb_save(output_filename.xlsx)
     
-    if(xl_open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
+    
     invisible(output_filename.xlsx)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1015,7 +1016,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = FALSE, xl_open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
+        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
     
     input_path = input_path |> normalizePath(winslash = "/")
     
@@ -1034,7 +1035,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-        if(xl_open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
     if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)
@@ -1053,7 +1054,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
     wb |> wb_save(output_filename.xlsx)
 
-    if(xl_open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
     invisible(input_path.file.info)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1072,8 +1073,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
-    env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xl_open_or_browseURL = xl_open_or_browseURL, orphan_nb_html.remove = orphan_nb_html.remove)
+        output_filename.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
+    env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_filename.xlsx = output_filename.xlsx, overwrite = overwrite, xls.open_or_browseURL = xls.open_or_browseURL, orphan_nb_html.remove = orphan_nb_html.remove)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_path.DOCs_Rcode.file.info.xlsx ====
@@ -1087,7 +1088,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xl_open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) { 
+        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) { 
 
     library(openxlsx2)
     input_path = input_path |> normalizePath(winslash = "/")
@@ -1107,7 +1108,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-        if(xl_open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
         return(invisible())
     }
     if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)
@@ -1125,7 +1126,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     # }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"PrjDoc"))
     }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD))
     
-    env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xl_open_or_browseURL = xl_open_or_browseURL)
+    env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xls.open_or_browseURL = xls.open_or_browseURL)
     
     invisible()
 }
@@ -1795,8 +1796,14 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_file_xls.open_or_browseURL ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_file_xls.open_or_browseURL"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file) {
-    if (Sys.info()["sysname"] == "Linux") browseURL(path_file) else openxlsx2::xl_open(path_file)  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file, EXECUTE = TRUE) {
+    if (Sys.info()["sysname"] == "Linux") browseURL(path_file) else openxlsx2::xl_open(path_file)
+    # if (Sys.info()["sysname"] == "Linux") {
+    #     browseURL(path_file) 
+    # } else {
+    #     .packagename = "openxlsx2"; if(!require(.packagename, character.only=TRUE)) warning(paste("Package", .packagename, "is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
+    #     openxlsx2::xl_open(path_file)
+    # }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) xls.open_or_browseURL  ----  
