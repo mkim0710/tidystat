@@ -87,7 +87,7 @@ level4TOC = 2
 RegEx4heading = paste0("^(?!# #)#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
-# [1] "^#{1,2}[^#].*(?:-{4}|={4}) *$"
+# [1] "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 add_line_numbers = TRUE
 merge_with_input_vec_chr.except_TOC = FALSE
 remove_lines_with_no_alphabet = TRUE

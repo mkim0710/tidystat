@@ -91,7 +91,7 @@ level4TOC = 2
 RegEx4heading = paste0("^(?!# #)#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
-# [1] "^#{1,2}[^#].*(?:-{4}|={4}) *$"
+# [1] "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 
 ## :: input_vec_chr ====
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
