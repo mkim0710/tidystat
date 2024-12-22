@@ -186,7 +186,7 @@ vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # #|________________________________________________________________________________|#  ----      ...36
 # # @@ END -----                                                              ...37 
 
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
+if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 vec_TABLE_OF_CONTENTS %>% str
 vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS %>% str
@@ -282,8 +282,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
 
-    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim |> na_if("") |> na.omit()
-    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
+    ## :: vec_TABLE_OF_CONTENTS ====
+vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
+    
+    
+    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
