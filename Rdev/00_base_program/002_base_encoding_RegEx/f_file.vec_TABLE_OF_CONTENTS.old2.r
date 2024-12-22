@@ -93,7 +93,7 @@ remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
-### input_vec_chr ====
+## :: input_vec_chr ====
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
 input_vec_chr %>% str
 # > input_vec_chr %>% str
