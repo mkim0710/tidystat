@@ -85,6 +85,9 @@
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 level4TOC = 2
 RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
+RegEx4heading
+# > RegEx4heading
+# [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
 add_line_numbers = TRUE
 remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
@@ -97,14 +100,6 @@ replace_input_path_file = FALSE
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
 ## env0 = env1 ----
-# input_path_file = rstudioapi::getSourceEditorContext()$path
-input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
-level4TOC = 2
-RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
-add_line_numbers = TRUE
-remove_lines_with_no_alphabet = TRUE
-output_path_file = NULL
-replace_input_path_file = FALSE
 
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
 input_vec_chr %>% str
