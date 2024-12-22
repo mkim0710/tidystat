@@ -10,10 +10,10 @@
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
-## :: f_file.vec_TABLE_OF_CONTENTS.old =                           ...180
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
 # @@ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
-## :: f_file.vec_TABLE_OF_CONTENTS =                               ...246
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
@@ -27,10 +27,10 @@
 ## env0 = env1 
 # @@ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.old =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.old =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -88,7 +88,8 @@ RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
 # [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
-add_line_numbers = TRUE, merge_with_input_file = FALSE
+add_line_numbers = TRUE
+merge_with_input_vec_chr.except_TOC = FALSE
 remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
@@ -107,7 +108,7 @@ input_vec_chr %>% str
 ## env0 = env1 ----
 
 ## :: input_vec_chr.except_TOC ====
-input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r".
+input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r".
 
 
 # RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
@@ -167,32 +168,32 @@ input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% paste0(coll
 #  chr [1:37] NA "# TABLE OF CONTENTS ----                                                    ...2" NA NA NA NA NA NA NA ...
 
 
-## :: vec_TABLE_OF_CONTENTS ====
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
-#  chr [1:10] "# TABLE OF CONTENTS ----                                                    ...2" ...
+## :: vec_TABLE_OF_CONTENTS.trim.add_line_numbers ====
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
+#  chr [1:10] "# TABLE OF CONTENTS                                                         ...2" ...
 #  - attr(*, "na.action")= 'omit' int [1:27] 1 3 4 5 6 7 8 9 11 14 ...
-# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# # TABLE OF CONTENTS ----                                                    ...2
-# #_________________________________________________________________________________|----      ...10
-# # @@ START) dev -----                                                       ...12
-# # ## env0 = env1 ----                                                       ...13
-# #_________________________________________________________________________________|----      ...15
-# # @@ START) function -----                                                  ...17
-# ## ->> Not Yet included in env1$env.internal.source.r ----                  ...18
-# ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----           ...19
-# #|________________________________________________________________________________|#  ----      ...36
-# # @@ END -----                                                              ...37 
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# # TABLE OF CONTENTS                                                         ...2
+# #_________________________________________________________________________________|      ...10
+# # @@ START) dev                                                             ...12
+# # ## env0 = env1                                                            ...13
+# #_________________________________________________________________________________|      ...15
+# # @@ START) function                                                        ...17
+# ## ->> Not Yet included in env1$env.internal.source.r                       ...18
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
+# #|________________________________________________________________________________|#        ...36
+# # @@ END                                                                    ...37 
 
 ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
+if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 #  chr [1:7] "# TABLE OF CONTENTS                                                         ...2" ...
-# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # # TABLE OF CONTENTS                                                         ...2
 # # @@ START) dev                                                             ...12
 # # ## env0 = env1                                                            ...13
@@ -201,32 +202,32 @@ vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
 # # @@ END                                                                    ...37 
 
-### vec_TABLE_OF_CONTENTS |> format_BEGINNING_END ====  
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
     str_subset("# TABLE OF CONTENTS", negate = TRUE)
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
     str_subset("@@ END", negate = TRUE)
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 #  chr [1:5] "# @@ START) dev                                                             ...12" ...
-# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # # @@ START) dev                                                             ...12
 # # ## env0 = env1                                                            ...13
 # # @@ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19 
 
-vec_TABLE_OF_CONTENTS = 
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        vec_TABLE_OF_CONTENTS,
+        vec_TABLE_OF_CONTENTS.trim.add_line_numbers,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ START) dev                                                             ...12
@@ -252,19 +253,19 @@ vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =  ----  
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.old2.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
-.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old2.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
 .tmp$object = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
-        add_line_numbers = TRUE, merge_with_input_file = FALSE, merge_with_input_file = FALSE, 
+        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, merge_with_input_vec_chr.except_TOC = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE) {
     
     library(stringr)
@@ -273,7 +274,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     ## :: input_vec_chr.except_TOC ====
-    input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r".
+    input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r".
     
     # input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
     #     string = input_vec_chr,
@@ -290,22 +291,22 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     ### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!! ----
     if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
     
-    ## :: vec_TABLE_OF_CONTENTS ====
-    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
+    ## :: vec_TABLE_OF_CONTENTS.trim.add_line_numbers ====
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
     
     ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 
-    ### vec_TABLE_OF_CONTENTS |> format_BEGINNING_END ====  
-    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+    ### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
         str_subset("@@ END", negate = TRUE)
-    vec_TABLE_OF_CONTENTS = 
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_TABLE_OF_CONTENTS,
+            vec_TABLE_OF_CONTENTS.trim.add_line_numbers,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -319,12 +320,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    writeLines(c(vec_TABLE_OF_CONTENTS, input_vec_chr), con = output_path_file)
+    if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
+    writeLines(output_vec_chr, con = output_path_file)
     env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(vec_TABLE_OF_CONTENTS)
+    invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -341,23 +343,23 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL()
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(add_line_numbers = FALSE)
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL()
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(add_line_numbers = FALSE)
 
-# env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
-
-
-### "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
-
-### "f_df.t.tribble_construct.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+# env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
-### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
+### "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+
+### "f_df.t.tribble_construct.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+
+
+### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  

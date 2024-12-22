@@ -10,10 +10,10 @@
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
-## :: f_file.vec_TABLE_OF_CONTENTS.old =                           ...180
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.old =                           ...180
 # @@ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
-## :: f_file.vec_TABLE_OF_CONTENTS =                               ...246
+## :: f_file.vec_TABLE_OF_CONTENTS.trim =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
@@ -27,10 +27,10 @@
 ## env0 = env1 
 # @@ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.old =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -89,7 +89,8 @@ RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
 # [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
-add_line_numbers = TRUE, merge_with_input_file = FALSE
+add_line_numbers = TRUE
+merge_with_input_vec_chr.except_TOC = FALSE
 remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
@@ -119,7 +120,7 @@ input_vec_chr.list_SECTION_nonSECTION %>% str
 #  $ nonSECTION: chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 
-## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
+## \% 1nd iteration: vec_TABLE_OF_CONTENTS.trim_without_line_numbers ====
 ## :: input_vec_chr.except_TOC ====
 input_vec_chr.except_TOC = input_vec_chr.list_SECTION_nonSECTION$nonSECTION
 input_vec_chr.except_TOC %>% str
@@ -168,49 +169,49 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 
 # input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
 
-## :: vec_TABLE_OF_CONTENTS ====
-# vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% na_if("") %>% na.omit()
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
+## :: vec_TABLE_OF_CONTENTS.trim ====
+# vec_TABLE_OF_CONTENTS.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% na_if("") %>% na.omit()
+vec_TABLE_OF_CONTENTS.trim = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
+vec_TABLE_OF_CONTENTS.trim %>% str
+vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim %>% str
 #  chr [1:31] "#_________________________________________________________________________________|----  " "# @@ REFERENCES) ----  " ...
 #  - attr(*, "na.action")= 'omit' int [1:259] 1 2 3 4 5 6 7 8 9 10 ...
 
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
-# > vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+vec_TABLE_OF_CONTENTS.trim %>% str
+vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+# > vec_TABLE_OF_CONTENTS.trim %>% str
 #  chr [1:31] "#_________________________________________________________________________________|  " "# @@ REFERENCES)   " ...
 
 ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
+if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+vec_TABLE_OF_CONTENTS.trim %>% str
+vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim %>% str
 #  chr [1:22] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
 
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
     str_subset("^# @@ END", negate = TRUE)
-vec_TABLE_OF_CONTENTS %>% str
-# > vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS.trim %>% str
+# > vec_TABLE_OF_CONTENTS.trim %>% str
 #  chr [1:21] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
 
-vec_TABLE_OF_CONTENTS = 
+vec_TABLE_OF_CONTENTS.trim = 
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ", 
-        vec_TABLE_OF_CONTENTS,
+        vec_TABLE_OF_CONTENTS.trim,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-vec_TABLE_OF_CONTENTS %>% str
-vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
-# > vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS.trim %>% str
+vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim %>% str
 #  chr [1:24] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ REFERENCES)   
@@ -232,15 +233,15 @@ vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # # @@ START) function   
 # ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL =    
+# ## :: f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL =    
 # # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
 
-## \% 2nd iteration: vec_TABLE_OF_CONTENTS_with_line_numbers ====
+## \% 2nd iteration: vec_TABLE_OF_CONTENTS.trim_with_line_numbers ====
 ### input_vec_chr.except_TOC.add_new_TOC_as_blank ====
-input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC)
+input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS.trim)), input_vec_chr.except_TOC)
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
@@ -263,11 +264,11 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 ## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_vec_chr.vec_TABLE_OF_CONTENTS =  ----  
+## :: f_vec_chr.vec_TABLE_OF_CONTENTS.trim =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.dev.r
 .tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS"
+.tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS.trim"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_vec_chr.except_TOC = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE))$nonSECTION, 
         level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
@@ -275,34 +276,34 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     library(stringr)
     
-    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
-    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+    vec_TABLE_OF_CONTENTS.trim = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
+    vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
     
     ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
     
-    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+    vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-    vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
+    vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
         str_subset("^# @@ END", negate = TRUE)
     
-    vec_TABLE_OF_CONTENTS = 
+    vec_TABLE_OF_CONTENTS.trim = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_TABLE_OF_CONTENTS,
+            vec_TABLE_OF_CONTENTS.trim,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
-    invisible(vec_TABLE_OF_CONTENTS)
+    invisible(vec_TABLE_OF_CONTENTS.trim)
 }
 
 
-input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
-input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
-# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
 #  chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% paste0(collapse = "\n") %>% cat("\n")
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ START) dev   
@@ -312,8 +313,8 @@ input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.lis
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
-env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
-env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% paste0(collapse = "\n") %>% cat("\n")
-# > env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS() %>% str
+env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
+env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% paste0(collapse = "\n") %>% cat("\n")
+# > env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
 #  chr [1:36] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
