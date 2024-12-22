@@ -88,7 +88,7 @@
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 level4TOC = 2
-RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
+RegEx4heading = paste0("^(?!# #)#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
 # [1] "^#{1,2}[^#].*(?:-{4}|={4}) *$"
@@ -212,6 +212,7 @@ RegEx <-           "^#{1,2}[^#].*(?:-{4}|={4}) *$"
 RegEx <- "^(?!#\\s+#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
 RegEx <- "^(?!#\\s+#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
 RegEx <-   "^(?!# +#)#{1,2} +.*(?:-{4}|={4}) *$"
+RegEx <-    "^(?!# #)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
 RegEx <-    "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 
 results <- sapply(test_lines, function(line) {
