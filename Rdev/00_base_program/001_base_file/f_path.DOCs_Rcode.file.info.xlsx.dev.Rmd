@@ -474,7 +474,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
     wb |> wb_save(output_filename.xlsx)
 
-    if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
     invisible(input_path.file.info)
 }
 
@@ -522,7 +522,7 @@ options(width=120)
 #     
 #     if(!overwrite && file.exists(output_filename.xlsx)) {
 #         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-#         if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+#         if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
 #         return(invisible())
 #     }
 # 
@@ -543,7 +543,7 @@ options(width=120)
 # 
 #     wb |> wb_save(output_filename.xlsx)
 # 
-#     if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+#     if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
 #     invisible()
 # }
 # 
@@ -569,7 +569,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-        if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
         return(invisible())
     }
     
@@ -598,7 +598,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     
     wb |> wb_save(output_filename.xlsx)
     
-    if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
     invisible(output_filename.xlsx)
 }
 ```
@@ -644,7 +644,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-        if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
         return(invisible())
     }
     if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)

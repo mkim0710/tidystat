@@ -304,7 +304,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     
     if(!overwrite && file.exists(output_filename.xlsx)) {
         warning(paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE"))
-        if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+        if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
         return(invisible())
     }
     
@@ -333,7 +333,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     
     wb |> wb_save(output_filename.xlsx)
     
-    if(xls.open_or_browseURL) {if (Sys.info()["sysname"] == "Linux") browseURL(output_filename.xlsx) else openxlsx2::xl_open(output_filename.xlsx)}
+    if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx)
     invisible(output_filename.xlsx)
 }
 ```
