@@ -1547,7 +1547,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
     writeLines(output_vec_chr, con = output_path_file)
-    if(browseTXT) env1$f$f_file.browse_in_web_browser(output_path_file) else paste0("env1$f$f_file.browse_in_web_browser(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
+    if(browseTXT) env1$env.internal.attach$f_file.browse_in_edge_app(output_path_file) else paste0("env1$env.internal.attach$f_file.browse_in_edge_app(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
     if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
@@ -1604,7 +1604,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
     writeLines(output_vec_chr, con = output_path_file)
-    if(browseTXT) env1$f$f_file.browse_in_web_browser(output_path_file) else paste0("env1$f$f_file.browse_in_web_browser(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
+    if(browseTXT) env1$env.internal.attach$f_file.browse_in_edge_app(output_path_file) else paste0("env1$env.internal.attach$f_file.browse_in_edge_app(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
     if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
@@ -1720,22 +1720,6 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ### (ALIAS) open_if_exists  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_if_exists")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### :: f_file.browse_in_web_browser ====  
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.browse_in_web_browser"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2open) {  
-    browseURL(.file2open)
-}
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) browse_in_web_browser  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browse_in_web_browser")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) f_file.open_in_web_browser  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.open_in_web_browser")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) open_in_web_browser  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_in_web_browser")
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: f_file.edit_windows.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_windows.or_browseURL"
@@ -1753,8 +1737,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {  paste0("notepad.exe"," ",shQuote(.file2edit)) |> shell(wait=FALSE)  }  else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) file.browseTXT  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.browseTXT")
+### (ALIAS) file.edit_windows_notepad.or_browseURL  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.edit_windows_notepad.or_browseURL")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_file.edit_windows_vscode.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1777,6 +1761,18 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) browseURL_in_edge_app  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge_app")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) f_file.browse_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.browse_in_edge_app")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) browse_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browse_in_edge_app")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) f_file.open_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.open_in_edge_app")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) open_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_in_edge_app")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### ::: f_URL.open_in_edge_app.printRCode =  ----  
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
