@@ -1484,7 +1484,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.old2.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
+.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), add_line_numbers = TRUE, merge_with_input_file = FALSE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
     
     library(stringr)
 

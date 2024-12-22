@@ -89,7 +89,7 @@ RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
 # [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
-add_line_numbers = TRUE
+add_line_numbers = TRUE, merge_with_input_file = FALSE
 remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
@@ -128,7 +128,7 @@ input_vec_chr %>% str
 .tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_vec_chr.except_TOC = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE))$nonSECTION, 
-        RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", 
+        level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE) {
     
     library(stringr)
@@ -296,9 +296,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
 .tmp$object = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
-        RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", 
+        level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
-        add_line_numbers = TRUE, 
+        add_line_numbers = TRUE, merge_with_input_file = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE) {
     
     library(stringr)
