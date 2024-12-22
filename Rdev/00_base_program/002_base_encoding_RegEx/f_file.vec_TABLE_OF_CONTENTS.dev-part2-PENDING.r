@@ -84,7 +84,8 @@
 ##@ input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" ----  
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
-RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$"
+level4TOC = 2
+RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
 add_line_numbers = TRUE
 remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
@@ -375,11 +376,11 @@ env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL(cat2consol
 
 ### "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
 env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
 
 ### "f_df.t.tribble_construct.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----
 env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
 
 
 ### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL() ----

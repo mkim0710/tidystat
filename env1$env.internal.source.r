@@ -1,14 +1,13 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
-#| ------------------------- < To be covered at .Rprofile >           ...130
-#| ------------------------- < If .Rprofile not available >           ...133
-# @@ system, environment                                              ...191
-# @@ f_function, f_expression, f_CodeText                             ...347
-# @@ f_file, f_URL, f_path                                            ...794
-# @@ source()                                                         ...2299
-# ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2385
-# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2422
-##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+#| ------------------------- < To be covered at .Rprofile >                 ...128
+#| ------------------------- < If .Rprofile not available >                 ...131
+# @@ system, environment                                                    ...189
+# @@ f_function, f_expression, f_CodeText                                   ...345
+# @@ f_file, f_URL, f_path                                                  ...792
+# @@ source()                                                               ...2329
+# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2452
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
 #| ------------------------- < To be covered at .Rprofile >           ...130
@@ -1485,7 +1484,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.old2.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.dev.r
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.edit_windows_notepad.or_browseURL"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, RegEx4heading = "^#{1,2}[^#].*(-{4}|={4}) *$", add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
+.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), add_line_numbers = TRUE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
     
     library(stringr)
 
