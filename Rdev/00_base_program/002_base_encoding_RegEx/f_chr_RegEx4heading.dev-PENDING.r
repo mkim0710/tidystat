@@ -57,8 +57,14 @@
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ REFERENCES) ----  
-##  ----  
-## 
+## ^(?!NegativeLookahead)MainPatternToMatch ----  
+## https://chatgpt.com/g/g-p-676526fc1c848191a84f233bacf2df34-regex/c/67651b58-d21c-800e-9f60-b8d16e9a13a7
+## e.g.) remove all non-heading lines, when heading lines starts with "# @" 
+## ^(?!# @).*
+## DOES match all lines that DOES NOT start with "# @", because when looking at the point of "(", which is at the beginning of a line (^), there should be no "# @" ahead (after) "(".
+## Alternative:
+## Search: ^(# @.*)?.*
+## Replace to: $1
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -202,12 +208,11 @@ test_lines <- c(
   "# Another Title ===="
 )
 
-# > RegEx4heading
-# [1]           "^#{1,2}[^#].*(?:-{4}|={4}) *$"
-#     "^(?!#\\s*#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
-#     "^(?!#\\s*#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
-#       "^(?!# *#)#{1,2} +.*(?:-{4}|={4}) *$"
-regex <- "^(?!#\\s*#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
+regex <-           "^#{1,2}[^#].*(?:-{4}|={4}) *$"
+regex <- "^(?!#\\s+#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
+regex <- "^(?!#\\s+#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
+regex <-   "^(?!# +#)#{1,2} +.*(?:-{4}|={4}) *$"
+regex <-    "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 
 results <- sapply(test_lines, function(line) {
   grepl(regex, line, perl = TRUE)
