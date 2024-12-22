@@ -85,7 +85,7 @@ level4TOC = 2
 RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
-# [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
+# [1] "^#{1,2}[^#].*(?:-{4}|={4}) *$"
 
 ## :: input_vec_chr ====
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
@@ -105,7 +105,7 @@ input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actuall
 
 # RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
 # # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
+# # [1] "^(#{1,2}[^#].*(?:-{4}|={4}) *)?.*"
 #
 #
 # ### input_vec_chr.except_TOC.na_if_NotMatching.trim ====
@@ -169,7 +169,7 @@ test_lines <- c(
 # Filter out invalid matches
 results <- sapply(test_lines, function(line) {
     if (grepl("^#", line) && !grepl("^# #", line)) { # Ensure it's not a commented-out line
-        grepl("^#{1,2}[^#].*(-{4}|={4}) *$", line)
+        grepl("^#{1,2}[^#].*(?:-{4}|={4}) *$", line)
     } else {
         FALSE
     }
@@ -203,7 +203,7 @@ test_lines <- c(
 )
 
 # > RegEx4heading
-# [1]           "^#{1,2}[^#].*(-{4}|={4}) *$"
+# [1]           "^#{1,2}[^#].*(?:-{4}|={4}) *$"
 #     "^(?!#\\s*#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
 #     "^(?!#\\s*#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
 #       "^(?!# *#)#{1,2} +.*(?:-{4}|={4}) *$"

@@ -85,10 +85,10 @@
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 level4TOC = 2
-RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
+RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
-# [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
+# [1] "^#{1,2}[^#].*(?:-{4}|={4}) *$"
 add_line_numbers = TRUE
 merge_with_input_vec_chr.except_TOC = FALSE
 remove_lines_with_no_alphabet = TRUE
@@ -130,7 +130,7 @@ input_vec_chr.except_TOC %>% str
 
 # RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
 # # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
+# # [1] "^(#{1,2}[^#].*(?:-{4}|={4}) *)?.*"
 #
 #
 # ### input_vec_chr.except_TOC.na_if_NotMatching.trim ====
@@ -271,7 +271,7 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 .tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS.trim"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_vec_chr.except_TOC = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE))$nonSECTION, 
-        level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
+        level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE) {
     
     library(stringr)

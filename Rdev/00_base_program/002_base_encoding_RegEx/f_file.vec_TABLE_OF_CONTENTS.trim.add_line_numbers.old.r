@@ -76,10 +76,10 @@
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 level4TOC = 2
-RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
+RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
-# [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
+# [1] "^#{1,2}[^#].*(?:-{4}|={4}) *$"
 add_line_numbers = TRUE
 merge_with_input_vec_chr.except_TOC = FALSE
 remove_lines_with_no_alphabet = TRUE
@@ -138,7 +138,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"), remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
     
     library(stringr)
 
@@ -198,13 +198,13 @@ env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old()
 # env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old(replace_input_path_file = TRUE)
 
 
-### env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+### env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(?:-{4}|={4}) *$") ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(?:-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"))
 
-### env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+### env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(?:-{4}|={4}) *$") ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(?:-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"))
 
 
 ##////////////////////////////////////////////////////////////////////////////////  
