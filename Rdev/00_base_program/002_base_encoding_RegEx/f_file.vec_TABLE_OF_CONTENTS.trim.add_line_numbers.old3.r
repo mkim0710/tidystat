@@ -503,6 +503,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## @ EXAMPLES) function (NESTED) use -----  
 
 
+# input_path_file = rstudioapi::getSourceEditorContext()$path
+input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 2, cat2console = TRUE)
 input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(merge_with_input_vec_chr.except_TOC = TRUE)
 
