@@ -95,8 +95,92 @@ input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
+# @@ START) dev-GPT -----  
 # https://chatgpt.com/c/6767d118-9118-800e-ad40-890f04e7c0a1 ----
+## env0 = env1 ----
+
+## test_lines ====
+test_lines <- c(
+  "# Section Title ----",          # Valid level 1 heading
+  "## Subsection Title ====",      # Valid level 2 heading
+  "# # Section Title ----",        # Commented-out level 1 heading (should NOT match)
+  "# ## Subsection Title ====",    # Commented-out level 2 heading (should NOT match)
+  "Random text ----",              # Not a valid heading (should NOT match)
+  "# Another Title ===="           # Valid level 1 heading
+)
+
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+### if (grepl("^#", line) && !grepl("^# #", line)) ----- 
+# Filter out invalid matches
+results <- sapply(test_lines, function(line) {
+    if (grepl("^#", line) && !grepl("^# #", line)) { # Ensure it's not a commented-out line
+        grepl("^#{1,2}[^#].*(-{4}|={4}) *$", line)
+    } else {
+        FALSE
+    }
+})
+
+# Combine results and print
+output <- data.frame(
+    Line = test_lines,
+    Matches = results
+)
+print(output)
+# > print(output)
+#                                                  Line Matches
+# # Section Title ----             # Section Title ----    TRUE
+# ## Subsection Title ====     ## Subsection Title ====    TRUE
+# # # Section Title ----         # # Section Title ----   FALSE
+# # ## Subsection Title ==== # ## Subsection Title ====   FALSE
+# Random text ----                     Random text ----   FALSE
+# # Another Title ====             # Another Title ====    TRUE
+
+
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+test_lines <- c(
+  "# Section Title ----",      
+  "## Subsection Title ====",  
+  "# # Section Title ----",
+  "# ## Subsection Title ====",
+  "Random text ----",
+  "# Another Title ===="
+)
+
+regex <- "^(?!#\\s*#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
+
+results <- sapply(test_lines, function(line) {
+  grepl(regex, line, perl = TRUE)
+})
+
+data.frame(Line = test_lines, Matches = results)
+# > data.frame(Line = test_lines, Matches = results)
+#                                                  Line Matches
+# # Section Title ----             # Section Title ----    TRUE
+# ## Subsection Title ====     ## Subsection Title ====   FALSE
+# # # Section Title ----         # # Section Title ----   FALSE
+# # ## Subsection Title ==== # ## Subsection Title ====   FALSE
+# Random text ----                     Random text ----   FALSE
+# # Another Title ====             # Another Title ====    TRUE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) dev-MH -----  
 ## env0 = env1 ----
 
 ## :: input_vec_chr.except_TOC ====
