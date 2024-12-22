@@ -19,7 +19,7 @@ regex4winpath = paste0("[A-Z]:[", regex4path_letters, "]*")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### |> f_str.split.grep(split.sep, grep.pattern) -void ----
+### |> f_chr.split.grep(split.sep, grep.pattern) -void ----
 
 regex4path_letters = "A-Za-z0-9./\\-"
 regex4winpath = paste0("[A-Z]:[", regex4path_letters, "]*")
@@ -35,7 +35,7 @@ gsub(paste0("[^", regex4path_letters, "]*"), "", grep(paste0("^", regex4winpath)
 # > gsub(paste0("[^", regex4path_letters, "]*"), "", grep(paste0("^", regex4winpath), install.packages.zip.warnings.split, value = TRUE)) |> deparse(width.cutoff = 500) |> cat("\n")
 # c("C\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll")
 
-# f_str.split.grep = function(input_string, split.sep, grep.pattern) {
+# f_chr.split.grep = function(input_string, split.sep, grep.pattern) {
 #     input_string.split = strsplit(input_string, split.sep)[[1]]
 #     grep(grep.pattern, input_string.split, value = TRUE)
 # }
