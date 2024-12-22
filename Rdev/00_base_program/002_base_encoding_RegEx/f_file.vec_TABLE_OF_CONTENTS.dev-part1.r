@@ -94,6 +94,7 @@ remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
+### input_vec_chr ====
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
 input_vec_chr %>% str
 # > input_vec_chr %>% str
@@ -105,6 +106,7 @@ input_vec_chr %>% str
 # @@ START) dev-part1 -----  
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
+
 ## env0 = env1 ----
 
 
@@ -125,11 +127,11 @@ input_vec_chr.except_TOC %>% str
 #  chr [1:290] "" "" "" "# --> Now included in \"env1$env.internal.source.r\"" ...
 
 
-RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
-
-
+# RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
+#
+#
 # ### input_vec_chr.except_TOC.na_if_NotMatching ====
 # input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
 #     string = input_vec_chr.except_TOC,
