@@ -496,7 +496,7 @@ env0 = env1
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-gtTable2_uvregression = trial %>% 
+GT2_uvregression = trial %>% 
     tbl_uvregression(
         method = coxph,
         y = Surv(ttdeath, death),
@@ -513,9 +513,9 @@ gtTable2_uvregression = trial %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-gtTable2_uvregression %>% show_header_names
-gtTable2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-gtTable2_uvregression |>
+GT2_uvregression %>% show_header_names
+GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+GT2_uvregression |>
     print() |> invisible()
 ```
   
@@ -539,7 +539,7 @@ options(width=120)
 DataSet = DataSet.Date.NA.rmAllNA %>% 
     # select(matches("A01_BMI"))
     select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
-gtTable2_uvregression = DataSet %>% 
+GT2_uvregression = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -561,9 +561,9 @@ gtTable2_uvregression = DataSet %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-gtTable2_uvregression %>% show_header_names
-gtTable2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-gtTable2_uvregression |>
+GT2_uvregression %>% show_header_names
+GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+GT2_uvregression |>
     print() |> invisible()
 ```  
   
@@ -583,7 +583,7 @@ DataSet = DataSet.Date.NA.rmAllNA %>%
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-gtTable2_uvregression = DataSet %>% 
+GT2_uvregression = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -605,9 +605,9 @@ gtTable2_uvregression = DataSet %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-gtTable2_uvregression %>% show_header_names
-gtTable2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-gtTable2_uvregression |>
+GT2_uvregression %>% show_header_names
+GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+GT2_uvregression |>
     print() |> invisible()
 ```
   
@@ -815,7 +815,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 
 
 .path4write = env1$path$path1
-.objectname = "gtTable2_uvregression"
+.objectname = "GT2_uvregression"
 write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time()
 ```
   
