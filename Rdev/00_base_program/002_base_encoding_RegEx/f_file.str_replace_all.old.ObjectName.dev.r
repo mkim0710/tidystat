@@ -36,7 +36,7 @@ f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.Obje
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    input_vec_chr.except_TOC.na_if_NotMatching <- gsub(
+    input_vec_chr.except_TOC.na_if_NotMatching.trim <- gsub(
         pattern = regex_pattern,
         replacement = new.ObjectName,
         x = input_vec_chr,
@@ -53,7 +53,7 @@ f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.Obje
     }
     
     # Write the updated content back to the file
-    writeLines(input_vec_chr.except_TOC.na_if_NotMatching, con = output_path_file)
+    writeLines(input_vec_chr.except_TOC.na_if_NotMatching.trim, con = output_path_file)
     
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
     return(output_path_file)
@@ -85,7 +85,7 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
-    input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
+    input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
         string = input_vec_chr,
         pattern = regex_pattern,
         replacement = new.ObjectName
@@ -101,7 +101,7 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
     }
     
     # Write the updated content back to the file
-    writeLines(input_vec_chr.except_TOC.na_if_NotMatching, con = output_path_file)
+    writeLines(input_vec_chr.except_TOC.na_if_NotMatching.trim, con = output_path_file)
     
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
     return(output_path_file)

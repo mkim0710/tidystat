@@ -88,34 +88,34 @@ replace_input_path_file = FALSE
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
 input_vec_chr %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching <- str_subset(
+input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_subset(
     string = input_vec_chr,
     pattern = RegEx4heading,
     negate = FALSE
 )
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
+input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
+input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
 
-if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_subset("[a-zA-Z]")
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
+if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str_subset("[a-zA-Z]")
+input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>%
+input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>%
     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>%
+input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>%
     str_subset("^# @@ END", negate = TRUE)
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
+input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching =
+input_vec_chr.except_TOC.na_if_NotMatching.trim =
     c(
         "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
         "# TABLE OF CONTENTS ----  ",
-        input_vec_chr.except_TOC.na_if_NotMatching,
+        input_vec_chr.except_TOC.na_if_NotMatching.trim,
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
-input_vec_chr.except_TOC.na_if_NotMatching %>% paste0(collapse = "\n") %>% cat("\n")
+input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
+input_vec_chr.except_TOC.na_if_NotMatching.trim %>% paste0(collapse = "\n") %>% cat("\n")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -144,26 +144,26 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     # Read the file content
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
-    input_vec_chr.except_TOC.na_if_NotMatching <- str_subset(
+    input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_subset(
         string = input_vec_chr,
         pattern = RegEx4heading,
         negate = FALSE
     )
     
-    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+    input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
     
-    if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_subset("[a-zA-Z]")
+    if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str_subset("[a-zA-Z]")
     
-    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% 
+    input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
-    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% 
+    input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% 
         str_subset("^# @@ END", negate = TRUE)
 
-    input_vec_chr.except_TOC.na_if_NotMatching = 
+    input_vec_chr.except_TOC.na_if_NotMatching.trim = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            input_vec_chr.except_TOC.na_if_NotMatching,
+            input_vec_chr.except_TOC.na_if_NotMatching.trim,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -173,13 +173,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     } 
     
     if (!is.null(output_path_file)) {
-        writeLines(c(input_vec_chr.except_TOC.na_if_NotMatching, input_vec_chr), con = output_path_file)
+        writeLines(c(input_vec_chr.except_TOC.na_if_NotMatching.trim, input_vec_chr), con = output_path_file)
         message(paste0("Added TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saved to : \n", deparse(output_path_file), "\n"))
     }
     
-    input_vec_chr.except_TOC.na_if_NotMatching %>% paste0(collapse = "\n") %>% cat("\n")
+    input_vec_chr.except_TOC.na_if_NotMatching.trim %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(input_vec_chr.except_TOC.na_if_NotMatching)
+    invisible(input_vec_chr.except_TOC.na_if_NotMatching.trim)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)

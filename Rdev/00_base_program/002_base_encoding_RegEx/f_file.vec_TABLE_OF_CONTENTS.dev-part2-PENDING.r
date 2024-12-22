@@ -309,7 +309,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     
     input_vec_chr.except_TOC = input_vec_chr[!1:length(input_vec_chr) %in% vec_index4TOC] 
 
-    input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
+    input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
         string = input_vec_chr.except_TOC,
         pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
         replacement = "\\1"
@@ -317,7 +317,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
-    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching[!input_vec_chr.except_TOC.na_if_NotMatching == ""]
+    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim[!input_vec_chr.except_TOC.na_if_NotMatching.trim == ""]
     if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
 
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
@@ -333,7 +333,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
-    input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC.na_if_NotMatching)
+    input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC.na_if_NotMatching.trim)
     
     if(add_line_numbers) {
         input_vec_chr.except_TOC.add_new_TOC_as_blank = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!

@@ -132,14 +132,14 @@ input_vec_chr.except_TOC %>% str
 # # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
 #
 #
-# ### input_vec_chr.except_TOC.na_if_NotMatching ====
-# input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
+# ### input_vec_chr.except_TOC.na_if_NotMatching.trim ====
+# input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
 #     string = input_vec_chr.except_TOC,
 #     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
 #     replacement = "\\1"
 # )
-# input_vec_chr.except_TOC.na_if_NotMatching %>% str
-# # > input_vec_chr.except_TOC.na_if_NotMatching %>% str
+# input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
+# # > input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
 # #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
 
@@ -169,7 +169,7 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 # input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
 
 ## :: vec_TABLE_OF_CONTENTS ====
-# vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching %>% na_if("") %>% na.omit()
+# vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim %>% na_if("") %>% na.omit()
 vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
 vec_TABLE_OF_CONTENTS %>% str
 vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
