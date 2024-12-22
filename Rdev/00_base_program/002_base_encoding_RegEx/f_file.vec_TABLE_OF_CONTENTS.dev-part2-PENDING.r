@@ -10,10 +10,10 @@
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.old =                           ...180
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
 # @@ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
-## :: f_file.vec_TABLE_OF_CONTENTS.trim =                               ...246
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
@@ -27,10 +27,10 @@
 ## env0 = env1 
 # @@ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.old =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -109,7 +109,7 @@ input_vec_chr %>% str
 
 ## env0 = env1 ----
 
-# Rdev\00_base_program\002_base_encoding_RegEx\f_file.vec_TABLE_OF_CONTENTS.trim.dev-part1.r
+# Rdev\00_base_program\002_base_encoding_RegEx\f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -124,7 +124,7 @@ input_vec_chr %>% str
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_chr.vec_TABLE_OF_CONTENTS.trim =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS.trim"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
@@ -265,7 +265,7 @@ input_vec_chr.except_TOC.add_new_TOC.add_line_numbers %>% str
 output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
 output_path_file %>% str
 # > output_path_file %>% str
-#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.vec_TABLE_OF_CONTENTS.trim.dev.r-TableOfContents-11874623757f.txt"
+#  chr "C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpuCsi3f\\f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r-TableOfContents-11874623757f.txt"
 
 writeLines(output_vec_chr, con = output_path_file)
 env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
@@ -288,13 +288,13 @@ env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_fi
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL"
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL =  ----  
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.dev.r
-.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL"
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
 .tmp$object = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
@@ -375,23 +375,23 @@ if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CON
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL(cat2console = TRUE)
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE)
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
 
-# env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
-
-
-### "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL() ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
-
-### "f_df.t.tribble_construct.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL() ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+# env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
-### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL() ----
-env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
+### "env1$env.internal.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+
+### "f_df.t.tribble_construct.source.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$")
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("f_df.t.tribble_construct.source.r", level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"))
+
+
+### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL() ----
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  

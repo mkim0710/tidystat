@@ -150,8 +150,8 @@ input_vec_chr %>% dput
 # c("blueberry", "coconut", "", "", "", "", "", "watermelon")
 
 
-## \% env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
-# env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") %>% dput
+## \% env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") ----
+# env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL("env1$env.internal.source.r", RegEx4heading = "^#{1,1}[^#].*(-{4}|={4}) *$") %>% dput
 
 input_vec_chr.SECTION_removed = input_vec_chr
 input_vec_chr.SECTION_extracted = 
@@ -161,7 +161,7 @@ input_vec_chr.SECTION_extracted =
       "# @@ system, environment                                                    ...189", 
       "# @@ f_function, f_expression, f_CodeText                                   ...345", 
       "# @@ f_file, f_URL, f_path                                                  ...792", 
-      "# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.trim.add_TABLE_OF_CONTENTS       ...1549", 
+      "# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC       ...1549", 
       "# ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS      ...1556", 
       "# @@ source()                                                               ...2308", 
       "# ## @ .filename.source.r = \"internal.f_path0.list_path_hierarchy\" |> paste0(\".source.r\")       ...2394", 

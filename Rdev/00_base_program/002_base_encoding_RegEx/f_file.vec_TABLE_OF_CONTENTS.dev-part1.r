@@ -10,10 +10,10 @@
 ## env0 = env1                                                        ...118
 # @@ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.old =                           ...180
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
 # @@ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
-## :: f_file.vec_TABLE_OF_CONTENTS.trim =                               ...246
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
@@ -27,10 +27,10 @@
 ## env0 = env1 
 # @@ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.old =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 # @@ START) function   
 ## ->> Now included in env1$env.internal.source.r 
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL =    
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 
 
@@ -233,7 +233,7 @@ vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
 # #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # # @@ START) function   
 # ## ->> Now included in env1$env.internal.source.r 
-# ## :: f_file.vec_TABLE_OF_CONTENTS.trim.edit_windows_notepad.or_browseURL =    
+# ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =    
 # # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
@@ -266,7 +266,7 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_chr.vec_TABLE_OF_CONTENTS.trim =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.vec_TABLE_OF_CONTENTS.trim"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
