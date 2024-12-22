@@ -82,7 +82,7 @@
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 level4TOC = 2
-RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$")
+RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$")
 RegEx4heading
 # > RegEx4heading
 # [1] "^#{1,2}[^#].*(-{4}|={4}) *$"
@@ -92,6 +92,60 @@ input_vec_chr <- readLines(input_path_file, warn = FALSE)
 input_vec_chr %>% str
 # > input_vec_chr %>% str
 #  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
+
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ START) dev-MH -----  
+## env0 = env1 ----
+
+## :: input_vec_chr.except_TOC ====
+input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r".
+
+
+# RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
+#
+#
+# ### input_vec_chr.except_TOC.na_if_NotMatching.trim ====
+# input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
+#     string = input_vec_chr.except_TOC,
+#     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
+#     replacement = "\\1"
+# )
+# input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
+# # > input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
+# #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
+
+
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
+#  logi [1:37] FALSE TRUE FALSE FALSE FALSE FALSE ...
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
+#    Mode   FALSE    TRUE 
+# logical      27      10 
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
+#  logi [1:37] TRUE FALSE TRUE TRUE TRUE TRUE ...
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
+#    Mode   FALSE    TRUE 
+# logical      10      27 
+
+
+### |> str_extract_all(RegEx4heading) ----
+input_vec_chr.except_TOC %>% str_extract(RegEx4heading) %>% str
+input_vec_chr.except_TOC %>% str_extract(RegEx4heading) %>% na.omit() %>% paste(collapse = "\n") %>% cat()
+
+
+
+
+
+
+
+
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -148,6 +202,11 @@ test_lines <- c(
   "# Another Title ===="
 )
 
+# > RegEx4heading
+# [1]           "^#{1,2}[^#].*(-{4}|={4}) *$"
+#     "^(?!#\\s*#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
+#     "^(?!#\\s*#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
+#       "^(?!# *#)#{1,2} +.*(?:-{4}|={4}) *$"
 regex <- "^(?!#\\s*#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
 
 results <- sapply(test_lines, function(line) {
@@ -174,54 +233,6 @@ data.frame(Line = test_lines, Matches = results)
 
 
 
-
-
-
-
-#_________________________________________________________________________________|----  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev-MH -----  
-## env0 = env1 ----
-
-## :: input_vec_chr.except_TOC ====
-input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r".
-
-
-# RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
-# # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
-#
-#
-# ### input_vec_chr.except_TOC.na_if_NotMatching.trim ====
-# input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
-#     string = input_vec_chr.except_TOC,
-#     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
-#     replacement = "\\1"
-# )
-# input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
-# # > input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
-# #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
-
-
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
-input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
-#  logi [1:37] FALSE TRUE FALSE FALSE FALSE FALSE ...
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
-#    Mode   FALSE    TRUE 
-# logical      27      10 
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
-#  logi [1:37] TRUE FALSE TRUE TRUE TRUE TRUE ...
-# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
-#    Mode   FALSE    TRUE 
-# logical      10      27 
-
-
-### |> str_extract_all(RegEx4heading) ----
-input_vec_chr.except_TOC %>% str_extract(RegEx4heading) %>% str
-input_vec_chr.except_TOC %>% str_extract(RegEx4heading) %>% na.omit() %>% paste(collapse = "\n") %>% cat()
 
 
 
