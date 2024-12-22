@@ -45,7 +45,7 @@ gsub(paste0("[^", regex4path_letters, "]*"), "", grep(paste0("^", regex4winpath)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### |> f_str_RegEx4extract.gsub(split.sep, grep.pattern) -void ----
+### |> f_chr_RegEx4extract.gsub(split.sep, grep.pattern) -void ----
 regex4path_letters = "A-Za-z0-9./\\-"
 regex4winpath = paste0("[A-Z]:[", regex4path_letters, "]*")
 install.packages.zip.warnings |> (function(str) gsub(".*(C\\:[^ ]*) .*", "\\1", str))()
@@ -68,18 +68,18 @@ install.packages.zip.warnings |> str_extract_all(str_replace_all(regex4winpath, 
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### |> f_str_RegEx.gregexpr.regmatches(regex4winpath) ----
+### |> f_chr_RegEx.gregexpr.regmatches(regex4winpath) ----
 # Rdev/00_base_program/f_RegEx.gregexpr.regmatches.dev.r
 regmatches(install.packages.zip.warnings, gregexpr(regex4winpath, install.packages.zip.warnings)) |> deparse(width.cutoff = 500) |> cat("\n")
 # > regmatches(install.packages.zip.warnings, gregexpr(regex4winpath, install.packages.zip.warnings)) |> deparse(width.cutoff = 500) |> cat("\n")
 # list(c("C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll")) 
 
 
-f_str_RegEx.gregexpr.regmatches = function(input_string, RegEx) {
+f_chr_RegEx.gregexpr.regmatches = function(input_string, RegEx) {
     regmatches(input_string, gregexpr(RegEx, input_string)) |> unlist()
 }
 
-vec.path_file = install.packages.zip.warnings |> f_str_RegEx.gregexpr.regmatches(regex4winpath) 
+vec.path_file = install.packages.zip.warnings |> f_chr_RegEx.gregexpr.regmatches(regex4winpath) 
 vec.path_file |> deparse(width.cutoff = 500) |> cat("\n")
 # > vec.path_file |> deparse(width.cutoff = 500) |> cat("\n")
 # c("C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll") 
