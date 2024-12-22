@@ -186,6 +186,7 @@ vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # #|________________________________________________________________________________|#  ----      ...36
 # # @@ END -----                                                              ...37 
 
+### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
 if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 vec_TABLE_OF_CONTENTS %>% str
 vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
@@ -281,12 +282,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
     if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
-
+    
     ## :: vec_TABLE_OF_CONTENTS ====
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
+    vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
     
-    
-    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+    ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
+if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
