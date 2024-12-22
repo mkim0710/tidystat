@@ -39,7 +39,7 @@
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# https://chatgpt.com/g/g-p-676526fc1c848191a84f233bacf2df34-regex/c/67651b58-d21c-800e-9f60-b8d16e9a13a7
+# https://chatgpt.com/g/g-p-676526fc1c848191a84f233bacf2df34-RegEx/c/67651b58-d21c-800e-9f60-b8d16e9a13a7
 # Cf) (?!NegativeLookahead)MainPatternToMatch
 # e.g.) (?!abc)XYZ DOES match "abcXYZ", because when looking at the point of "(", there was no "abc" ahead (after) "(".  → rarely makes sense???
 # e.g.) remove all non-heading lines, when heading lines starts with "# @" 
@@ -58,7 +58,7 @@
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ REFERENCES) ----  
 ## ^(?!NegativeLookahead)MainPatternToMatch ----  
-## https://chatgpt.com/g/g-p-676526fc1c848191a84f233bacf2df34-regex/c/67651b58-d21c-800e-9f60-b8d16e9a13a7
+## https://chatgpt.com/g/g-p-676526fc1c848191a84f233bacf2df34-RegEx/c/67651b58-d21c-800e-9f60-b8d16e9a13a7
 ## e.g.) remove all non-heading lines, when heading lines starts with "# @" 
 ## ^(?!# @).*
 ## DOES match all lines that DOES NOT start with "# @", because when looking at the point of "(", which is at the beginning of a line (^), there should be no "# @" ahead (after) "(".
@@ -208,14 +208,14 @@ test_lines <- c(
   "# Another Title ===="
 )
 
-regex <-           "^#{1,2}[^#].*(?:-{4}|={4}) *$"
-regex <- "^(?!#\\s+#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
-regex <- "^(?!#\\s+#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
-regex <-   "^(?!# +#)#{1,2} +.*(?:-{4}|={4}) *$"
-regex <-    "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
+RegEx <-           "^#{1,2}[^#].*(?:-{4}|={4}) *$"
+RegEx <- "^(?!#\\s+#)#{1,2}[^#].*(?:-{4}|={4})\\s*$"
+RegEx <- "^(?!#\\s+#)#{1,2}\\s+.*(?:-{4}|={4})\\s*$"
+RegEx <-   "^(?!# +#)#{1,2} +.*(?:-{4}|={4}) *$"
+RegEx <-    "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 
 results <- sapply(test_lines, function(line) {
-  grepl(regex, line, perl = TRUE)
+  grepl(RegEx, line, perl = TRUE)
 })
 
 data.frame(Line = test_lines, Matches = results)
