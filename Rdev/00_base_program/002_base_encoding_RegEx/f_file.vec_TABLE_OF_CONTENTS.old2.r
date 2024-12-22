@@ -159,8 +159,8 @@ input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f
 ### |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces ----
 input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
-### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!! ----
-input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
+### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!! ----
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
 input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
 input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # > input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
@@ -201,6 +201,7 @@ vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
 # # @@ END                                                                    ...37 
 
+### vec_TABLE_OF_CONTENTS |> format_BEGINNING_END ====  
 vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
     str_subset("# TABLE OF CONTENTS", negate = TRUE)
 vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
@@ -281,19 +282,20 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     ### |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces ----
     input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
-    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
+    ### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!! ----
+    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
     
     ## :: vec_TABLE_OF_CONTENTS ====
     vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
     
     ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 
+    ### vec_TABLE_OF_CONTENTS |> format_BEGINNING_END ====  
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("@@ END", negate = TRUE)
-
     vec_TABLE_OF_CONTENTS = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",

@@ -232,7 +232,7 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank %>% paste0(collapse = "\n") %>% ca
 #  chr [1:37] "" "" "" "" "" "" "" "" "" ...
 
 # input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = 
-#     input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
+#     input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
 # input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 # input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 
@@ -338,7 +338,7 @@ if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS
     input_vec_chr.except_TOC.add_new_TOC_as_blank = c(rep("", length(vec_TABLE_OF_CONTENTS)), input_vec_chr.except_TOC.na_if_NotMatching.trim)
     
     if(add_line_numbers) {
-        input_vec_chr.except_TOC.add_new_TOC_as_blank = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
+        input_vec_chr.except_TOC.add_new_TOC_as_blank = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
         vec_TABLE_OF_CONTENTS.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank[min(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$")):max(input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which("^##H+ THE END OF TABLE OF CONTENTS H+## *$"))]
     }
     

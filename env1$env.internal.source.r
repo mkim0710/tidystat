@@ -1499,17 +1499,18 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
     input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
-    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
+    ### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!! ----
+    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
 
     vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim |> na_if("") |> na.omit()
     ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
 if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 
+    ### vec_TABLE_OF_CONTENTS |> format_BEGINNING_END ====  
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
     vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% 
         str_subset("@@ END", negate = TRUE)
-
     vec_TABLE_OF_CONTENTS = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
