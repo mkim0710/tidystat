@@ -194,7 +194,7 @@ input_vec_chr.list_SECTION_nonSECTION %>% str
 
 
 ## \% 1nd iteration: vec_TABLE_OF_CONTENTS_without_line_numbers ====
-### input_vec_chr.except_TOC ====
+## :: input_vec_chr.except_TOC ====
 input_vec_chr.except_TOC = input_vec_chr.list_SECTION_nonSECTION$nonSECTION
 input_vec_chr.except_TOC %>% str
 # > input_vec_chr.except_TOC %>% str

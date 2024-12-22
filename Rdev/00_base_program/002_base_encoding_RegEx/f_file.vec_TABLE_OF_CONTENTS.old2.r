@@ -106,7 +106,7 @@ input_vec_chr %>% str
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 ## env0 = env1 ----
 
-### input_vec_chr.except_TOC ====
+## :: input_vec_chr.except_TOC ====
 input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r".
 
 
@@ -275,7 +275,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     # Read the file content
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
-    ### input_vec_chr.except_TOC ====
+    ## :: input_vec_chr.except_TOC ====
 input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r".
 
     # input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
