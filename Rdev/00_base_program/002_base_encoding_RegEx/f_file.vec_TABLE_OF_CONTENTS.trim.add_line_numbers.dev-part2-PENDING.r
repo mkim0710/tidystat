@@ -365,8 +365,29 @@ if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CON
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+# ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+# .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ### (ALIAS) f_file.TableOfContents.edit_windows_notepad.or_browseURL  ----
+# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContents.edit_windows_notepad.or_browseURL")
+# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ### (ALIAS) CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL  ----
+# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL")
+# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ### (ALIAS) TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----
+# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
+# 
+# # ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# # ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC  ----
+# # .tmp$env1_subenv_name = "f"
+# # .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC"
+# # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
+# #     env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
+# # }
+# # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----
+# # env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS")
+
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
