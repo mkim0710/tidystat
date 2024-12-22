@@ -1535,7 +1535,7 @@ if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CON
     }
     if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim
     writeLines(output_vec_chr, con = output_path_file)
-    env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
+    if(edit_windows_notepad.or_browseURL) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
     if(cat2console) vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
     
