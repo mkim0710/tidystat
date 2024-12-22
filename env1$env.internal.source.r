@@ -1485,8 +1485,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # Rdev/00_base_program/002_base_encoding_RegEx/f_chr_RegEx4heading.dev-PENDING.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old3-PENDING.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part2-PENDING.r
+.tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
-.tmp$object = function(
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = (level4TOC == 1), 
@@ -1557,8 +1558,6 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =  ----  
@@ -1587,7 +1586,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     vec_TABLE_OF_CONTENTS.list = list()
     for (i in 1:max.level4TOC) {
         vec_TABLE_OF_CONTENTS.list[[i]] = 
-            env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(
+            env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(
                 input_path_file = input_path_file, 
                 level4TOC = i, RegEx4heading = paste0("^#{1,",i,"}[^#].*(-{4}|={4}) *$"), 
                 remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
@@ -1636,7 +1635,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # .tmp$env1_subenv_name = "f"
 # .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
-#     env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
+#     env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
 # }
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC  ----
