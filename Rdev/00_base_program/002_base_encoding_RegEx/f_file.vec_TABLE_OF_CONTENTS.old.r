@@ -95,7 +95,7 @@ input_vec_chr.except_TOC.na_if_NotMatching <- str_subset(
 )
 input_vec_chr.except_TOC.na_if_NotMatching %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 input_vec_chr.except_TOC.na_if_NotMatching %>% str
 
 if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_subset("[a-zA-Z]")
@@ -150,7 +150,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         negate = FALSE
     )
     
-    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
     
     if (remove_lines_with_no_alphabet) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_subset("[a-zA-Z]")
     

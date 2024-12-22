@@ -1497,7 +1497,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
         replacement = "\\1"
     )
 
-    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
     if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()
 

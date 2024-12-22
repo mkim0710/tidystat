@@ -76,11 +76,11 @@
 
 ## @ Heading 2.1 ----
 
+#_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL() ----
+##@ input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" ----  
 # "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL()
 
-##@ input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" ----  
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 level4TOC = 2
@@ -93,18 +93,15 @@ remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
-# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
-# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
+input_vec_chr <- readLines(input_path_file, warn = FALSE)
+input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
+# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
+# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 ## env0 = env1 ----
-
-input_vec_chr <- readLines(input_path_file, warn = FALSE)
-input_vec_chr %>% str
-# > input_vec_chr %>% str
-#  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
     string = input_vec_chr,
@@ -113,7 +110,7 @@ input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
 )
 input_vec_chr.except_TOC.na_if_NotMatching %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 input_vec_chr.except_TOC.na_if_NotMatching %>% str
 
 input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()
@@ -175,7 +172,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         replacement = "\\1"
     )
 
-    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")
+    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
     if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()
 
