@@ -671,7 +671,7 @@ library(Z.gtsummary.addons)
 ##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-gtsummary_Table1 = trial %>% 
+gtTable1 = trial %>% 
     # select(grade, age, stage) %>% 
     # tbl_summary(by = grade, include = c(age, stage)) %>%
     # tbl_summary(by = grade) %>%
@@ -691,9 +691,9 @@ gtsummary_Table1 = trial %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-gtsummary_Table1 %>% show_header_names
-gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
-gtsummary_Table1 |>
+gtTable1 %>% show_header_names
+gtTable1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
+gtTable1 |>
     print() |> invisible()
 ```
   
@@ -721,7 +721,7 @@ DataSet = DataSet.Date.NA.rmAllNA %>%
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
 env1$env.internal.attach$Sys.time.set_t0()
-gtsummary_Table1 = DataSet %>% 
+gtTable1 = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -745,9 +745,9 @@ gtsummary_Table1 = DataSet %>%
     bold_labels() |>
     italicize_levels()
 env1$env.internal.attach$Sys.time.from_t0()
-gtsummary_Table1 %>% show_header_names
-gtsummary_Table1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
-gtsummary_Table1 |>
+gtTable1 %>% show_header_names
+gtTable1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
+gtTable1 |>
     print() |> invisible()
 ```
   
@@ -962,7 +962,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 
 
 .path4write = env1$path$path1
-.objectname = "gtsummary_Table1"
+.objectname = "gtTable1"
 write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time()
 
 library(flextable)
@@ -973,7 +973,7 @@ for(.packagename in c("remotes", "flexlsx")) {if(!require(.packagename,character
 .wb <- openxlsx2::wb_workbook()
 .wb$add_worksheet(.objectname)
 .wb <- .wb %>% flexlsx::wb_add_flextable(.objectname, .flextable, start_col = 2, start_row = 3)    # offset the table to cell 'C2'
-.wb$save("gtsummary_Table1.flextable.xlsx")
+.wb$save("gtTable1.flextable.xlsx")
 ```
   
   
