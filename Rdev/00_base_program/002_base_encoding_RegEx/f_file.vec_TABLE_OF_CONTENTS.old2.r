@@ -78,7 +78,7 @@
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##@ input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" ----  
+## :: input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" ----  
 # "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL()
 
 # input_path_file = rstudioapi::getSourceEditorContext()$path
@@ -151,17 +151,7 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
 #  chr [1:10] "# TABLE OF CONTENTS ----  " "#_________________________________________________________________________________|----  " "# @@ START) dev -----  " ...
 #  - attr(*, "na.action")= 'omit' int [1:27] 1 3 4 5 6 7 8 9 11 14 ...
-# > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% paste0(collapse = "\n") %>% cat("\n")
-# # TABLE OF CONTENTS ----  
-# #_________________________________________________________________________________|----  
-# # @@ START) dev -----  
-# # ## env0 = env1 ----
-# #_________________________________________________________________________________|----  
-# # @@ START) function -----  
-# ## ->> Not Yet included in env1$env.internal.source.r ----
-# ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
-# #|________________________________________________________________________________|#  ----  
-# # @@ END -----   
+
 
 ### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
 input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
