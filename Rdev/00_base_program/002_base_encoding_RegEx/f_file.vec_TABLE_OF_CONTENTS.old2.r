@@ -265,7 +265,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
-        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, merge_with_input_vec_chr.except_TOC = FALSE, 
+        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE) {
     
     library(stringr)
@@ -289,7 +289,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
     ### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!! ----
-    if(add_line_numbers) input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
+    if(add_line_numbers) {
+        input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
+    } else {
+        input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim    # if not add_line_numbers, just assign to new variable to make the same code work~!! 
+    }
     
     ## :: vec_TABLE_OF_CONTENTS.trim.add_line_numbers ====
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
@@ -343,9 +347,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
+
+input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE)
+input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL()
+
+
 env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL()
 env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(add_line_numbers = FALSE)
-
+env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(merge_with_input_vec_chr.except_TOC = TRUE)
 # env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE)
 
 
