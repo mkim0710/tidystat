@@ -1482,22 +1482,36 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old2.r
-# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_chr_RegEx4heading.dev-PENDING.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old3-PENDING.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part2-PENDING.r
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL"
-.tmp$object = function(input_path_file = rstudioapi::getSourceEditorContext()$path, level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, remove_lines_with_no_alphabet = TRUE, output_path_file = NULL, replace_input_path_file = FALSE, cat2console = FALSE) {
+.tmp$object = function(
+        input_path_file = rstudioapi::getSourceEditorContext()$path, 
+        level4TOC = 2, RegEx4heading = paste0("^#{1,",level4TOC,"}[^#].*(-{4}|={4}) *$"), 
+        remove_lines_with_no_alphabet = TRUE, cat2console = (level4TOC == 1), 
+        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
+        output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
     
     library(stringr)
 
-    # Read the file content
+    ## :: input_vec_chr ====
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
-
+    
+    ## :: input_vec_chr.except_TOC ====
+    input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r".
+    
     # input_vec_chr.except_TOC.na_if_NotMatching.trim <- str_replace_all(
     #     string = input_vec_chr,
     #     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
     #     replacement = "\\1"
     # )
-
-    input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+    
+    ### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
+    input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
+    
+    ### |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces ----
+    input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
     ### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!! ----
     if(add_line_numbers) {
@@ -1505,21 +1519,23 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     } else {
         input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim    # if not add_line_numbers, just assign to new variable to make the same code work~!! 
     }
-
-    vec_TABLE_OF_CONTENTS.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim |> na_if("") |> na.omit()
+    
+    ## :: vec_TABLE_OF_CONTENTS.trim.add_line_numbers ====
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
+    
     ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+    if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
 
-    ### vec_TABLE_OF_CONTENTS.trim |> format_BEGINNING_END ====  
-    vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
+    ### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
         str_subset("# TABLE OF CONTENTS", negate = TRUE)
-    vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
         str_subset("@@ END", negate = TRUE)
-    vec_TABLE_OF_CONTENTS.trim = 
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
             "# TABLE OF CONTENTS ----  ", 
-            vec_TABLE_OF_CONTENTS.trim,
+            vec_TABLE_OF_CONTENTS.trim.add_line_numbers,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
     
@@ -1533,35 +1549,98 @@ if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CON
     } else {
         output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
     }
-    if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim
+    if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
     writeLines(output_vec_chr, con = output_path_file)
     if(edit_windows_notepad.or_browseURL) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
     
-    invisible(vec_TABLE_OF_CONTENTS.trim)
+    invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old2.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_chr_RegEx4heading.dev-PENDING.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old3-PENDING.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part2-PENDING.r
+.tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.NESTED"
+.tmp$object = function(
+        input_path_file = rstudioapi::getSourceEditorContext()$path, 
+        max.level4TOC = 2, 
+        remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
+        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
+        output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = !cat2console) {
+    
+    
+    library(stringr)
+
+    ## :: input_vec_chr ====
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
+    
+    ## :: input_vec_chr.except_TOC ====
+    input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.dev-part1.r".
+    
+    vec_TABLE_OF_CONTENTS.list = list()
+    for (i in 1:max.level4TOC) {
+        vec_TABLE_OF_CONTENTS.list[[i]] = 
+            env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(
+                input_path_file = input_path_file, 
+                level4TOC = i, RegEx4heading = paste0("^#{1,",i,"}[^#].*(-{4}|={4}) *$"), 
+                remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
+                add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
+                output_path_file = NULL, replace_input_path_file = FALSE, edit_windows_notepad.or_browseURL = FALSE
+            )
+    }
+    
+    ## \% unlist(vec_TABLE_OF_CONTENTS.list) --> name `vec_TABLE_OF_CONTENTS.trim.add_line_numbers` so that the same code can be reused ====
+    vec_TABLE_OF_CONTENTS.trim.add_line_numbers = unlist(vec_TABLE_OF_CONTENTS.list)
+    
+    if(replace_input_path_file) {
+        if (!is.null(output_path_file)) {warning("replace_input_path_file == TRUE -> output_path_file will be ignored.")}
+        output_path_file <- input_path_file # Overwrite the original file
+    } 
+    
+    if (!is.null(output_path_file)) {
+        message(paste0("Adding TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saving to : \n", deparse(output_path_file), "\n"))
+    } else {
+        output_path_file = tempfile(paste0(basename(input_path_file),"-TableOfContents-"), fileext = ".txt")
+    }
+    if(merge_with_input_vec_chr.except_TOC) output_vec_chr = c(vec_TABLE_OF_CONTENTS.trim.add_line_numbers, input_vec_chr.except_TOC) else output_vec_chr = vec_TABLE_OF_CONTENTS.trim.add_line_numbers
+    writeLines(output_vec_chr, con = output_path_file)
+    if(edit_windows_notepad.or_browseURL) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file) else paste0("env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
+    
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    
+    invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
+    
+}
+
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### (ALIAS) f_file.TableOfContents.edit_windows_notepad.or_browseURL  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContents.edit_windows_notepad.or_browseURL")
+### (ALIAS) f_file.TableOfContentsNESTED.edit_windows_notepad.or_browseURL  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.TableOfContentsNESTED.edit_windows_notepad.or_browseURL")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### (ALIAS) CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContents.edit_windows_notepad.or_browseURL")
+### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.edit_windows_notepad.or_browseURL  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContentsNESTED.edit_windows_notepad.or_browseURL")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### (ALIAS) TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContents_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
+### (ALIAS) TableOfContentsNESTED_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TableOfContentsNESTED_CurrentSourceEditorContext.edit_windows_notepad.or_browseURL")
+
 # ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC  ----
+# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC  ----
 # .tmp$env1_subenv_name = "f"
-# .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC"
+# .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 #     env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(replace_input_path_file = TRUE, ...)
 # }
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS  ----
-# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS")
+# ### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC  ----
+# env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.str_replace_all.old.ObjectName =  ----  
