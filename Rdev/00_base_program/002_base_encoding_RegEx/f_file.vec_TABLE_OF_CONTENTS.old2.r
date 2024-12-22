@@ -93,8 +93,11 @@ remove_lines_with_no_alphabet = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
+### input_vec_chr ====
 input_vec_chr <- readLines(input_path_file, warn = FALSE)
 input_vec_chr %>% str
+# > input_vec_chr %>% str
+#  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -103,21 +106,79 @@ input_vec_chr %>% str
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 ## env0 = env1 ----
 
-input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
-    string = input_vec_chr,
-    pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
-    replacement = "\\1"
-)
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
+### input_vec_chr.except_TOC ====
+input_vec_chr.except_TOC <- input_vec_chr  # input_vec_chr.except_TOC is actually implemented in "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r". Here, just changing the variable name to input_vec_chr.except_TOC so that the code can be interchangeable with "f_file.vec_TABLE_OF_CONTENTS.dev-part1.r".
 
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
 
-input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC.na_if_NotMatching |> env1$env.internal$f_vec_chr.add_line_numbers()
-input_vec_chr.except_TOC.na_if_NotMatching %>% str
+# RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# # > RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")}
+# # [1] "^(#{1,2}[^#].*(-{4}|={4}) *)?.*"
+#
+#
+# ### input_vec_chr.except_TOC.na_if_NotMatching ====
+# input_vec_chr.except_TOC.na_if_NotMatching <- str_replace_all(
+#     string = input_vec_chr.except_TOC,
+#     pattern = RegEx4heading %>% str_replace("^\\^", "") %>% str_replace("\\$$", "") %>% {paste0("^(",.,")?.*$")},
+#     replacement = "\\1"
+# )
+# input_vec_chr.except_TOC.na_if_NotMatching %>% str
+# # > input_vec_chr.except_TOC.na_if_NotMatching %>% str
+# #  chr [1:290] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching |> na_if("") |> na.omit()
+
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
+input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% str
+#  logi [1:37] FALSE TRUE FALSE FALSE FALSE FALSE ...
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
+#    Mode   FALSE    TRUE 
+# logical      27      10 
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
+#  logi [1:37] TRUE FALSE TRUE TRUE TRUE TRUE ...
+# > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
+#    Mode   FALSE    TRUE 
+# logical      10      27 
+
+
+### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
+#  chr [1:37] NA "# TABLE OF CONTENTS ----  " NA NA NA NA NA NA NA "#_________________________________________________________________________________|----  " NA ...
+# > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
+#  chr [1:10] "# TABLE OF CONTENTS ----  " "#_________________________________________________________________________________|----  " "# @@ START) dev -----  " ...
+#  - attr(*, "na.action")= 'omit' int [1:27] 1 3 4 5 6 7 8 9 11 14 ...
+
+
+input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
+input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
+# > input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
+#  chr [1:37] NA "# TABLE OF CONTENTS ----                                                    ...2" NA NA NA NA NA NA NA ...
+
+
+### vec_TABLE_OF_CONTENTS ====
+vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
 vec_TABLE_OF_CONTENTS %>% str
+vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS %>% str
+#  chr [1:10] "# TABLE OF CONTENTS ----                                                    ...2" ...
+#  - attr(*, "na.action")= 'omit' int [1:27] 1 3 4 5 6 7 8 9 11 14 ...
+# > vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
+# # TABLE OF CONTENTS ----                                                    ...2
+# #_________________________________________________________________________________|----      ...10
+# # @@ START) dev -----                                                       ...12
+# # ## env0 = env1 ----                                                       ...13
+# #_________________________________________________________________________________|----      ...15
+# # @@ START) function -----                                                  ...17
+# ## ->> Not Yet included in env1$env.internal.source.r ----                  ...18
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----           ...19
+# #|________________________________________________________________________________|#  ----      ...36
+# # @@ END -----                                                              ...37 
 
 if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS = vec_TABLE_OF_CONTENTS %>% str_subset("[a-zA-Z]")
 vec_TABLE_OF_CONTENTS %>% str
