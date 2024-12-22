@@ -1752,21 +1752,27 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
 ### (ALIAS) file.edit_windows_vscode.or_browseURL  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.edit_windows_vscode.or_browseURL")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### :: f_URL.open_in_edge_app =  ----  
+### :: f_URL.open_in_edge =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_URL.open_in_edge_app"
+.tmp$objectname = "f_URL.open_in_edge"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
-    if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal.attach$f_URL.open_in_edge_app.printPowerShellCode(URL)}
+    # system(paste0('cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app=',shQuote(URL)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
+    if (Sys.info()["sysname"] == "Windows") {system(paste0('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=',shQuote(URL)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal.attach$f_URL.browse_in_edge_app.printPowerShellCode(URL)}
 }
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+### :: f_URL.browse_in_edge_app =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_URL.browse_in_edge_app"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
+    # system(paste0('cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app=',shQuote(URL)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
+    if (Sys.info()["sysname"] == "Windows") {system(paste0('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=',shQuote(URL)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal.attach$f_URL.browse_in_edge_app.printPowerShellCode(URL)}
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) f_file.browseURL_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.browseURL_in_edge_app")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) browseURL_in_edge_app  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge_app")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) f_file.browse_in_edge_app  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.browse_in_edge_app")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) browse_in_edge_app  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browse_in_edge_app")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) f_file.open_in_edge_app  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.open_in_edge_app")
@@ -1774,12 +1780,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ### (ALIAS) open_in_edge_app  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_in_edge_app")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### ::: f_URL.open_in_edge_app.printRCode =  ----  
+### ::: f_URL.browse_in_edge_app.printRCode =  ----  
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_URL.open_in_edge_app.printRCode"
+.tmp$objectname = "f_URL.browse_in_edge_app.printRCode"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
-    # URL %>% cat('env1$env.internal.attach$f_URL.open_in_edge_app("',.,'")  \n', sep="")
+    # URL %>% cat('env1$env.internal.attach$f_URL.browse_in_edge_app("',.,'")  \n', sep="")
     # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
     URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
 }
@@ -1787,10 +1793,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
 ### (ALIAS) browseURL_in_edge_app.printRCode  ----
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge_app.printRCode")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### ::: f_URL.open_in_edge_app.printPowerShellCode =  ----  
+### ::: f_URL.browse_in_edge_app.printPowerShellCode =  ----  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_URL.open_in_edge_app.printPowerShellCode"
+.tmp$objectname = "f_URL.browse_in_edge_app.printPowerShellCode"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"  \n', sep="")
 }
@@ -1877,8 +1883,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) file.open.system_switch  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.open.system_switch")
+### (ALIAS) f_file.open.system_switch  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.open.system_switch")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) system_switch.file.open  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "system_switch.file.open")
