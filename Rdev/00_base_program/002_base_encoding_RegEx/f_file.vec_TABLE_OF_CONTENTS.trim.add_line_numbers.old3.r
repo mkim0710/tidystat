@@ -135,12 +135,12 @@ input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
 #  logi [1:37] FALSE TRUE FALSE FALSE FALSE FALSE ...
 # > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% summary
 #    Mode   FALSE    TRUE 
-# logical      27      10 
+# logical      28       9 
 # > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% str
 #  logi [1:37] TRUE FALSE TRUE TRUE TRUE TRUE ...
 # > input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
 #    Mode   FALSE    TRUE 
-# logical      10      27 
+# logical       9      28 
 
 
 ### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
@@ -150,8 +150,8 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
 #  chr [1:37] NA "# TABLE OF CONTENTS ----  " NA NA NA NA NA NA NA "#_________________________________________________________________________________|----  " NA ...
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
-#  chr [1:10] "# TABLE OF CONTENTS ----  " "#_________________________________________________________________________________|----  " "# @@ START) dev -----  " ...
-#  - attr(*, "na.action")= 'omit' int [1:27] 1 3 4 5 6 7 8 9 11 14 ...
+#  chr [1:9] "# TABLE OF CONTENTS ----  " "#_________________________________________________________________________________|----  " "# @@ START) dev -----  " ...
+#  - attr(*, "na.action")= 'omit' int [1:28] 1 3 4 5 6 7 8 9 11 13 ...
 
 
 ### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
@@ -192,15 +192,15 @@ if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim.add_line_numbers =
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-#  chr [1:7] "# TABLE OF CONTENTS                                                         ...2" ...
+#  chr [1:6] "# TABLE OF CONTENTS                                                         ...2" ...
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # # TABLE OF CONTENTS                                                         ...2
 # # @@ START) dev                                                             ...12
-# # ## env0 = env1                                                            ...13
 # # @@ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
 # # @@ END                                                                    ...37 
+
 
 ### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
@@ -210,10 +210,9 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_lin
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-#  chr [1:5] "# @@ START) dev                                                             ...12" ...
+#  chr [1:4] "# @@ START) dev                                                             ...12" ...
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # # @@ START) dev                                                             ...12
-# # ## env0 = env1                                                            ...13
 # # @@ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19 
@@ -227,11 +226,12 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers =
     )
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
+#  chr [1:7] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ START) dev                                                             ...12
-# # ## env0 = env1                                                            ...13
 # # @@ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
@@ -365,6 +365,32 @@ input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line
 input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
 input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE)
 input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(merge_with_input_vec_chr.except_TOC = TRUE)
+# > input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(level4TOC = 1)
+# env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f78729f450c.txt")  
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ START) dev                                                             ...12
+# # @@ START) function                                                        ...17
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+# > input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE, add_line_numbers = FALSE)
+# env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f782dd42ac0.txt")  
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ START) dev   
+# # @@ START) function   
+# ## ->> Not Yet included in env1$env.internal.source.r 
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+# > input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(cat2console = TRUE)
+# env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f7847e547ad.txt")  
+# ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# # TABLE OF CONTENTS ----  
+# # @@ START) dev                                                             ...12
+# # @@ START) function                                                        ...17
+# ## ->> Not Yet included in env1$env.internal.source.r                       ...18
+# ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
+# ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+
 
 
 env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL(level4TOC = 1)

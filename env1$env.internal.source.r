@@ -1,93 +1,95 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
-#| ------------------------- < To be covered at .Rprofile >                 ...128
-#| ------------------------- < If .Rprofile not available >                 ...131
-# @@ system, environment                                                    ...189
-# @@ f_function, f_expression, f_CodeText                                   ...345
-# @@ f_file, f_URL, f_path                                                  ...792
-# @@ source()                                                               ...2329
-# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2452
+# @@ system, environment                                                    ...188
+# @@ f_function, f_expression, f_CodeText                                   ...344
+# @@ f_file, f_URL, f_path                                                  ...791
+# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC      ...1632
+# ### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC      ...1639
+# @@ source()                                                               ...2411
+# ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2497
+# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2534
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
-#| ------------------------- < To be covered at .Rprofile >           ...130
-#| ------------------------- < If .Rprofile not available >           ...133
-## .GlobalEnv$.tmp = list()                                           ...150
-## .GlobalEnv$env1 = new.env()                                        ...152
-# @@ system, environment                                              ...191
-## :: get_system_info                                                 ...194
-## :: get_software_versions                                           ...227
-## :: warnings.summary                                                ...238
-## :: warnings.last                                                   ...239
-## :: warnings.last10                                                 ...240
-## :: message_if_VERBOSE                                              ...245
-## :: cat_if_VERBOSE                                                  ...250
-## :: f_env1_subenv_objectname.set_ALIAS                              ...255
-## :: f_environment.list_objectnames.map_get.str                      ...266
-## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        ...289
-## :: f_environment.detach_and_reattach                               ...299
-## :: reattach.env1_f_env.internal.attach                             ...313
-## :: f_environment.attached_search_path.dput                         ...321
-## :: Sys.time.set_t0                                                 ...332
-## :: Sys.time.set_t1                                                 ...337
-# @@ f_function, f_expression, f_CodeText                             ...347
-## :: f_function.load2env.internal                                    ...349
-## :: f_text_function_arguments.identity_mapping                      ...375
-## :: f_condition1.if_null_condition2                                 ...403
-## :: f_expression.eval.withCallingHandlers.attr_warnings.summary     ...415
-## :: f_expression.system.time.round.dput                             ...475
-## :: f_object.get_objectname -PENDING                                ...503
-## :: f_ObjectName.dput.ECHO                                          ...537
-## :: f_ObjectName.get.dput.ECHO                                      ...562
-## :: f_CodeText.ECHO                                                 ...598
-## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                         ...719
-## :: f_CodeTexts.parse.eval.identical                                ...735
-## :: f_TerminalFromRCodeText.ECHO                                    ...763
-## :: f_object.substitute.deparse2objectname                          ...784
-# @@ f_file, f_URL, f_path                                            ...794
-## :: getSourceEditorContext.path_filename_ext                        ...797
-## :: f_path_file.paste0_collapse_if_not_empty                        ...814
-## :: f_path.relative                                                 ...834
-## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext =        ...848
-## :: f_path.file.info                                                ...911
-## :: f_list_df.write_xlsx_table                                      ...960
-## :: f_path.file.info.xlsx                                           ...1010
-## ::OPTION:: f_path.documents.file.info.xlsx                         ...1068
-## :: f_path.DOCs_Rcode.file.info.xlsx                                ...1081
-## :: f_path.size_files =                                             ...1145
-## :: f_path0.list_path_hierarchy =                                   ...1197
-## :: f_vec_path.vec_filename_sans_ext_extended =                     ...1236
-## :: f_vec_path.vec_ext_extended =                                   ...1259
-## :: f_path.df_filename_ext_extended =                               ...1278
-## :: f_path_fileRegEX.rename =                                       ...1317
-## :: f_path.list.files_orphan_nb_html.remove                         ...1388
-## :: f_filename_ext.append_suffix =                                  ...1450
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...1484
-## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC        ...1540
-## :: f_file.str_replace_all.old.ObjectName =                         ...1551
-## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        ...1595
-## @ f_file.edit, f_file.open, f_URL.open                             ...1617
-## :: f_file.system_switch_open                                       ...1756
-## @ f_file.BACKUP, f_path.BACKUP                                     ...1787
-## :: f_filename_ext.createBACKUP                                     ...1789
-## :: f_path_path.BACKUP.overwrite                                    ...1828
-## @ f_git                                                            ...1843
-## :: f_path.is_git_tracked                                           ...1846
-## :: f_file.git_lfs_track_add_f                                      ...1897
-## :: function_name = f_gitattributes.split()                         ...1939
-## @ f_file.save                                                      ...1976
-## :: f_objectname.size.write_rds.git_lfs_track_add_f                 ...1979
-## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       ...2114
-## @ f_file.update                                                    ...2138
-## :: env.internal\$f_file2.compare                                   ...2141
-## :: env.internal\$f_url_destfile.DownloadIfDifferent                ...2178
-# @@ source()                                                         ...2299
-## :: f_sourcePath.execute_if_not_sourced =                           ...2302
-## ::OPTION:: f_sourcePath.execute.force_reload                       ...2361
-# ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2385
-## @ .filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       ...2403
-# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2422
-##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+## .GlobalEnv$.tmp = list()                                                 ...147
+## .GlobalEnv$env1 = new.env()                                              ...149
+# @@ system, environment                                                    ...188
+## :: get_system_info                                                       ...191
+## :: get_software_versions                                                 ...224
+## :: warnings.summary                                                      ...235
+## :: warnings.last                                                         ...236
+## :: warnings.last10                                                       ...237
+## :: message_if_VERBOSE                                                    ...242
+## :: cat_if_VERBOSE                                                        ...247
+## :: f_env1_subenv_objectname.set_ALIAS                                    ...252
+## :: f_environment.list_objectnames.map_get.str                            ...263
+## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        ...286
+## :: f_environment.detach_and_reattach                                     ...296
+## :: reattach.env1_f_env.internal.attach                                   ...310
+## :: f_environment.attached_search_path.dput                               ...318
+## :: Sys.time.set_t0                                                       ...329
+## :: Sys.time.set_t1                                                       ...334
+# @@ f_function, f_expression, f_CodeText                                   ...344
+## :: f_function.load2env.internal                                          ...346
+## :: f_text_function_arguments.identity_mapping                            ...372
+## :: f_condition1.if_null_condition2                                       ...400
+## :: f_expression.eval.withCallingHandlers.attr_warnings.summary           ...412
+## :: f_expression.system.time.round.dput                                   ...472
+## :: f_object.get_objectname -PENDING                                      ...500
+## :: f_ObjectName.dput.ECHO                                                ...534
+## :: f_ObjectName.get.dput.ECHO                                            ...559
+## :: f_CodeText.ECHO                                                       ...595
+## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                               ...716
+## :: f_CodeTexts.parse.eval.identical                                      ...732
+## :: f_TerminalFromRCodeText.ECHO                                          ...760
+## :: f_object.substitute.deparse2objectname                                ...781
+# @@ f_file, f_URL, f_path                                                  ...791
+## :: getSourceEditorContext.path_filename_ext                              ...794
+## :: f_path_file.paste0_collapse_if_not_empty                              ...811
+## :: f_path.relative                                                       ...831
+## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext =        ...845
+## :: f_path.file.info                                                      ...908
+## :: f_list_df.write_xlsx_table                                            ...957
+## :: f_path.file.info.xlsx                                                 ...1008
+## ::OPTION:: f_path.documents.file.info.xlsx                               ...1066
+## :: f_path.DOCs_Rcode.file.info.xlsx                                      ...1079
+## :: f_path.size_files =                                                   ...1143
+## :: f_path0.list_path_hierarchy =                                         ...1195
+## :: f_vec_path.vec_filename_sans_ext_extended =                           ...1234
+## :: f_vec_path.vec_ext_extended =                                         ...1257
+## :: f_path.df_filename_ext_extended =                                     ...1276
+## :: f_path_fileRegEX.rename =                                             ...1315
+## :: f_path.list.files_orphan_nb_html.remove                               ...1386
+## :: f_filename_ext.append_suffix =                                        ...1448
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.edit_windows_notepad.or_browseURL =        ...1482
+## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =                                 ...1562
+# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.NESTED.merge_with_input_vec_chr.except_TOC      ...1632
+# ### (ALIAS) CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC      ...1639
+## :: f_file.str_replace_all.old.ObjectName =                               ...1643
+## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        ...1687
+## @ f_file.edit, f_file.open, f_URL.open                                   ...1709
+## :: f_file.system_switch_open                                             ...1848
+## :: f_file_xls.open_or_browseURL                                          ...1878
+## @ f_file.BACKUP, f_path.BACKUP                                           ...1899
+## :: f_filename_ext.createBACKUP                                           ...1901
+## :: f_path_path.BACKUP.overwrite                                          ...1940
+## @ f_git                                                                  ...1955
+## :: f_path.is_git_tracked                                                 ...1958
+## :: f_file.git_lfs_track_add_f                                            ...2009
+## :: function_name = f_gitattributes.split()                               ...2051
+## @ f_file.save                                                            ...2088
+## :: f_objectname.size.write_rds.git_lfs_track_add_f                       ...2091
+## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       ...2226
+## @ f_file.update                                                          ...2250
+## :: env.internal\$f_file2.compare                                         ...2253
+## :: env.internal\$f_url_destfile.DownloadIfDifferent                      ...2290
+# @@ source()                                                               ...2411
+## :: f_sourcePath.execute_if_not_sourced =                                 ...2414
+## ::OPTION:: f_sourcePath.execute.force_reload                             ...2473
+# ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")       ...2497
+## @ .filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       ...2515
+# \% source( file.path(env1$path$source_base,subpath_filename.source.r) )       ...2534
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .filename.source.r = "env1$env.internal" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
 # # env1$env.internal.dev.r
