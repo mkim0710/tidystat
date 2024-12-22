@@ -157,18 +157,18 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 input_vec_chr.except_TOC.na_if_NotMatching = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading)
 
 ### |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces ----
-input_vec_chr.except_TOC.na_if_NotMatching.trim.trim = input_vec_chr.except_TOC.na_if_NotMatching.trim |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
+input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if_NotMatching |> str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trail spaces. (Caution) This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 
 ### |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!! ----
-input_vec_chr.except_TOC.na_if_NotMatching.trim.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
-input_vec_chr.except_TOC.na_if_NotMatching.trim.trim.add_line_numbers %>% str
-input_vec_chr.except_TOC.na_if_NotMatching.trim.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
-# > input_vec_chr.except_TOC.na_if_NotMatching.trim.trim.add_line_numbers %>% str
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_nuumber~!!
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
 #  chr [1:37] NA "# TABLE OF CONTENTS ----                                                    ...2" NA NA NA NA NA NA NA ...
 
 
 ## :: vec_TABLE_OF_CONTENTS ====
-vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.trim.add_line_numbers %>% na.omit()
+vec_TABLE_OF_CONTENTS = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
 vec_TABLE_OF_CONTENTS %>% str
 vec_TABLE_OF_CONTENTS %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS %>% str
