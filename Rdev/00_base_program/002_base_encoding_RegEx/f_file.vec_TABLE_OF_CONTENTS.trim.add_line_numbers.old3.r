@@ -311,7 +311,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = 
         c(
             "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ",
-            "# TABLE OF CONTENTS ----  ", 
+            paste0("# TABLE OF CONTENTS (level ",level4TOC,") ----  "), 
             vec_TABLE_OF_CONTENTS.trim.add_line_numbers,
             "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
         )
@@ -437,7 +437,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.NESTED"
 .tmp$object = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
-        max.level4TOC = 2, 
+        max.level4TOC = 6, 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
         add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
@@ -461,7 +461,17 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
                 add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
                 output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = FALSE
             )
+        if(i > 1) {
+            if (identical(
+                (vec_TABLE_OF_CONTENTS.list[[i-1]] %>% str_subset("^# TABLE OF CONTENTS", negate = TRUE))
+                , (vec_TABLE_OF_CONTENTS.list[[i]] %>% str_subset("^# TABLE OF CONTENTS", negate = TRUE))
+            )) {
+                vec_TABLE_OF_CONTENTS.list[[i]] = NULL
+                break
+            }
+        }
     }
+    # vec_TABLE_OF_CONTENTS.list = vec_TABLE_OF_CONTENTS.list %>% unique()
     
     ## \% unlist(vec_TABLE_OF_CONTENTS.list) --> name `vec_TABLE_OF_CONTENTS.trim.add_line_numbers` so that the same code can be reused ====
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = unlist(vec_TABLE_OF_CONTENTS.list)
@@ -506,6 +516,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 2, cat2console = TRUE)
+out = input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 6)
 input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(merge_with_input_vec_chr.except_TOC = TRUE)
 
 
