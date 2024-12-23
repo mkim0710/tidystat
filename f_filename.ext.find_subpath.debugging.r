@@ -355,7 +355,11 @@ if("qryCodebookSelect" %in% names (MetaData$tblVarName[[.filename.xlsx]])) {
   
   
 # __________|------  
-# @@ START) Data ----  
+# @@ START) Data Processing ----  
+```{r SYNC-FILES, eval=FALSE, include=FALSE}
+paste0('## ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
+```
+## ->> Now synced to: ""  
   
 ## \$ tblID_gj3_jk.01 =  ----  
 @ assign(DataSetName, read_rds(file.path(.path4read, paste0(DataSetName,".rds")))) 
