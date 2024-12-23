@@ -1,13 +1,24 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ REFERENCES)                                                            #L148
-# @@ DATA) example                                                          #L154
-# @@ START) dev                                                             #L170
-# @@ SOURCE)                                                                #L177
-# @@ START) function                                                        #L211
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L262
-# @@ MetaData                                                               #L267
-# @@ DATA) Read & Check                                                     #L276
+# @@ REFERENCES)                                                            #L159
+# @@ DATA) example                                                          #L165
+# @@ START) dev                                                             #L181
+# @@ SOURCE)                                                                #L188
+# @@ START) function                                                        #L222
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L273
+# @@ MetaData                                                               #L278
+# @@ DATA) Read & Check                                                     #L287
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L159
+# @@ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L165
+# @@ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L181
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L188
+# @@ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L222
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L273
+# @@ MetaData                                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L278
+# @@ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L287
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # default.R
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
