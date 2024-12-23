@@ -232,7 +232,7 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 ## @ DATA) mutate(byVar = ) ----  
 ### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  
 ### ->> Now synced to: "35CodeBook_DS.recode-df_NewDMv3.CensorEND.select971.NR.lbl.fct.recode-pdj.cut.35.Rmd"  
-#### \$ A01_BMI.4bins =  
+#### (STANDARD) \$ A01_BMI.4bins =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.5bins()  
 ```{r DATA-MUTATE-add_BMI, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -301,7 +301,7 @@ options(width=120)
 ```
 
   
-#### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
+#### (CONTINUOUS) \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)

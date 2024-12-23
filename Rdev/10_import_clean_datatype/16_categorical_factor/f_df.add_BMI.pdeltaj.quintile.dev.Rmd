@@ -298,7 +298,7 @@ DS %>% select(matches("BMI")) %>% select(matches("A03")) |> str(max.level = 2, g
 ```
 
   
-#### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
+#### (CONTINUOUS) \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ### # DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
