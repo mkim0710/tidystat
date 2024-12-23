@@ -463,7 +463,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_vec_chr.add_line_numbers"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L, URL4line_numbers = FALSE, prefix4line_numbers = ifelse(!URL4line_numbers, "#L",  paste0("https://github.com/mkim0710/tidystat/blob/master/", env1$f$f_path.relative(rstudioapi::getSourceEditorContext()$path))) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L, URL4line_numbers = FALSE, prefix4line_numbers = ifelse(!URL4line_numbers, "#L",  paste0("https://github.com/mkim0710/tidystat/blob/master/", env1$f$f_path.relative(rstudioapi::getSourceEditorContext()$path)))) {
     input_vec_chr = 
         ifelse(
             is.na(input_vec_chr) | input_vec_chr == "", input_vec_chr, 
