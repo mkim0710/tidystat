@@ -1563,7 +1563,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$objectname = "f_file.vec_TABLE_OF_CONTENTS.NESTED"
 .tmp$object = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
-        max.level4TOC = 2, 
+        max.level4TOC = 6, 
         remove_lines_with_no_alphabet = TRUE, cat2console = FALSE, 
         add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
@@ -1774,6 +1774,31 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) open_in_edge  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_in_edge")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+#### ::: f_URL.browse_in_edge.printRCode =  ----  
+# # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" "',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_URL.browse_in_edge.printRCode"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
+    # URL %>% cat('env1$env.internal.attach$f_URL.browse_in_edge("',.,'")  \n', sep="")
+    # URL %>% cat("if (.Platform$OS.type == 'windows') { 'cmd /C \"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" \"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
+    # URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" "',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
+    URL %>% cat("if (.Platform$OS.type == 'windows') { 'cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe \"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) browseURL_in_edge.printRCode  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge.printRCode")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+#### ::: f_URL.browse_in_edge.printPowerShellCode =  ----  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_URL.browse_in_edge.printPowerShellCode"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
+    URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe "',.,'"  \n', sep="")
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) browseURL_in_edge.printPowerShellCode  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge.printPowerShellCode")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### :: f_URL.browse_in_edge_app =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1794,21 +1819,22 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) open_in_edge_app  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_in_edge_app")
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### ::: f_URL.browse_in_edge_app.printRCode =  ----  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+#### ::: f_URL.browse_in_edge_app.printRCode =  ----  
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.browse_in_edge_app.printRCode"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
     # URL %>% cat('env1$env.internal.attach$f_URL.browse_in_edge_app("',.,'")  \n', sep="")
-    # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
-    URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
+    # URL %>% cat("if (.Platform$OS.type == 'windows') { 'cmd /C \"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
+    # URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
+    URL %>% cat("if (.Platform$OS.type == 'windows') { 'cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### (ALIAS) browseURL_in_edge_app.printRCode  ----
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge_app.printRCode")
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### ::: f_URL.browse_in_edge_app.printPowerShellCode =  ----  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+#### ::: f_URL.browse_in_edge_app.printPowerShellCode =  ----  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_URL.browse_in_edge_app.printPowerShellCode"
