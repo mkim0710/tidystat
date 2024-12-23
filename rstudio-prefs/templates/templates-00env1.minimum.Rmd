@@ -1,18 +1,18 @@
 ---
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ REFERENCES)                                                            ...232
-# @@ DATA) example                                                          ...241
-# @@ START) dev                                                             ...261
-# @@ SOURCE)                                                                ...296
-# @@ START) function                                                        ...338
-# @@ MetaData) Read & Check                                                 ...387
-# @@ DATA) Read & Check                                                     ...457
-# @@ ANALYSIS) (Breif) byVar =                                              ...623
-# @@ DATA) mutate()                                                         ...629
-# @@ DATA) filter() -> New DS                                               ...660
-# @@ DATA) select(matches(VarName.suffix.regex))                            ...693
-# @@ ANALYSIS) byVar =                                                      ...707
+# @@ REFERENCES)                                                            #L232
+# @@ DATA) example                                                          #L241
+# @@ START) dev                                                             #L261
+# @@ SOURCE)                                                                #L296
+# @@ START) function                                                        #L338
+# @@ MetaData) Read & Check                                                 #L387
+# @@ DATA) Read & Check                                                     #L457
+# @@ ANALYSIS) (Breif) byVar =                                              #L623
+# @@ DATA) mutate()                                                         #L629
+# @@ DATA) filter() -> New DS                                               #L660
+# @@ DATA) select(matches(VarName.suffix.regex))                            #L693
+# @@ ANALYSIS) byVar =                                                      #L707
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
