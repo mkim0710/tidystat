@@ -519,7 +519,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ MetaData ----  
+# @@ MetaData) read & check ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ## .GlobalEnv$MetaData = list() ====  
 env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
