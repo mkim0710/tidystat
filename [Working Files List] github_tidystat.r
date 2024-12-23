@@ -381,6 +381,15 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 # ~/github_tidystat/git/f_gitattributes.update_non_lfs.dev.Rmd
 # ~/github_tidystat/Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+#@ 2024-12-23 -----
+# ~/github_tidystat/git/f_gitattributes.update_non_lfs.dev.Rmd
+# ~/github_tidystat/.gitattributes
+# ~/github_tidystat/.lfs.gitattributes
+# ~/github_tidystat/.non_lfs.gitattributes
+# ~/github_tidystat/Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
+# ~/github_tidystat/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
+
 
 
 ##________________________________________________________________________________  
