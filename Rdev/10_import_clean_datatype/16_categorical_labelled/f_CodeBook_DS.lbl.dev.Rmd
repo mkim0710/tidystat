@@ -610,7 +610,7 @@ env0 = env1
 
 
 ## @ MetaData) Variables: demographics ----  
-### \% VarCategory \%in\% c("일반사항", "일반정보")  
+### # VarCategory \%in\% c("일반사항", "일반정보")  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("일반사항", "일반정보")) |> 
