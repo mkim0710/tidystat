@@ -199,7 +199,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ```
 ## ->> Now synced to: ""  
 # __________|------  
-## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds  
+## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode.rds  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
   
@@ -208,12 +208,12 @@ options(width=120)
 # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 .path4read = paste0(env1$path$path1,"/data")
-DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds" |> str_replace("\\.rds$", "")
+DataSetName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.rds" |> str_replace("\\.rds$", "")
 assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
 
-# df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+# df_NewDMv3.CensorEND.n88.select293.NR.recode |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
 
-df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> str_subset("^A0[01]") |> paste0(collapse = ",  \n") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+df_NewDMv3.CensorEND.n88.select293.NR.recode |> names() |> str_subset("^A0[01]") |> paste0(collapse = ",  \n") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
 
 ```
 
@@ -221,7 +221,7 @@ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> str_subset("^
 ## \$ DataSet =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-DataSet = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
+DataSet = df_NewDMv3.CensorEND.n88.select293.NR.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
     rownames_to_column() 
 DataSet |> str(max.level = 2, give.attr = TRUE)

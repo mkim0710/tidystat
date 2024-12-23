@@ -350,7 +350,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## ->> Now synced to: ""  
 # __________|------  
 
-## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode  
+## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode  
 ### @ VarName.suffix.regex = "A0[0-2]"
 ### :: DataSet.DNR = get(DataSetName) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
@@ -358,8 +358,8 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030")
-# .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NA.rmAllNA.recode")
-DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode"
+# .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NR.recode")
+DataSetName = "df_NewDMv3.CensorEND.n88.select293.NR.recode"
 # paste0(.path4read,"/",DataSetName,".rds") |> env1$f$f_DataSet_path_filename_ext.read.checkEntity()
 
 env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))
@@ -964,11 +964,11 @@ for (i.suffix in c(".lbl", ".lbl.fct")) {
 
 ```
   
-    df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.lbl |> write_rds('/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.lbl.rds.xz', compress = 'xz', compression = 9L) |> system.time()  
-    env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.lbl')  
+    df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl |> write_rds('/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.rds.xz', compress = 'xz', compression = 9L) |> system.time()  
+    env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl')  
         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-    df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.lbl.fct |> write_rds('/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.lbl.fct.rds.xz', compress = 'xz', compression = 9L) |> system.time()  
-    env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.lbl.fct')  
+    df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct |> write_rds('/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct.rds.xz', compress = 'xz', compression = 9L) |> system.time()  
+    env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct')  
         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
