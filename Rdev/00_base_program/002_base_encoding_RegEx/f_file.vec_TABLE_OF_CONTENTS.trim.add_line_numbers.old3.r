@@ -188,7 +188,7 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat(
 # # @@ END                                                                    ...37 
 
 ### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
-if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset(paste0("[a-zA-Z]{2,}",ifelse(add_line_numbers,".*#","")))    # remove_lines_with_no_2alphabet_word (if add_line_numbers, before #)  
+if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset(paste0("[a-zA-Z]{2,}",ifelse(add_line_numbers,ifelse(URL4line_numbers,".*http",".*#L"),"")))    # remove_lines_with_no_2alphabet_word (if add_line_numbers, before #)  
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
@@ -301,7 +301,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
     
     ### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
-    if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset(paste0("[a-zA-Z]{2,}",ifelse(add_line_numbers,".*#","")))    # remove_lines_with_no_2alphabet_word (if add_line_numbers, before #)  
+    if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset(paste0("[a-zA-Z]{2,}",ifelse(add_line_numbers,ifelse(URL4line_numbers,".*http",".*#L"),"")))    # remove_lines_with_no_2alphabet_word (if add_line_numbers, before #)  
 
     ### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
