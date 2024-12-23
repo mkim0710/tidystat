@@ -237,7 +237,7 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 options(width=120)
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_df.add_BMI.5bins" |> paste0(".source.r") |> source() ----  
+## @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
 .filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
 env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
@@ -281,8 +281,7 @@ options(width=120)
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.deltaT0 =  ----
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
 DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)

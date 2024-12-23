@@ -237,7 +237,7 @@ DS |> str(max.level = 2, give.attr = TRUE)
 options(width=120)
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_df.add_BMI.5bins" |> paste0(".source.r") |> source() ----  
+## @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
 .filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
 env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
