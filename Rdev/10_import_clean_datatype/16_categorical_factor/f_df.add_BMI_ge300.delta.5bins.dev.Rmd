@@ -230,7 +230,7 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 
 # __________|------  
 ## @ DATA) mutate(byVar = ) ----  
-### @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  
+### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  
 ### ->> Now synced to: "35CodeBook_DS.recode-df_NewDMv3.CensorEND.select971.NR.lbl.fct.recode-pdj.cut.35.Rmd"  
 #### \$ A01_BMI.4bins =  
 ##### \% f_df.add_BMI_calculated()  
@@ -239,7 +239,7 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 options(width=120)
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
+### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
 .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
 .filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
 env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
@@ -259,7 +259,7 @@ DS.DNR.lbl.fct %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, gi
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-### @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
+### # DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI"
 i = 2
 DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -280,7 +280,7 @@ DS.DNR %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 
 #### \$ A03_BMI.delta2 =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-### @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
+### # DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI"
 i = 3
 DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -301,7 +301,7 @@ DS.DNR %>% select(matches("BMI")) %>% select(matches("A03")) |> str(max.level = 
 #### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-### @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
+### # DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
 DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -326,7 +326,7 @@ DS.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 
 ##### \% f_df.add_VarNameT.pdeltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-### @ DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
+### # DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
 DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
