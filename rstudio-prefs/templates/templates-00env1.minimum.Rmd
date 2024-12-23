@@ -647,6 +647,20 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname
   
   
 # __________|------  
+# @@ DATA) select(matches(VarName.suffix.regex)) ----  
+## @ VarName.suffix.regex = 
+## :: get(DataSetName2.recode.filter.n) |> select(matches(VarName.suffix.regex))
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+get(DataSetName2.recode.filter.n) |> names() |> env1$env.internal.attach$deparse.cat0()
+VarName.suffix.regex = get(DataSetName2.recode.filter.n) |> names() |> paste0(collapse="|")
+VarName.suffix.regex |> dput()
+DataSetName2.recode.filter.n.select = paste0(DataSetName2.recode.filter.n,"select",ncol(get(DataSetName2.recode.filter.n) |> names() |> str_subset(VarName.suffix.regex)))
+assign(  DataSetName2.recode.filter.n.select, get(DataSetName2.recode.filter.n) |> select(matches(VarName.suffix.regex))  )
+get(DataSetName2.recode.filter.n.select) |> str(max.level = 2, give.attr = TRUE)
+```
+  
+  
+# __________|------  
 # @@ ANALYSIS) byVar =  ----  
 ## @ ANALYSIS) byVar, Table1 ----  
 ### \$ 
