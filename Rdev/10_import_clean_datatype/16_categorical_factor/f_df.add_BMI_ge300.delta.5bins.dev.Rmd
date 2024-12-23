@@ -464,7 +464,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
   
   
-#### \$ A0{1+j}_BMI.pdeltaj.quintile =  
+#### (VOID) \$ A0{1+j}_BMI.pdeltaj.quintile =  
 ## \% f_df.add_RegExVars.quintile_factor ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
