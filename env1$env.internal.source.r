@@ -1524,7 +1524,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 
     ### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
-        str_subset("# TABLE OF CONTENTS", negate = TRUE)
+        str_subset("^# TABLE OF CONTENTS", negate = TRUE)
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
         str_subset("@@ END", negate = TRUE)
     vec_TABLE_OF_CONTENTS.trim.add_line_numbers = 
