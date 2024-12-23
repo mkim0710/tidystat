@@ -298,6 +298,9 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 # }
 .tmp$object = function(vec, space_between_vec_elements="  \n  ", sep_parentheses = FALSE, end_of_text = "  \n") {
     if(space_between_vec_elements=="  \n  " && sep_parentheses == FALSE && end_of_text == "  \n") {
+        # paste0('"',vec,'"  \n') |> cat(sep="")
+        # paste0('"',vec,'"') |> paste0(collapse=', ') %>% {cat('c(',.,')  \n', sep="")}
+        # paste0('"',vec,'"') |> paste0(collapse=',  \n  ') %>% {cat('c(',.,')  \n', sep="")}
         vec |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}  # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
     } else {
         env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
