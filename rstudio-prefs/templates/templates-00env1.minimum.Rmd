@@ -617,11 +617,31 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
   
 # __________|------  
 # @@ DATA) filter() -> New DataSet ----  
-## :: DataSet0 = DataSet
+## :: DataSet1.recode = DataSet.Date.NA.rmAllNA.lbl_pending.fct.recode
+## :: DataSetName1.recode.n = paste0(DataSetName,".Date",".NA",".rmAllNA",".lbl_pending",".fct",".recode",".n",nrow(DataSet1))
+## :: DataSetName1.recode.n = paste0(DataSetName,".DNR","".lbl_pending",".fct",".recode",".n",nrow(DataSetName1.recode.n))
 ### \% DataSet |> 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
+```
+  
+  
+## :: DataSet2.recode.filter = DataSet1.recode |> filter(!!rlang::sym(.InclusionCriteria) == TRUE & !!rlang::sym(.ExclusionCriteria) == FALSE)
+## :: DataSetName2.recode.filter.n = paste0(DataSetName,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DataSet2.recode.filter))  
+```{r DataSet2-recode-filter-n-writeRDS-NoEvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+.objectname = "DataSetName1.recode.n"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="")
+cat("*** Old DataSetName = ", deparse(DataSetName), "  \n", sep="")
+##________________________________________________________________________________  
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+DataSet2.recode.filter = DataSet1.recode |> filter(!!rlang::sym(.InclusionCriteria) == TRUE & !!rlang::sym(.ExclusionCriteria) == FALSE)
+DataSetName2.recode.filter.n = paste0(DataSetName,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DataSet2.recode.filter))  
+assign(DataSetName2.recode.filter.n, DataSet2.recode.filter)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+.objectname = "DataSetName2.recode.filter.n"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="")
+assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+.path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
 ```
   
   
