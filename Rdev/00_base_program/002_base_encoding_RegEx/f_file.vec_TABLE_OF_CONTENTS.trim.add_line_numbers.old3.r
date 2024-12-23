@@ -364,7 +364,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(level4TOC = 1)
 input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, add_line_numbers = FALSE)
 input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE)
-input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(merge_with_input_vec_chr.except_TOC = TRUE)
+# input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(merge_with_input_vec_chr.except_TOC = TRUE)
 # > input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(level4TOC = 1)
 # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f78729f450c.txt")  
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
@@ -393,24 +393,24 @@ input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line
 
 
 
-env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(level4TOC = 1)
-env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, add_line_numbers = FALSE)
-env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE)
-env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(merge_with_input_vec_chr.except_TOC = TRUE)
-# env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(replace_input_path_file = TRUE)
-
-
-### "env1$env.internal.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT() ----
-"env1$env.internal.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, level4TOC = 1)
-"env1$env.internal.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = FALSE, level4TOC = 2)
-
-### "f_df.t.tribble_construct.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT() ----
-"f_df.t.tribble_construct.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, level4TOC = 1)
-"f_df.t.tribble_construct.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = FALSE, level4TOC = 2)
-
-
-### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT() ----
-env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
+# env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(level4TOC = 1)
+# env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, add_line_numbers = FALSE)
+# env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE)
+# env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(merge_with_input_vec_chr.except_TOC = TRUE)
+# # env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(replace_input_path_file = TRUE)
+# 
+# 
+# ### "env1$env.internal.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT() ----
+# "env1$env.internal.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, level4TOC = 1)
+# "env1$env.internal.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = FALSE, level4TOC = 2)
+# 
+# ### "f_df.t.tribble_construct.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT() ----
+# "f_df.t.tribble_construct.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, level4TOC = 1)
+# "f_df.t.tribble_construct.source.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = FALSE, level4TOC = 2)
+# 
+# 
+# ### "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT() ----
+# env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT("Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r")
 
 
 
@@ -516,12 +516,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r"
 input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 2, cat2console = TRUE)
-out = input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 6)
+out = input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 6, cat2console = TRUE)
 input_path_file %>% env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(merge_with_input_vec_chr.except_TOC = TRUE)
 
 
 env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 2, cat2console = TRUE)
-env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(merge_with_input_vec_chr.except_TOC = TRUE)
+# env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(merge_with_input_vec_chr.except_TOC = TRUE)
 # env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(replace_input_path_file = TRUE)
 
 
