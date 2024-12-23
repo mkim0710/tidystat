@@ -255,7 +255,7 @@ DS.DNR.lbl.fct %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, gi
 ```
 
 
-#### \$ A02_BMI_ge300.delta =  
+#### (VOID) \$ A02_BMI_ge300.delta =  
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
