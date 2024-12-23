@@ -261,7 +261,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "05Co
 
   
 # __________|------  
-# @@ MetaData) read & check ----  
+# @@ MetaData) Read & Check ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ## .GlobalEnv$MetaData = list() ====  
 env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")

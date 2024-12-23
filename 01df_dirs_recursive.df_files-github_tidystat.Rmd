@@ -285,7 +285,7 @@ files.selected %>% dput
   
   
 # __________|------  
-# @@ MetaData) read & check ----  
+# @@ MetaData) Read & Check ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ## .GlobalEnv$MetaData = list() ====  
 env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
@@ -355,7 +355,7 @@ MetaData |> str(max.level = 2, give.attr = TRUE)
   
   
 # __________|------  
-#@@ DATA) read & check -----
+#@@ DATA) Read & Check -----
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
