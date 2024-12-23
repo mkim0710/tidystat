@@ -1,5 +1,5 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
-# TABLE OF CONTENTS ----  
+# TABLE OF CONTENTS (level 1) ----  
 # @@ START) source                                                          ...135
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   ...166
 # @@ env1\$f\$f_object                                                      ...189
@@ -16,13 +16,12 @@
 # ls.str(env1$env.internal) #                                               ...1422
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
-# TABLE OF CONTENTS ----  
+# TABLE OF CONTENTS (level 2) ----  
 ## env1\$path                                                               ...123
 # @@ START) source                                                          ...135
 ## @ .subpath, .filename.source.r                                           ...136
 ## env1 = env0                                                              ...160
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   ...166
-## .GlobalEnv$.tmp = list()                                                 ...173
 ## .GlobalEnv$env1 = new.env()                                              ...175
 # @@ env1\$f\$f_object                                                      ...189
 ## :: str_max_level1 =                                                      ...191
