@@ -1859,6 +1859,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
 #### (ALIAS) browseURL_in_edge_app.printPowerShellCode  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "browseURL_in_edge_app.printPowerShellCode")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_URL.browse_in_brave -PENDING  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_URL.browse_in_edge"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(URL) {
+    if (Sys.info()["sysname"] == "Windows") {system(paste0('cmd /C "C:/Users/mkim0/AppData/Local/BraveSoftware/Brave-Browser/Application/brave.exe" ',shQuote(URL)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL)}
+}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
 .tmp$env1_subenv_name = "env.internal.attach"
