@@ -729,9 +729,9 @@ vec_lbl_age %>% as_factor
 
 
 
+# __________|------  
+## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") ----
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
-    # __________|------  
-    ## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
         # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
