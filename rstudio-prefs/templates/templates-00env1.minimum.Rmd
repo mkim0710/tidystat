@@ -620,7 +620,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## :: DataSet1.recode = DataSet.Date.NA.rmAllNA.lbl_pending.fct.recode
 ## :: DataSetName1.recode.n = paste0(DataSetName,".Date",".NA",".rmAllNA",".lbl_pending",".fct",".recode",".n",nrow(DataSet1))
 ## :: DataSetName1.recode.n = paste0(DataSetName,".DNR","".lbl_pending",".fct",".recode",".n",nrow(DataSetName1.recode.n))
-### \% DataSet |> 
+### \% DataSet1.recode |> 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
