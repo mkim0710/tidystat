@@ -616,6 +616,16 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
   
   
 # __________|------  
+# @@ DATA) filter() -> New DataSet ----  
+## :: DataSet0 = DataSet
+### \% DataSet |> 
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
 # @@ ANALYSIS) byVar =  ----  
 ## @ ANALYSIS) byVar, Table1 ----  
 ### \$ 
