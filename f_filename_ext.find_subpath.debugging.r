@@ -440,9 +440,9 @@ DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date) |> m
 for (.value4NA in .vec_value4NA) {
     DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
-DSN.DNR = DSN.Date.NA |> paste0(".rmAllNA"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
+DSN.DNR = paste0(DSN,".DNR"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
 cat(" dim(",DSN.Date,") == ",deparse(dim(get(DSN.Date))),"  \n", sep="") 
-cat(" dim(",DSN.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+cat(" dim(",DSN.DNR,") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
 DS.DNR = get(DSN.DNR)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 "get(DSN.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
@@ -539,14 +539,14 @@ cat(" > ",".varname4outcome.geMed = ",deparse(paste0(.varname4outcome,".geMed"))
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
 get(DSN.Date.NA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+cat(" > ",DSN.DNR," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
 get(DSN.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
 if(nlevels(get(DSN.DNR)[.varname4outcome]) < 20) {
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    cat(" > ",DSN.Date,".NA",".rmAllNA","$",.varname4outcome,' |> table(useNA="always") |> addmargins()',"  \n", sep=""); get(DSN.DNR)[.varname4outcome] |> table(useNA="always") |> addmargins()
+    cat(" > ",DSN.DNR,"$",.varname4outcome,' |> table(useNA="always") |> addmargins()',"  \n", sep=""); get(DSN.DNR)[.varname4outcome] |> table(useNA="always") |> addmargins()
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 which_row.NotEqual = get(DSN.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
@@ -556,7 +556,7 @@ which_row.NotEqual %>% {cat(" > ","dput(",deparse(substitute(.)),") == ",deparse
 cat(" > ",DSN," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
 get(paste0(DSN)) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     rownames_to_column() |> slice(which_row.NotEqual) 
-cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
+cat(" > ",DSN.DNR," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
 get(DSN.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |>
     rownames_to_column() |> slice(which_row.NotEqual) 
 ```
@@ -574,7 +574,7 @@ cat(" > ","varname.regex4measures = ",deparse(varname.regex4measures),"  \n", se
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(varname.regex4measures))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
 get(DSN.Date.NA) |> dplyr::select(matches(varname.regex4measures)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4measures))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+cat(" > ",DSN.DNR," |> dplyr::select(matches(varname.regex4measures))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
 get(DSN.DNR) |> dplyr::select(matches(varname.regex4measures)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
@@ -592,7 +592,7 @@ cat(" > ","varname.regex4labs = ",deparse(varname.regex4labs),"  \n", sep="")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(varname.regex4labs))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
 get(DSN.Date.NA) |> dplyr::select(matches(varname.regex4labs)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4labs))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+cat(" > ",DSN.DNR," |> dplyr::select(matches(varname.regex4labs))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
 get(DSN.DNR) |> dplyr::select(matches(varname.regex4labs)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
@@ -610,7 +610,7 @@ cat(" > ","varname.regex4lifestyle = ",deparse(varname.regex4lifestyle),"  \n", 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
 get(DSN.Date.NA) |> dplyr::select(matches(varname.regex4lifestyle)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+cat(" > ",DSN.DNR," |> dplyr::select(matches(varname.regex4lifestyle))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
 get(DSN.DNR) |> dplyr::select(matches(varname.regex4lifestyle)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
@@ -624,12 +624,12 @@ get(DSN.DNR) |> dplyr::select(matches(varname.regex4lifestyle)) |>
 options(width=120)
 ##________________________________________________________________________________  
 .t0 = Sys.time()
-DSN.DNR.lbl_pending.fct = paste0(DSN.Date,".NA",".rmAllNA",".fct"); cat(" > ",DSN.DNR.lbl_pending.fct," = ",DSN.DNR," |> mutate_if(is.character, as.factor)","  \n", sep=""); DSN.DNR = DSN.Date.NA |> paste0(".rmAllNA"); assign( DSN.DNR.lbl_pending.fct, get(DSN.DNR) |> mutate_if(is.character, as.factor) )
+DSN.DNR.lbl_pending.fct = paste0(DSN.DNR,".fct"); cat(" > ",DSN.DNR.lbl_pending.fct," = ",DSN.DNR," |> mutate_if(is.character, as.factor)","  \n", sep=""); DSN.DNR = paste0(DSN,".DNR"); assign( DSN.DNR.lbl_pending.fct, get(DSN.DNR) |> mutate_if(is.character, as.factor) )
 Sys.time() - .t0
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 cat(" > ","dim(",DSN,") == ",deparse(dim(get(DSN))),"  \n", sep="") 
-cat(" > ","dim(",DSN.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
-cat(" > ","dim(",DSN.Date,".NA",".rmAllNA",".fct",") == ",deparse(dim(get(DSN.DNR.lbl_pending.fct))),"  \n", sep="") 
+cat(" > ","dim(",DSN.DNR,") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+cat(" > ","dim(",DSN.DNR,".fct",") == ",deparse(dim(get(DSN.DNR.lbl_pending.fct))),"  \n", sep="") 
 ```
   
   

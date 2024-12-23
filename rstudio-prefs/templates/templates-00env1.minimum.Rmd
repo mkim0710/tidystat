@@ -572,9 +572,9 @@ DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date) |> m
 for (.value4NA in .vec_value4NA) {
     DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
-DSN.DNR = DSN.Date.NA |> paste0(".rmAllNA"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
+DSN.DNR = paste0(DSN,".DNR"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
 cat(" dim(",DSN.Date,") == ",deparse(dim(get(DSN.Date))),"  \n", sep="") 
-cat(" dim(",DSN.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+cat(" dim(",DSN.DNR,") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
 DS.DNR = get(DSN.DNR)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 "get(DSN.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
@@ -595,8 +595,8 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "ADS_time2event.NR |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); 
 DSN.Date.NA = DSN.Date |> paste0(".NA"); 
-DSN.DNR = paste0(DSN.Date,".NA",".rmAllNA"); 
-DSN.DNR.lbl_pending.fct = paste0(DSN.Date,".NA",".rmAllNA",".fct"); 
+DSN.DNR = paste0(DSN.DNR); 
+DSN.DNR.lbl_pending.fct = paste0(DSN.DNR,".fct"); 
 "assign( DSN.DNR.lbl_pending.fct, get(DSN.DNR) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); 
 "get(DSN.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
@@ -628,7 +628,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 # __________|------  
 # @@ DATA) filter() -> New DS ----  
 ## :: DS1.recode = DS.DNR.lbl_pending.fct.recode
-## :: DSN1.recode.n = paste0(DSN,".Date",".NA",".rmAllNA",".lbl_pending",".fct",".recode",".n",nrow(DS1))
+## :: DSN1.recode.n = paste0(DSN,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DS1))
 ## :: DSN1.recode.n = paste0(DSN,".DNR","".lbl_pending",".fct",".recode",".n",nrow(DSN1.recode.n))
 
 ### \% DS1.recode |> 
