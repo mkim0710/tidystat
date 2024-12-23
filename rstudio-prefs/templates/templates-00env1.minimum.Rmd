@@ -1,20 +1,18 @@
 ---
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# cat(" getwd() == "); dput(getwd()) #                                      ...201
-# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #      ...229
-# @@ REFERENCES)                                                            ...234
-# @@ DATA) example                                                          ...243
-# @@ START) dev                                                             ...263
-# @@ SOURCE)                                                                ...298
-# @@ START) function                                                        ...340
-# @@ MetaData) Read & Check                                                 ...389
-#@@ DATA) Read & Check                                                      ...459
-# @@ ANALYSIS) (Breif) byVar =                                              ...625
-# @@ DATA) mutate()                                                         ...631
-# @@ DATA) filter() -> New DS                                               ...662
-# @@ DATA) select(matches(VarName.suffix.regex))                            ...695
-# @@ ANALYSIS) byVar =                                                      ...709
+# @@ REFERENCES)                                                            ...232
+# @@ DATA) example                                                          ...241
+# @@ START) dev                                                             ...261
+# @@ SOURCE)                                                                ...296
+# @@ START) function                                                        ...338
+# @@ MetaData) Read & Check                                                 ...387
+#@@ DATA) Read & Check                                                      ...457
+# @@ ANALYSIS) (Breif) byVar =                                              ...623
+# @@ DATA) mutate()                                                         ...629
+# @@ DATA) filter() -> New DS                                               ...660
+# @@ DATA) select(matches(VarName.suffix.regex))                            ...693
+# @@ ANALYSIS) byVar =                                                      ...707
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
