@@ -230,7 +230,8 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 
 # __________|------  
 ## @ DATA) mutate(byVar = ) ----  
-### @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
+### @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  
+### ->> Now synced to: "35CodeBook_DS.recode-df_NewDMv3.CensorEND.select971.NR.lbl.fct.recode-pdj.cut.35.Rmd"  
 #### \$ A01_BMI.4bins =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.5bins()  
@@ -244,13 +245,13 @@ options(width=120)
 env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 
 for(i in 1:7) {
-    DS.DNR =
-        DS.DNR %>% 
+    DS.DNR.lbl.fct =
+        DS.DNR.lbl.fct %>% 
         env1$f$f_df.add_BMI_calculated(varname_Height = paste0("A0",i,"_","HEIGHT"), varname_Weight = paste0("A0",i,"_","WEIGHT"), varname_BMI = paste0("A0",i,"_","BMI")) %>% 
         env1$f$f_df.add_BMI.5bins(varname_BMI = paste0("A0",i,"_","BMI"))
 }
 
-DS.DNR %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
+DS.DNR.lbl.fct %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 

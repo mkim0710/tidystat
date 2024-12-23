@@ -230,7 +230,8 @@ DS |> str(max.level = 2, give.attr = TRUE)
 
 # __________|------  
 ## @ DATA) mutate(byVar = ) ----  
-### @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
+### @ DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  
+### ->> Now synced to: "35CodeBook_DS.recode-df_NewDMv3.CensorEND.select971.NR.lbl.fct.recode-pdj.cut.35.Rmd"  
 #### \$ A01_BMI.4bins =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.5bins()  
