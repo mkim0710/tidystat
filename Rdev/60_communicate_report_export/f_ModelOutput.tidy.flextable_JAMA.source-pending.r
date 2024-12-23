@@ -57,7 +57,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # https://chatgpt.com/c/66f444ad-c638-800e-a884-e76216e05329
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
 .tmp$objectname = "f_ModelOutput.tidy.flextable_JAMA"
-.tmp$object  <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
+.tmp$object  <- function(DS, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---

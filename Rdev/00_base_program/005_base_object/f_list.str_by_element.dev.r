@@ -65,26 +65,26 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), 
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
+#   ..$ f_df.add_RegExVars.kbins                      :function (DS.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), 
 #     suffix = paste0(".cut", length(breaks) - 1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
+#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 #     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", "rownum", 
+#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, 
 #     .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, 
 #     VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
-#   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
+#   ..$ f_df.printVars_byMainOutcome                :function (DS, MainOutcome, VarName.selected)  
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DS.DNR.select, DSN4output = "DS", VarNames4Exposure = c("InterventionGroup"), 
 #     output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
@@ -93,7 +93,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
+#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
@@ -143,29 +143,29 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, 
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
+#   ..$ f_df.add_RegExVars.kbins                      :function (DS.DNR, regex_pattern = ".", breaks = c(-Inf, 
 #     -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) - 
 #     1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", 
+#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
+#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
 #     "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), 
 #     BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15, 
 #     print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
-#   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4output = "DataSet", 
+#   ..$ f_df.printVars_byMainOutcome                :function (DS, MainOutcome, VarName.selected)  
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DS.DNR.select, DSN4output = "DS", 
 #     VarNames4Exposure = c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE, 
 #     Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
@@ -175,7 +175,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
+#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
@@ -223,26 +223,26 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, pr"..
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, pr"..
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", br..
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DS.DNR, VarName0, VarNameT, pr"..
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DS.DNR, VarName0, VarNameT, pr"..
+#   ..$ f_df.add_RegExVars.kbins                      :function (DS.DNR, regex_pattern = ".", br..
 #     suffix = paste0(".cut", length(breaks) - 1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.o..
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.o..
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DS.DNR, regex_pattern, factor.o..
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.o..
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, re"..
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c"..
+#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c"..
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 #     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", ""..
+#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", ""..
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, 
 #     .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.name..
 #     VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
-#   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4out"..
+#   ..$ f_df.printVars_byMainOutcome                :function (DS, MainOutcome, VarName.selected)  
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DS.DNR.select, DSN4out"..
 #     output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
@@ -251,7 +251,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/f_expressi"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.check"..
+#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.check"..
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/1"..
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_expo"..
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_expo"..
@@ -301,29 +301,29 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NU..
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA."..
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA."..
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.Date.NA."..
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DS.Date.NA."..
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DS.Date.NA."..
+#   ..$ f_df.add_RegExVars.kbins                      :function (DS.Date.NA."..
 #     -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) - 
 #     1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.r..
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.Date.NA.r..
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DS.Date.NA.r..
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.Date.NA.r..
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_..
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = get"..
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_fil"..
+#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_fil"..
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cuto..
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext"..
+#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext"..
 #     "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), 
 #     BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15, 
 #     print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
-#   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutc..
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA."..
+#   ..$ f_df.printVars_byMainOutcome                :function (DS, MainOutc..
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DS.Date.NA."..
 #     VarNames4Exposure = c("InterventionGroup"), output.sink = FALSE, output.xl..
 #     Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
@@ -333,7 +333,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/"..
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/"..
-#   ..$ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/"..
+#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/"..
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/"..
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/"..
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/"..
@@ -385,35 +385,35 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # sep_parentheses = FALSE, end_of_text = "\n")
 # ..$ f_vec1_vec2.setdiff_list :function (vec1, vec2)
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
-# ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix =
+# ..$ f_df.add_VarNameT.deltaT0 :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix =
 #    ".deltaT0")
-# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix =
+# ..$ f_df.add_VarNameT.pdeltaT0 :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix =
 #    ".pdeltaT0")
-# ..$ f_df.add_RegExVars.kbins :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1,
+# ..$ f_df.add_RegExVars.kbins :function (DS.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1,
 #    -0.05, 0.05, 0.1, Inf),
 # suffix = paste0(".cut", length(breaks) - 1))
-# ..$ f_df.add_RegExVars.quintile_factor :function (DataSet.DNR, regex_pattern, factor.ordered =
+# ..$ f_df.add_RegExVars.quintile_factor :function (DS.DNR, regex_pattern, factor.ordered =
 #    FALSE)
-# ..$ f_df.add_RegExVars.quartile_factor :function (DataSet.DNR, regex_pattern, factor.ordered =
+# ..$ f_df.add_RegExVars.quartile_factor :function (DS.DNR, regex_pattern, factor.ordered =
 #    FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
 # ..$ f_path.size_files :function (.path4read = getwd(), literal_filename = NA, regex4filename =
 #    "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
 # print2console = TRUE, VERBOSE = FALSE)
-# ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID =
+# ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID =
 #    c("rowname", "rownum", "Num", "ID", "CompositeKey",
 # "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE,
 # print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)
-# ..$ f_DataSetName.Search.read.checkEntity :function (DataSetName, ext = "rds", .path4read = c(".", "data"),
+# ..$ f_DSN.Search.read.checkEntity :function (DSN, ext = "rds", .path4read = c(".", "data"),
 #    vec_candidate4ID = c("rowname", "rownum",
 # "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3,
 # .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
 #    print.names.tidyeval = FALSE,
 # VERBOSE = FALSE)
 # ..$ f_df.NotNA_p_df :function (data)
-# ..$ f_df.printVars_byMainOutcome :function (DataSet, MainOutcome, VarName.selected)
-# ..$ f_df.Table1byExposure.xlsx :function (DataSet.DNR.select, DataSetName4output = "DataSet",
+# ..$ f_df.printVars_byMainOutcome :function (DS, MainOutcome, VarName.selected)
+# ..$ f_df.Table1byExposure.xlsx :function (DS.DNR.select, DSN4output = "DS",
 #    VarNames4Exposure = c("InterventionGroup"),
 # output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)
 # $ source :List of 11
@@ -425,8 +425,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 # ..$ f_df.t.tribble_construct.source.r : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr "~/github_tidystat/f_path.size_files.source.r"
-# ..$ f_DataSetName.Search.read.checkEntity.source.r: chr
-#    "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
+# ..$ f_DSN.Search.read.checkEntity.source.r: chr
+#    "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
 # ..$ f_df.NotNA_p_df.source.r : chr
 #    "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 # ..$ f_df.printVars_byMainOutcome.source.r : chr
@@ -484,40 +484,40 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # sep_parentheses = FALSE, end_of_text = "\n")
 # ..$ f_vec1_vec2.setdiff_list :function (vec1, vec2)
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
-# ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.DNR, VarName0,
+# ..$ f_df.add_VarNameT.deltaT0 :function (DS.DNR, VarName0,
 #    VarNameT, prefix = "", suffix = ".deltaT0")
-# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.DNR, VarName0,
+# ..$ f_df.add_VarNameT.pdeltaT0 :function (DS.DNR, VarName0,
 #    VarNameT, prefix = "", suffix = ".pdeltaT0")
-# ..$ f_df.add_RegExVars.kbins :function (DataSet.DNR, regex_pattern =
+# ..$ f_df.add_RegExVars.kbins :function (DS.DNR, regex_pattern =
 #    ".", breaks = c(-Inf,
 # -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) -
 # 1))
-# ..$ f_df.add_RegExVars.quintile_factor :function (DataSet.DNR,
+# ..$ f_df.add_RegExVars.quintile_factor :function (DS.DNR,
 #    regex_pattern, factor.ordered = FALSE)
-# ..$ f_df.add_RegExVars.quartile_factor :function (DataSet.DNR,
+# ..$ f_df.add_RegExVars.quartile_factor :function (DS.DNR,
 #    regex_pattern, factor.ordered = FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
 # ..$ f_path.size_files :function (.path4read = getwd(), literal_filename = NA,
 #    regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
 # print2console = TRUE, VERBOSE = FALSE)
-# ..$ f_DataSet_path_filename_ext.read.checkEntity:function
-#    (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum",
+# ..$ f_DS_path_filename_ext.read.checkEntity:function
+#    (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum",
 # "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff =
 #    120 -
 # 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
 # print.names.tidyeval = FALSE, VERBOSE = FALSE)
-# ..$ f_DataSetName.Search.read.checkEntity :function (DataSetName, ext = "rds",
+# ..$ f_DSN.Search.read.checkEntity :function (DSN, ext = "rds",
 #    .path4read = c(".", "data"), vec_candidate4ID = c("rowname",
 # "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"),
 # BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15,
 # print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
 # print.names.tidyeval = FALSE, VERBOSE = FALSE)
 # ..$ f_df.NotNA_p_df :function (data)
-# ..$ f_df.printVars_byMainOutcome :function (DataSet, MainOutcome,
+# ..$ f_df.printVars_byMainOutcome :function (DS, MainOutcome,
 #    VarName.selected)
-# ..$ f_df.Table1byExposure.xlsx :function (DataSet.DNR.select,
-#    DataSetName4output = "DataSet",
+# ..$ f_df.Table1byExposure.xlsx :function (DS.DNR.select,
+#    DSN4output = "DS",
 # VarNames4Exposure = c("InterventionGroup"), output.sink = FALSE, output.xlsx =
 #    TRUE,
 # Table1byExposure.print = TRUE)
@@ -533,8 +533,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr
 #    "~/github_tidystat/f_path.size_files.source.r"
-# ..$ f_DataSetName.Search.read.checkEntity.source.r: chr
-#    "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
+# ..$ f_DSN.Search.read.checkEntity.source.r: chr
+#    "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
 # ..$ f_df.NotNA_p_df.source.r : chr
 #    "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.Not"..
 # ..$ f_df.printVars_byMainOutcome.source.r : chr
@@ -610,26 +610,26 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ##    sep_parentheses = FALSE, end_of_text = "\n")  
 ## $ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 ## $ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-## $ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-## $ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
-## $ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, 
+## $ f_df.add_VarNameT.deltaT0                   :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
+## $ f_df.add_VarNameT.pdeltaT0                      :function (DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
+## $ f_df.add_RegExVars.kbins                      :function (DS.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, 
 ##    Inf), suffix = paste0(".cut", length(breaks) - 1))  
-## $ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
-## $ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
+## $ f_df.add_RegExVars.quintile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
+## $ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 ## $ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 ## $ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 ## $ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 ##    print2console = TRUE, VERBOSE = FALSE)  
-## $ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
+## $ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 ##    "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 ##    print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-## $ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
+## $ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
 ##    "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, 
 ##    max_depth = 3, .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 ##    print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 ## $ f_df.NotNA_p_df                             :function (data)  
-## $ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-## $ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
+## $ f_df.printVars_byMainOutcome                :function (DS, MainOutcome, VarName.selected)  
+## $ f_df.Table1byExposure.xlsx                  :function (DS.DNR.select, DSN4output = "DS", VarNames4Exposure = c("InterventionGroup"), 
 ##    output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
 # ________________________________________________________________________________    
 # $ source		:List of 11
@@ -639,7 +639,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 ## $ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 ## $ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-## $ f_DataSetName.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DataSetName.Search.read.checkEntity.source.r"
+## $ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
 ## $ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 ## $ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 ## $ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"

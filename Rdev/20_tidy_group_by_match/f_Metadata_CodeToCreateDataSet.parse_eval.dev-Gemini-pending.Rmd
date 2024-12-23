@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -221,9 +221,9 @@ options(width=120)
 # # suppressPackageStartupMessages(library(survival))
 # for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # # ?survival::lung
-# .objectname = DataSetName = "analyticDF_time2event"
+# .objectname = DSN = "analyticDF_time2event"
 # assign(
-#     DataSetName, 
+#     DSN, 
 #     survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
 #         # dplyr::select(-status, -sex)
 #         dplyr::select(-status)
@@ -264,33 +264,33 @@ options(width=120)
 options(width=120)
 
 
-create_dataset <- function(DataSetNameShortcut.old, DataSetNameShortcut.new.suffix, CodeToCreateDataSet) {
+create_dataset <- function(DSNShortcut.old, DSNShortcut.new.suffix, CodeToCreateDS) {
   # Create new shortcut name
-  DataSetNameShortcut.new <- paste0(DataSetNameShortcut.old, DataSetNameShortcut.new.suffix)
-  print(paste("Creating dataset with shortcut:", DataSetNameShortcut.new))
+  DSNShortcut.new <- paste0(DSNShortcut.old, DSNShortcut.new.suffix)
+  print(paste("Creating dataset with shortcut:", DSNShortcut.new))
 
   # Create new dataset entry in MetaData
-  print("Accessing MetaData$DataSets...")
-  print(str(MetaData$DataSets)) # Debug: Print the structure of MetaData$DataSets
+  print("Accessing MetaData$DSs...")
+  print(str(MetaData$DSs)) # Debug: Print the structure of MetaData$DSs
 
-  MetaData$DataSets[[DataSetNameShortcut.new]] <- list()  # Create the new list element here!
-  print("Assigning DataSetName...")
-  MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName <- 
-    MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName |> paste0(DataSetNameShortcut.new.suffix)
-  MetaData$DataSets[[DataSetNameShortcut.new]]$CodeToCreateDataSet <- CodeToCreateDataSet
+  MetaData$DSs[[DSNShortcut.new]] <- list()  # Create the new list element here!
+  print("Assigning DSN...")
+  MetaData$DSs[[DSNShortcut.new]]$DSN <- 
+    MetaData$DSs[[DSNShortcut.old]]$DSN |> paste0(DSNShortcut.new.suffix)
+  MetaData$DSs[[DSNShortcut.new]]$CodeToCreateDS <- CodeToCreateDS
 
   # Evaluate the code to create the dataset
-  print("Evaluating CodeToCreateDataSet...")
-  print(CodeToCreateDataSet) # Debug: Print the code being evaluated
-  assign(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName, 
-         eval(parse(text = CodeToCreateDataSet)), envir = .GlobalEnv) # Assign in global environment
+  print("Evaluating CodeToCreateDS...")
+  print(CodeToCreateDS) # Debug: Print the code being evaluated
+  assign(MetaData$DSs[[DSNShortcut.new]]$DSN, 
+         eval(parse(text = CodeToCreateDS)), envir = .GlobalEnv) # Assign in global environment
 
   # Store metadata about the new dataset
   print("Storing metadata...")
-  MetaData$DataSets[[DataSetNameShortcut.new]]$VarNames <- 
-    names(get(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName))
-  MetaData$DataSets[[DataSetNameShortcut.new]]$dim <- 
-    dim(get(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName))
+  MetaData$DSs[[DSNShortcut.new]]$VarNames <- 
+    names(get(MetaData$DSs[[DSNShortcut.new]]$DSN))
+  MetaData$DSs[[DSNShortcut.new]]$dim <- 
+    dim(get(MetaData$DSs[[DSNShortcut.new]]$DSN))
 }
 
 
@@ -306,32 +306,32 @@ if(!"CodeBook" %in% names(MetaData)) {
 if(file.exists("CodeBook.xlsx")) { 
   MetaData$CodeBook <- readxl::read_xlsx("CodeBook.xlsx") 
 }
-if(!"DataSets" %in% names(MetaData)) { 
-  MetaData$DataSets <- list() 
+if(!"DSs" %in% names(MetaData)) { 
+  MetaData$DSs <- list() 
 }
 
 # Create the initial dataset
-DataSetName0 <- "analyticDF_time2event"
-DataSetNameShortcut <- "DataSet0"
+DSN0 <- "analyticDF_time2event"
+DSNShortcut <- "DS0"
 
-MetaData$DataSets[[DataSetNameShortcut]] <- list()
-MetaData$DataSets[[DataSetNameShortcut]]$DataSetName <- DataSetName0
-MetaData$DataSets[[DataSetNameShortcut]]$CodeToCreateDataSet <- 
+MetaData$DSs[[DSNShortcut]] <- list()
+MetaData$DSs[[DSNShortcut]]$DSN <- DSN0
+MetaData$DSs[[DSNShortcut]]$CodeToCreateDS <- 
   'survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |> dplyr::select(-status)'
 
-assign(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName, 
-       eval(parse(text = MetaData$DataSets[[DataSetNameShortcut]]$CodeToCreateDataSet)))
+assign(MetaData$DSs[[DSNShortcut]]$DSN, 
+       eval(parse(text = MetaData$DSs[[DSNShortcut]]$CodeToCreateDS)))
 
-MetaData$DataSets[[DataSetNameShortcut]]$VarNames <- names(get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName))
-MetaData$DataSets[[DataSetNameShortcut]]$dim <- dim(get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName))
+MetaData$DSs[[DSNShortcut]]$VarNames <- names(get(MetaData$DSs[[DSNShortcut]]$DSN))
+MetaData$DSs[[DSNShortcut]]$dim <- dim(get(MetaData$DSs[[DSNShortcut]]$DSN))
 
 
 # Now use the function to create a new dataset
-DataSetNameShortcut.old <- "DataSet0"
-DataSetNameShortcut.new.suffix <- ".na.omit"
-CodeToCreateDataSet.new <- "get(MetaData$DataSets$DataSet0$DataSetName) |> na.omit()"
+DSNShortcut.old <- "DS0"
+DSNShortcut.new.suffix <- ".na.omit"
+CodeToCreateDS.new <- "get(MetaData$DSs$DS0$DSN) |> na.omit()"
 
-create_dataset(DataSetNameShortcut.old, DataSetNameShortcut.new.suffix, CodeToCreateDataSet.new)
+create_dataset(DSNShortcut.old, DSNShortcut.new.suffix, CodeToCreateDS.new)
 
 str(MetaData)
 ```

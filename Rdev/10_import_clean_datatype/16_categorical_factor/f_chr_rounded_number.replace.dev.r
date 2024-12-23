@@ -189,15 +189,15 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # #@@ DATA) -----  
-# ## \$ DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv) ====
+# ## \$ DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv) ====
 # .path4read.subpath = r"(data)"|>str_replace_all("\\\\","/")
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# # # .path4read.subpath_filename_ext = DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.)
-# # # .path_filename_ext = ifelse( file.exists(.path4read.subpath_filename_ext), .path4read.subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DataSetName,".rds") )
+# DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# # # .path4read.subpath_filename_ext = DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.)
+# # # .path_filename_ext = ifelse( file.exists(.path4read.subpath_filename_ext), .path4read.subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DSN,".rds") )
 # # # cat(".path_filename_ext = ", .path_filename_ext, "  \n", sep = "")
-# # DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv)
-# if(!exists("DataSetName0")) {DataSetName0 = DataSetName; cat('  Setting DataSetName0 = "',DataSetName0,'"  \n', sep="")}
-# MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.subpath=="","","/"),.path4read.subpath), return.output = TRUE)
+# # DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
+# if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
+# MetaData$DSNs[[DSN]] = env1$f$f_DSN.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.subpath=="","","/"),.path4read.subpath), return.output = TRUE)
 
 
 

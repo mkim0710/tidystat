@@ -138,9 +138,9 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -396,20 +396,20 @@ head(detailed_pubmed_data)
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
-        # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DataSetName in names(MetaData$DataSetNames)) {    
-            if(exists(DataSetName)) {
-                assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DataSetName]])$DataSetName)) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
-                    message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
-            } else {  message("!exists(",deparse(DataSetName),")")  }
+            } else {  message("!exists(",deparse(DSN),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }

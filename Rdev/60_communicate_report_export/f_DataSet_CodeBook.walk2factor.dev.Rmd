@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -325,7 +325,7 @@ print(sex_factor)
 ```
 
 
-## \% f_DataSet_CodeBook.map_factor() 
+## \% f_DS_CodeBook.map_factor() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Load necessary packages
 library(dplyr)
@@ -362,23 +362,23 @@ f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", s
 }
 
 # Function to apply factor conversion to the entire dataset using the df_VarName_ValueOptions
-f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
+f_DS_CodeBook.map_factor <- function(DS, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   # Loop over each row in the df_VarName_ValueOptions
   for (i in 1:nrow(df_VarName_ValueOptions)) {
     var_name <- df_VarName_ValueOptions$VarName.suffix[i]
     value_options <- df_VarName_ValueOptions$ValueOptions[i]
     
     # Check if the variable exists in the dataset
-    if (var_name %in% colnames(DataSet)) {
+    if (var_name %in% colnames(DS)) {
       # Apply the factor conversion function to the column in the dataset
-      DataSet[[var_name]] <- f_vec_ValueOptions.factor(DataSet[[var_name]], 
+      DS[[var_name]] <- f_vec_ValueOptions.factor(DS[[var_name]], 
                                                     value_options, 
                                                     sep4levels, 
                                                     sep4name_value, 
                                                     VERBOSE)
     }
   }
-  return(DataSet)
+  return(DS)
 }
 
 # Example usage
@@ -404,7 +404,7 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
 )))
 
 # Convert the dataset using the df_VarName_ValueOptions
-converted_data <- f_DataSet_CodeBook.map_factor(your_data, MetaData$tblVarName$tblVarName.suffix, VERBOSE = TRUE)
+converted_data <- f_DS_CodeBook.map_factor(your_data, MetaData$tblVarName$tblVarName.suffix, VERBOSE = TRUE)
 
 # View the converted dataset
 print(converted_data)
@@ -413,7 +413,7 @@ str(converted_data)
 ```
   
   
-## \% f_DataSet_CodeBook.map2factor() 
+## \% f_DS_CodeBook.map2factor() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Load necessary packages
@@ -450,27 +450,27 @@ f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", s
 }
 
 # Improved function to apply factor conversion to the entire dataset using df_VarName_ValueOptions
-f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
+f_DS_CodeBook.map_factor <- function(DS, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   # Use map2 to iterate over VarName.suffix and ValueOptions in parallel
-  DataSet <- map2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
+  DS <- map2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
-      if (var_name %in% colnames(DataSet)) {
-        DataSet[[var_name]] <- f_vec_ValueOptions.factor(DataSet[[var_name]], 
+      if (var_name %in% colnames(DS)) {
+        DS[[var_name]] <- f_vec_ValueOptions.factor(DS[[var_name]], 
                                                          value_options, 
                                                          sep4levels, 
                                                          sep4name_value, 
                                                          VERBOSE)
       }
-      return(DataSet[[var_name]])
+      return(DS[[var_name]])
     })
   
-  # Return the updated DataSet as a data frame
-  return(as.data.frame(DataSet))
+  # Return the updated DS as a data frame
+  return(as.data.frame(DS))
 }
 
 # Example usage
 # Sample dataset
-DataSet <- data.frame(
+DS <- data.frame(
   RID = c(1, 2, 3),
   DATA_CLASS = c(10, 20, 10),
   VISIT = c(0, 1, 1),
@@ -486,15 +486,15 @@ df_VarName_ValueOptions <- tibble::tibble(
 )
 
 # Convert the dataset using the improved function
-converted_DataSet <- f_DataSet_CodeBook.map_factor(DataSet, df_VarName_ValueOptions, VERBOSE = TRUE)
+converted_DS <- f_DS_CodeBook.map_factor(DS, df_VarName_ValueOptions, VERBOSE = TRUE)
 
 # View the converted dataset
-print(converted_DataSet)
+print(converted_DS)
 
 ```
   
   
-## \% f_DataSet_CodeBook.walk2_factor() 
+## \% f_DS_CodeBook.walk2_factor() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Load necessary packages
@@ -531,12 +531,12 @@ f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", s
 }
 
 # Refined function to apply factor conversion to the entire dataset using df_VarName_ValueOptions
-f_DataSet_CodeBook.walk2factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
-  # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DataSet in place
+f_DS_CodeBook.walk2factor <- function(DS, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
+  # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DS in place
   walk2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
-      if (var_name %in% colnames(DataSet)) {
-        DataSet[[var_name]] <<- f_vec_ValueOptions.factor(DataSet[[var_name]], 
+      if (var_name %in% colnames(DS)) {
+        DS[[var_name]] <<- f_vec_ValueOptions.factor(DS[[var_name]], 
                                                           value_options, 
                                                           sep4levels, 
                                                           sep4name_value, 
@@ -544,13 +544,13 @@ f_DataSet_CodeBook.walk2factor <- function(DataSet, df_VarName_ValueOptions, sep
       }
     })
   
-  # Return the updated DataSet as a data frame
-  return(DataSet)
+  # Return the updated DS as a data frame
+  return(DS)
 }
 
 # Example usage
 # Sample dataset
-DataSet <- data.frame(
+DS <- data.frame(
   RID = c(1, 2, 3),
   DATA_CLASS = c(10, 20, 10),
   VISIT = c(0, 1, 1),
@@ -566,21 +566,21 @@ df_VarName_ValueOptions <- tibble::tibble(
 )
 
 # Convert the dataset using the renamed function
-converted_DataSet <- f_DataSet_CodeBook.walk2factor(DataSet, df_VarName_ValueOptions, VERBOSE = TRUE)
+converted_DS <- f_DS_CodeBook.walk2factor(DS, df_VarName_ValueOptions, VERBOSE = TRUE)
 
 # View the converted dataset
-print(converted_DataSet)
+print(converted_DS)
 
 ```
   
   
-#### Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  ----  
+#### Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-#### Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  ----  
+#### Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r  ----  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_DataSet_CodeBook.walk2factor.source.r"
+.filename.source.r = "f_DS_CodeBook.walk2factor.source.r"
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
 .GlobalEnv$env1$source[[.filename.source.r]]
 

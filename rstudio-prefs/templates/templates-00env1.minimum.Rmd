@@ -208,7 +208,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -231,9 +231,9 @@ options(width=120)
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -378,8 +378,8 @@ if(file.exists(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) {
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-# for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
+# for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
@@ -445,15 +445,15 @@ options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # #@@ START) data -----
-# ## \$ DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv) ====
+# ## \$ DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv) ====
 # .path4read.subpath = r"(data)"|>str_replace_all("\\\\","/")
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# # # .path4read.subpath_filename_ext = DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.)
-# # # .path_filename_ext = ifelse( file.exists(.path4read.subpath_filename_ext), .path4read.subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DataSetName,".rds") )
+# DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# # # .path4read.subpath_filename_ext = DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.)
+# # # .path_filename_ext = ifelse( file.exists(.path4read.subpath_filename_ext), .path4read.subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DSN,".rds") )
 # # # cat(".path_filename_ext = ", .path_filename_ext, "  \n", sep = "")
-# # DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv)
-# if(!exists("DataSetName0")) {DataSetName0 = DataSetName; cat('  Setting DataSetName0 = "',DataSetName0,'"  \n', sep="")}
-# MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.subpath=="","","/"),.path4read.subpath), return.output = TRUE)
+# # DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
+# if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
+# MetaData$DSNs[[DSN]] = env1$f$f_DSN.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.subpath=="","","/"),.path4read.subpath), return.output = TRUE)
 ```
   
   
@@ -464,9 +464,9 @@ options(width=120)
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -517,13 +517,13 @@ options(width=120)
 # --> Now included in "f_df.t.tribble_construct.source.r"
   
 varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str(max.level = 2, give.attr = TRUE)
-get(DataSetName) |> dim()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$f$f_df.NotNA_p_df()
+get(DSN)[intersect(varname4ID, colnames(get(DSN)))] |> str(max.level = 2, give.attr = TRUE)
+get(DSN) |> dim()
+get(DSN)[intersect(varname4ID, colnames(get(DSN)))] |> n_distinct()
+get(DSN)[intersect(varname4ID, colnames(get(DSN)))] |> env1$f$f_df.NotNA_p_df()
   
 varname4CompositKey = c("age", "sex")
-vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
+vecCompositeKey = get(DSN)[intersect(varname4CompositKey, colnames(get(DSN)))] |> apply(MARGIN = 1, paste0, collapse = "-")
 vecCompositeKey |> n_distinct()
 ```
   
@@ -534,7 +534,7 @@ vecCompositeKey |> n_distinct()
 options(width=120)
 .varname4outcome = "event"
 varname4time = c("time", "age")
-get(DataSetName)[c(.varname4outcome, varname4time)] |> 
+get(DSN)[c(.varname4outcome, varname4time)] |> 
     mutate_if(is.factor, as.character) |>  
     mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> 
     mutate_if(is.character, as.factor) |> 
@@ -553,40 +553,40 @@ options(width=120)
   
   
 ### ---- < Data Availability Check > ----  
-#### \$ DataSet.Date.NA  ----  
+#### \$ DS.Date.NA  ----  
 ##### \% f_df.NotNA_p_df() ----  
-#### \$ DataSet.DNR  ----  
-```{r DataSet.Date.NA-f_df.NotNA_p_df-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+#### \$ DS.DNR  ----  
+```{r DS.Date.NA-f_df.NotNA_p_df-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-if(!exists("DataSetName.Date")) DataSetName.Date = ifelse(exists(paste0(DataSetName,".Date")), paste0(DataSetName,".Date"), DataSetName)
-.vec_nlevel_lt20.value_number.unique = 'get(DataSetName.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+if(!exists("DSN.Date")) DSN.Date = ifelse(exists(paste0(DSN,".Date")), paste0(DSN,".Date"), DSN)
+.vec_nlevel_lt20.value_number.unique = 'get(DSN.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); assign( DataSetName.Date.NA, get(DataSetName.Date) |> mutate_if(is.factor, as.character) ); MetaData$DataSetNames[[DataSetName.Date.NA]] = list(DataSetName = DataSetName.Date.NA)
+DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date) |> mutate_if(is.factor, as.character) ); MetaData$DSNs[[DSN.Date.NA]] = list(DSN = DSN.Date.NA)
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
-    DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); assign( DataSetName.Date.NA, get(DataSetName.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
+    DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
-DataSetName.DNR = DataSetName.Date.NA |> paste0(".rmAllNA"); assign( DataSetName.DNR, get(DataSetName.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DataSetNames[[DataSetName.DNR]] = list(DataSetName = DataSetName.DNR)
-cat(" dim(",DataSetName.Date,") == ",deparse(dim(get(DataSetName.Date))),"  \n", sep="") 
-cat(" dim(",DataSetName.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName.DNR))),"  \n", sep="") 
-DataSet.DNR = get(DataSetName.DNR)
+DSN.DNR = DSN.Date.NA |> paste0(".rmAllNA"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
+cat(" dim(",DSN.Date,") == ",deparse(dim(get(DSN.Date))),"  \n", sep="") 
+cat(" dim(",DSN.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+DS.DNR = get(DSN.DNR)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-"get(DataSetName.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"get(DSN.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
-### ---- < DataSet Summary > ----  
-#### \$ DataSet.DNR.lbl_pending.fct  ----
+### ---- < DS Summary > ----  
+#### \$ DS.DNR.lbl_pending.fct  ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-for (varname in vec_candidate4ID) {if(varname %in% names(get(DataSetName.DNR))) cat(" n_distinct(",DataSetName.DNR,"$",varname,") == ",n_distinct(get(DataSetName.DNR)[[varname]]),"  \n", sep="")}
+for (varname in vec_candidate4ID) {if(varname %in% names(get(DSN.DNR))) cat(" n_distinct(",DSN.DNR,"$",varname,") == ",n_distinct(get(DSN.DNR)[[varname]]),"  \n", sep="")}
   
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
@@ -594,12 +594,12 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 "analyticDF_time2event.NR |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); 
-DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); 
-DataSetName.DNR = paste0(DataSetName.Date,".NA",".rmAllNA"); 
-DataSetName.DNR.lbl_pending.fct = paste0(DataSetName.Date,".NA",".rmAllNA",".fct"); 
-"assign( DataSetName.DNR.lbl_pending.fct, get(DataSetName.DNR) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+DSN.Date.NA = DSN.Date |> paste0(".NA"); 
+DSN.DNR = paste0(DSN.Date,".NA",".rmAllNA"); 
+DSN.DNR.lbl_pending.fct = paste0(DSN.Date,".NA",".rmAllNA",".fct"); 
+"assign( DSN.DNR.lbl_pending.fct, get(DSN.DNR) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); 
-"get(DataSetName.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"get(DSN.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
   
@@ -621,30 +621,30 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
   
   
 # __________|------  
-# @@ DATA) filter() -> New DataSet ----  
-## :: DataSet1.recode = DataSet.DNR.lbl_pending.fct.recode
-## :: DataSetName1.recode.n = paste0(DataSetName,".Date",".NA",".rmAllNA",".lbl_pending",".fct",".recode",".n",nrow(DataSet1))
-## :: DataSetName1.recode.n = paste0(DataSetName,".DNR","".lbl_pending",".fct",".recode",".n",nrow(DataSetName1.recode.n))
+# @@ DATA) filter() -> New DS ----  
+## :: DS1.recode = DS.DNR.lbl_pending.fct.recode
+## :: DSN1.recode.n = paste0(DSN,".Date",".NA",".rmAllNA",".lbl_pending",".fct",".recode",".n",nrow(DS1))
+## :: DSN1.recode.n = paste0(DSN,".DNR","".lbl_pending",".fct",".recode",".n",nrow(DSN1.recode.n))
 
-### \% DataSet1.recode |> 
+### \% DS1.recode |> 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-## :: DataSet2.recode.filter = DataSet1.recode |> filter(!!rlang::sym(.InclusionCriteria) == TRUE & !!rlang::sym(.ExclusionCriteria) == FALSE)
-## :: DataSetName2.recode.filter.n = paste0(DataSetName,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DataSet2.recode.filter))  
-```{r DataSet.Date-recode-filter-n-writeRDS-NoEvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-.objectname = "DataSetName1.recode.n"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="")
-cat("*** Old DataSetName = ", deparse(DataSetName), "  \n", sep="")
+## :: DS2.recode.filter = DS1.recode |> filter(!!rlang::sym(.InclusionCriteria) == TRUE & !!rlang::sym(.ExclusionCriteria) == FALSE)
+## :: DSN2.recode.filter.n = paste0(DSN,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DS2.recode.filter))  
+```{r DS.Date-recode-filter-n-writeRDS-NoEvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+.objectname = "DSN1.recode.n"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="")
+cat("*** Old DSN = ", deparse(DSN), "  \n", sep="")
 ##________________________________________________________________________________  
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet2.recode.filter = DataSet1.recode |> filter(!!rlang::sym(.InclusionCriteria) == TRUE & !!rlang::sym(.ExclusionCriteria) == FALSE)
-DataSetName2.recode.filter.n = paste0(DataSetName,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DataSet2.recode.filter))  
-assign(DataSetName2.recode.filter.n, DataSet2.recode.filter)
+DS2.recode.filter = DS1.recode |> filter(!!rlang::sym(.InclusionCriteria) == TRUE & !!rlang::sym(.ExclusionCriteria) == FALSE)
+DSN2.recode.filter.n = paste0(DSN,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DS2.recode.filter))  
+assign(DSN2.recode.filter.n, DS2.recode.filter)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-.objectname = "DataSetName2.recode.filter.n"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="")
+.objectname = "DSN2.recode.filter.n"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="")
 assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
 .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
@@ -654,14 +654,14 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname
 # __________|------  
 # @@ DATA) select(matches(VarName.suffix.regex)) ----  
 ## @ VarName.suffix.regex = 
-## :: get(DataSetName2.recode.filter.n) |> select(matches(VarName.suffix.regex))
+## :: get(DSN2.recode.filter.n) |> select(matches(VarName.suffix.regex))
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-get(DataSetName2.recode.filter.n) |> names() |> env1$env.internal.attach$deparse.cat0()
-VarName.suffix.regex = get(DataSetName2.recode.filter.n) |> names() |> paste0(collapse="|")
+get(DSN2.recode.filter.n) |> names() |> env1$env.internal.attach$deparse.cat0()
+VarName.suffix.regex = get(DSN2.recode.filter.n) |> names() |> paste0(collapse="|")
 VarName.suffix.regex |> dput()
-DataSetName2.recode.filter.n.select = paste0(DataSetName2.recode.filter.n,"select",ncol(get(DataSetName2.recode.filter.n) |> names() |> str_subset(VarName.suffix.regex)))
-assign(  DataSetName2.recode.filter.n.select, get(DataSetName2.recode.filter.n) |> select(matches(VarName.suffix.regex))  )
-get(DataSetName2.recode.filter.n.select) |> str(max.level = 2, give.attr = TRUE)
+DSN2.recode.filter.n.select = paste0(DSN2.recode.filter.n,"select",ncol(get(DSN2.recode.filter.n) |> names() |> str_subset(VarName.suffix.regex)))
+assign(  DSN2.recode.filter.n.select, get(DSN2.recode.filter.n) |> select(matches(VarName.suffix.regex))  )
+get(DSN2.recode.filter.n.select) |> str(max.level = 2, give.attr = TRUE)
 ```
   
   
@@ -767,7 +767,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # "MetaData$DSNs |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
@@ -777,7 +777,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         
         if(!exists(".MetaData0")) .MetaData0 = MetaData
-        MetaData$DataSetNames = MetaData$DataSetNames %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DataSetName.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
+        MetaData$DSNs = MetaData$DSNs %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
         MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
         "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         if(!identical(.MetaData0, MetaData)) {
@@ -797,20 +797,20 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
-        # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DataSetName in names(MetaData$DataSetNames)) {    
-            if(exists(DataSetName)) {
-                assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DataSetName]])$DataSetName)) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
-                    message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
-            } else {  message("!exists(",deparse(DataSetName),")")  }
+            } else {  message("!exists(",deparse(DSN),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }

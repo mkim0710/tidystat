@@ -207,16 +207,16 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # #@@ START) data -----  
-# # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
+# # \$ assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) ) ====  
 # # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# # DSN = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # .subpath = r"(data)"|>str_replace_all("\\\\","/")
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# # .subpath_filename_ext = DataSetName |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# # .path_filename_ext = ifelse( file.exists(.subpath_filename_ext), .subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DataSetName,".rds") )
+# DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# # .subpath_filename_ext = DSN |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# # .path_filename_ext = ifelse( file.exists(.subpath_filename_ext), .subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DSN,".rds") )
 # # cat(".path_filename_ext = ", .path_filename_ext, "  \n", sep = "")
-# # assign( DataSetName, read_rds(.path_filename_ext) )
-# DataSetName |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv)
+# # assign( DSN, read_rds(.path_filename_ext) )
+# DSN |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
 
 
 

@@ -200,7 +200,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -294,13 +294,13 @@ data
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# DataSet %>% select(matches("_VISIT$"), matches("_VISIT.cum$")) %>% select(matches("A0[1-4]"))
+# DS %>% select(matches("_VISIT$"), matches("_VISIT.cum$")) %>% select(matches("A0[1-4]"))
 
-DataSet %>% select(matches("_VISIT$"))
-DataSet %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
-DataSet %>% select(matches("_VISIT.cum$"))
-DataSet %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
-# > DataSet %>% select(matches("_VISIT$"))
+DS %>% select(matches("_VISIT$"))
+DS %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
+DS %>% select(matches("_VISIT.cum$"))
+DS %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
+# > DS %>% select(matches("_VISIT$"))
 # # A tibble: 5 × 7
 #   A01_VISIT A02_VISIT A03_VISIT A04_VISIT A05_VISIT A06_VISIT A07_VISIT
 #       <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
@@ -309,11 +309,11 @@ DataSet %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 # 3         1         0         1         0         1         1         0
 # 4         1         1         1         1         0         0         1
 # 5         0         1         0         1         1         1         0
-# > DataSet %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
+# > DS %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
 #  A01_VISIT A02_VISIT A03_VISIT A04_VISIT A05_VISIT A06_VISIT A07_VISIT
 #  0:2       0:1       0:2       0:2       0:2       0:2       0:2      
 #  1:3       1:4       1:3       1:3       1:3       1:3       1:3      
-# > DataSet %>% select(matches("_VISIT.cum$"))
+# > DS %>% select(matches("_VISIT.cum$"))
 # # A tibble: 5 × 7
 #   A01_VISIT.cum A02_VISIT.cum A03_VISIT.cum A04_VISIT.cum A05_VISIT.cum A06_VISIT.cum A07_VISIT.cum
 #           <dbl>         <dbl>         <dbl>         <dbl>         <dbl>         <dbl>         <dbl>
@@ -322,7 +322,7 @@ DataSet %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 # 3             1             1             2             2             3             4             4
 # 4             1             2             3             4             4             4             5
 # 5             0             1             1             2             3             4             4
-# > DataSet %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
+# > DS %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 #  A01_VISIT.cum A02_VISIT.cum A03_VISIT.cum A04_VISIT.cum A05_VISIT.cum A06_VISIT.cum A07_VISIT.cum
 #  0:2           1:3           1:1           2:3           3:4           3:1           4:3          
 #  1:3           2:2           2:3           3:1           4:1           4:4           5:2          
@@ -364,7 +364,7 @@ data %>%
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Create the bar plot
-plot <- DataSet %>% 
+plot <- DS %>% 
   select(matches("_VISIT.cum$")) %>%
   mutate(row = row_number()) %>%
   pivot_longer(cols = -row, names_to = "Visits", values_to = "CumulativeCount") %>%
@@ -383,7 +383,7 @@ plot
 ## \% table_plot  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-table_plot <- DataSet %>% 
+table_plot <- DS %>% 
   select(matches("_VISIT.cum$")) %>%
   pivot_longer(cols = everything(), names_to = "Visits", values_to = "CumulativeCount") %>% 
   ggplot(aes(x = Visits, y = CumulativeCount, label = CumulativeCount)) +

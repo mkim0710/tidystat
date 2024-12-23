@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -221,9 +221,9 @@ options(width=120)
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -826,7 +826,7 @@ f_df.glmnet.coef.pivot_longer = extract_coefficients <- function(dataset, byVar,
 ### df_5vars_10obs |> f_df.glmnet.coef.pivot_longer() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Example usage with df_5vars_10obs
-DataSet = df_5vars_10obs <- data.frame(
+DS = df_5vars_10obs <- data.frame(
   Group = rep(c("Group1", "Group2"), each = 5),
   Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
   Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
@@ -839,15 +839,15 @@ DataSet = df_5vars_10obs <- data.frame(
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Call the function to extract coefficients for df_5vars_10obs
-DataSet.glmnet.coef.pivot_longer <- DataSet %>% f_df.glmnet.coef.pivot_longer(byVar = "Group", alpha = 1)
+DS.glmnet.coef.pivot_longer <- DS %>% f_df.glmnet.coef.pivot_longer(byVar = "Group", alpha = 1)
 
 # Display the result
-print(DataSet.glmnet.coef.pivot_longer)
+print(DS.glmnet.coef.pivot_longer)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-# DataSet.glmnet.coef.pivot_longer %>% 
+# DS.glmnet.coef.pivot_longer %>% 
 #     pivot_wider(names_from = "Variable", values_from = "Coefficient") %>% 
 #     mutate(L1 = abs(Var1) + abs(Var2) + abs(Var3) + abs(Var4) + abs(Var5)) %>% 
 #     filter(L1 > 1) %>% 
@@ -856,7 +856,7 @@ print(DataSet.glmnet.coef.pivot_longer)
 #     select(matches("lambda"), everything()) %>% 
 #     print(n=99)
 
-DataSet.glmnet.coef.pivot_longer %>%
+DS.glmnet.coef.pivot_longer %>%
     group_by(lambda) %>%
     mutate(sum_abs_coeff = sum(abs(Coefficient))) %>% 
     pivot_wider(names_from = "Variable", values_from = "Coefficient") %>%
@@ -869,15 +869,15 @@ DataSet.glmnet.coef.pivot_longer %>%
 
 #### |> ggplot(aes(x = log(lambda), y = Coefficient, color = Variable)) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-DataSetName = "df_5vars_10obs"
-DataSetName.cv.glmnet = paste0(DataSetName,".cv.glmnet")
+DSN = "df_5vars_10obs"
+DSN.cv.glmnet = paste0(DSN,".cv.glmnet")
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 library(ggplot2)
 
-# ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
+# ggplot(DS.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
 #   geom_line() +
-#   labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Log(Lambda)", y = "Coefficient")
+#   labs(title = paste0("Coefficient Paths for ", DSN), x = "Log(Lambda)", y = "Coefficient")
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # Define the breaks for the x-axis in log scale with smaller intervals
@@ -885,18 +885,18 @@ log_breaks <- scales::trans_breaks("log10", function(x) 10^x)
 log_labels <- scales::trans_format("log10", scales::math_format(10^.x))
 
 # # Plot for df_5vars_10obs with customized log scale on x-axis
-# ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
+# ggplot(DS.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_continuous(breaks = log_breaks, labels = log_labels) +  # Custom log scale breaks and labels
-#   labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Log(Lambda)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for ", DSN), x = "Log(Lambda)", y = "Coefficient") +
 #   theme_minimal()  # Optional theme for cleaner appearance
 # 
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # # Plot with custom log-scale and zoomed-in x-axis range based on filtered lambda values
-# ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
+# ggplot(DS.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_log10(breaks = log_breaks, labels = log_labels) +  # Proper log scale with breaks
-#   labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Lambda (log scale)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for ", DSN), x = "Lambda (log scale)", y = "Coefficient") +
 #   theme_minimal() +
 #   theme(panel.grid.minor = element_blank())  # Optional: hide minor grids for cleaner look
 
@@ -912,7 +912,7 @@ log10_minor_break <- function() {
 }
 
 # Plot with custom log-scale and increased x-axis gridlines
-ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
+ggplot(DS.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
   geom_line() +
   scale_x_log10(
     breaks = log_breaks,  # Major breaks
@@ -920,7 +920,7 @@ ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color 
     minor_breaks = log10_minor_break()  # Add custom minor breaks
   ) +
   annotation_logticks(sides = "b") +  # Add log ticks on the bottom side (x-axis)
-  labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Lambda (log scale)", y = "Coefficient") +
+  labs(title = paste0("Coefficient Paths for ", DSN), x = "Lambda (log scale)", y = "Coefficient") +
   theme_minimal() +
   theme(panel.grid.minor = element_line(color = "gray90"))  # Lighter color for minor grids
 
@@ -928,12 +928,12 @@ ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Calculate the sum of absolute coefficients for each lambda
-DataSet.glmnet.coef.pivot_longer <- DataSet.glmnet.coef.pivot_longer %>%
+DS.glmnet.coef.pivot_longer <- DS.glmnet.coef.pivot_longer %>%
   group_by(lambda) %>%
   mutate(sum_abs_coeff = sum(abs(Coefficient)))
 
 # Filter to include only rows where the sum of abs(coefficients) > 0
-coefficients_filtered <- DataSet.glmnet.coef.pivot_longer %>%
+coefficients_filtered <- DS.glmnet.coef.pivot_longer %>%
   filter(sum_abs_coeff > 0)
 
 
@@ -946,7 +946,7 @@ log_labels <- scales::trans_format("log10", scales::math_format(10^.x))
 # ggplot(coefficients_filtered, aes(x = log(lambda), y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_continuous(breaks = log_breaks, labels = log_labels) +  # Custom log scale breaks and labels
-#   labs(title = paste0("Coefficient Paths for `", DataSetName, "` (Zoomed)"), x = "Log(Lambda)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for `", DSN, "` (Zoomed)"), x = "Log(Lambda)", y = "Coefficient") +
 #   theme_minimal()  # Optional theme for cleaner appearance
 # 
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -954,7 +954,7 @@ log_labels <- scales::trans_format("log10", scales::math_format(10^.x))
 # ggplot(coefficients_filtered, aes(x = lambda, y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_log10(breaks = log_breaks, labels = log_labels) +  # Proper log scale with breaks
-#   labs(title = paste0("Coefficient Paths for `", DataSetName, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for `", DSN, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
 #   theme_minimal() +
 #   theme(panel.grid.minor = element_blank())  # Optional: hide minor grids for cleaner look
 
@@ -977,7 +977,7 @@ ggplot(coefficients_filtered, aes(x = lambda, y = Coefficient, color = Variable)
     minor_breaks = log10_minor_break()  # Add custom minor breaks
   ) +
   annotation_logticks(sides = "b") +  # Add log ticks on the bottom side (x-axis)
-  labs(title = paste0("Coefficient Paths for `", DataSetName, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
+  labs(title = paste0("Coefficient Paths for `", DSN, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
   theme_minimal() +
   theme(panel.grid.minor = element_line(color = "gray90"))  # Lighter color for minor grids
 
@@ -986,20 +986,20 @@ ggplot(coefficients_filtered, aes(x = lambda, y = Coefficient, color = Variable)
 
 ### mtcars_5vars |> f_df.glmnet.coef.pivot_longer() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-DataSet = mtcars_5vars
+DS = mtcars_5vars
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Call the function to extract coefficients for df_5vars_10obs
-DataSet.glmnet.coef.pivot_longer <- DataSet %>% f_df.glmnet.coef.pivot_longer(byVar = "Group", alpha = 1)
+DS.glmnet.coef.pivot_longer <- DS %>% f_df.glmnet.coef.pivot_longer(byVar = "Group", alpha = 1)
 
 # Display the result
-print(DataSet.glmnet.coef.pivot_longer)
+print(DS.glmnet.coef.pivot_longer)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-# DataSet.glmnet.coef.pivot_longer %>% 
+# DS.glmnet.coef.pivot_longer %>% 
 #     pivot_wider(names_from = "Variable", values_from = "Coefficient") %>% 
 #     mutate(L1 = abs(Var1) + abs(Var2) + abs(Var3) + abs(Var4) + abs(Var5)) %>% 
 #     filter(L1 > 1) %>% 
@@ -1008,7 +1008,7 @@ print(DataSet.glmnet.coef.pivot_longer)
 #     select(matches("lambda"), everything()) %>% 
 #     print(n=99)
 
-DataSet.glmnet.coef.pivot_longer %>%
+DS.glmnet.coef.pivot_longer %>%
     group_by(lambda) %>%
     mutate(sum_abs_coeff = sum(abs(Coefficient))) %>% 
     pivot_wider(names_from = "Variable", values_from = "Coefficient") %>%
@@ -1021,15 +1021,15 @@ DataSet.glmnet.coef.pivot_longer %>%
 
 #### |> ggplot(aes(x = log(lambda), y = Coefficient, color = Variable)) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-DataSetName = "mtcars_5vars"
-DataSetName.cv.glmnet = paste0(DataSetName,".cv.glmnet")
+DSN = "mtcars_5vars"
+DSN.cv.glmnet = paste0(DSN,".cv.glmnet")
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 library(ggplot2)
 
-# ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
+# ggplot(DS.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
 #   geom_line() +
-#   labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Log(Lambda)", y = "Coefficient")
+#   labs(title = paste0("Coefficient Paths for ", DSN), x = "Log(Lambda)", y = "Coefficient")
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # Define the breaks for the x-axis in log scale with smaller intervals
@@ -1037,18 +1037,18 @@ log_breaks <- scales::trans_breaks("log10", function(x) 10^x)
 log_labels <- scales::trans_format("log10", scales::math_format(10^.x))
 
 # # Plot for df_5vars_10obs with customized log scale on x-axis
-# ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
+# ggplot(DS.glmnet.coef.pivot_longer, aes(x = log(lambda), y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_continuous(breaks = log_breaks, labels = log_labels) +  # Custom log scale breaks and labels
-#   labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Log(Lambda)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for ", DSN), x = "Log(Lambda)", y = "Coefficient") +
 #   theme_minimal()  # Optional theme for cleaner appearance
 # 
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # # Plot with custom log-scale and zoomed-in x-axis range based on filtered lambda values
-# ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
+# ggplot(DS.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_log10(breaks = log_breaks, labels = log_labels) +  # Proper log scale with breaks
-#   labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Lambda (log scale)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for ", DSN), x = "Lambda (log scale)", y = "Coefficient") +
 #   theme_minimal() +
 #   theme(panel.grid.minor = element_blank())  # Optional: hide minor grids for cleaner look
 
@@ -1064,7 +1064,7 @@ log10_minor_break <- function() {
 }
 
 # Plot with custom log-scale and increased x-axis gridlines
-ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
+ggplot(DS.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color = Variable)) +
   geom_line() +
   scale_x_log10(
     breaks = log_breaks,  # Major breaks
@@ -1072,7 +1072,7 @@ ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color 
     minor_breaks = log10_minor_break()  # Add custom minor breaks
   ) +
   annotation_logticks(sides = "b") +  # Add log ticks on the bottom side (x-axis)
-  labs(title = paste0("Coefficient Paths for ", DataSetName), x = "Lambda (log scale)", y = "Coefficient") +
+  labs(title = paste0("Coefficient Paths for ", DSN), x = "Lambda (log scale)", y = "Coefficient") +
   theme_minimal() +
   theme(panel.grid.minor = element_line(color = "gray90"))  # Lighter color for minor grids
 
@@ -1080,12 +1080,12 @@ ggplot(DataSet.glmnet.coef.pivot_longer, aes(x = lambda, y = Coefficient, color 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Calculate the sum of absolute coefficients for each lambda
-DataSet.glmnet.coef.pivot_longer <- DataSet.glmnet.coef.pivot_longer %>%
+DS.glmnet.coef.pivot_longer <- DS.glmnet.coef.pivot_longer %>%
   group_by(lambda) %>%
   mutate(sum_abs_coeff = sum(abs(Coefficient)))
 
 # Filter to include only rows where the sum of abs(coefficients) > 0
-coefficients_filtered <- DataSet.glmnet.coef.pivot_longer %>%
+coefficients_filtered <- DS.glmnet.coef.pivot_longer %>%
   filter(sum_abs_coeff > 0)
 
 
@@ -1098,7 +1098,7 @@ log_labels <- scales::trans_format("log10", scales::math_format(10^.x))
 # ggplot(coefficients_filtered, aes(x = log(lambda), y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_continuous(breaks = log_breaks, labels = log_labels) +  # Custom log scale breaks and labels
-#   labs(title = paste0("Coefficient Paths for `", DataSetName, "` (Zoomed)"), x = "Log(Lambda)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for `", DSN, "` (Zoomed)"), x = "Log(Lambda)", y = "Coefficient") +
 #   theme_minimal()  # Optional theme for cleaner appearance
 # 
 # ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1106,7 +1106,7 @@ log_labels <- scales::trans_format("log10", scales::math_format(10^.x))
 # ggplot(coefficients_filtered, aes(x = lambda, y = Coefficient, color = Variable)) +
 #   geom_line() +
 #   scale_x_log10(breaks = log_breaks, labels = log_labels) +  # Proper log scale with breaks
-#   labs(title = paste0("Coefficient Paths for `", DataSetName, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
+#   labs(title = paste0("Coefficient Paths for `", DSN, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
 #   theme_minimal() +
 #   theme(panel.grid.minor = element_blank())  # Optional: hide minor grids for cleaner look
 
@@ -1129,7 +1129,7 @@ ggplot(coefficients_filtered, aes(x = lambda, y = Coefficient, color = Variable)
     minor_breaks = log10_minor_break()  # Add custom minor breaks
   ) +
   annotation_logticks(sides = "b") +  # Add log ticks on the bottom side (x-axis)
-  labs(title = paste0("Coefficient Paths for `", DataSetName, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
+  labs(title = paste0("Coefficient Paths for `", DSN, "` (Zoomed)"), x = "Lambda (log scale)", y = "Coefficient") +
   theme_minimal() +
   theme(panel.grid.minor = element_line(color = "gray90"))  # Lighter color for minor grids
 

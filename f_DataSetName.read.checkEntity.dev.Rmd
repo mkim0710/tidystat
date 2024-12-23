@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -259,7 +259,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ```
   
 ```{r}
-source("f_DataSetName.Search.read.checkEntity.source.r")
+source("f_DSN.Search.read.checkEntity.source.r")
 ```
 
   
@@ -271,33 +271,33 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## ->> Now synced to: ""  
 # __________|------  
   
-# \$ DataSetName = "fhs.index100le10" =======  
-## \% f_DataSetName.Search.read.checkEntity(print2console = FALSE) =======  
+# \$ DSN = "fhs.index100le10" =======  
+## \% f_DSN.Search.read.checkEntity(print2console = FALSE) =======  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 
-# \$ DataSetName = "fhs.index100le10" =======  
-DataSetName = "fhs.index100le10"
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
+# \$ DSN = "fhs.index100le10" =======  
+DSN = "fhs.index100le10"
+out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, print2console = FALSE)
 out |> str(max.level = 2, give.attr = TRUE)
 # Warning messages:
-# 1: In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = .objectname) :
+# 1: In env1$f$f_DSN.Search.read.checkEntity(DSN = .objectname) :
 #   getwd() != .path4read == "."
-# 2: In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = .objectname) :
+# 2: In env1$f$f_DSN.Search.read.checkEntity(DSN = .objectname) :
 #   varname for ID not identified among: c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 ```
   
   
   
-## \% f_DataSetName.Search.read.checkEntity(vec_candidate4ID = "randid", print2console = FALSE) =======  
+## \% f_DSN.Search.read.checkEntity(vec_candidate4ID = "randid", print2console = FALSE) =======  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
+out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, vec_candidate4ID = "randid", print2console = FALSE)
 out |> str(max.level = 2, give.attr = TRUE)
 # > out |> str(max.level = 2, give.attr = TRUE)
 # List of 7
-#  $ DataSetName   : chr "fhs.index100le10"
+#  $ DSN   : chr "fhs.index100le10"
 #  $ df_size_files :'data.frame':	1 obs. of  2 variables:
 #   ..$ filename: chr "data/fhs.index100le10.rds"
 #   ..$ size    : num 35747
@@ -314,17 +314,17 @@ out |> str(max.level = 2, give.attr = TRUE)
 ```
   
 
-## \% f_DataSetName.Search.read.checkEntity(print2console = TRUE, return.output = FALSE) =======  
+## \% f_DSN.Search.read.checkEntity(print2console = TRUE, return.output = FALSE) =======  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = TRUE, return.output = FALSE)
+env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, vec_candidate4ID = "randid", print2console = TRUE, return.output = FALSE)
 ```
   
   
-## \% f_DataSetName.Search.read.checkEntity(print2console = TRUE, return.output = TRUE) =======  
+## \% f_DSN.Search.read.checkEntity(print2console = TRUE, return.output = TRUE) =======  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = TRUE, return.output = TRUE)
+env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, print2console = TRUE, return.output = TRUE)
 ```
   
   

@@ -208,7 +208,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -311,23 +311,23 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     wb <- wb_workbook()
     
     # Add each data.frame to a new worksheet
-    for (DataSetName in names(list_df)) {
-        DataSet <- list_df[[DataSetName]]
+    for (DSN in names(list_df)) {
+        DS <- list_df[[DSN]]
         
         # Add worksheet and data table
-        wb$add_worksheet(DataSetName)
-        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+        wb$add_worksheet(DSN)
+        wb$add_data_table(sheet = DSN, x = DS, table_name = DSN)
         
         # Auto-adjust column widths
-        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+        wb$set_col_widths(sheet = DSN, cols = 1:ncol(DS), widths = "auto")
         
         # Freeze panes (optional configuration)
-        wb$freeze_pane(sheet = DataSetName, first_active_row = first_active_row, first_active_col = first_active_col)
+        wb$freeze_pane(sheet = DSN, first_active_row = first_active_row, first_active_col = first_active_col)
         
         # Hide unwanted columns, if specified
         if (!is.null(vec_colnames_to_show)) {
-            vec_col_index_to_hide <- which(!colnames(DataSet) %in% vec_colnames_to_show)
-            wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
+            vec_col_index_to_hide <- which(!colnames(DS) %in% vec_colnames_to_show)
+            wb$set_col_widths(sheet = DSN, cols = vec_col_index_to_hide, hidden = TRUE)
         }
     }
     

@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -221,9 +221,9 @@ options(width=120)
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -512,16 +512,16 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## ->> Now synced to: ""  
 # __________|------  
 ## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
-### \$ DataSet.DNR =  
+### \$ DS.DNR =  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
+# # \$ assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) ) ====  
 # # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# # DSN = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # .path4read = paste0(env1$path$path1,"/data")
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
-# assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
+# DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
+# assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) )
 # 
 # CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
 # # > CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----  
@@ -543,12 +543,12 @@ options(width=120)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# DataSet.DNR = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
+# DS.DNR = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
 #     rownames_to_column() 
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# DataSet.DNR %>% 
+# DS.DNR %>% 
 #     select(
 #         SEX,
 #         HEIGHT, WEIGHT, 
@@ -565,24 +565,24 @@ options(width=120)
 #         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
 #         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
 #         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-#     ) |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
+#     ) |> env1$f$f_df.Table1byExposure.xlsx(DSN4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
 ```
   
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode  
 ## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct  
 ### @ VarName.suffix.regex = "A0[0-2]"
-### :: DataSet.DNR = get(DataSetName) |> select(matches(VarName.suffix.regex))
+### :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030")
-# DataSetName = "df_NewDMv3.CensorEND.n88.select293.NR.recode"
-DataSetName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"
+# DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode"
+DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"
 
-# env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))
-assign(  DataSetName, read_csv(file.path(.path4read, paste0(DataSetName,".UTF8.csv")))  )   
+# env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))
+assign(  DSN, read_csv(file.path(.path4read, paste0(DSN,".UTF8.csv")))  )   
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 VarName.suffix.regex =
@@ -623,19 +623,19 @@ VarName.suffix.regex =
                  "KIDCU", "TREATD14"))
     ) %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-DataSet.DNR = get(DataSetName) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+DS.DNR = get(DSN) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
-DataSet.DNR = DataSet.DNR[sort(names(DataSet.DNR))]
-DataSet.DNR = DataSet.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
-DataSet.DNR |> str(max.level = 2, give.attr = TRUE)
+DS.DNR = DS.DNR[sort(names(DS.DNR))]
+DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DS.DNR |> str(max.level = 2, give.attr = TRUE)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .VarNames4Exposure =  c("A01_BMI.5bins")  
-.DataSetName4output = DataSetName
-# DataSet.DNR |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = .DataSetName4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES") |> env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
+.DSN4output = DSN
+# DS.DNR |> env1$f$f_df.Table1byExposure.xlsx(DSN4output = .DSN4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES") |> env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
 ```
 
 
@@ -705,7 +705,7 @@ GT1 |>
   
 ## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct  
 ### @ VarName.suffix.regex = "A0[0-2]"
-### :: DataSet.DNR = get(DataSetName) |> select(matches(VarName.suffix.regex))
+### :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
 
 ### **ECHO** \% |> tbl_summary(by, statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)")) ---- 
 #### \% |> add_n() ----  
@@ -721,12 +721,12 @@ GT1 |>
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .byVar = "A01_BMI.5bins"
-DataSet = DataSet.DNR %>% 
+DS = DS.DNR %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
 env1$env.internal.attach$Sys.time.set_t0()
-GT1 = DataSet %>% 
+GT1 = DS %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -741,11 +741,11 @@ GT1 = DataSet %>%
     # add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
     modify_header(label = "**Variable (label)**", all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |> 
-    # modify_table_styling(columns = "label", fmt_fun = function(i.label) {paste0(names(DataSet), " (", i.label, ")")}) |>
+    # modify_table_styling(columns = "label", fmt_fun = function(i.label) {paste0(names(DS), " (", i.label, ")")}) |>
     modify_table_body(  ~ .x %>% mutate( label = if_else(row_type == "level", label, if_else(label == variable, label, paste0(variable, " (", label, ")"))) )  ) |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",.$meta_data %>% filter(variable == .byvar) %>% pull(var_label),"**")) |>
-    modify_spanning_header(all_stat_cols() ~ paste0("**",ifelse(is.null(labelled::var_label(DataSet[[.byVar]])), .byVar, labelled::var_label(DataSet[[.byVar]])),"**")) |>
+    modify_spanning_header(all_stat_cols() ~ paste0("**",ifelse(is.null(labelled::var_label(DS[[.byVar]])), .byVar, labelled::var_label(DS[[.byVar]])),"**")) |>
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
@@ -930,20 +930,20 @@ options(width=120)
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
-        # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DataSetName in names(MetaData$DataSetNames)) {    
-            if(exists(DataSetName)) {
-                assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DataSetName]])$DataSetName)) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
-                    message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
-            } else {  message("!exists(",deparse(DataSetName),")")  }
+            } else {  message("!exists(",deparse(DSN),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }

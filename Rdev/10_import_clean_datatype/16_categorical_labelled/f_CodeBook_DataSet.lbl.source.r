@@ -1,17 +1,17 @@
 # default.R
 .subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
-.sourcename_root = "f_CodeBook_DataSet.lbl"  
-# .sourcename_root = "f_CodeBook_DataSet.lbl"  
-#### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.r----  
-#### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.Rmd----  
-#### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r----  
-# # source(paste0(env1$path$source_base,"/","Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"))  
-# # if(!file.exists("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.Rmd")  
-# # if(!file.exists("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r")  
-# file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+.sourcename_root = "f_CodeBook_DS.lbl"  
+# .sourcename_root = "f_CodeBook_DS.lbl"  
+#### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.r----  
+#### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.Rmd----  
+#### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r----  
+# # source(paste0(env1$path$source_base,"/","Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r"))  
+# # if(!file.exists("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.Rmd")  
+# # if(!file.exists("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r")  
+# file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
@@ -20,19 +20,19 @@
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ----  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_CodeBook_DataSet_VarName.lbl =  ----
-# https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r
-.tmp$objectname = "f_CodeBook_DataSet_VarName.lbl"
-.tmp$object = function(DataSet, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", output.select = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
+## :: f_CodeBook_DS_VarName.lbl =  ----
+# https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r
+.tmp$objectname = "f_CodeBook_DS_VarName.lbl"
+.tmp$object = function(DS, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", output.select = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
     .packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     for (i.Varname in vec.VarName) {
 
-        if(is.factor(DataSet[[i.Varname]])) {
+        if(is.factor(DS[[i.Varname]])) {
             paste0("Converting ", i.Varname, " to character") |> warning("  \n", immediate. = TRUE)
-            DataSet[[i.Varname]] = DataSet[[i.Varname]] %>% as.character()
+            DS[[i.Varname]] = DS[[i.Varname]] %>% as.character()
         } 
         
-        var_label(DataSet[[i.Varname]]) = 
+        var_label(DS[[i.Varname]]) = 
             tblVarName_VarDescription_ValueOptions %>% 
             dplyr::filter(VarName == i.Varname) %>% 
             pull(VarDescription) %>% as.character
@@ -40,23 +40,23 @@
             tblVarName_VarDescription_ValueOptions %>% 
             dplyr::filter(VarName == i.Varname) %>% 
             pull(VarType) %in% c(VarType.numeric, VarType.Date) || 
-            is.Date(DataSet[[i.Varname]])  
+            is.Date(DS[[i.Varname]])  
         ) {
-            attributes(DataSet[[i.Varname]])$ValueOptions = 
+            attributes(DS[[i.Varname]])$ValueOptions = 
                 tblVarName_VarDescription_ValueOptions %>% 
                 filter(VarName == i.Varname) %>% 
                 pull(ValueOptions) %>% as.character()
             if ("ValueUnit" %in% names(tblVarName_VarDescription_ValueOptions)) {
-                attributes(DataSet[[i.Varname]])$ValueUnit = 
+                attributes(DS[[i.Varname]])$ValueUnit = 
                     tblVarName_VarDescription_ValueOptions %>% 
                     filter(VarName == i.Varname) %>% 
                     pull(ValueUnit) %>% as.character()
-                attributes(DataSet[[i.Varname]])$label =
-                    attributes(DataSet[[i.Varname]])$label %>% 
-                    paste0(" (", attributes(DataSet[[i.Varname]])$ValueUnit, ")")
+                attributes(DS[[i.Varname]])$label =
+                    attributes(DS[[i.Varname]])$label %>% 
+                    paste0(" (", attributes(DS[[i.Varname]])$ValueUnit, ")")
             }
         } else {
-            val_labels(DataSet[[i.Varname]]) = tblVarName_VarDescription_ValueOptions %>% 
+            val_labels(DS[[i.Varname]]) = tblVarName_VarDescription_ValueOptions %>% 
                 filter(VarName == i.Varname) %>% 
                 pull(ValueOptions) %>% as.character |> 
                 env1$f$f_chrNameValuePairs2vector(
@@ -66,31 +66,31 @@
         }
     }
     if (output.select) {
-        return(DataSet[vec.VarName])
+        return(DS[vec.VarName])
     } else {
-        return(DataSet)
+        return(DS)
     }
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_CodeBook_DataSet.lbl =  ----
-# https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r
-.tmp$objectname = "f_CodeBook_DataSet.lbl"
-.tmp$object = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", VERBOSE = isTRUE(getOption("verbose"))) {
+## :: f_CodeBook_DS.lbl =  ----
+# https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r
+.tmp$objectname = "f_CodeBook_DS.lbl"
+.tmp$object = function(DS, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", VERBOSE = isTRUE(getOption("verbose"))) {
     
-    DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] =
-        DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] %>% mutate_if(is.factor, as.character)
+    DS[names(DS) %in% tblVarName_VarDescription_ValueOptions$VarName] =
+        DS[names(DS) %in% tblVarName_VarDescription_ValueOptions$VarName] %>% mutate_if(is.factor, as.character)
     
-    DataSet[names(DataSet) %in% (tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName))] =
-        DataSet[names(DataSet) %in% (tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName))] %>% mutate_all(as.numeric)
+    DS[names(DS) %in% (tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName))] =
+        DS[names(DS) %in% (tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName))] %>% mutate_all(as.numeric)
         
-    for (i.VarName in names(DataSet)) {
+    for (i.VarName in names(DS)) {
         if (i.VarName %in% tblVarName$VarName) {
             if(VERBOSE) cat("i.VarName = ", i.VarName, "\n", sep="")
             try({
-                DataSet = DataSet %>% 
-                    env1$env.internal$f_CodeBook_DataSet_VarName.lbl(
+                DS = DS %>% 
+                    env1$env.internal$f_CodeBook_DS_VarName.lbl(
                         vec.VarName = i.VarName, 
                         tblVarName_VarDescription_ValueOptions = tblVarName_VarDescription_ValueOptions, 
                         NameValuePair_separator = NameValuePair_separator, 
@@ -103,7 +103,7 @@
             })
         }
     }
-    return(DataSet)
+    return(DS)
 }
 
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---

@@ -1,14 +1,14 @@
-# .sourcename_root = "f_DataSetName.Search.read.checkEntity"  
-# ./f_DataSetName.Search.read.checkEntity.dev.r  
-# ./f_DataSetName.Search.read.checkEntity.dev.Rmd  
-# ./f_DataSetName.Search.read.checkEntity  
-# # source("~/github_tidystat/./f_DataSetName.Search.read.checkEntity")  
-# # if(!file.exists("~/github_tidystat/./f_DataSetName.Search.read.checkEntity.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/./f_DataSetName.Search.read.checkEntity.dev.r")  
-# # if(!file.exists("~/github_tidystat/./f_DataSetName.Search.read.checkEntity.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/./f_DataSetName.Search.read.checkEntity.dev.Rmd")  
-# # if(!file.exists("~/github_tidystat/./f_DataSetName.Search.read.checkEntity")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/./f_DataSetName.Search.read.checkEntity")  
-# file.edit("~/github_tidystat/./f_DataSetName.Search.read.checkEntity.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/./f_DataSetName.Search.read.checkEntity.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/./f_DataSetName.Search.read.checkEntity"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# .sourcename_root = "f_DSN.Search.read.checkEntity"  
+# ./f_DSN.Search.read.checkEntity.dev.r  
+# ./f_DSN.Search.read.checkEntity.dev.Rmd  
+# ./f_DSN.Search.read.checkEntity  
+# # source("~/github_tidystat/./f_DSN.Search.read.checkEntity")  
+# # if(!file.exists("~/github_tidystat/./f_DSN.Search.read.checkEntity.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/./f_DSN.Search.read.checkEntity.dev.r")  
+# # if(!file.exists("~/github_tidystat/./f_DSN.Search.read.checkEntity.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/./f_DSN.Search.read.checkEntity.dev.Rmd")  
+# # if(!file.exists("~/github_tidystat/./f_DSN.Search.read.checkEntity")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/./f_DSN.Search.read.checkEntity")  
+# file.edit("~/github_tidystat/./f_DSN.Search.read.checkEntity.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/./f_DSN.Search.read.checkEntity.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/./f_DSN.Search.read.checkEntity"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -58,7 +58,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## @ .subpath, .filename.source.r ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r")
+.filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 env1$path$.subpath = .subpath
 .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
@@ -89,35 +89,35 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-env1$source$f_DataSetName.Search.read.checkEntity.source.r = NULL
-env1$f$f_DataSetName.Search.read.checkEntity = NULL
+env1$source$f_DSN.Search.read.checkEntity.source.r = NULL
+env1$f$f_DSN.Search.read.checkEntity = NULL
 env1$source$f_filename_ext.find_subpath.source.r = NULL
 env1$f$f_filename_ext.find_subpath = NULL
 env1$f$f_filename_ext.find_subpath.BreathFirstSearch = NULL
-source("f_DataSetName.Search.read.checkEntity.source.r")
+source("f_DSN.Search.read.checkEntity.source.r")
 
 
-# \$ DataSetName = "fhs.index100le10" =======  
-DataSetName = "fhs.index100le10"
+# \$ DSN = "fhs.index100le10" =======  
+DSN = "fhs.index100le10"
 
-## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE, VERBOSE = TRUE)
+## \% f_DSN.Search.read.checkEntity(DSN = DSN) =====
+out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, print2console = FALSE, VERBOSE = TRUE)
 # getwd() == .path4read[1] == "."  
-# DataSetName = "fhs.index100le10"  
+# DSN = "fhs.index100le10"  
 # i.path4read = "."  
 # i.path4read = "data"  
 # Found .path_filename_ext == "data/fhs.index100le10.rds"  
 # filename_ext = "fhs.index100le10.rds"  
 # Warning message:
-# In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName,  :
+# In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN,  :
 #   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")  
 
 
-## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, VERBOSE = TRUE)
-# > out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, VERBOSE = TRUE)
+## \% f_DSN.Search.read.checkEntity(DSN = DSN) =====
+out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, .path4read = ".", print2console = FALSE, VERBOSE = TRUE)
+# > out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, .path4read = ".", print2console = FALSE, VERBOSE = TRUE)
 # getwd() == .path4read[1] == "."  
-# DataSetName = "fhs.index100le10"  
+# DSN = "fhs.index100le10"  
 # i.path4read = "."  
 # !.tmp.file.found && BreathFirstSearch  
 # > source("~/github_tidystat/f_filename_ext.find_subpath.source.r")  
@@ -129,22 +129,22 @@ out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .p
 # Found subpath: .path4read = "./data"  
 # filename_ext = "fhs.index100le10.rds"  
 # Warning message:
-# In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName,  :
+# In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN,  :
 #   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID") 
 
 
-## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
+## \% f_DSN.Search.read.checkEntity(DSN = DSN) =====
+out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, print2console = FALSE)
 out |> str(max.level = 2, give.attr = TRUE)
 # getwd() == .path4read[1] == "."  
 # Found .path_filename_ext == "data/fhs.index100le10.rds"  
 # Warning message:
-# In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName,  :
+# In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN,  :
 #   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")  
 # 
 # > out |> str(max.level = 2, give.attr = TRUE)
 # List of 6
-#  $ DataSetName  : chr "fhs.index100le10"
+#  $ DSN  : chr "fhs.index100le10"
 #  $ df_size_files:'data.frame':	1 obs. of  2 variables:
 #   ..$ filename: chr "data/fhs.index100le10.rds"
 #   ..$ size    : num 35747
@@ -155,12 +155,12 @@ out |> str(max.level = 2, give.attr = TRUE)
 #  $ str          : chr [1:84] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
 
 
-## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
+## \% f_DSN.Search.read.checkEntity(DSN = DSN) =====
+out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, vec_candidate4ID = "randid", print2console = FALSE)
 out |> str(max.level = 2, give.attr = TRUE)
 # > out |> str(max.level = 2, give.attr = TRUE)
 # List of 7
-#  $ DataSetName   : chr "fhs.index100le10"
+#  $ DSN   : chr "fhs.index100le10"
 #  $ df_size_files :'data.frame':	1 obs. of  2 variables:
 #   ..$ filename: chr "data/fhs.index100le10.rds"
 #   ..$ size    : num 35747

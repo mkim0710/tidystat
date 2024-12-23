@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -222,8 +222,8 @@ if(file.exists(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) {
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-# for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
+# for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
@@ -286,26 +286,26 @@ MetaData |> str(max.level = 2, give.attr = TRUE)
 \$ MetaData\$tblVarName\$tblVarName.suffix = KoGES201806vars.CLEAN_TRIM ----      
 ```{r KoGES201806vars.CLEAN_TRIM-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.DataSetName = "KoGES201806vars.CLEAN_TRIM"
-assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
-MetaData$tblVarName$tblVarName.suffix = get(.DataSetName)
+.DSN = "KoGES201806vars.CLEAN_TRIM"
+assign(.DSN, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DSN,".rds")))
+MetaData$tblVarName$tblVarName.suffix = get(.DSN)
 ```
   
   
 \$ MetaData\$tblVarName\$tblWAVE_VARNAME = KoGES201806vars_waves.rev.CLEAN ----   
 ```{r KoGES201806vars_waves.rev.CLEAN-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.DataSetName = "KoGES201806vars_waves.rev.CLEAN"
-assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
-MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
+.DSN = "KoGES201806vars_waves.rev.CLEAN"
+assign(.DSN, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DSN,".rds")))
+MetaData$tblVarName$tblWAVE_VARNAME = get(.DSN)
 ```
   
 
 ### \$tblVarName\$tblVarName = left_join() ----   
 ```{r tblVarName-join-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# .DataSetName = "tblVarName"
-# assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
+# .DSN = "tblVarName"
+# assign(.DSN, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DSN,".rds")))
 tblVarName = MetaData$tblVarName$tblWAVE_VARNAME |>
     # mutate(WAVE = paste0("A0", Wave) |> as.factor()) |>
     left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix") %>%
@@ -352,17 +352,17 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode  
 ### @ VarName.suffix.regex = "A0[0-2]"
-### :: DataSet.DNR = get(DataSetName) |> select(matches(VarName.suffix.regex))
+### :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030")
 # .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NR.recode")
-DataSetName = "df_NewDMv3.CensorEND.n88.select293.NR.recode"
-# paste0(.path4read,"/",DataSetName,".rds") |> env1$f$f_DataSet_path_filename_ext.read.checkEntity()
+DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode"
+# paste0(.path4read,"/",DSN,".rds") |> env1$f$f_DS_path_filename_ext.read.checkEntity()
 
-env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))
+env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -404,13 +404,13 @@ VarName.suffix.regex =
                  "KIDCU", "TREATD14"))
     ) %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-DataSet.DNR = get(DataSetName) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+DS.DNR = get(DSN) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
-DataSet.DNR = DataSet.DNR[sort(names(DataSet.DNR))]
-DataSet.DNR = DataSet.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
-DataSet.DNR |> str(max.level = 2, give.attr = TRUE)
+DS.DNR = DS.DNR[sort(names(DS.DNR))]
+DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DS.DNR |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -549,7 +549,7 @@ You can display and search through variable names and labels with `look_for()`:
 # __________|------  
 # @@ Rdev/00_base_program/f_vecNamed.swap.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd  
-# @@ Rdev/10_import_clean_datatype/16_categorical_labelled/env1$f$f_CodeBook_DataSet.lbl.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/16_categorical_labelled/env1$f$f_CodeBook_DS.lbl.dev.Rmd  
   
 # __________|------  
 # @@ SOURCE) ----  
@@ -620,8 +620,8 @@ KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("일반사항", "
 
 #### \% VarName.suffix |> str_detect("Sex"|>regex(ignore_case=TRUE))  
 ##### \% VarName.suffix \%in\% c("SEX")  
-###### :: var_label(DataSet[[i.WAVE_VARNAME]]) = ----  
-###### :: val_label(DataSet[[i.WAVE_VARNAME]]) = ----  
+###### :: var_label(DS[[i.WAVE_VARNAME]]) = ----  
+###### :: val_label(DS[[i.WAVE_VARNAME]]) = ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -637,37 +637,37 @@ tblVarName.filter = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName
     left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix")
 tblVarName.filter
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet = get(DataSetName)
-DataSet %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
+DS = get(DSN)
+DS %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 .packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
-    var_label(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
+    var_label(DS[[i.WAVE_VARNAME]]) = tblVarName.filter %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 .packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
-    val_labels(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
+    val_labels(DS[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
         filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% 
         pull(ValueOptions) %>% as.character |> 
         env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str(max.level = 2, give.attr = TRUE)
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
+DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str(max.level = 2, give.attr = TRUE)
+DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str(max.level = 2, give.attr = TRUE)
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
+DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str(max.level = 2, give.attr = TRUE)
+DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
 ```
   
   
 ##### \% VarName.suffix \%in\% c("AGE")  
-###### :: var_label(DataSet[[i.WAVE_VARNAME]]) = ----  
-###### :: val_label(DataSet[[i.WAVE_VARNAME]]) = ----  
+###### :: var_label(DS[[i.WAVE_VARNAME]]) = ----  
+###### :: val_label(DS[[i.WAVE_VARNAME]]) = ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -683,31 +683,31 @@ tblVarName.filter = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName
     left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix")
 tblVarName.filter
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet = get(DataSetName)
-DataSet %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
+DS = get(DSN)
+DS %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 .packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
-    var_label(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
+    var_label(DS[[i.WAVE_VARNAME]]) = tblVarName.filter %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # library(labelled)
 # for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
-#     val_labels(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
+#     val_labels(DS[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
 #         filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% 
 #         pull(ValueOptions) %>% as.character |> 
 #         env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
 # }
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str(max.level = 2, give.attr = TRUE)
-# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
+# DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str(max.level = 2, give.attr = TRUE)
+# DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str(max.level = 2, give.attr = TRUE)
-# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
+# DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str(max.level = 2, give.attr = TRUE)
+# DS %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
 ```
     # Error in `vec_cast_named()`:
     # ! Can't convert `labels` <character> to match type of `x` <double>.
@@ -745,7 +745,7 @@ options(width=120)
 options(width=120)
 options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
 .subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
-.sourcename_root = "f_CodeBook_DataSet.lbl"  
+.sourcename_root = "f_CodeBook_DS.lbl"  
 if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 .filename.source.r = .sourcename_root |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -757,60 +757,60 @@ env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.
 # __________|------  
 # @@ START) function ----  
 ## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ----  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: env1$env.internal$f_CodeBook_DataSet_VarName.lbl()  
+## :: env1$env.internal$f_CodeBook_DS_VarName.lbl()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-DataSet = get(DataSetName)
-attributes(DataSet)$MetaData = NULL
+DS = get(DSN)
+attributes(DS)$MetaData = NULL
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$env.internal$f_CodeBook_DataSet_VarName.lbl(DataSet, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
-env1$env.internal$f_CodeBook_DataSet_VarName.lbl(DataSet, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
+env1$env.internal$f_CodeBook_DS_VarName.lbl(DS, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
+env1$env.internal$f_CodeBook_DS_VarName.lbl(DS, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-env1$env.internal$f_CodeBook_DataSet_VarName.lbl(DataSet, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
-env1$env.internal$f_CodeBook_DataSet_VarName.lbl(DataSet, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
+env1$env.internal$f_CodeBook_DS_VarName.lbl(DS, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
+env1$env.internal$f_CodeBook_DS_VarName.lbl(DS, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
 ```
 
 
-## :: env1$f$f_CodeBook_DataSet.lbl()  
+## :: env1$f$f_CodeBook_DS.lbl()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-DataSet = get(DataSetName)
-# attributes(DataSet)$MetaData = NULL
-# DataSet = DataSet %>% select(matches("SEX"))
-# DataSet = DataSet %>% select(matches("^A00"))
-# DataSet = DataSet %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
-# DataSet = DataSet %>% select(matches("^A0[0-1]"))
-# DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.lbl(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
-DataSet.lbl = DataSet %>% env1$f$f_CodeBook_DataSet.lbl(tblVarName, vecNamed.swap = TRUE)
-DataSet.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
-DataSet.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
+DS = get(DSN)
+# attributes(DS)$MetaData = NULL
+# DS = DS %>% select(matches("SEX"))
+# DS = DS %>% select(matches("^A00"))
+# DS = DS %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
+# DS = DS %>% select(matches("^A0[0-1]"))
+# DS = DS %>% env1$f$f_CodeBook_DS.lbl(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
+DS.lbl = DS %>% env1$f$f_CodeBook_DS.lbl(tblVarName, vecNamed.swap = TRUE)
+DS.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
+DS.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 cat("    ________________________________________________________________________    \n")
-DataSet.lbl.fct = DataSet.lbl %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor)
-DataSet.lbl.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
+DS.lbl.fct = DS.lbl %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor)
+DS.lbl.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 ```
   
   
-### DataSet.fct |> env1$f$f_CodeBook_DataSet.lbl()  
+### DS.fct |> env1$f$f_CodeBook_DS.lbl()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-DataSet = get(DataSetName)
-# attributes(DataSet)$MetaData = NULL
-# DataSet = DataSet %>% select(matches("SEX"))
-# DataSet = DataSet %>% select(matches("^A00"))
-# DataSet = DataSet %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
-# DataSet = DataSet %>% select(matches("^A0[0-1]"))
-# DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.lbl(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
-DataSet.fct = DataSet %>% mutate_if(is.character, as.factor)
-DataSet.fct |> str(max.level = 2, give.attr = TRUE)
-DataSet.fct.lbl = DataSet.fct %>% env1$f$f_CodeBook_DataSet.lbl(tblVarName, vecNamed.swap = TRUE)
-DataSet.fct.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
-DataSet.fct.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
+DS = get(DSN)
+# attributes(DS)$MetaData = NULL
+# DS = DS %>% select(matches("SEX"))
+# DS = DS %>% select(matches("^A00"))
+# DS = DS %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
+# DS = DS %>% select(matches("^A0[0-1]"))
+# DS = DS %>% env1$f$f_CodeBook_DS.lbl(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
+DS.fct = DS %>% mutate_if(is.character, as.factor)
+DS.fct |> str(max.level = 2, give.attr = TRUE)
+DS.fct.lbl = DS.fct %>% env1$f$f_CodeBook_DS.lbl(tblVarName, vecNamed.swap = TRUE)
+DS.fct.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
+DS.fct.lbl %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 cat("    ________________________________________________________________________    \n")
-DataSet.fct.lbl.fct = DataSet.fct.lbl %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor) 
-DataSet.fct.lbl.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
+DS.fct.lbl.fct = DS.fct.lbl %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor) 
+DS.fct.lbl.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 ```
 
 
@@ -913,20 +913,20 @@ options(width=120)
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
-        # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DataSetName in names(MetaData$DataSetNames)) {    
-            if(exists(DataSetName)) {
-                assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DataSetName]])$DataSetName)) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
-                    message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
-            } else {  message("!exists(",deparse(DataSetName),")")  }
+            } else {  message("!exists(",deparse(DSN),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }
@@ -949,16 +949,16 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 }
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-DataSetName
-DataSetName %>% paste0(".lbl")
-DataSetName %>% paste0(".lbl.fct")
+DSN
+DSN %>% paste0(".lbl")
+DSN %>% paste0(".lbl.fct")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet.lbl.fct %>% select(1) |> str(max.level = 2, give.attr = TRUE)
+DS.lbl.fct %>% select(1) |> str(max.level = 2, give.attr = TRUE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 for (i.suffix in c(".lbl", ".lbl.fct")) {
-    .objectname = DataSetName %>% paste0(i.suffix)
+    .objectname = DSN %>% paste0(i.suffix)
     .path_file = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.objectname,".rds",".xz") 
-    get(paste0("DataSet",i.suffix)) %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = ., .objectname = .objectname, .path_file = .path_file, .path4write = NULL, .filename_ext4write = NULL, createBACKUP = FALSE, .BACKUP_to_path="-BACKUP", EXECUTE = TRUE, path.size_files = TRUE, git_lfs_track = FALSE, git_add_f = FALSE, CompressionMethod = "xz", VERBOSE = FALSE)
+    get(paste0("DS",i.suffix)) %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = ., .objectname = .objectname, .path_file = .path_file, .path4write = NULL, .filename_ext4write = NULL, createBACKUP = FALSE, .BACKUP_to_path="-BACKUP", EXECUTE = TRUE, path.size_files = TRUE, git_lfs_track = FALSE, git_add_f = FALSE, CompressionMethod = "xz", VERBOSE = FALSE)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 }
 

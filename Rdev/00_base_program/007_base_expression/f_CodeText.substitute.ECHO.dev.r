@@ -32,9 +32,9 @@
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)

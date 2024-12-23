@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -264,41 +264,41 @@ env0 = env1
 ```{r EchoNoEval, eval=FALSE, echo=TRUE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-DataSet.DNR.select = DataSet.DNR |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>%
+DS.DNR.select = DS.DNR |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>%
     mutate(Intervention.ge1 = !BMI_ge300) %>%
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
-DataSet.DNR.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
-# DataSet.DNR.select %>% mutate_if(is.numeric, replace_na, 0)
+DS.DNR.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
+# DS.DNR.select %>% mutate_if(is.numeric, replace_na, 0)
 
 VarNames4Exposure =  c("InterventionGroup")
-DataSetName = "DataSet.DNR"
-DataSetName.select = paste0(DataSetName,".select")
+DSN = "DS.DNR"
+DSN.select = paste0(DSN,".select")
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-assign(DataSetName.Table1byExposure,
-       get(DataSetName.select) %>%
+assign(DSN.Table1byExposure,
+       get(DSN.select) %>%
            {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric
            CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 )
 
-Vars4IQR = names(get(DataSetName.select))[get(DataSetName.select) %>% map_lgl(is.numeric)]
-# get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+Vars4IQR = names(get(DSN.select))[get(DSN.select) %>% map_lgl(is.numeric)]
+# get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-DataSet.Table1byExposure.print = get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.Table1byExposure.print = get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 
-DataSet.Table1byExposure.print_showAllLevels = get(DataSetName.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.Table1byExposure.print_showAllLevels = get(DSN.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 
-DataSet.Table1byExposure.print_showAllLevels.IQR = get(DataSetName.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.Table1byExposure.print_showAllLevels.IQR = get(DSN.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExposure.print) {
+# function.DS.Table1byExposure.print.addCols = function(DS.Table1byExposure.print) {
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -306,39 +306,39 @@ DataSet.Table1byExposure.print_showAllLevels.IQR = get(DataSetName.Table1byExpos
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# function.DataSet.Table1byExposure.print_showAllLevels.addCols = function(DataSet.Table1byExposure.print_showAllLevels) {
+# function.DS.Table1byExposure.print_showAllLevels.addCols = function(DS.Table1byExposure.print_showAllLevels) {
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 list(
-    byExposure = DataSet.Table1byExposure.print %>% function.DataSet.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
-    , byExposure.AllLevels = DataSet.Table1byExposure.print_showAllLevels %>% function.DataSet.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
-    , byExposure.IQR = DataSet.Table1byExposure.print_showAllLevels.IQR
-    # , is.na.byExposure = DataSet.is.na.Table1byExposure.print
-) %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, "(list).xlsx"))
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, "(list).xlsx"))
+    byExposure = DS.Table1byExposure.print %>% function.DS.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
+    , byExposure.AllLevels = DS.Table1byExposure.print_showAllLevels %>% function.DS.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+    , byExposure.IQR = DS.Table1byExposure.print_showAllLevels.IQR
+    # , is.na.byExposure = DS.is.na.Table1byExposure.print
+) %>% writexl::write_xlsx(paste0(DSN.Table1byExposure, "(list).xlsx"))
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DSN.Table1byExposure, "(list).xlsx"))
 ```
 
 
 
-## \% f_DataSet.Table1.print.df()  
+## \% f_DS.Table1.print.df()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 
 
 # Function to Generate Table 1
-f_DataSet.Table1.print.df <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
+f_DS.Table1.print.df <- function(DS, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
-    Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
-    Varnames_factor <- names(DataSet %>% select(where(is.factor)))
+    Varnames.except_Exposure <- setdiff(names(DS), VarNames4Exposure)
+    Varnames_factor <- names(DS %>% select(where(is.factor)))
     
     if (!is.null(Varnames_factor.exclude)) {
         Varnames_factor <- setdiff(Varnames_factor, Varnames_factor.exclude)
     }
 
-    Table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
+    Table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DS, 
                                 factorVars = Varnames_factor, strata = VarNames4Exposure, 
                                 addOverall = addOverall, includeNA = includeNA, test = TRUE) %>%
         print(nonnormal = print.Varnames_nonnormal,
@@ -412,7 +412,7 @@ f_Table1_print_df.flextable <- function(Table1_print_df, header_text, footer_tex
 ### :: Table1_print_df = GermanBreastCancerStudyGroup |> generate_table_one() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Generate Table 1 Data Frame
-Table1_print_df <- f_DataSet.Table1.print.df(
+Table1_print_df <- f_DS.Table1.print.df(
     GermanBreastCancerStudyGroup, 
     VarNames4Exposure = "Hormone treatment", 
     print.Varnames_nonnormal = c("Progesterone receptors, fmol/L (median [IQR])",
@@ -523,7 +523,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
     .wb <- openxlsx2::wb_workbook()
 
     .names4data.frame = if(exists("MetaData")) {
-        MetaData$DataSetNames |> names()
+        MetaData$DSNs |> names()
     } else mget(ls()) |> keep(is.data.frame) |> names()
     cat(".names4data.frame == ", deparse(.names4data.frame), "  \n", sep="")
     # for (.objectname in .names4data.frame) {    # name of the data.frame .object

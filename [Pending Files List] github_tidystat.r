@@ -198,9 +198,9 @@ ensure_package("tidyverse")
 #@@ Rdev/20_tidy_group_by_match/ ----
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##@ f_Metadata_CodeToCreateDataSet.parse_eval.dev.Rmd -----
-##@ f_Metadata_CodeToCreateDataSet.parse_eval.dev-GPT-pending.Rmd -----
-##@ f_Metadata_CodeToCreateDataSet.parse_eval.dev-Gemini-pending.Rmd -----
+##@ f_Metadata_CodeToCreateDS.parse_eval.dev.Rmd -----
+##@ f_Metadata_CodeToCreateDS.parse_eval.dev-GPT-pending.Rmd -----
+##@ f_Metadata_CodeToCreateDS.parse_eval.dev-Gemini-pending.Rmd -----
 
 
 
@@ -243,8 +243,8 @@ file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |>
 #@@ Rdev/50_model_formula_evaluation/56_model_bootstrap/ ----
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### \% f_DataSet.SMOTE.dev-GPT.Rmd -----  
-.subpath_filename.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DataSet.SMOTE.dev-GPT.Rmd"
+### \% f_DS.SMOTE.dev-GPT.Rmd -----  
+.subpath_filename.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DS.SMOTE.dev-GPT.Rmd"
 .subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
 file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 

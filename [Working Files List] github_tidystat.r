@@ -276,8 +276,8 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 ### \% f_df -----  
 #### \% f_df.t.tribble_construct -----  
 .filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
-#### \% f_DataSetName.Search.read.checkEntity -----  
-.filename.r = "f_DataSetName.Search.read.checkEntity" |> paste0(c(".source.r",".dev.r")); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+#### \% f_DSN.Search.read.checkEntity -----  
+.filename.r = "f_DSN.Search.read.checkEntity" |> paste0(c(".source.r",".dev.r")); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
@@ -343,7 +343,7 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 # ~/github_tidystat/Rdev/60_communicate_report_export/f_df.glmnet.GT1.flextable.dev-Gemini-pending.Rmd
 # ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
 # ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glmnet_alphas_cox.dev.Rmd
-# ~/github_tidystat/DataSet.DNR.lbl.fct.select_.n_.recode.dev.Rmd
+# ~/github_tidystat/DS.DNR.lbl.fct.select_.n_.recode.dev.Rmd
 # ~/github_tidystat/Rdev/60_communicate_report_export/f_df.GT1.flextable.dev.Rmd
 # ~/github_tidystat/git/f_gitattributes.update_non_lfs.dev.Rmd
 # 

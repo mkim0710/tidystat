@@ -975,23 +975,23 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_file
     wb <- wb_workbook()
     
     # Add each data.frame to a new worksheet
-    for (DataSetName in names(list_df)) {
-        DataSet <- list_df[[DataSetName]]
+    for (DSN in names(list_df)) {
+        DS <- list_df[[DSN]]
         
         # Add worksheet and data table
-        wb$add_worksheet(DataSetName)
-        wb$add_data_table(sheet = DataSetName, x = DataSet, table_name = DataSetName)
+        wb$add_worksheet(DSN)
+        wb$add_data_table(sheet = DSN, x = DS, table_name = DSN)
         
         # Auto-adjust column widths
-        wb$set_col_widths(sheet = DataSetName, cols = 1:ncol(DataSet), widths = "auto")
+        wb$set_col_widths(sheet = DSN, cols = 1:ncol(DS), widths = "auto")
         
         # Freeze panes (optional configuration)
-        wb$freeze_pane(sheet = DataSetName, first_active_row = first_active_row, first_active_col = first_active_col)
+        wb$freeze_pane(sheet = DSN, first_active_row = first_active_row, first_active_col = first_active_col)
         
         # Hide unwanted columns, if specified
         if (!is.null(vec_colnames_to_show)) {
-            vec_col_index_to_hide <- which(!colnames(DataSet) %in% vec_colnames_to_show)
-            wb$set_col_widths(sheet = DataSetName, cols = vec_col_index_to_hide, hidden = TRUE)
+            vec_col_index_to_hide <- which(!colnames(DS) %in% vec_colnames_to_show)
+            wb$set_col_widths(sheet = DSN, cols = vec_col_index_to_hide, hidden = TRUE)
         }
     }
     
@@ -1042,14 +1042,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     input_path.file.info = input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
     
     # openxlsx2::write_xlsx(input_path.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
-    DataSet = input_path.file.info
+    DS = input_path.file.info
     library(openxlsx2)
-    wb = openxlsx2::write_xlsx(setNames(list(DataSet), "file.info"), as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
-    # vec_col_index_to_hide = colnames(DataSet) %>% str_which(paste0(vec_colnames_to_hide, collapse = "|"))
+    wb = openxlsx2::write_xlsx(setNames(list(DS), "file.info"), as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
+    # vec_col_index_to_hide = colnames(DS) %>% str_which(paste0(vec_colnames_to_hide, collapse = "|"))
     # vec_colnames_to_hide <- c("path_file", "path", "filename")
-    # vec_col_index_to_hide = which(colnames(DataSet) %in% vec_colnames_to_hide)
+    # vec_col_index_to_hide = which(colnames(DS) %in% vec_colnames_to_hide)
     vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-    vec_col_index_to_hide = which(!colnames(DataSet) %in% vec_colnames_to_show)
+    vec_col_index_to_hide = which(!colnames(DS) %in% vec_colnames_to_show)
     wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
     wb |> wb_save(output_filename.xlsx)
 
@@ -1083,7 +1083,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$objectname = "f_path.DOCs_Rcode.file.info.xlsx"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path = env1$path$path1, 
-        list_DataSetName_pattern = list(DOCs = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
+        list_DSN_pattern = list(DOCs = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
         all.files = FALSE, full.names = TRUE, recursive = TRUE,
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
@@ -1112,18 +1112,18 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     }
     if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)
     
-    list_df = list_DataSetName_pattern %>% map(function(pattern) {
+    list_df = list_DSN_pattern %>% map(function(pattern) {
         input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"subdirs"))
+    }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD,"subdirs"))
     
-    list_df_path1 = list_DataSetName_pattern %>% map(function(pattern) {
+    list_df_path1 = list_DSN_pattern %>% map(function(pattern) {
         input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = FALSE, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"path1"))
+    }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD,"path1"))
 
     list_df_ProjectDocuments = map2(list_df, list_df_path1, function(df, df_path1) {
         bind_rows(df_path1, df %>% filter(path %>% str_detect("ProjectDocuments"))) |> arrange(desc(!!sym(arrange_by)))
-    # }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD,"PrjDoc"))
-    }) %>% set_names(paste0(names(list_DataSetName_pattern),Sys.Date.YYMMDD))
+    # }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD,"PrjDoc"))
+    }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD))
     
     env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xls.open_or_browseURL = xls.open_or_browseURL)
     
@@ -2217,8 +2217,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     .object.size <- object.size(.object)
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if(exists("MetaData")) {
-        if("DataSetNames" %in% names(MetaData)) {
-            if(.objectname %in% names(MetaData$DataSetNames)) {
+        if("DSNs" %in% names(MetaData)) {
+            if(.objectname %in% names(MetaData$DSNs)) {
                 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
                 assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
                 assign(".object", structure(.object, MetaData = as.environment(MetaData)))
@@ -2498,7 +2498,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     if(DEBUGMODE) browser()
     # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str
     # List of 4
-    #  $ .subpath_filename.source.r: chr "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
+    #  $ .subpath_filename.source.r: chr "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r"
     #  $ .subpath                  : NULL
     #  $ .filename.source.r        : NULL
     #  $ RELOAD_FUNCTION    : logi TRUE
@@ -2537,10 +2537,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     }
 }
 ## *** Example Usage:  
-# env1$source$f_CodeBook_DataSet.lbl.source.r = NULL
-# .filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# env1$source$f_CodeBook_DS.lbl.source.r = NULL
+# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # .filename.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
-# env1$source$f_CodeBook_DataSet.lbl.source.r
+# env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source_if_not_sourced  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "source_if_not_sourced")
@@ -2555,13 +2555,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
     # [1] "..."
     # Browse[1]> list(...)
     # $.subpath_filename.source.r
-    # [1] "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.lbl.source.r"
+    # [1] "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r"
     env1$f$f_sourcePath.execute_if_not_sourced(..., RELOAD_FUNCTION = TRUE)
 }
 ## *** Example Usage:  
-# env1$source$f_CodeBook_DataSet.lbl.source.r = ""
-# .filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
-# env1$source$f_CodeBook_DataSet.lbl.source.r
+# env1$source$f_CodeBook_DS.lbl.source.r = ""
+# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source.force_reload  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "source.force_reload")

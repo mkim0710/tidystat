@@ -1,8 +1,8 @@
-# # .objectname = "f_DataSetName.Search.read.checkEntity"
-# # f_DataSetName.Search.read.checkEntity.dev.r
-# # f_DataSetName.Search.read.checkEntity.source.r
-# #         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.Search.read.checkEntity.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DataSetName.Search.read.checkEntity.source.r")
+# # .objectname = "f_DSN.Search.read.checkEntity"
+# # f_DSN.Search.read.checkEntity.dev.r
+# # f_DSN.Search.read.checkEntity.source.r
+# #         https://github.com/mkim0710/tidystat/blob/master/f_DSN.Search.read.checkEntity.dev.r
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DSN.Search.read.checkEntity.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -50,7 +50,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## @ .subpath, .filename.source.r ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r")
+.filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.subpath = .subpath
 # .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
@@ -116,15 +116,15 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 
-## @ .objectname = "f_DataSet_path_filename_ext.read.checkEntity" =========  
-.tmp$objectname = "f_DataSet_path_filename_ext.read.checkEntity"
-.tmp$object = function(DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
+## @ .objectname = "f_DS_path_filename_ext.read.checkEntity" =========  
+.tmp$objectname = "f_DS_path_filename_ext.read.checkEntity"
+.tmp$object = function(DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
     
-    if(VERBOSE) cat('DataSet_path_filename_ext = ', deparse(DataSet_path_filename_ext), '  \n', sep="")
+    if(VERBOSE) cat('DS_path_filename_ext = ', deparse(DS_path_filename_ext), '  \n', sep="")
 
-    .path4read = DataSet_path_filename_ext |> dirname() 
-    filename_ext = DataSet_path_filename_ext |> basename()
-    DataSetName = filename_ext |> str_remove("\\.(gz|bz2|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
+    .path4read = DS_path_filename_ext |> dirname() 
+    filename_ext = DS_path_filename_ext |> basename()
+    DSN = filename_ext |> str_remove("\\.(gz|bz2|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
     
     # filename_ext.regex = filename_ext %>%  
     #     str_replace_all("\\.", "\\\\.") %>%
@@ -135,9 +135,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     #     str_replace_all("\\-", "\\\\-") 
     # filename_ext.regex <- filename_ext |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
 
-    ## \% return.list$DataSetName ====
+    ## \% return.list$DSN ====
     return.list = list()
-    return.list$DataSetName = DataSetName
+    return.list$DSN = DSN
     
     ## \% return.list$df_size_files ====
     # return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], regex4filename = filename_ext.regex)
@@ -146,94 +146,94 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     ## \% return.list$read.proc_time ====
     .path_file = file.path(.path4read[1], filename_ext)
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # return.list$read.proc_time = system.time(assign(DataSetName, read_rds(.path_file, envir=.GlobalEnv)))
+    # return.list$read.proc_time = system.time(assign(DSN, read_rds(.path_file, envir=.GlobalEnv)))
     # if(print2console) return.list$read.proc_time |> print()
-    .read.proc_time = system.time(assign(DataSetName, read_rds(.path_file), envir=.GlobalEnv))
+    .read.proc_time = system.time(assign(DSN, read_rds(.path_file), envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
     
     
     ##@ MetaData needs to be restored to .GlobalEnv first: it will be updated within .GlobalEnv as needed.
-    if (!is.null(attributes(.GlobalEnv[[DataSetName]])$MetaData)) {
-        .GlobalEnv$MetaData = as.list(attributes(.GlobalEnv[[DataSetName]])$MetaData)
+    if (!is.null(attributes(.GlobalEnv[[DSN]])$MetaData)) {
+        .GlobalEnv$MetaData = as.list(attributes(.GlobalEnv[[DSN]])$MetaData)
     }
         
-    ##@ attributes(.GlobalEnv[[DataSetName]])$DataSetName or attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file need to be updated.
-    attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-    attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file = .path_file |> normalizePath(winslash = "/") |> str_replace_all(env1$path$path1|>fixed(ignore_case=TRUE), "") |> str_replace("^/", "")
+    ##@ attributes(.GlobalEnv[[DSN]])$DSN or attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file need to be updated.
+    attributes(.GlobalEnv[[DSN]])$DSN = DSN
+    attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file = .path_file |> normalizePath(winslash = "/") |> str_replace_all(env1$path$path1|>fixed(ignore_case=TRUE), "") |> str_replace("^/", "")
 
     ## \% return.list$dim ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-    return.list$dim = dim(get(DataSetName))
-    if(print2console) cat("dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="")
+    return.list$dim = dim(get(DSN))
+    if(print2console) cat("dim(",DSN,") == ",deparse(dim(get(DSN))),"  \n", sep="")
     
     ## \% return.list$n_distinct ====
-    # Error: attributes(get(DataSetName))$n_distinct = list()
-    if( !"n_distinct" %in% names(attributes(.GlobalEnv[[DataSetName]])) ) attributes(.GlobalEnv[[DataSetName]])$n_distinct = list()
-    DataSetName.nrow = nrow(get(DataSetName))
-    attributes(.GlobalEnv[[DataSetName]])$n_distinct$nrow = DataSetName.nrow
+    # Error: attributes(get(DSN))$n_distinct = list()
+    if( !"n_distinct" %in% names(attributes(.GlobalEnv[[DSN]])) ) attributes(.GlobalEnv[[DSN]])$n_distinct = list()
+    DSN.nrow = nrow(get(DSN))
+    attributes(.GlobalEnv[[DSN]])$n_distinct$nrow = DSN.nrow
     for (varname in vec_candidate4ID) {
-        if(varname %in% names(get(DataSetName))) {
-            .varname.n_distinct = n_distinct(get(DataSetName)[[varname]])
-            attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = .varname.n_distinct
-            MessageText1 = paste0("nrow(",DataSetName,")")
-            MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") == ",.varname.n_distinct)
-            # if (DataSetName.nrow != .varname.n_distinct) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)}
-            if (DataSetName.nrow != .varname.n_distinct) {  MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n"); warning(MessageText4cat)  } else {  MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n"); if(print2console) cat(MessageText4cat)  }
+        if(varname %in% names(get(DSN))) {
+            .varname.n_distinct = n_distinct(get(DSN)[[varname]])
+            attributes(.GlobalEnv[[DSN]])$n_distinct[[varname]] = .varname.n_distinct
+            MessageText1 = paste0("nrow(",DSN,")")
+            MessageText2 = paste0("n_distinct(",DSN,"$",varname,") == ",.varname.n_distinct)
+            # if (DSN.nrow != .varname.n_distinct) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)}
+            if (DSN.nrow != .varname.n_distinct) {  MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n"); warning(MessageText4cat)  } else {  MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n"); if(print2console) cat(MessageText4cat)  }
         # } else {
-        #     attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = NA
+        #     attributes(.GlobalEnv[[DSN]])$n_distinct[[varname]] = NA
         }
     }
-    return.list$n_distinct = attributes(.GlobalEnv[[DataSetName]])$n_distinct
-    # if (all(!( vec_candidate4ID %in% names(get(DataSetName)) ))) {MessageText4cat = paste0('varname for ID not identified among: ', deparse(vec_candidate4ID), "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")}
-    if (  all( !( vec_candidate4ID %in% names(get(DataSetName)) ) )  ) {  MessageText4cat = paste0('varname for ID not identified among: ', vec_candidate4ID|>deparse(width.cutoff=500), "  \n"); warning(MessageText4cat)  }
+    return.list$n_distinct = attributes(.GlobalEnv[[DSN]])$n_distinct
+    # if (all(!( vec_candidate4ID %in% names(get(DSN)) ))) {MessageText4cat = paste0('varname for ID not identified among: ', deparse(vec_candidate4ID), "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")}
+    if (  all( !( vec_candidate4ID %in% names(get(DSN)) ) )  ) {  MessageText4cat = paste0('varname for ID not identified among: ', vec_candidate4ID|>deparse(width.cutoff=500), "  \n"); warning(MessageText4cat)  }
     
     ## \% return.list$names ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-    return.list$names = get(DataSetName) |> names() 
+    return.list$names = get(DSN) |> names() 
     if(print2console) {
-        cat("> names(",DataSetName,') |> deparse(width.cutoff=',.width.cutoff,') |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
-        if(ncol(get(DataSetName)) <= 100 || print.name.dput) {
-            get(DataSetName) |> names() |> deparse(width.cutoff=.width.cutoff) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
-        } else {cat("ncol(get(",DataSetName,")) > 100 && !print.name.dput \n", sep="")}
+        cat("> names(",DSN,') |> deparse(width.cutoff=',.width.cutoff,') |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
+        if(ncol(get(DSN)) <= 100 || print.name.dput) {
+            get(DSN) |> names() |> deparse(width.cutoff=.width.cutoff) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
+        } else {cat("ncol(get(",DSN,")) > 100 && !print.name.dput \n", sep="")}
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     }
     
-    # return.list$names.tidyeval = get(DataSetName) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") 
+    # return.list$names.tidyeval = get(DSN) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") 
     if(print2console) {
-        cat("> names(",DataSetName,') |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",',.width.cutoff,',"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
+        cat("> names(",DSN,') |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",',.width.cutoff,',"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
         if(print.names.tidyeval) {
-            get(DataSetName) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",.width.cutoff,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ---  
+            get(DSN) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",.width.cutoff,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ---  
         } else {cat("!print.names.tidyeval  \n")}
     }
     
     ## \% return.list$str ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     if(print2console) { invisible_or_not = function(x) x } else { invisible_or_not = function(x) invisible(x) }
-    # return.list$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
-    attributes(return.list)$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
-    attributes(return.list)$str = as.environment(list(DataSetName.get.str.capture.output = attributes(return.list)$str))
-    if(print2console) {cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)}
+    # return.list$str = get(DSN) |> str() |> capture.output() |> invisible_or_not()
+    attributes(return.list)$str = get(DSN) |> str() |> capture.output() |> invisible_or_not()
+    attributes(return.list)$str = as.environment(list(DSN.get.str.capture.output = attributes(return.list)$str))
+    if(print2console) {cat("> ",DSN," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DSN), max.level=2, give.attr=FALSE)}
     
     ## \% return.list$head_tail ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-    # return.list$head = get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble()
-    # return.list$tail = get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble()
-    # cat("> ",DataSetName," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(DataSetName)), n=9)
+    # return.list$head = get(DSN) |> rownames_to_column('#') |> head(n=10) |> as_tibble()
+    # return.list$tail = get(DSN) |> rownames_to_column('#') |> tail(n=10) |> as_tibble()
+    # cat("> ",DSN," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(DSN)), n=9)
     if(print2console) {
-        cat("> ",DataSetName," |> rownames_to_column('#') |> head(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble() |> print()
+        cat("> ",DSN," |> rownames_to_column('#') |> head(n=10) |> as_tibble()","  \n", sep=""); get(DSN) |> rownames_to_column('#') |> head(n=10) |> as_tibble() |> print()
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        cat("> ",DataSetName," |> rownames_to_column('#') |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble() |> print()
+        cat("> ",DSN," |> rownames_to_column('#') |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DSN) |> rownames_to_column('#') |> tail(n=10) |> as_tibble() |> print()
     }
     
     # if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     # .t0 = Sys.time()
-    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(DataSetName) |> dplyr::select_if(is.numeric) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DSN," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(DSN) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time() - .t0
-    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(DataSetName) |> dplyr::select_if(is.logical) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DSN," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(DSN) |> dplyr::select_if(is.logical) |> summary() #-----
     # Sys.time() - .t0
-    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(DataSetName) |> dplyr::select_if(is.factor) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DSN," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(DSN) |> dplyr::select_if(is.factor) |> summary() #-----
     # Sys.time() - .t0
-    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(DataSetName) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DSN," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(DSN) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time() - .t0
     if(return.output) return(invisible(return.list))
 }
@@ -244,16 +244,16 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 
-## @ .objectname = "f_DataSetName.Search.read.checkEntity" =========  
-.tmp$objectname = "f_DataSetName.Search.read.checkEntity"
-.tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
+## @ .objectname = "f_DSN.Search.read.checkEntity" =========  
+.tmp$objectname = "f_DSN.Search.read.checkEntity"
+.tmp$object = function(DSN, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     MessageText2 = .path4read[1] %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
     if (getwd()|>normalizePath(winslash="/",mustWork=NA) != .path4read[1]|>normalizePath(winslash="/",mustWork=NA)) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n");cat(MessageText4cat)}
 
-    if(VERBOSE) cat('DataSetName = "', DataSetName, '"  \n', sep="")
-    filename_ext = paste0(DataSetName,".", ext)
+    if(VERBOSE) cat('DSN = "', DSN, '"  \n', sep="")
+    filename_ext = paste0(DSN,".", ext)
     
     
     # .path4read = c(.path4read, paste0(.path4read, "/data"))
@@ -301,26 +301,26 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     }
     # if(VERBOSE) cat('filename_ext = "', filename_ext, '"  \n', sep="")
     
-    DataSet_path_filename_ext = file.path(.path4read, filename_ext)
+    DS_path_filename_ext = file.path(.path4read, filename_ext)
     
-    env1$f$f_DataSet_path_filename_ext.read.checkEntity(DataSet_path_filename_ext, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, VERBOSE = VERBOSE)
+    env1$f$f_DS_path_filename_ext.read.checkEntity(DS_path_filename_ext, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, VERBOSE = VERBOSE)
     
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
-# # \$ DataSetName = "fhs.index100le10" =======  
-# DataSetName = "fhs.index100le10"
-# out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
+# # \$ DSN = "fhs.index100le10" =======  
+# DSN = "fhs.index100le10"
+# out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, print2console = FALSE)
 # # Warning messages:
-# # 1: In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) :
+# # 1: In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN) :
 # #   getwd() != .path4read == "."
-# # 2: In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) :
+# # 2: In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN) :
 # #   varname for ID not identified among: c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-# out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
+# out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, vec_candidate4ID = "randid", print2console = FALSE)
 # # Warning message:
-# # In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName,  :
+# # In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN,  :
 # #   getwd() != .path4read == "."
 
 

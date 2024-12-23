@@ -32,9 +32,9 @@ env0 = env1
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # .path4write = env1$path$.path4write
-# # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+# # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 # cat("    ________________________________________________________________________    \n")
-# for (.objectname in names(MetaData$DataSetNames)) {
+# for (.objectname in names(MetaData$DSNs)) {
 #     assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
 #     .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz")
 #     cat(.objectname, ' |> write_rds(',shQuote(.path_file),', compress = "xz", compression = 9L) |> system.time()', "  \n", sep="")
@@ -63,7 +63,7 @@ get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 # > get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 # List of 5
 #  $ tblVarName     : list()
-#  $ DataSetNames   :List of 2
+#  $ DSNs   :List of 2
 #   ..$ analyticDF_time2event.NA        :List of 1
 #   ..$ analyticDF_time2event.NR:List of 1
 #  $ VarNames       :List of 11

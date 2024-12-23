@@ -110,12 +110,12 @@ log_file_availability <- function(path) {
 .objectname = "fhs.index100"
 paste0(.path4read,"/",.objectname,".rds")
 log_file_availability(paste0(.path4read,"/",.objectname,".rds"))
-try(assign( "DataSet", read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
+try(assign( "DS", read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
 # error?
 path_filename_ext = paste0(.path4read,"/",.objectname,".rds")
 path_filename_ext
 log_file_availability(path_filename_ext)
-try(assign( "DataSet", read_rds(path_filename_ext) ))
+try(assign( "DS", read_rds(path_filename_ext) ))
 
 
 
@@ -124,12 +124,12 @@ try(assign( "DataSet", read_rds(path_filename_ext) ))
 .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(.path4read,"/",.objectname,".rds")
 log_file_availability(paste0(.path4read,"/",.objectname,".rds"))
-try(assign( "DataSet", read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
+try(assign( "DS", read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
 # error?
 path_filename_ext = paste0(.path4read,"/",.objectname,".rds")
 path_filename_ext
 log_file_availability(path_filename_ext)
-try(assign( "DataSet", read_rds(path_filename_ext) ))
+try(assign( "DS", read_rds(path_filename_ext) ))
 
 
 

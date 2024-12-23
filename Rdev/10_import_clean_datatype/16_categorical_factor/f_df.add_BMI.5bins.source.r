@@ -6,23 +6,23 @@
 ## :: f_df.add_BMI_calculated =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5bins.source.r
 .tmp$objectname = "f_df.add_BMI_calculated"
-.tmp$object = function(DataSet.DNR, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
+.tmp$object = function(DS.DNR, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
 
   # Check if BMI column exists
-  if (varname_BMI %in% names(DataSet.DNR)) {
-    warning(paste0(deparse(varname_BMI),' %in% names(DataSet.DNR)')); cat("  \n", sep="")
-    DataSet.DNR <- DataSet.DNR %>%
+  if (varname_BMI %in% names(DS.DNR)) {
+    warning(paste0(deparse(varname_BMI),' %in% names(DS.DNR)')); cat("  \n", sep="")
+    DS.DNR <- DS.DNR %>%
       mutate(
         !!rlang::sym(paste0(varname_BMI,"_calculated")) := as.numeric(!!rlang::sym(varname_Weight)) / (as.numeric(!!rlang::sym(varname_Height))/100)^2
       )
   } else {
-    DataSet.DNR <- DataSet.DNR %>%
+    DS.DNR <- DS.DNR %>%
       mutate(
         !!rlang::sym(varname_BMI) := as.numeric(!!rlang::sym(varname_Weight)) / (as.numeric(!!rlang::sym(varname_Height))/100)^2
       )
   }
     
-  return(DataSet.DNR)
+  return(DS.DNR)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -32,25 +32,25 @@
 ## :: f_df.add_BMI.5bins =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.5bins.source.r
 .tmp$objectname = "f_df.add_BMI.5bins"
-.tmp$object = function(DataSet.DNR, varname_BMI = "BMI", one_hot_encoding = FALSE, add_4category = FALSE, add_logical_thresholds = TRUE) {
+.tmp$object = function(DS.DNR, varname_BMI = "BMI", one_hot_encoding = FALSE, add_4category = FALSE, add_logical_thresholds = TRUE) {
 
     # Compute additional BMI-related columns
-    if(!varname_BMI %in% names(DataSet.DNR)) {
+    if(!varname_BMI %in% names(DS.DNR)) {
         stop(paste0("Column ", varname_BMI, " does not exist in the dataset"))
     } else {
-        DataSet.DNR <- DataSet.DNR %>%
+        DS.DNR <- DS.DNR %>%
             mutate(
                 !!rlang::sym(paste0(varname_BMI,".5bins")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
             )
     }
     if(add_4category) {
-        DataSet.DNR <- DataSet.DNR %>%
+        DS.DNR <- DS.DNR %>%
             mutate(
                 !!rlang::sym(paste0(varname_BMI,".5bins")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
             )
     }
     if(one_hot_encoding) {
-        DataSet.DNR <- DataSet.DNR %>%
+        DS.DNR <- DS.DNR %>%
             mutate(
                 !!rlang::sym(paste0(varname_BMI,"_lt185")) := !!rlang::sym(varname_BMI) < 18.5,
                 
@@ -61,7 +61,7 @@
             )
     }
     if(add_logical_thresholds) {
-        DataSet.DNR <- DataSet.DNR %>%
+        DS.DNR <- DS.DNR %>%
             mutate(
                 !!rlang::sym(paste0(varname_BMI,"_lt185")) := !!rlang::sym(varname_BMI) < 18.5,
                 
@@ -72,7 +72,7 @@
                 !!rlang::sym(paste0(varname_BMI,"_ge400")) := !!rlang::sym(varname_BMI) >= 40
             )
     }
-    return(DataSet.DNR)
+    return(DS.DNR)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)

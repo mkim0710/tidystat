@@ -1,13 +1,13 @@
-# Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.r  
-# Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.Rmd  
-# Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
-# # source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r"))  
-# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.Rmd")  
-# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r")  
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.r  
+# Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.Rmd  
+# Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r  
+# # source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r"))  
+# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.Rmd")  
+# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r")  
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -136,7 +136,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # --> Now included in "f_df.t.tribble_construct.source.r"
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_vec_ValueOptions.factor =  ----  
-# https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
+# https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_vec_ValueOptions.factor"
 .tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
   if (is.na(ValueOptions) || ValueOptions == "") {
@@ -168,15 +168,15 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_DataSet_CodeBook.walk2factor =  ----  
-# https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
-.tmp$objectname = "f_DataSet_CodeBook.walk2factor"
-.tmp$object = function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
-  # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DataSet in place
+## :: f_DS_CodeBook.walk2factor =  ----  
+# https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r  
+.tmp$objectname = "f_DS_CodeBook.walk2factor"
+.tmp$object = function(DS, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = isTRUE(getOption("verbose"))) {
+  # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DS in place
   walk2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
-      if (var_name %in% colnames(DataSet)) {
-        DataSet[[var_name]] <<- f_vec_ValueOptions.factor(DataSet[[var_name]], 
+      if (var_name %in% colnames(DS)) {
+        DS[[var_name]] <<- f_vec_ValueOptions.factor(DS[[var_name]], 
                                                           value_options, 
                                                           sep4levels, 
                                                           sep4name_value, 
@@ -184,8 +184,8 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
       }
     })
   
-  # Return the updated DataSet as a data frame
-  return(DataSet)
+  # Return the updated DS as a data frame
+  return(DS)
 }
 
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
@@ -194,10 +194,10 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
 ## @ .subpath, .filename.source.r ======  
-#### Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  ----  
+#### Rdev/60_communicate_report_export/f_DS_CodeBook.walk2factor.source.r  ----  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_DataSet_CodeBook.walk2factor.source.r"
+.filename.source.r = "f_DS_CodeBook.walk2factor.source.r"
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 

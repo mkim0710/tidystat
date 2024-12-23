@@ -91,17 +91,17 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 
 
 
-# DataSetName <- "analyticDF_time2event"
+# DSN <- "analyticDF_time2event"
 # analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 # 
-# "dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
-# "dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
-# # > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
-# #   > char_vars == list(DataSetName = "analyticDF_time2event")
-# #   > pattern == "(?<![\\w.])DataSetName(?![\\w.])"
+# "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
+# "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
+# # > "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
+# #   > char_vars == list(DSN = "analyticDF_time2event")
+# #   > pattern == "(?<![\\w.])DSN(?![\\w.])"
 # #   > dim(get("analyticDF_time2event"))  
 # #     c(24L, 12L)
-# # > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
+# # > "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
 # #   > dim(get("analyticDF_time2event")) == c(24L, 12L)
 
 

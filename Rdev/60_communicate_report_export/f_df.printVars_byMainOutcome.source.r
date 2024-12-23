@@ -64,8 +64,8 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
-env1$f$f_df.printVars_byMainOutcome = function(DataSet, MainOutcome, VarName.selected) {
-    DataSet %>% select(any_of(MainOutcome), any_of(VarName.selected)) %>% 
+env1$f$f_df.printVars_byMainOutcome = function(DS, MainOutcome, VarName.selected) {
+    DS %>% select(any_of(MainOutcome), any_of(VarName.selected)) %>% 
         mutate_if(haven::is.labelled, as_factor) |>
         # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
         mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>

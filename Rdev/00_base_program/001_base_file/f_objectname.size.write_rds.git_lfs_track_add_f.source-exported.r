@@ -55,8 +55,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     .object.size <- object.size(.object)
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if(exists("MetaData")) {
-        if("DataSetNames" %in% names(MetaData)) {
-            if(.objectname %in% names(MetaData$DataSetNames)) {
+        if("DSNs" %in% names(MetaData)) {
+            if(.objectname %in% names(MetaData$DSNs)) {
                 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
                 assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
                 assign(".object", structure(.object, MetaData = as.environment(MetaData)))
@@ -263,8 +263,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     .object.size <- object.size(.object)
 #     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #     if(exists("MetaData")) {
-#         if("DataSetNames" %in% names(MetaData)) {
-#             if(.objectname %in% names(MetaData$DataSetNames)) {
+#         if("DSNs" %in% names(MetaData)) {
+#             if(.objectname %in% names(MetaData$DSNs)) {
 #                 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
 #                 assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
 #                 assign(".object", structure(.object, MetaData = as.environment(MetaData)))

@@ -1,13 +1,13 @@
-# f_Metadata_CodeToCreateDataSet.parse_eval.dev.r
+# f_Metadata_CodeToCreateDS.parse_eval.dev.r
 
 ## \$ analyticDF_time2event =  ----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-# .objectname = DataSetName = "analyticDF_time2event"
+# .objectname = DSN = "analyticDF_time2event"
 # assign(
-#     DataSetName, 
+#     DSN, 
 #     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
 #         # dplyr::select(-status, -sex)
 #         dplyr::select(-status)
@@ -50,44 +50,44 @@ for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRU
 
 
 
-# MetaData$DataSets$OriginalDataSet$DataSetName.na.omit = MetaData$DataSets$OriginalDataSet$DataSetName |> paste0(".na.omit"); MetaData$DataSets[[MetaData$DataSets$OriginalDataSet$DataSetName.na.omit]] = list(DataSetName = MetaData$DataSets$OriginalDataSet$DataSetName.na.omit)
-# assign( MetaData$DataSets$OriginalDataSet$DataSetName.na.omit, get(MetaData$DataSets$OriginalDataSet$DataSetName) |> mutate_if(is.factor, as.character) ); 
+# MetaData$DSs$OriginalDS$DSN.na.omit = MetaData$DSs$OriginalDS$DSN |> paste0(".na.omit"); MetaData$DSs[[MetaData$DSs$OriginalDS$DSN.na.omit]] = list(DSN = MetaData$DSs$OriginalDS$DSN.na.omit)
+# assign( MetaData$DSs$OriginalDS$DSN.na.omit, get(MetaData$DSs$OriginalDS$DSN) |> mutate_if(is.factor, as.character) ); 
 
 
 # 
 
 
 # I am trying to create a MetaData list object, which has list elements for each dataset I create. 
-# Each element will contain a list of the DataSetName, CodeToCreateDataSet, and other metadata. I want to make the routine as a function, which takes inputs of `DataSetNameShortcut.old`, `DataSetNameShortcut.new.suffix` and `CodeToCreateDataSet` for the new dataset. 
+# Each element will contain a list of the DSN, CodeToCreateDS, and other metadata. I want to make the routine as a function, which takes inputs of `DSNShortcut.old`, `DSNShortcut.new.suffix` and `CodeToCreateDS` for the new dataset. 
 # Can you improve the code?
     
 rm(MetaData)
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 if(!"CodeBook" %in% names(MetaData)) { MetaData$CodeBook = list() }
 if(file.exists("CodeBook.xlsx")) { MetaData$CodeBook = readxl::read_xlsx("CodeBook.xlsx") }
-if(!"DataSets" %in% names(MetaData)) { MetaData$DataSets = list() }
+if(!"DSs" %in% names(MetaData)) { MetaData$DSs = list() }
 
 
-DataSetName0 = "analyticDF_time2event"
-DataSetNameShortcut = "DataSet" |> paste0("0")
+DSN0 = "analyticDF_time2event"
+DSNShortcut = "DS" |> paste0("0")
 
-MetaData$DataSets[[DataSetNameShortcut]] = list()
-MetaData$DataSets[[DataSetNameShortcut]]$DataSetName = DataSetName0
-MetaData$DataSets[[DataSetNameShortcut]]$CodeToCreateDataSet = 'survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |> dplyr::select(-status)'
-assign(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName, eval(parse(text = MetaData$DataSets[[DataSetNameShortcut]]$CodeToCreateDataSet)))
+MetaData$DSs[[DSNShortcut]] = list()
+MetaData$DSs[[DSNShortcut]]$DSN = DSN0
+MetaData$DSs[[DSNShortcut]]$CodeToCreateDS = 'survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |> dplyr::select(-status)'
+assign(MetaData$DSs[[DSNShortcut]]$DSN, eval(parse(text = MetaData$DSs[[DSNShortcut]]$CodeToCreateDS)))
 
-MetaData$DataSets[[DataSetNameShortcut]]$VarNames = names(get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName))
-MetaData$DataSets[[DataSetNameShortcut]]$dim = dim(get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName))
+MetaData$DSs[[DSNShortcut]]$VarNames = names(get(MetaData$DSs[[DSNShortcut]]$DSN))
+MetaData$DSs[[DSNShortcut]]$dim = dim(get(MetaData$DSs[[DSNShortcut]]$DSN))
 MetaData |> str(max.level = 2, give.attr = TRUE)
 # > MetaData |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ CodeBook: list()
-#  $ DataSets:List of 1
-#   ..$ DataSet0:List of 2
-#   .. ..$ DataSetName: chr "analyticDF_time2event"
+#  $ DSs:List of 1
+#   ..$ DS0:List of 2
+#   .. ..$ DSN: chr "analyticDF_time2event"
 #   .. ..$ VarNames   : chr [1:12] "inst" "time" "age" "sex" ...
-get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) |> str(max.level = 2, give.attr = TRUE)
-# > get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) |> str(max.level = 2, give.attr = TRUE)
+get(MetaData$DSs[[DSNShortcut]]$DSN) |> str(max.level = 2, give.attr = TRUE)
+# > get(MetaData$DSs[[DSNShortcut]]$DSN) |> str(max.level = 2, give.attr = TRUE)
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
@@ -102,35 +102,35 @@ get(MetaData$DataSets[[DataSetNameShortcut]]$DataSetName) |> str(max.level = 2, 
 #  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 
-DataSetNameShortcut.old = DataSetNameShortcut
-DataSetNameShortcut.new.suffix = ".na.omit"
-DataSetNameShortcut.new = DataSetNameShortcut.old |> paste0(DataSetNameShortcut.new.suffix)
-DataSetNameShortcut.new
-# > DataSetNameShortcut.new
-# [1] "DataSet0.na.omit
+DSNShortcut.old = DSNShortcut
+DSNShortcut.new.suffix = ".na.omit"
+DSNShortcut.new = DSNShortcut.old |> paste0(DSNShortcut.new.suffix)
+DSNShortcut.new
+# > DSNShortcut.new
+# [1] "DS0.na.omit
 
 
-MetaData$DataSets[[DataSetNameShortcut.new]] = list()
-MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName = MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName |> paste0(DataSetNameShortcut.new.suffix)
-MetaData$DataSets[[DataSetNameShortcut.new]]$CodeToCreateDataSet = "get(MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName) |> na.omit()"
+MetaData$DSs[[DSNShortcut.new]] = list()
+MetaData$DSs[[DSNShortcut.new]]$DSN = MetaData$DSs[[DSNShortcut.old]]$DSN |> paste0(DSNShortcut.new.suffix)
+MetaData$DSs[[DSNShortcut.new]]$CodeToCreateDS = "get(MetaData$DSs[[DSNShortcut.old]]$DSN) |> na.omit()"
 
 MetaData |> str(max.level = 2, give.attr = TRUE)
-assign(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName, eval(parse(text = MetaData$DataSets[[DataSetNameShortcut.new]]$CodeToCreateDataSet)))
-MetaData$DataSets[[DataSetNameShortcut.new]]$VarNames = names(get(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName))
-MetaData$DataSets[[DataSetNameShortcut.new]]$dim = dim(get(MetaData$DataSets[[DataSetNameShortcut.new]]$DataSetName))
+assign(MetaData$DSs[[DSNShortcut.new]]$DSN, eval(parse(text = MetaData$DSs[[DSNShortcut.new]]$CodeToCreateDS)))
+MetaData$DSs[[DSNShortcut.new]]$VarNames = names(get(MetaData$DSs[[DSNShortcut.new]]$DSN))
+MetaData$DSs[[DSNShortcut.new]]$dim = dim(get(MetaData$DSs[[DSNShortcut.new]]$DSN))
 MetaData |> str(max.level = 2, give.attr = TRUE)
 # > MetaData |> str(max.level = 2, give.attr = TRUE)
 # List of 2
 #  $ CodeBook: list()
-#  $ DataSets:List of 2
-#   ..$ DataSet0        :List of 4
-#   .. ..$ DataSetName        : chr "analyticDF_time2event"
-#   .. ..$ CodeToCreateDataSet: chr "survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c(\"Male\", \"Female\")[sex] |> a"| __truncated__
+#  $ DSs:List of 2
+#   ..$ DS0        :List of 4
+#   .. ..$ DSN        : chr "analyticDF_time2event"
+#   .. ..$ CodeToCreateDS: chr "survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c(\"Male\", \"Female\")[sex] |> a"| __truncated__
 #   .. ..$ VarNames           : chr [1:12] "inst" "time" "age" "sex" ...
 #   .. ..$ dim                : int [1:2] 228 12
-#   ..$ DataSet0.na.omit:List of 4
-#   .. ..$ DataSetName        : chr "analyticDF_time2event.na.omit"
-#   .. ..$ CodeToCreateDataSet: chr "get(MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName) |> na.omit()"
+#   ..$ DS0.na.omit:List of 4
+#   .. ..$ DSN        : chr "analyticDF_time2event.na.omit"
+#   .. ..$ CodeToCreateDS: chr "get(MetaData$DSs[[DSNShortcut.old]]$DSN) |> na.omit()"
 #   .. ..$ VarNames           : chr [1:12] "inst" "time" "age" "sex" ...
 #   .. ..$ dim                : int [1:2] 167 12
 

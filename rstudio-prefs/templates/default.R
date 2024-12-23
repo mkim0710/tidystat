@@ -146,9 +146,9 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
+.objectname = DSN = "analyticDF_time2event"
 assign(
-    DataSetName, 
+    DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -257,21 +257,21 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ## .GlobalEnv$MetaData = list() ====  
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #@@ DATA) Read & Check -----
-## \$ DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv) ====
+## \$ DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv) ====
 .path4read.subpath = r"(data)"|>str_replace_all("\\\\","/")
-DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# # .path4read.subpath_filename_ext = DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.)
-# # .path_filename_ext = ifelse( file.exists(.path4read.subpath_filename_ext), .path4read.subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DataSetName,".rds") )
+DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# # .path4read.subpath_filename_ext = DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.)
+# # .path_filename_ext = ifelse( file.exists(.path4read.subpath_filename_ext), .path4read.subpath_filename_ext, paste0(env1$path$source_base_github,"/data/",DSN,".rds") )
 # # cat(".path_filename_ext = ", .path_filename_ext, "  \n", sep = "")
-# DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv)
-if(!exists("DataSetName0")) {DataSetName0 = DataSetName; cat('  Setting DataSetName0 = "',DataSetName0,'"  \n', sep="")}
-MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.subpath=="","","/"),.path4read.subpath), return.output = TRUE)
+# DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
+if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
+MetaData$DSNs[[DSN]] = env1$f$f_DSN.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.subpath=="","","/"),.path4read.subpath), return.output = TRUE)
 
 
 
@@ -297,20 +297,20 @@ MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEnt
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
-        # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DataSetName in names(MetaData$DataSetNames)) {    
-            if(exists(DataSetName)) {
-                assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DataSetName]])$DataSetName)) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
-                    message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
-            } else {  message("!exists(",deparse(DataSetName),")")  }
+            } else {  message("!exists(",deparse(DSN),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }

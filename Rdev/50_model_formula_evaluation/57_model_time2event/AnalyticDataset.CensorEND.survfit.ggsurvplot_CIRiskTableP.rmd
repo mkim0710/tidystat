@@ -103,7 +103,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -112,7 +112,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # @@ START) Baseline ----  
 ## \$ as1.na.Date.fct.select89 =  ----  
 @ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
-```{r DataSetName-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r DSN-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .objectname = "as1.na.Date.fct.select89"; cat(" ----\n> ", '.objectname = "', .objectname, '"  \n', sep="")
 filename2read = if(file.exists(file.path(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")
@@ -134,7 +134,7 @@ cat(" ----\n> ", "str(get(.objectname), max.level = 2, give.attr = F)", "  \n", 
 # @@ START) Outcome ----  
 ## \$ as1_7.na.Date.fct.cumulative_DM.list =  ----  
 @ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
-```{r DataSetName-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r DSN-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat(" ----\n> ", '.objectname = "', .objectname, '"  \n', sep="")
 filename2read = if(file.exists(file.path(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")

@@ -209,7 +209,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -235,8 +235,8 @@ env1$path$print_tree_path_files.data |> cat("  \n", sep="")
 # *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
 #### env1\$f_path.size_files() ----  
 # .filename.source.r = "f_path.size_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
-#### env1\$f_DataSetName.Search.read.checkEntity() ----  
-.filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+#### env1\$f_DSN.Search.read.checkEntity() ----  
+.filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 env1$f$f_path.size_files(.path4read = .path4read)
 ```
   
@@ -270,8 +270,8 @@ if(file.exists(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) {
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-# for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
+# for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
@@ -363,15 +363,15 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 # __________|------  
   
 ## \$ tblID_gj3_jk.01 =  ----  
-@ assign(DataSetName, read_rds(file.path(.path4read, paste0(DataSetName,".rds")))) 
+@ assign(DSN, read_rds(file.path(.path4read, paste0(DSN,".rds")))) 
 ```{r tblID_gj3_jk.01-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  
-DataSetName = "tblID_gj3_jk.01"
-# if(!exists("DataSetName0")) {DataSetName0 = DataSetName; cat('  Setting DataSetName0 = "',DataSetName0,'"  \n', sep="")}
-DataSetName0 = DataSetName; cat('  Setting DataSetName0 = "',DataSetName0,'"  \n', sep="")
-MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), return.output = TRUE)
-DataSet = get(DataSetName)
+DSN = "tblID_gj3_jk.01"
+# if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
+DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")
+MetaData$DSNs[[DSN]] = env1$f$f_DSN.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), return.output = TRUE)
+DS = get(DSN)
 ```
   
   
@@ -382,21 +382,21 @@ options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
 
-cat(" > ","dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="") 
+cat(" > ","dim(",DSN,") == ",deparse(dim(get(DSN))),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 .vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 cat(" > ",".vec_candidate4ID = ",deparse(.vec_candidate4ID),"  \n", sep="") 
-cat(" > ","intersect(.vec_candidate4ID, colnames(",DataSetName,")) = ",deparse(intersect(.vec_candidate4ID, colnames(get(DataSetName)))),"  \n", sep="") 
-cat(" > ","n_distinct(",DataSetName,"[",intersect(.vec_candidate4ID, colnames(get(DataSetName))), "]) = "
-    , get(DataSetName)[intersect(.vec_candidate4ID, colnames(get(DataSetName)))] |> n_distinct()
+cat(" > ","intersect(.vec_candidate4ID, colnames(",DSN,")) = ",deparse(intersect(.vec_candidate4ID, colnames(get(DSN)))),"  \n", sep="") 
+cat(" > ","n_distinct(",DSN,"[",intersect(.vec_candidate4ID, colnames(get(DSN))), "]) = "
+    , get(DSN)[intersect(.vec_candidate4ID, colnames(get(DSN)))] |> n_distinct()
     ,"\n",sep="")
   
-cat(" > ",DataSetName,"[intersect(.vec_candidate4ID, colnames(",DataSetName,"))]"," |> str()","\n",sep=""); get(DataSetName)[intersect(.vec_candidate4ID, colnames(get(DataSetName)))] |> str(max.level = 2, give.attr = TRUE)
-cat(" > ",DataSetName,"[intersect(.vec_candidate4ID, colnames(",DataSetName,"))]"," |> env1$f$f_df.NotNA_p_df()","\n",sep=""); get(DataSetName)[intersect(.vec_candidate4ID, colnames(get(DataSetName)))] |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DSN,"[intersect(.vec_candidate4ID, colnames(",DSN,"))]"," |> str()","\n",sep=""); get(DSN)[intersect(.vec_candidate4ID, colnames(get(DSN)))] |> str(max.level = 2, give.attr = TRUE)
+cat(" > ",DSN,"[intersect(.vec_candidate4ID, colnames(",DSN,"))]"," |> env1$f$f_df.NotNA_p_df()","\n",sep=""); get(DSN)[intersect(.vec_candidate4ID, colnames(get(DSN)))] |> env1$f$f_df.NotNA_p_df()
 ```
   
 ```{r}
-.expression.text = "get(DataSetName)[intersect(.vec_candidate4ID, colnames(get(DataSetName)))] |> n_distinct()"
+.expression.text = "get(DSN)[intersect(.vec_candidate4ID, colnames(get(DSN)))] |> n_distinct()"
 quote(!parse(text = .expression.text))
 cat(" > ",.expression.text,"  \n",sep=""); eval(parse(text = .expression.text)[[1]])
 ```
@@ -404,7 +404,7 @@ cat(" > ",.expression.text,"  \n",sep=""); eval(parse(text = .expression.text)[[
   
 ### \% .varname.regex4ymd = "[_.\](Date|DT|YMD)\$"
 .varname.regex4mdy = "[_.\](MDY)\$" ----  
-#### \$ DataSet.Date = ====  
+#### \$ DS.Date = ====  
 ```{r regex4ymd-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  
@@ -412,40 +412,40 @@ options(width=120)
 .varname.regex4mdy = "[_.](MDY)$"
 cat(" > ",".varname.regex4ymd = ",deparse(.varname.regex4ymd),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-assign( paste0(DataSetName,".Date"), get(DataSetName) |> mutate_at(vars(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))), ymd) ); MetaData$DataSetNames[[paste0(DataSetName,".Date")]] = list(DataSetName = paste0(DataSetName,".Date"))
-cat(" > ","dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="")
-cat(" > ","dim(",DataSetName,".Date",") == ",deparse(dim(get(paste0(DataSetName,".Date")))),"  \n", sep="")
-cat(" > ",DataSetName," |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str()","  \n", sep=""); get(DataSetName) |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str(max.level = 2, give.attr = TRUE)
-cat(" > ",DataSetName,".Date"," |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str()","  \n", sep=""); get(paste0(DataSetName,".Date")) |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str(max.level = 2, give.attr = TRUE)
+assign( paste0(DSN,".Date"), get(DSN) |> mutate_at(vars(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))), ymd) ); MetaData$DSNs[[paste0(DSN,".Date")]] = list(DSN = paste0(DSN,".Date"))
+cat(" > ","dim(",DSN,") == ",deparse(dim(get(DSN))),"  \n", sep="")
+cat(" > ","dim(",DSN,".Date",") == ",deparse(dim(get(paste0(DSN,".Date")))),"  \n", sep="")
+cat(" > ",DSN," |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str()","  \n", sep=""); get(DSN) |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str(max.level = 2, give.attr = TRUE)
+cat(" > ",DSN,".Date"," |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str()","  \n", sep=""); get(paste0(DSN,".Date")) |> select(matches(.varname.regex4ymd|>regex(ignore_case=TRUE))) |> str(max.level = 2, give.attr = TRUE)
 ```
   
   
 ### ---- < Data Availability Check > ----  
-#### \$ DataSet.Date.NA  ----  
+#### \$ DS.Date.NA  ----  
 ##### \% f_df.NotNA_p_df() ----  
-#### \$ DataSet.DNR  ----  
-```{r DataSet.Date.NA-f_df.NotNA_p_df-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+#### \$ DS.DNR  ----  
+```{r DS.Date.NA-f_df.NotNA_p_df-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-if(!exists("DataSetName.Date")) DataSetName.Date = ifelse(exists(paste0(DataSetName,".Date")), paste0(DataSetName,".Date"), DataSetName)
-.vec_nlevel_lt20.value_number.unique = 'get(DataSetName.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+if(!exists("DSN.Date")) DSN.Date = ifelse(exists(paste0(DSN,".Date")), paste0(DSN,".Date"), DSN)
+.vec_nlevel_lt20.value_number.unique = 'get(DSN.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); assign( DataSetName.Date.NA, get(DataSetName.Date) |> mutate_if(is.factor, as.character) ); MetaData$DataSetNames[[DataSetName.Date.NA]] = list(DataSetName = DataSetName.Date.NA)
+DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date) |> mutate_if(is.factor, as.character) ); MetaData$DSNs[[DSN.Date.NA]] = list(DSN = DSN.Date.NA)
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
-    DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); assign( DataSetName.Date.NA, get(DataSetName.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
+    DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
-DataSetName.DNR = DataSetName.Date.NA |> paste0(".rmAllNA"); assign( DataSetName.DNR, get(DataSetName.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DataSetNames[[DataSetName.DNR]] = list(DataSetName = DataSetName.DNR)
-cat(" dim(",DataSetName.Date,") == ",deparse(dim(get(DataSetName.Date))),"  \n", sep="") 
-cat(" dim(",DataSetName.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName.DNR))),"  \n", sep="") 
-DataSet.DNR = get(DataSetName.DNR)
+DSN.DNR = DSN.Date.NA |> paste0(".rmAllNA"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
+cat(" dim(",DSN.Date,") == ",deparse(dim(get(DSN.Date))),"  \n", sep="") 
+cat(" dim(",DSN.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+DS.DNR = get(DSN.DNR)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-"get(DataSetName.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"get(DSN.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
@@ -475,14 +475,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .CodeBook.filter |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-get(DataSetName.DNR) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DSN.DNR) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
-get(DataSetName.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DSN.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
+# get(DSN.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
+# get(DSN.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
 ```
   
   
@@ -503,14 +503,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .CodeBook.filter |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-get(DataSetName.DNR) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DSN.DNR) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
-get(DataSetName.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DSN.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
+# get(DSN.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
+# get(DSN.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
 ```
 
 
@@ -525,9 +525,9 @@ options(width=120)
 cat(" > ",".varname4outcome = ",deparse(.varname4outcome),"  \n", sep="") 
 cat(" > ",".varname4time2outcome = ",deparse(.varname4time2outcome),"  \n", sep="") 
 #|+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-for (.i.DataSetName in c(DataSetName.Date.NA, DataSetName.DNR)) {
-    .i.DataSetName |> assign(
-        get(.i.DataSetName) |> mutate(
+for (.i.DSN in c(DSN.Date.NA, DSN.DNR)) {
+    .i.DSN |> assign(
+        get(.i.DSN) |> mutate(
             !!paste0(.varname4outcome,".ge1") := !!sym(.varname4outcome) >= 1,  
             !!paste0(.varname4outcome,".geMed") := !!sym(.varname4outcome) >= median(!!sym(.varname4outcome), na.rm=TRUE)
         )  
@@ -537,27 +537,27 @@ cat(" > ",".varname4outcome.ge1 = ",deparse(paste0(.varname4outcome,".ge1")),"  
 cat(" > ",".varname4outcome.geMed = ",deparse(paste0(.varname4outcome,".geMed")),"  \n", sep="")
 .CodeBook |> dplyr::filter(VarName |> str_detect(paste0(.varname4outcome, .varname4time2outcome, collapse = "|"))) |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName.Date.NA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
+cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DSN.Date.NA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DSN.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
-if(nlevels(get(DataSetName.DNR)[.varname4outcome]) < 20) {
+if(nlevels(get(DSN.DNR)[.varname4outcome]) < 20) {
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    cat(" > ",DataSetName.Date,".NA",".rmAllNA","$",.varname4outcome,' |> table(useNA="always") |> addmargins()',"  \n", sep=""); get(DataSetName.DNR)[.varname4outcome] |> table(useNA="always") |> addmargins()
+    cat(" > ",DSN.Date,".NA",".rmAllNA","$",.varname4outcome,' |> table(useNA="always") |> addmargins()',"  \n", sep=""); get(DSN.DNR)[.varname4outcome] |> table(useNA="always") |> addmargins()
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-which_row.NotEqual = get(DataSetName.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
+which_row.NotEqual = get(DSN.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     map_df(is.na) |> (function(df) (rowSums(df)!=0)&(rowSums(df)!=ncol(df)) )() |> which() 
 which_row.NotEqual %>% {cat(" > ","dput(",deparse(substitute(.)),") == ",deparse(.),"  \n", sep="")}
   
-cat(" > ",DataSetName," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
-get(paste0(DataSetName)) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
+cat(" > ",DSN," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
+get(paste0(DSN)) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     rownames_to_column() |> slice(which_row.NotEqual) 
-cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
-get(DataSetName.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |>
+cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
+get(DSN.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |>
     rownames_to_column() |> slice(which_row.NotEqual) 
 ```
   
@@ -572,10 +572,10 @@ options(width=120)
 varname.regex4measures = "(BP|HEIGHT|WEIGHT|BMI|WAIST)"
 cat(" > ","varname.regex4measures = ",deparse(varname.regex4measures),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(varname.regex4measures))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName.Date.NA) |> dplyr::select(matches(varname.regex4measures)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4measures))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName.DNR) |> dplyr::select(matches(varname.regex4measures)) |> 
+cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(varname.regex4measures))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DSN.Date.NA) |> dplyr::select(matches(varname.regex4measures)) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4measures))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DSN.DNR) |> dplyr::select(matches(varname.regex4measures)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
@@ -590,10 +590,10 @@ options(width=120)
 varname.regex4labs = "(FBS|FSG|BLDS|CHOL|HDL|LDL|TG|TRIGLYCERIDE|CREATININE|BUN|AST|ALT|GOT|GPT|GGT|GTP)"
 cat(" > ","varname.regex4labs = ",deparse(varname.regex4labs),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(varname.regex4labs))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName.Date.NA) |> dplyr::select(matches(varname.regex4labs)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4labs))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName.DNR) |> dplyr::select(matches(varname.regex4labs)) |> 
+cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(varname.regex4labs))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DSN.Date.NA) |> dplyr::select(matches(varname.regex4labs)) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4labs))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DSN.DNR) |> dplyr::select(matches(varname.regex4labs)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
@@ -608,28 +608,28 @@ options(width=120)
 varname.regex4lifestyle = "(SMOKING|SMK|ALCOHOL|DRINK|DRNK|ACTIVITY|EXER|MOV|WLK)"
 cat(" > ","varname.regex4lifestyle = ",deparse(varname.regex4lifestyle),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName.Date.NA) |> dplyr::select(matches(varname.regex4lifestyle)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName.DNR) |> dplyr::select(matches(varname.regex4lifestyle)) |> 
+cat(" > ",DSN.Date,".NA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DSN.Date.NA) |> dplyr::select(matches(varname.regex4lifestyle)) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DSN.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DSN.DNR) |> dplyr::select(matches(varname.regex4lifestyle)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
 ```
   
   
-### ---- < DataSet Summary > ----  
-#### \$ DataSet.DNR.lbl_pending.fct  ----
+### ---- < DS Summary > ----  
+#### \$ DS.DNR.lbl_pending.fct  ----
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  
 .t0 = Sys.time()
-DataSetName.DNR.lbl_pending.fct = paste0(DataSetName.Date,".NA",".rmAllNA",".fct"); cat(" > ",DataSetName.DNR.lbl_pending.fct," = ",DataSetName.DNR," |> mutate_if(is.character, as.factor)","  \n", sep=""); DataSetName.DNR = DataSetName.Date.NA |> paste0(".rmAllNA"); assign( DataSetName.DNR.lbl_pending.fct, get(DataSetName.DNR) |> mutate_if(is.character, as.factor) )
+DSN.DNR.lbl_pending.fct = paste0(DSN.Date,".NA",".rmAllNA",".fct"); cat(" > ",DSN.DNR.lbl_pending.fct," = ",DSN.DNR," |> mutate_if(is.character, as.factor)","  \n", sep=""); DSN.DNR = DSN.Date.NA |> paste0(".rmAllNA"); assign( DSN.DNR.lbl_pending.fct, get(DSN.DNR) |> mutate_if(is.character, as.factor) )
 Sys.time() - .t0
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ","dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="") 
-cat(" > ","dim(",DataSetName.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName.DNR))),"  \n", sep="") 
-cat(" > ","dim(",DataSetName.Date,".NA",".rmAllNA",".fct",") == ",deparse(dim(get(DataSetName.DNR.lbl_pending.fct))),"  \n", sep="") 
+cat(" > ","dim(",DSN,") == ",deparse(dim(get(DSN))),"  \n", sep="") 
+cat(" > ","dim(",DSN.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+cat(" > ","dim(",DSN.Date,".NA",".rmAllNA",".fct",") == ",deparse(dim(get(DSN.DNR.lbl_pending.fct))),"  \n", sep="") 
 ```
   
   
@@ -637,17 +637,17 @@ cat(" > ","dim(",DataSetName.Date,".NA",".rmAllNA",".fct",") == ",deparse(dim(ge
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # .t0 = Sys.time()
-# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName.DNR," |> select_if(is.numeric))"," |> summary","  \n", sep=""); get(DataSetName.DNR) |> select_if(is.numeric) |> summary() #----  
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DSN.DNR," |> select_if(is.numeric))"," |> summary","  \n", sep=""); get(DSN.DNR) |> select_if(is.numeric) |> summary() #----  
 # Sys.time() - .t0
 # .t0 = Sys.time()
-# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName.DNR," |> select_if(is.logical))"," |> summary","  \n", sep=""); get(DataSetName.DNR) |> select_if(is.logical) |> summary() #----  
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DSN.DNR," |> select_if(is.logical))"," |> summary","  \n", sep=""); get(DSN.DNR) |> select_if(is.logical) |> summary() #----  
 # Sys.time() - .t0
 # 
 # ##________________________________________________________________________________  
 # .t0 = Sys.time()
-# cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); cat(" > ",DataSetName.DNR.lbl_pending.fct," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DataSetName.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary() #----  
+# cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); cat(" > ",DSN.DNR.lbl_pending.fct," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DSN.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary() #----  
 # Sys.time() - .t0
-# # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName.DNR," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DataSetName.DNR) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
+# # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DSN.DNR," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DSN.DNR) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
 # # Sys.time() - .t0
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
@@ -844,7 +844,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # "MetaData$DSNs |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
@@ -854,7 +854,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         
         if(!exists(".MetaData0")) .MetaData0 = MetaData
-        MetaData$DataSetNames = MetaData$DataSetNames %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DataSetName.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
+        MetaData$DSNs = MetaData$DSNs %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
         MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
         "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         if(!identical(.MetaData0, MetaData)) {
@@ -874,20 +874,20 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData")) {
-        # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DataSetName in names(MetaData$DataSetNames)) {    
-            if(exists(DataSetName)) {
-                assign(DataSetName, structure(get(DataSetName, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DataSetName]])$DataSetName)) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if(attributes(.GlobalEnv[[DataSetName]])$DataSetName != DataSetName) attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-                if (!is.null(attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file)) {
-                    message( "attributes(attributes(",DataSetName,")$DataSetName)$.path_file == ",deparse(attributes(attributes(get(DataSetName))$DataSetName)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path_file = attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
                 }
-            } else {  message("!exists(",deparse(DataSetName),")")  }
+            } else {  message("!exists(",deparse(DSN),")")  }
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }

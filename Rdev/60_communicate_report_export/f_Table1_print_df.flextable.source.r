@@ -52,22 +52,22 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_DataSet.Table1.print.df =  ----  
+## :: f_DS.Table1.print.df =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
-.tmp$objectname = "f_DataSet.Table1.print.df"
-.tmp$object  <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
+.tmp$objectname = "f_DS.Table1.print.df"
+.tmp$object  <- function(DS, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
-    Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
-    Varnames_factor <- names(DataSet %>% select(where(is.factor)))
+    Varnames.except_Exposure <- setdiff(names(DS), VarNames4Exposure)
+    Varnames_factor <- names(DS %>% select(where(is.factor)))
     
     if (!is.null(Varnames_factor.exclude)) {
         Varnames_factor <- setdiff(Varnames_factor, Varnames_factor.exclude)
     }
 
-    Table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
+    Table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DS, 
                                 factorVars = Varnames_factor, strata = VarNames4Exposure, 
                                 addOverall = addOverall, includeNA = includeNA, test = TRUE) %>%
         print(nonnormal = print.Varnames_nonnormal,

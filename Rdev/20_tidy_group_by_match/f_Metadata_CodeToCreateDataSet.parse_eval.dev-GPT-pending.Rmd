@@ -207,7 +207,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -221,9 +221,9 @@ options(width=120)
 # # suppressPackageStartupMessages(library(survival))
 # for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # # ?survival::lung
-# .objectname = DataSetName = "analyticDF_time2event"
+# .objectname = DSN = "analyticDF_time2event"
 # assign(
-#     DataSetName, 
+#     DSN, 
 #     survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
 #         # dplyr::select(-status, -sex)
 #         dplyr::select(-status)
@@ -272,8 +272,8 @@ options(width=120)
 # # Function to initialize MetaData if it doesn't exist
 # initialize_metadata <- function() {
 #   if (!exists("MetaData", envir = .GlobalEnv)) {
-#     assign("MetaData", list(CodeBook = list(), DataSets = list()), envir = .GlobalEnv)
-#     message("Initialized MetaData with empty CodeBook and DataSets.")
+#     assign("MetaData", list(CodeBook = list(), DSs = list()), envir = .GlobalEnv)
+#     message("Initialized MetaData with empty CodeBook and DSs.")
 #   }
 #   
 #   # Load CodeBook if the file exists
@@ -286,88 +286,88 @@ options(width=120)
 # }
 # 
 # # Enhanced function to create or update a dataset with metadata
-# add_dataset_to_metadata <- function(DataSetNameShortcut.old = NULL, 
-#                                    DataSetNameShortcut.new.suffix, 
-#                                    CodeToCreateDataSet, 
+# add_dataset_to_metadata <- function(DSNShortcut.old = NULL, 
+#                                    DSNShortcut.new.suffix, 
+#                                    CodeToCreateDS, 
 #                                    additional_metadata = list()) {
 #   
 #   # Initialize MetaData if not already initialized
 #   initialize_metadata()
 #   
-#   # If creating the first dataset, DataSetNameShortcut.old is NULL
-#   if (is.null(DataSetNameShortcut.old)) {
-#     # Extract a unique shortcut for the first dataset, e.g., "DataSet0"
-#     DataSetNameShortcut.new <- paste0("DataSet", length(MetaData$DataSets))
+#   # If creating the first dataset, DSNShortcut.old is NULL
+#   if (is.null(DSNShortcut.old)) {
+#     # Extract a unique shortcut for the first dataset, e.g., "DS0"
+#     DSNShortcut.new <- paste0("DS", length(MetaData$DSs))
 #     
 #     # Assign a unique dataset name if needed
 #     # Assuming the first dataset has no suffix
-#     DataSetName.new <- "analyticDF_time2event"
+#     DSN.new <- "analyticDF_time2event"
 #     
 #     # Add the first dataset to MetaData
-#     MetaData$DataSets[[DataSetNameShortcut.new]] <- list(
-#       DataSetName = DataSetName.new,
-#       CodeToCreateDataSet = CodeToCreateDataSet
+#     MetaData$DSs[[DSNShortcut.new]] <- list(
+#       DSN = DSN.new,
+#       CodeToCreateDS = CodeToCreateDS
 #     )
 #     
 #     # Evaluate the code and assign the dataset to the global environment
-#     assign(DataSetName.new, eval(parse(text = CodeToCreateDataSet)), envir = .GlobalEnv)
+#     assign(DSN.new, eval(parse(text = CodeToCreateDS)), envir = .GlobalEnv)
 #     
 #     # Store additional metadata
-#     MetaData$DataSets[[DataSetNameShortcut.new]]$VarNames <- names(get(DataSetName.new))
-#     MetaData$DataSets[[DataSetNameShortcut.new]]$dim <- dim(get(DataSetName.new))
+#     MetaData$DSs[[DSNShortcut.new]]$VarNames <- names(get(DSN.new))
+#     MetaData$DSs[[DSNShortcut.new]]$dim <- dim(get(DSN.new))
 #     
 #     # Add any additional metadata provided
 #     if (length(additional_metadata) > 0) {
-#       MetaData$DataSets[[DataSetNameShortcut.new]] <- c(
-#         MetaData$DataSets[[DataSetNameShortcut.new]],
+#       MetaData$DSs[[DSNShortcut.new]] <- c(
+#         MetaData$DSs[[DSNShortcut.new]],
 #         additional_metadata
 #       )
 #     }
 #     
-#     message(paste("Added initial dataset:", DataSetName.new))
+#     message(paste("Added initial dataset:", DSN.new))
 #     
 #   } else {
 #     # Ensure the old shortcut exists
-#     if (!DataSetNameShortcut.old %in% names(MetaData$DataSets)) {
-#       stop(paste("The old DataSetNameShortcut", DataSetNameShortcut.old, "does not exist in MetaData$DataSets."))
+#     if (!DSNShortcut.old %in% names(MetaData$DSs)) {
+#       stop(paste("The old DSNShortcut", DSNShortcut.old, "does not exist in MetaData$DSs."))
 #     }
 #     
 #     # Define the new dataset shortcut
-#     DataSetNameShortcut.new <- paste0(DataSetNameShortcut.old, DataSetName.new.suffix)
+#     DSNShortcut.new <- paste0(DSNShortcut.old, DSN.new.suffix)
 #     
 #     # Check if the new shortcut already exists to prevent overwriting
-#     if (DataSetNameShortcut.new %in% names(MetaData$DataSets)) {
-#       stop(paste("The new DataSetNameShortcut", DataSetNameShortcut.new, "already exists in MetaData$DataSets. Choose a different suffix or shortcut."))
+#     if (DSNShortcut.new %in% names(MetaData$DSs)) {
+#       stop(paste("The new DSNShortcut", DSNShortcut.new, "already exists in MetaData$DSs. Choose a different suffix or shortcut."))
 #     }
 #     
 #     # Retrieve the old dataset name
-#     DataSetName.old <- MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName
+#     DSN.old <- MetaData$DSs[[DSNShortcut.old]]$DSN
 #     
 #     # Create the new dataset name
-#     DataSetName.new <- paste0(DataSetName.old, DataSetName.new.suffix)
+#     DSN.new <- paste0(DSN.old, DSN.new.suffix)
 #     
 #     # Add the new dataset to MetaData
-#     MetaData$DataSets[[DataSetNameShortcut.new]] <- list(
-#       DataSetName = DataSetName.new,
-#       CodeToCreateDataSet = CodeToCreateDataSet
+#     MetaData$DSs[[DSNShortcut.new]] <- list(
+#       DSN = DSN.new,
+#       CodeToCreateDS = CodeToCreateDS
 #     )
 #     
 #     # Evaluate the code and assign the new dataset to the global environment
-#     assign(DataSetName.new, eval(parse(text = CodeToCreateDataSet)), envir = .GlobalEnv)
+#     assign(DSN.new, eval(parse(text = CodeToCreateDS)), envir = .GlobalEnv)
 #     
 #     # Store additional metadata
-#     MetaData$DataSets[[DataSetNameShortcut.new]]$VarNames <- names(get(DataSetName.new))
-#     MetaData$DataSets[[DataSetNameShortcut.new]]$dim <- dim(get(DataSetName.new))
+#     MetaData$DSs[[DSNShortcut.new]]$VarNames <- names(get(DSN.new))
+#     MetaData$DSs[[DSNShortcut.new]]$dim <- dim(get(DSN.new))
 #     
 #     # Add any additional metadata provided
 #     if (length(additional_metadata) > 0) {
-#       MetaData$DataSets[[DataSetNameShortcut.new]] <- c(
-#         MetaData$DataSets[[DataSetNameShortcut.new]],
+#       MetaData$DSs[[DSNShortcut.new]] <- c(
+#         MetaData$DSs[[DSNShortcut.new]],
 #         additional_metadata
 #       )
 #     }
 #     
-#     message(paste("Added new dataset:", DataSetName.new))
+#     message(paste("Added new dataset:", DSN.new))
 #   }
 #   
 #   # Optionally, you can save the MetaData to a file here if needed
@@ -379,7 +379,7 @@ options(width=120)
 # # Example Usage:
 # 
 # # Step 1: Create the initial dataset
-# initial_CodeToCreateDataSet <- 'survival::lung |> 
+# initial_CodeToCreateDS <- 'survival::lung |> 
 #   as_tibble() |> 
 #   mutate(
 #     event = as.logical(status - 1), 
@@ -389,18 +389,18 @@ options(width=120)
 #   select(-status)'
 # 
 # add_dataset_to_metadata(
-#   DataSetNameShortcut.old = NULL,
-#   DataSetNameShortcut.new.suffix = NULL, # Not used for the initial dataset
-#   CodeToCreateDataSet = initial_CodeToCreateDataSet
+#   DSNShortcut.old = NULL,
+#   DSNShortcut.new.suffix = NULL, # Not used for the initial dataset
+#   CodeToCreateDS = initial_CodeToCreateDS
 # )
 # 
 # # Step 2: Create a new dataset based on the initial one
-# new_CodeToCreateDataSet <- "get(MetaData$DataSets[['DataSet0']]$DataSetName) |> na.omit()"
+# new_CodeToCreateDS <- "get(MetaData$DSs[['DS0']]$DSN) |> na.omit()"
 # 
 # add_dataset_to_metadata(
-#   DataSetNameShortcut.old = "DataSet0",
-#   DataSetNameShortcut.new.suffix = ".na.omit",
-#   CodeToCreateDataSet = new_CodeToCreateDataSet
+#   DSNShortcut.old = "DS0",
+#   DSNShortcut.new.suffix = ".na.omit",
+#   CodeToCreateDS = new_CodeToCreateDS
 # )
 # 
 # # View the structure of MetaData
@@ -423,8 +423,8 @@ library(tibble)
 # Function to initialize MetaData if it doesn't exist
 initialize_metadata <- function() {
   if (!exists("MetaData", envir = .GlobalEnv)) {
-    assign("MetaData", list(CodeBook = list(), DataSets = list()), envir = .GlobalEnv)
-    message("Initialized MetaData with empty CodeBook and DataSets.")
+    assign("MetaData", list(CodeBook = list(), DSs = list()), envir = .GlobalEnv)
+    message("Initialized MetaData with empty CodeBook and DSs.")
   }
   
   # Load CodeBook if the file exists
@@ -437,78 +437,78 @@ initialize_metadata <- function() {
 }
 
 # Enhanced function to create or update a dataset with metadata
-add_dataset_to_metadata <- function(DataSetNameShortcut.old = NULL, 
-                                    DataSetNameShortcut.new.suffix = NULL, 
-                                    DataSetShortcut.new, # Explicitly provide the new shortcut
-                                    CodeToCreateDataSet, 
+add_dataset_to_metadata <- function(DSNShortcut.old = NULL, 
+                                    DSNShortcut.new.suffix = NULL, 
+                                    DSShortcut.new, # Explicitly provide the new shortcut
+                                    CodeToCreateDS, 
                                     additional_metadata = list()) {
   
   # Initialize MetaData if not already initialized
   initialize_metadata()
   
-  # If creating the first dataset, DataSetNameShortcut.old is NULL
-  if (is.null(DataSetNameShortcut.old)) {
+  # If creating the first dataset, DSNShortcut.old is NULL
+  if (is.null(DSNShortcut.old)) {
     
     # Assign a unique dataset name if needed
-    DataSetName.new <- "analyticDF_time2event"
+    DSN.new <- "analyticDF_time2event"
     
     # Add the first dataset to MetaData
-    MetaData$DataSets[[DataSetShortcut.new]] <- list(
-      DataSetName = DataSetName.new,
-      CodeToCreateDataSet = CodeToCreateDataSet
+    MetaData$DSs[[DSShortcut.new]] <- list(
+      DSN = DSN.new,
+      CodeToCreateDS = CodeToCreateDS
     )
     
     # Evaluate the code and assign the dataset to the global environment
-    assign(DataSetName.new, eval(parse(text = CodeToCreateDataSet)), envir = .GlobalEnv)
+    assign(DSN.new, eval(parse(text = CodeToCreateDS)), envir = .GlobalEnv)
     
     # Store additional metadata
-    MetaData$DataSets[[DataSetShortcut.new]]$VarNames <- names(get(DataSetName.new))
-    MetaData$DataSets[[DataSetShortcut.new]]$dim <- dim(get(DataSetName.new))
+    MetaData$DSs[[DSShortcut.new]]$VarNames <- names(get(DSN.new))
+    MetaData$DSs[[DSShortcut.new]]$dim <- dim(get(DSN.new))
     
     # Add any additional metadata provided
     if (length(additional_metadata) > 0) {
-      MetaData$DataSets[[DataSetShortcut.new]] <- c(
-        MetaData$DataSets[[DataSetShortcut.new]],
+      MetaData$DSs[[DSShortcut.new]] <- c(
+        MetaData$DSs[[DSShortcut.new]],
         additional_metadata
       )
     }
     
-    message(paste("Added initial dataset:", DataSetName.new))
+    message(paste("Added initial dataset:", DSN.new))
     
   } else {
     # Ensure the old shortcut exists
-    if (!DataSetNameShortcut.old %in% names(MetaData$DataSets)) {
-      stop(paste("The old DataSetNameShortcut", DataSetNameShortcut.old, "does not exist in MetaData$DataSets."))
+    if (!DSNShortcut.old %in% names(MetaData$DSs)) {
+      stop(paste("The old DSNShortcut", DSNShortcut.old, "does not exist in MetaData$DSs."))
     }
     
     # Retrieve the old dataset name
-    DataSetName.old <- MetaData$DataSets[[DataSetNameShortcut.old]]$DataSetName
+    DSN.old <- MetaData$DSs[[DSNShortcut.old]]$DSN
     
     # Create the new dataset name
-    DataSetName.new <- paste0(DataSetName.old, DataSetNameShortcut.new.suffix)
+    DSN.new <- paste0(DSN.old, DSNShortcut.new.suffix)
     
     # Add the new dataset to MetaData
-    MetaData$DataSets[[DataSetShortcut.new]] <- list(
-      DataSetName = DataSetName.new,
-      CodeToCreateDataSet = CodeToCreateDataSet
+    MetaData$DSs[[DSShortcut.new]] <- list(
+      DSN = DSN.new,
+      CodeToCreateDS = CodeToCreateDS
     )
     
     # Evaluate the code and assign the new dataset to the global environment
-    assign(DataSetName.new, eval(parse(text = CodeToCreateDataSet)), envir = .GlobalEnv)
+    assign(DSN.new, eval(parse(text = CodeToCreateDS)), envir = .GlobalEnv)
     
     # Store additional metadata
-    MetaData$DataSets[[DataSetShortcut.new]]$VarNames <- names(get(DataSetName.new))
-    MetaData$DataSets[[DataSetShortcut.new]]$dim <- dim(get(DataSetName.new))
+    MetaData$DSs[[DSShortcut.new]]$VarNames <- names(get(DSN.new))
+    MetaData$DSs[[DSShortcut.new]]$dim <- dim(get(DSN.new))
     
     # Add any additional metadata provided
     if (length(additional_metadata) > 0) {
-      MetaData$DataSets[[DataSetShortcut.new]] <- c(
-        MetaData$DataSets[[DataSetShortcut.new]],
+      MetaData$DSs[[DSShortcut.new]] <- c(
+        MetaData$DSs[[DSShortcut.new]],
         additional_metadata
       )
     }
     
-    message(paste("Added new dataset:", DataSetName.new))
+    message(paste("Added new dataset:", DSN.new))
   }
   
   # Optionally, you can save the MetaData to a file here if needed
@@ -519,7 +519,7 @@ add_dataset_to_metadata <- function(DataSetNameShortcut.old = NULL,
 # Example Usage:
 
 # Step 1: Create the initial dataset
-initial_CodeToCreateDataSet <- 'survival::lung |>
+initial_CodeToCreateDS <- 'survival::lung |>
   as_tibble() |>
   mutate(
     event = as.logical(status - 1),
@@ -529,18 +529,18 @@ initial_CodeToCreateDataSet <- 'survival::lung |>
   select(-status)'
 
 add_dataset_to_metadata(
-  DataSetNameShortcut.old = NULL,
-  DataSetNameShortcut.new.suffix = NULL, # Not used for the initial dataset
-  CodeToCreateDataSet = initial_CodeToCreateDataSet
+  DSNShortcut.old = NULL,
+  DSNShortcut.new.suffix = NULL, # Not used for the initial dataset
+  CodeToCreateDS = initial_CodeToCreateDS
 )
 
 # Step 2: Create a new dataset based on the initial one
-new_CodeToCreateDataSet <- "get(MetaData$DataSets[['DataSet0']]$DataSetName) |> na.omit()"
+new_CodeToCreateDS <- "get(MetaData$DSs[['DS0']]$DSN) |> na.omit()"
 
 add_dataset_to_metadata(
-  DataSetNameShortcut.old = "DataSet0",
-  DataSetNameShortcut.new.suffix = ".na.omit",
-  CodeToCreateDataSet = new_CodeToCreateDataSet
+  DSNShortcut.old = "DS0",
+  DSNShortcut.new.suffix = ".na.omit",
+  CodeToCreateDS = new_CodeToCreateDS
 )
 
 # View the structure of MetaData
