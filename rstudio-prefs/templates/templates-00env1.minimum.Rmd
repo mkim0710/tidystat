@@ -616,6 +616,11 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
   
   
 # __________|------  
+## @ DATA) mutate(byVar = ) ----  
+### \$  =  
+  
+  
+# __________|------  
 # @@ DATA) filter() -> New DataSet ----  
 ## :: DataSet1.recode = DataSet.Date.NA.rmAllNA.lbl_pending.fct.recode
 ## :: DataSetName1.recode.n = paste0(DataSetName,".Date",".NA",".rmAllNA",".lbl_pending",".fct",".recode",".n",nrow(DataSet1))
