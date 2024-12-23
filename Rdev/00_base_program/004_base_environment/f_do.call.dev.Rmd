@@ -655,6 +655,11 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## ->> PENDING synced to: ""  
   
   
+# __________|------  
+# @@ ANALYSIS) byVar =  ----  
+### \$ 
+  
+  
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
