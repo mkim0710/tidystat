@@ -348,7 +348,11 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) Data ----  
+# @@ START) Data Processing ----  
+```{r SYNC-FILES, eval=FALSE, include=FALSE}
+paste0('## ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
+```
+## ->> Now synced to: ""  
 ## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
 ### \$ DataSet.Date.NA.rmAllNA =  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
