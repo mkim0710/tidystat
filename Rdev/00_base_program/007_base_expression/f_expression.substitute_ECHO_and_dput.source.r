@@ -91,18 +91,18 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 
 
 
-# DSN <- "analyticDF_time2event"
-# analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+# DSN <- "ADS_time2event"
+# ADS_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 # 
 # "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
 # "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
 # # > "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
-# #   > char_vars == list(DSN = "analyticDF_time2event")
+# #   > char_vars == list(DSN = "ADS_time2event")
 # #   > pattern == "(?<![\\w.])DSN(?![\\w.])"
-# #   > dim(get("analyticDF_time2event"))  
+# #   > dim(get("ADS_time2event"))  
 # #     c(24L, 12L)
 # # > "dim(get(DSN))" |> env1$f$f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)
-# #   > dim(get("analyticDF_time2event")) == c(24L, 12L)
+# #   > dim(get("ADS_time2event")) == c(24L, 12L)
 
 
 

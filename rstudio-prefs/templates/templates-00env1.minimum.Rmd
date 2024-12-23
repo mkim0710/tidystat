@@ -224,21 +224,21 @@ options(width=120)
   
 # __________|------  
 # @@ DATA) example ----  
-## \$ analyticDF_time2event =  ----  
+## \$ ADS_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DSN = "analyticDF_time2event"
+.objectname = DSN = "ADS_time2event"
 assign(
     DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
 ```
   
   
@@ -249,7 +249,7 @@ env0 = env1
 ```
   
   
-## \% analyticDF_time2event |>  
+## \% ADS_time2event |>  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
@@ -457,22 +457,22 @@ options(width=120)
 ```
   
   
-## \$ analyticDF_time2event =  ----  
+## \$ ADS_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DSN = "analyticDF_time2event"
+.objectname = DSN = "ADS_time2event"
 assign(
     DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","  \n", sep=""); print(as_tibble(.),n=9)}
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","  \n", sep=""); print(as_tibble(.),n=9)}
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
 # survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 # survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) |> table(useNA="always") |> addmargins()
 # # > survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
@@ -486,8 +486,8 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 # #   2     90    0
 # 
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-# analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # > analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # > ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # .$StudyPopulation: FALSE
 # #       time     event            Group   StudyPopulation
 # #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -590,9 +590,9 @@ for (varname in vec_candidate4ID) {if(varname %in% names(get(DSN.DNR))) cat(" n_
   
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-"analyticDF_time2event.NR |> select_if(is.numeric) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"ADS_time2event.NR |> select_if(is.numeric) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-"analyticDF_time2event.NR |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"ADS_time2event.NR |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); 
 DSN.Date.NA = DSN.Date |> paste0(".NA"); 
 DSN.DNR = paste0(DSN.Date,".NA",".rmAllNA"); 

@@ -8,20 +8,20 @@
 
 
 
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 
 ".objectname" |> env1$f$f_CodeText.ECHO()
 ".objectname" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
 # > ".objectname" |> env1$f$f_CodeText.ECHO()
-# 	"analyticDF_time2event"  
+# 	"ADS_time2event"  
 # > ".objectname" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
-# 	"analyticDF_time2event" == "analyticDF_time2event"  
+# 	"ADS_time2event" == "ADS_time2event"  
 # > ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 # 	.objectname  
 # > ".objectname" |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE, EXECUTE = TRUE)
-# 	.objectname == "analyticDF_time2event" 
+# 	.objectname == "ADS_time2event" 
 
 
 myObject = LETTERS[1:5]

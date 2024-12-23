@@ -133,19 +133,19 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ DATA) example ----  
-## \$ analyticDF_time2event =  ----  
+## \$ ADS_time2event =  ----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-.objectname = DSN = "analyticDF_time2event"
+.objectname = DSN = "ADS_time2event"
 assign(
     DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  

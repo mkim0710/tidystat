@@ -99,7 +99,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
-    # df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
+    # df = ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample
     # vec = c("evnttrth_C24_r", "fuduration_yr"
     #         , "AGE"
     #         , "SEX"
@@ -516,14 +516,14 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
   
   
 # __________|------  
-# @@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
+# @@ data_list.cut.coxph_list.HRCI from ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
 ## @ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
+ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
+# > ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -535,17 +535,17 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, 
 #   ..- attr(*, "srcref")= 'srcref' int [1:8] 2 37 300 1 37 1 2 300
 #   .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000029f91bf0> 
 
-is.list(analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list)
-# > is.list(analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list)
+is.list(ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list)
+# > is.list(ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list)
 # [1] TRUE
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
+ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
+# > ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
 # [1] TRUE
 
-# @@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
+# @@ data_list.cut.coxph_list.HRCI from ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
 data_list.cut.coxph_list.HRCI =
-    analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
+    ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
     map(function(list_object.coxph) {
         if(is.list(list_object.coxph)) {
             list_object.coxph %>% map(function(ob) {

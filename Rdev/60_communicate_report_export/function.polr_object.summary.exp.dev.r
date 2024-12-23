@@ -580,9 +580,9 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
 
 
 
-AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.old #-----
-AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.approx #-----
-# > AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.old #-----  
+ADS200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.old #-----
+ADS200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.approx #-----
+# > ADS200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.old #-----  
 # Waiting for profiling to be done...
 # 
 # Re-fitting to get Hessian
@@ -602,7 +602,7 @@ AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ord
 # 6                                      1|2 0.67 (  NA ~   NA) 1.328077e-03   0.001  **   0.005  **   0.011  *       0.6740977  0.1228659 -3.2098426         NA          NA
 # 7                                      2|3 1.11 (  NA ~   NA) 4.092784e-01   0.409       0.590       1.000          1.1065274  0.1226745  0.8251641         NA          NA
 # 8                                      3|4 2.30 (  NA ~   NA) 2.105285e-11  <0.001  *** <0.001  *** <0.001  ***     2.3043945  0.1246271  6.6985286         NA          NA
-# > AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.approx #-----  
+# > ADS200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.approx #-----  
 # 
 # Re-fitting to get Hessian
 # 
@@ -617,7 +617,7 @@ AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ord
 # 8                                      3|4 2.30 (1.80 ~ 2.96)  <0.001  *** <0.001  *** <0.001  ***     2.3043945  0.1246271  6.6985286  1.7960033  2.9566950 2.105285e-11
 
 
-# > AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.clean #-----  
+# > ADS200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ordered_1var %>% function.polr_object.summary.exp.clean #-----  
 # Waiting for profiling to be done...
 # 
 # Re-fitting to get Hessian

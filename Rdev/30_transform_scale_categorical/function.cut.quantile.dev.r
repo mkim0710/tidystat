@@ -1,7 +1,7 @@
 # function.cut.quantile.dev.r
 
 
-# analyticDF_C24.drop_pmhx_negativetime.list_binary from analyticDF_C24.drop_pmhx_negativetime.list_continuous .r
+# ADS_C24.drop_pmhx_negativetime.list_binary from ADS_C24.drop_pmhx_negativetime.list_continuous .r
 
 
 # > i = 3
@@ -30,31 +30,31 @@ breaks = c(0, .001, 30, Inf)
 
 
 
-## @ analyticDF_C24.drop_pmhx_negativetime.list_binary ====  
-analyticDF_C24.drop_pmhx_negativetime.list_binary <- analyticDF_C24.drop_pmhx_negativetime.list_continuous
+## @ ADS_C24.drop_pmhx_negativetime.list_binary ====  
+ADS_C24.drop_pmhx_negativetime.list_binary <- ADS_C24.drop_pmhx_negativetime.list_continuous
 for (i in 3:7) {
     iname <- paste0("_",i,"yr")
 
     for (j in c("total_ddd_yr_ASPIRIN", "total_ddd_yr_NSAID")) {
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_continuous")]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]]
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_continuous.dyd")]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] / 365
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_continuous")]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]]
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_continuous.dyd")]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] / 365
         breaks = c(0, .001, 30, 365 * 1:(i-1), Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_cut")]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_cut")]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
         breaks = c(0, 30, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_ge30")]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_ge30")]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
         breaks = c(0, .001, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_ge001")]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[paste0(j,"_ge001")]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] <- NULL
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] <- NULL
     }
     for (j in c("total_ddd_yr_H2B", "total_ddd_yr_PPI")) {
         # [0.001,30) > [30,Inf]
         # could be included with common cold medication: total_ddd_yr_H2B  total_ddd_yr_NSAID   total_ddd_yr_PPI  
         # merge [0.001,30) with [0,0.001)
         breaks = c(0, 30, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
     }
     for (j in c("total_ddd_yr_METFORMIN", "total_ddd_yr_STATIN")) {
@@ -62,10 +62,10 @@ for (i in 3:7) {
         # cannot be prescribed without indication: total_ddd_yr_BIS    total_ddd_yr_METFORMIN total_ddd_yr_STATIN
         # merge [0.001,30) with [30,Inf]
         breaks = c(0, .001, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] = analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] = ADS_C24.drop_pmhx_negativetime.list_binary[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
     }
-    analyticDF_C24.drop_pmhx_negativetime.list_binary[[iname]]$total_ddd_yr_BIS <- NULL
+    ADS_C24.drop_pmhx_negativetime.list_binary[[iname]]$total_ddd_yr_BIS <- NULL
 
 }
 

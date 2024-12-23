@@ -1,4 +1,4 @@
-# AnalyticDataset.pairwise_survdiff_bonferonni (200401) from plot_surv200401 .r
+# ADS.pairwise_survdiff_bonferonni (200401) from plot_surv200401 .r
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
@@ -30,7 +30,7 @@ library(survminer)
 
 # ?survival::Surv
 # ?survival::survfit
-AnalyticDataset = plot_surv200401 %>% mutate(
+ADS = plot_surv200401 %>% mutate(
     time = FU
     , event = SURV
     , Group = stage %>% recode(
@@ -52,34 +52,34 @@ AnalyticDataset = plot_surv200401 %>% mutate(
         , `12` = "IV"
     )
 )
-AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
+ADS.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = ADS)
 
-AnalyticDataset.survfit_byPredictedStage <- survfit(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
+ADS.survfit_byPredictedStage <- survfit(Surv(time = time, event = event) ~ PredictedStage, data = ADS)
 
 
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# ADS.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
+# ADS.survfit %>% ggsurvplot(fun = "event")
+# ADS.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
-AnalyticDataset.survfit %>% ggsurvplot  # default fun = "pct"?
-AnalyticDataset.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-
-
-AnalyticDataset.survfit_byPredictedStage %>% ggsurvplot  # default fun = "pct"?
-AnalyticDataset.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
+ADS.survfit %>% ggsurvplot  # default fun = "pct"?
+ADS.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 
 
+ADS.survfit_byPredictedStage %>% ggsurvplot  # default fun = "pct"?
+ADS.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 
-AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-AnalyticDataset.coxph |> summary() #----
-AnalyticDataset.coxph %>% cox.zph  # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
-AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
-# > AnalyticDataset.coxph |> summary() #----  
+
+
+ADS.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = ADS)
+ADS.coxph |> summary() #----
+ADS.coxph %>% cox.zph  # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
+ADS.coxph %>% cox.zph %>% ggcoxzph
+# > ADS.coxph |> summary() #----  
 # Call:
-# coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
+# coxph(formula = Surv(time = time, event = event) ~ Group, data = ADS)
 # 
 #   n= 71593, number of events= 45001 
 # 
@@ -107,7 +107,7 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
 # Wald test            = 22402  on 6 df,   p=<2e-16
 # Score (logrank) test = 30157  on 6 df,   p=<2e-16
 # 
-# > AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news ~!!! -----  
+# > ADS.coxph %>% cox.zph # * Caution) significant = bad news ~!!! -----  
 #                       rho  chisq         p
 # Group2 STx CTx     0.1353  824.7 2.29e-181
 # Group3 STx CTx RTx 0.1062  509.5 8.30e-113
@@ -118,14 +118,14 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
 # GLOBAL                 NA 1841.7  0.00e+00
 
 
-AnalyticDataset.coxph_byPredictedStage <- coxph(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
-AnalyticDataset.coxph_byPredictedStage |> summary() #----
-AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
-AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
-# > AnalyticDataset.coxph_byPredictedStage |> summary() #----  
+ADS.coxph_byPredictedStage <- coxph(Surv(time = time, event = event) ~ PredictedStage, data = ADS)
+ADS.coxph_byPredictedStage |> summary() #----
+ADS.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
+ADS.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
+# > ADS.coxph_byPredictedStage |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
-#     data = AnalyticDataset)
+#     data = ADS)
 # 
 #   n= 71593, number of events= 45001 
 # 
@@ -147,7 +147,7 @@ AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
 # Wald test            = 21063  on 3 df,   p=<2e-16
 # Score (logrank) test = 28354  on 3 df,   p=<2e-16
 # 
-# > AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news ~!!! -----  
+# > ADS.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news ~!!! -----  
 #                      rho chisq         p
 # PredictedStageII  0.1349   820 2.82e-180
 # PredictedStageIII 0.1341   817 8.84e-180
@@ -161,14 +161,14 @@ AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
 # http://www.sthda.com/english/wiki/survminer-0-3-0
 
 # ?pairwise_survdiff
-AnalyticDataset.pairwise_survdiff <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-AnalyticDataset.pairwise_survdiff
-AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
-# > AnalyticDataset.pairwise_survdiff
+ADS.pairwise_survdiff <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = ADS)
+ADS.pairwise_survdiff
+ADS.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
+# > ADS.pairwise_survdiff
 # 
 # 	Pairwise comparisons using Log-Rank test 
 # 
-# data:  AnalyticDataset and Group 
+# data:  ADS and Group 
 # 
 #               1 STx   2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT 
 # 2 STx CTx     < 2e-16 -         -             -             -         -      
@@ -179,7 +179,7 @@ AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001
 # 7 CTx         < 2e-16 < 2e-16   < 2e-16       < 2e-16       < 2e-16   < 2e-16
 # 
 # P value adjustment method: BH 
-# > AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
+# > ADS.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
 #               1 STx 2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT
 # 2 STx CTx     ****                                                        
 # 3 STx CTx RTx ****  ****                                                  
@@ -191,14 +191,14 @@ AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001
 # [1] 0 ‘****’ 1e-04 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘+’ 0.1 ‘ ’ 1 \t    ## NA: ‘’
 
 
-AnalyticDataset.pairwise_survdiff_unadjusted <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = AnalyticDataset, p.adjust.method = "none")
-AnalyticDataset.pairwise_survdiff_unadjusted
-AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
-# > AnalyticDataset.pairwise_survdiff_unadjusted
+ADS.pairwise_survdiff_unadjusted <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = ADS, p.adjust.method = "none")
+ADS.pairwise_survdiff_unadjusted
+ADS.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
+# > ADS.pairwise_survdiff_unadjusted
 # 
 # 	Pairwise comparisons using Log-Rank test 
 # 
-# data:  AnalyticDataset and Group 
+# data:  ADS and Group 
 # 
 #               1 STx   2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT 
 # 2 STx CTx     < 2e-16 -         -             -             -         -      
@@ -209,7 +209,7 @@ AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = 
 # 7 CTx         < 2e-16 < 2e-16   < 2e-16       < 2e-16       < 2e-16   < 2e-16
 # 
 # P value adjustment method: none 
-# > AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
+# > ADS.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
 #               1 STx 2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT
 # 2 STx CTx     ****                                                        
 # 3 STx CTx RTx ****  ****                                                  
@@ -224,14 +224,14 @@ AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = 
 
 
 # ?pairwise_survdiff
-AnalyticDataset.pairwise_survdiff_bonferroni <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = AnalyticDataset, p.adjust.method = "bonferroni")
-AnalyticDataset.pairwise_survdiff_bonferroni
-AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
-# > AnalyticDataset.pairwise_survdiff_bonferroni
+ADS.pairwise_survdiff_bonferroni <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = ADS, p.adjust.method = "bonferroni")
+ADS.pairwise_survdiff_bonferroni
+ADS.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
+# > ADS.pairwise_survdiff_bonferroni
 # 
 # 	Pairwise comparisons using Log-Rank test 
 # 
-# data:  AnalyticDataset and Group 
+# data:  ADS and Group 
 # 
 #               1 STx   2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT 
 # 2 STx CTx     < 2e-16 -         -             -             -         -      
@@ -242,7 +242,7 @@ AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = 
 # 7 CTx         < 2e-16 < 2e-16   < 2e-16       < 2e-16       < 2e-16   < 2e-16
 # 
 # P value adjustment method: bonferroni 
-# > AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
+# > ADS.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
 #               1 STx 2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT
 # 2 STx CTx     ****                                                        
 # 3 STx CTx RTx ****  ****                                                  
@@ -261,14 +261,14 @@ AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = 
   
 # __________|------  
 # @@ END-----  
-# AnalyticDataset.pairwise_survdiff_unadjusted$p.value |> as.data.frame() |> rownames_to_column() %>% 
-#     {openxlsx2::write_xlsx(., "AnalyticDataset.pairwise_survdiff_unadjusted (200401).xlsx")}
-# AnalyticDataset.pairwise_survdiff_bonferroni$p.value |> as.data.frame() |> rownames_to_column() %>% 
-#     {openxlsx2::write_xlsx(., "AnalyticDataset.pairwise_survdiff_bonferroni (200401).xlsx")}
+# ADS.pairwise_survdiff_unadjusted$p.value |> as.data.frame() |> rownames_to_column() %>% 
+#     {openxlsx2::write_xlsx(., "ADS.pairwise_survdiff_unadjusted (200401).xlsx")}
+# ADS.pairwise_survdiff_bonferroni$p.value |> as.data.frame() |> rownames_to_column() %>% 
+#     {openxlsx2::write_xlsx(., "ADS.pairwise_survdiff_bonferroni (200401).xlsx")}
 
 
 out = list()
-out$unadjusted = AnalyticDataset.pairwise_survdiff_unadjusted$p.value |> as.data.frame() |> rownames_to_column()
-out$bonferroni = AnalyticDataset.pairwise_survdiff_bonferroni$p.value |> as.data.frame() |> rownames_to_column()
-out %>% {openxlsx2::write_xlsx(., "AnalyticDataset.pairwise_survdiff_bonferroni (200401).xlsx")}
+out$unadjusted = ADS.pairwise_survdiff_unadjusted$p.value |> as.data.frame() |> rownames_to_column()
+out$bonferroni = ADS.pairwise_survdiff_bonferroni$p.value |> as.data.frame() |> rownames_to_column()
+out %>% {openxlsx2::write_xlsx(., "ADS.pairwise_survdiff_bonferroni (200401).xlsx")}
 

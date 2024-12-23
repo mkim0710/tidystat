@@ -116,9 +116,9 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>%
 
 
 
-## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
-    analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+## @ ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
+    ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
@@ -148,8 +148,8 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
         
         out
     }
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# > ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
 # # A tibble: 20 x 9
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` nExposed0 nExposed1 nDisease0_Exposed0 nDisease0_Exposed1 nDisease1_Exposed0 nDisease1_Exposed1
 #    <chr>                     <chr>                        <chr>                            <int>     <int>              <int>              <int>              <int>              <int>

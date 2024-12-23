@@ -1,19 +1,19 @@
 # f_Metadata_CodeToCreateDS.parse_eval.dev.r
 
-## \$ analyticDF_time2event =  ----  
+## \$ ADS_time2event =  ----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
-# .objectname = DSN = "analyticDF_time2event"
+# .objectname = DSN = "ADS_time2event"
 # assign(
 #     DSN, 
 #     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
 #         # dplyr::select(-status, -sex)
 #         dplyr::select(-status)
 # )
-# analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","  \n", sep=""); print(as_tibble(.),n=9)}
-# analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
+# ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","  \n", sep=""); print(as_tibble(.),n=9)}
+# ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
 # # survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 # # survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) |> table(useNA="always") |> addmargins()
 # # # > survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
@@ -27,8 +27,8 @@ for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRU
 # # #   2     90    0
 # # 
 # # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-# # analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # # > analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # # > ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # # .$StudyPopulation: FALSE
 # # #       time     event            Group   StudyPopulation
 # # #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -68,7 +68,7 @@ if(file.exists("CodeBook.xlsx")) { MetaData$CodeBook = readxl::read_xlsx("CodeBo
 if(!"DSs" %in% names(MetaData)) { MetaData$DSs = list() }
 
 
-DSN0 = "analyticDF_time2event"
+DSN0 = "ADS_time2event"
 DSNShortcut = "DS" |> paste0("0")
 
 MetaData$DSs[[DSNShortcut]] = list()
@@ -84,7 +84,7 @@ MetaData |> str(max.level = 2, give.attr = TRUE)
 #  $ CodeBook: list()
 #  $ DSs:List of 1
 #   ..$ DS0:List of 2
-#   .. ..$ DSN: chr "analyticDF_time2event"
+#   .. ..$ DSN: chr "ADS_time2event"
 #   .. ..$ VarNames   : chr [1:12] "inst" "time" "age" "sex" ...
 get(MetaData$DSs[[DSNShortcut]]$DSN) |> str(max.level = 2, give.attr = TRUE)
 # > get(MetaData$DSs[[DSNShortcut]]$DSN) |> str(max.level = 2, give.attr = TRUE)
@@ -124,12 +124,12 @@ MetaData |> str(max.level = 2, give.attr = TRUE)
 #  $ CodeBook: list()
 #  $ DSs:List of 2
 #   ..$ DS0        :List of 4
-#   .. ..$ DSN        : chr "analyticDF_time2event"
+#   .. ..$ DSN        : chr "ADS_time2event"
 #   .. ..$ CodeToCreateDS: chr "survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c(\"Male\", \"Female\")[sex] |> a"| __truncated__
 #   .. ..$ VarNames           : chr [1:12] "inst" "time" "age" "sex" ...
 #   .. ..$ dim                : int [1:2] 228 12
 #   ..$ DS0.na.omit:List of 4
-#   .. ..$ DSN        : chr "analyticDF_time2event.na.omit"
+#   .. ..$ DSN        : chr "ADS_time2event.na.omit"
 #   .. ..$ CodeToCreateDS: chr "get(MetaData$DSs[[DSNShortcut.old]]$DSN) |> na.omit()"
 #   .. ..$ VarNames           : chr [1:12] "inst" "time" "age" "sex" ...
 #   .. ..$ dim                : int [1:2] 167 12

@@ -216,20 +216,20 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # @@ DATA) example ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-analyticDF_time2event <- matrix(1:72, nrow=24, ncol=12) %>% data.frame %>% as_tibble
-dim(analyticDF_time2event)
-analyticDF_time2event
-analyticDF_time2event |> str(max.level = 2, give.attr = TRUE)
+ADS_time2event <- matrix(1:72, nrow=24, ncol=12) %>% data.frame %>% as_tibble
+dim(ADS_time2event)
+ADS_time2event
+ADS_time2event |> str(max.level = 2, give.attr = TRUE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DSN <- "analyticDF_time2event"
+DSN <- "ADS_time2event"
 ```
   
 # __________|------  
 # @@ DATA)SetName = ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-DSN <- "analyticDF_time2event"
-dim(analyticDF_time2event)
+DSN <- "ADS_time2event"
+dim(ADS_time2event)
 dim(get(DSN))
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 quote(dim(get(DSN)))
@@ -282,7 +282,7 @@ parse(text="dim(get(DSN))") |> str(max.level = 2, give.attr = TRUE)
 
 
 ## *** \% |> substitute(as.list(.GlobalEnv))  
-### -> language dim(get("analyticDF_time2event"))  
+### -> language dim(get("ADS_time2event"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -393,7 +393,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 ## *** \% |> substitute(as.list(.GlobalEnv))  
-### -> language dim(get("analyticDF_time2event"))  
+### -> language dim(get("ADS_time2event"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -645,8 +645,8 @@ f_expression.substitute_ECHO_and_dput <- function(expr_text, expression_equals_e
   cat("  > ", deparse(substituted_expr), sep_between_ECHO_and_dput, deparse(evaluated_expr), "\n", sep="")
 }
 
-DSN <- "analyticDF_time2event"
-analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+DSN <- "ADS_time2event"
+ADS_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 
 "dim(get(DSN))" |> f_expression.substitute_ECHO_and_dput(.VERBOSE = TRUE)
 "dim(get(DSN))" |> f_expression.substitute_ECHO_and_dput(expression_equals_evaluation = TRUE)

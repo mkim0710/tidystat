@@ -995,24 +995,24 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
   
 # __________|------  
 # @@ END------  
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list = list()
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.evnttrth_C16_r =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.evnttrth_C16_r
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.dyd.gt0 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.dyd.gt0
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.bin30 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.bin30
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.dyd.gt1 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.dyd.gt1
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.dyd.gt4 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.dyd.gt4
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.cut365 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.cut365
-save(analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list, file = "analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list.rda")
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list = list()
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.evnttrth_C16_r =
+    ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.evnttrth_C16_r
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.dyd.gt0 =
+    ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.dyd.gt0
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.bin30 =
+    ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.bin30
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.dyd.gt1 =
+    ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.dyd.gt1
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.dyd.gt4 =
+    ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.dyd.gt4
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.total_ddd_yr_ASPIRIN.cut365 =
+    ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.total_ddd_yr_ASPIRIN.cut365
+save(ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list, file = "ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list.rda")
 
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list %>% map(function(ob) {
+ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list %>% map(function(ob) {
     ob |> print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column()
-}) %>% openxlsx2::write_xlsx("analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list.xlsx")
+}) %>% openxlsx2::write_xlsx("ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list.xlsx")
 
 
 ##________________________________________________________________________________  

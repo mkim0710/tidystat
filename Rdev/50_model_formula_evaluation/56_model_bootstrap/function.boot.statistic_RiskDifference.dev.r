@@ -1,6 +1,6 @@
 
 
-# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates.boot.ci.list_PrimaryOutcomes from (don) -debug3.r
+# ADS2797.PersonTime7.glmOutcome_Exposure_k_Covariates.boot.ci.list_PrimaryOutcomes from (don) -debug3.r
 function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + ., glm.weights = NULL, Interval = 1, ...) {
     # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/56_model_bootstrap/function.boot.statistic_RiskDifference.dev.r
 
@@ -62,7 +62,7 @@ function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_
 
 ## @ nIteration = 20 =====  
 library(boot)
-data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
+data = ADS2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
     mutate(
         Time2Censor = PrimaryOutcome123456.time
         # , Censor = PrimaryOutcome123456
@@ -212,7 +212,7 @@ boot.output |> str(max.level = 1, give.attr = TRUE) #----
 
 ## @ nIteration = 500 =====  
 library(boot)
-data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
+data = ADS2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
     mutate(
         Time2Censor = PrimaryOutcome123456.time
         # , Censor = PrimaryOutcome123456
@@ -295,8 +295,8 @@ norm.inter <- function(t,alpha)
     cbind(round(rk, 2), out)
 }
 
-## @ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =====  
-analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci = 
+## @ ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =====  
+ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci = 
     boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
     mutate(`1-pNoEvent_k.cumprod0` = 1-pNoEvent_k.cumprod0[c(1,3,2)], `1-pNoEvent_k.cumprod1` = 1-pNoEvent_k.cumprod1[c(1,3,2)], `-RiskDifference` = -RiskDifference[c(1,3,2)]) %>% 
     t |> as.data.frame() |> rownames_to_column() %>% 
@@ -306,8 +306,8 @@ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =
         , `estimate (95% CI) %.3f` = paste0(sprintf("%.3f",round(V1,3)), " (", sprintf("%.3f",round(V2,3)), ", ", sprintf("%.3f",round(V3,3)), ")")
         , `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3
     ) |> as_tibble() #----
-analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
-# > analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
+ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
+# > ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
 # # A tibble: 13 x 6
 #    rowname               `estimate (95% CI) %.2f` `estimate (95% CI) %.3f` `exp(coef(.))`   `2.5 %` `97.5 %`
 #    <chr>                 <chr>                    <chr>                             <dbl>     <dbl>    <dbl>
@@ -333,9 +333,9 @@ boot.output %>% plot(index = which(names(.$t0) == "RiskDifference"))
   
 # __________|------  
 # @@ END-----  
-write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.rds", "xz", compression=9)
+write_rds(boot.output, "ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.rds", "xz", compression=9)
 openxlsx2::write_xlsx(
-    analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
-    , "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci.xlsx", as_table=TRUE
+    ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
+    , "ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci.xlsx", as_table=TRUE
 )
 

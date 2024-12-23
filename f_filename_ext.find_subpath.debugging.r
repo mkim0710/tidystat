@@ -697,7 +697,7 @@ options(width=120)
 # __________|------  
 # @@ START) Analysis ----  
   
-## \$ analyticDF_time2event =  ----  
+## \$ ADS_time2event =  ----  
 #### [Plot] Stratified Kaplan-Meier Survival Curve  
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
@@ -706,8 +706,8 @@ options(width=120)
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 ?survival::lung
-analyticDF_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[.$sex] |> as.factor(), StudyPopulation = time >= 30) |> dplyr::select(-status, -sex) |> as_tibble()
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
+ADS_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[.$sex] |> as.factor(), StudyPopulation = time >= 30) |> dplyr::select(-status, -sex) |> as_tibble()
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
 survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) |> table(useNA="always")
 # > survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
@@ -722,8 +722,8 @@ survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$se
 #   <NA>      0    0    0
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# > analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# > ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # .$StudyPopulation: FALSE
 #       time     event            Group   StudyPopulation
 #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -744,14 +744,14 @@ analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% 
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
-# analyticDF_time2event.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
-# analyticDF_time2event.survfit |> ggsurvplot(fun = "event")
-# analyticDF_time2event.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# ADS_time2event.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
+# ADS_time2event.survfit |> ggsurvplot(fun = "event")
+# ADS_time2event.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 value_for_Censor_at_END = 365 * 1
 value_for_break.time.by = 30
 time_scale = "days"
 varname4Group = "Group"
-analyticDF_time2event.CensorEND = analyticDF_time2event |>
+ADS_time2event.CensorEND = ADS_time2event |>
     # mutate(
     #     time = time |> replace_na(Inf)
     #     , event = event |> replace_na(F)
@@ -764,8 +764,8 @@ analyticDF_time2event.CensorEND = analyticDF_time2event |>
     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) |>
     mutate(time = pmin(time, value_for_Censor_at_END)) |>
     as_tibble()
-analyticDF_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# > analyticDF_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+ADS_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# > ADS_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # .$StudyPopulation: FALSE
 #       time     event            Group   StudyPopulation
 #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -786,10 +786,10 @@ analyticDF_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopula
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 data.formula.survfit = as.formula(survival::Surv(time = time, event = event) ~ Group) |> 
-    survival::survfit(data = analyticDF_time2event.CensorEND |> dplyr::filter(StudyPopulation) |> dplyr::select(-StudyPopulation))
+    survival::survfit(data = ADS_time2event.CensorEND |> dplyr::filter(StudyPopulation) |> dplyr::select(-StudyPopulation))
 data.formula.survfit
 # Call: survfit(formula = (survival::Surv(time = time, event = event) ~ 
-#     Group), data = dplyr::select(dplyr::filter(analyticDF_time2event.CensorEND, 
+#     Group), data = dplyr::select(dplyr::filter(ADS_time2event.CensorEND, 
 #     StudyPopulation), -StudyPopulation))
 # 
 #                n events median 0.95LCL 0.95UCL

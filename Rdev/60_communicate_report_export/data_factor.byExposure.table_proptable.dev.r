@@ -11,9 +11,9 @@
 
 
 
-## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
-    analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+## @ ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
+    ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
@@ -43,8 +43,8 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
         
         out
     }
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# > ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
 # # A tibble: 20 x 9
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` nExposed0 nExposed1 nDisease0_Exposed0 nDisease0_Exposed1 nDisease1_Exposed0 nDisease1_Exposed1
 #    <chr>                     <chr>                        <chr>                            <int>     <int>              <int>              <int>              <int>              <int>
@@ -72,13 +72,13 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 ## @ -----  
-analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
-analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
-# > analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+# > ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
 # +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----  
 #                           Exposure0 Exposure1 Sum
@@ -103,7 +103,7 @@ analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>%
 # SecondaryOutcome20                5         0   5
 # SecondaryOutcome21                5         0   5
 # Sum                             474       256 730
-# > analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+# > ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
 # +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----  
 #                           Exposure0  Exposure1        Sum
@@ -152,10 +152,10 @@ analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>%
 
 
 
-## @ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
-    analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
+## @ ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
+    ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
     map(function(glmObject) {
         out = glmObject %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble()
         out = out %>% mutate(
@@ -167,8 +167,8 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
         out %>% dplyr::filter(rowname %in% c("Exposuremetformin_after_insulin"))
     }) %>% bind_rows(.id = ".id")
 
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$nOutcome_byExposure =
-    analyticDF2797 %>% 
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$nOutcome_byExposure =
+    ADS2797 %>% 
     group_by(Exposure) %>% 
     {left_join(summarize(., n()), summarise_if(., is.logical, funs(sum, mean)))} %>% 
     {bind_cols(
@@ -179,8 +179,8 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
         }) 
     )} %>% gather(key, value, -Exposure) %>% spread(Exposure, value)
 
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI #----
-# > analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI #----  
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI #----
+# > ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI #----  
 # $list_PrimaryOutcomes.ORCI
 # # A tibble: 7 x 8
 #   .id                  rowname                         `estimate (95% CI) %.2f` `estimate (95% CI) %.3f` `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`

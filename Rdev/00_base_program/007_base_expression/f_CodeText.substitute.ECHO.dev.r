@@ -28,19 +28,19 @@
   
 # __________|------  
 # @@ START) example -----  
-## \$ analyticDF_time2event =  ----  
+## \$ ADS_time2event =  ----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 # ?survival::lung
-.objectname = DSN = "analyticDF_time2event"
+.objectname = DSN = "ADS_time2event"
 assign(
     DSN, 
     survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","  \n", sep=""); print(as_tibble(.),n=9)}
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","  \n", sep=""); print(as_tibble(.),n=9)}
+ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
 # survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 # survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) |> table(useNA="always") |> addmargins()
 # # > survival::lung |> dplyr::select(sex) %>% mutate(Group = c("Male", "Female")[.$sex] |> as.factor()) %>% {cat("> ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
@@ -54,8 +54,8 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 # #   2     90    0
 # 
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-# analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # > analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # > ADS_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # .$StudyPopulation: FALSE
 # #       time     event            Group   StudyPopulation
 # #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -84,7 +84,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "dim(get(.objectname))"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 .CodeText = "dim(get(.objectname))"; cat(.CodeText);cat(" = ");dput(eval(parse(text=.CodeText)))
 cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
@@ -94,10 +94,10 @@ cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
 # > .CodeText = "dim(get(.objectname))"; cat(.CodeText);cat(" = ");dput(eval(parse(text=.CodeText)))
 # dim(get(.objectname)) = c(228L, 12L)
 # > cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
-# dim(analyticDF_time2event.NR) == c(228L, 12L) 
+# dim(ADS_time2event.NR) == c(228L, 12L) 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
 # > .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
@@ -116,7 +116,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # > cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
-# > analyticDF_time2event.NR |> str(max.level=2, give.attr=FALSE)  
+# > ADS_time2event.NR |> str(max.level=2, give.attr=FALSE)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
@@ -132,23 +132,23 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "as_tibble(get(.objectname))" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "as_tibble(get(.objectname))"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 cat("> ",.objectname," |> as_tibble() |> print(n=99)","  \n", sep=""); print(as_tibble(get(.objectname)),n=99)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "as_tibble(tail(rownames_to_column(get(.objectname))))" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "as_tibble(tail(rownames_to_column(get(.objectname))))"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 cat("> ",.objectname," |> rownames_to_column() |> tail() |> as_tibble()","  \n", sep=""); print(as_tibble(tail(rownames_to_column(get(.objectname)))))
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")") ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
 cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objectname)[[varname]]), sep="")
 # > .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
 # n_distinct(get(.objectname)$NIHID) == 0L
 # > cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objectname)[[varname]]), sep="")
-# > analyticDF_time2event.NR$NIHID |> n_distinct() == 0
+# > ADS_time2event.NR$NIHID |> n_distinct() == 0
 
 
 
@@ -172,7 +172,7 @@ cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
 # > .CodeText = "dim(get(.objectname))"; cat(.CodeText);cat(" = ");dput(eval(parse(text=.CodeText)))
 # dim(get(.objectname)) = c(228L, 12L)
 # > cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
-# dim(analyticDF_time2event.NR) == c(228L, 12L) 
+# dim(ADS_time2event.NR) == c(228L, 12L) 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
@@ -192,7 +192,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # > cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
-# > analyticDF_time2event.NR |> str(max.level=2, give.attr=FALSE)  
+# > ADS_time2event.NR |> str(max.level=2, give.attr=FALSE)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
@@ -267,7 +267,7 @@ f_CodeText.ECHO = function(.CodeText,
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "dim(get(.objectname))" 
 .CodeText |> f_CodeText.ECHO()
 .CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
@@ -277,7 +277,7 @@ f_CodeText.ECHO = function(.CodeText,
 # > .CodeText |> f_CodeText.ECHO()
 # dim(get(.objectname))  
 # > .CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
-# dim(analyticDF_time2event)  
+# dim(ADS_time2event)  
 # > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
 # dim(get(.objectname))  
 # c(228L, 12L)  
@@ -286,7 +286,7 @@ f_CodeText.ECHO = function(.CodeText,
 # [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 .CodeText |> f_CodeText.ECHO()
 .CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
@@ -295,7 +295,7 @@ f_CodeText.ECHO = function(.CodeText,
 # > .CodeText |> f_CodeText.ECHO()
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # > .CodeText |> f_CodeText.ECHO(substitute_ObjectNames = TRUE)
-# str(analyticDF_time2event, max.level = 2, give.attr = F)  
+# str(ADS_time2event, max.level = 2, give.attr = F)  
 # > .CodeText |> f_CodeText.ECHO(EXECUTE = TRUE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
@@ -607,7 +607,7 @@ f_CodeText.substitute.ECHO <- function(.CodeText,
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "dim(get(.objectname))" 
 .CodeText |> f_CodeText.substitute.ECHO(VERBOSE = TRUE)
 .CodeText |> f_CodeText.substitute.ECHO()
@@ -624,7 +624,7 @@ f_CodeText.substitute.ECHO <- function(.CodeText,
 # [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
-.objectname = "analyticDF_time2event"
+.objectname = "ADS_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 .CodeText |> f_CodeText.substitute.ECHO()
 .CodeText |> f_CodeText.substitute.ECHO(EXECUTE = TRUE)

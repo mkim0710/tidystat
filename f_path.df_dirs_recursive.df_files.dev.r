@@ -107,9 +107,9 @@ dir(full.names = T) |> str() #----
 # #  chr [1:444] "./-info/facets_2017 - annotate (3) Table1byP_WH.ge.5.zip" "./-info/facets_2017 - annotate.xlsx - 바로 가기.lnk" ...
 # # > input_path = "Rdev"
 # # > dir(input_path, full.names = T, recursive = T) |> str() #----  
-# #  chr [1:231] "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
+# #  chr [1:231] "Rdev/-dev/object.coxph from ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
 # # > dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----  
-# #  chr [1:273] "Rdev/-dev" "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
+# #  chr [1:273] "Rdev/-dev" "Rdev/-dev/object.coxph from ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
 # # > setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----  
 # #  chr [1:42] "Rdev/-dev" "Rdev/00_base_program" "Rdev/00_protocol" "Rdev/00_protocol/01_sample_size" ...
 # # > list.dirs(input_path, full.names = TRUE) |> str() #----  
@@ -187,7 +187,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #'  $ files.rds                :List of 61
 #'  $ files.rda                :List of 61
 #'  $ print_tree_path_files    : chr [1:61] "@./\n-info\nbfg-1.13.0.jar\nbfg.txt\ndata\nEncoding.txt\nenv1$env.internal.source.r\nenv1.fun.t.tri"| __truncated__ "@-info/\n\tFACETS_data_2017.NA.NonLatino.Table1byP_WH.ge.5 -annotate.xlsx\n\tJK2079.GY20CCW.bind_rows0213.M"| __truncated__ "@Rdev/\n\t-dev\n\t00_base_program\n\t00_protocol\n\t10_import_clean_datatype\n\t20_tidy_group_by_match\n\t30_tr"| __truncated__ "@\t-dev/\n" ...
-#'  $ print_tree_path_files.r  : chr [1:61] "@./\n-void.r\nenv1$env.internal.source.r\nenv1.fun.t.tibble.dev -tmp.r\nenv1.fun.t.tribble_co"| __truncated__ "@-info/\n" "@Rdev/\n\tf_df.variable.Date.nID_anyTRUE_allTRUE.dev.r\n\tf_df.variable.Date.nID_TRUE_NA.dev.r\n\tflowchart_inc"| __truncated__ "@\t-dev/\n\t\tobject.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r\n" ...
+#'  $ print_tree_path_files.r  : chr [1:61] "@./\n-void.r\nenv1$env.internal.source.r\nenv1.fun.t.tibble.dev -tmp.r\nenv1.fun.t.tribble_co"| __truncated__ "@-info/\n" "@Rdev/\n\tf_df.variable.Date.nID_anyTRUE_allTRUE.dev.r\n\tf_df.variable.Date.nID_TRUE_NA.dev.r\n\tflowchart_inc"| __truncated__ "@\t-dev/\n\t\tobject.coxph from ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r\n" ...
 #'  $ print_tree_path_files.codes: chr [1:61] "@./\nf_df.t.tribble_construct -old.Rmd\nf_df.t.tribble_construct.Rmd\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rds: chr [1:61] "@./\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rda: chr [1:61] "@./\nf_df.t.tribble_construct.RData.xz\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
@@ -614,12 +614,12 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			function.boot.statistic_RiskDifference.dev.r
 #' 			function.Data_Exposure_Outcome_shuffle.dev.r
 #' @		57_model_time2event/
-#' 			AnalyticDataset$Time2Censor_NewDMv3.rmd
-#' 			AnalyticDataset.censor5yr.survfit.ggsurvplot_CIRiskTableP -old.rmd
-#' 			AnalyticDataset.censor5yr.survfit.ggsurvplot_CIRiskTableP.source -old.r
-#' 			AnalyticDataset.CensorEND.survfit.ggsurvplot_CIRiskTableP.rmd
-#' 			AnalyticDataset.CensorLastMeasure.survfit.ggsurvplot_CIRiskTableP.rmd
-#' 			AnalyticDataset.pairwise_survdiff_bonferroni.dev.r
+#' 			ADS$Time2Censor_NewDMv3.rmd
+#' 			ADS.censor5yr.survfit.ggsurvplot_CIRiskTableP -old.rmd
+#' 			ADS.censor5yr.survfit.ggsurvplot_CIRiskTableP.source -old.r
+#' 			ADS.CensorEND.survfit.ggsurvplot_CIRiskTableP.rmd
+#' 			ADS.CensorLastMeasure.survfit.ggsurvplot_CIRiskTableP.rmd
+#' 			ADS.pairwise_survdiff_bonferroni.dev.r
 #' 			f_df.PersonTime.dev.r
 #' 			formulas4coxph_model_list.dev.r
 #' @		57_model_trajectory/
@@ -873,10 +873,10 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' @		55_model_weighted/
 #' @		56_model_bootstrap/
 #' @		57_model_time2event/
-#' 			AnalyticDataset$Time2Censor_NewDMv3.rmd
-#' 			AnalyticDataset.censor5yr.survfit.ggsurvplot_CIRiskTableP -old.rmd
-#' 			AnalyticDataset.CensorEND.survfit.ggsurvplot_CIRiskTableP.rmd
-#' 			AnalyticDataset.CensorLastMeasure.survfit.ggsurvplot_CIRiskTableP.rmd
+#' 			ADS$Time2Censor_NewDMv3.rmd
+#' 			ADS.censor5yr.survfit.ggsurvplot_CIRiskTableP -old.rmd
+#' 			ADS.CensorEND.survfit.ggsurvplot_CIRiskTableP.rmd
+#' 			ADS.CensorLastMeasure.survfit.ggsurvplot_CIRiskTableP.rmd
 #' @		57_model_trajectory/
 #' @		59_model_evaluation/
 #' @	60_communicate_report_export/

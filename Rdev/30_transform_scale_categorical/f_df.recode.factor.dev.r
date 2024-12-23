@@ -1,5 +1,5 @@
 # f_df.recode.factor.dev.r
-# analyticDF_C24.drop_pmhx_negativetime.list.cut from analyticDF_C24.drop_pmhx_negativetime.list .r
+# ADS_C24.drop_pmhx_negativetime.list.cut from ADS_C24.drop_pmhx_negativetime.list .r
 
 
 
@@ -165,8 +165,8 @@ letters[c(1:4, 7:1, 4:1)] |> as.factor() |> as.integer() %>% {(. - 1) %% 3 + 1}
 
 
 
-analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` |> str(give.attr = F)
-# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` |> str(give.attr = F)
+ADS_C24.drop_pmhx_negativetime.list$`_5yr` |> str(give.attr = F)
+# > ADS_C24.drop_pmhx_negativetime.list$`_5yr` |> str(give.attr = F)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  22 variables:
 #  $ AGE                   : num  70 52 42 44 56 54 43 58 45 55 ...
 #  $ AGE_group             : Factor w/ 4 levels "40-","50-","60-",..: 4 2 1 1 2 2 1 2 1 2 ...
@@ -221,24 +221,24 @@ breaks = c(0, .001, 30, Inf)
 
 
 
-## @ analyticDF_C24.drop_pmhx_negativetime.list.cut ====  
-analyticDF_C24.drop_pmhx_negativetime.list.cut <- analyticDF_C24.drop_pmhx_negativetime.list
+## @ ADS_C24.drop_pmhx_negativetime.list.cut ====  
+ADS_C24.drop_pmhx_negativetime.list.cut <- ADS_C24.drop_pmhx_negativetime.list
 for (i in 3:7) {
     iname <- paste0("_",i,"yr")
 
     for (j in c("total_ddd_yr_ASPIRIN", "total_ddd_yr_NSAID")) {
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".dyd")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] / 365
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".dyd")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] / 365
         breaks = c(0, .001, 30, 365 * 1:(i-1), Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".cut")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".cut")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
         breaks = c(0, 365 * 1:(i-1), Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".cut.yr")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".cut.yr")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
         breaks = c(0, 30, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge30")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge30")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
         breaks = c(0, .001, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge001")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge001")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
     }
     # for (j in c("total_ddd_yr_H2B", "total_ddd_yr_PPI")) {
@@ -246,7 +246,7 @@ for (i in 3:7) {
     #     # could be included with common cold medication: total_ddd_yr_H2B  total_ddd_yr_NSAID   total_ddd_yr_PPI  
     #     # merge [0.001,30) with [0,0.001)
     #     breaks = c(0, 30, Inf)
-    #     analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+    #     ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
     #         cut(breaks, include.lowest = T, right = F)
     # }
     # for (j in c("total_ddd_yr_BIS", "total_ddd_yr_METFORMIN", "total_ddd_yr_STATIN")) {
@@ -258,26 +258,26 @@ for (i in 3:7) {
         # cannot be prescribed without indication: total_ddd_yr_BIS    total_ddd_yr_METFORMIN total_ddd_yr_STATIN
         # merge [0.001,30) with [30,Inf]
         breaks = c(0, 30, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge30")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge30")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
         breaks = c(0, .001, Inf)
-        analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge001")]] = analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
+        ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[paste0(j,".ge001")]] = ADS_C24.drop_pmhx_negativetime.list.cut[[iname]][[j]] %>% 
             cut(breaks, include.lowest = T, right = F)
     }
-    analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]]$total_ddd_yr_BIS <- NULL
+    ADS_C24.drop_pmhx_negativetime.list.cut[[iname]]$total_ddd_yr_BIS <- NULL
 
 }
 # ?as.factor
 
 # ?dplyr::recode
-analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
+ADS_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
+# > ADS_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
 #     0-  18.5-    23-    25-    30-   NA's 
 #   9872 162466 127857 148005  13155    134
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dput()
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dput()
+ADS_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dput()
+# > ADS_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dput()
 # c("0-", "18.5-", "23-", "25-", "30-")
 
 txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
@@ -354,7 +354,7 @@ list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("  \n", sep="")
 
                
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %in% c("0-", "18.5-")
@@ -363,7 +363,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+# > ADS_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
 # +             BMI_lt23 = BMI_Q_yr %in% c("0-", "18.5-")
@@ -391,7 +391,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # "%in%" <- function(x, table) match(x, table, nomatch = 0) > 0
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %>% match(c("0-", "18.5-"))
@@ -400,7 +400,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+# > ADS_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
 # +             BMI_lt23 = BMI_Q_yr %>% match(c("0-", "18.5-"))
@@ -419,7 +419,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 #                 NA's   :289151   NA's   :333632   NA's   :300329   NA's   :461489  
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -428,7 +428,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+# > ADS_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
 # +             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -446,7 +446,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 #  NA's :   134   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :2.0000  
 #                 NA's   :134      NA's   :134      NA's   :134      NA's   :134    
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -455,7 +455,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
     }) %>% {.[["_5yr"]]} %>% select(matches("BMI"))
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+# > ADS_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
 # +             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -480,7 +480,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # # ... with 461,479 more rows
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -489,7 +489,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100) %>% as.ordered
         )
     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -498,7 +498,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100) %>% ordered(label = c("BMI_lt23", "BMI_ge23lt25", "BMI_cut2325"))
         )
     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+# > ADS_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
 # +             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -515,7 +515,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 #  30-  : 13155   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000                
 #  NA's :   134   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000                
 #                 NA's   :134      NA's   :134      NA's   :134                   
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+# > ADS_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
 # +             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -536,8 +536,8 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut = 
-    analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
+ADS_C24.drop_pmhx_negativetime.list.cut = 
+    ADS_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
             BMI_lt23 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("0-", "18.5-"))}
@@ -549,16 +549,16 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut =
 
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut |> str(max.level = 1, give.attr = TRUE) #----
-analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut |> str(max.level = 1, give.attr = TRUE)
+ADS_C24.drop_pmhx_negativetime.list.cut |> str(max.level = 1, give.attr = TRUE) #----
+ADS_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----
+# > ADS_C24.drop_pmhx_negativetime.list.cut |> str(max.level = 1, give.attr = TRUE)
 # List of 5
 #  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	481536 obs. of  44 variables:
 #  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	471223 obs. of  44 variables:
 #  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  44 variables:
 #  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	451428 obs. of  44 variables:
 #  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	440469 obs. of  44 variables:
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----  
+# > ADS_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  44 variables:
 #  $ AGE                         : num  70 52 42 44 56 54 43 58 45 55 ...
 #  $ AGE_group                   : Factor w/ 4 levels "40-","50-","60-",..: 4 2 1 1 2 2 1 2 1 2 ...
@@ -608,30 +608,30 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #---
 
 
 # debug 181114 unordered - to avoid .L & .Q =====  
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
 as.characther.as.factor = function(vec) as.factor(as.character(vec))
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
 factor.unordered = function(vec) factor(vec, ordered = F)
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
+ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
 # [1] TRUE
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
 # [1] TRUE
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
 # [1] TRUE
 # > as.characther.as.factor = function(vec) as.factor(as.character(vec))
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
 # [1] FALSE
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
 #  Factor w/ 3 levels "BMI_ge23lt25",..: 1 1 3 3 1 3 3 2 1 2 ...
 # > factor.unordered = function(vec) factor(vec, ordered = F)
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
 # [1] FALSE
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
+# > ADS_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} |> str(max.level = 2, give.attr = TRUE)
 #  Factor w/ 3 levels "BMI_lt23","BMI_ge23lt25",..: 2 2 1 1 2 1 1 3 2 3 ...
 
 
@@ -695,5 +695,5 @@ special_chars %>% sort %>% dput()
   
 # __________|------  
 # @@ END----  
-save(analyticDF_C24.drop_pmhx_negativetime.list.cut, file = "analyticDF_C24.drop_pmhx_negativetime.list.cut.rda")
+save(ADS_C24.drop_pmhx_negativetime.list.cut, file = "ADS_C24.drop_pmhx_negativetime.list.cut.rda")
 

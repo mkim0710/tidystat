@@ -1,10 +1,10 @@
-# object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample.r
+# object.coxph from ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample.r
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ## @ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow") ====  
-analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample |> str(max.level = 2, give.attr = TRUE)
-df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
+ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample |> str(max.level = 2, give.attr = TRUE)
+df = ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample
 vec = c("evnttrth_C24_r", "fuduration_yr"
         , "AGE"
         , "SEX"
@@ -225,7 +225,7 @@ object.coxph$xlevels |> str(max.level = 1, give.attr = TRUE)
 #  $ total_ddd_yr_METFORMIN.ge30: chr [1:2] "[0,30)" "[30,Inf]"
 
 
-## @ # data_main.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list .r  
+## @ # data_main.cut.coxph_list from ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list .r  
 ## @ tbl_varname_level_coefficients ====  
 ## @ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====  
 tbl_varname_level_coefficients = 
