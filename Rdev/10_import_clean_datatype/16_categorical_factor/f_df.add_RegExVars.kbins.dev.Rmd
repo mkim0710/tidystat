@@ -326,7 +326,7 @@ DS.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 
 ```
 
 
-#### \$ A0{1+j}_BMI.pdeltaj =  
+#### (VOID, CONTINUOUS) \$ A0{1+j}_BMI.pdeltaj =  
 ##### \% f_df.add_VarNameT.pdeltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)

@@ -322,7 +322,7 @@ DS %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, g
 ```
 
 
-#### \$ A0{1+j}_BMI.pdeltaj =  
+#### (VOID, CONTINUOUS) \$ A0{1+j}_BMI.pdeltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ### # DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
