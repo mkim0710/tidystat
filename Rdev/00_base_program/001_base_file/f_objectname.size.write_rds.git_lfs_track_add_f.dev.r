@@ -65,7 +65,7 @@ get(.objectname) |> str(max.level = 2, give.attr = TRUE)
 #  $ tblVarName     : list()
 #  $ DSNs   :List of 2
 #   ..$ ADS_time2event.NA        :List of 1
-#   ..$ ADS_time2event.NR:List of 1
+#   ..$ ADS_time2event.DNR:List of 1
 #  $ VarNames       :List of 11
 #   ..$ Event       :List of 4
 #   ..$ Mediator    :List of 2

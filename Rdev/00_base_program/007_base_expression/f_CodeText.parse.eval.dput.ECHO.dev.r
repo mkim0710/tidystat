@@ -96,7 +96,7 @@ cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
 # > .CodeText = "dim(get(.objectname))"; cat(.CodeText);cat(" = ");dput(eval(parse(text=.CodeText)))
 # dim(get(.objectname)) = c(228L, 12L)
 # > cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
-# dim(ADS_time2event.NR) == c(228L, 12L) 
+# dim(ADS_time2event.DNR) == c(228L, 12L) 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .objectname = "ADS_time2event"
@@ -118,7 +118,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # > cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
-# > ADS_time2event.NR |> str(max.level=2, give.attr=FALSE)  
+# > ADS_time2event.DNR |> str(max.level=2, give.attr=FALSE)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
@@ -151,7 +151,7 @@ cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objec
 # > .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
 # n_distinct(get(.objectname)$NIHID) == 0L
 # > cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objectname)[[varname]]), sep="")
-# > ADS_time2event.NR$NIHID |> n_distinct() == 0
+# > ADS_time2event.DNR$NIHID |> n_distinct() == 0
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")' ----
 .CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")'; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
@@ -179,7 +179,7 @@ cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
 # > .CodeText = "dim(get(.objectname))"; cat(.CodeText);cat(" = ");dput(eval(parse(text=.CodeText)))
 # dim(get(.objectname)) = c(228L, 12L)
 # > cat("dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
-# dim(ADS_time2event.NR) == c(228L, 12L) 
+# dim(ADS_time2event.DNR) == c(228L, 12L) 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
@@ -199,7 +199,7 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # > cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(.objectname), max.level=2, give.attr=FALSE)
-# > ADS_time2event.NR |> str(max.level=2, give.attr=FALSE)  
+# > ADS_time2event.DNR |> str(max.level=2, give.attr=FALSE)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
