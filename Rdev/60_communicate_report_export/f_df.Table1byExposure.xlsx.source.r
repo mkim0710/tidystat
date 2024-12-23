@@ -67,7 +67,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
 
-env1$f$f_df.Table1byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE) {
+env1$f$f_df.Table1byExposure.xlsx = function(DataSet.DNR.select, DataSetName4output = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE) {
     # for(.packagename in c("tidyverse", "tableone")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
     .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
@@ -89,21 +89,21 @@ env1$f$f_df.Table1byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, Dat
     
     # browser()
     assign(DataSetName4output.Table1byExposure, 
-           DataSet.Date.NA.rmAllNA.select %>% 
+           DataSet.DNR.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
     assign(DataSetName4output.is.na.Table1byExposure, 
-           DataSet.Date.NA.rmAllNA.select %>% 
+           DataSet.DNR.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
                map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
                # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
-               cbind(DataSet.Date.NA.rmAllNA.select[VarNames4Exposure]) |>
+               cbind(DataSet.DNR.select[VarNames4Exposure]) |>
                as.data.frame() %>%
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
     
-    Vars4IQR = names(DataSet.Date.NA.rmAllNA.select)[DataSet.Date.NA.rmAllNA.select %>% map_lgl(is.numeric)]
+    Vars4IQR = names(DataSet.DNR.select)[DataSet.DNR.select %>% map_lgl(is.numeric)]
     # get(DataSetName4output.Table1byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
     # get(DataSetName4output.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
     # get(DataSetName4output.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
@@ -220,7 +220,7 @@ env1$f$f_df.Table1byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, Dat
     }
     
     return.list = list(
-        DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA.select
+        DataSet.DNR.select = DataSet.DNR.select
         , DataSetName4output = DataSetName4output
         , VarNames4Exposure = VarNames4Exposure
         , DataSetName4output.Table1byExposure = DataSetName4output.Table1byExposure

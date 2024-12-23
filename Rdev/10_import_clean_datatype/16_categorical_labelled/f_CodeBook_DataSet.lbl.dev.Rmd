@@ -352,7 +352,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode  
 ### @ VarName.suffix.regex = "A0[0-2]"
-### :: DataSet.Date.NA.rmAllNA = get(DataSetName) |> select(matches(VarName.suffix.regex))
+### :: DataSet.DNR = get(DataSetName) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -404,13 +404,13 @@ VarName.suffix.regex =
                  "KIDCU", "TREATD14"))
     ) %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-DataSet.Date.NA.rmAllNA = get(DataSetName) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+DataSet.DNR = get(DataSetName) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
-DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA[sort(names(DataSet.Date.NA.rmAllNA))]
-DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
-DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR = DataSet.DNR[sort(names(DataSet.DNR))]
+DataSet.DNR = DataSet.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DataSet.DNR |> str(max.level = 2, give.attr = TRUE)
 ```
 
 

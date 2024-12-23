@@ -343,7 +343,7 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 # ~/github_tidystat/Rdev/60_communicate_report_export/f_df.glmnet.GT1.flextable.dev-Gemini-pending.Rmd
 # ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
 # ~/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glmnet_alphas_cox.dev.Rmd
-# ~/github_tidystat/DataSet.Date.NA.rmAllNA.lbl.fct.select_.n_.recode.dev.Rmd
+# ~/github_tidystat/DataSet.DNR.lbl.fct.select_.n_.recode.dev.Rmd
 # ~/github_tidystat/Rdev/60_communicate_report_export/f_df.GT1.flextable.dev.Rmd
 # ~/github_tidystat/git/f_gitattributes.update_non_lfs.dev.Rmd
 # 

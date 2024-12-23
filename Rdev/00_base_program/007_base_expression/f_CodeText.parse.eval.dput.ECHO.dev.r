@@ -484,14 +484,14 @@ nrow(get(.objectname))"
 # 	##  TRUE :165       TRUE :219  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "summary(get(.objectname))" ----
-DataSetName2 = "analyticDF_time2event"
-.CodeText = '.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort'
+DataSetName.Date = "analyticDF_time2event"
+.CodeText = '.vec_nlevel_lt20.value_number.unique = get(DataSetName.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort'
 .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
 .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE)
 # > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
-# 	.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
+# 	.vec_nlevel_lt20.value_number.unique = get(DataSetName.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
 # > .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 # 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
 # > .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)
@@ -787,8 +787,8 @@ nrow(get(.objectname))"
 # 	##  TRUE :165       TRUE :219  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "summary(get(.objectname))" ----
-DataSetName2 = "analyticDF_time2event"
-.CodeText = '.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort'
+DataSetName.Date = "analyticDF_time2event"
+.CodeText = '.vec_nlevel_lt20.value_number.unique = get(DataSetName.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort'
 .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = FALSE)
 .CodeText |> env1$f$f_CodeText.ECHO(substitute_ObjectNames = TRUE)
 .CodeText |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE)

@@ -65,12 +65,12 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), 
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
+#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), 
 #     suffix = paste0(".cut", length(breaks) - 1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
@@ -84,7 +84,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
 #     output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
@@ -143,13 +143,13 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, 
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
+#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, 
 #     -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) - 
 #     1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
@@ -165,7 +165,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", 
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4output = "DataSet", 
 #     VarNames4Exposure = c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE, 
 #     Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
@@ -223,12 +223,12 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     sep_parentheses = FALSE, end_of_text = "\n")  
 #   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
-#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
-#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", br..
+#   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, pr"..
+#   ..$ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, pr"..
+#   ..$ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", br..
 #     suffix = paste0(".cut", length(breaks) - 1))  
-#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.o..
-#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.o..
+#   ..$ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.o..
+#   ..$ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.o..
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, re"..
@@ -242,7 +242,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4out"..
+#   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4out"..
 #     output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
 #  $ source      :List of 11
 #   ..$ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
@@ -385,16 +385,16 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # sep_parentheses = FALSE, end_of_text = "\n")
 # ..$ f_vec1_vec2.setdiff_list :function (vec1, vec2)
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
-# ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix =
+# ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix =
 #    ".deltaT0")
-# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix =
+# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix =
 #    ".pdeltaT0")
-# ..$ f_df.add_RegExVars.kbins :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1,
+# ..$ f_df.add_RegExVars.kbins :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1,
 #    -0.05, 0.05, 0.1, Inf),
 # suffix = paste0(".cut", length(breaks) - 1))
-# ..$ f_df.add_RegExVars.quintile_factor :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered =
+# ..$ f_df.add_RegExVars.quintile_factor :function (DataSet.DNR, regex_pattern, factor.ordered =
 #    FALSE)
-# ..$ f_df.add_RegExVars.quartile_factor :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered =
+# ..$ f_df.add_RegExVars.quartile_factor :function (DataSet.DNR, regex_pattern, factor.ordered =
 #    FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
@@ -413,7 +413,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # VERBOSE = FALSE)
 # ..$ f_df.NotNA_p_df :function (data)
 # ..$ f_df.printVars_byMainOutcome :function (DataSet, MainOutcome, VarName.selected)
-# ..$ f_df.Table1byExposure.xlsx :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet",
+# ..$ f_df.Table1byExposure.xlsx :function (DataSet.DNR.select, DataSetName4output = "DataSet",
 #    VarNames4Exposure = c("InterventionGroup"),
 # output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)
 # $ source :List of 11
@@ -484,17 +484,17 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # sep_parentheses = FALSE, end_of_text = "\n")
 # ..$ f_vec1_vec2.setdiff_list :function (vec1, vec2)
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
-# ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0,
+# ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.DNR, VarName0,
 #    VarNameT, prefix = "", suffix = ".deltaT0")
-# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0,
+# ..$ f_df.add_VarNameT.pdeltaT0 :function (DataSet.DNR, VarName0,
 #    VarNameT, prefix = "", suffix = ".pdeltaT0")
-# ..$ f_df.add_RegExVars.kbins :function (DataSet.Date.NA.rmAllNA, regex_pattern =
+# ..$ f_df.add_RegExVars.kbins :function (DataSet.DNR, regex_pattern =
 #    ".", breaks = c(-Inf,
 # -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut", length(breaks) -
 # 1))
-# ..$ f_df.add_RegExVars.quintile_factor :function (DataSet.Date.NA.rmAllNA,
+# ..$ f_df.add_RegExVars.quintile_factor :function (DataSet.DNR,
 #    regex_pattern, factor.ordered = FALSE)
-# ..$ f_df.add_RegExVars.quartile_factor :function (DataSet.Date.NA.rmAllNA,
+# ..$ f_df.add_RegExVars.quartile_factor :function (DataSet.DNR,
 #    regex_pattern, factor.ordered = FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
@@ -516,7 +516,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_df.NotNA_p_df :function (data)
 # ..$ f_df.printVars_byMainOutcome :function (DataSet, MainOutcome,
 #    VarName.selected)
-# ..$ f_df.Table1byExposure.xlsx :function (DataSet.Date.NA.rmAllNA.select,
+# ..$ f_df.Table1byExposure.xlsx :function (DataSet.DNR.select,
 #    DataSetName4output = "DataSet",
 # VarNames4Exposure = c("InterventionGroup"), output.sink = FALSE, output.xlsx =
 #    TRUE,
@@ -610,12 +610,12 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ##    sep_parentheses = FALSE, end_of_text = "\n")  
 ## $ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 ## $ f_df.print_byVar                            :function (df, byVar, n = NULL)  
-## $ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
-## $ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
-## $ f_df.add_RegExVars.kbins                      :function (DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, 
+## $ f_df.add_VarNameT.deltaT0                   :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
+## $ f_df.add_VarNameT.pdeltaT0                      :function (DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0")  
+## $ f_df.add_RegExVars.kbins                      :function (DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, 
 ##    Inf), suffix = paste0(".cut", length(breaks) - 1))  
-## $ f_df.add_RegExVars.quintile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
-## $ f_df.add_RegExVars.quartile_factor          :function (DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE)  
+## $ f_df.add_RegExVars.quintile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
+## $ f_df.add_RegExVars.quartile_factor          :function (DataSet.DNR, regex_pattern, factor.ordered = FALSE)  
 ## $ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 ## $ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 ## $ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
@@ -629,7 +629,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ##    print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 ## $ f_df.NotNA_p_df                             :function (data)  
 ## $ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
-## $ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
+## $ f_df.Table1byExposure.xlsx                  :function (DataSet.DNR.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
 ##    output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
 # ________________________________________________________________________________    
 # $ source		:List of 11

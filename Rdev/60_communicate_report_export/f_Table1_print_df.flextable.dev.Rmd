@@ -264,16 +264,16 @@ env0 = env1
 ```{r EchoNoEval, eval=FALSE, echo=TRUE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>%
+DataSet.DNR.select = DataSet.DNR |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>%
     mutate(Intervention.ge1 = !BMI_ge300) %>%
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
-DataSet.Date.NA.rmAllNA.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
-# DataSet.Date.NA.rmAllNA.select %>% mutate_if(is.numeric, replace_na, 0)
+DataSet.DNR.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
+# DataSet.DNR.select %>% mutate_if(is.numeric, replace_na, 0)
 
 VarNames4Exposure =  c("InterventionGroup")
-DataSetName = "DataSet.Date.NA.rmAllNA"
+DataSetName = "DataSet.DNR"
 DataSetName.select = paste0(DataSetName,".select")
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

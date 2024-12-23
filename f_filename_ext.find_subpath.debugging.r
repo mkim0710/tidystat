@@ -423,29 +423,29 @@ cat(" > ",DataSetName,".Date"," |> select(matches(.varname.regex4ymd|>regex(igno
 ### ---- < Data Availability Check > ----  
 #### \$ DataSet.Date.NA  ----  
 ##### \% f_df.NotNA_p_df() ----  
-#### \$ DataSet.Date.NA.rmAllNA  ----  
+#### \$ DataSet.DNR  ----  
 ```{r DataSet.Date.NA-f_df.NotNA_p_df-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-if(!exists("DataSetName2")) DataSetName2 = ifelse(exists(paste0(DataSetName,".Date")), paste0(DataSetName,".Date"), DataSetName)
-.vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+if(!exists("DataSetName.Date")) DataSetName.Date = ifelse(exists(paste0(DataSetName,".Date")), paste0(DataSetName,".Date"), DataSetName)
+.vec_nlevel_lt20.value_number.unique = 'get(DataSetName.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSetName2.NA = DataSetName2 |> paste0(".NA"); assign( DataSetName2.NA, get(DataSetName2) |> mutate_if(is.factor, as.character) ); MetaData$DataSetNames[[DataSetName2.NA]] = list(DataSetName = DataSetName2.NA)
+DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); assign( DataSetName.Date.NA, get(DataSetName.Date) |> mutate_if(is.factor, as.character) ); MetaData$DataSetNames[[DataSetName.Date.NA]] = list(DataSetName = DataSetName.Date.NA)
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
-    DataSetName2.NA = DataSetName2 |> paste0(".NA"); assign( DataSetName2.NA, get(DataSetName2.NA) |> mutate_if(is.character, na_if, .value4NA) )
+    DataSetName.Date.NA = DataSetName.Date |> paste0(".NA"); assign( DataSetName.Date.NA, get(DataSetName.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
-DataSetName2.NA.rmAllNA = DataSetName2.NA |> paste0(".rmAllNA"); assign( DataSetName2.NA.rmAllNA, get(DataSetName2.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DataSetNames[[DataSetName2.NA.rmAllNA]] = list(DataSetName = DataSetName2.NA.rmAllNA)
-cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="") 
-cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
-DataSet.Date.NA.rmAllNA = get(DataSetName2.NA.rmAllNA)
+DataSetName.DNR = DataSetName.Date.NA |> paste0(".rmAllNA"); assign( DataSetName.DNR, get(DataSetName.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DataSetNames[[DataSetName.DNR]] = list(DataSetName = DataSetName.DNR)
+cat(" dim(",DataSetName.Date,") == ",deparse(dim(get(DataSetName.Date))),"  \n", sep="") 
+cat(" dim(",DataSetName.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName.DNR))),"  \n", sep="") 
+DataSet.DNR = get(DataSetName.DNR)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-"get(DataSetName2.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"get(DataSetName.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
@@ -475,14 +475,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .CodeBook.filter |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-get(DataSetName2.NA.rmAllNA) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DataSetName.DNR) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
-get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DataSetName.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName2.NA.rmAllNA) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
+# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName2.NA.rmAllNA) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
+# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
 ```
   
   
@@ -503,14 +503,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .CodeBook.filter |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-get(DataSetName2.NA.rmAllNA) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DataSetName.DNR) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
-get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DataSetName.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName2.NA.rmAllNA) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
+# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# get(DataSetName2.NA.rmAllNA) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
+# get(DataSetName.DNR) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> as_tibble()
 ```
 
 
@@ -525,7 +525,7 @@ options(width=120)
 cat(" > ",".varname4outcome = ",deparse(.varname4outcome),"  \n", sep="") 
 cat(" > ",".varname4time2outcome = ",deparse(.varname4time2outcome),"  \n", sep="") 
 #|+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-for (.i.DataSetName in c(DataSetName2.NA, DataSetName2.NA.rmAllNA)) {
+for (.i.DataSetName in c(DataSetName.Date.NA, DataSetName.DNR)) {
     .i.DataSetName |> assign(
         get(.i.DataSetName) |> mutate(
             !!paste0(.varname4outcome,".ge1") := !!sym(.varname4outcome) >= 1,  
@@ -537,27 +537,27 @@ cat(" > ",".varname4outcome.ge1 = ",deparse(paste0(.varname4outcome,".ge1")),"  
 cat(" > ",".varname4outcome.geMed = ",deparse(paste0(.varname4outcome,".geMed")),"  \n", sep="")
 .CodeBook |> dplyr::filter(VarName |> str_detect(paste0(.varname4outcome, .varname4time2outcome, collapse = "|"))) |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName2,".NA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName2.NA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName2,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
+cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DataSetName.Date.NA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DataSetName.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
-if(nlevels(get(DataSetName2.NA.rmAllNA)[.varname4outcome]) < 20) {
+if(nlevels(get(DataSetName.DNR)[.varname4outcome]) < 20) {
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    cat(" > ",DataSetName2,".NA",".rmAllNA","$",.varname4outcome,' |> table(useNA="always") |> addmargins()',"  \n", sep=""); get(DataSetName2.NA.rmAllNA)[.varname4outcome] |> table(useNA="always") |> addmargins()
+    cat(" > ",DataSetName.Date,".NA",".rmAllNA","$",.varname4outcome,' |> table(useNA="always") |> addmargins()',"  \n", sep=""); get(DataSetName.DNR)[.varname4outcome] |> table(useNA="always") |> addmargins()
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-which_row.NotEqual = get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
+which_row.NotEqual = get(DataSetName.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     map_df(is.na) |> (function(df) (rowSums(df)!=0)&(rowSums(df)!=ncol(df)) )() |> which() 
 which_row.NotEqual %>% {cat(" > ","dput(",deparse(substitute(.)),") == ",deparse(.),"  \n", sep="")}
   
 cat(" > ",DataSetName," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
 get(paste0(DataSetName)) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |> 
     rownames_to_column() |> slice(which_row.NotEqual) 
-cat(" > ",DataSetName2,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
-get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |>
+cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome)))"," |> rownames_to_column() |> slice(which_row.NotEqual)","  \n", sep="")
+get(DataSetName.DNR) |> dplyr::select(matches(c(.varname4outcome, .varname4time2outcome))) |>
     rownames_to_column() |> slice(which_row.NotEqual) 
 ```
   
@@ -572,10 +572,10 @@ options(width=120)
 varname.regex4measures = "(BP|HEIGHT|WEIGHT|BMI|WAIST)"
 cat(" > ","varname.regex4measures = ",deparse(varname.regex4measures),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName2,".NA"," |> dplyr::select(matches(varname.regex4measures))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName2.NA) |> dplyr::select(matches(varname.regex4measures)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName2,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4measures))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(varname.regex4measures)) |> 
+cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(varname.regex4measures))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DataSetName.Date.NA) |> dplyr::select(matches(varname.regex4measures)) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4measures))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DataSetName.DNR) |> dplyr::select(matches(varname.regex4measures)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
@@ -590,10 +590,10 @@ options(width=120)
 varname.regex4labs = "(FBS|FSG|BLDS|CHOL|HDL|LDL|TG|TRIGLYCERIDE|CREATININE|BUN|AST|ALT|GOT|GPT|GGT|GTP)"
 cat(" > ","varname.regex4labs = ",deparse(varname.regex4labs),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName2,".NA"," |> dplyr::select(matches(varname.regex4labs))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName2.NA) |> dplyr::select(matches(varname.regex4labs)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName2,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4labs))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(varname.regex4labs)) |> 
+cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(varname.regex4labs))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DataSetName.Date.NA) |> dplyr::select(matches(varname.regex4labs)) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4labs))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DataSetName.DNR) |> dplyr::select(matches(varname.regex4labs)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
@@ -608,10 +608,10 @@ options(width=120)
 varname.regex4lifestyle = "(SMOKING|SMK|ALCOHOL|DRINK|DRNK|ACTIVITY|EXER|MOV|WLK)"
 cat(" > ","varname.regex4lifestyle = ",deparse(varname.regex4lifestyle),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
-cat(" > ",DataSetName2,".NA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
-get(DataSetName2.NA) |> dplyr::select(matches(varname.regex4lifestyle)) |> env1$f$f_df.NotNA_p_df()
-cat(" > ",DataSetName2,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
-get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(varname.regex4lifestyle)) |> 
+cat(" > ",DataSetName.Date,".NA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> env1$f$f_df.NotNA_p_df()","  \n", sep="")
+get(DataSetName.Date.NA) |> dplyr::select(matches(varname.regex4lifestyle)) |> env1$f$f_df.NotNA_p_df()
+cat(" > ",DataSetName.Date,".NA",".rmAllNA"," |> dplyr::select(matches(varname.regex4lifestyle))"," |> mutate_if(is.character, as.factor) |> summary()","  \n", sep="")
+get(DataSetName.DNR) |> dplyr::select(matches(varname.regex4lifestyle)) |> 
     # mutate_if(is.factor, as.character) |>  
     # mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |>
     mutate_if(is.character, as.factor) |> summary()
@@ -619,17 +619,17 @@ get(DataSetName2.NA.rmAllNA) |> dplyr::select(matches(varname.regex4lifestyle)) 
   
   
 ### ---- < DataSet Summary > ----  
-#### \$ DataSet.Date.NA.rmAllNA.lbl_pending.fct  ----
+#### \$ DataSet.DNR.lbl_pending.fct  ----
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  
 .t0 = Sys.time()
-DataSetName2.NA.rmAllNA.lbl_pending.fct = paste0(DataSetName2,".NA",".rmAllNA",".fct"); cat(" > ",DataSetName2.NA.rmAllNA.lbl_pending.fct," = ",DataSetName2.NA.rmAllNA," |> mutate_if(is.character, as.factor)","  \n", sep=""); DataSetName2.NA.rmAllNA = DataSetName2.NA |> paste0(".rmAllNA"); assign( DataSetName2.NA.rmAllNA.lbl_pending.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) )
+DataSetName.DNR.lbl_pending.fct = paste0(DataSetName.Date,".NA",".rmAllNA",".fct"); cat(" > ",DataSetName.DNR.lbl_pending.fct," = ",DataSetName.DNR," |> mutate_if(is.character, as.factor)","  \n", sep=""); DataSetName.DNR = DataSetName.Date.NA |> paste0(".rmAllNA"); assign( DataSetName.DNR.lbl_pending.fct, get(DataSetName.DNR) |> mutate_if(is.character, as.factor) )
 Sys.time() - .t0
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n") 
 cat(" > ","dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="") 
-cat(" > ","dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
-cat(" > ","dim(",DataSetName2,".NA",".rmAllNA",".fct",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA.lbl_pending.fct))),"  \n", sep="") 
+cat(" > ","dim(",DataSetName.Date,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName.DNR))),"  \n", sep="") 
+cat(" > ","dim(",DataSetName.Date,".NA",".rmAllNA",".fct",") == ",deparse(dim(get(DataSetName.DNR.lbl_pending.fct))),"  \n", sep="") 
 ```
   
   
@@ -637,17 +637,17 @@ cat(" > ","dim(",DataSetName2,".NA",".rmAllNA",".fct",") == ",deparse(dim(get(Da
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # .t0 = Sys.time()
-# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName2.NA.rmAllNA," |> select_if(is.numeric))"," |> summary","  \n", sep=""); get(DataSetName2.NA.rmAllNA) |> select_if(is.numeric) |> summary() #----  
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName.DNR," |> select_if(is.numeric))"," |> summary","  \n", sep=""); get(DataSetName.DNR) |> select_if(is.numeric) |> summary() #----  
 # Sys.time() - .t0
 # .t0 = Sys.time()
-# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName2.NA.rmAllNA," |> select_if(is.logical))"," |> summary","  \n", sep=""); get(DataSetName2.NA.rmAllNA) |> select_if(is.logical) |> summary() #----  
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName.DNR," |> select_if(is.logical))"," |> summary","  \n", sep=""); get(DataSetName.DNR) |> select_if(is.logical) |> summary() #----  
 # Sys.time() - .t0
 # 
 # ##________________________________________________________________________________  
 # .t0 = Sys.time()
-# cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); cat(" > ",DataSetName2.NA.rmAllNA.lbl_pending.fct," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DataSetName2.NA.rmAllNA.lbl_pending.fct) |> select_if(is.factor) |> summary() #----  
+# cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); cat(" > ",DataSetName.DNR.lbl_pending.fct," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DataSetName.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary() #----  
 # Sys.time() - .t0
-# # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName2.NA.rmAllNA," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DataSetName2.NA.rmAllNA) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
+# # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName.DNR," |> select_if(is.factor))"," |> summary","  \n", sep=""); get(DataSetName.DNR) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
 # # Sys.time() - .t0
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```

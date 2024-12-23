@@ -753,14 +753,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
 ## :: f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.deltaT0"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0", logical_as_numeric = FALSE) {
-    if(logical_as_numeric && is.logical(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.logical(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(is.numeric(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.numeric(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarName0]]) && lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+.tmp$object = function(DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0", logical_as_numeric = FALSE) {
+    if(logical_as_numeric && is.logical(DataSet.DNR[[VarName0]]) && is.logical(DataSet.DNR[[VarNameT]])) {
+    } else if(is.numeric(DataSet.DNR[[VarName0]]) && is.numeric(DataSet.DNR[[VarNameT]])) {
+    } else if(lubridate::is.Date(DataSet.DNR[[VarName0]]) && lubridate::is.Date(DataSet.DNR[[VarNameT]])) {
     } else {
         stop("Both ",VarName0," and ",VarNameT," must be in the same class, either numeric or Date.")
     }
-    DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
+    DataSet.DNR |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -768,14 +768,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
 ## :: f_df.add_VarNameT.pdeltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.pdeltaT0"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0", logical_as_numeric = FALSE) {
-    if(logical_as_numeric && is.logical(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.logical(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(is.numeric(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.numeric(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarName0]]) && lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+.tmp$object = function(DataSet.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0", logical_as_numeric = FALSE) {
+    if(logical_as_numeric && is.logical(DataSet.DNR[[VarName0]]) && is.logical(DataSet.DNR[[VarNameT]])) {
+    } else if(is.numeric(DataSet.DNR[[VarName0]]) && is.numeric(DataSet.DNR[[VarNameT]])) {
+    } else if(lubridate::is.Date(DataSet.DNR[[VarName0]]) && lubridate::is.Date(DataSet.DNR[[VarNameT]])) {
     } else {
         stop("Both ",VarName0," and ",VarNameT," must be in the same class, either numeric or Date.")
     }
-    DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
+    DataSet.DNR |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -785,13 +785,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
 # Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.kbins"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"bins")) {
-    if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
-        stop("DataSet.Date.NA.rmAllNA must be a data frame.")
+.tmp$object = function(DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"bins")) {
+    if (!is.data.frame(DataSet.DNR)) {
+        stop("DataSet.DNR must be a data frame.")
     }
     
     # Apply the cut operation across columns matching the regex pattern
-    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+    DataSet.DNR <- DataSet.DNR %>%
         mutate(across(
             .cols = matches(regex_pattern), # Select columns matching the regex pattern
             .fns = ~ cut(., 
@@ -801,7 +801,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
             .names = paste0("{.col}", suffix) # Naming convention for new columns
         ))
     
-    return(DataSet.Date.NA.rmAllNA)
+    return(DataSet.DNR)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -814,8 +814,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.quintile_factor"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE) {
-  DataSet.Date.NA.rmAllNA %>%
+.tmp$object = function(DataSet.DNR, regex_pattern, factor.ordered = FALSE) {
+  DataSet.DNR %>%
     mutate(across(
       .cols = matches(paste0(regex_pattern)), 
       .fns = ~ {
@@ -845,8 +845,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.quartile_factor"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE) {
-    DataSet.Date.NA.rmAllNA %>%
+.tmp$object = function(DataSet.DNR, regex_pattern, factor.ordered = FALSE) {
+    DataSet.DNR %>%
         mutate(across(
             .cols = matches(paste0(regex_pattern)), 
             .fns = ~ {

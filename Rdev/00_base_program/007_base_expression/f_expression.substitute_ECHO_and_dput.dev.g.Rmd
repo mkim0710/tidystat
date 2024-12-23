@@ -927,7 +927,7 @@ substitute_and_evaluate <- function(expr_text) {
 # Define some character variables in .GlobalEnv
 DataSet = "analyticDF"
 DataSetName <- "analyticDF_time2event"
-DataSetName2 <- "analyticDF_time2event2"
+DataSetName.Date <- "analyticDF_time2event2"
 AnotherVar <- "someOtherValue"
 
 # Create a dummy data frame as an example

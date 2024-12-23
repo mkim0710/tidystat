@@ -218,13 +218,13 @@ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> str_subset("^
 ```
 
 
-## \$ DataSet.Date.NA.rmAllNA =  
+## \$ DataSet.DNR =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-DataSet.Date.NA.rmAllNA = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
+DataSet.DNR = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
     rownames_to_column() 
-DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -243,13 +243,13 @@ options(width=120)
 env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 
 for(i in 1:7) {
-    DataSet.Date.NA.rmAllNA =
-        DataSet.Date.NA.rmAllNA %>% 
+    DataSet.DNR =
+        DataSet.DNR %>% 
         env1$f$f_df.add_BMI_calculated(varname_Height = paste0("A0",i,"_","HEIGHT"), varname_Weight = paste0("A0",i,"_","WEIGHT"), varname_BMI = paste0("A0",i,"_","BMI")) %>% 
         env1$f$f_df.add_BMI.5bins(varname_BMI = paste0("A0",i,"_","BMI"))
 }
 
-DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -261,19 +261,19 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI"
 i = 2
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 for (i in 2:7) {
     # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
     for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
         print(paste0("A0",i,"_",.VarName.suffix,".delta"))
-        DataSet.Date.NA.rmAllNA = 
-            DataSet.Date.NA.rmAllNA %>% 
+        DataSet.DNR = 
+            DataSet.DNR %>% 
             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
     }
 }
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 2, give.attr = TRUE)
 ```
   
 #### \$ A03_BMI.delta2 =  
@@ -283,18 +283,18 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI"
 i = 3
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 for (i in 3:7) {
     for (.VarName.suffix in c("BMI")) {
         print(paste0("A0",i,"_",.VarName.suffix,".delta2"))
-        DataSet.Date.NA.rmAllNA = 
-            DataSet.Date.NA.rmAllNA %>% 
+        DataSet.DNR = 
+            DataSet.DNR %>% 
             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
     }
 }
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A03")) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches("BMI")) %>% select(matches("A03")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
   
@@ -305,21 +305,21 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
-            DataSet.Date.NA.rmAllNA = 
-                DataSet.Date.NA.rmAllNA |> 
+            DataSet.DNR = 
+                DataSet.DNR |> 
                 env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
         }
     }
 }
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -331,21 +331,21 @@ options(width=120)
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".pdelta",j)))
-            DataSet.Date.NA.rmAllNA = 
-                DataSet.Date.NA.rmAllNA |> 
+            DataSet.DNR = 
+                DataSet.DNR |> 
                 env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pdelta",j))
         }
     }
 }
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
+DataSet.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -356,18 +356,18 @@ for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         # for (.VarName.suffix in c("BMI", "WEIGHT")) {
         #     print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
-        #     DataSet.Date.NA.rmAllNA =
-        #         DataSet.Date.NA.rmAllNA %>%
+        #     DataSet.DNR =
+        #         DataSet.DNR %>%
         #         env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
         # }
         .VarName.suffix = c("BMI", "WEIGHT")
-        # DataSet.Date.NA.rmAllNA[c(
+        # DataSet.DNR[c(
         #     paste0("A0",i-j,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix,".delta",j), 
         #     paste0("A0",i,"_",.VarName.suffix,".pdelta",j) 
         # )] |> head() |> as.data.frame() |> print()
-        DataSet.Date.NA.rmAllNA[c(
+        DataSet.DNR[c(
             paste0("A0",i-j,"_"), 
             paste0("A0",i,"_"), 
             paste0("A0",i,"_"), 
@@ -387,16 +387,16 @@ for (j in 1:(7-1)) {
 # ## -> included in "f_df.t.tribble_construct.source.r"
 # .RegEx2match = "\\.pdelta[1-6]"
 # 
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+# DataSet.DNR %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
+# DataSet.DNR %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 # 
-# DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+# DataSet.DNR <- DataSet.DNR %>%
 #   mutate(across(
 #     .cols = matches(paste0(.RegEx2match,"$")), 
 #     .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
 #     .names = "{.col}.5bins"
 #   ))
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.5bins$"))) %>% summary
+# DataSet.DNR %>% select(matches(paste0(.RegEx2match, "\\.5bins$"))) %>% summary
 ```
   
   
@@ -408,13 +408,13 @@ options(width=120)
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
 # Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.kbins"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut",length(breaks)-1)) {
-    if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
-        stop("DataSet.Date.NA.rmAllNA must be a data frame.")
+.tmp$object = function(DataSet.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut",length(breaks)-1)) {
+    if (!is.data.frame(DataSet.DNR)) {
+        stop("DataSet.DNR must be a data frame.")
     }
     
     # Apply the cut operation across columns matching the regex pattern
-    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+    DataSet.DNR <- DataSet.DNR %>%
         mutate(across(
             .cols = matches(regex_pattern), # Select columns matching the regex pattern
             .fns = ~ cut(., 
@@ -424,14 +424,14 @@ options(width=120)
             .names = paste0("{.col}", suffix) # Naming convention for new columns
         ))
     
-    return(DataSet.Date.NA.rmAllNA)
+    return(DataSet.DNR)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
-DataSet.Date.NA.rmAllNA <- env1$f$f_df.add_RegExVars.kbins(DataSet.Date.NA.rmAllNA, regex_pattern = "\\.pdelta[1-6]$", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf))
-DataSet.Date.NA.rmAllNA %>% select(matches("\\.pdelta[1-6]\\.cut")) %>% summary
+DataSet.DNR <- env1$f$f_df.add_RegExVars.kbins(DataSet.DNR, regex_pattern = "\\.pdelta[1-6]$", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf))
+DataSet.DNR %>% select(matches("\\.pdelta[1-6]\\.cut")) %>% summary
 
 ```
   
