@@ -246,7 +246,7 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
 
-input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers()    # trim before add_line_number~!!
+input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers(width.cutoff = width.cutoff, URL4line_numbers = URL4line_numbers, prefix4line_numbers = prefix4line_numbers)    # trim before add_line_number~!!
 input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 #  chr [1:314] "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ...
