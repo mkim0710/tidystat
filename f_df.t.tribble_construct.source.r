@@ -1,85 +1,168 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ START) source                                                          ...135
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   ...166
-# @@ env1\$f\$f_object                                                      ...189
-# @@ env1\$f\$f_vec                                                         ...281
-# @@ env1\$f\$f_list                                                        ...282
-# @@ env1\$f\$f_list_list                                                   ...532
-# @@ env1\$f\$f_matrix                                                      ...533
-# @@ env1\$f\$f_array                                                       ...534
-# @@ env1\$f\$f_formula                                                     ...623
-# @@ env1\$f\$f_df                                                          ...702
-# @@ env1\$env.internal functions                                           ...876
-# @@ source()                                                               ...1352
-# ls.str(env1) #                                                            ...1421
-# ls.str(env1$env.internal) #                                               ...1422
+# @@ SOURCE)                                                                #L134
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L165
+# @@ env1\$f\$f_object                                                      #L188
+# @@ env1\$f\$f_vec                                                         #L280
+# @@ env1\$f\$f_list                                                        #L281
+# @@ env1\$f\$f_list_list                                                   #L534
+# @@ env1\$f\$f_matrix                                                      #L535
+# @@ env1\$f\$f_array                                                       #L536
+# @@ env1\$f\$f_formula                                                     #L625
+# @@ env1\$f\$f_df                                                          #L704
+# @@ env1\$env.internal functions                                           #L878
+# @@ source()                                                               #L1354
+# ls.str(env1) #                                                            #L1423
+# ls.str(env1$env.internal) #                                               #L1424
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
-## env1\$path                                                               ...123
-# @@ START) source                                                          ...135
-## @ .subpath, .filename.source.r                                           ...136
-## env1 = env0                                                              ...160
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   ...166
-## .GlobalEnv$env1 = new.env()                                              ...175
-# @@ env1\$f\$f_object                                                      ...189
-## :: str_max_level1 =                                                      ...191
-## :: str_max_level2 =                                                      ...196
-## :: str_give_attr_F =                                                     ...201
-## :: str_max_level1.give_attr_F =                                          ...206
-## :: str_max_level2.give_attr_F =                                          ...214
-## :: paste0_collapse0 =                                                    ...222
-## :: paste0_collapse0.print =                                              ...246
-## :: cat0 =                                                                ...257
-## :: deparse.cat0 =                                                        ...270
-# @@ env1\$f\$f_vec                                                         ...281
-# @@ env1\$f\$f_list                                                        ...282
-## :: env.internal\$f_vec.format_line_by_line =                             ...284
-## :: f_vec.dput_line_by_line =                                             ...295
-## :: env.internal\$f_list.format_line_by_line =                            ...313
-## :: f_list.dput_line_by_line =                                            ...329
-## :: f_list.str_by_element =                                               ...342
-## :: f_list.print_by_element =                                             ...363
-## :: f_list_tibble.print_by_element =                                      ...384
-## :: f_chrNameValuePairs2vector =                                          ...405
-## :: f_vec1_vec2.setdiff_list =                                            ...418
-## :: f_vec_chr.na_if_NotMatching =                                         ...438
-## :: f_vec_chr.add_line_numbers =                                          ...460
-## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    ...478
-## :: f_vec_chr.list_SECTION_nonSECTION =                                   ...489
-# @@ env1\$f\$f_list_list                                                   ...532
-# @@ env1\$f\$f_matrix                                                      ...533
-# @@ env1\$f\$f_array                                                       ...534
-## :: f_list_list.to_matrix =                                               ...536
-## :: f_list_list.to_data_frame =                                           ...555
-## :: f_matrix.to_list_list =                                               ...575
-## :: f_matrix.set_names.to_vector =                                        ...602
-# @@ env1\$f\$f_formula                                                     ...623
-## :: f_formula.lhs_rhs_vars =                                              ...625
-## :: f_list_formula.append_lhs_rhs_vars =                                  ...660
-# @@ env1\$f\$f_df                                                          ...702
-## :: f_df.tribble_construct =                                              ...704
-## :: f_df.transpose =                                                      ...716
-## :: f_df.t.tribble_construct =                                            ...726
-## :: f_df.print_byVar =                                                    ...736
-## :: f_df.add_VarNameT.deltaT0 =                                           ...751
-## :: f_df.add_VarNameT.pdeltaT0 =                                          ...766
-## :: f_df.add_RegExVars.kbins =                                            ...781
-## :: f_df.add_RegExVars.quintile_factor =                                  ...810
-## :: f_df.add_RegExVars.quartile_factor =                                  ...841
-# @@ env1\$env.internal functions                                           ...876
-# @@ source()                                                               ...1352
-## @ for (.dependancy in c("")) {                                           ...1354
-## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       ...1363
-## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   ...1369
-## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       ...1376
-## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        ...1382
-## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source()                    ...1388
-## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!!       ...1395
-## @ "f_CodeBook_DS.lbl" |> paste0(".source.r") |> source()            ...1397
-# ls.str(env1) #                                                            ...1421
-# ls.str(env1$env.internal) #                                               ...1422
+## env1\$path                                                               #L122
+# @@ SOURCE)                                                                #L134
+## @ .subpath, .filename.source.r                                           #L135
+## env1 = env0                                                              #L159
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L165
+## .GlobalEnv$env1 = new.env()                                              #L174
+# @@ env1\$f\$f_object                                                      #L188
+## :: str_max_level1 =                                                      #L190
+## :: str_max_level2 =                                                      #L195
+## :: str_give_attr_F =                                                     #L200
+## :: str_max_level1.give_attr_F =                                          #L205
+## :: str_max_level2.give_attr_F =                                          #L213
+## :: paste0_collapse0 =                                                    #L221
+## :: paste0_collapse0.print =                                              #L245
+## :: cat0 =                                                                #L256
+## :: deparse.cat0 =                                                        #L269
+# @@ env1\$f\$f_vec                                                         #L280
+# @@ env1\$f\$f_list                                                        #L281
+## :: env.internal\$f_vec.format_line_by_line =                             #L283
+## :: f_vec.dput_line_by_line =                                             #L294
+## :: env.internal\$f_list.format_line_by_line =                            #L315
+## :: f_list.dput_line_by_line =                                            #L331
+## :: f_list.str_by_element =                                               #L344
+## :: f_list.print_by_element =                                             #L365
+## :: f_list_tibble.print_by_element =                                      #L386
+## :: f_chrNameValuePairs2vector =                                          #L407
+## :: f_vec1_vec2.setdiff_list =                                            #L420
+## :: f_vec_chr.na_if_NotMatching =                                         #L440
+## :: f_vec_chr.add_line_numbers =                                          #L462
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    #L480
+## :: f_vec_chr.list_SECTION_nonSECTION =                                   #L491
+# @@ env1\$f\$f_list_list                                                   #L534
+# @@ env1\$f\$f_matrix                                                      #L535
+# @@ env1\$f\$f_array                                                       #L536
+## :: f_list_list.to_matrix =                                               #L538
+## :: f_list_list.to_data_frame =                                           #L557
+## :: f_matrix.to_list_list =                                               #L577
+## :: f_matrix.set_names.to_vector =                                        #L604
+# @@ env1\$f\$f_formula                                                     #L625
+## :: f_formula.lhs_rhs_vars =                                              #L627
+## :: f_list_formula.append_lhs_rhs_vars =                                  #L662
+# @@ env1\$f\$f_df                                                          #L704
+## :: f_df.tribble_construct =                                              #L706
+## :: f_df.transpose =                                                      #L718
+## :: f_df.t.tribble_construct =                                            #L728
+## :: f_df.print_byVar =                                                    #L738
+## :: f_df.add_VarNameT.deltaT0 =                                           #L753
+## :: f_df.add_VarNameT.pdeltaT0 =                                          #L768
+## :: f_df.add_RegExVars.kbins =                                            #L783
+## :: f_df.add_RegExVars.quintile_factor =                                  #L812
+## :: f_df.add_RegExVars.quartile_factor =                                  #L843
+# @@ env1\$env.internal functions                                           #L878
+# @@ source()                                                               #L1354
+## @ for (.dependancy in c("")) {                                           #L1356
+## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       #L1365
+## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   #L1371
+## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       #L1378
+## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        #L1384
+## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source()                    #L1390
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!!       #L1397
+## @ "f_CodeBook_DS.lbl" |> paste0(".source.r") |> source()                 #L1399
+# ls.str(env1) #                                                            #L1423
+# ls.str(env1$env.internal) #                                               #L1424
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L217
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L248
+# @@ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L271
+# @@ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L363
+# @@ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L364
+# @@ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L617
+# @@ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L618
+# @@ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L619
+# @@ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L708
+# @@ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L787
+# @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L961
+# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1437
+# ls.str(env1) #                                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1506
+# ls.str(env1$env.internal) #                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1507
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 2) ----  
+## env1\$path                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L205
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L217
+## @ .subpath, .filename.source.r                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L218
+## env1 = env0                                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L242
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L248
+## .GlobalEnv$env1 = new.env()                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L257
+# @@ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L271
+## :: str_max_level1 =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L273
+## :: str_max_level2 =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L278
+## :: str_give_attr_F =                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
+## :: str_max_level1.give_attr_F =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L288
+## :: str_max_level2.give_attr_F =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L296
+## :: paste0_collapse0 =                                                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L304
+## :: paste0_collapse0.print =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L328
+## :: cat0 =                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L339
+## :: deparse.cat0 =                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L352
+# @@ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L363
+# @@ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L364
+## :: env.internal\$f_vec.format_line_by_line =                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L366
+## :: f_vec.dput_line_by_line =                                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L377
+## :: env.internal\$f_list.format_line_by_line =                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L398
+## :: f_list.dput_line_by_line =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L414
+## :: f_list.str_by_element =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L427
+## :: f_list.print_by_element =                                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L448
+## :: f_list_tibble.print_by_element =                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L469
+## :: f_chrNameValuePairs2vector =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L490
+## :: f_vec1_vec2.setdiff_list =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L503
+## :: f_vec_chr.na_if_NotMatching =                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L523
+## :: f_vec_chr.add_line_numbers =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L545
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L563
+## :: f_vec_chr.list_SECTION_nonSECTION =                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L574
+# @@ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L617
+# @@ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L618
+# @@ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L619
+## :: f_list_list.to_matrix =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L621
+## :: f_list_list.to_data_frame =                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L640
+## :: f_matrix.to_list_list =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L660
+## :: f_matrix.set_names.to_vector =                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L687
+# @@ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L708
+## :: f_formula.lhs_rhs_vars =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L710
+## :: f_list_formula.append_lhs_rhs_vars =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L745
+# @@ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L787
+## :: f_df.tribble_construct =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L789
+## :: f_df.transpose =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L801
+## :: f_df.t.tribble_construct =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L811
+## :: f_df.print_byVar =                                                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L821
+## :: f_df.add_VarNameT.deltaT0 =                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L836
+## :: f_df.add_VarNameT.pdeltaT0 =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L851
+## :: f_df.add_RegExVars.kbins =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L866
+## :: f_df.add_RegExVars.quintile_factor =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L895
+## :: f_df.add_RegExVars.quartile_factor =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L926
+# @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L961
+# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1437
+## @ for (.dependancy in c("")) {                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1439
+## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1448
+## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1454
+## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1461
+## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1467
+## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source()                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1473
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!!       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1480
+## @ "f_CodeBook_DS.lbl" |> paste0(".source.r") |> source()                 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1482
+# ls.str(env1) #                                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1506
+# ls.str(env1$env.internal) #                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1507
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
