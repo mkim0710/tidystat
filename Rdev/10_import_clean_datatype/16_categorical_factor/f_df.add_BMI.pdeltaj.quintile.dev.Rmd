@@ -194,7 +194,7 @@ env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.
   
 # __________|------  
 # @@ DATA) mutate() ----  
-```{r SYNC-FILES, eval=FALSE, include=FALSE}
+```{r DATA-MUTATE-SYNC, eval=FALSE, include=FALSE}
 paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
 ```
 ## ->> Now synced to: ""  
@@ -229,7 +229,7 @@ DataSet |> str(max.level = 2, give.attr = TRUE)
 
 # __________|------  
 # @@ DATA) mutate() ----  
-```{r SYNC-FILES, eval=FALSE, include=FALSE}
+```{r DATA-MUTATE-SYNC, eval=FALSE, include=FALSE}
 paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
 ```
 ## ->> Now synced to: ""  
