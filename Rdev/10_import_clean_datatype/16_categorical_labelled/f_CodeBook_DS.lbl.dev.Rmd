@@ -351,7 +351,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 # __________|------  
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode  
-### @ VarName.suffix.regex = "A0[0-2]"
+### :: VarName.suffix.regex = "A0[0-2]"
 ### :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
