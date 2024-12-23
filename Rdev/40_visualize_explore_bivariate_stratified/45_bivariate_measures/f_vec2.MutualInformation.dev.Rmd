@@ -533,14 +533,14 @@ for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "Mod
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
-### @ MetaData\$ModelList  ====   
+### # MetaData\$ModelList  ====   
 .parentname = "MetaData"; 
 .sublistname = "ModelList"; 
 for (.sub2listname in c("time2DM", "time2HTN", "time2DL", "time2MetS")) {
     if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
-### @ MetaData\$VarNames  ====   
+### # MetaData\$VarNames  ====   
 .parentname = "MetaData"; 
 .sublistname = "VarNames"; 
 for (.sub2listname in c("Event", "Mediator", "Exposure", "PMHx", "Tx", "FHx", "Exam", "Social", "Behavioral", "Unclassified", "Calculated")) {
