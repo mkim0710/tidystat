@@ -617,6 +617,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
   
 # __________|------  
 # @@ ANALYSIS) byVar =  ----  
+## @ ANALYSIS) byVar, Table1 ----  
 ### \$ 
   
   
