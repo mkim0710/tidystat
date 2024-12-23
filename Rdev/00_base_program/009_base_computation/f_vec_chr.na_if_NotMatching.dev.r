@@ -235,13 +235,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
     ifelse(str_detect(input_vec_chr, RegEx4keep), input_vec_chr, NA)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) str_subset.keep_vector_length.na_if_NotMatching  ----  
+#### (ALIAS) str_subset.keep_vector_length.na_if_NotMatching  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_subset.keep_vector_length.na_if_NotMatching")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) str_replace.na_if_NotMatching  ----  
+#### (ALIAS) str_replace.na_if_NotMatching  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_replace.na_if_NotMatching")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### (ALIAS) str_extract.na_if_NotMatching.return_whole_element_if_Matching  ----  
+#### (ALIAS) str_extract.na_if_NotMatching.return_whole_element_if_Matching  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_extract.na_if_NotMatching.return_whole_element_if_Matching")
 
 ##////////////////////////////////////////////////////////////////////////////////  
