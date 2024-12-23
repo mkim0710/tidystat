@@ -318,7 +318,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) source ----  
+# @@ SOURCE) ----  
 ```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
