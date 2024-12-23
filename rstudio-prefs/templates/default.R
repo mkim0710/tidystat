@@ -7,7 +7,7 @@
 # @@ START) function                                                        ...211
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   ...262
 # @@ MetaData                                                               ...267
-#@@ DATA) Read & Check                                                      ...276
+# @@ DATA) Read & Check                                                     ...276
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # default.R
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -273,7 +273,7 @@ for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "Var
 }
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#@@ DATA) Read & Check -----
+# @@ DATA) Read & Check-----
 ## \$ DSN |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv) ====
 .path4read.subpath = r"(data)"|>str_replace_all("\\\\","/")
 DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"

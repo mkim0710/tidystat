@@ -7,7 +7,7 @@
 # @@ SOURCE)                                                                ...296
 # @@ START) function                                                        ...338
 # @@ MetaData) Read & Check                                                 ...387
-#@@ DATA) Read & Check                                                      ...457
+# @@ DATA) Read & Check                                                     ...457
 # @@ ANALYSIS) (Breif) byVar =                                              ...623
 # @@ DATA) mutate()                                                         ...629
 # @@ DATA) filter() -> New DS                                               ...660
@@ -454,7 +454,7 @@ MetaData |> str(max.level = 2, give.attr = TRUE)
   
   
 # __________|------  
-#@@ DATA) Read & Check -----
+# @@ DATA) Read & Check-----
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
