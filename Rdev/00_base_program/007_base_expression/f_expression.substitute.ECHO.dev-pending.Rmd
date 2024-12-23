@@ -216,7 +216,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Rdev/00_base_program/f_CodeText.substitute.ECHO.dev.r -> incorporated in f_CodeText.ECHO.dev.r  
   
 # __________|------  
-# @@ START) data example ----  
+# @@ DATA) example ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 analyticDF_time2event <- matrix(1:72, nrow=24, ncol=12) %>% data.frame %>% as_tibble

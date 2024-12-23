@@ -213,7 +213,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# @@ START) data example ----  
+# @@ DATA) example ----  
   
 ## :: JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1 = ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}

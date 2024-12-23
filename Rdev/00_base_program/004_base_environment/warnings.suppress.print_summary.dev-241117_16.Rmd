@@ -216,7 +216,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# @@ START) data example ----  
+# @@ DATA) example ----  
 ## \% summary(warnings())  ----  
 ```{r, echo=TRUE, results="as is", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)

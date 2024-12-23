@@ -213,7 +213,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# @@ START) data example ----  
+# @@ DATA) example ----  
 ## \$ https://chatgpt.com/c/66e1f092-be28-800e-8527-a0815faa0a37 =  ----  
 ## \% create_labeled_data() 
 ## \% apply_codebook_labeling() 

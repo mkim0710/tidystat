@@ -216,7 +216,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 https://www.r-bloggers.com/2021/11/publication-ready-tables-with-flextable-and-own-theme-in-r/#:~:text=function%20can%20be%20used%20to%20export%20Table%201.&text=package%20is%20a%20great%20package%20for%2C%20you%20guessed%20it%2C%20generating,the%20output%20that%20you%20need.  
 https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b  
-# @@ START) data example ----  
+# @@ DATA) example ----  
 ## \$ GermanBreastCancerStudyGroup =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)

@@ -213,7 +213,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# @@ START) data example ----  
+# @@ DATA) example ----  
 https://chatgpt.com/c/4f1ce650-0362-497e-882b-d48792bf6b9a
 ## \% |> extract_non_ascii_with_codes_df()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
