@@ -91,7 +91,7 @@ RegEx4heading
 # [1] "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 add_line_numbers = TRUE
 merge_with_input_vec_chr.except_TOC = FALSE
-remove_lines_with_no_alphabet = TRUE
+remove_lines_with_no_2alphabet_word = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
@@ -185,8 +185,8 @@ vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS.trim %>% str
 #  chr [1:31] "#_________________________________________________________________________________|  " "# @@ REFERENCES)   " ...
 
-### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
+if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word  
 vec_TABLE_OF_CONTENTS.trim %>% str
 vec_TABLE_OF_CONTENTS.trim %>% paste0(collapse = "\n") %>% cat("\n")
 # > vec_TABLE_OF_CONTENTS.trim %>% str
@@ -272,15 +272,15 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_vec_chr.except_TOC = env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(readLines(rstudioapi::getSourceEditorContext()$path, warn = FALSE))$nonSECTION, 
         level4TOC = 2, RegEx4heading = paste0("^(?!# #)#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"), 
-        remove_lines_with_no_alphabet = TRUE, cat2console = FALSE) {
+        remove_lines_with_no_2alphabet_word = TRUE, cat2console = FALSE) {
     
     library(stringr)
     
     vec_TABLE_OF_CONTENTS.trim = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit()
     vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
     
-    ### |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet ----  
-if (remove_lines_with_no_alphabet) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]")    # remove_lines_with_no_alphabet  
+    ### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
+if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word  
     
     vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
