@@ -264,8 +264,8 @@ ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |
 
   
 ## ---- < MainOutcome & StudyPopulation > ----  
-### \$ MainOutcome = "event" ----  
-### \$ StudyPopulation = "StudyPopulation" ----  
+#### \$ MainOutcome = "event" ----  
+#### \$ StudyPopulation = "StudyPopulation" ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 DSN.DNR = "ADS_time2event"

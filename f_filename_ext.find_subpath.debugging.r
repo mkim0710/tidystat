@@ -376,7 +376,7 @@ DS = get(DSN)
   
   
 ### ---- < Key Variables Check: ID & Date > ----  
-### \$ .vec_candidate4ID  ----  
+#### \$ .vec_candidate4ID  ----  
 ```{r vec_candidate4ID-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
@@ -449,8 +449,8 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
   
   
-### \$ MainOutcome = "nPlanChange.fctord" ----  
-### \$ StudyPopulation = "c1202.ge1" nPlanAtMarriage.ge1 ----  
+#### \$ MainOutcome = "nPlanChange.fctord" ----  
+#### \$ StudyPopulation = "c1202.ge1" nPlanAtMarriage.ge1 ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 MainOutcome = "nPlanChange.fctord"
 StudyPopulation = "c1202.ge1"
@@ -515,8 +515,8 @@ get(DSN.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.pr
 
 
 ## ---- < Key Variables Check: Outcomes > ----  
-### \$ .varname4outcome = "DTH_CODE1_0607" ----  
-### \$ .varname4time2outcome = "DTH_MDY_0607" ----  
+#### \$ .varname4outcome = "DTH_CODE1_0607" ----  
+#### \$ .varname4time2outcome = "DTH_MDY_0607" ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  

@@ -224,7 +224,7 @@ Each of union, intersect, setdiff and setequal will discard any duplicated value
 options(width=120)
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### \$f\$f.updateTemplates ====  
+#### \$f\$f.updateTemplates ====  
 # https://github.com/mkim0710/f.updateTemplates.exe.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = TRUE) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++

@@ -540,7 +540,7 @@ ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |
   
   
 ### ---- < Key Variables Check > ----  
-### \$ varname4ID  ----  
+#### \$ varname4ID  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
@@ -651,8 +651,8 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## ->> PENDING synced to: ""  
   
   
-### \$ .InclusionCriteria = ----  
-### \$ .ExclusionCriteria = ----  
+#### \$ .InclusionCriteria = ----  
+#### \$ .ExclusionCriteria = ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .InclusionCriteria = "time_ge30"
@@ -668,7 +668,7 @@ assign(DSN.DNR.lbl_pending.fct,
   
 # __________|------  
 ## @ DATA) mutate(byVar = ) ----  
-### \$  =  
+#### \$  =  
   
   
 # __________|------  
@@ -721,7 +721,7 @@ get(DSN2.recode.filter.n.select) |> str(max.level = 2, give.attr = TRUE)
 # __________|------  
 # @@ ANALYSIS) byVar =  ----  
 ## @ ANALYSIS) byVar, Table1 ----  
-### \$ 
+#### \$ 
   
   
 ###### \% |> () ----  

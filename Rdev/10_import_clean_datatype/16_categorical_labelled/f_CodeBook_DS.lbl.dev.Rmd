@@ -301,7 +301,7 @@ MetaData$tblVarName$tblWAVE_VARNAME = get(.DSN)
 ```
   
 
-### \$tblVarName\$tblVarName = left_join() ----   
+#### \$tblVarName\$tblVarName = left_join() ----   
 ```{r tblVarName-join-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # .DSN = "tblVarName"
