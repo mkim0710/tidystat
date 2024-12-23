@@ -1490,7 +1490,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         level4TOC = 2, RegEx4heading = paste0("^(?!# #)#{1,",level4TOC,"}[^#].*(?:-{4}|={4}) *$"), 
         remove_lines_with_no_2alphabet_word = TRUE, cat2console = (level4TOC == 1), 
-        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
+        add_line_numbers = TRUE, width.cutoff = 80L-4L, prefix4line_numbers = "#L", URL4line_numbers = FALSE, merge_with_input_vec_chr.except_TOC = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     
     library(stringr)
@@ -1569,7 +1569,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         input_path_file = rstudioapi::getSourceEditorContext()$path, 
         max.level4TOC = 6, 
         remove_lines_with_no_2alphabet_word = TRUE, cat2console = FALSE, 
-        add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
+        add_line_numbers = TRUE, width.cutoff = 80L-4L, prefix4line_numbers = "#L", URL4line_numbers = FALSE, merge_with_input_vec_chr.except_TOC = FALSE, 
         output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = !cat2console) {
     
     
@@ -1587,8 +1587,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
             env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(
                 input_path_file = input_path_file, 
                 level4TOC = i, RegEx4heading = paste0("^(?!# #)#{1,",i,"}[^#].*(?:-{4}|={4}) *$"), 
-                remove_lines_with_no_2alphabet_word = TRUE, cat2console = FALSE, 
-                add_line_numbers = TRUE, merge_with_input_vec_chr.except_TOC = FALSE, 
+                remove_lines_with_no_2alphabet_word = remove_lines_with_no_2alphabet_word, cat2console = FALSE, 
+                add_line_numbers = add_line_numbers, width.cutoff = width.cutoff, prefix4line_numbers = prefix4line_numbers, URL4line_numbers = URL4line_numbers, merge_with_input_vec_chr.except_TOC = FALSE, 
                 output_path_file = NULL, replace_input_path_file = FALSE, browseTXT = FALSE
             )
         if(i > 1) {
