@@ -621,6 +621,21 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 ## ->> PENDING synced to: ""  
   
   
+### \$ .InclusionCriteria = ----  
+### \$ .ExclusionCriteria = ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+.InclusionCriteria = "time_ge30"
+.ExclusionCriteria = "age_lt40_gt70"
+assign(DSN.DNR.lbl_pending.fct, 
+       get(DSN.DNR.lbl_pending.fct) %>% mutate(
+           !!rlang::sym(.InclusionCriteria) := (time >= 30),
+           !!rlang::sym(.ExclusionCriteria) := (age < 40) | (age > 70) | (is.na(age))
+       )
+)
+```
+  
+  
 # __________|------  
 ## @ DATA) mutate(byVar = ) ----  
 ### \$  =  
