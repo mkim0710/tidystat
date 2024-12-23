@@ -304,11 +304,10 @@ DS.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 
 
 
 #### \$ A0{1+j}_BMI.pdeltaj =  
-##### \% f_df.add_VarNameT.dpT0()  
+##### \% f_df.add_VarNameT.pdeltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.dpT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
 DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -381,7 +380,7 @@ options(width=120)
 #### \$ A0{1+j}_BMI.pdeltaj.quintile =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.dpT0 =  ----  
+## :: f_df.add_VarNameT.pdeltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # .RegEx2match = "\\.pdelta[1-6]"
 # 

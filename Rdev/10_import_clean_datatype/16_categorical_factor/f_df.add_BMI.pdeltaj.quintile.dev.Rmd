@@ -257,8 +257,7 @@ DS %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TR
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI"
 i = 2
 DS %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -279,8 +278,7 @@ DS %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 2, g
 #### \$ A03_BMI.delta2 =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI"
 i = 3
 DS %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -301,8 +299,7 @@ DS %>% select(matches("BMI")) %>% select(matches("A03")) |> str(max.level = 2, g
 #### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
 DS %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -326,8 +323,7 @@ DS %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, g
 #### \$ A0{1+j}_BMI.pdeltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.dpT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
 DS %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
@@ -382,8 +378,7 @@ for (j in 1:(7-1)) {
 #### \$ A0{1+j}_BMI.pdeltaj.5bins =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## :: f_df.add_VarNameT.dpT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+## @ DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "\\.pdelta[1-6]"
 
 DS %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
