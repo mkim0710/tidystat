@@ -627,7 +627,7 @@ DS.DNR = get(DSN) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) 
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
-DS.DNR = DS.DNR[sort(names(DS.DNR))]
+# DS.DNR = DS.DNR[sort(names(DS.DNR))]
 DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
 DS.DNR |> str(max.level = 2, give.attr = TRUE)
 
