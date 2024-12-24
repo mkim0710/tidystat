@@ -295,7 +295,7 @@ VarName.suffix.regex =
                c("SEX")),
         "Female",
         paste0("A01_",
-               c("EDATE", "AGE", "INCOME",
+               c("AGE", "INCOME",
                  "WAIST", "HIP",
                  "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG",
                  # "BP", "PULSE", "HTN_C", "HTNCU", "TREATD1", "DRUGHTCU", "FMHTN",
@@ -303,22 +303,23 @@ VarName.suffix.regex =
                  "HBA1C", "GLU0_TR", "GLU60_TR", "GLU120_TR", "DM_C", "DMCU", "TREATD2", "DRUGDMCU", "DRUGINSCU", "FMDM",
                  "INS0", "INS60", "INS120", 
                  # "PHYSTB", "PHYSIT", 
-                 "PHYACTL", "PHYACTM", "PHYACTH",
-                 "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU",
-                 "BRF", "MEALRG", "AFTDNN", "OVEREAT", "MEALSPD", "
-                 MEATFAT", 
-                 # "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC", "RMEALFQA", "BMEALFQA", "SKPMEAL", "ALNMEALFQ", "FRFOILY", 
+                 # "PHYACTL", "PHYACTM", "PHYACTH",
+                 "MET", "EXERCUR", "EXER", "EXERDU", # "EXERFQ", 
+                 "BRF", "MEALRG", "AFTDNN", "OVEREAT", "MEALSPD",
+                 "MEATFAT", # "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC", "RMEALFQA", "BMEALFQA", "SKPMEAL", "ALNMEALFQ", "FRFOILY",
                  "B01", "B02", "B03", "B04", "B24", 
                  "DRINK", # "DRDU",
                  "SMOKE", "PACKYR", # "SMAG", "SMDU", "SMAM", "PSM", "PSMDU",
                  "TCHL_TR", "HDL_TR", "TRIGLY_TR", "LIPCU", 
-                 "MICU", "CHFCU", "CADCU", "PVDCU", "TREATD8", "FMHEA",
+                 # "MICU", "CHFCU", "CADCU", "PVDCU", "TREATD8", "FMHEA",
                  # "R_GTP_TR", 
-                 "CEVACU",
-                 "KIDCU", "TREATD14"))
+                 # "CEVACU",
+                 # "KIDCU", "TREATD14",
+                 "EDATE"))
     ) %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-DS.DNR = get(DSN) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+DS.DNR = get(DSN) %>% 
+    select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
