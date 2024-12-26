@@ -54,7 +54,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     ##@ -> By here, both .object and .objectname are available.
     .object.size <- object.size(.object)
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(exists("MetaData")) {
+    if(exists("MetaData") && !is.null(unlist(MetaData))) {
         if("DSNs" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DSNs)) {
                 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
@@ -262,7 +262,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     ##@ -> By here, both .object and .objectname are available.
 #     .object.size <- object.size(.object)
 #     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#     if(exists("MetaData")) {
+#     if(exists("MetaData") && !is.null(unlist(MetaData))) {
 #         if("DSNs" %in% names(MetaData)) {
 #             if(.objectname %in% names(MetaData$DSNs)) {
 #                 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
