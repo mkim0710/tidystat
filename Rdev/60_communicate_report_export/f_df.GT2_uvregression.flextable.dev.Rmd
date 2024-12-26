@@ -353,7 +353,9 @@ options(width=120)
 paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
 ```
 ## ->> Now synced to: ""  
-# __________|------  
+## ()()()()()()()()()()------  
+## ()()()()()()()()()()------  
+## ->> PENDING synced to: ""  
 ## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
 #### \$ DS.DNR =  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  

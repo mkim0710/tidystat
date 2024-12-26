@@ -269,7 +269,9 @@ source("f_DSN.Search.read.checkEntity.source.r")
 paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
 ```
 ## ->> Now synced to: ""  
-# __________|------  
+## ()()()()()()()()()()------  
+## ()()()()()()()()()()------  
+## ->> PENDING synced to: ""  
   
 # \$ DSN = "fhs.index100le10" =======  
 ## \% f_DSN.Search.read.checkEntity(print2console = FALSE) =======  
