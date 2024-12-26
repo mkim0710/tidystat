@@ -259,7 +259,6 @@ dir(full.names = TRUE) |> file.info() |> rownames_to_column("path_file") |> str(
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-
 ```
   
   
