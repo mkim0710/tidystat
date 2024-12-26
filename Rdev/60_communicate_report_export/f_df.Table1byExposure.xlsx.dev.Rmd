@@ -256,6 +256,97 @@ options(width=120)
 #     ) |> env1$f$f_df.Table1byExposure.xlsx(DSN4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
 ```
   
+  
+# __________|------  
+# @@ DATA) select(matches(VarName.suffix.regex)) ----  
+## @ VarNames.select.vec = VarNames.select.txt %>% strsplit("\n") %>% unlist
+## :: VarName.suffix.regex = VarNames.select.vec %>% paste0(collapse="|")
+## :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
+### \% |> select(matches("A0[0-3]")) ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+VarNames.select.txt = "SEX
+AGE
+DRINK
+SMOKE
+PACKYR
+PHYACTL
+PHYACTM
+PHYACTH
+MET
+EXERCUR
+EXER
+EXERFQ
+EXERDU
+IB1_2
+IB1_3
+IB1_4
+BODYFAT
+OBDIG1
+OBDIG2
+OBDEG
+HBA1C
+GLU0_TR
+GLU60_TR
+GLU120_TR
+R_GTP_TR
+TCHL_TR
+HDL_TR
+TRIGLY_TR
+INS0
+INS60
+INS120
+SBP_L
+DBP_L
+SBP_R
+DBP_R
+WAIST
+HIP
+MEALRG
+OVEREAT
+MEALSPD
+MEATFAT
+CKOIL
+CKOILETC
+SPCOIL
+SPCOILETC
+RMEALFQA
+BMEALFQA
+SKPMEAL
+ALNMEALFQ
+FRFOILY
+B01
+B02
+B03
+B04
+B24"
+
+VarNames.select.vec = VarNames.select.txt %>% strsplit("\n") %>% unlist
+VarNames.select.vec %>% dput
+# > VarNames.select.vec %>% dput
+c("SEX", "AGE", "DRINK", "SMOKE", "PACKYR",
+  "PHYACTL", "PHYACTM", "PHYACTH", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU",
+  "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG", # "IB1_2", "IB1_3", "IB1_4",
+  "HBA1C", "GLU0_TR", "GLU60_TR", "GLU120_TR",
+  "R_GTP_TR",
+  "TCHL_TR", "HDL_TR", "TRIGLY_TR",
+  "INS0", "INS60", "INS120",
+  "SBP_L", "DBP_L", "SBP_R", "DBP_R",
+  "WAIST", "HIP",
+  "BRF", "MEALRG", "AFTDNN", "OVEREAT", "MEALSPD",
+  "MEATFAT", # "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC", "RMEALFQA", "BMEALFQA", "SKPMEAL", "ALNMEALFQ", "FRFOILY",
+  "B01", "B02", "B03", "B04", "B24")
+VarName.suffix.regex = VarNames.select.vec %>% paste0(collapse="|")
+VarName.suffix.regex %>% dput
+DS.DNR = get(DSN) %>% 
+    select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+    # select(matches("A00|A01|A04|A07"))
+    # select(matches("A00|A01|A07"))
+    select(matches("A0[0-3]"))
+# DS.DNR = DS.DNR[sort(names(DS.DNR))]
+DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DS.DNR |> str(max.level = 2, give.attr = TRUE)
+```
+  
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode  
 ### :: VarName.suffix.regex = "A0[0-2]"
