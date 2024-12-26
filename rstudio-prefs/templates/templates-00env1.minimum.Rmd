@@ -816,7 +816,7 @@ options(width=120)
 ```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 if(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
-    if(exists("MetaData")) {
+    if(exists("MetaData") && !is.null(unlist(MetaData))) {
         "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
@@ -840,7 +840,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
             # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
             env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
         }
-    } else {warning("> !exists(MetaData)  \n")}
+    } else {warning('> !exists("MetaData") || is.null(unlist(MetaData))  \n')}
 }
 ```
 
@@ -850,7 +850,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 ## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") ----
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
-    if(exists("MetaData")) {
+    if(exists("MetaData") && !is.null(unlist(MetaData))) {
         # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
         for (DSN in names(MetaData$DSNs)) {    
