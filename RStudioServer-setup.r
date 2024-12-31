@@ -651,7 +651,7 @@ system("git remote -v")
 for(.packagename in c("dplyr", "purrr", "stringr")) {
     tryCatch({
         if(!require(.packagename, character.only=TRUE)) {
-            stop(paste("Package", .packagename, "is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
+            stop(paste0("Package ", .packagename, " is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
         }
     }, error = function(e) {
         # Additional code to handle the error or provide fallback options
