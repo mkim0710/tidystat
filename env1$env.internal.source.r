@@ -923,15 +923,35 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_path.relative ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path.relative"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, basepath = env1$path$path1) {
-    path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(basepath|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, basepath = env1$path$path1) {
+    input_path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(basepath|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) path.relative  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "path.relative")
+#### (ALIAS) path.as_relative  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "path.as_relative")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) relative_path  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "relative_path")
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path_relative.path_normalized_based_on_path1 ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path_relative.path_normalized_based_on_path1"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path, basepath = env1$path$path1, normalizePath.mustWork = NA) {
+    # paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
+    basepath = basepath |> str_replace("/$", "")
+    paste0(basepath,"/",input_path) |> normalizePath(winslash="/",mustWork=normalizePath.mustWork)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) path_relative.as_path_normalized  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "path_relative.as_path_normalized")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) relative_path.normalize  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "relative_path.normalize")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) normalizePath_based_on_path1  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "normalizePath_based_on_path1")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext =  ----  
