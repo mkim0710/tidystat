@@ -323,7 +323,7 @@ env1$env.internal.attach$get_software_versions = function(library_names = c("tid
   }), library_names)
   return(version_list)
 }
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: warnings.summary ====  
 ## :: warnings.last ====  
 ## :: warnings.last10 ====  
@@ -340,7 +340,7 @@ env1$env.internal.attach$message_if_VERBOSE =
 env1$env.internal.attach$cat0_if_VERBOSE = 
     env1$env.internal.attach$VERBOSE_cat0 =
     function(..., VERBOSE = isTRUE(getOption("verbose"))) { if(VERBOSE) cat(..., "  \n", sep = "") }
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_env1_subenv_objectname.set_ALIAS ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_env1_subenv_objectname.set_ALIAS"
@@ -351,7 +351,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(subenv_name4object, 
   .GlobalEnv$env1[[subenv_name4ALIAS]][[ALIASname]] = .GlobalEnv$env1[[subenv_name4object]][[objectname]]
   invisible()
 }
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_environment.list_objectnames.map_get.str ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.list_objectnames.map_get.str"
@@ -384,7 +384,16 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(environment = parent
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) ls.all.names.map_get.str  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "ls.all.names.map_get.str")
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: install.packages.if_not_already_installed ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "install.packages.if_not_already_installed"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {
+
+  invisible()
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_environment.detach_and_reattach ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.detach_and_reattach"
