@@ -385,13 +385,38 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(environment = parent
 #### (ALIAS) ls.all.names.map_get.str  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "ls.all.names.map_get.str")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: install.packages.if_not_already_installed ====  
+## :: library.load.install_if_not_already_installed ====  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "install.packages.if_not_already_installed"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {
-
-  invisible()
+.tmp$objectname = "library.load.install_if_not_already_installed"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec_packagename) {
+    for(.packagename in vec_packagename) {
+        # if (!paste0("package:",.packagename) %in% search()) 
+        if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)
+    }  
 }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) require_package.install_if_not_already_installed  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "require_package.install_if_not_already_installed")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: library.load.warning_if_not_available ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "library.load.warning_if_not_available"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec_packagename) {
+    for(.packagename in vec_packagename) {
+        tryCatch({
+            # if (!paste0("package:",.packagename) %in% search()) 
+            if(!require(.packagename, character.only=TRUE)) stop(paste0("Package ", .packagename, " is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))    # install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)   # makes error on Posit.Cloud?
+        }, error = function(e) {
+            # Additional code to handle the error or provide fallback options
+            # Print a warning message but allow R to continue
+            warning("Error: ", e$message, "\n", call. = FALSE, immediate. = TRUE)
+        })
+    }  
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) require_package.warning_if_not_available  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "require_package.warning_if_not_available")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_environment.detach_and_reattach ====  
