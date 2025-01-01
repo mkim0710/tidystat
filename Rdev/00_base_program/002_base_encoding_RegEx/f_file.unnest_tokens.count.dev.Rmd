@@ -269,10 +269,11 @@ options(width=120)
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
 
-## :: input_vec_chr ====
-input_vec_chr <- readLines(input_path_file, warn = FALSE)
-input_vec_chr %>% str
-# > input_vec_chr %>% str
+## :: input_vec_chr ====  
+input_vec_chr <- readLines(input_path_file, warn = FALSE)  
+input_vec_chr |> str()  
+input_vec_chr |> paste(collapse = "\n") |> cat("\n")  
+# > input_vec_chr |> str()  
 #  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 ```
   
@@ -284,10 +285,66 @@ env0 = env1
 ```
   
   
-## \% input_vec_chr |>  
+## https://chatgpt.com/c/6772bb5e-3100-800e-a04b-415906b0c197
+
+### \% input_vec_chr |>  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
+# input_path_file = rstudioapi::getSourceEditorContext()$path
+input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
+use_tidytext = TRUE
+exclude_comments = TRUE
+
+library(tidytext)    # For unnest_tokens()
+library(dplyr)       # For pipe operations and count()
+library(stringr)     # For str_extract_all()
+
+# Read the source code file
+input_vec_chr <- readLines(input_path_file, warn = FALSE)
+input_vec_chr %>% str
+
+# Remove comments if exclude_comments is TRUE
+if (exclude_comments) {
+    # Use a regular expression to remove anything following '#'
+    input_vec_chr <- gsub("#.*", "", input_vec_chr)
+}
+input_vec_chr %>% str
+input_vec_chr %>% na_if("") %>% na.omit() %>% str
+input_vec_chr %>% na_if("") %>% na.omit() %>% paste(collapse = "\n") %>% cat("\n")
+
+# Create a tibble with line numbers
+input_vec_chr.df <- tibble(
+    line_number = seq_along(input_vec_chr),
+    input_vec_chr = input_vec_chr
+)
+input_vec_chr.df
+```
+
+
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+if (use_tidytext) {
+    # Tokenize words using tidytext with a regex for valid object names
+    word_frequencies <- input_vec_chr.df %>%
+        unnest_tokens(
+            output = "word",
+            input = input_vec_chr,
+            token = "regex",
+            pattern = "\\b[a-zA-Z0-9._]+\\b"
+        ) %>%
+        count(line_number, word, sort = TRUE)
+} else {
+    # Tokenize words using stringr and gsub-based approach
+    word_frequencies <- input_vec_chr.df %>%
+        rowwise() %>%
+        mutate(words = list(
+            unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))
+        )) %>%
+        unnest(words) %>%
+        count(line_number, word = words, sort = TRUE)
+}
+
+word_frequencies
 ```
   
   
