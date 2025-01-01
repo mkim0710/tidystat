@@ -147,7 +147,7 @@ input_vec_chr.except_TOC %>% str_detect(RegEx4heading) %>% `!`() %>% summary
 ### |> env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) ----
 input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
 input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
-input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% paste0(collapse = "\n") %>% cat("\n")
+input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
 #  chr [1:37] NA "# TABLE OF CONTENTS ----  " NA NA NA NA NA NA NA "#_________________________________________________________________________________|----  " NA ...
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
@@ -164,7 +164,7 @@ input_vec_chr.except_TOC.na_if_NotMatching.trim = input_vec_chr.except_TOC.na_if
 ### |> env1$env.internal$f_vec_chr.add_line_numbers(width.cutoff = width.cutoff, URL4line_numbers = URL4line_numbers, prefix4line_numbers = prefix4line_numbers)    # trim before add_line_number~!! ----
 input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal$f_vec_chr.add_line_numbers(width.cutoff = width.cutoff, URL4line_numbers = URL4line_numbers, prefix4line_numbers = prefix4line_numbers)    # trim before add_line_number~!!
 input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
-input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% str
 #  chr [1:37] NA "# TABLE OF CONTENTS ----                                                    ...2" NA NA NA NA NA NA NA ...
 
@@ -172,11 +172,11 @@ input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% paste0(coll
 ## :: vec_TABLE_OF_CONTENTS.trim.add_line_numbers ====
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers = input_vec_chr.except_TOC.na_if_NotMatching.trim.add_line_numbers %>% na.omit()
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 #  chr [1:10] "# TABLE OF CONTENTS                                                         ...2" ...
 #  - attr(*, "na.action")= 'omit' int [1:27] 1 3 4 5 6 7 8 9 11 14 ...
-# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # # TABLE OF CONTENTS                                                         ...2
 # #_________________________________________________________________________________|      ...10
 # # @@ START) dev                                                             ...12
@@ -191,10 +191,10 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat(
 ### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
 if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset(paste0("[a-zA-Z]{2,}",ifelse(add_line_numbers,ifelse(URL4line_numbers,".*http",".*#L"),"")))    # remove_lines_with_no_2alphabet_word (if add_line_numbers, before #)  
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 #  chr [1:6] "# TABLE OF CONTENTS                                                         ...2" ...
-# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # # TABLE OF CONTENTS                                                         ...2
 # # @@ START) dev                                                             ...12
 # # @@ START) function                                                        ...17
@@ -209,10 +209,10 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_lin
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% 
     str_subset("@@ END", negate = TRUE)
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 #  chr [1:4] "# @@ START) dev                                                             ...12" ...
-# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # # @@ START) dev                                                             ...12
 # # @@ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
@@ -226,10 +226,10 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers =
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 #  chr [1:7] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ START) dev                                                             ...12
@@ -331,7 +331,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     writeLines(output_vec_chr, con = output_path_file)
     if(browseTXT) env1$env.internal.attach$f_file.browseURL_in_edge(output_path_file) else paste0("env1$env.internal.attach$f_file.browseURL_in_edge(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
@@ -491,7 +491,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
     writeLines(output_vec_chr, con = output_path_file)
     if(browseTXT) env1$env.internal.attach$f_file.browseURL_in_edge(output_path_file) else paste0("env1$env.internal.attach$f_file.browseURL_in_edge(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
     

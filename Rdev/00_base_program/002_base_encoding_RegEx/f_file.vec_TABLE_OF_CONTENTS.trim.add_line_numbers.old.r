@@ -116,7 +116,7 @@ input_vec_chr.except_TOC.na_if_NotMatching.trim =
         "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
     )
 input_vec_chr.except_TOC.na_if_NotMatching.trim %>% str
-input_vec_chr.except_TOC.na_if_NotMatching.trim %>% paste0(collapse = "\n") %>% cat("\n")
+input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -178,7 +178,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
         message(paste0("Added TABLE OF CONTENTS in the beginning of : \n", deparse(input_path_file), "\n and saved to : \n", deparse(output_path_file), "\n"))
     }
     
-    input_vec_chr.except_TOC.na_if_NotMatching.trim %>% paste0(collapse = "\n") %>% cat("\n")
+    input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
     
     invisible(input_vec_chr.except_TOC.na_if_NotMatching.trim)
 }

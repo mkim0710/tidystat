@@ -158,10 +158,10 @@ if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_
 
 
 input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
-input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% paste0(collapse = "\n") %>% cat("\n")
+input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
 #  chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% paste0(collapse = "\n") %>% cat("\n")
+# > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ START) dev   
@@ -172,7 +172,7 @@ input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.lis
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
-env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% paste0(collapse = "\n") %>% cat("\n")
+env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() %>% str
 #  chr [1:36] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
@@ -205,10 +205,10 @@ input_vec_chr.except_TOC %>% str
 vec_TABLE_OF_CONTENTS.trim_without_line_numbers = 
     input_vec_chr.except_TOC %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() 
 vec_TABLE_OF_CONTENTS.trim_without_line_numbers %>% str
-vec_TABLE_OF_CONTENTS.trim_without_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+vec_TABLE_OF_CONTENTS.trim_without_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim_without_line_numbers %>% str
 #  chr [1:8] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
-# > vec_TABLE_OF_CONTENTS.trim_without_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# > vec_TABLE_OF_CONTENTS.trim_without_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
 # # @@ START) dev   
@@ -228,14 +228,14 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank =
         input_vec_chr.except_TOC
     )
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
-input_vec_chr.except_TOC.add_new_TOC_as_blank %>% paste0(collapse = "\n") %>% cat("\n")
+input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str
 #  chr [1:37] "" "" "" "" "" "" "" "" "" ...
 
 # input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers = 
 #     input_vec_chr.except_TOC.add_new_TOC_as_blank |> env1$env.internal$f_vec_chr.add_line_numbers(width.cutoff = width.cutoff, URL4line_numbers = URL4line_numbers, prefix4line_numbers = prefix4line_numbers)    # trim before add_line_number~!!
 # input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
-# input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+# input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 
 
 input_vec_chr.except_TOC.add_new_TOC_as_blank %>% str_which(RegEx4heading) %>% dput
@@ -361,7 +361,7 @@ if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_
     writeLines(output_vec_chr, con = output_path_file)
     # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_file)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
