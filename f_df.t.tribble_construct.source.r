@@ -354,7 +354,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "catLF"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., trailing_double_spaces = TRUE) {  
-    # input_vec_chr %>% paste(collapse = "  \n") %>% cat("  \n")
+    # input_vec_chr |> paste0(collapse = "  \n") |> cat("  \n", sep="")
+    # paste0(..., collapse = "  \n") |> cat("  \n", sep="")
     if (trailing_double_spaces) {
         cat(..., sep="  \n"); cat("  \n")
     } else {

@@ -272,7 +272,7 @@ input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_
 ## :: input_vec_chr ====  
 input_vec_chr <- readLines(input_path_file, warn = FALSE)  
 input_vec_chr |> str()  
-input_vec_chr |> paste(collapse = "\n") |> cat("\n")  
+input_vec_chr |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)  
 # > input_vec_chr |> str()  
 #  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 ```
