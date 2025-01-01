@@ -71,15 +71,15 @@ combined_table |> capture.output() |> paste0(collapse = "\n") |> str(max.level =
 #  chr "         V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4"| __truncated__
 
 
-combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n")
-combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n") |> str(max.level = 2, give.attr = TRUE)
-# > combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n")
+combined_table |> capture.output() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
+combined_table |> capture.output() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE) |> str(max.level = 2, give.attr = TRUE)
+# > combined_table |> capture.output() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 #          V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|
 # prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |
 # prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |
 # prev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |
 # prev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   | 
-# > combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n") |> str(max.level = 2, give.attr = TRUE)
+# > combined_table |> capture.output() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE) |> str(max.level = 2, give.attr = TRUE)
 #          V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|
 # prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |
 # prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |

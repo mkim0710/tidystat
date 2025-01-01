@@ -1703,7 +1703,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     writeLines(output_vec_chr, con = output_path_file)
     if(browseTXT) env1$env.internal.attach$f_file.browseURL_in_edge(output_path_file) else paste0("env1$env.internal.attach$f_file.browseURL_in_edge(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
 }
@@ -1770,7 +1770,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     writeLines(output_vec_chr, con = output_path_file)
     if(browseTXT) env1$env.internal.attach$f_file.browseURL_in_edge(output_path_file) else paste0("env1$env.internal.attach$f_file.browseURL_in_edge(", deparse(output_path_file), ")  \n") |> message(appendLF = FALSE)
     
-    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% paste0(collapse = "\n") %>% cat("\n")
+    if(cat2console) vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
     
     invisible(vec_TABLE_OF_CONTENTS.trim.add_line_numbers)
     

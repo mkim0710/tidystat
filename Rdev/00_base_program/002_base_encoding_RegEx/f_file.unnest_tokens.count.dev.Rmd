@@ -311,7 +311,7 @@ if (exclude_comments) {
 }
 input_vec_chr %>% str
 input_vec_chr %>% na_if("") %>% na.omit() %>% str
-input_vec_chr %>% na_if("") %>% na.omit() %>% paste(collapse = "\n") %>% cat("\n")
+input_vec_chr %>% na_if("") %>% na.omit() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 
 # Create a tibble with line numbers
 input_vec_chr.df <- tibble(
