@@ -406,6 +406,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec_packagename) {
     for(.packagename in vec_packagename) {
         tryCatch({
             # if (!paste0("package:",.packagename) %in% search()) 
+            # if(!require(.packagename, character.only=TRUE)) warning(paste0("Package ", .packagename, " is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))    
             if(!require(.packagename, character.only=TRUE)) stop(paste0("Package ", .packagename, " is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))    # install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)   # makes error on Posit.Cloud?
         }, error = function(e) {
             # Additional code to handle the error or provide fallback options
