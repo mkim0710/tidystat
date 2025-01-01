@@ -246,10 +246,16 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # @@ REFERENCES) ----  
+## install.packages.if_not_already_installed("tidytext")    
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+# References:
+# 1. tidytext::unnest_tokens() - https://cran.r-project.org/web/packages/tidytext/tidytext.pdf
+# 2. dplyr::count() - https://cran.r-project.org/web/packages/dplyr/dplyr.pdf
+# 3. stringr::str_extract_all() - https://cran.r-project.org/web/packages/stringr/stringr.pdf
 
+install.packages.if_not_already_installed("tidytext")    
 ```
   
   
@@ -352,7 +358,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # @@ START) function ----  
 
 ## https://chatgpt.com/c/6772bb5e-3100-800e-a04b-415906b0c197
-## :: function_name = function() -dev -pending  
+## :: f_file.unnest_tokens.count = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -361,65 +367,104 @@ options(width=120)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: function_name = function() ====
-## Rdev/00_base_program/001_base_file/function_name.dev.Rmd
+## Rdev/00_base_program/002_base_encoding_RegEx/f_file.unnest_tokens.count.dev.Rmd
 .tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "function_name" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = # Install and load necessary libraries
-install.packages("tidytext")
-library(tidytext)
-library(dplyr)
-
-# Define the function to count word frequencies
-count_word_frequencies <- function(file_path, use_tidytext = TRUE, exclude_comments = TRUE) {
-    # Read the source code file
-    source_code <- readLines(file_path, warn = FALSE)
+.tmp$objectname = "f_file.unnest_tokens.count" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use_tidytext = TRUE, exclude_comments = TRUE) {
     
-    if (exclude_comments) {
-        # Remove comments line by line
-        source_code <- gsub("#.*", "", source_code)
+    library(tidytext)    # For unnest_tokens()
+    library(dplyr)       # For pipe operations and count()
+    library(stringr)     # For str_extract_all()
+    
+    # Check if file exists
+    if (!file.exists(input_path_file)) {
+        stop("File does not exist: ", input_path_file)
     }
     
+    # Read the source code file
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
+    
+    # Remove comments if exclude_comments is TRUE
+    if (exclude_comments) {
+        # Use a regular expression to remove anything following '#'
+        input_vec_chr <- gsub("#.*", "", input_vec_chr)
+    }
+    
+    # Create a tibble with line numbers
+    input_vec_chr.df <- tibble(
+        line_number = seq_along(input_vec_chr),
+        text = input_vec_chr
+    )
+    
     if (use_tidytext) {
-        # Create a tibble with line numbers and text content
-        source_code_df <- tibble(line_number = seq_along(source_code), text = source_code)
-        
-        # Tokenize words with a regex that allows dots and underscores
-        word_frequencies <- source_code_df %>%
-            unnest_tokens(word, text, token = "regex", pattern = "\\b[a-zA-Z0-9._]+\\b") %>%
-            count(line_number, word, sort = TRUE) %>%
-            arrange(line_number, desc(n))
-        
+        # Tokenize words using tidytext with a regex for valid object names
+        word_frequencies <- input_vec_chr.df %>%
+            unnest_tokens(
+                output = "word",
+                input = text,
+                token = "regex",
+                pattern = "\\b[a-zA-Z0-9._]+\\b"
+            ) %>%
+            count(line_number, word, sort = TRUE)
     } else {
-        # Process with gsub
-        # Extract words line by line
-        word_frequencies <- lapply(seq_along(source_code), function(line_num) {
-            words <- unlist(str_extract_all(source_code[line_num], "\\b[a-zA-Z0-9._]+\\b"))
-            words <- words[words != ""]  # Filter out empty strings
-            data.frame(line_number = line_num, word = words, stringsAsFactors = FALSE)
-        }) %>%
-            bind_rows() %>%
-            count(line_number, word, sort = TRUE) %>%
-            arrange(line_number, desc(n))
+        # Tokenize words using stringr and gsub-based approach
+        word_frequencies <- input_vec_chr.df %>%
+            rowwise() %>%
+            mutate(words = list(
+                unlist(str_extract_all(text, "\\b[a-zA-Z0-9._]+\\b"))
+            )) %>%
+            unnest(words) %>%
+            count(line_number, word = words, sort = TRUE)
     }
     
     return(word_frequencies)
 }
 
-# Example usage with tidytext
-file_path <- "your_script.R"  # Replace with your R script file path
-word_frequencies_tidytext <- count_word_frequencies(file_path, use_tidytext = TRUE, exclude_comments = TRUE)
+###############################################################################
+# Function: env1$env.internal$f_file.unnest_tokens.count
+# Description:
+#   Reads an R script from 'input_path_file', optionally removes comments, and counts 
+#   word frequencies. Tokens can be identified using either tidytext or a gsub-based approach.
+#
+# Parameters:
+#   - input_path_file (character): Path to the R script file.
+#   - use_tidytext (logical): If TRUE, uses tidytext::unnest_tokens().
+#   - exclude_comments (logical): If TRUE, removes R comments (lines starting with '#').
+#
+# Returns:
+#   A tibble with columns 'line_number', 'word', and 'n' indicating the frequency
+#   of each token in the specified file.
+###############################################################################
 
-# Example usage with gsub
-word_frequencies_gsub <- count_word_frequencies(file_path, use_tidytext = FALSE, exclude_comments = TRUE)
+###############################################################################
+# Example Usage
+###############################################################################
+# Replace 'your_script.R' with the path to your R script file.
+input_path_file <- "your_script.R"
 
-# Display the word frequencies
-print("Word Frequencies Using Tidytext:")
+# Using tidytext
+word_frequencies_tidytext <- env1$env.internal$f_file.unnest_tokens.count(
+  input_path_file,
+  use_tidytext = TRUE,
+  exclude_comments = TRUE
+)
+
+# Using gsub-based approach
+word_frequencies_gsub <- env1$env.internal$f_file.unnest_tokens.count(
+  input_path_file,
+  use_tidytext = FALSE,
+  exclude_comments = TRUE
+)
+
+###############################################################################
+# Display the Results
+###############################################################################
+cat("Word Frequencies Using Tidytext:\n")
 print(word_frequencies_tidytext)
 
-print("Word Frequencies Using Gsub:")
+cat("\nWord Frequencies Using Gsub:\n")
 print(word_frequencies_gsub)
 
-}
 ```
   
   
