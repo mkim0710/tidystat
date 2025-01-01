@@ -93,10 +93,11 @@ RegEx4heading
 # > RegEx4heading
 # [1] "^(?!# #)#{1,2}[^#].*(?:-{4}|={4}) *$"
 
-## :: input_vec_chr ====
-input_vec_chr <- readLines(input_path_file, warn = FALSE)
-input_vec_chr %>% str
-# > input_vec_chr %>% str
+## :: input_vec_chr ====  
+input_vec_chr <- readLines(input_path_file, warn = FALSE)  
+input_vec_chr |> str()  
+input_vec_chr |> paste(collapse = "\n") |> cat("\n")  
+# > input_vec_chr |> str()  
 #  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 
