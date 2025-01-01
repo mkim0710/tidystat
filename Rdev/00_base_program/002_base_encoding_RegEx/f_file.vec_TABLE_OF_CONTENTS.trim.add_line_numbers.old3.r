@@ -94,10 +94,11 @@ remove_lines_with_no_2alphabet_word = TRUE
 output_path_file = NULL
 replace_input_path_file = FALSE
 
-## :: input_vec_chr ====
-input_vec_chr <- readLines(input_path_file, warn = FALSE)
-input_vec_chr %>% str
-# > input_vec_chr %>% str
+## :: input_vec_chr ====  
+input_vec_chr <- readLines(input_path_file, warn = FALSE)  
+input_vec_chr |> str()  
+input_vec_chr |> paste(collapse = "\n") |> cat("\n")  
+# > input_vec_chr |> str()  
 #  chr [1:37] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " ...
 
 #_________________________________________________________________________________|----  
