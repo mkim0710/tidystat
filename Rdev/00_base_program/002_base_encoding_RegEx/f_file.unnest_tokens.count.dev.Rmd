@@ -393,7 +393,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
     # Create a tibble with line numbers
     input_vec_chr.df <- tibble(
         line_number = seq_along(input_vec_chr),
-        text = input_vec_chr
+        input_vec_chr = input_vec_chr
     )
     
     if (use_tidytext) {
@@ -401,7 +401,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
         word_frequencies <- input_vec_chr.df %>%
             unnest_tokens(
                 output = "word",
-                input = text,
+                input = input_vec_chr,
                 token = "regex",
                 pattern = "\\b[a-zA-Z0-9._]+\\b"
             ) %>%
@@ -411,7 +411,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
         word_frequencies <- input_vec_chr.df %>%
             rowwise() %>%
             mutate(words = list(
-                unlist(str_extract_all(text, "\\b[a-zA-Z0-9._]+\\b"))
+                unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))
             )) %>%
             unnest(words) %>%
             count(line_number, word = words, sort = TRUE)
