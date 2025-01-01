@@ -2105,7 +2105,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file, EXECUTE =
     # if (Sys.info()["sysname"] == "Linux") {
     #     browseURL(path_file) 
     # } else {
-    #     .packagename = "openxlsx2"; if(!require(.packagename, character.only=TRUE)) warning(paste("Package", .packagename, "is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
+    #     .packagename = "openxlsx2"; if(!require(.packagename, character.only=TRUE)) warning(paste0("Package ", .packagename, " is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
     #     openxlsx2::xl_open(path_file)
     # }
 }
