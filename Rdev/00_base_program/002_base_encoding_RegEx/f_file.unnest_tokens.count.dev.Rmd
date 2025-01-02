@@ -658,7 +658,7 @@ f_file.unnest_tokens.count = function(
     input_path_file,
     use_tidytext = TRUE,
     exclude_comments = TRUE,
-    VERBOSE_lgl = isTRUE(getOption("verbose"))
+    VERBOSE = isTRUE(getOption("verbose"))
 ) {
     # Load libraries inside function scope (generally not recommended in production)
     library(tidytext)    # For unnest_tokens()
@@ -671,23 +671,23 @@ f_file.unnest_tokens.count = function(
     }
     
     # 2. Read the source code file into a character vector
-    input_chrVec <- readLines(input_path_file, warn = FALSE)
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # 3. Remove comments if requested
     if (isTRUE(exclude_comments)) {
-        input_chrVec <- input_chrVec |> str_replace_all("#.*", "") |> str_trim()
+        input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
     }
     
     # 4. Create a tibble with integer line numbers
-    inputChrVec_df <- tibble(
-        rowNum = as.integer(seq_along(input_chrVec)),
-        input_vec_chr = input_chrVec
+    input_vec_chr.df <- tibble(
+        rowNum = as.integer(seq_along(input_vec_chr)),
+        input_vec_chr = input_vec_chr
     )
     
     # Optional debug print
-    if (isTRUE(VERBOSE_lgl)) {
-        cat("[DEBUG] Head of inputChrVec_df:\n")
-        print(head(inputChrVec_df, 3))
+    if (isTRUE(VERBOSE)) {
+        cat("<VERBOSE> Head of input_vec_chr.df:\n")
+        print(head(input_vec_chr.df, 3))
     }
     
     # 5. Tokenize words
@@ -698,7 +698,7 @@ f_file.unnest_tokens.count = function(
         #     # containing your desired tokenization logic
         #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
         # }
-        # unnestedTokens_df <- inputChrVec_df %>%
+        # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
         #     unnest_tokens(
         #         output = "token_chr",
         #         input = input_vec_chr,
@@ -707,9 +707,9 @@ f_file.unnest_tokens.count = function(
         #         drop = FALSE, 
         #         collapse = NULL
         #     ) %>%
-        #     count(rowNum, token_chr, sort = TRUE)
+        #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
         
-        unnestedTokens_df <- inputChrVec_df %>%
+        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
             unnest_tokens(
                 output = "token_chr",
                 input = input_vec_chr,
@@ -717,29 +717,28 @@ f_file.unnest_tokens.count = function(
                 pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
                 to_lower = FALSE, drop = FALSE, collapse = NULL
             ) %>%
-            count(rowNum, token_chr, sort = TRUE)
+            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
         
     } else {
         # Approach 2: Stringr / gsub approach
-        unnestedTokens_df <- inputChrVec_df %>%
+        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
             rowwise() %>%
-            mutate(words_chrVec = list(
+            mutate(token_chr = list(
                 # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
                 unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
             )) %>%
-            unnest(cols = c(words_chrVec)) %>%
-            rename(token_chr = words_chrVec) %>%
-            count(rowNum, token_chr, sort = TRUE)
+            unnest(cols = c(token_chr)) %>%
+            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
     }
     
     # Another optional debug print
-    if (isTRUE(VERBOSE_lgl)) {
-        cat("[DEBUG] Head of unnestedTokens_df:\n")
-        print(head(unnestedTokens_df, 3))
+    if (isTRUE(VERBOSE)) {
+        cat("<VERBOSE> Head of input_vec_chr.df.unnest_tokens.count:\n")
+        print(head(input_vec_chr.df.unnest_tokens.count, 3))
     }
     
     # 6. Return result
-    return(unnestedTokens_df)
+    return(input_vec_chr.df.unnest_tokens.count)
 }
 
 ###############################################################################
@@ -764,7 +763,7 @@ tidytextTokens_df <- f_file.unnest_tokens.count(
     input_path_file = example_path_file,
     use_tidytext    = TRUE,
     exclude_comments = TRUE,
-    VERBOSE_lgl     = FALSE
+    VERBOSE     = TRUE
 )
 
 # 2) Using stringr/gsub approach
@@ -772,7 +771,7 @@ stringrTokens_df <- f_file.unnest_tokens.count(
     input_path_file = example_path_file,
     use_tidytext    = FALSE,
     exclude_comments = TRUE,
-    VERBOSE_lgl     = FALSE
+    VERBOSE     = TRUE
 )
 
 # Print final results
