@@ -309,11 +309,12 @@ input_vec_chr |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 ```
 
 #### Remove comments if exclude_comments is TRUE
+#### \% |> str_replace_all("#.*", "")
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Remove comments if exclude_comments is TRUE
 if (exclude_comments) {
     # Use a regular expression to remove anything following '#'
-    input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "") |> str_trim()
+    input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
 }
 input_vec_chr %>% str
 input_vec_chr %>% na_if("") %>% na.omit() %>% str
@@ -325,41 +326,139 @@ input_vec_chr %>% na_if("") %>% na.omit() |> env1$env.internal.attach$catLF(trai
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Create a tibble with line numbers
 input_vec_chr.df <- tibble(
-    line_number = seq_along(input_vec_chr),
+    rowNum = seq_along(input_vec_chr),
     input_vec_chr = input_vec_chr
 )
-input_vec_chr.df
+input_vec_chr.df %>% str
+input_vec_chr.df %>% filter(input_vec_chr != "")
 ```
 
 
-#### unnest_tokens() %>% count
+#### \% |> unnest_tokens() 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+input_vec_chr.df %>%
+    unnest_tokens(
+        output = "token_chr",
+        input = input_vec_chr,
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+        to_lower = FALSE, drop = FALSE, collapse = NULL
+    )
+```
+
+
+#### \% |> unnest_tokens() |> count()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+input_vec_chr.df %>%
+    unnest_tokens(
+        output = "token_chr",
+        input = input_vec_chr,
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+        to_lower = FALSE, drop = FALSE, collapse = NULL
+    ) |> 
+    count(rowNum, token_chr, sort = TRUE)
+
+input_vec_chr.df %>%
+    unnest_tokens(
+        output = "token_chr",
+        input = input_vec_chr,
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+        to_lower = FALSE, drop = FALSE, collapse = NULL
+    ) |> 
+    count(token_chr, sort = TRUE)
+```
+
+
+
+#### \% |> unnest_tokens() |> group_by(token_chr) %>% summarise()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+input_vec_chr.df %>%
+    unnest_tokens(
+        output = "token_chr",
+        input = input_vec_chr,
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+        to_lower = FALSE, drop = FALSE, collapse = NULL
+    ) |> 
+    count(rowNum, token_chr, sort = TRUE)
+
+input_vec_chr.df %>%
+    unnest_tokens(
+        output = "token_chr",
+        input = input_vec_chr,
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+        to_lower = FALSE, drop = FALSE, collapse = NULL
+    ) |> 
+    group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
+```
+
+
+
+#### input_vec_chr.df.unnest_tokens.count
+
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Tokenize words using tidytext with a regex for valid object names
 input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
     unnest_tokens(
-        output = "word",
+        output = "token_chr",
         input = input_vec_chr,
-        token = "regex",
-        pattern = "\\b[a-zA-Z0-9._]+\\b"
-    ) %>%
-    count(line_number, word, sort = TRUE)
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+        to_lower = FALSE, drop = FALSE, collapse = NULL
+    ) |> 
+    group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
 input_vec_chr.df.unnest_tokens.count
 ```
 
 
-#### rowwise() |> mutate(str_extract_all) |> unnest(words) |> count()  
+#### \$ |> str_extract_all("[a-zA-Z0-9._]+")  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+input_vec_chr |> str_extract_all("[a-zA-Z0-9._]+") %>% str
+```
+
+
+#### rowwise() |> mutate(str_extract_all) |> unnest(token_chr) |> count()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Tokenize words using stringr and str_replace_all-based approach
-input_vec_chr.df.unnest_tokens.count <- unnestedTokens_df <- input_vec_chr.df %>%
-    unnest_tokens(
-        output = "word_chr",
-        input = input_chr,
-        token = "regex",
-        pattern = "[^a-zA-Z0-9._]+"  # match these sequences as delimiters (caution~!!)
-    ) %>%
-    count(line_number_int, word_chr, sort = TRUE)
+input_vec_chr.df %>%
+    rowwise() %>%
+    mutate(token_chr = list(
+        unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))
+    )) %>%
+    unnest(token_chr)
+input_vec_chr.df %>%
+    rowwise() %>%
+    mutate(token_chr = list(
+        unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
+    )) %>%
+    unnest(token_chr)
+# input_vec_chr.df %>%
+#     mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+")) %>%
+#     unnest(token_chr)
+```
 
-input_vec_chr.df.unnest_tokens.count
+
+#### rowwise() |> mutate(str_extract_all) |> unnest(token_chr) |> count()  
+#### rowwise() |> mutate(str_extract_all) |> unnest(token_chr) |> group_by(token_chr) %>% summarise()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+input_vec_chr.df %>%
+    rowwise() %>%
+    mutate(token_chr = list(
+        unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
+    )) %>%
+    unnest(token_chr) %>%
+    count(token_chr, sort = TRUE)
+
+input_vec_chr.df %>%
+    rowwise() %>%
+    mutate(token_chr = list(
+        unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
+    )) %>%
+    unnest(token_chr) %>%
+    group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
 ```
   
   
@@ -431,6 +530,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 ## https://chatgpt.com/c/6772bb5e-3100-800e-a04b-415906b0c197
 ## :: f_file.unnest_tokens.count = function() -dev -pending  
+### \% |> f_file.unnest_tokens.count()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -459,12 +559,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
     # Remove comments if exclude_comments is TRUE
     if (exclude_comments) {
         # Use a regular expression to remove anything following '#'
-        input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "") |> str_trim()
+        input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
     }
     
     # Create a tibble with line numbers
     input_vec_chr.df <- tibble(
-        line_number = seq_along(input_vec_chr),
+        rowNum = seq_along(input_vec_chr),
         input_vec_chr = input_vec_chr
     )
     
@@ -472,21 +572,21 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
         # Tokenize words using tidytext with a regex for valid object names
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
             unnest_tokens(
-                output = "word",
+                output = "token_chr",
                 input = input_vec_chr,
-                token = "regex",
-                pattern = "\\b[a-zA-Z0-9._]+\\b"
+                token = "regex", pattern = "[^a-zA-Z0-9._]+",
+                to_lower = FALSE, drop = FALSE, collapse = NULL
             ) %>%
-            count(line_number, word, sort = TRUE)
+            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
     } else {
         # Tokenize words using stringr and str_replace_all-based approach
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
             rowwise() %>%
-            mutate(words = list(
-                unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))
+            mutate(token_chr = list(
+                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
             )) %>%
-            unnest(words) %>%
-            count(line_number, word = words, sort = TRUE)
+            unnest(token_chr) %>%
+            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
     }
     
     return(input_vec_chr.df.unnest_tokens.count)
@@ -504,17 +604,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
 #   - exclude_comments (logical): If TRUE, removes R comments (lines starting with '#').
 #
 # Returns:
-#   A tibble with columns 'line_number', 'word', and 'n' indicating the frequency
+#   A tibble with columns 'rowNum', 'word', and 'n' indicating the frequency
 #   of each token in the specified file.
 ###############################################################################
-
-
-```
-  
-  
-### \% |> f_file.unnest_tokens.count()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
 
 ###############################################################################
 # Example Usage
@@ -588,8 +680,8 @@ f_file.unnest_tokens.count = function(
     
     # 4. Create a tibble with integer line numbers
     inputChrVec_df <- tibble(
-        line_number_int = as.integer(seq_along(input_chrVec)),
-        input_chr = input_chrVec
+        rowNum = as.integer(seq_along(input_chrVec)),
+        input_vec_chr = input_chrVec
     )
     
     # Optional debug print
@@ -608,41 +700,36 @@ f_file.unnest_tokens.count = function(
         # }
         # unnestedTokens_df <- inputChrVec_df %>%
         #     unnest_tokens(
-        #         output = "word_chr",
-        #         input = input_chr,
+        #         output = "token_chr",
+        #         input = input_vec_chr,
         #         token = my_tokenize, # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
         #         to_lower = FALSE, 
         #         drop = FALSE, 
         #         collapse = NULL
         #     ) %>%
-        #     count(line_number_int, word_chr, sort = TRUE)
+        #     count(rowNum, token_chr, sort = TRUE)
         
         unnestedTokens_df <- inputChrVec_df %>%
             unnest_tokens(
-                output = "word_chr",
-                input = input_chr,
+                output = "token_chr",
+                input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
                 pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
-                to_lower = FALSE, 
-                drop = FALSE, 
-                collapse = NULL
+                to_lower = FALSE, drop = FALSE, collapse = NULL
             ) %>%
-            count(line_number_int, word_chr, sort = TRUE)
-        
-        
-        
+            count(rowNum, token_chr, sort = TRUE)
         
     } else {
         # Approach 2: Stringr / gsub approach
         unnestedTokens_df <- inputChrVec_df %>%
             rowwise() %>%
             mutate(words_chrVec = list(
-                # unlist(str_extract_all(input_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
-                unlist(str_extract_all(input_chr, "[a-zA-Z0-9._]+")) 
+                # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
+                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
             )) %>%
             unnest(cols = c(words_chrVec)) %>%
-            rename(word_chr = words_chrVec) %>%
-            count(line_number_int, word_chr, sort = TRUE)
+            rename(token_chr = words_chrVec) %>%
+            count(rowNum, token_chr, sort = TRUE)
     }
     
     # Another optional debug print
