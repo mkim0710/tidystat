@@ -973,9 +973,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.URL_github ====  
+## :: f_path.URL_github.browse_in_edge_app ====  
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.URL_github"
+.tmp$objectname = "f_path.URL_github.browse_in_edge_app"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path = rstudioapi::getSourceEditorContext()$path, basepath = env1$path$path1, main_branch_name = "master", URL.browse_in_edge_app = TRUE) {
     # input_path.relative = input_path |> env1$f$f_path.relative(basepath = basepath)
     input_path.relative = input_path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(basepath|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
@@ -996,8 +996,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 #### (ALIAS) normalizePath_as_github_URL.browse_in_edge_app  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "normalizePath_as_github_URL.browse_in_edge_app")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) normalizePath_as_github_URL.browse_in_edge_app  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "normalizePath_as_github_URL.browse_in_edge_app")
+#### (ALIAS) CurrentSourceEditorContext.normalizePath_as_github_URL.browse_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.normalizePath_as_github_URL.browse_in_edge_app")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
