@@ -554,43 +554,39 @@ print(word_frequencies_gsub)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ###############################################################################
-# Revised Function: f_file.unnest_tokens.count
+# Improved Code - f_file.unnest_tokens.count
 #
 # This function reads an R script from `input_path_file`, optionally removes
-# comments, and tokenizes its words. It follows tidyverse style, respects your
-# naming conventions (e.g., .chrVec, .df, .int), and allows for verbose debugging.
+# comments, and tokenizes its words. It follows the requested naming conventions,
+# provides optional verbose outputs, and returns a tibble with line numbers,
+# tokens, and their frequencies.
 ###############################################################################
+
 f_file.unnest_tokens.count = function(
     input_path_file,
     use_tidytext = TRUE,
     exclude_comments = TRUE,
     VERBOSE_lgl = isTRUE(getOption("verbose"))
 ) {
-    # Load libraries within function scope (for demonstration)
-    library(tidytext)  # For unnest_tokens()
-    library(dplyr)     # For pipe operations and count()
-    library(stringr)   # For str_extract_all()
+    # Load libraries inside function scope (generally not recommended in production)
+    library(tidytext)    # For unnest_tokens()
+    library(dplyr)       # For pipe operations and count()
+    library(stringr)     # For str_extract_all()
     
-    # 1) Check if file exists
+    # 1. Check if file exists
     if (!file.exists(input_path_file)) {
         stop("File does not exist: ", input_path_file)
     }
     
-    # 2) Read the source code file into a character vector
+    # 2. Read the source code file into a character vector
     input_chrVec <- readLines(input_path_file, warn = FALSE)
     
-    # Optional debug print
-    if (isTRUE(VERBOSE_lgl)) {
-        cat("[DEBUG] First 3 lines of input_chrVec:\n")
-        print(head(input_chrVec, 3))
-    }
-    
-    # 3) Remove comments if requested
+    # 3. Remove comments if requested
     if (isTRUE(exclude_comments)) {
         input_chrVec <- input_chrVec %>% str_replace_all("#.*", "")
     }
     
-    # 4) Create a tibble with integer line numbers
+    # 4. Create a tibble with integer line numbers
     inputChrVec_df <- tibble(
         line_number_int = as.integer(seq_along(input_chrVec)),
         input_chr = input_chrVec
@@ -598,31 +594,51 @@ f_file.unnest_tokens.count = function(
     
     # Optional debug print
     if (isTRUE(VERBOSE_lgl)) {
-        cat("[DEBUG] Head of inputChrVec_df after removing comments:\n")
+        cat("[DEBUG] Head of inputChrVec_df:\n")
         print(head(inputChrVec_df, 3))
     }
     
-    # 5) Tokenize words
+    # 5. Tokenize words
     if (isTRUE(use_tidytext)) {
         # Approach 1: Tidytext
+        # my_tokenize <- function(text_vec) {
+        #     # Return a list of character vectors
+        #     # containing your desired tokenization logic
+        #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
+        # }
+        # unnestedTokens_df <- inputChrVec_df %>%
+        #     unnest_tokens(
+        #         output = "word_chr",
+        #         input = input_chr,
+        #         token = my_tokenize, # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+        #         to_lower = FALSE, 
+        #         drop = FALSE, 
+        #         collapse = NULL
+        #     ) %>%
+        #     count(line_number_int, word_chr, sort = TRUE)
+        
         unnestedTokens_df <- inputChrVec_df %>%
             unnest_tokens(
                 output = "word_chr",
                 input = input_chr,
-                token = "regex",
-                pattern = "[a-zA-Z0-9._]+",  # match these sequences
-                collapse = FALSE
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+                to_lower = FALSE, 
+                drop = FALSE, 
+                collapse = NULL
             ) %>%
             count(line_number_int, word_chr, sort = TRUE)
+        
+        
+        
+        
     } else {
-        # Approach 2: Stringr / gsub
+        # Approach 2: Stringr / gsub approach
         unnestedTokens_df <- inputChrVec_df %>%
             rowwise() %>%
             mutate(words_chrVec = list(
-                unlist(str_extract_all(
-                    input_chr, 
-                    "\\b[a-zA-Z0-9._]+\\b"
-                ))
+                # unlist(str_extract_all(input_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
+                unlist(str_extract_all(input_chr, "[a-zA-Z0-9._]+")) 
             )) %>%
             unnest(cols = c(words_chrVec)) %>%
             rename(word_chr = words_chrVec) %>%
@@ -632,25 +648,52 @@ f_file.unnest_tokens.count = function(
     # Another optional debug print
     if (isTRUE(VERBOSE_lgl)) {
         cat("[DEBUG] Head of unnestedTokens_df:\n")
-        print(head(unnestedTokens_df, 5))
+        print(head(unnestedTokens_df, 3))
     }
     
-    # 6) Return the tibble
+    # 6. Return result
     return(unnestedTokens_df)
 }
 
+###############################################################################
+# Example Usage
+###############################################################################
+# Suppose you have a small health-data-related R script named "exampleHealthData.R"
+# that looks like this:
+#
+# # This script processes CDC data
+# cdc_data <- read.csv("CDC_data.csv")
+# summary(cdc_data)
+# who_data <- read.csv("WHO_data.csv")  # Another line referencing WHO data
+# mean(who_data$some_measure)
+#
+# Let us demonstrate how to call f_file.unnest_tokens.count on that file below.
 
+# Replace with your actual script path
+example_path_file <- "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
 
-# Example usage with Tidytext approach and verbose debugging
-outputTokens_df <- f_file.unnest_tokens.count(
-    input_path_file  = input_path_file,
-    use_tidytext     = TRUE,
+# 1) Using tidytext approach
+tidytextTokens_df <- f_file.unnest_tokens.count(
+    input_path_file = example_path_file,
+    use_tidytext    = TRUE,
     exclude_comments = TRUE,
-    VERBOSE_lgl      = TRUE
+    VERBOSE_lgl     = FALSE
 )
 
-cat("\n=== Partial Output (First 10 Rows) ===\n")
-print(head(outputTokens_df, 10))
+# 2) Using stringr/gsub approach
+stringrTokens_df <- f_file.unnest_tokens.count(
+    input_path_file = example_path_file,
+    use_tidytext    = FALSE,
+    exclude_comments = TRUE,
+    VERBOSE_lgl     = FALSE
+)
+
+# Print final results
+cat("\n=== Word Frequencies Using Tidytext ===\n")
+print(tidytextTokens_df)
+
+cat("\n=== Word Frequencies Using Stringr ===\n")
+print(stringrTokens_df)
 
 
 ```
