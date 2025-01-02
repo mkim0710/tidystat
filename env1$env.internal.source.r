@@ -1949,7 +1949,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_file.df_token_n_rowNum" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-    input_path_file,
+    input_path_file = rstudioapi::getSourceEditorContext()$path,
     use_tidytext = TRUE,
     exclude_comments = TRUE,
     VERBOSE = isTRUE(getOption("verbose"))

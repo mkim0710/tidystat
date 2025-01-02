@@ -656,7 +656,7 @@ options(width=120)
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_file.df_token_n_rowNum" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-    input_path_file,
+    input_path_file = rstudioapi::getSourceEditorContext()$path,
     use_tidytext = TRUE,
     exclude_comments = TRUE,
     VERBOSE = isTRUE(getOption("verbose"))
