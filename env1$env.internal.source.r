@@ -423,6 +423,29 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec_packagename) {
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "require_package.warning_if_not_available")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: requireNamespace.library_load_if_necessary ====  
+## https://chatgpt.com/c/67766db3-f934-800e-8f49-5be2d9f1fd95
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "requireNamespace.library_load_if_necessary"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.packagename) {
+    # 1) Check if installed
+    if (!requireNamespace(.packagename, quietly = TRUE)) {
+        stop("Package not installed: ", .packagename)
+    }
+    
+    # 2) Check if already attached
+    if (!(.packagename %in% .packages())) {
+        # Attach package to search path
+        library(.packagename, character.only = TRUE)
+    }
+    
+    invisible(TRUE)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) library.check_and_load_if_necessary  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "library.check_and_load_if_necessary")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_environment.detach_and_reattach ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_environment.detach_and_reattach"
