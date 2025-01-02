@@ -313,7 +313,7 @@ input_vec_chr |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # Remove comments if exclude_comments is TRUE
 if (exclude_comments) {
     # Use a regular expression to remove anything following '#'
-    input_vec_chr <- input_vec_chr %>% str_replace_all("#.*", "")
+    input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "") |> str_trim()
 }
 input_vec_chr %>% str
 input_vec_chr %>% na_if("") %>% na.omit() %>% str
@@ -459,7 +459,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
     # Remove comments if exclude_comments is TRUE
     if (exclude_comments) {
         # Use a regular expression to remove anything following '#'
-        input_vec_chr <- input_vec_chr %>% str_replace_all("#.*", "")
+        input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "") |> str_trim()
     }
     
     # Create a tibble with line numbers
@@ -583,7 +583,7 @@ f_file.unnest_tokens.count = function(
     
     # 3. Remove comments if requested
     if (isTRUE(exclude_comments)) {
-        input_chrVec <- input_chrVec %>% str_replace_all("#.*", "")
+        input_chrVec <- input_chrVec |> str_replace_all("#.*", "") |> str_trim()
     }
     
     # 4. Create a tibble with integer line numbers
