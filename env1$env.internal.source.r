@@ -1854,12 +1854,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.df_token_n_rowNum = function() ====
-## Rdev/00_base_program/002_base_encoding_RegEx/f_file.df_token_n_rowNum.dev.Rmd
+## :: f_vec_chr.df_token_n_rowNum = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_vec_chr.df_token_n_rowNum.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.df_token_n_rowNum" 
+.tmp$objectname = "f_vec_chr.df_token_n_rowNum" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-    input_path_file,
+    input_vec_chr = rstudioapi::getSourceEditorContext()$path |> readLines(warn = FALSE),
     use_tidytext = TRUE,
     exclude_comments = TRUE,
     VERBOSE = isTRUE(getOption("verbose"))
@@ -1868,14 +1868,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     # library(tidytext)    # For tidytext::unnest_tokens()
     # library(dplyr)       # For pipe operations and count()
     # library(stringr)     # For str_extract_all()
-    
-    # 1. Check if file exists
-    if (!file.exists(input_path_file)) {
-        stop("File does not exist: ", input_path_file)
-    }
-    
-    # 2. Read the source code file into a character vector
-    input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # 3. Remove comments if exclude_comments is TRUE
     if (isTRUE(exclude_comments)) {
@@ -1902,7 +1894,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         #     # containing your desired tokenization logic
         #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
         # }
-        # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        # input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
         #     tidytext::unnest_tokens(
         #         output = "token_chr",
         #         input = input_vec_chr,
@@ -1913,7 +1905,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         #     ) %>%
         #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
         
-        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
             tidytext::unnest_tokens(
                 output = "token_chr",
                 input = input_vec_chr,
@@ -1925,7 +1917,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         
     } else {
         # Approach 2: Stringr / gsub approach
-        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
             # mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
             # mutate(token_chr = input_vec_chr %>% map(~unlist(str_extract_all(.x, "[a-zA-Z0-9._]+")))) %>%
             rowwise() %>%
@@ -1937,19 +1929,60 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     # Another optional debug print
     if (isTRUE(VERBOSE)) {
-        cat("<VERBOSE> str(input_vec_chr.df.unnest_tokens.count)  \n")
-        str(input_vec_chr.df.unnest_tokens.count)
+        cat("<VERBOSE> str(input_vec_chr.df_token_n_rowNum)  \n")
+        str(input_vec_chr.df_token_n_rowNum)
     }
     
     # 6. Return result
-    return(input_vec_chr.df.unnest_tokens.count)
+    return(input_vec_chr.df_token_n_rowNum)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#### (ALIAS) f_NLP_file.df_token_n_rowNum  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_NLP_file.df_token_n_rowNum")
+#### (ALIAS) NLP_vec_chr.df_token_n_rowNum  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "NLP_vec_chr.df_token_n_rowNum")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#### (ALIAS) f_tidytext_file.unnest_tokens.count  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_tidytext_file.unnest_tokens.count")
+#### (ALIAS) f_vec_chr.tidytext_unnest_tokens.count  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_vec_chr.tidytext_unnest_tokens.count")
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## :: f_file.df_token_n_rowNum = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_vec_chr.df_token_n_rowNum.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_file.df_token_n_rowNum" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+    input_path_file,
+    use_tidytext = TRUE,
+    exclude_comments = TRUE,
+    VERBOSE = isTRUE(getOption("verbose"))
+) {
+    # Load libraries inside function scope (generally not recommended in production)
+    # library(tidytext)    # For tidytext::unnest_tokens()
+    # library(dplyr)       # For pipe operations and count()
+    # library(stringr)     # For str_extract_all()
+    
+    # 1. Check if file exists
+    if (!file.exists(input_path_file)) {
+        stop("File does not exist: ", input_path_file)
+    }
+    
+    # 2. Read the source code file into a character vector
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
+    
+    input_vec_chr.df_token_n_rowNum = env1$f$f_vec_chr.df_token_n_rowNum(
+        input_vec_chr = input_vec_chr,
+        use_tidytext = use_tidytext,
+        exclude_comments = exclude_comments,
+        VERBOSE = VERBOSE
+    )
+    
+    # 6. Return result
+    return(input_vec_chr.df_token_n_rowNum)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) NLP_file.df_token_n_rowNum  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "NLP_file.df_token_n_rowNum")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) f_file.tidytext_unnest_tokens.count  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.tidytext_unnest_tokens.count")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.str_replace_all.old.ObjectName =  ----  

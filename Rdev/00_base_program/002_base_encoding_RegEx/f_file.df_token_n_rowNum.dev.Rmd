@@ -397,11 +397,11 @@ input_vec_chr.df %>%
 
 
 
-#### input_vec_chr.df.unnest_tokens.count
+#### input_vec_chr.df_token_n_rowNum
 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Tokenize words using tidytext with a regex for valid object names
-input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
     tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
@@ -410,7 +410,7 @@ input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
         to_lower = FALSE, drop = FALSE, collapse = NULL
     ) |> 
     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
-input_vec_chr.df.unnest_tokens.count
+input_vec_chr.df_token_n_rowNum
 ```
 
 
@@ -550,21 +550,20 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## https://chatgpt.com/c/6772bb5e-3100-800e-a04b-415906b0c197
 ## https://chatgpt.com/c/6773c8bd-cc78-800e-b7a2-b5593ab4b673
 
-## :: f_file.df_token_n_rowNum = function() -dev -pending  
-### \% |> env1$f$f_file.df_token_n_rowNum()  
+## :: f_vec_chr.df_token_n_rowNum = function() -dev -pending  
+### \% |> env1$f$f_vec_chr.df_token_n_rowNum()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## ->> Now included in env1$env.internal.source.r ----
-## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.df_token_n_rowNum = function() ====
-## Rdev/00_base_program/002_base_encoding_RegEx/f_file.df_token_n_rowNum.dev.Rmd
+## :: f_vec_chr.df_token_n_rowNum = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_vec_chr.df_token_n_rowNum.dev.Rmd
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_file.df_token_n_rowNum" 
+.tmp$objectname = "f_vec_chr.df_token_n_rowNum" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-    input_path_file,
+    input_vec_chr = rstudioapi::getSourceEditorContext()$path |> readLines(warn = FALSE),
     use_tidytext = TRUE,
     exclude_comments = TRUE,
     VERBOSE = isTRUE(getOption("verbose"))
@@ -573,14 +572,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     # library(tidytext)    # For tidytext::unnest_tokens()
     # library(dplyr)       # For pipe operations and count()
     # library(stringr)     # For str_extract_all()
-    
-    # 1. Check if file exists
-    if (!file.exists(input_path_file)) {
-        stop("File does not exist: ", input_path_file)
-    }
-    
-    # 2. Read the source code file into a character vector
-    input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
     # 3. Remove comments if exclude_comments is TRUE
     if (isTRUE(exclude_comments)) {
@@ -607,7 +598,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         #     # containing your desired tokenization logic
         #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
         # }
-        # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        # input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
         #     tidytext::unnest_tokens(
         #         output = "token_chr",
         #         input = input_vec_chr,
@@ -618,7 +609,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         #     ) %>%
         #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
         
-        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
             tidytext::unnest_tokens(
                 output = "token_chr",
                 input = input_vec_chr,
@@ -630,7 +621,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         
     } else {
         # Approach 2: Stringr / gsub approach
-        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        input_vec_chr.df_token_n_rowNum <- input_vec_chr.df %>%
             # mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
             # mutate(token_chr = input_vec_chr %>% map(~unlist(str_extract_all(.x, "[a-zA-Z0-9._]+")))) %>%
             rowwise() %>%
@@ -642,12 +633,56 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     
     # Another optional debug print
     if (isTRUE(VERBOSE)) {
-        cat("<VERBOSE> str(input_vec_chr.df.unnest_tokens.count)  \n")
-        str(input_vec_chr.df.unnest_tokens.count)
+        cat("<VERBOSE> str(input_vec_chr.df_token_n_rowNum)  \n")
+        str(input_vec_chr.df_token_n_rowNum)
     }
     
     # 6. Return result
-    return(input_vec_chr.df.unnest_tokens.count)
+    return(input_vec_chr.df_token_n_rowNum)
+}
+```
+
+
+## :: f_file.df_token_n_rowNum = function() -dev -pending  
+### \% |> env1$f$f_file.df_token_n_rowNum()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## ->> Now included in env1$env.internal.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_file.df_token_n_rowNum = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_vec_chr.df_token_n_rowNum.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_file.df_token_n_rowNum" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+    input_path_file,
+    use_tidytext = TRUE,
+    exclude_comments = TRUE,
+    VERBOSE = isTRUE(getOption("verbose"))
+) {
+    # Load libraries inside function scope (generally not recommended in production)
+    # library(tidytext)    # For tidytext::unnest_tokens()
+    # library(dplyr)       # For pipe operations and count()
+    # library(stringr)     # For str_extract_all()
+    
+    # 1. Check if file exists
+    if (!file.exists(input_path_file)) {
+        stop("File does not exist: ", input_path_file)
+    }
+    
+    # 2. Read the source code file into a character vector
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
+    
+    input_vec_chr.df_token_n_rowNum = env1$f$f_vec_chr.df_token_n_rowNum(
+        input_vec_chr = input_vec_chr,
+        use_tidytext = use_tidytext,
+        exclude_comments = exclude_comments,
+        VERBOSE = VERBOSE
+    )
+    
+    # 6. Return result
+    return(input_vec_chr.df_token_n_rowNum)
 }
 
 ###############################################################################
@@ -662,13 +697,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 # who_data <- read.csv("WHO_data.csv")  # Another line referencing WHO data
 # mean(who_data$some_measure)
 #
-# Let us demonstrate how to call f_file.unnest_tokens.count on that file below.
+# Let us demonstrate how to call f_file.df_token_n_rowNum on that file below.
 
 # Replace with your actual script path
 example_path_file <- "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
 
 # 1) Using tidytext approach
-tidytextTokens_df <- env1$f$f_file.unnest_tokens.count(
+tidytextTokens_df <- env1$f$f_file.df_token_n_rowNum(
     input_path_file = example_path_file,
     use_tidytext    = TRUE,
     exclude_comments = TRUE,
@@ -676,7 +711,7 @@ tidytextTokens_df <- env1$f$f_file.unnest_tokens.count(
 )
 
 # 2) Using stringr/gsub approach
-stringrTokens_df <- env1$f$f_file.unnest_tokens.count(
+stringrTokens_df <- env1$f$f_file.df_token_n_rowNum(
     input_path_file = example_path_file,
     use_tidytext    = FALSE,
     exclude_comments = TRUE,
