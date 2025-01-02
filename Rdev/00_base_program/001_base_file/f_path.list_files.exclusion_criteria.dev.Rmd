@@ -1,4 +1,34 @@
 ---
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ REFERENCES)                                                            #L247
+# @@ DATA) example                                                          #L256
+# @@ START) dev                                                             #L276
+# @@ SOURCE)                                                                #L311
+# @@ START) function                                                        #L353
+# @@ MetaData) Read & Check                                                 #L402
+# @@ DATA) Read & Check                                                     #L472
+# @@ ANALYSIS) (Breif) byVar =                                              #L638
+# @@ DATA) mutate()                                                         #L644
+# @@ DATA) filter() -> New DS                                               #L675
+# @@ DATA) select(matches(VarName.suffix.regex))                            #L708
+# @@ ANALYSIS) byVar =                                                      #L722
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L247
+# @@ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L256
+# @@ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L276
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L311
+# @@ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L353
+# @@ MetaData) Read & Check                                                 # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L402
+# @@ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L472
+# @@ ANALYSIS) (Breif) byVar =                                              # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L638
+# @@ DATA) mutate()                                                         # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L644
+# @@ DATA) filter() -> New DS                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L675
+# @@ DATA) select(matches(VarName.suffix.regex))                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L708
+# @@ ANALYSIS) byVar =                                                      # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L722
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
 title: "`r params$doc_title`"
@@ -214,8 +244,6 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-  
-  
 # __________|------  
 # @@ REFERENCES) ----  
 ###### ECHO \% |> () ----  
@@ -243,38 +271,17 @@ env0 = env1
 ```
   
   
-## dir() |> file.info() |> rownames_to_column("FileName") |> str() ----  
+## \% ADS_time2event |>  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-# dir() |> file.info() |> str()
-dir() |> file.info() %>% dimnames() %>% str
-dir() |> file.info() |> rownames_to_column("filename_ext") |> str()
-dir(full.names = TRUE) |> file.info() |> rownames_to_column("path_file") |> str()
-# > dir() |> file.info() %>% dimnames() %>% str
-# List of 2
-#  $ : chr [1:33] "f_file.encrypt_hybrid.dev.r" "f_file.git_lfs_track_add_f.dev.r" "f_file.remove.dev.r" "f_file.switch_open.dev.r" ...
-#  $ : chr [1:7] "size" "isdir" "mode" "mtime" ...
-# > dir() |> file.info() |> rownames_to_column("filename_ext") |> str()
-# 'data.frame':	33 obs. of  8 variables:
-#  $ filename_ext: chr  "f_file.encrypt_hybrid.dev.r" "f_file.git_lfs_track_add_f.dev.r" "f_file.remove.dev.r" "f_file.switch_open.dev.r" ...
-#  $ size        : num  10061 4358 11012 554 15952 ...
-#  $ isdir       : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-#  $ mode        : 'octmode' int  666 666 666 666 666 666 666 666 666 666 ...
-#  $ mtime       : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
-#  $ ctime       : POSIXct, format: "2024-10-28 01:10:41" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-10-28 01:10:41" ...
-#  $ atime       : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 08:13:33" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
-#  $ exe         : chr  "no" "no" "no" "no" ...
-# > dir(full.names = TRUE) |> file.info() |> rownames_to_column("path_file") |> str()
-# 'data.frame':	33 obs. of  8 variables:
-#  $ path_file: chr  "./f_file.encrypt_hybrid.dev.r" "./f_file.git_lfs_track_add_f.dev.r" "./f_file.remove.dev.r" "./f_file.switch_open.dev.r" ...
-#  $ size     : num  10061 4358 11012 554 15952 ...
-#  $ isdir    : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-#  $ mode     : 'octmode' int  666 666 666 666 666 666 666 666 666 666 ...
-#  $ mtime    : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
-#  $ ctime    : POSIXct, format: "2024-10-28 01:10:41" "2024-10-28 01:10:41" "2024-11-23 23:02:20" "2024-10-28 01:10:41" ...
-#  $ atime    : POSIXct, format: "2024-11-11 17:41:43" "2024-10-28 08:13:33" "2024-11-23 23:02:20" "2024-11-23 11:47:54" ...
-#  $ exe      : chr  "no" "no" "no" "no" ...
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
 ```
   
   
@@ -336,375 +343,135 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
   
 # __________|------  
 # @@ START) function ----  
-## :: f_path.file.info = function() -dev -pending  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-?list.files
-# list.files(path = ".", pattern = NULL, all.files = FALSE,
-#            full.names = FALSE, recursive = FALSE,
-#            ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)
-# 
-#        dir(path = ".", pattern = NULL, all.files = FALSE,
-#            full.names = FALSE, recursive = FALSE,
-#            ignore.case = TRUE, include.dirs = FALSE, no.. = FALSE)
-
-env1$f$f_text_function_arguments.identity_mapping("pattern = NULL, all.files = FALSE,
-           full.names = FALSE, recursive = FALSE,
-           ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE")
-# pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..
-
-
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Now included in env1$env.internal.source.r ----
-
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.file.info ====
-## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.file.info"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, 
-        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
-        ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE, 
-        arrange_by = c("mtime")) {
-    library(openxlsx2)
-    
-    # Check if input_path exists
-    if (!dir.exists(input_path)) {
-        stop("The specified input_path does not exist.")
-    }
-    input_path = input_path |> normalizePath(winslash = "/")
-    
-    # List files in the input_path
-    input_path.list.files <- list.files(input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no..) 
-    
-    input_path.list.files.file.info = 
-        input_path.list.files |> 
-        file.info() |> 
-        rownames_to_column("path_file") %>% 
-        # select(path_file, size, isdir, mode, mtime, ctime, atime, exe) %>% 
-        transmute(
-            path_file = path_file
-            , path = dirname(path_file) |> as.factor()
-            , path.relative = env1$f$f_path.relative(as.character(path)) |> as.factor()
-            , filename_ext = basename(path_file)
-            , filename = env1$env.internal$f_vec_path.vec_filename_sans_ext_extended(filename_ext)
-            , ext = env1$env.internal$f_vec_path.vec_ext_extended(filename_ext) |> as.factor()
-            , size = size
-            , size_KiB = round(size / 2^10, 2)
-            , size_MiB = round(size / 2^20, 2)
-            , size_GiB = round(size / 2^30, 2)
-            , isdir = isdir
-            , mtime = mtime
-            , ModifiedDate = as.Date(mtime)
-        ) |> arrange(desc(!!sym(arrange_by)))
-    input_path.list.files.file.info
-}
-env1$f$f_path.file.info() %>% str()
-# > env1$f$f_path.file.info() %>% str()
-# 'data.frame':	39 obs. of  13 variables:
-#  $ path_file    : chr  "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/~$001_base_file-dir.file.info.xlsx" "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/001_base_file-dir.file.info.xlsx" "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/f_file.encrypt_hybrid.dev.r" "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file/f_file.git_lfs_track_add_f.dev.r" ...
-#  $ path         : Factor w/ 1 level "D:/D_Repositories/github_tidystat/Rdev/00_base_program/001_base_file": 1 1 1 1 1 1 1 1 1 1 ...
-#  $ path.relative: Factor w/ 1 level "Rdev/00_base_program/001_base_file": 1 1 1 1 1 1 1 1 1 1 ...
-#  $ filename_ext : chr  "~$001_base_file-dir.file.info.xlsx" "001_base_file-dir.file.info.xlsx" "f_file.encrypt_hybrid.dev.r" "f_file.git_lfs_track_add_f.dev.r" ...
-#  $ filename     : chr  "~$001_base_file-dir.file.info" "001_base_file-dir.file.info" "f_file.encrypt_hybrid.dev" "f_file.git_lfs_track_add_f.dev" ...
-#  $ ext          : Factor w/ 5 levels "html","r","Rmd",..: 4 4 2 2 2 2 2 2 2 2 ...
-#  $ size         : num  165 9651 10061 4358 11012 ...
-#  $ size_KiB     : num  0.16 9.42 9.83 4.26 10.75 ...
-#  $ size_MiB     : num  0 0.01 0.01 0 0.01 0 0.02 0.01 0.02 0.02 ...
-#  $ size_GiB     : num  0 0 0 0 0 0 0 0 0 0 ...
-#  $ isdir        : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-#  $ mtime        : POSIXct, format: "2024-12-12 01:39:57" "2024-12-12 01:39:55" "2024-11-11 17:41:43" "2024-10-28 01:10:41" ...
-#  $ ModifiedDate : Date, format: "2024-12-11" "2024-12-11" "2024-11-11" "2024-10-27" ...
-```
-
-### \% |> f_path.file.info()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-env1$path$path1 |> env1$f$f_path.file.info() %>% str()
-# 'data.frame':	136 obs. of  12 variables:
-#  $ path_file   : chr  "D:/D_Repositories/github_tidystat/-info" "D:/D_Repositories/github_tidystat/-MAGB760M13700KF-3.Rhistory" "D:/D_Repositories/github_tidystat/-MAGB760M13700KF-4.Rhistory" "D:/D_Repositories/github_tidystat/-MAGB760M13700KF-5.Rhistory" ...
-#  $ path        : chr  "D:/D_Repositories/github_tidystat" "D:/D_Repositories/github_tidystat" "D:/D_Repositories/github_tidystat" "D:/D_Repositories/github_tidystat" ...
-#  $ filename_ext: chr  "-info" "-MAGB760M13700KF-3.Rhistory" "-MAGB760M13700KF-4.Rhistory" "-MAGB760M13700KF-5.Rhistory" ...
-#  $ filename    : chr  "-info" "-MAGB760M13700KF-3" "-MAGB760M13700KF-4" "-MAGB760M13700KF-5" ...
-#  $ ext         : chr  "" "Rhistory" "Rhistory" "Rhistory" ...
-#  $ size        : num  4096 44773 46221 47010 46944 ...
-#  $ size_KiB    : num  4 43.7 45.1 45.9 45.8 ...
-#  $ size_MiB    : num  0 0.04 0.04 0.04 0.04 0.04 0.01 0 0 0 ...
-#  $ size_GiB    : num  0 0 0 0 0 0 0 0 0 0 ...
-#  $ isdir       : logi  TRUE FALSE FALSE FALSE FALSE FALSE ...
-#  $ mtime       : POSIXct, format: "2024-10-28 09:09:19" "2024-05-21 02:35:34" "2024-05-23 22:22:49" "2024-06-05 21:16:50" ...
-#  $ ModifiedDate: Date, format: "2024-10-28" "2024-05-20" "2024-05-23" "2024-06-05" ...
-```
-  
-  
-## :: f_path.file.info.xlsx = function() -dev -pending  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Now included in env1$env.internal.source.r ----
-
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.file.info.xlsx ====
-## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.file.info.xlsx"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = ".", pattern = NULL, 
-        all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
-        ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
-        arrange_by = c("mtime"), 
-        output_filename.xlsx = "FolderName-dir.file.info-YYMMDD.xlsx", overwrite = TRUE, xls.open_or_browseURL = TRUE) {
-    
-    input_path = input_path |> normalizePath(winslash = "/")
-    
-    output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
-    if (Sys.info()["sysname"] == "Windows") {  output_filename.xlsx = output_filename.xlsx |> str_replace("D:/D_Repositories", paste0(Sys.getenv("OneDriveConsumer"),"/[][Rproject]")|>str_replace_all("\\\\","/"))  }
-    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
-    
-    if(output_filename.xlsx %>% str_detect("FolderName")) {
-        FolderName = input_path |> basename()
-        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
-    }
-    Sys.Date.YYMMDD = format(Sys.Date(), "%y%m%d")
-    if(output_filename.xlsx %>% str_detect("YYMMDD")) {
-        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), Sys.Date.YYMMDD)
-    }
-    
-    if(!overwrite && file.exists(output_filename.xlsx)) {
-        paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE  \n") |> warning(immediate. = TRUE)
-        return(invisible())
-    }
-    
-    input_path.file.info = input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    
-    # openxlsx2::write_xlsx(input_path.file.info, file = output_filename.xlsx, as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 4)
-    DS = input_path.file.info
-    library(openxlsx2)
-    wb = openxlsx2::write_xlsx(setNames(list(DS), "file.info"), as_table = TRUE, col_widths = "auto", first_active_row = 2, first_active_col = 5)
-    # vec_col_index_to_hide = colnames(DS) %>% str_which(paste0(vec_colnames_to_hide, collapse = "|"))
-    # vec_colnames_to_hide <- c("path_file", "path", "filename")
-    # vec_col_index_to_hide = which(colnames(DS) %in% vec_colnames_to_hide)
-    vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-    vec_col_index_to_hide = which(!colnames(DS) %in% vec_colnames_to_show)
-    wb$set_col_widths(sheet = 1, cols = vec_col_index_to_hide, hidden = TRUE)
-    wb |> wb_save(output_filename.xlsx)
-
-    if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx) else paste0("env1$f$f_file_xls.open_or_browseURL(",deparse(output_filename.xlsx),")  \n") |> message(appendLF = FALSE)
-    invisible(input_path.file.info)
-}
-
-env1$f$f_path.file.info.xlsx()
-```
-  
-  
-## :: f_path.DOCs_Rcode.file.info.xlsx = function() -dev -pending  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-
-# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# # ->> Now included in env1$env.internal.source.r ----
-# 
-# ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ## :: f_path.DOCs_Rcode.file.info.xlsx ====
-# ## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-# ## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
-# .tmp$env1_subenv_name = "f"
-# .tmp$objectname = "f_path.DOCs_Rcode.file.info.xlsx"
-# env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-#         input_path = env1$path$path1,
-#         list_DSN_pattern = list(DOCs = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"),
-#         all.files = FALSE, full.names = TRUE, recursive = TRUE,
-#         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
-#         arrange_by = c("mtime"),
-#         output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
-# 
-#     library(openxlsx2)
-#     input_path = input_path |> normalizePath(winslash = "/")
-# 
-#     output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
-#    if (Sys.info()["sysname"] == "Windows") {  output_filename.xlsx = output_filename.xlsx |> str_replace("D:/D_Repositories", paste0(Sys.getenv("OneDriveConsumer"),"/[][Rproject]")|>str_replace_all("\\\\","/"))  }
-#    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
-# 
-#     if(output_filename.xlsx %>% str_detect("FolderName")) {
-#         FolderName = input_path |> basename()
-#         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
-#     }
-#     Sys.Date.YYMMDD = format(Sys.Date(), "%y%m%d")
-#     if(output_filename.xlsx %>% str_detect("YYMMDD")) {
-#         output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), Sys.Date.YYMMDD)
-#     }
-#     
-#     if(!overwrite && file.exists(output_filename.xlsx)) {
-#         paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE  \n") |> warning(immediate. = TRUE)
-#         if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx) else paste0("env1$f$f_file_xls.open_or_browseURL(",deparse(output_filename.xlsx),")  \n") |> message(appendLF = FALSE)
-#         return(invisible())
-#     }
-# 
-#     wb <- wb_workbook()
-# 
-# 
-#     for (DSN in names(list_DSN_pattern)) {
-# 
-#         DS = input_path |> env1$f$f_path.file.info(pattern = list_DSN_pattern[[DSN]], all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-#         wb$add_worksheet(DSN)
-#         wb$add_data_table(sheet = DSN, x = DS, table_name = DSN)
-#         wb$set_col_widths(sheet = DSN, cols = 1:ncol(DS), widths = "auto")
-#         wb$freeze_pane(sheet = DSN, first_active_row = 2, first_active_col = 5)
-#         vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate")
-#         vec_col_index_to_hide = which(!colnames(DS) %in% vec_colnames_to_show)
-#         wb$set_col_widths(sheet = DSN, cols = vec_col_index_to_hide, hidden = TRUE)
-#     }
-# 
-#     wb |> wb_save(output_filename.xlsx)
-# 
-#     if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx) else paste0("env1$f$f_file_xls.open_or_browseURL(",deparse(output_filename.xlsx),")  \n") |> message(appendLF = FALSE)
-#     invisible()
-# }
-# 
-# env1$f$f_path.DOCs_Rcode.file.info.xlsx(overwrite = TRUE)
-```
-  
-  
-## :: f_list_df.write_xlsx_table = function() -dev -pending  
+## :: function_name = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_list_df.write_xlsx_table ====
-## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_list_df.write_xlsx_table" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(list_df, output_filename.xlsx, vec_colnames_to_show = NULL, first_active_row = 2, first_active_col = 2, overwrite = FALSE, xls.open_or_browseURL = TRUE) {
-    library(openxlsx2)
-    
-    output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
-    if (Sys.info()["sysname"] == "Windows") {  output_filename.xlsx = output_filename.xlsx |> str_replace("D:/D_Repositories", paste0(Sys.getenv("OneDriveConsumer"),"/[][Rproject]")|>str_replace_all("\\\\","/"))  }
-    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
-    
-    if(!overwrite && file.exists(output_filename.xlsx)) {
-        paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE  \n") |> warning(immediate. = TRUE)
-        if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx) else paste0("env1$f$f_file_xls.open_or_browseURL(",deparse(output_filename.xlsx),")  \n") |> message(appendLF = FALSE)
-        return(invisible())
-    }
-    
-    wb <- wb_workbook()
-    
-    # Add each data.frame to a new worksheet
-    for (DSN in names(list_df)) {
-        DS <- list_df[[DSN]]
-        
-        # Add worksheet and data table
-        wb$add_worksheet(DSN)
-        wb$add_data_table(sheet = DSN, x = DS, table_name = DSN)
-        
-        # Auto-adjust column widths
-        wb$set_col_widths(sheet = DSN, cols = 1:ncol(DS), widths = "auto")
-        
-        # Freeze panes (optional configuration)
-        wb$freeze_pane(sheet = DSN, first_active_row = first_active_row, first_active_col = first_active_col)
-        
-        # Hide unwanted columns, if specified
-        if (!is.null(vec_colnames_to_show)) {
-            vec_col_index_to_hide <- which(!colnames(DS) %in% vec_colnames_to_show)
-            wb$set_col_widths(sheet = DSN, cols = vec_col_index_to_hide, hidden = TRUE)
-        }
-    }
-    
-    wb |> wb_save(output_filename.xlsx)
-    
-    if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx) else paste0("env1$f$f_file_xls.open_or_browseURL(",deparse(output_filename.xlsx),")  \n") |> message(appendLF = FALSE)
-    invisible(output_filename.xlsx)
-}
-```
-  
-  
-## :: f_path.DOCs_Rcode.file.info.xlsx = function() -dev -pending  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
+## ->> Not Yet included in env1$env.internal.source.r ----
+## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Now included in env1$env.internal.source.r ----
-
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_path.DOCs_Rcode.file.info.xlsx ====
-## Rdev/60_communicate_report_export/f_list_df.write_xlsx_table.dev.Rmd
-## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path.DOCs_Rcode.file.info.xlsx"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = env1$path$path1, 
-        list_DSN_pattern = list(DOCs = "\\.(txt|csv|doc[mx]?|xls[mx]?|ppt[mx]?|pdf|html)$", Rcode = "\\.(r|rmd)$"), 
-        all.files = FALSE, full.names = TRUE, recursive = TRUE,
-        ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
-        arrange_by = c("mtime"), 
-        output_filename.xlsx = paste0(env1$path$path1, "/ProjectDocuments/", "FolderName-DOCs_Rcode.file.info-YYMMDD.xlsx"), overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) { 
-
-    library(openxlsx2)
-    input_path = input_path |> normalizePath(winslash = "/")
-    
-    output_filename.xlsx = output_filename.xlsx |> normalizePath(winslash = "/", mustWork = FALSE)
-    if (Sys.info()["sysname"] == "Windows") {  output_filename.xlsx = output_filename.xlsx |> str_replace("D:/D_Repositories", paste0(Sys.getenv("OneDriveConsumer"),"/[][Rproject]")|>str_replace_all("\\\\","/"))  }
-    if(!dir.exists(dirname(output_filename.xlsx))) {dir.create(dirname(output_filename.xlsx), recursive = TRUE)}
-    
-    if(output_filename.xlsx %>% str_detect("FolderName")) {
-        FolderName = input_path |> basename()
-        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("FolderName"), FolderName)
-    }
-    Sys.Date.YYMMDD = format(Sys.Date(), "%y%m%d")
-    if(output_filename.xlsx %>% str_detect("YYMMDD")) {
-        output_filename.xlsx = output_filename.xlsx %>% str_replace_all(fixed("YYMMDD"), Sys.Date.YYMMDD)
-    }
-    
-    if(!overwrite && file.exists(output_filename.xlsx)) {
-        paste0("file.exists(",deparse(output_filename.xlsx), ") -> Consider: overwrite = TRUE  \n") |> warning(immediate. = TRUE)
-        if(xls.open_or_browseURL) env1$f$f_file_xls.open_or_browseURL(output_filename.xlsx) else paste0("env1$f$f_file_xls.open_or_browseURL(",deparse(output_filename.xlsx),")  \n") |> message(appendLF = FALSE)
-        return(invisible())
-    }
-    if(orphan_nb_html.remove) env1$f$f_path.list.files_orphan_nb_html.remove(execute = FALSE)
-    
-    list_df = list_DSN_pattern %>% map(function(pattern) {
-        input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD,"subdirs"))
-    
-    list_df_path1 = list_DSN_pattern %>% map(function(pattern) {
-        input_path |> env1$f$f_path.file.info(pattern = pattern, all.files = all.files, full.names = full.names, recursive = FALSE, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by)
-    }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD,"path1"))
-
-    list_df_ProjectDocuments = map2(list_df, list_df_path1, function(df, df_path1) {
-        bind_rows(df_path1, df %>% filter(path %>% str_detect("ProjectDocuments"))) |> arrange(desc(!!sym(arrange_by)))
-    # }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD,"PrjDoc"))
-    }) %>% set_names(paste0(names(list_DSN_pattern),Sys.Date.YYMMDD))
-    
-    env1$f$f_list_df.write_xlsx_table(list_df = c(list_df_ProjectDocuments, list_df), output_filename.xlsx = output_filename.xlsx, vec_colnames_to_show = c("path.relative", "filename_ext", "ext", "size_MiB", "isdir", "ModifiedDate"), first_active_row = 2, first_active_col = 5, overwrite = overwrite, xls.open_or_browseURL = xls.open_or_browseURL)
-    
+## :: function_name = function() ====
+## Rdev/00_base_program/001_base_file/function_name.dev.Rmd
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "function_name" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_object) {
+    output_object = input_object
     invisible()
 }
-
-env1$f$f_path.DOCs_Rcode.file.info.xlsx(overwrite = TRUE)
 ```
-
-
-###### ECHO \% |> () ----  
+  
+  
+## https://chatgpt.com/c/67768467-8dc0-800e-95e4-4ef5efbaeb7d
+### \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+# Load required libraries
+library(purrr)
 
+#' Read all R source files in a specified directory
+#'
+#' @param input_dir Character string specifying the directory containing R files.
+#' @param VERBOSE Logical indicating whether to print debugging information (default: isTRUE(getOption("verbose"))).
+#' @return A named list with each element corresponding to each R source file in the directory.
+#'
+#' @examples
+#' # Example usage (assume we have "heart_analysis.R" and "cancer_study.R" in "health_data/" folder):
+#' # 1) Suppose your working directory is set such that "health_data/" is accessible
+#' # 2) Then run:
+#' # result_list <- f_dir.read_sourceFiles_list("health_data/")
+#' # result_list
+#'
+#' @references
+#' \url{https://stat.ethz.ch/R-manual/R-devel/library/base/html/list.files.html}
+#' \url{https://stat.ethz.ch/R-manual/R-devel/library/base/html/readLines.html}
+f_dir.read_sourceFiles_list <- function(input_dir, VERBOSE = isTRUE(getOption("verbose"))) {
+  # 1) Identify all files with ".R" extension in the specified directory
+  files_vec <- list.files(
+    path = input_dir,
+    pattern = "\\.R$",
+    full.names = TRUE
+  )
+  
+  if (VERBOSE) {
+    cat("DEBUG: Identified files:\n")
+    print(files_vec)
+  }
+  
+  # 2) Read each file and store its contents in a list
+  fileContents_list <- purrr::map(files_vec, function(singleFile_chr) {
+    if (VERBOSE) {
+      cat("DEBUG: Reading file:", singleFile_chr, "\n")
+    }
+    readLines(singleFile_chr)
+  })
+  
+  # 3) Assign names based on the file names (excluding directory paths)
+  names(fileContents_list) <- basename(files_vec)
+  
+  if (VERBOSE) {
+    cat("DEBUG: Final named list elements:\n")
+    print(names(fileContents_list))
+  }
+  
+  return(fileContents_list)
+}
+
+
+# Turn on VERBOSE for demonstration
+options(verbose = TRUE)
+f_dir.read_sourceFiles_list
 ```
-
+  
   
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
   
   
 # __________|------  
@@ -752,6 +519,81 @@ options(width=120)
 
   
   
+```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+if(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if (Sys.getenv("PARENT_RENDERING") != "YES") {    
+    if(exists("MetaData") && !is.null(unlist(MetaData))) {
+        "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        # "MetaData$DSNs |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        "MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        
+        if(!exists(".MetaData0")) .MetaData0 = MetaData
+        MetaData$DSNs = MetaData$DSNs %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
+        MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
+        "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        if(!identical(.MetaData0, MetaData)) {
+            cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+            .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds), NULL, paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.MetaData.rds))
+            # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
+            env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
+        }
+    } else {warning('> !exists("MetaData") || is.null(unlist(MetaData))  \n')}
+}
+```
+
+
+```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# __________|------  
+## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") ----
+if (Sys.getenv("PARENT_RENDERING") != "YES") {    
+    .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
+    if(exists("MetaData") && !is.null(unlist(MetaData))) {
+        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        cat("    ________________________________________________________________________    \n")
+        for (DSN in names(MetaData$DSNs)) {    
+            if(exists(DSN)) {
+                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
+                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
+                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
+                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                } else {
+                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
+                }
+            } else {  message("!exists(",deparse(DSN),")")  }
+            cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        }
+    }
+    # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_filename.xlsx) else openxlsx2::xl_open(.path_filename.xlsx)
+    # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # .path_filename.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
+    # if (Sys.info()["sysname"] == "Windows") {
+    #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+    #     openxlsx2::xl_open(.path_filename.xlsx)
+    # } else {
+    #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+    # }
+    # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # .path_filename.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
+    # readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+}
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    
+}
+```
+  
+  
 ```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
@@ -759,6 +601,28 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         # env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
+```
+  
+  
+```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$path$LastSourceEditorContext.path_filename.pdf = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+env1$path$LastSourceEditorContext.path_filename.html = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    if (Sys.info()["sysname"] == "Windows") {
+        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
+        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_filename_ext)),', output_format = "pdf_document")  \n')
+        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
+        .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
+        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
+        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
+    }
+}
+# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
+# cat("    ________________________________________________________________________    \n")
+env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.browse_in_edge_app(',deparse(.path_file),')  \n', sep="")
 ```
   
   
