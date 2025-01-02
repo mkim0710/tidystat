@@ -529,6 +529,8 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # @@ START) function ----  
 
 ## https://chatgpt.com/c/6772bb5e-3100-800e-a04b-415906b0c197
+## https://chatgpt.com/c/6773c8bd-cc78-800e-b7a2-b5593ab4b673
+
 ## :: f_file.unnest_tokens.count = function() -dev -pending  
 ### \% |> f_file.unnest_tokens.count()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -538,142 +540,11 @@ options(width=120)
 ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: function_name = function() ====
+## :: f_file.unnest_tokens.count = function() ====
 ## Rdev/00_base_program/002_base_encoding_RegEx/f_file.unnest_tokens.count.dev.Rmd
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_file.unnest_tokens.count" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use_tidytext = TRUE, exclude_comments = TRUE) {
-    # Load libraries inside function scope (generally not recommended in production)
-    # library(tidytext)    # For tidytext::unnest_tokens()
-    # library(dplyr)       # For pipe operations and count()
-    # library(stringr)     # For str_extract_all()
-    
-    # 1. Check if file exists
-    if (!file.exists(input_path_file)) {
-        stop("File does not exist: ", input_path_file)
-    }
-    
-    # 2. Read the source code file into a character vector
-    input_vec_chr <- readLines(input_path_file, warn = FALSE)
-    
-    # 3. Remove comments if exclude_comments is TRUE
-    if (isTRUE(exclude_comments)) {
-        # Use a regular expression to remove anything following '#'
-        input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
-    }
-    
-    # 4. Create a tibble with integer line numbers
-    input_vec_chr.df <- tibble(
-        rowNum = as.integer(seq_along(input_vec_chr)),
-        input_vec_chr = input_vec_chr
-    )
-    
-    # 5. Tokenize words
-    if (isTRUE(use_tidytext)) {
-        # Approach 1: Tidytext
-        # my_tokenize <- function(text_vec) {
-        #     # Return a list of character vectors
-        #     # containing your desired tokenization logic
-        #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
-        # }
-        # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-        #     tidytext::unnest_tokens(
-        #         output = "token_chr",
-        #         input = input_vec_chr,
-        #         token = my_tokenize, # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
-        #         to_lower = FALSE, 
-        #         drop = FALSE, 
-        #         collapse = NULL
-        #     ) %>%
-        #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
-
-        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-            tidytext::unnest_tokens(
-                output = "token_chr",
-                input = input_vec_chr,
-                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
-                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
-                to_lower = FALSE, drop = FALSE, collapse = NULL
-            ) %>%
-            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
-    } else {
-        # Tokenize words using stringr and str_replace_all-based approach
-        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-            rowwise() %>%
-            mutate(token_chr = list(
-                # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
-                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
-            )) %>%
-            unnest(cols = c(token_chr)) %>%
-            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
-    }
-    
-    return(input_vec_chr.df.unnest_tokens.count)
-}
-
-###############################################################################
-# Function: env1$env.internal$f_file.unnest_tokens.count
-# Description:
-#   Reads an R script from 'input_path_file', optionally removes comments, and counts 
-#   word frequencies. Tokens can be identified using either tidytext or a str_replace_all-based approach.
-#
-# Parameters:
-#   - input_path_file (character): Path to the R script file.
-#   - use_tidytext (logical): If TRUE, uses tidytext::tidytext::unnest_tokens().
-#   - exclude_comments (logical): If TRUE, removes R comments (lines starting with '#').
-#
-# Returns:
-#   A tibble with columns 'rowNum', 'word', and 'n' indicating the frequency
-#   of each token in the specified file.
-###############################################################################
-
-###############################################################################
-# Example Usage
-###############################################################################
-# Replace 'your_script.R' with the path to your R script file.
-# input_path_file = rstudioapi::getSourceEditorContext()$path
-input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
-
-
-# Using tidytext
-word_frequencies_tidytext <- env1$env.internal$f_file.unnest_tokens.count(
-  input_path_file,
-  use_tidytext = TRUE,
-  exclude_comments = TRUE
-)
-
-# Using str_replace_all-based approach
-word_frequencies_gsub <- env1$env.internal$f_file.unnest_tokens.count(
-  input_path_file,
-  use_tidytext = FALSE,
-  exclude_comments = TRUE
-)
-
-###############################################################################
-# Display the Results
-###############################################################################
-cat("Word Frequencies Using Tidytext:\n")
-print(word_frequencies_tidytext)
-
-cat("\nWord Frequencies Using Gsub:\n")
-print(word_frequencies_gsub)
-```
-  
-  
-## https://chatgpt.com/c/6773c8bd-cc78-800e-b7a2-b5593ab4b673
-## :: f_file.unnest_tokens.count = function() -dev -pending  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-###############################################################################
-# Improved Code - f_file.unnest_tokens.count
-#
-# This function reads an R script from `input_path_file`, optionally removes
-# comments, and tokenizes its words. It follows the requested naming conventions,
-# provides optional verbose outputs, and returns a tibble with line numbers,
-# tokens, and their frequencies.
-###############################################################################
-
-f_file.unnest_tokens.count = function(
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     input_path_file,
     use_tidytext = TRUE,
     exclude_comments = TRUE,
