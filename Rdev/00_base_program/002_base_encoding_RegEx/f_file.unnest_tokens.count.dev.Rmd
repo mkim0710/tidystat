@@ -251,7 +251,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # References:
-# 1. tidytext::unnest_tokens() - https://cran.r-project.org/web/packages/tidytext/tidytext.pdf
+# 1. tidytext::tidytext::unnest_tokens() - https://cran.r-project.org/web/packages/tidytext/tidytext.pdf
 # 2. dplyr::count() - https://cran.r-project.org/web/packages/dplyr/dplyr.pdf
 # 3. stringr::str_extract_all() - https://cran.r-project.org/web/packages/stringr/stringr.pdf
 
@@ -296,9 +296,9 @@ input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_
 use_tidytext = TRUE
 exclude_comments = TRUE
 
-library(tidytext)    # For unnest_tokens()
-library(dplyr)       # For pipe operations and count()
-library(stringr)     # For str_extract_all()
+# library(tidytext)    # For tidytext::unnest_tokens()
+# library(dplyr)       # For pipe operations and count()
+# library(stringr)     # For str_extract_all()
 
 ## :: input_vec_chr ====  
 input_vec_chr <- readLines(input_path_file, warn = FALSE)  
@@ -334,10 +334,10 @@ input_vec_chr.df %>% filter(input_vec_chr != "")
 ```
 
 
-#### \% |> unnest_tokens() 
+#### \% |> tidytext::unnest_tokens() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 input_vec_chr.df %>%
-    unnest_tokens(
+    tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -347,10 +347,10 @@ input_vec_chr.df %>%
 ```
 
 
-#### \% |> unnest_tokens() |> count()
+#### \% |> tidytext::unnest_tokens() |> count()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 input_vec_chr.df %>%
-    unnest_tokens(
+    tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -360,7 +360,7 @@ input_vec_chr.df %>%
     count(rowNum, token_chr, sort = TRUE)
 
 input_vec_chr.df %>%
-    unnest_tokens(
+    tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -372,10 +372,10 @@ input_vec_chr.df %>%
 
 
 
-#### \% |> unnest_tokens() |> group_by(token_chr) %>% summarise()
+#### \% |> tidytext::unnest_tokens() |> group_by(token_chr) %>% summarise()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 input_vec_chr.df %>%
-    unnest_tokens(
+    tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -385,7 +385,7 @@ input_vec_chr.df %>%
     count(rowNum, token_chr, sort = TRUE)
 
 input_vec_chr.df %>%
-    unnest_tokens(
+    tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -402,7 +402,7 @@ input_vec_chr.df %>%
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Tokenize words using tidytext with a regex for valid object names
 input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-    unnest_tokens(
+    tidytext::unnest_tokens(
         output = "token_chr",
         input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -543,38 +543,56 @@ options(width=120)
 .tmp$env1_subenv_name = "env.internal"
 .tmp$objectname = "f_file.unnest_tokens.count" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use_tidytext = TRUE, exclude_comments = TRUE) {
+    # Load libraries inside function scope (generally not recommended in production)
+    # library(tidytext)    # For tidytext::unnest_tokens()
+    # library(dplyr)       # For pipe operations and count()
+    # library(stringr)     # For str_extract_all()
     
-    library(tidytext)    # For unnest_tokens()
-    library(dplyr)       # For pipe operations and count()
-    library(stringr)     # For str_extract_all()
-    
-    # Check if file exists
+    # 1. Check if file exists
     if (!file.exists(input_path_file)) {
         stop("File does not exist: ", input_path_file)
     }
     
-    # Read the source code file
+    # 2. Read the source code file into a character vector
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
-    # Remove comments if exclude_comments is TRUE
-    if (exclude_comments) {
+    # 3. Remove comments if exclude_comments is TRUE
+    if (isTRUE(exclude_comments)) {
         # Use a regular expression to remove anything following '#'
         input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
     }
     
-    # Create a tibble with line numbers
+    # 4. Create a tibble with integer line numbers
     input_vec_chr.df <- tibble(
-        rowNum = seq_along(input_vec_chr),
+        rowNum = as.integer(seq_along(input_vec_chr)),
         input_vec_chr = input_vec_chr
     )
     
-    if (use_tidytext) {
-        # Tokenize words using tidytext with a regex for valid object names
+    # 5. Tokenize words
+    if (isTRUE(use_tidytext)) {
+        # Approach 1: Tidytext
+        # my_tokenize <- function(text_vec) {
+        #     # Return a list of character vectors
+        #     # containing your desired tokenization logic
+        #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
+        # }
+        # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        #     tidytext::unnest_tokens(
+        #         output = "token_chr",
+        #         input = input_vec_chr,
+        #         token = my_tokenize, # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+        #         to_lower = FALSE, 
+        #         drop = FALSE, 
+        #         collapse = NULL
+        #     ) %>%
+        #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
+
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-            unnest_tokens(
+            tidytext::unnest_tokens(
                 output = "token_chr",
                 input = input_vec_chr,
-                token = "regex", pattern = "[^a-zA-Z0-9._]+",
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
                 to_lower = FALSE, drop = FALSE, collapse = NULL
             ) %>%
             group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
@@ -583,9 +601,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
             rowwise() %>%
             mutate(token_chr = list(
-                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
+                # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
+                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
             )) %>%
-            unnest(token_chr) %>%
+            unnest(cols = c(token_chr)) %>%
             group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
     }
     
@@ -600,7 +619,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path_file, use
 #
 # Parameters:
 #   - input_path_file (character): Path to the R script file.
-#   - use_tidytext (logical): If TRUE, uses tidytext::unnest_tokens().
+#   - use_tidytext (logical): If TRUE, uses tidytext::tidytext::unnest_tokens().
 #   - exclude_comments (logical): If TRUE, removes R comments (lines starting with '#').
 #
 # Returns:
@@ -661,9 +680,9 @@ f_file.unnest_tokens.count = function(
     VERBOSE = isTRUE(getOption("verbose"))
 ) {
     # Load libraries inside function scope (generally not recommended in production)
-    library(tidytext)    # For unnest_tokens()
-    library(dplyr)       # For pipe operations and count()
-    library(stringr)     # For str_extract_all()
+    # library(tidytext)    # For tidytext::unnest_tokens()
+    # library(dplyr)       # For pipe operations and count()
+    # library(stringr)     # For str_extract_all()
     
     # 1. Check if file exists
     if (!file.exists(input_path_file)) {
@@ -673,7 +692,7 @@ f_file.unnest_tokens.count = function(
     # 2. Read the source code file into a character vector
     input_vec_chr <- readLines(input_path_file, warn = FALSE)
     
-    # 3. Remove comments if requested
+    # 3. Remove comments if exclude_comments is TRUE
     if (isTRUE(exclude_comments)) {
         input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
     }
@@ -686,8 +705,8 @@ f_file.unnest_tokens.count = function(
     
     # Optional debug print
     if (isTRUE(VERBOSE)) {
-        cat("<VERBOSE> Head of input_vec_chr.df:\n")
-        print(head(input_vec_chr.df, 3))
+        cat("<VERBOSE> str(input_vec_chr.df)  \n")
+        str(input_vec_chr.df)
     }
     
     # 5. Tokenize words
@@ -699,7 +718,7 @@ f_file.unnest_tokens.count = function(
         #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
         # }
         # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-        #     unnest_tokens(
+        #     tidytext::unnest_tokens(
         #         output = "token_chr",
         #         input = input_vec_chr,
         #         token = my_tokenize, # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -710,7 +729,7 @@ f_file.unnest_tokens.count = function(
         #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
         
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
-            unnest_tokens(
+            tidytext::unnest_tokens(
                 output = "token_chr",
                 input = input_vec_chr,
                 token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
@@ -733,8 +752,8 @@ f_file.unnest_tokens.count = function(
     
     # Another optional debug print
     if (isTRUE(VERBOSE)) {
-        cat("<VERBOSE> Head of input_vec_chr.df.unnest_tokens.count:\n")
-        print(head(input_vec_chr.df.unnest_tokens.count, 3))
+        cat("<VERBOSE> str(input_vec_chr.df.unnest_tokens.count)  \n")
+        str(input_vec_chr.df.unnest_tokens.count)
     }
     
     # 6. Return result
