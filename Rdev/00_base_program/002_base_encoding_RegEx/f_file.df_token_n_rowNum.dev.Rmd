@@ -531,19 +531,19 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## https://chatgpt.com/c/6772bb5e-3100-800e-a04b-415906b0c197
 ## https://chatgpt.com/c/6773c8bd-cc78-800e-b7a2-b5593ab4b673
 
-## :: f_file.unnest_tokens.count = function() -dev -pending  
-### \% |> f_file.unnest_tokens.count()  
+## :: f_file.df_token_n_rowNum = function() -dev -pending  
+### \% |> env1$f$f_file.df_token_n_rowNum()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Not Yet included in env1$env.internal.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.unnest_tokens.count = function() ====
-## Rdev/00_base_program/002_base_encoding_RegEx/f_file.unnest_tokens.count.dev.Rmd
-.tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "f_file.unnest_tokens.count" 
+## :: f_file.df_token_n_rowNum = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_file.df_token_n_rowNum.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_file.df_token_n_rowNum" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     input_path_file,
     use_tidytext = TRUE,
@@ -649,7 +649,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 example_path_file <- "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
 
 # 1) Using tidytext approach
-tidytextTokens_df <- f_file.unnest_tokens.count(
+tidytextTokens_df <- env1$f$f_file.unnest_tokens.count(
     input_path_file = example_path_file,
     use_tidytext    = TRUE,
     exclude_comments = TRUE,
@@ -657,7 +657,7 @@ tidytextTokens_df <- f_file.unnest_tokens.count(
 )
 
 # 2) Using stringr/gsub approach
-stringrTokens_df <- f_file.unnest_tokens.count(
+stringrTokens_df <- env1$f$f_file.unnest_tokens.count(
     input_path_file = example_path_file,
     use_tidytext    = FALSE,
     exclude_comments = TRUE,

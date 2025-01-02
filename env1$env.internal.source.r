@@ -1831,6 +1831,104 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "CurrentSourceEditorContext.TableOfContentsNESTED.merge_with_input_vec_chr.except_TOC")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_file.df_token_n_rowNum = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_file.df_token_n_rowNum.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_file.df_token_n_rowNum" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+    input_path_file,
+    use_tidytext = TRUE,
+    exclude_comments = TRUE,
+    VERBOSE = isTRUE(getOption("verbose"))
+) {
+    # Load libraries inside function scope (generally not recommended in production)
+    # library(tidytext)    # For tidytext::unnest_tokens()
+    # library(dplyr)       # For pipe operations and count()
+    # library(stringr)     # For str_extract_all()
+    
+    # 1. Check if file exists
+    if (!file.exists(input_path_file)) {
+        stop("File does not exist: ", input_path_file)
+    }
+    
+    # 2. Read the source code file into a character vector
+    input_vec_chr <- readLines(input_path_file, warn = FALSE)
+    
+    # 3. Remove comments if exclude_comments is TRUE
+    if (isTRUE(exclude_comments)) {
+        input_vec_chr <- input_vec_chr |> str_replace_all("#.*", "")  ## |> str_trim()
+    }
+    
+    # 4. Create a tibble with integer line numbers
+    input_vec_chr.df <- tibble(
+        rowNum = as.integer(seq_along(input_vec_chr)),
+        input_vec_chr = input_vec_chr
+    )
+    
+    # Optional debug print
+    if (isTRUE(VERBOSE)) {
+        cat("<VERBOSE> str(input_vec_chr.df)  \n")
+        str(input_vec_chr.df)
+    }
+    
+    # 5. Tokenize words
+    if (isTRUE(use_tidytext)) {
+        # Approach 1: Tidytext
+        # my_tokenize <- function(text_vec) {
+        #     # Return a list of character vectors
+        #     # containing your desired tokenization logic
+        #     stringr::str_extract_all(text_vec, "[a-zA-Z0-9._]+")
+        # }
+        # input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+        #     tidytext::unnest_tokens(
+        #         output = "token_chr",
+        #         input = input_vec_chr,
+        #         token = my_tokenize, # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+        #         to_lower = FALSE, 
+        #         drop = FALSE, 
+        #         collapse = NULL
+        #     ) %>%
+        #     group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
+        
+        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+            tidytext::unnest_tokens(
+                output = "token_chr",
+                input = input_vec_chr,
+                token = "regex",  # Unit for tokenizing, or a custom tokenizing function. Built-in options are "words" (default), "characters", "character_shingles", "ngrams", "skip_ngrams", "sentences", "lines", "paragraphs", "regex", and "ptb" (Penn Treebank). If a function, should take a character vector and return a list of character vectors of the same length.
+                pattern = "[^a-zA-Z0-9._]+",  # Split by non-alphanumeric characters, except dot and underscore.
+                to_lower = FALSE, drop = FALSE, collapse = NULL
+            ) %>%
+            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
+        
+    } else {
+        # Approach 2: Stringr / gsub approach
+        input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+            rowwise() %>%
+            mutate(token_chr = list(
+                # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
+                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
+            )) %>%
+            unnest(cols = c(token_chr)) %>%
+            group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
+    }
+    
+    # Another optional debug print
+    if (isTRUE(VERBOSE)) {
+        cat("<VERBOSE> str(input_vec_chr.df.unnest_tokens.count)  \n")
+        str(input_vec_chr.df.unnest_tokens.count)
+    }
+    
+    # 6. Return result
+    return(input_vec_chr.df.unnest_tokens.count)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) f_NLP_file.df_token_n_rowNum  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_NLP_file.df_token_n_rowNum")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) f_tidytext_file.unnest_tokens.count  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_tidytext_file.unnest_tokens.count")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.str_replace_all.old.ObjectName =  ----  
 # Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 .tmp$objectname = "f_file.str_replace_all.old.ObjectName"
