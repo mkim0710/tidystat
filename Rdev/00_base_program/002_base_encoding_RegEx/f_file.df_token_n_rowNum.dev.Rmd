@@ -455,6 +455,10 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 input_vec_chr.df %>%
     mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
     unnest(token_chr)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+input_vec_chr.df %>%
+    mutate(token_chr = input_vec_chr %>% map(~unlist(str_extract_all(.x, "[a-zA-Z0-9._]+")))) %>%
+    unnest(token_chr)
 ```
 
 
@@ -628,6 +632,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         # Approach 2: Stringr / gsub approach
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
             # mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
+            # mutate(token_chr = input_vec_chr %>% map(~unlist(str_extract_all(.x, "[a-zA-Z0-9._]+")))) %>%
             rowwise() %>%
             # mutate(token_chr = input_vec_chr %>% str_extract_all("\\b[a-zA-Z0-9._]+\\b")) %>%    # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
             mutate(token_chr = input_vec_chr %>% str_extract_all("[a-zA-Z0-9._]+")) %>% 
