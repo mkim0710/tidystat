@@ -973,6 +973,34 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.URL_github ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path.URL_github"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_path = rstudioapi::getSourceEditorContext()$path, basepath = env1$path$path1, main_branch_name = "master", URL.browse_in_edge_app = TRUE) {
+    # input_path.relative = input_path |> env1$f$f_path.relative(basepath = basepath)
+    input_path.relative = input_path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(basepath|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+    
+    basepath.basename = basepath %>% basename()
+    basepath.basename = ifelse(basepath.basename == "github_tidystat", "tidystat", basepath.basename)
+    
+    URL_github = paste0("https://github.com/mkim0710/", basepath.basename, "/blob/", main_branch_name, "/", input_path.relative)
+    if(URL.browse_in_edge_app) {
+        URL_github |> env1$env.internal.attach$f_URL.browse_in_edge_app()
+    }
+    return(URL_github)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) path.as_github_URL.browse_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "path.as_github_URL.browse_in_edge_app")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) normalizePath_as_github_URL.browse_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "normalizePath_as_github_URL.browse_in_edge_app")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) normalizePath_as_github_URL.browse_in_edge_app  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "normalizePath_as_github_URL.browse_in_edge_app")
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_relative.path_normalized_based_on_path1 ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path_relative.path_normalized_based_on_path1"
