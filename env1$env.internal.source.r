@@ -1940,8 +1940,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 #### (ALIAS) NLP_vec_chr.df_token_n_rowNum  ----
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "NLP_vec_chr.df_token_n_rowNum")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#### (ALIAS) f_vec_chr.tidytext_unnest_tokens.count  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_vec_chr.tidytext_unnest_tokens.count")
+#### (ALIAS) tidytext_unnest_tokens_count.f_vec_chr  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "tidytext_unnest_tokens_count.f_vec_chr")
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ## :: f_file.df_token_n_rowNum = function() ====
@@ -1981,8 +1981,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 #### (ALIAS) NLP_file.df_token_n_rowNum  ----
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "NLP_file.df_token_n_rowNum")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#### (ALIAS) f_file.tidytext_unnest_tokens.count  ----
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_file.tidytext_unnest_tokens.count")
+#### (ALIAS) tidytext_unnest_tokens_count.f_file  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "tidytext_unnest_tokens_count.f_file")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.str_replace_all.old.ObjectName =  ----  
