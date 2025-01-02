@@ -1926,11 +1926,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     } else {
         # Approach 2: Stringr / gsub approach
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+            # mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
             rowwise() %>%
-            mutate(token_chr = list(
-                # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
-                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
-            )) %>%
+            # mutate(token_chr = input_vec_chr %>% str_extract_all("\\b[a-zA-Z0-9._]+\\b")) %>%    # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
+            mutate(token_chr = input_vec_chr %>% str_extract_all("[a-zA-Z0-9._]+")) %>% 
             unnest(cols = c(token_chr)) %>%
             group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
     }

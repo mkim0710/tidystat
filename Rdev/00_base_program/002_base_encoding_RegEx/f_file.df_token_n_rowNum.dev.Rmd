@@ -424,20 +424,37 @@ input_vec_chr |> str_extract_all("[a-zA-Z0-9._]+") %>% str
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Tokenize words using stringr and str_replace_all-based approach
 input_vec_chr.df %>%
-    rowwise() %>%
+    rowwise() %>%  #  to treat each row as a separate group. rowwise() + unnest(cols = ...) can handle a list-of-character-vectors directly.
     mutate(token_chr = list(
         unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))
     )) %>%
     unnest(token_chr)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 input_vec_chr.df %>%
-    rowwise() %>%
-    mutate(token_chr = list(
-        unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
-    )) %>%
+    rowwise() %>%  #  to treat each row as a separate group. rowwise() + unnest(cols = ...) can handle a list-of-character-vectors directly. 
+    mutate(token_chr = list(  unlist(  str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")  )  )) %>%  # str_extract_all(input_vec_chr, ...) returns list(c("match1", "match2"), c("matchA", "matchB", "matchC"), ...). 
     unnest(token_chr)
-# input_vec_chr.df %>%
-#     mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+")) %>%
-#     unnest(token_chr)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+input_vec_chr.df %>%
+    rowwise() %>%  #  to treat each row as a separate group. rowwise() + unnest(cols = ...) can handle a list-of-character-vectors directly. 
+    mutate(token_chr = str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) %>%   # str_extract_all(input_vec_chr, ...) returns list(c("match1", "match2"), c("matchA", "matchB", "matchC"), ...). 
+    unnest(token_chr)
+```
+
+###    mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+")) %>%
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+input_vec_chr.df %>%
+    mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+")) %>%
+    unnest(cols = c(token_chr)) %>%
+    print(n = 37)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+input_vec_chr.df %>%
+    mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+")) %>%
+    unnest_longer(token_chr)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+input_vec_chr.df %>%
+    mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
+    unnest(token_chr)
 ```
 
 
@@ -446,9 +463,7 @@ input_vec_chr.df %>%
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 input_vec_chr.df %>%
     rowwise() %>%
-    mutate(token_chr = list(
-        unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+"))
-    )) %>%
+    mutate(token_chr = str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) %>%   # str_extract_all(input_vec_chr, ...) returns list(c("match1", "match2"), c("matchA", "matchB", "matchC"), ...). 
     unnest(token_chr) %>%
     count(token_chr, sort = TRUE)
 
@@ -612,11 +627,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     } else {
         # Approach 2: Stringr / gsub approach
         input_vec_chr.df.unnest_tokens.count <- input_vec_chr.df %>%
+            # mutate(token_chr = input_vec_chr %>% map(str_extract_all, "[a-zA-Z0-9._]+") %>% map(unlist)) %>% 
             rowwise() %>%
-            mutate(token_chr = list(
-                # unlist(str_extract_all(input_vec_chr, "\\b[a-zA-Z0-9._]+\\b"))  # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
-                unlist(str_extract_all(input_vec_chr, "[a-zA-Z0-9._]+")) 
-            )) %>%
+            # mutate(token_chr = input_vec_chr %>% str_extract_all("\\b[a-zA-Z0-9._]+\\b")) %>%    # \\b (word boundary) in most regex engines is defined to match the transition between a “word character” (usually [A-Za-z0-9_]) and a “non-word” character (or line boundary). A leading period (.) is not included in the standard “word character” set, so .tmp might not be recognized as one complete token at a word boundary.
+            mutate(token_chr = input_vec_chr %>% str_extract_all("[a-zA-Z0-9._]+")) %>% 
             unnest(cols = c(token_chr)) %>%
             group_by(token_chr) %>% summarise(n = n(), rowNum = paste0(rowNum, collapse = "|")) %>% arrange(desc(n))
     }
