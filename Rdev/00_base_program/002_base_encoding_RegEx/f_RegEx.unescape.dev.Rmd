@@ -327,6 +327,13 @@ RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
 ```
   
   
+### "[]$*+.?[^{|(\\#%&~_/<=>'!,:;\\\")}@-]" %>% strsplit("") %>% unlist %>% dput.deparse.cat0()
+```{r}
+"[]$*+.?[^{|(\\#%&~_/<=>'!,:;\\\")}@-]" %>% strsplit("") %>% unlist %>% dput.deparse.cat0()
+```
+  
+  
+  
 # __________|------  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}

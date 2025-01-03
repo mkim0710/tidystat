@@ -568,6 +568,28 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec1, vec2, print_st
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.vec1_vec2")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.strsplit0_as_list_vec =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_vec_chr.strsplit0_as_list_vec"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, split = "") {
+    output_list = input_vec_chr %>% strsplit(split)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) strsplit0_as_list_vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0_as_list_vec")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_chr1.strsplit0_as_vec  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_chr1.strsplit0_as_vec"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = "") {
+    if(length(input_chr1) > 1) warning("length(input_chr1) > 1")
+    output_vec_chr = input_chr1 %>% strsplit(split) %>% unlist
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) strsplit0.unlist_as_vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0.unlist_as_vec")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_chr.na_if_NotMatching =  ----
 # https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.na_if_NotMatching.dev.r
 .tmp$env1_subenv_name = "f"
