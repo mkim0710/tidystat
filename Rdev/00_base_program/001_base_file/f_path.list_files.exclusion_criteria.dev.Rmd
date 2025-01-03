@@ -246,6 +246,15 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # @@ REFERENCES) ----  
+## https://cran.r-project.org/doc/FAQ/R-FAQ.pdf#page=42&view=FitV&navpanes=1
+## https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -426,29 +435,34 @@ options(width=120)
 #   into a simplified regex equivalent.
 # -----------------------------------------------
 glob_to_regex <- function(glob_pattern, anchor = FALSE) {
-  # 1) Escape all regex-special characters except '*' (we handle '*' ourselves).
-  #    Some minimal set of special chars to escape: . + ? ^ $ ( ) [ ] { } | \
-  #    We'll do a gsub for those, ignoring '*' because we handle '*' below.
-  safe <- gsub("([.+?^${}()|\\[\\]\\\\])", "\\\\\\1", glob_pattern)
-  
-  # 2) Handle "**/" (common in shells to mean "any number of directory levels").
+  # 1) Handle "**/" (common in shells to mean "any number of directory levels").
   #    We'll convert it into a pattern that allows zero or more directory segments:
-  #    "**/" -> "(?:.*/)*"
-  # safe <- gsub("\\*\\*/", "(?:.*/)*", safe)
-  safe <- gsub("\\*\\*/", "(?:[^/]*/)*", safe)  # only capture subdirectory segments
+  #    "**/" -> "(?:[^/]*/)*"
+  safe <- gsub("\\*\\*/", "(?:[^/]*/)*", glob_pattern)
   
-  # 3) Convert remaining "*" to something that doesn't cross directory boundaries
-  #    in a strict glob sense. However, many people prefer ".*" for "any characters".
-  #    Here, we mimic "any characters except /": "[^/]*"
+  # 2) Convert remaining "*" to something that doesn't cross directory boundaries
+  #    ("any characters except /"): "[^/]*"
   safe <- gsub("\\*", "[^/]*", safe)
-  
-  # 4) If desired, anchor at start and end:
+
+  # 3) Escape all regex-special characters (except '*'),
+  #    capturing them and prepending a literal backslash to each.
+  #    Using "([.+?^${}()|\\[\\]\\\\])" to find them,
+  #    then the replacement is "\\\\\\\\1" => 4 backslashes + "1" in R code.
+  #    Explanation:
+  #      - In an R-quoted string, every two backslashes become one actual backslash.
+  #      - After R parses "\\\\\\\\1", it becomes "\\\\1" as sub() sees it.
+  #      - In the sub() replacement, "\\\\1" is interpreted as:
+  #         "a single literal backslash" + capture group #1
+  safe <- gsub("([.+?^${}()|\\[\\]\\\\])", "\\\\\\\\1", safe)
+
+  # 4) If desired, anchor at start and end
   if (anchor) {
     safe <- paste0("^", safe, "$")
   }
-  
+
   return(safe)
 }
+
 
 # -----------------------------------------------
 # Main function:
@@ -466,13 +480,97 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
   
   # 3) Trim whitespace around each pattern (if any)
   parts <- trimws(parts)
-  # parts <- gsub("\\*\\*/", "(?:[^/]*/)*", parts)  # only capture subdirectory segments
-  # parts <- gsub("\\*\\*/", "", parts)  # only capture subdirectory segments
   
   # 4) Convert each glob-like pattern to a regex
-  regex_parts <- vapply(parts, FUN = function(p) {
-    glob_to_regex(p, anchor = anchor_each)
-  }, FUN.VALUE = character(1))
+  regex_parts <- vapply(
+    parts,
+    FUN = function(p) glob_to_regex(p, anchor = anchor_each),
+    FUN.VALUE = character(1)
+  )
+  
+  # 5) Combine them with OR
+  final_regex <- paste(regex_parts, collapse = "|")
+  
+  return(final_regex)
+}
+
+
+# --------------------
+# Example usage
+# --------------------
+inclusion_str  <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
+inclusion_regex
+# Potential output (when shown via print()):
+# "(?:[^/]*/)*[^/]*\\.[rR]|(?:[^/]*/)*[^/]*\\.[rR][mM][dD]|default\\.R|\\.Rprofile"
+# (Dots are now escaped as \\. for literal matches.)
+
+exclusion_str  <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
+exclusion_regex <- styles_to_regex(exclusion_str, anchor_each = FALSE)
+exclusion_regex
+# Potential output:
+# "\\.history|-backup|r4ds-master|[^/]*symlink[^/]*|[^/]*\\.lnk"
+# (Leading dot in .history => \\.history)
+
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# -----------------------------------------------
+# Helper function:
+#   Converts a single glob-like pattern (e.g. "**/*.[rR]")
+#   into a simplified regex equivalent.
+# -----------------------------------------------
+glob_to_regex <- function(glob_pattern, anchor = FALSE) {
+  # 1) Handle "**/" (common in shells to mean "any number of directory levels").
+  #    We'll convert it into a pattern that allows zero or more directory segments:
+  #    "**/" -> "(?:[^/]*/)*"
+  safe <- gsub("\\*\\*/", "(?:[^/]*/)*", glob_pattern)
+  
+  # 2) Convert remaining "*" to something that doesn't cross directory boundaries.
+  #    We mimic "any characters except /": "[^/]*"
+  safe <- gsub("\\*", "[^/]*", safe)
+
+  # 3) Escape all regex-special characters except '*'
+  #    Some minimal set of special chars to escape: . + ? ^ $ ( ) [ ] { } | \
+  #    We capture them in group 1 and prepend a literal backslash to each.
+  safe <- gsub("([.+?^${}()|\\[\\]\\\\])", "\\\\\\1", safe)
+
+  # 4) Optionally anchor at start and end:
+  if (anchor) {
+    safe <- paste0("^", safe, "$")
+  }
+
+  return(safe)
+}
+
+
+# -----------------------------------------------
+# Main function:
+#   Converts a single string of comma-separated patterns enclosed in braces, e.g.
+#     "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+#   ...into one combined OR-based regex suitable for grepl().
+# -----------------------------------------------
+styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
+  # 1) Remove leading and trailing braces (if present)
+  trimmed <- gsub("^\\{", "", pattern_string)
+  trimmed <- gsub("\\}$", "", trimmed)
+  
+  # 2) Split by comma
+  parts <- strsplit(trimmed, ",")[[1]]
+  
+  # 3) Trim whitespace around each pattern (if any)
+  parts <- trimws(parts)
+  
+  # 4) Convert each glob-like pattern to a regex
+  regex_parts <- vapply(
+    parts,
+    FUN = function(p) glob_to_regex(p, anchor = anchor_each),
+    FUN.VALUE = character(1)
+  )
   
   # 5) Combine them with OR
   final_regex <- paste(regex_parts, collapse = "|")
@@ -485,29 +583,18 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 
 # Inclusion example
-inclusion_str <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
-# Possible output (simplified illustration):
-# "(?:.*/)*[^/]*\\.[rR]|(?:.*/)*[^/]*\\.[rR][mM][dD]|default\\.R|\\.Rprofile"
+# Example output might look like:
+# "(?:[^/]*/)*[^/]*\\.[rR]|(?:[^/]*/)*[^/]*\\.[rR][mM][dD]|default\\.R|\\.Rprofile"
 
 # Exclusion example
-exclusion_str <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
+exclusion_str  <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
 exclusion_regex <- styles_to_regex(exclusion_str, anchor_each = FALSE)
 exclusion_regex
-# Possible output (simplified):
+# Example output might look like:
 # "\\.history|-backup|r4ds-master|[^/]*symlink[^/]*|[^/]*\\.lnk"
-
-# Now, for instance, you can use these combined regex strings in grepl():
-#   grepl(inclusion_regex, "path/to/file.R")
-#   grepl(exclusion_regex, "some-symlink-file")
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
 
 ```
   
@@ -593,81 +680,6 @@ options(width=120)
 
   
   
-```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-if(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
-if (Sys.getenv("PARENT_RENDERING") != "YES") {    
-    if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$DSNs |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        "MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        
-        if(!exists(".MetaData0")) .MetaData0 = MetaData
-        MetaData$DSNs = MetaData$DSNs %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
-        MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
-        "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-        if(!identical(.MetaData0, MetaData)) {
-            cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-            .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds), NULL, paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.MetaData.rds))
-            # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
-            env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
-        }
-    } else {warning('> !exists("MetaData") || is.null(unlist(MetaData))  \n')}
-}
-```
-
-
-```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# __________|------  
-## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") ----
-if (Sys.getenv("PARENT_RENDERING") != "YES") {    
-    .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
-    if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-        cat("    ________________________________________________________________________    \n")
-        for (DSN in names(MetaData$DSNs)) {    
-            if(exists(DSN)) {
-                assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
-                if(attributes(.GlobalEnv[[DSN]])$DSN != DSN) attributes(.GlobalEnv[[DSN]])$DSN = DSN
-                if (!is.null(attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file)) {
-                    message( "attributes(attributes(",DSN,")$DSN)$.path_file == ",deparse(attributes(attributes(get(DSN))$DSN)$.path_file) )
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path_file = attributes(attributes(.GlobalEnv[[DSN]])$DSN)$.path_file, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
-                } else {
-                    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DSN, .path4write = .path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE)
-                }
-            } else {  message("!exists(",deparse(DSN),")")  }
-            cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        }
-    }
-    # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_filename.xlsx) else openxlsx2::xl_open(.path_filename.xlsx)
-    # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_filename.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
-    # if (Sys.info()["sysname"] == "Windows") {
-    #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-    #     openxlsx2::xl_open(.path_filename.xlsx)
-    # } else {
-    #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-    # }
-    # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_filename.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
-    # readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-}
-if (Sys.getenv("PARENT_RENDERING") != "YES") {
-    
-}
-```
-  
-  
 ```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
@@ -675,28 +687,6 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         # env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
-```
-  
-  
-```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-env1$path$LastSourceEditorContext.path_filename.pdf = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-env1$path$LastSourceEditorContext.path_filename.html = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-if (Sys.getenv("PARENT_RENDERING") != "YES") {
-    if (Sys.info()["sysname"] == "Windows") {
-        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
-
-        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_filename_ext)),', output_format = "pdf_document")  \n')
-        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
-        .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
-        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
-        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
-    }
-}
-# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
-# cat("    ________________________________________________________________________    \n")
-env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.browse_in_edge_app(',deparse(.path_file),')  \n', sep="")
 ```
   
   
