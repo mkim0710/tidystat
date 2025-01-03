@@ -422,51 +422,54 @@ options(width=120)
 # =============================================================================
 # This function interprets typical escape sequences (e.g., \n, \t, \")
 # in a character vector by leveraging R's internal parse mechanism.
-# It returns a character vector with the "unescaped" strings.
-#
-# Key Enhancement: We first re-escape all backslashes to avoid parse()
-# errors on sequences like \[ or \].
+# 
+# Key Enhancement:
+#   - Use single-quote wrapping in parse() to avoid errors with embedded \"
+#   - Re-escape backslashes and single quotes so that parse() recognizes them 
+#     correctly (avoiding unrecognized escapes like \[ or unescaped ').
 #
 # Arguments:
 #   inputVec  : Character vector to unescape
 #   VERBOSE   : Logical value, default = isTRUE(getOption("verbose"))
-#               If TRUE, print debugging info to the console
+#               If TRUE, print debugging info to the console.
 #
 # Returns:
-#   A character vector of the same length as inputVec, with
-#   escape sequences interpreted.
+#   A character vector of the same length as inputVec, 
+#   with escape sequences interpreted.
 # =============================================================================
 
 f_vec.unescapeRegex_vec <- function(inputVec, VERBOSE = isTRUE(getOption("verbose"))) {
   
-  # 1) Re-escape existing backslashes: '\\' -> '\\\\'
-  #    This prevents parse() from seeing, e.g., '\[', which is invalid in R strings.
+  # 1) Re-escape existing backslashes: '\' -> '\\'
+  #    This ensures \[ won't break parse(), and \n or \t remain parseable.
   reEscapedBackslashVec <- gsub("\\\\", "\\\\\\\\", inputVec)
   
-  # 2) Convert any double quotes into escaped quotes: '"' -> '\"'
-  escapedStringVec <- gsub("\"", "\\\\\"", reEscapedBackslashVec, fixed = TRUE)
+  # 2) Escape single quotes: "'" -> "\'"
+  #    We'll wrap everything in single quotes, so we must escape them if present.
+  reEscapedSingleQuotesVec <- gsub("'", "\\\\'", reEscapedBackslashVec)
   
   # Optional debugging output
   if (VERBOSE) {
     cat("DEBUG: reEscapedBackslashVec:\n")
     print(reEscapedBackslashVec)
     
-    cat("\nDEBUG: escapedStringVec:\n")
-    print(escapedStringVec)
+    cat("\nDEBUG: reEscapedSingleQuotesVec:\n")
+    print(reEscapedSingleQuotesVec)
   }
   
-  # 3) Parse each string, interpreting escape sequences
+  # 3) Wrap each string in single quotes for parse()
+  #    parse() recognizes standard escapes (e.g., \n, \t, \") even in single quotes.
   unescapedStringVec <- purrr::map_chr(
-    escapedStringVec,
+    reEscapedSingleQuotesVec,
     function(oneString) {
-      parsedExpr <- parse(text = paste0("\"", oneString, "\""))
+      parsedExpr <- parse(text = paste0("'", oneString, "'"))
       as.character(parsedExpr[[1]])
     }
   )
   
   # Optional debugging output
   if (VERBOSE) {
-    cat("DEBUG: unescapedStringVec:\n")
+    cat("\nDEBUG: unescapedStringVec:\n")
     print(unescapedStringVec)
   }
   
@@ -501,104 +504,123 @@ resultVec %>% paste0_collapseLF.cat0()
 ### \% RegExChrClass_strings_cheatsheet |> f_vec.unescapeRegex_vec() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-# RegExChrClass_strings_cheatsheet %>% dput
-# RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
-# # "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-# #  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_strings_cheatsheet, VERBOSE = TRUE)
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# cat("\nFinal Unescaped Results:\n")
-# resultVec %>% print(width = 80)
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% dput
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% dput.vec.line_by_line()
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% paste0_collapseLF.cat0()
-# # DEBUG: escapedStringVec:
-# # [1] "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\\\\\")}@-]"
-# # Error in `purrr::map_chr()`:
-# # ℹ In index: 1.
-# # Caused by error:
-# # ! '\#' is an unrecognized escape in character string (<text>:1:15)
-# # Backtrace:
-# #  1. global f_vec.unescapeRegex_vec(RegExChrClass_strings_cheatsheet, VERBOSE = TRUE)
-# #  2. purrr::map_chr(...)
-# #  3. purrr:::map_("character", .x, .f, ..., .progress = .progress)
-# #  7. .f(.x[[i]], ...)
-# #  8. base::parse(text = paste0("\"", oneString, "\""))
+RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_strings_cheatsheet %>% dput
+RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
+# "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+#  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_strings_cheatsheet, VERBOSE = TRUE)
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+cat("\nFinal Unescaped Results:\n")
+resultVec %>% print(width = 80)
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% dput
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% dput.vec.line_by_line()
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% paste0_collapseLF.cat0()
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# DEBUG: reEscapedBackslashVec:
+# [1] "[]$*+.?[^{|(\\\\#%&~_/<=>'!,:;`\")}@-]"
+# 
+# DEBUG: reEscapedSingleQuotesVec:
+# [1] "[]$*+.?[^{|(\\\\#%&~_/<=>\\'!,:;`\")}@-]"
+# 
+# DEBUG: unescapedStringVec:
+# [1] "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# 
+# Final Unescaped Results:
+# [1] "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# c("[]$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]")  
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
 ```
   
   
 ### \% RegExChrClass_gpt_o1 |> f_vec.unescapeRegex_vec() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# RegExChrClass_gpt_o1 = "[.\\+*?^$(){}|\\[\\]\\-]"
-# RegExChrClass_gpt_o1 %>% dput
-# RegExChrClass_gpt_o1 %>% {cat(" ",.,"\n", sep="")}
-# # "[.\\+*?^$(){}|\\[\\]\\-]"
-# #  [.\+*?^$(){}|\[\]\-]
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1, VERBOSE = TRUE)
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# cat("\nFinal Unescaped Results:\n")
-# resultVec %>% print(width = 80)
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% dput
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% dput.vec.line_by_line()
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% paste0_collapseLF.cat0()
-# # > resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1, VERBOSE = TRUE)
-# # DEBUG: escapedStringVec:
-# # [1] "[.\\+*?^$(){}|\\[\\]\\-]"
-# # Error in `purrr::map_chr()`:
-# # ℹ In index: 1.
-# # Caused by error:
-# # ! '\+' is an unrecognized escape in character string (<text>:1:5)
-# # Backtrace:
-# #  1. global f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1, VERBOSE = TRUE)
-# #  2. purrr::map_chr(...)
-# #  3. purrr:::map_("character", .x, .f, ..., .progress = .progress)
-# #  7. .f(.x[[i]], ...)
-# #  8. base::parse(text = paste0("\"", oneString, "\""))
+RegExChrClass_gpt_o1 = "[.\\+*?^$(){}|\\[\\]\\-]"
+RegExChrClass_gpt_o1 %>% dput
+RegExChrClass_gpt_o1 %>% {cat(" ",.,"\n", sep="")}
+# "[.\\+*?^$(){}|\\[\\]\\-]"
+#  [.\+*?^$(){}|\[\]\-]
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1, VERBOSE = TRUE)
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+cat("\nFinal Unescaped Results:\n")
+resultVec %>% print(width = 80)
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% dput
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% dput.vec.line_by_line()
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% paste0_collapseLF.cat0()
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# DEBUG: reEscapedBackslashVec:
+# [1] "[.\\\\+*?^$(){}|\\\\[\\\\]\\\\-]"
+# 
+# DEBUG: reEscapedSingleQuotesVec:
+# [1] "[.\\\\+*?^$(){}|\\\\[\\\\]\\\\-]"
+# 
+# DEBUG: unescapedStringVec:
+# [1] "[.\\+*?^$(){}|\\[\\]\\-]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# 
+# Final Unescaped Results:
+# [1] "[.\\+*?^$(){}|\\[\\]\\-]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# "[.\\+*?^$(){}|\\[\\]\\-]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# c("[.\+*?^$(){}|\[\]\-]")  
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# [.\+*?^$(){}|\[\]\-]
 ```
   
   
 ### \% RegExChrClass_gpt_o1p |> f_vec.unescapeRegex_vec() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
-# RegExChrClass_gpt_o1p %>% dput
-# RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
-# # "[.*+?^=!:|\\\\/()\\[\\]{}]"
-# #  [.*+?^=!:|\\/()\[\]{}]
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1p, VERBOSE = TRUE)
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# cat("\nFinal Unescaped Results:\n")
-# resultVec %>% print(width = 80)
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% dput
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% dput.vec.line_by_line()
-# cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# resultVec %>% paste0_collapseLF.cat0()
-# # > resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1p, VERBOSE = TRUE)
-# # DEBUG: escapedStringVec:
-# # [1] "[.*+?^=!:|\\\\/()\\[\\]{}]"
-# # Error in `purrr::map_chr()`:
-# # ℹ In index: 1.
-# # Caused by error:
-# # ! '\[' is an unrecognized escape in character string (<text>:1:18)
-# # Backtrace:
-# #  1. global f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1p, VERBOSE = TRUE)
-# #  2. purrr::map_chr(...)
-# #  3. purrr:::map_("character", .x, .f, ..., .progress = .progress)
-# #  7. .f(.x[[i]], ...)
-# #  8. base::parse(text = paste0("\"", oneString, "\""))
+RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+RegExChrClass_gpt_o1p %>% dput
+RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
+# "[.*+?^=!:|\\\\/()\\[\\]{}]"
+#  [.*+?^=!:|\\/()\[\]{}]
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_gpt_o1p, VERBOSE = TRUE)
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+cat("\nFinal Unescaped Results:\n")
+resultVec %>% print(width = 80)
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% dput
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% dput.vec.line_by_line()
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+resultVec %>% paste0_collapseLF.cat0()
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# DEBUG: reEscapedBackslashVec:
+# [1] "[.*+?^=!:|\\\\\\\\/()\\\\[\\\\]{}]"
+# 
+# DEBUG: reEscapedSingleQuotesVec:
+# [1] "[.*+?^=!:|\\\\\\\\/()\\\\[\\\\]{}]"
+# 
+# DEBUG: unescapedStringVec:
+# [1] "[.*+?^=!:|\\\\/()\\[\\]{}]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# 
+# Final Unescaped Results:
+# [1] "[.*+?^=!:|\\\\/()\\[\\]{}]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# "[.*+?^=!:|\\\\/()\\[\\]{}]"
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# c("[.*+?^=!:|\\/()\[\]{}]")  
+#     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+# [.*+?^=!:|\\/()\[\]{}]
 ```
   
   
