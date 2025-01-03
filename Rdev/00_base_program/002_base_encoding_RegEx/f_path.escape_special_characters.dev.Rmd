@@ -307,7 +307,7 @@ options(width=120)
 library(stringr)
 # Function to escape special characters in a string for use in regex
 f_path.escape_special_characters.gsub <- function(input_path) {
-  gsub("([][{}()+*?^$|.-])", "\\\\\\1", string)
+  gsub("([][{}()+*?^$|.-])", "\\\\\\1", input_path)
 }
 
 result.gsub = vec_path.test |> map(f_path.escape_special_characters.gsub)
