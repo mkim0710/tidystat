@@ -301,9 +301,29 @@ input_string %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
   
 # __________|------  
 # @@ DATA) example ----  
+### RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+### RegExChrClass_gpt_o1 = "[.\\+*?^$(){}|\\[\\]\\-]"
+### RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_strings_cheatsheet %>% dput
+RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
+# "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+#  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass_gpt_o1 = "[.\\+*?^$(){}|\\[\\]\\-]"
+RegExChrClass_gpt_o1 %>% dput
+RegExChrClass_gpt_o1 %>% {cat(" ",.,"\n", sep="")}
+# "[.\\+*?^$(){}|\\[\\]\\-]"
+#  [.\+*?^$(){}|\[\]\-]
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+RegExChrClass_gpt_o1p %>% dput
+RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
+# "[.*+?^=!:|\\\\/()\\[\\]{}]"
+#  [.*+?^=!:|\\/()\[\]{}]
 ```
   
   
@@ -311,13 +331,6 @@ options(width=120)
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
-```
-  
-  
-## \% ADS_time2event |>  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
 ```
   
   
@@ -393,75 +406,110 @@ options(width=120)
   
 # __________|------  
 # @@ START) function ----  
-## https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379
-## :: f_vecChr.EscapeSpecialCharacters_vecChr 
+## https://chatgpt.com/c/6777996a-26bc-800e-b780-a661b714b672
+## :: f_str1_str2.compareCharClasses_list 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-#' Escapes special regex characters in a character vector.
+
+#' Compare two character classes from regex patterns as sets of characters.
 #'
-#' @param input_vecChr A character vector to be processed.
-#' @param VERBOSE Logical indicating whether to print intermediate outputs
-#'   for debugging. Defaults to isTRUE(getOption("verbose")) (usually FALSE).
+#' @param input_str1 A string containing the first regex character class, e.g. "[abc]".
+#' @param input_str2 A string containing the second regex character class, e.g. "[xyz]".
+#' @param VERBOSE Logical (default = isTRUE(getOption("verbose"))).
 #'
-#' @return A character vector where each special regex character is escaped.
+#' If TRUE, prints intermediate outputs for debugging.
 #'
-#' @references
-#' - R Documentation for 'gsub': https://stat.ethz.ch/R-manual/R-devel/library/base/html/gsub.html
+#' @return A named list of character vectors:
+#'   \item{union}{Union of the characters from input_str1 and input_str2.}
+#'   \item{intersect}{Intersection of the characters.}
+#'   \item{setdiff_1_2}{Characters in input_str1 but not in input_str2.}
+#'   \item{setdiff_2_1}{Characters in input_str2 but not in input_str1.}
 #'
-f_vecChr.EscapeSpecialCharacters_vecChr <- function(
-  input_vecChr,
-  VERBOSE = isTRUE(getOption("verbose"))
-) {
+#' @examples
+#' # Example 1: Simple bracket characters
+#' pattern1 <- "[ABCD]"
+#' pattern2 <- "[CDEF]"
+#' f_str1_str2.compareCharClasses_list(pattern1, pattern2)
+#'
+#' # Example 2: Using the original user-provided patterns:
+#' pattern1 <- "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\\\")}@-]"
+#' pattern2 <- "[.\\+*?^$(){}|\\[\\]\\-]"
+#' f_str1_str2.compareCharClasses_list(pattern1, pattern2)
+#'
+#' # Example 3: (Health data style) Suppose we store ICD codes as
+#' # a bracketed list, and want to see differences in sets:
+#' pattern_icdV1 <- "[A00,A01,B00,B01]"
+#' pattern_icdV2 <- "[B01,B02,C00,C01]"
+#' f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2, VERBOSE = TRUE)
+#'
+#' @export
+f_str1_str2.compareCharClasses_list <- function(input_str1, 
+                                                input_str2, 
+                                                VERBOSE = isTRUE(getOption("verbose"))) {
+  
+  # For string manipulation:
+  library(stringr)
+  
+  # 1) Remove leading '[' and trailing ']' (if present)
+  input_str1_noBrackets_chr <- str_remove_all(input_str1, "^\\[|\\]$")
+  input_str2_noBrackets_chr <- str_remove_all(input_str2, "^\\[|\\]$")
+  
+  # 2) Split into individual characters and keep them unique
+  set1_vec <- input_str1_noBrackets_chr %>%
+    str_split(pattern = "", n = Inf) %>%
+    unlist() %>%
+    unique()
+  
+  set2_vec <- input_str2_noBrackets_chr %>%
+    str_split(pattern = "", n = Inf) %>%
+    unlist() %>%
+    unique()
+  
+  # Debug prints if VERBOSE is TRUE
   if (VERBOSE) {
-    cat("Received input_vecChr:\n")
-    print(input_vecChr)
+    print("After removing brackets:")
+    print(list(input_str1_noBrackets_chr = input_str1_noBrackets_chr,
+               input_str2_noBrackets_chr = input_str2_noBrackets_chr))
+    print("Sets from each input:")
+    print(list(set1_vec = set1_vec, set2_vec = set2_vec))
   }
   
-  # Define the regex pattern for special characters commonly used in regular expressions
-  pattern_chr <- "([.*+?^=!:|\\\\/()\\[\\]{}])"
+  # 3) Perform set operations
+  union_vec       <- union(set1_vec, set2_vec)
+  intersect_vec   <- intersect(set1_vec, set2_vec)
+  setdiff_1_2_vec <- setdiff(set1_vec, set2_vec)
+  setdiff_2_1_vec <- setdiff(set2_vec, set1_vec)
   
-  # This replacement ensures each special character is prefixed by one backslash
-  replacement_chr <- "\\\\\\1"
-  
+  # Debug prints if VERBOSE is TRUE
   if (VERBOSE) {
-    cat("Regex pattern used for escaping special characters:\n")
-    print(pattern_chr)
-    cat("Replacement string:\n")
-    print(replacement_chr)
+    print("Set operations results:")
+    print(list(union_vec       = union_vec,
+               intersect_vec   = intersect_vec,
+               setdiff_1_2_vec = setdiff_1_2_vec,
+               setdiff_2_1_vec = setdiff_2_1_vec))
   }
   
-  # gsub is vectorized, so we can apply it directly across the entire vector
-  escaped_vecChr <- gsub(
-    pattern = pattern_chr,
-    replacement = replacement_chr,
-    x = input_vecChr,
-    perl = TRUE
+  # 4) Return as a named list
+  list(
+    union       = union_vec,
+    intersect   = intersect_vec,
+    setdiff_1_2 = setdiff_1_2_vec,
+    setdiff_2_1 = setdiff_2_1_vec
   )
-  
-  if (VERBOSE) {
-    cat("Escaped output:\n")
-    print(escaped_vecChr)
-  }
-  
-  return(escaped_vecChr)
 }
 
-# Example usage with well-known health data references:
-example_vecChr <- c(
-  "Systolic (BP)* is around 120 + 10?", 
-  "Patients' heart_rate^ might exceed 90!", 
-  "BloodSugar=100: PleaseCheck!"
-)
 
-# If you set VERBOSE = TRUE, you will see intermediate outputs:
-escaped_vecChr <- f_vecChr.EscapeSpecialCharacters_vecChr(
-  input_vecChr = example_vecChr,
-  VERBOSE = FALSE  # Change to TRUE to see debugging messages
-)
-
-# Expected outputs
-escaped_vecChr
-
+pattern1 <- "[ABCD]"
+pattern2 <- "[CDEF]"
+f_str1_str2.compareCharClasses_list(pattern1, pattern2) %>% str
+cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+pattern1 <- "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\\\")}@-]"
+pattern2 <- "[.\\+*?^$(){}|\\[\\]\\-]"
+f_str1_str2.compareCharClasses_list(pattern1, pattern2) %>% str
+cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+pattern_icdV1 <- "[A00,A01,B00,B01]"
+pattern_icdV2 <- "[B01,B02,C00,C01]"
+f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2, VERBOSE = TRUE) %>% str
 ```
   
   
@@ -486,101 +534,6 @@ options(width=120)
 ```
   
   
-# __________|------  
-# @@ START) function ----  
-## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
-## :: f_vecChr.EscapeSpecialCharacters_vecChr 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-#' Escapes special regex characters in a character vector.
-#'
-#' @param input_vecChr A character vector to be processed.
-#' @param VERBOSE Logical indicating whether to print intermediate outputs
-#'   for debugging. Defaults to isTRUE(getOption("verbose")) (usually FALSE).
-#'
-#' @return A character vector where each special regex character is escaped.
-#'
-#' @references
-#' - R Documentation for 'gsub': https://stat.ethz.ch/R-manual/R-devel/library/base/html/gsub.html
-#'
-f_vecChr.EscapeSpecialCharacters_vecChr <- function(
-  input_vecChr,
-  VERBOSE = isTRUE(getOption("verbose"))
-) {
-  if (VERBOSE) {
-    cat("Received input_vecChr:\n")
-    print(input_vecChr)
-  }
-  
-  # Define the regex pattern for special characters commonly used in regular expressions
-  pattern_chr <- "([.*+?^=!:|\\\\/()\\[\\]{}])"
-  
-  # This replacement ensures each special character is prefixed by one backslash
-  replacement_chr <- "\\\\\\1"
-  
-  if (VERBOSE) {
-    cat("Regex pattern used for escaping special characters:\n")
-    print(pattern_chr)
-    cat("Replacement string:\n")
-    print(replacement_chr)
-  }
-  
-  # gsub is vectorized, so we can apply it directly across the entire vector
-  escaped_vecChr <- gsub(
-    pattern = pattern_chr,
-    replacement = replacement_chr,
-    x = input_vecChr,
-    perl = TRUE
-  )
-  
-  if (VERBOSE) {
-    cat("Escaped output:\n")
-    print(escaped_vecChr)
-  }
-  
-  return(escaped_vecChr)
-}
-
-# Example usage with well-known health data references:
-example_vecChr <- c(
-  "Systolic (BP)* is around 120 + 10?", 
-  "Patients' heart_rate^ might exceed 90!", 
-  "BloodSugar=100: PleaseCheck!"
-)
-
-# If you set VERBOSE = TRUE, you will see intermediate outputs:
-escaped_vecChr <- f_vecChr.EscapeSpecialCharacters_vecChr(
-  input_vecChr = example_vecChr,
-  VERBOSE = FALSE  # Change to TRUE to see debugging messages
-)
-
-# Expected outputs
-escaped_vecChr
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-
-
 # __________|------  
 # @@ START) function ----  
 ## :: function_name = function() -dev -pending  
