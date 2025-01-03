@@ -1,3 +1,4 @@
+## ->> Now included in f_df.t.tribble_construct.source.r ----
 # function.setdiff.dev.r
 
 
@@ -14,10 +15,12 @@ f_vec1_vec2.setdiff_list = function(vec1, vec2) {
     out
 }
 
-
 ## https://chatgpt.com/c/67780ea5-dfb8-800e-a3c9-0d73059a1dd4
-##@ f_vec1_vec2.setdiff =====
-f_vec1_vec2.setdiff = function(vec1, vec2, print_str = TRUE, output_as_data_frame = FALSE) {
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec1_vec2.setdiff_list =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff_list.dev.r
+.tmp$objectname = "f_vec1_vec2.setdiff_list"
+.tmp$object = function(vec1, vec2, print_str = TRUE, output_as_data_frame = FALSE) {
     vec1 = as.character(vec1)
     vec2 = as.character(vec2)
     output_list = list(
@@ -44,11 +47,27 @@ f_vec1_vec2.setdiff = function(vec1, vec2, print_str = TRUE, output_as_data_fram
     if (print_str) str(output_list)
     invisible(output_list)
 }
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) setdiff_list.vec1_vec2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_list.vec1_vec2")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## ::OPTION:: f_vec1_vec2.setdiff_df  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_vec1_vec2.setdiff_df"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec1, vec2, print_str = TRUE) {
+    env1$f$f_vec1_vec2.setdiff_list(vec1 = vec1, vec2 = vec2, print_str = print_str, output_as_data_frame = TRUE)
+} 
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) setdiff_df.vec1_vec2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.vec1_vec2")
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 vec1 = 1:5
 vec2 = 1:3 * 2
-f_vec1_vec2.setdiff(vec1, vec2)
-f_vec1_vec2.setdiff(vec1, vec2, output_as_data_frame = TRUE)
+f_vec1_vec2.setdiff_list(vec1, vec2)
+f_vec1_vec2.setdiff_list(vec1, vec2, output_as_data_frame = TRUE)
 # > f_vec1_vec2.setdiff_list(vec1, vec2)
 # List of 7
 #  $ vec1.character: chr [1:5] "1" "2" "3" "4" ...

@@ -520,25 +520,53 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec1_vec2.setdiff_list =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff_list.dev.r
 .tmp$objectname = "f_vec1_vec2.setdiff_list"
-.tmp$object = function(vec1, vec2) {
-    out = list()
-    out$vec1.character = vec1 = as.character(vec1)
-    out$vec2.character = vec2 = as.character(vec2)
-    out$union = union(vec1, vec2)
-    out$intersect = intersect(vec1, vec2)
-    out$setdiff_1_2 = setdiff(vec1, vec2)
-    out$setdiff_2_1 = setdiff(vec2, vec1)
-    out$identical = all.equal(vec1, vec2)
-    out
+.tmp$object = function(vec1, vec2, print_str = TRUE, output_as_data_frame = FALSE) {
+    vec1 = as.character(vec1)
+    vec2 = as.character(vec2)
+    output_list = list(
+        vec1.character = vec1, 
+        vec2.character = vec2, 
+        union = union(vec1, vec2), 
+        intersect = intersect(vec1, vec2), 
+        setdiff_1_2 = setdiff(vec1, vec2), 
+        setdiff_2_1 = setdiff(vec2, vec1), 
+        identical = all.equal(vec1, vec2)
+    )
+    if (output_as_data_frame) {
+        output_df = data.frame(
+            union         = output_list$union,
+            vec1          = output_list$union %in% output_list$vec1.character,
+            vec2          = output_list$union %in% output_list$vec2.character,
+            intersect     = output_list$union %in% output_list$intersect,
+            setdiff_1_2   = output_list$union %in% output_list$setdiff_1_2,
+            setdiff_2_1   = output_list$union %in% output_list$setdiff_2_1
+        )
+        if (print_str) {str(output_df); print(summary(output_df))}
+        return(output_df)
+    }
+    if (print_str) str(output_list)
+    invisible(output_list)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) setdiff_list.vec1_vec2  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_list.vec1_vec2")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## ::OPTION:: f_vec1_vec2.setdiff_df  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_vec1_vec2.setdiff_df"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec1, vec2, print_str = TRUE) {
+    env1$f$f_vec1_vec2.setdiff_list(vec1 = vec1, vec2 = vec2, print_str = print_str, output_as_data_frame = TRUE)
+} 
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) setdiff_df.vec1_vec2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.vec1_vec2")
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_chr.na_if_NotMatching =  ----
 # https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.na_if_NotMatching.dev.r
