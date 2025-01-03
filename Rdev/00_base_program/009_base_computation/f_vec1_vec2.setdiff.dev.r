@@ -1,7 +1,7 @@
 # function.setdiff.dev.r
 
 
-
+##@ f_vec1_vec2.setdiff_list =====
 f_vec1_vec2.setdiff_list = function(vec1, vec2) {
     out = list()
     out$vec1.character = vec1 = as.character(vec1)
@@ -13,6 +13,71 @@ f_vec1_vec2.setdiff_list = function(vec1, vec2) {
     out$identical = all.equal(vec1, vec2)
     out
 }
+
+
+## https://chatgpt.com/c/67780ea5-dfb8-800e-a3c9-0d73059a1dd4
+##@ f_vec1_vec2.setdiff =====
+f_vec1_vec2.setdiff = function(vec1, vec2, print_str = TRUE, output_as_data_frame = FALSE) {
+    vec1 = as.character(vec1)
+    vec2 = as.character(vec2)
+    output_list = list(
+        vec1.character = vec1, 
+        vec2.character = vec2, 
+        union = union(vec1, vec2), 
+        intersect = intersect(vec1, vec2), 
+        setdiff_1_2 = setdiff(vec1, vec2), 
+        setdiff_2_1 = setdiff(vec2, vec1), 
+        identical = all.equal(vec1, vec2)
+    )
+    if (output_as_data_frame) {
+        output_df = data.frame(
+            union         = output_list$union,
+            vec1          = output_list$union %in% output_list$vec1.character,
+            vec2          = output_list$union %in% output_list$vec2.character,
+            intersect     = output_list$union %in% output_list$intersect,
+            setdiff_1_2   = output_list$union %in% output_list$setdiff_1_2,
+            setdiff_2_1   = output_list$union %in% output_list$setdiff_2_1
+        )
+        if (print_str) {str(output_df); print(summary(output_df))}
+        return(output_df)
+    }
+    if (print_str) str(output_list)
+    invisible(output_list)
+}
+
+vec1 = 1:5
+vec2 = 1:3 * 2
+f_vec1_vec2.setdiff(vec1, vec2)
+f_vec1_vec2.setdiff(vec1, vec2, output_as_data_frame = TRUE)
+# > f_vec1_vec2.setdiff_list(vec1, vec2)
+# List of 7
+#  $ vec1.character: chr [1:5] "1" "2" "3" "4" ...
+#  $ vec2.character: chr [1:3] "2" "4" "6"
+#  $ union         : chr [1:6] "1" "2" "3" "4" ...
+#  $ intersect     : chr [1:2] "2" "4"
+#  $ setdiff_1_2   : chr [1:3] "1" "3" "5"
+#  $ setdiff_2_1   : chr "6"
+#  $ identical     : chr [1:2] "Lengths (5, 3) differ (string compare on first 3)" "3 string mismatches"
+# > f_vec1_vec2.setdiff_list(vec1, vec2, output_as_data_frame = TRUE)
+# 'data.frame':	6 obs. of  6 variables:
+#  $ union      : chr  "1" "2" "3" "4" ...
+#  $ vec1       : logi  TRUE TRUE TRUE TRUE TRUE FALSE
+#  $ vec2       : logi  FALSE TRUE FALSE TRUE FALSE TRUE
+#  $ intersect  : logi  FALSE TRUE FALSE TRUE FALSE FALSE
+#  $ setdiff_1_2: logi  TRUE FALSE TRUE FALSE TRUE FALSE
+#  $ setdiff_2_1: logi  FALSE FALSE FALSE FALSE FALSE TRUE
+#     union              vec1            vec2         intersect       setdiff_1_2     setdiff_2_1    
+#  Length:6           Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+#  Class :character   FALSE:1         FALSE:3         FALSE:4         FALSE:3         FALSE:5        
+#  Mode  :character   TRUE :5         TRUE :3         TRUE :2         TRUE :3         TRUE :1        
+#   union  vec1  vec2 intersect setdiff_1_2 setdiff_2_1
+# 1     1  TRUE FALSE     FALSE        TRUE       FALSE
+# 2     2  TRUE  TRUE      TRUE       FALSE       FALSE
+# 3     3  TRUE FALSE     FALSE        TRUE       FALSE
+# 4     4  TRUE  TRUE      TRUE       FALSE       FALSE
+# 5     5  TRUE FALSE     FALSE        TRUE       FALSE
+# 6     6 FALSE  TRUE     FALSE       FALSE        TRUE
+
 f_vec1_vec2.setdiff_list(
     NHID_JK_GJ_0213.bind_rows.integer.by.PERSON_ID.min.HCHK_YEAR %>% dplyr::filter(AGE_GROUP %in% 5:17) %>% {.$PERSON_ID}
     , 
@@ -47,6 +112,7 @@ f_vec1_vec2.setdiff_list(
 
 
 
+##@ f_vec1_vec2.setdiff_df =====
 
 
 
