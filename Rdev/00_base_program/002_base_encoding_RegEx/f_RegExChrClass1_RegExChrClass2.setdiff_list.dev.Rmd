@@ -407,7 +407,7 @@ options(width=120)
 # __________|------  
 # @@ START) function ----  
 ## https://chatgpt.com/c/6777996a-26bc-800e-b780-a661b714b672
-## :: f_str1_str2.compareCharClasses_list 
+## :: f_str1_str2.compareCharClasses_list()
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -491,6 +491,8 @@ f_str1_str2.compareCharClasses_list <- function(input_str1,
   
   # 4) Return as a named list
   list(
+    vec1.character = set1_vec, 
+    vec2.character = set2_vec, 
     union       = union_vec,
     intersect   = intersect_vec,
     setdiff_1_2 = setdiff_1_2_vec,
@@ -513,9 +515,20 @@ f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2, VERBOSE = TRUE
 ```
   
   
-###### \% |> () ----  
+### \% f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet, ) 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_gpt_o1 = "[.\\+*?^$(){}|\\[\\]\\-]"
+RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet, RegExChrClass_gpt_o1) %>% str
+f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet, RegExChrClass_gpt_o1)$union %>% dput.deparse.cat0()
+f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet, RegExChrClass_gpt_o1)$intersect %>% dput.deparse.cat0()
+cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+f_str1_str2.compareCharClasses_list(RegExChrClass_gpt_o1, RegExChrClass_gpt_o1p) %>% str
+f_str1_str2.compareCharClasses_list(RegExChrClass_gpt_o1, RegExChrClass_gpt_o1p)$union %>% dput.deparse.cat0()
+f_str1_str2.compareCharClasses_list(RegExChrClass_gpt_o1, RegExChrClass_gpt_o1p)$intersect %>% dput.deparse.cat0()
 
 ```
   
