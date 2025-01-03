@@ -416,102 +416,132 @@ options(width=120)
 #' @param input_str1 A string containing the first regex character class, e.g. "[abc]".
 #' @param input_str2 A string containing the second regex character class, e.g. "[xyz]".
 #' @param VERBOSE Logical (default = isTRUE(getOption("verbose"))).
+#'   If TRUE, prints intermediate outputs for debugging.
+#' @param output_as_data_frame Logical. If FALSE (default), a named list is returned.
+#'   If TRUE, a data frame is returned with nrow = length of the union, and columns
+#'   \code{vec1}, \code{vec2}, \code{intersect}, \code{setdiff_1_2}, \code{setdiff_2_1},
+#'   each indicating (as logical) whether the union element is in that set.
 #'
-#' If TRUE, prints intermediate outputs for debugging.
-#'
-#' @return A named list of character vectors:
-#'   \item{union}{Union of the characters from input_str1 and input_str2.}
+#' @return If \code{output_as_data_frame = FALSE}, returns a named list with elements:
+#'   \item{union}{Union of the characters from \code{input_str1} and \code{input_str2}.}
 #'   \item{intersect}{Intersection of the characters.}
-#'   \item{setdiff_1_2}{Characters in input_str1 but not in input_str2.}
-#'   \item{setdiff_2_1}{Characters in input_str2 but not in input_str1.}
+#'   \item{setdiff_1_2}{Characters in \code{input_str1} but not in \code{input_str2}.}
+#'   \item{setdiff_2_1}{Characters in \code{input_str2} but not in \code{input_str1}.}
+#'
+#'   If \code{output_as_data_frame = TRUE}, returns a \code{tibble::tibble} with columns:
+#'   \item{union_char}{The union character.}
+#'   \item{vec1, vec2, intersect, setdiff_1_2, setdiff_2_1}{Logical columns indicating
+#'   membership in each set.}
 #'
 #' @examples
 #' # Example 1: Simple bracket characters
 #' pattern1 <- "[ABCD]"
 #' pattern2 <- "[CDEF]"
 #' f_str1_str2.compareCharClasses_list(pattern1, pattern2)
+#' f_str1_str2.compareCharClasses_list(pattern1, pattern2, output_as_data_frame = TRUE)
 #'
 #' # Example 2: Using the original user-provided patterns:
 #' pattern1 <- "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\\\")}@-]"
 #' pattern2 <- "[.\\+*?^$(){}|\\[\\]\\-]"
 #' f_str1_str2.compareCharClasses_list(pattern1, pattern2)
+#' f_str1_str2.compareCharClasses_list(pattern1, pattern2, output_as_data_frame = TRUE)
 #'
 #' # Example 3: (Health data style) Suppose we store ICD codes as
-#' # a bracketed list, and want to see differences in sets:
+#' # bracketed patterns, and want to see differences:
 #' pattern_icdV1 <- "[A00,A01,B00,B01]"
 #' pattern_icdV2 <- "[B01,B02,C00,C01]"
 #' f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2, VERBOSE = TRUE)
+#' f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2,
+#'                                     VERBOSE = TRUE, output_as_data_frame = TRUE)
 #'
 #' @export
 f_str1_str2.compareCharClasses_list <- function(input_str1, 
                                                 input_str2, 
-                                                VERBOSE = isTRUE(getOption("verbose"))) {
-  
-  # For string manipulation:
-  library(stringr)
-  
-  # 1) Remove leading '[' and trailing ']' (if present)
-  input_str1_noBrackets_chr <- str_remove_all(input_str1, "^\\[|\\]$")
-  input_str2_noBrackets_chr <- str_remove_all(input_str2, "^\\[|\\]$")
-  
-  # 2) Split into individual characters and keep them unique
-  set1_vec <- input_str1_noBrackets_chr %>%
-    str_split(pattern = "", n = Inf) %>%
-    unlist() %>%
-    unique()
-  
-  set2_vec <- input_str2_noBrackets_chr %>%
-    str_split(pattern = "", n = Inf) %>%
-    unlist() %>%
-    unique()
-  
-  # Debug prints if VERBOSE is TRUE
-  if (VERBOSE) {
-    print("After removing brackets:")
-    print(list(input_str1_noBrackets_chr = input_str1_noBrackets_chr,
-               input_str2_noBrackets_chr = input_str2_noBrackets_chr))
-    print("Sets from each input:")
-    print(list(set1_vec = set1_vec, set2_vec = set2_vec))
-  }
-  
-  # 3) Perform set operations
-  union_vec       <- union(set1_vec, set2_vec)
-  intersect_vec   <- intersect(set1_vec, set2_vec)
-  setdiff_1_2_vec <- setdiff(set1_vec, set2_vec)
-  setdiff_2_1_vec <- setdiff(set2_vec, set1_vec)
-  
-  # Debug prints if VERBOSE is TRUE
-  if (VERBOSE) {
-    print("Set operations results:")
-    print(list(union_vec       = union_vec,
-               intersect_vec   = intersect_vec,
-               setdiff_1_2_vec = setdiff_1_2_vec,
-               setdiff_2_1_vec = setdiff_2_1_vec))
-  }
-  
-  # 4) Return as a named list
-  list(
-    vec1.character = set1_vec, 
-    vec2.character = set2_vec, 
-    union       = union_vec,
-    intersect   = intersect_vec,
-    setdiff_1_2 = setdiff_1_2_vec,
-    setdiff_2_1 = setdiff_2_1_vec
-  )
+                                                VERBOSE = isTRUE(getOption("verbose")),
+                                                output_as_data_frame = FALSE) {
+    library(stringr)
+    library(tibble) # for tibble::tibble
+    
+    # 1) Remove leading '[' and trailing ']' (if present)
+    input_str1_noBrackets_chr <- str_remove_all(input_str1, "^\\[|\\]$")
+    input_str2_noBrackets_chr <- str_remove_all(input_str2, "^\\[|\\]$")
+    
+    # 2) Split into individual characters and keep them unique
+    set1_vec <- input_str1_noBrackets_chr %>%
+        str_split(pattern = "", n = Inf) %>%
+        unlist() %>%
+        unique()
+    
+    set2_vec <- input_str2_noBrackets_chr %>%
+        str_split(pattern = "", n = Inf) %>%
+        unlist() %>%
+        unique()
+    
+    # Debug prints if VERBOSE is TRUE
+    if (VERBOSE) {
+        print("After removing brackets:")
+        print(list(input_str1_noBrackets_chr = input_str1_noBrackets_chr,
+                   input_str2_noBrackets_chr = input_str2_noBrackets_chr))
+        print("Sets from each input:")
+        print(list(set1_vec = set1_vec, set2_vec = set2_vec))
+    }
+    
+    # 3) Perform set operations
+    union_vec       <- union(set1_vec, set2_vec)
+    intersect_vec   <- intersect(set1_vec, set2_vec)
+    setdiff_1_2_vec <- setdiff(set1_vec, set2_vec)
+    setdiff_2_1_vec <- setdiff(set2_vec, set1_vec)
+    
+    # Debug prints if VERBOSE is TRUE
+    if (VERBOSE) {
+        print("Set operations results:")
+        print(list(union_vec       = union_vec,
+                   intersect_vec   = intersect_vec,
+                   setdiff_1_2_vec = setdiff_1_2_vec,
+                   setdiff_2_1_vec = setdiff_2_1_vec))
+    }
+    
+    # 4) Return either a data frame or the original list
+    if (output_as_data_frame) {
+        df_out <- tibble(
+            union_char      = union_vec,
+            vec1            = union_vec %in% set1_vec,
+            vec2            = union_vec %in% set2_vec,
+            intersect       = union_vec %in% intersect_vec,
+            setdiff_1_2     = union_vec %in% setdiff_1_2_vec,
+            setdiff_2_1     = union_vec %in% setdiff_2_1_vec
+        )
+        return(df_out)
+    } else {
+        return(
+            list(
+                vec1.character = set1_vec, 
+                vec2.character = set2_vec, 
+                union       = union_vec,
+                intersect   = intersect_vec,
+                setdiff_1_2 = setdiff_1_2_vec,
+                setdiff_2_1 = setdiff_2_1_vec
+            )
+        )
+    }
 }
+
 
 
 pattern1 <- "[ABCD]"
 pattern2 <- "[CDEF]"
 f_str1_str2.compareCharClasses_list(pattern1, pattern2) %>% str
+f_str1_str2.compareCharClasses_list(pattern1, pattern2, output_as_data_frame = TRUE)
 cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 pattern1 <- "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\\\")}@-]"
 pattern2 <- "[.\\+*?^$(){}|\\[\\]\\-]"
 f_str1_str2.compareCharClasses_list(pattern1, pattern2) %>% str
+f_str1_str2.compareCharClasses_list(pattern1, pattern2, output_as_data_frame = TRUE)
 cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 pattern_icdV1 <- "[A00,A01,B00,B01]"
 pattern_icdV2 <- "[B01,B02,C00,C01]"
 f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2, VERBOSE = TRUE) %>% str
+f_str1_str2.compareCharClasses_list(pattern_icdV1, pattern_icdV2, output_as_data_frame = TRUE)
 ```
   
   
