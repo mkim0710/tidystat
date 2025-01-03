@@ -83,7 +83,7 @@ ensure_package("tidyverse")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##@ f_chr_utf8.ToInt.dev.Rmd ---- 
 
-##@ f_path.escape_special_characters.dev.Rmd ----
+##@ f_path_shell.escapeSpecialCharacters.dev.Rmd ----
 
 ##@ f_CodeText.eval_cat.dev.r ----
 

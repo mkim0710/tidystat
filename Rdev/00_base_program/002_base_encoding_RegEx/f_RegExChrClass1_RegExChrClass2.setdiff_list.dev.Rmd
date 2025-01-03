@@ -1,4 +1,35 @@
 ---
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ REFERENCES)                                                            #L247
+# @@ DATA) example                                                          #L256
+# @@ START) dev                                                             #L276
+# @@ SOURCE)                                                                #L311
+# @@ START) function                                                        #L353
+# @@ MetaData) Read & Check                                                 #L402
+# @@ DATA) Read & Check                                                     #L472
+# @@ ANALYSIS) (Breif) byVar =                                              #L638
+# @@ DATA) mutate()                                                         #L644
+# @@ DATA) filter() -> New DS                                               #L675
+# @@ DATA) select(matches(VarName.suffix.regex))                            #L708
+# @@ ANALYSIS) byVar =                                                      #L722
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L247
+# @@ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L256
+# @@ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L276
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L311
+# @@ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L353
+# @@ MetaData) Read & Check                                                 # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L402
+# @@ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L472
+# @@ ANALYSIS) (Breif) byVar =                                              # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L638
+# @@ DATA) mutate()                                                         # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L644
+# @@ DATA) filter() -> New DS                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L675
+# @@ DATA) select(matches(VarName.suffix.regex))                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L708
+# @@ ANALYSIS) byVar =                                                      # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L722
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
 title: "`r params$doc_title`"
 author: "MHKim"
@@ -185,10 +216,9 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
-if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
+# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) Not using a relative path~!
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
 # # env1$path$data_suffix = ""
@@ -214,21 +244,90 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-  
-```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# __________|------  
+# @@ REFERENCES) ----  
+## https://cran.r-project.org/doc/FAQ/R-FAQ.pdf#page=42&view=FitV&navpanes=1
+## https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
 
 ```
+  
+## strings 2017.10.pdf
+### []$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]
+  
+## https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379?model=o1-pro
+### [.\\+*?^$(){}|\\[\\]\\-]
+
+### 1. Escaping Special Characters When Developing a Regex
+
+#### 1.1. Which Characters Are Special in Regex?
+
+In most regex engines (including PCRE, POSIX ERE, and those used in languages like R, Python, and Java), the following characters typically have special meaning and **must be escaped** if you want to treat them literally:
+
+        `.  +  *  ?  ^  $  (  )  [  ]  {  }  |  \` 
+
+Some regex engines also treat **`-`** (hyphen) as special inside character classes (e.g., `[a-z]`). Therefore, a practical approach is to escape the hyphen **when it appears inside** a character class.
+
+#### 1.2. A Robust Regex Pattern for Escaping
+
+Below is a common pattern to catch **all** of these characters (including the hyphen and the dot). In a PCRE or most standard engines, you can use:
+
+        `([.\\+*?^$(){}|[\]\-])`
+
+-   **Explanation**:
+    -   `(` and `)` — Capturing group.
+    -   Inside `[ ]`, we place all characters that need escaping:
+        -   `.` (dot), `\` (backslash), `+`, `*`, `?`, `^`, `$`, `(`, `)`, `{`, `}`, `|`, `[`, `]`, `\-`.
+    -   We have to backslash-escape the backslash itself (`\\`) and also the bracket-related characters where needed.
+
+Depending on the programming language, you may need additional escapes. For example, in an R string literal, you might write this as:
+
+
+        `"([\\.\\\\+*?^\\$(){}|\\[\\]\\-])"`
+
+
+## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
+### [.*+?^=!:|\\\\/()\\[\\]{}]
+
+###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+input_string %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
+
+```
+  
   
 # __________|------  
-# @@ START) problem ----  
+# @@ DATA) example ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
-# https://chatgpt.com/c/bd748750-df70-466d-ad49-39414d6041fc
-# https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379
+
 ```
   
+  
+# __________|------  
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+  
+  
+## \% ADS_time2event |>  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
 
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -244,238 +343,44 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) dev) f_chr.f_path.escape_special_characters ----  
-## :: vec_path.test =
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# @@ SOURCE) ----  
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(stringr)
-
-vec_path.test = 
-    c("D:\\OneDrive\\[Rproject]\\github",
-      "D:/OneDrive/[Rproject]/github",
-      "D:/OneDrive/{Rproject}/github",
-      "D:/OneDrive/(Rproject)/github",
-      "D:/OneDrive/R+project/github",
-      "D:/OneDrive/R*project/github",
-      "D:/OneDrive/R?project/github",
-      "D:/OneDrive/R^project/github",
-      "D:/OneDrive/R$project/github",
-      "D:/OneDrive/R|project/github",
-      "D:/OneDrive/R.project/github",
-      "D:/OneDrive/R-project/github",
-      "D:/OneDrive/R project/github",
-      "my file (version).txt",
-      "alert!.sh",
-      "BACKUP~2024.tar.gz",
-      "user@domain.com",
-      "price$100.txt",
-      "version.1.0",
-      "data[2024].csv",
-      "range-1.0",
-      "a+b^c")
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 ```
 
 
-### \% f_path.escape_special_characters.str_replace_all() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# Function to escape special characters in a string for use in regex
-f_path.escape_special_characters.str_replace_all <- function(input_path) {
-  input_path |>  str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
-}
-
-result.str_replace_all = vec_path.test |> map(f_path.escape_special_characters.str_replace_all)
-result.str_replace_all |> str(max.level = 2, give.attr = TRUE)
-```
-
-
-### \% f_path.escape_special_characters.str_replace_all_v2() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# Function to escape special characters in a string for use in regex
-f_path.escape_special_characters.str_replace_all_v2 <- function(input_path) {
-  input_path |>  str_replace_all("([\\[\\]{}()+*?^$|.-])", "\\\\\\1")
-}
-
-result.str_replace_all = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_v2)
-result.str_replace_all |> str(max.level = 2, give.attr = TRUE)
-result.str_replace_all |> identical(result.str_replace_all)
-```
-  
-  
-### \% f_path.escape_special_characters.gsub() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
-library(stringr)
-# Function to escape special characters in a string for use in regex
-f_path.escape_special_characters.gsub <- function(input_path) {
-  gsub("([][{}()+*?^$|.-])", "\\\\\\1", input_path)
-}
-
-result.gsub = vec_path.test |> map(f_path.escape_special_characters.gsub)
-result.gsub |> str(max.level = 2, give.attr = TRUE)
-result.gsub |> identical(result.str_replace_all)
-```
-
-
-### \% f_path.escape_special_characters.gsub_v2() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# library(stringr)
-# 
-# # Function to escape special characters in a string for use in regex
-# f_path.escape_special_characters.gsub_v2 <- function(input_path) {
-#     # gsub("([\\[\\]{}()+*^$|.])", "\\\\\\1", string)
-#     # gsub("([\\[\\]\\{\\}()+*^$|.])", "\\\\\\1", string)
-#     gsub("([\\[\\]\\{\\}()+*?^$|.])", "\\\\\\1", string)
-#     # it works without errors in some regex engines, treating { and } as literal characters.
-#     # However, in R's default TRE engine, the { and } characters have special meanings (they denote quantifiers like {n}, {n,}, etc.). When these characters are placed inside a character class ([]) without proper escaping, TRE can misinterpret them, leading to compilation errors such as:
-# }
-# 
-# result.gsub_v2 = vec_path.test |> map(f_path.escape_special_characters.gsub_v2)
-# result.gsub_v2 |> str(max.level = 2, give.attr = TRUE)
-# result.gsub_v2 |> identical(result.str_replace_all)
-# 
-# # > result.gsub_v2 = vec_path.test |> map(f_path.escape_special_characters.gsub_v2)
-# # Warning: TRE pattern compilation error 'Invalid use of repetition operators'Error in `map()`:
-# # ℹ In index: 1.
-# # Caused by error in `gsub()`:
-# # ! invalid regular expression '([\[\]\{\}()+*?^$|.])', reason 'Invalid use of repetition operators'
-# # Backtrace:
-# #  1. purrr::map(vec_path.test, f_path.escape_special_characters.gsub_v2)
-# #  2. purrr:::map_("list", .x, .f, ..., .progress = .progress)
-# #  6. global .f(.x[[i]], ...)
-# #  7. base::gsub("([\\[\\]\\{\\}()+*?^$|.])", "\\\\\\1", string)
-```
-  
-  
-
-### \% f_path.escape_special_characters.manual() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-f_path.escape_special_characters.manual <- function(input_path) {
-    specials <- c("\\", ".", "?", "+", "*", "^", "$", "(", ")", "[", "]", "{", "}", "|", "-")
-    for (char in specials) {
-        # Replace the character with a backslash followed by the character
-        # Since `fixed = TRUE`, `pattern` should be the character itself
-        # `replacement` should be "\\" + char, which in R string is "\\\\ + char"
-        # string <- gsub(char, paste0("\\\\", char), string, fixed = TRUE)
-        string <- gsub(char, paste0("\\", char), string, fixed = TRUE)
-    }
-    return(string)
-}
-
-# Apply the function using purrr::map
-result.manual <- vec_path.test |> map(f_path.escape_special_characters.manual)
-result.manual |> str(max.level = 2, give.attr = TRUE)
-result.manual |> identical(result.str_replace_all)
-```
-
-  
-##@ https://github.com/rstudio/rmarkdown/blob/main/R/util.R ----  
-## :: .shell_chars_regex <- '[ <>()|\\:&;#?*\']'
-### \% file_name_without_shell_chars() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-# Regular expression representing characters likely to be considered special by
-# the shell (require quoting/escaping)
-.shell_chars_regex <- '[ <>()|\\:&;#?*\']'
-
-file_name_without_shell_chars <- function(file) {
-  name <- gsub(.shell_chars_regex, '-', basename(file))
-  dir <- dirname(file)
-  if (nzchar(dir) && !identical(dir, "."))
-    file.path(dir, name)
-  else
-    name
-}
-vec_path.test |> map(file_name_without_shell_chars) |> str(max.level = 2, give.attr = TRUE)
-
-
-improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
-# Function to escape special characters in a string for use in regex
-f_path.escape_special_characters.str_replace_all_improved <- function(input_path) {
-  input_path |>  str_replace_all(improved_shell_regex, "\\\\\\&")
-}
-
-result.str_replace_all_improved = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_improved)
-result.str_replace_all_improved |> str(max.level = 2, give.attr = TRUE)
-```
-  
-  
-### \% f_path.escape_special_characters.shell_chars_regex() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-# Regular expression representing characters likely to be considered special by
-# the shell (require quoting/escaping)
-.shell_chars_regex <- '[ <>()|\\:&;#?*\']'
-
-f_path.escape_special_characters.shell_chars_regex <- function(input_path) {
-  input_path |>  str_replace_all(.shell_chars_regex, "\\\\\\&")
-}
-
-f_path.escape_special_characters.shell_chars_regex = vec_path.test |> map(f_path.escape_special_characters.shell_chars_regex)
-f_path.escape_special_characters.shell_chars_regex |> str(max.level = 2, give.attr = TRUE)
-```
-
-
-##@ https://chatgpt.com/c/66f601c7-8c30-800e-8e13-499fee371a88 ----  
-## :: improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
-### \% f_path.escape_special_characters.gsub_improved() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
-# Function to escape special characters in a string for use in regex
-f_path.escape_special_characters.str_replace_all_improved <- function(input_path) {
-  input_path |>  str_replace_all(improved_shell_regex, "\\\\\\&")
-}
-
-result.str_replace_all_improved = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_improved)
-result.str_replace_all_improved |> str(max.level = 2, give.attr = TRUE)
-```
-
-
-### \% f_path.escape_special_characters.gsub_improved() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# options(width=120)
-# improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
-# # Function to escape special characters in a string for use in regex
-# f_path.escape_special_characters.gsub_improved <- function(input_path) {
-#   gsub(improved_shell_regex, "\\\\\\&", string)
-# }
-# 
-# result.gsub_improved = vec_path.test |> map(f_path.escape_special_characters.gsub_improved)
-# result.gsub_improved |> str(max.level = 2, give.attr = TRUE)
-# result.gsub_improved |> identical(result.str_replace_all)
-# # Warning: TRE pattern compilation error 'Invalid contents of {}'Error in `map()`:
-# # ℹ In index: 1.
-# # Caused by error in `gsub()`:
-# # ! invalid regular expression '[<>()|&;!$`\\'"*?\[\]{}~#^%+=,:/@]', reason 'Invalid contents of {}'
-# # Backtrace:
-# #  1. purrr::map(vec_path.test, f_path.escape_special_characters.gsub_improved)
-# #  2. purrr:::map_("list", .x, .f, ..., .progress = .progress)
-# #  6. global .f(.x[[i]], ...)
-# #  7. base::gsub(improved_shell_regex, "\\\\\\1", string)
-# # Error in map(vec_path.test, f_path.escape_special_characters.gsub_improved) : 
-# # Caused by error in `gsub()`:
-# # ! invalid regular expression '[<>()|&;!$`\\'"*?\[\]{}~#^%+=,:/@]', reason 'Invalid contents of {}'
-```
-  
-  
-## :: improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
-```
-  
-  
-##@ https://chatgpt.com/c/6703f128-b4b4-800e-b718-68b28c7de362 ----  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# document.title.replace(/[^a-zA-Z0-9가-힣 \-_().,@+=;&]/g, '_');
-# document.title.replace(/[^a-zA-Z0-9가-힣 \-_().,@+=;&!#$%^\[\]'~`]/g, '_');
-
+options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
+# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") {.subpath = env1$path$LastSourceEditorContext.path_filename_ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
+# .filename.source.r = "default.template" |> paste0(".source.r")
+if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") {.sourcename_root = env1$path$LastSourceEditorContext.path_filename_ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+env1$path$.subpath = .subpath
+if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
+.filename.source.r = .sourcename_root |> paste0(".source.r")
+env1$path$.sourcename_root = .sourcename_root
+env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
+env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
+env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
+cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
+    "#### ",env1$path$.subpath_filename.dev.r, "----  \n",
+    "#### ",env1$path$.subpath_filename.dev.Rmd, "----  \n",
+    "#### ",env1$path$.subpath_filename.source.r, "----  \n",
+    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+    sep="")
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# # \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
+# env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
 ```
   
   
@@ -486,10 +391,214 @@ options(width=120)
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# __________|------  
+# @@ START) function ----  
+## https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379
+## :: f_vecChr.EscapeSpecialCharacters_vecChr 
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+#' Escapes special regex characters in a character vector.
+#'
+#' @param input_vecChr A character vector to be processed.
+#' @param VERBOSE Logical indicating whether to print intermediate outputs
+#'   for debugging. Defaults to isTRUE(getOption("verbose")) (usually FALSE).
+#'
+#' @return A character vector where each special regex character is escaped.
+#'
+#' @references
+#' - R Documentation for 'gsub': https://stat.ethz.ch/R-manual/R-devel/library/base/html/gsub.html
+#'
+f_vecChr.EscapeSpecialCharacters_vecChr <- function(
+  input_vecChr,
+  VERBOSE = isTRUE(getOption("verbose"))
+) {
+  if (VERBOSE) {
+    cat("Received input_vecChr:\n")
+    print(input_vecChr)
+  }
+  
+  # Define the regex pattern for special characters commonly used in regular expressions
+  pattern_chr <- "([.*+?^=!:|\\\\/()\\[\\]{}])"
+  
+  # This replacement ensures each special character is prefixed by one backslash
+  replacement_chr <- "\\\\\\1"
+  
+  if (VERBOSE) {
+    cat("Regex pattern used for escaping special characters:\n")
+    print(pattern_chr)
+    cat("Replacement string:\n")
+    print(replacement_chr)
+  }
+  
+  # gsub is vectorized, so we can apply it directly across the entire vector
+  escaped_vecChr <- gsub(
+    pattern = pattern_chr,
+    replacement = replacement_chr,
+    x = input_vecChr,
+    perl = TRUE
+  )
+  
+  if (VERBOSE) {
+    cat("Escaped output:\n")
+    print(escaped_vecChr)
+  }
+  
+  return(escaped_vecChr)
+}
+
+# Example usage with well-known health data references:
+example_vecChr <- c(
+  "Systolic (BP)* is around 120 + 10?", 
+  "Patients' heart_rate^ might exceed 90!", 
+  "BloodSugar=100: PleaseCheck!"
+)
+
+# If you set VERBOSE = TRUE, you will see intermediate outputs:
+escaped_vecChr <- f_vecChr.EscapeSpecialCharacters_vecChr(
+  input_vecChr = example_vecChr,
+  VERBOSE = FALSE  # Change to TRUE to see debugging messages
+)
+
+# Expected outputs
+escaped_vecChr
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ START) function ----  
+## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
+## :: f_vecChr.EscapeSpecialCharacters_vecChr 
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+#' Escapes special regex characters in a character vector.
+#'
+#' @param input_vecChr A character vector to be processed.
+#' @param VERBOSE Logical indicating whether to print intermediate outputs
+#'   for debugging. Defaults to isTRUE(getOption("verbose")) (usually FALSE).
+#'
+#' @return A character vector where each special regex character is escaped.
+#'
+#' @references
+#' - R Documentation for 'gsub': https://stat.ethz.ch/R-manual/R-devel/library/base/html/gsub.html
+#'
+f_vecChr.EscapeSpecialCharacters_vecChr <- function(
+  input_vecChr,
+  VERBOSE = isTRUE(getOption("verbose"))
+) {
+  if (VERBOSE) {
+    cat("Received input_vecChr:\n")
+    print(input_vecChr)
+  }
+  
+  # Define the regex pattern for special characters commonly used in regular expressions
+  pattern_chr <- "([.*+?^=!:|\\\\/()\\[\\]{}])"
+  
+  # This replacement ensures each special character is prefixed by one backslash
+  replacement_chr <- "\\\\\\1"
+  
+  if (VERBOSE) {
+    cat("Regex pattern used for escaping special characters:\n")
+    print(pattern_chr)
+    cat("Replacement string:\n")
+    print(replacement_chr)
+  }
+  
+  # gsub is vectorized, so we can apply it directly across the entire vector
+  escaped_vecChr <- gsub(
+    pattern = pattern_chr,
+    replacement = replacement_chr,
+    x = input_vecChr,
+    perl = TRUE
+  )
+  
+  if (VERBOSE) {
+    cat("Escaped output:\n")
+    print(escaped_vecChr)
+  }
+  
+  return(escaped_vecChr)
+}
+
+# Example usage with well-known health data references:
+example_vecChr <- c(
+  "Systolic (BP)* is around 120 + 10?", 
+  "Patients' heart_rate^ might exceed 90!", 
+  "BloodSugar=100: PleaseCheck!"
+)
+
+# If you set VERBOSE = TRUE, you will see intermediate outputs:
+escaped_vecChr <- f_vecChr.EscapeSpecialCharacters_vecChr(
+  input_vecChr = example_vecChr,
+  VERBOSE = FALSE  # Change to TRUE to see debugging messages
+)
+
+# Expected outputs
+escaped_vecChr
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+# __________|------  
+# @@ START) function ----  
+## :: function_name = function() -dev -pending  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## ->> Not Yet included in env1$env.internal.source.r ----
+## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: function_name = function() ====
+## Rdev/00_base_program/001_base_file/function_name.dev.Rmd
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "function_name" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_object) {
+    output_object = input_object
+    invisible()
+}
 ```
   
   
@@ -500,32 +609,33 @@ options(width=120)
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
+  
   
   
 # __________|------  
@@ -558,6 +668,20 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
   
   
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
@@ -568,28 +692,6 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 ```
   
   
-```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-env1$path$LastSourceEditorContext.path_filename.pdf = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-env1$path$LastSourceEditorContext.path_filename.html = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-if (Sys.getenv("PARENT_RENDERING") != "YES") {
-    if (Sys.info()["sysname"] == "Windows") {
-        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-        .font_name = "roboto"; if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
-        .font_name = "cascadia-code"; if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
-        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_filename_ext)),', output_format = "pdf_document")  \n')
-        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
-        .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
-        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
-        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
-    }
-}
-# env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
-# cat("    ________________________________________________________________________    \n")
-env1$path$LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal.attach$f_URL.browse_in_edge_app(',deparse(.path_file),')  \n', sep="")
-```
-  
-  
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
 env1$path$LastSourceEditorContext.path_filename.nb.html = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
@@ -597,11 +699,10 @@ if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
 paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   
-
