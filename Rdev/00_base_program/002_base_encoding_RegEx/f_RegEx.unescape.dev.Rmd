@@ -423,12 +423,15 @@ options(width=120)
 # This function interprets typical escape sequences (e.g., \n, \t, \")
 # in a character vector by leveraging R's internal parse mechanism.
 # It returns a character vector with the "unescaped" strings.
-# 
+#
+# Key Enhancement: We first re-escape all backslashes to avoid parse()
+# errors on sequences like \[ or \].
+#
 # Arguments:
 #   inputVec  : Character vector to unescape
-#   VERBOSE   : Logical value, default = isTRUE(getOption("verbose")),
-#               if TRUE, print debugging info to the console
-# 
+#   VERBOSE   : Logical value, default = isTRUE(getOption("verbose"))
+#               If TRUE, print debugging info to the console
+#
 # Returns:
 #   A character vector of the same length as inputVec, with
 #   escape sequences interpreted.
@@ -436,16 +439,23 @@ options(width=120)
 
 f_vec.unescapeRegex_vec <- function(inputVec, VERBOSE = isTRUE(getOption("verbose"))) {
   
-  # Convert any double quotes into escaped quotes
-  escapedStringVec <- gsub("\"", "\\\\\"", inputVec, fixed = TRUE)
+  # 1) Re-escape existing backslashes: '\\' -> '\\\\'
+  #    This prevents parse() from seeing, e.g., '\[', which is invalid in R strings.
+  reEscapedBackslashVec <- gsub("\\\\", "\\\\\\\\", inputVec)
+  
+  # 2) Convert any double quotes into escaped quotes: '"' -> '\"'
+  escapedStringVec <- gsub("\"", "\\\\\"", reEscapedBackslashVec, fixed = TRUE)
   
   # Optional debugging output
   if (VERBOSE) {
-    cat("DEBUG: escapedStringVec:\n")
+    cat("DEBUG: reEscapedBackslashVec:\n")
+    print(reEscapedBackslashVec)
+    
+    cat("\nDEBUG: escapedStringVec:\n")
     print(escapedStringVec)
   }
   
-  # Use purrr::map_chr for clarity, avoiding tilde or anonymous lambda
+  # 3) Parse each string, interpreting escape sequences
   unescapedStringVec <- purrr::map_chr(
     escapedStringVec,
     function(oneString) {
