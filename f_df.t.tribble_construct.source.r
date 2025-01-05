@@ -673,6 +673,18 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) strsplit0.unlist_as_vec  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0.unlist_as_vec")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_chr1.strsplit0_as_vec.unique.sort  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_chr1.strsplit0_as_vec.unique.sort"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = "") {
+    # if(length(input_chr1) > 1) warning("length(input_chr1) > 1")
+    # output_vec_chr = input_chr1 %>% strsplit(split) %>% unlist
+    stringr::str_split_1(string = input_chr1, pattern = split) |> unique() |> sort()
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) strsplit0.unlist_as_vec.unique.sort  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0.unlist_as_vec.unique.sort")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_chr.na_if_NotMatching =  ----
