@@ -343,6 +343,41 @@ path_windows_D_OneDrive_Project_github_tidystat = r"(D:\OneDrive\[][Rproject]\gi
 path_windows_D_OneDrive_Project_github_tidystat %>% dput()
 path_windows_D_OneDrive_Project_github_tidystat %>% cat0()
 ```
+
+
+## @ RegEx Special Characters ----
+### RegExChrClass34strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+### RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
+### RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+RegExChrClass34strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_strings_cheatsheet %>% dput
+RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
+# "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+#  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass_strings_cheatsheet_MHsort = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_strings_cheatsheet_MHsort %>% dput
+RegExChrClass_strings_cheatsheet_MHsort %>% {cat(" ",.,"\n", sep="")}
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
+RegExChrClass_gpt_o1 %>% dput
+RegExChrClass_gpt_o1 %>% {cat(" ",.,"\n", sep="")}
+# "[.\\\\+*?^$(){}|\\[\\]\\-]"
+#  [.\+*?^$(){}|\[\]\-]
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+RegExChrClass_gpt_o1p %>% dput
+RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
+# "[.*+?^=!:|\\\\/()\\[\\]{}]"
+#  [.*+?^=!:|\\/()\[\]{}]
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass4RegExEscape_gpt_o1 = "[$()*+.?[^{|(\\#%&~_/<=>'!,:;`)}@-]"
+
+
+```
   
   
 # __________|------  

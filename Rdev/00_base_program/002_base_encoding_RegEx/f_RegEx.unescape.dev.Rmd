@@ -564,7 +564,7 @@ resultVec %>% paste0_collapseLF.cat0()
 ### \% RegExChrClass_strings_cheatsheet |> f_vec.unescapeRegex_vec() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass34strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
 RegExChrClass_strings_cheatsheet %>% dput
 RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
 # "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
