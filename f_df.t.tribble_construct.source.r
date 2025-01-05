@@ -566,6 +566,89 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec1, vec2, print_st
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) setdiff_df.vec1_vec2  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.vec1_vec2")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_list_vecs.union_df = function() ====
+## Rdev/00_base_program/009_base_computation/f_list_vecs.union_df.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_list_vecs.union_df" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_list_vecs, print_str = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
+    # 1. If verbose, print the function call
+    if (VERBOSE) {
+        cat("[DEBUG] Entering f_list_vecs.union_df()\n")
+    }
+
+    # 2. Check that the input is indeed a list
+    if (!is.list(input_list_vecs)) {
+        stop("The input must be a list of vectors.")
+    }
+    
+    # 3. Handle unnamed vectors by assigning default names only where needed
+    originalNames_vec <- names(input_list_vecs)
+    
+    # If no names exist at all, create them:
+    if (is.null(originalNames_vec)) {
+        defaultNames_vec <- paste0("vec", seq_along(input_list_vecs))
+        names(input_list_vecs) <- defaultNames_vec
+        if (VERBOSE) {
+            cat("[DEBUG] All vectors were unnamed. Assigned default names:\n")
+            print(defaultNames_vec)
+        }
+    } else {
+        # If some are named and others are empty, only replace the empty ones
+        for (i in seq_along(originalNames_vec)) {
+            if (is.na(originalNames_vec[i]) || originalNames_vec[i] == "") {
+                originalNames_vec[i] <- paste0("Vec", i)
+            }
+        }
+        names(input_list_vecs) <- originalNames_vec
+        if (VERBOSE) {
+            cat("[DEBUG] Some vectors were unnamed. Assigned default names for those only:\n")
+            print(originalNames_vec)
+        }
+    }
+    
+    # 4. Convert all vectors to character
+    input_list_vecs.as_character <- purrr::map(
+        .x = input_list_vecs,
+        .f = function(single_vec) {
+            as.character(single_vec)
+        }
+    )
+
+    # 5. Compute the union of all elements (sorted, unique)
+    union_vec <- sort(unique(unlist(input_list_vecs.as_character)))
+    if (VERBOSE) {
+        cat("[DEBUG] union_vec (all unique elements):\n")
+        print(union_vec)
+    }
+
+    # 6. Initialize output tibble
+    output_df <- tibble::tibble(UNION = union_vec)
+
+    # 7. Create logical indicator columns
+    for (vec_name in names(input_list_vecs.as_character)) {
+        membership_vec <- output_df[["UNION"]] %in% input_list_vecs.as_character[[vec_name]]
+        output_df[[vec_name]] <- membership_vec
+        if (VERBOSE) {
+            cat("[DEBUG] Processed membership for:", vec_name, "\n")
+        }
+    }
+
+    # 8. Print final output if requested
+    if (print_str) {str(output_df); print(summary(output_df))}
+
+    # 9. Return the tibble
+    invisible(output_df)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) f_vecsList.union_df  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_vecsList.setdiff_df")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) setdiff_df.list_vecs  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.list_vecs")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) union_df.list_vecs  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.list_vecs")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_chr.strsplit0_as_list_vec =  ----
