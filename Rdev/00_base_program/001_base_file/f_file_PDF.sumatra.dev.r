@@ -154,7 +154,7 @@ env1$env.internal.attach$f_file.systemStart <- function(file) {
 
 
 
-.filename.r = "env1$env.internal" |> paste0(c(".source.r",".dev.r")); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+.filename.r = "env1$env.internal" |> paste0(c(".source.r",".dev.r")); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); .relative.subpath_filename.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .relative.subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 
 
 
