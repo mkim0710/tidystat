@@ -62,7 +62,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # env1$path$.sourcename_root = .sourcename_root  
 # env1$path$.relative.subpath_filename.dev.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.relative.subpath_filename.dev.Rmd = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r)
+# env1$path$.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r)
 # cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
 #     "# ",sourcename_root,".dev.r", "\n",
 #     "# ",sourcename_root,".source.r", "\n",

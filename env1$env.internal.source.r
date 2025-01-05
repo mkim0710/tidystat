@@ -1366,7 +1366,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     for (.dependancy in c("f_df.t.tribble_construct")) {
         if(!.dependancy %in% names(.GlobalEnv$env1)) {
             if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-            .filename.source.r = .dependancy |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
+            .filename.source.r = .dependancy |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
         }
     }
     
@@ -2938,7 +2938,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.relative.subpath_filename.source.r = if(!is.null(.relative.subpath) && !is.null(.filename.source.r)) env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r) else NULL, .relative.subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.relative.subpath_filename.source.r = if(!is.null(.relative.subpath) && !is.null(.filename.source.r)) file.path(.relative.subpath, .filename.source.r) else NULL, .relative.subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     # options(DEVMODE = TRUE)
     # options(DEVMODE = FALSE)
     # options(DEBUGMODE = TRUE)
@@ -2950,7 +2950,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.relative.subpath_fi
     #  $ .relative.subpath                  : NULL
     #  $ .filename.source.r        : NULL
     #  $ RELOAD_FUNCTION    : logi TRUE
-    # if(is.null(.relative.subpath_filename.source.r) && !is.null(.relative.subpath) && !is.null(.filename.source.r)) .relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r)
+    # if(is.null(.relative.subpath_filename.source.r) && !is.null(.relative.subpath) && !is.null(.filename.source.r)) .relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r)
     if(is.null(.filename.source.r)) .filename.source.r = basename(.relative.subpath_filename.source.r)
     if(RELOAD_FUNCTION || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  
         RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). -> Caution: Even if getOption("RELOAD_FUNCTION") was NULL or FALSE, options(RELOAD_FUNCTION = TRUE) should be passed to the functions inside source(). 
@@ -2986,8 +2986,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.relative.subpath_fi
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DS.lbl.source.r = NULL
-# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .relative.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
-# .filename.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
+# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .relative.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# .filename.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
 # env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source_if_not_sourced  ----  
@@ -3008,7 +3008,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DS.lbl.source.r = ""
-# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .relative.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
+# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .relative.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
 # env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source.force_reload  ----  
@@ -3020,7 +3020,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## @ .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
 # # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/internal.f_path0.list_path_hierarchy.source.r")
-# .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
+# .filename.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #### \$ list_path_hierarchy  =======  
 .max_hierarchy = 5
@@ -3038,12 +3038,12 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput")
-.filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .relative.subpath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
+.filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .relative.subpath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .filename.source.r = "CodeChunks" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/CodeChunks.source.r")
-.filename.source.r = "CodeChunks" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = env1$f$f_path_file.paste0_collapse_if_not_empty(.relative.subpath, .filename.source.r))
+.filename.source.r = "CodeChunks" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
