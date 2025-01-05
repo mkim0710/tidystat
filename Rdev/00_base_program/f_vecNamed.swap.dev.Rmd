@@ -253,10 +253,10 @@ options(width=120)
 string_to_named_vector <- function(value_options, pair_sep = ",", value_label_sep = "=") {
   
   # Step 1: Split the string into individual pairs using pair_sep (handling whitespaces)
-  value_label_pairs <- str_split(value_options, paste0("\\s*", pair_sep, "\\s*")) %>% unlist()
+  value_label_pairs <- str_split(value_options, paste0("\\s*", pair_sep, "\\s*")) |> unlist()
   
   # Step 2: Separate each pair into values and labels using value_label_sep (handling whitespaces)
-  value_label_list <- map(value_label_pairs, ~ str_split(.x, paste0("\\s*", value_label_sep, "\\s*")) %>% unlist())
+  value_label_list <- map(value_label_pairs, ~ str_split(.x, paste0("\\s*", value_label_sep, "\\s*")) |> unlist())
   
   # Step 3: Create the named vector where Value is the name and Label is the value
   named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))

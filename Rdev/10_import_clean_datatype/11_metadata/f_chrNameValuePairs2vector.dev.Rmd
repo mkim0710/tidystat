@@ -274,10 +274,10 @@ options(width=120)
 string_to_named_vector <- function(value_options, pair_sep = ",", value_label_sep = "=") {
   
   # Step 1: Split the string into individual pairs using pair_sep (handling whitespaces)
-  value_label_pairs <- str_split(value_options, paste0("\\s*", pair_sep, "\\s*")) %>% unlist()
+  value_label_pairs <- str_split(value_options, paste0("\\s*", pair_sep, "\\s*")) |> unlist()
   
   # Step 2: Separate each pair into values and labels using value_label_sep (handling whitespaces)
-  value_label_list <- map(value_label_pairs, ~ str_split(.x, paste0("\\s*", value_label_sep, "\\s*")) %>% unlist())
+  value_label_list <- map(value_label_pairs, ~ str_split(.x, paste0("\\s*", value_label_sep, "\\s*")) |> unlist())
   
   # Step 3: Create the named vector where Value is the name and Label is the value
   named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))
@@ -472,16 +472,16 @@ chrNameValuePairs <- "ValueA = LabelA, ValueB = LabelB"
 
 chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() %>% str  # ***
+chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> unlist() %>% str  # ***
 
 # Step 1: Split the string into individual pairs using NameValuePair_separator (handling whitespaces)
-vec.NameValuePair <- chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist()
+vec.NameValuePair <- chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> unlist()
 
 cat("    ________________________________________________________________________    \n")
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))) |> str(max.level = 2, give.attr = TRUE)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*")) %>% unlist()) |> str(max.level = 2, give.attr = TRUE)
+vec.NameValuePair %>% map(~ .x %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*")) |> unlist()) |> str(max.level = 2, give.attr = TRUE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*")) %>% str  # ***
 
@@ -559,9 +559,9 @@ options(width=120)
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
 .tmp$objectname = "f_chrNameValuePairs2vector"
 .tmp$object = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
-    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
+    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> unlist() 
     list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
-    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist()
+    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) |> unlist()
     if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
     return(vecNamed)    
 }
@@ -570,9 +570,9 @@ options(width=120)
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 f_chrNameValuePairs2vector = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
-    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
+    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> unlist() 
     list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
-    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist()
+    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) |> unlist()
     if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
     return(vecNamed)    
 }

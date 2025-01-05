@@ -240,7 +240,7 @@ intToUtf8(127) |> cat0()    # DEL
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 c(32:47,58:64,91:96,123:126) |> intToUtf8() |> cat0()   #  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~  
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") %>% unlist() %>% setNames(vec_chr)  }}()
+vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") |> unlist() |> set_names(vec_chr)  }}()
 vec_chr.ASCII_nonalphanumeric %>% str()
 ```
 
@@ -252,7 +252,7 @@ options(width=120)
 []\\{}|
 ;':\"
 ,./<>?" 
-"`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" |> str_split("") %>% unlist() %>% str()
+"`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" |> str_split("") |> unlist() %>% str()
 "`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" %>% utf8ToInt() %>% as.numeric %>% dput.deparse.cat0()  # c(96, 126, 33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 45, 61, 95, 43, 91, 93, 92, 123, 125, 124, 59, 39, 58, 34, 44, 46, 47, 60, 62, 63)
 ```
 
