@@ -964,34 +964,26 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path_file.paste0_collapse.faster ====  
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_path_file.paste0_collapse.faster"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") file.path(..., fsep = collapse)
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) paste0_collapse.path_file.faster  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "paste0_collapse.path_file.faster")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) file.path.paste0_collapse.faster  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.path.paste0_collapse.faster")
-
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_file.paste0_collapse_if_not_empty ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path_file.paste0_collapse_if_not_empty"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, FileNameExt) {  paste0(path,ifelse(path=="","","/"),FileNameExt)  }
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/", paste0_collapse_if_not_empty = TRUE) {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") {  
     # paste0(path,ifelse(path=="","","/"),FileNameExt)
-    if(paste0_collapse_if_not_empty) {
-        c(...)[c(...) != ""] |> paste0(collapse = collapse)  
-    } else {
-        file.path(..., fsep = collapse)
-    }
+    # c(...)[c(...) != ""] |> paste0(collapse = collapse)  
+
+    arguments.list.unlist = unlist(list(...), use.names = FALSE)    # Rdev/00_base_program/004_base_environment/f_function.arguments.list.unlist-dev.r
+    # arguments.list.unlist[arguments.list.unlist != ""] |> paste0(collapse = collapse)
+    # arguments.list.unlist[nzchar(arguments.list.unlist)] |> paste0(collapse = collapse)
+
+    # Call file.path() with the non-empty parts
+    do.call(file.path, c(as.list(arguments.list.unlist[nzchar(arguments.list.unlist)]), fsep = collapse))
+    
+    # *** 1liner *** list(...) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
 }
 ## *** Example Usage:  
-# f_path_file.paste0_collapse_if_not_empty("a", "b", "", "d")  # "a/b/d"
-# f_path_file.paste0_collapse_if_not_empty("", "b/c")  # "b/c"
+# env1$f$f_path_file.paste0_collapse_if_not_empty("a", "b", "", "d")  # "a/b/d"
+# env1$f$f_path_file.paste0_collapse_if_not_empty("", "b/c")  # "b/c"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) paste0_collapse.path_file.if_not_empty  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "paste0_collapse.path_file.if_not_empty")
