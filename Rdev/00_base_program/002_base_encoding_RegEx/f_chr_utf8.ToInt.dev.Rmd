@@ -238,6 +238,7 @@ intToUtf8(123:127) |> cat0()    # {|}~
 ```
 
 
+## @ hangul chosung & joongsung unicode ----
 ### \% 12593:12622 |> intToUtf8() |> cat0()      # ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ  
 ### \% 12623:12643 |> intToUtf8() |> cat0()      # ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
