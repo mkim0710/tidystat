@@ -467,7 +467,7 @@ glob_to_regex <- function(glob_pattern, anchor = FALSE) {
 # -----------------------------------------------
 # Main function:
 #   Converts a single string of comma-separated patterns enclosed in braces, e.g.
-#     "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+#     "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 #   ...into one combined OR-based regex suitable for grepl().
 # -----------------------------------------------
 styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
@@ -498,14 +498,14 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 # Example usage
 # --------------------
-inclusion_str  <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
 # Potential output (when shown via print()):
 # "(?:[^/]*/)*[^/]*\\.[rR]|(?:[^/]*/)*[^/]*\\.[rR][mM][dD]|default\\.R|\\.Rprofile"
 # (Dots are now escaped as \\. for literal matches.)
 
-exclusion_str  <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
+exclusion_str  <- "{.history,-[Bb][Aa][Cc][Kk][Uu][Pp],VScode Replace*.*,.git,.Rproj.user,*symlink*,r4ds-master}"
 exclusion_regex <- styles_to_regex(exclusion_str, anchor_each = FALSE)
 exclusion_regex
 # Potential output:
@@ -551,7 +551,7 @@ glob_to_regex <- function(glob_pattern, anchor = FALSE) {
 # -----------------------------------------------
 # Main function:
 #   Converts a single string of comma-separated patterns enclosed in braces, e.g.
-#     "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+#     "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 #   ...into one combined OR-based regex suitable for grepl().
 # -----------------------------------------------
 styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
@@ -583,14 +583,14 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 
 # Inclusion example
-inclusion_str  <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
 # Example output might look like:
 # "(?:[^/]*/)*[^/]*\\.[rR]|(?:[^/]*/)*[^/]*\\.[rR][mM][dD]|default\\.R|\\.Rprofile"
 
 # Exclusion example
-exclusion_str  <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
+exclusion_str  <- "{.history,-[Bb][Aa][Cc][Kk][Uu][Pp],VScode Replace*.*,.git,.Rproj.user,*symlink*,r4ds-master}"
 exclusion_regex <- styles_to_regex(exclusion_str, anchor_each = FALSE)
 exclusion_regex
 # Example output might look like:
