@@ -365,8 +365,8 @@ exclusion_glob  <- "{.history,-[Bb][Aa][Cc][Kk][Uu][Pp],VScode Replace*.*,.git,.
 ###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-inclusion_glob %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
-exclusion_glob %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
+inclusion_glob |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
+exclusion_glob |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
 ```
   
   
@@ -387,7 +387,7 @@ env0 = env1
 ###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-RegExChrClass_strings_cheatsheet %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
+RegExChrClass_strings_cheatsheet |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
 
 ```
   
