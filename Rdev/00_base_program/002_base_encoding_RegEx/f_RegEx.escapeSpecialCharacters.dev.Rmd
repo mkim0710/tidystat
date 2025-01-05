@@ -353,14 +353,14 @@ path_windows_D_OneDrive_Project_github_tidystat %>% cat0()
 options(width=120)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 RegExChrClass34strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-RegExChrClass_strings_cheatsheet %>% dput
-RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
+RegExChrClass34strings_cheatsheet %>% dput
+RegExChrClass34strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
 # "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
 #  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-RegExChrClass_strings_cheatsheet_MHsort = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-RegExChrClass_strings_cheatsheet_MHsort %>% dput
-RegExChrClass_strings_cheatsheet_MHsort %>% {cat(" ",.,"\n", sep="")}
+RegExChrClass34strings_cheatsheet_MHsort = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass34strings_cheatsheet_MHsort %>% dput
+RegExChrClass34strings_cheatsheet_MHsort %>% {cat(" ",.,"\n", sep="")}
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
 RegExChrClass_gpt_o1 %>% dput

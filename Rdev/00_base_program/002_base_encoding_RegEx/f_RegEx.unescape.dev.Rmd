@@ -396,7 +396,7 @@ env0 = env1
 ###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-RegExChrClass_strings_cheatsheet |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
+RegExChrClass34strings_cheatsheet |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
 
 ```
   
@@ -561,16 +561,16 @@ resultVec %>% paste0_collapseLF.cat0()
 ```
   
   
-### \% RegExChrClass_strings_cheatsheet |> f_vec.unescapeRegex_vec() ----  
+### \% RegExChrClass34strings_cheatsheet |> f_vec.unescapeRegex_vec() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 RegExChrClass34strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-RegExChrClass_strings_cheatsheet %>% dput
-RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
+RegExChrClass34strings_cheatsheet %>% dput
+RegExChrClass34strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
 # "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
 #  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-resultVec <- f_vec.unescapeRegex_vec(RegExChrClass_strings_cheatsheet, VERBOSE = TRUE)
+resultVec <- f_vec.unescapeRegex_vec(RegExChrClass34strings_cheatsheet, VERBOSE = TRUE)
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("\nFinal Unescaped Results:\n")
 resultVec %>% print(width = 80)
