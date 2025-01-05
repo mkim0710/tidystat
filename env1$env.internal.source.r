@@ -2819,7 +2819,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: constant_vec.SpecialChars32KeyboardLayout ====
 ## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
-env1$env.internal.attach$constant_vec.SpecialChars32KeyboardLayout = "`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" %>% str_split("") %>% unlist() %>% unique()
+env1$env.internal.attach$constant_vec.SpecialChars32KeyboardLayout = "`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" |> str_split_1("")  # no unique() no sort()
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

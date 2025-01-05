@@ -667,7 +667,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$objectname = "f_chr1.strsplit0_as_vec"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = "") {
     # if(length(input_chr1) > 1) warning("length(input_chr1) > 1")
-    # output_vec_chr = input_chr1 %>% strsplit(split) %>% unlist
+    # output_vec_chr = input_chr1 |> str_split(pattern = split) |> unlist()
     stringr::str_split_1(string = input_chr1, pattern = split)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -679,7 +679,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$objectname = "f_chr1.strsplit0_as_vec.unique.sort"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = "") {
     # if(length(input_chr1) > 1) warning("length(input_chr1) > 1")
-    # output_vec_chr = input_chr1 %>% strsplit(split) %>% unlist
+    # output_vec_chr = input_chr1 |> str_split(pattern = split) |> unlist() |> unique() |> sort()
     stringr::str_split_1(string = input_chr1, pattern = split) |> unique() |> sort()
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
