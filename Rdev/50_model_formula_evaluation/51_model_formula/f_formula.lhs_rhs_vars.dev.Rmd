@@ -227,7 +227,6 @@ if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv)
 for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "05CodeBook"))) {
     .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
     if(.tmp$SourceFileName.ext != basename(env1$path$LastSourceEditorContext.path_filename_ext)) {
-        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
         .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
     }
 }

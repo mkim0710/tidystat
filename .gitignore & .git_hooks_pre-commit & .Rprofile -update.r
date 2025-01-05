@@ -55,7 +55,7 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 #### \$ .gitignore -----  
 # # ".gitignore" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 # # ".gitignore" |> env1$env.internal.attach$f_file.edit_vscode()
-# .file2edit = ".gitignore" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))} }
+# .file2edit = ".gitignore" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()} }
 # .file2edit = ".git/hooks/pre-commit" ; if (Sys.info()["sysname"] == "Windows") { .file2edit |> env1$env.internal.attach$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()} }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #### \% f_path_file.BACKUP_copy_overwrite -----  
