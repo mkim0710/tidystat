@@ -2882,7 +2882,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = if(!is.null(.subpath) && !is.null(.filename.source.r)) paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r) else NULL, .subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.relative.subpath_filename.source.r = if(!is.null(.relative.subpath) && !is.null(.filename.source.r)) paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r) else NULL, .relative.subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     # options(DEVMODE = TRUE)
     # options(DEVMODE = FALSE)
     # options(DEBUGMODE = TRUE)
@@ -2890,18 +2890,18 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
     if(DEBUGMODE) browser()
     # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str
     # List of 4
-    #  $ .subpath_filename.source.r: chr "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r"
-    #  $ .subpath                  : NULL
+    #  $ .relative.subpath_filename.source.r: chr "Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r"
+    #  $ .relative.subpath                  : NULL
     #  $ .filename.source.r        : NULL
     #  $ RELOAD_FUNCTION    : logi TRUE
-    # if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.filename.source.r)) .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
-    if(is.null(.filename.source.r)) .filename.source.r = basename(.subpath_filename.source.r)
+    # if(is.null(.relative.subpath_filename.source.r) && !is.null(.relative.subpath) && !is.null(.filename.source.r)) .relative.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r)
+    if(is.null(.filename.source.r)) .filename.source.r = basename(.relative.subpath_filename.source.r)
     if(RELOAD_FUNCTION || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  
         RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). -> Caution: Even if getOption("RELOAD_FUNCTION") was NULL or FALSE, options(RELOAD_FUNCTION = TRUE) should be passed to the functions inside source(). 
         
-        #@ DEBUG) .subpath_filename.source.r is given as the full path or URL
-        # > .subpath_filename.source.r = "https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r"
-        # > .subpath_filename.source.r %>% relative_path()
+        #@ DEBUG) .relative.subpath_filename.source.r is given as the full path or URL
+        # > .relative.subpath_filename.source.r = "https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r"
+        # > .relative.subpath_filename.source.r %>% relative_path()
         # [1] "https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r"
         # Warning message:
         # In normalizePath(path, winslash = "/") :
@@ -2909,29 +2909,29 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
         # > file.exists("https://raw.githubusercontent.com/mkim0710/tidystat/master/env1$env.internal.source.r")
         # [1] FALSE
         
-        .source_base.subpath_filename.source.r = 
-            if (file.exists(.subpath_filename.source.r)) {
-                .subpath_filename.source.r
-            } else if (file.exists(paste0(env1$path$source_base_local, "/", .subpath_filename.source.r))) {
-                paste0(env1$path$source_base_local, "/", .subpath_filename.source.r)
-            } else if (  grepl("^http", .subpath_filename.source.r, ignore.case = TRUE) || 
-                         grepl("githubusercontent\\.com", .subpath_filename.source.r, ignore.case = TRUE) ||
-                         grepl("github\\.com", .subpath_filename.source.r, ignore.case = TRUE)  ) {
-                .subpath_filename.source.r
+        .source_base.relative.subpath_filename.source.r = 
+            if (file.exists(.relative.subpath_filename.source.r)) {
+                .relative.subpath_filename.source.r
+            } else if (file.exists(paste0(env1$path$source_base_local, "/", .relative.subpath_filename.source.r))) {
+                paste0(env1$path$source_base_local, "/", .relative.subpath_filename.source.r)
+            } else if (  grepl("^http", .relative.subpath_filename.source.r, ignore.case = TRUE) || 
+                         grepl("githubusercontent\\.com", .relative.subpath_filename.source.r, ignore.case = TRUE) ||
+                         grepl("github\\.com", .relative.subpath_filename.source.r, ignore.case = TRUE)  ) {
+                .relative.subpath_filename.source.r
             } else {
-                paste0(env1$path$source_base_github, "/", .subpath_filename.source.r)
+                paste0(env1$path$source_base_github, "/", .relative.subpath_filename.source.r)
             }
-        .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.subpath_filename.source.r
-        message('> source("',.source_base.subpath_filename.source.r,'")');
-        source(.source_base.subpath_filename.source.r)
+        .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.relative.subpath_filename.source.r
+        message('> source("',.source_base.relative.subpath_filename.source.r,'")');
+        source(.source_base.relative.subpath_filename.source.r)
         
         options(RELOAD_FUNCTION = RELOAD_FUNCTION0)  # Restore previous options value for getOption("RELOAD_FUNCTION").
     }
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DS.lbl.source.r = NULL
-# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
-# .filename.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .relative.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
 # env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source_if_not_sourced  ----  
@@ -2952,7 +2952,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DS.lbl.source.r = ""
-# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .filename.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
 # env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source.force_reload  ----  
@@ -2982,12 +2982,12 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput")
-.filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .subpath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+.filename.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .subpath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .filename.source.r = "CodeChunks" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/CodeChunks.source.r")
-.filename.source.r = "CodeChunks" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+.filename.source.r = "CodeChunks" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
