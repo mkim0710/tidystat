@@ -2056,8 +2056,10 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_file.edit_if_exists ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_if_exists"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file, return2LastSourceEditorContext = FALSE) {
+    # path_file %>% {.[file.exists(.)]} |> file.edit(); 
     if(file.exists(path_file)) file.edit(path_file) else warning(paste0("The file does not exist: ", path_file))
+    if(return2LastSourceEditorContext) if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) file.edit_if_exists  ----  
@@ -2068,6 +2070,22 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) open_if_exists  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_if_exists")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## ::OPTION:: f_file.edit_if_exists.return2LastSourceEditorContext ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_file.edit_if_exists.return2LastSourceEditorContext"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file) {
+    env1$env.internal.attach$f_file.edit_if_exists(path_file, return2LastSourceEditorContext = TRUE)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) file.edit_if_exists.return2LastSourceEditorContext  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.edit_if_exists.return2LastSourceEditorContext")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) file.open_if_exists.return2LastSourceEditorContext  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.open_if_exists.return2LastSourceEditorContext")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) open_if_exists.return2LastSourceEditorContext  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_if_exists.return2LastSourceEditorContext")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_file.edit_windows.or_browseURL ====  
 .tmp$env1_subenv_name = "env.internal.attach"
