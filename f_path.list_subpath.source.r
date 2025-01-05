@@ -52,7 +52,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .filename.source.r = "f_path.list_subpath" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.subpath = .subpath
+# env1$path$.relative.subpath = .relative.subpath
 # .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 # env1$path$.sourcename_root = .sourcename_root  
 # env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")

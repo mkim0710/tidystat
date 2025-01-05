@@ -73,7 +73,7 @@ env1$path$df_dirs_recursive.df_files %>% dplyr::filter(path.level <= 2) |> dplyr
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .filename.source.r = "f_df.NotNA_p_df" |> paste0(".source.r")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-env1$path$.subpath = .subpath
+env1$path$.relative.subpath = .relative.subpath
 .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 env1$path$.sourcename_root = .sourcename_root  
 env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")

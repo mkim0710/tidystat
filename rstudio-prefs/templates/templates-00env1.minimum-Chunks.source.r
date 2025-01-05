@@ -72,7 +72,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 # # .filename.source.r = "default.template" |> paste0(".source.r")
 # if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.filename.source.r = .LastSourceEditorContext.path_filename_ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".filename.source.r" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# env1$path$.subpath = .subpath
+# env1$path$.relative.subpath = .relative.subpath
 # if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
 # if(exists(".sourcename_root") && !exists(".filename.source.r")) .filename.source.r = .sourcename_root |> paste0(".source.r")
 # env1$path$.sourcename_root = .sourcename_root
