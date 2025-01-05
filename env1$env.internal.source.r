@@ -1,184 +1,216 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ system, environment                                                    #L280
-# @@ f_function, f_expression, f_CodeText                                   #L436
-# @@ f_file, f_URL, f_path                                                  #L883
-# @@ source()                                                               #L2579
-# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L2702
+# @@ system, environment                                                    #L312
+# @@ f_function, f_expression, f_CodeText                                   #L555
+# @@ f_file, f_URL, f_path                                                  #L1006
+# @@ f_RegEx                                                                #L2928
+# @@ source()                                                               #L2990
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
-## .GlobalEnv$env1 = new.env()                                              #L241
-# @@ system, environment                                                    #L280
-## :: get_system_info                                                       #L283
-## :: get_software_versions                                                 #L316
-## :: warnings.summary                                                      #L327
-## :: warnings.last                                                         #L328
-## :: warnings.last10                                                       #L329
-## :: message_if_VERBOSE                                                    #L334
-## :: cat_if_VERBOSE                                                        #L339
-## :: f_env1_subenv_objectname.set_ALIAS                                    #L344
-## :: f_environment.list_objectnames.map_get.str                            #L355
-## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        #L378
-## :: f_environment.detach_and_reattach                                     #L388
-## :: reattach.env1_f_env.internal.attach                                   #L402
-## :: f_environment.attached_search_path.dput                               #L410
-## :: Sys.time.set_t0                                                       #L421
-## :: Sys.time.set_t1                                                       #L426
-# @@ f_function, f_expression, f_CodeText                                   #L436
-## :: f_function.load2env.internal                                          #L438
-## :: f_text_function_arguments.identity_mapping                            #L464
-## :: f_condition1.if_null_condition2                                       #L492
-## :: f_expression.eval.withCallingHandlers.attr_warnings.summary           #L504
-## :: f_expression.system.time.round.dput                                   #L564
-## :: f_object.get_objectname -PENDING                                      #L592
-## :: f_ObjectName.dput.ECHO                                                #L626
-## :: f_ObjectName.get.dput.ECHO                                            #L651
-## :: f_CodeText.ECHO                                                       #L687
-## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                               #L808
-## :: f_CodeTexts.parse.eval.identical                                      #L824
-## :: f_TerminalFromRCodeText.ECHO                                          #L852
-## :: f_object.substitute.deparse2objectname                                #L873
-# @@ f_file, f_URL, f_path                                                  #L883
-## :: getSourceEditorContext.path_FileNameExt                              #L886
-## :: f_path_file.paste0_collapse_if_not_empty                              #L903
-## :: f_path.relative                                                       #L923
-## :: getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt =        #L937
-## :: f_path.file.info                                                      #L1000
-## :: f_list_df.write_xlsx_table                                            #L1049
-## :: f_path.file.info.xlsx                                                 #L1100
-## ::OPTION:: f_path.documents.file.info.xlsx                               #L1158
-## :: f_path.DOCs_Rcode.file.info.xlsx                                      #L1171
-## :: f_path.size_files =                                                   #L1235
-## :: f_path0.list_path_hierarchy =                                         #L1287
-## :: f_vec_path.vec_FileName_sans_ext_extended =                           #L1326
-## :: f_vec_path.vec_ext_extended =                                         #L1349
-## :: f_path.df_FileNameExt_extended =                                     #L1368
-## :: f_path_fileRegEX.rename =                                             #L1407
-## :: f_path.list.files_orphan_nb_html.remove                               #L1478
-## :: f_FileNameExt.append_suffix =                                        #L1540
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =        #L1574
-## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =                                 #L1654
-## :: f_file.str_replace_all.old.ObjectName =                               #L1748
-## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        #L1792
-## @ f_file.edit, f_file.open, f_URL.open                                   #L1814
-## :: f_file.edit_if_exists                                                 #L1816
-## :: f_file.edit_windows.or_browseURL                                      #L1832
-## :: f_URL.browse_in_edge =                                                #L1864
-## :: f_URL.browse_in_brave -PENDING                                        #L1954
-## :: f_file.systemStart                                                    #L1961
-## :: f_file_PDF.sumatra                                                    #L1973
-## :: f_file.system_switch_open                                             #L2016
-## :: f_file_xls.open_or_browseURL                                          #L2046
-## @ f_file.BACKUP, f_path.BACKUP                                           #L2067
-## :: f_FileNameExt.createBACKUP                                           #L2069
-## :: f_path_path.BACKUP.overwrite                                          #L2108
-## @ f_git                                                                  #L2123
-## :: f_path.is_git_tracked                                                 #L2126
-## :: f_file.git_lfs_track_add_f                                            #L2177
-## :: function_name = f_gitattributes.split()                               #L2219
-## @ f_file.save                                                            #L2256
-## :: f_objectname.size.write_rds.git_lfs_track_add_f                       #L2259
-## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       #L2394
-## @ f_file.update                                                          #L2418
-## :: env.internal\$f_file2.compare                                         #L2421
-## :: env.internal\$f_url_destfile.DownloadIfDifferent                      #L2458
-# @@ source()                                                               #L2579
-## :: f_sourcePath.execute_if_not_sourced =                                 #L2582
-## ::OPTION:: f_sourcePath.execute.force_reload                             #L2641
-## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       #L2683
-# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L2702
+## .GlobalEnv$env1 = new.env()                                              #L273
+# @@ system, environment                                                    #L312
+## :: get_system_info                                                       #L315
+## :: get_software_versions                                                 #L348
+## :: warnings.summary                                                      #L359
+## :: warnings.last                                                         #L360
+## :: warnings.last10                                                       #L361
+## :: message_if_VERBOSE                                                    #L366
+## :: cat_if_VERBOSE                                                        #L371
+## :: f_env1_subenv_objectname.set_ALIAS                                    #L376
+## :: f_environment.list_objectnames.map_get.str                            #L387
+## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        #L410
+## :: library.load.install_if_not_already_installed                         #L420
+## :: library.load.warning_if_not_available                                 #L437
+## :: requireNamespace.library_load_if_necessary                            #L458
+## :: f_environment.detach_and_reattach                                     #L481
+## :: reattach.env1_f_env.internal.attach                                   #L495
+## :: f_environment.attached_search_path.dput                               #L503
+## :: Sys.time.set_t0                                                       #L514
+## :: Sys.time.set_t1                                                       #L519
+## :: f_object.is_null.or_na.or_blank =                                     #L527
+## :: f_object.is_not_null.nor_na.nor_blank =                               #L540
+# @@ f_function, f_expression, f_CodeText                                   #L555
+## :: f_function.load2env.internal                                          #L557
+## :: f_text_function_arguments.identity_mapping                            #L584
+## :: f_condition1.if_null_condition2                                       #L612
+## :: f_expression.eval.withCallingHandlers.attr_warnings.summary           #L624
+## :: f_expression.system.time.round.dput                                   #L684
+## :: f_object.get_objectname -PENDING                                      #L712
+## :: f_ObjectName.dput.ECHO                                                #L746
+## :: f_ObjectName.get.dput.ECHO                                            #L774
+## :: f_CodeText.ECHO                                                       #L810
+## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                               #L931
+## :: f_CodeTexts.parse.eval.identical                                      #L947
+## :: f_TerminalFromRCodeText.ECHO                                          #L975
+## :: f_object.substitute.deparse2objectname                                #L996
+# @@ f_file, f_URL, f_path                                                  #L1006
+## :: getSourceEditorContext.path_FileNameExt                               #L1009
+## :: f_path_file.paste0_collapse_if_not_empty                              #L1026
+## :: f_path.relative                                                       #L1056
+## :: f_path.URL_github.browse_in_edge_app                                  #L1071
+## :: f_path_relative.path_normalized_based_on_path1                        #L1099
+## :: getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt =        #L1118
+## :: f_path.file.info                                                      #L1181
+## :: f_list_df.write_xlsx_table                                            #L1230
+## :: f_path.file.info.xlsx                                                 #L1281
+## ::OPTION:: f_path.documents.file.info.xlsx                               #L1339
+## :: f_path.DOCs_Rcode.file.info.xlsx                                      #L1352
+## :: f_path.size_files =                                                   #L1416
+## :: f_path0.list_path_hierarchy =                                         #L1468
+## :: f_vec_path.vec_FileName_sans_ext_extended =                           #L1507
+## :: f_vec_path.vec_ext_extended =                                         #L1530
+## :: f_path.df_FileNameExt_extended =                                      #L1549
+## :: f_path_fileRegEX.rename =                                             #L1588
+## :: f_path.list.files_orphan_nb_html.remove                               #L1659
+## :: f_FileNameExt.append_suffix =                                         #L1721
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =        #L1755
+## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =                                 #L1835
+## :: f_vec_chr.df_token_n_rowNum = function()                              #L1929
+## :: f_file.df_token_n_rowNum = function()                                 #L2019
+## :: f_file.str_replace_all.old.ObjectName =                               #L2060
+## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        #L2104
+## @ f_file.edit, f_file.open, f_URL.open                                   #L2126
+## :: f_file.edit_if_exists                                                 #L2128
+## ::OPTION:: f_file.edit_if_exists.return2LastSourceEditorContext          #L2167
+## :: f_file.edit_windows.or_browseURL                                      #L2183
+## :: f_URL.browse_in_edge =                                                #L2215
+## :: f_URL.browse_in_brave -PENDING                                        #L2305
+## :: f_file.systemStart                                                    #L2312
+## :: f_file_PDF.sumatra                                                    #L2324
+## :: f_file.system_switch_open                                             #L2367
+## :: f_file_xls.open_or_browseURL                                          #L2397
+## @ f_file.BACKUP, f_path.BACKUP                                           #L2418
+## :: f_FileNameExt.createBACKUP                                            #L2420
+## :: f_path_path.BACKUP.overwrite                                          #L2459
+## @ f_git                                                                  #L2474
+## :: f_path.is_git_tracked                                                 #L2477
+## :: f_file.git_lfs_track_add_f                                            #L2528
+## :: function_name = f_gitattributes.split()                               #L2570
+## @ f_file.save                                                            #L2607
+## :: f_objectname.size.write_rds.git_lfs_track_add_f                       #L2610
+## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       #L2745
+## @ f_file.update                                                          #L2769
+## :: env.internal\$f_file2.compare                                         #L2772
+## :: env.internal\$f_url_destfile.DownloadIfDifferent                      #L2809
+# @@ f_RegEx                                                                #L2928
+## :: constant_vec.SpecialChars32KeyboardLayout                             #L2931
+## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function()             #L2937
+## :: f_list_RegExChrClass.union_df() = function()                          #L2964
+# @@ source()                                                               #L2990
+## :: f_sourcePath.execute_if_not_sourced =                                 #L2993
+## ::OPTION:: f_sourcePath.execute.force_reload                             #L3052
+## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       #L3094
+## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r")               #L3099
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L280
-# @@ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L436
-# @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L883
-# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2579
-# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2702
+# @@ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L312
+# @@ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L555
+# @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
+# @@ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
+# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
-## .GlobalEnv$env1 = new.env()                                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L241
-# @@ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L280
-## :: get_system_info                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L283
-## :: get_software_versions                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L316
-## :: warnings.summary                                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L327
-## :: warnings.last                                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L328
-## :: warnings.last10                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L329
-## :: message_if_VERBOSE                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L334
-## :: cat_if_VERBOSE                                                        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L339
-## :: f_env1_subenv_objectname.set_ALIAS                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L344
-## :: f_environment.list_objectnames.map_get.str                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L355
-## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L378
-## :: f_environment.detach_and_reattach                                     # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L388
-## :: reattach.env1_f_env.internal.attach                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L402
-## :: f_environment.attached_search_path.dput                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L410
-## :: Sys.time.set_t0                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L421
-## :: Sys.time.set_t1                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L426
-# @@ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L436
-## :: f_function.load2env.internal                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L438
-## :: f_text_function_arguments.identity_mapping                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L464
-## :: f_condition1.if_null_condition2                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L492
-## :: f_expression.eval.withCallingHandlers.attr_warnings.summary           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L504
-## :: f_expression.system.time.round.dput                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L564
-## :: f_object.get_objectname -PENDING                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L592
-## :: f_ObjectName.dput.ECHO                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L626
-## :: f_ObjectName.get.dput.ECHO                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L651
-## :: f_CodeText.ECHO                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L687
-## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L808
-## :: f_CodeTexts.parse.eval.identical                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L824
-## :: f_TerminalFromRCodeText.ECHO                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L852
-## :: f_object.substitute.deparse2objectname                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L873
-# @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L883
-## :: getSourceEditorContext.path_FileNameExt                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L886
-## :: f_path_file.paste0_collapse_if_not_empty                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L903
-## :: f_path.relative                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L923
-## :: getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt =        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L937
-## :: f_path.file.info                                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1000
-## :: f_list_df.write_xlsx_table                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1049
-## :: f_path.file.info.xlsx                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1100
-## ::OPTION:: f_path.documents.file.info.xlsx                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1158
-## :: f_path.DOCs_Rcode.file.info.xlsx                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1171
-## :: f_path.size_files =                                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1235
-## :: f_path0.list_path_hierarchy =                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1287
-## :: f_vec_path.vec_FileName_sans_ext_extended =                           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1326
-## :: f_vec_path.vec_ext_extended =                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1349
-## :: f_path.df_FileNameExt_extended =                                     # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1368
-## :: f_path_fileRegEX.rename =                                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1407
-## :: f_path.list.files_orphan_nb_html.remove                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1478
-## :: f_FileNameExt.append_suffix =                                        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1540
-## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1574
-## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1654
-## :: f_file.str_replace_all.old.ObjectName =                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1748
-## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1792
-## @ f_file.edit, f_file.open, f_URL.open                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1814
-## :: f_file.edit_if_exists                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1816
-## :: f_file.edit_windows.or_browseURL                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1832
-## :: f_URL.browse_in_edge =                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1864
-## :: f_URL.browse_in_brave -PENDING                                        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1954
-## :: f_file.systemStart                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1961
-## :: f_file_PDF.sumatra                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1973
-## :: f_file.system_switch_open                                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2016
-## :: f_file_xls.open_or_browseURL                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2046
-## @ f_file.BACKUP, f_path.BACKUP                                           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2067
-## :: f_FileNameExt.createBACKUP                                           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2069
-## :: f_path_path.BACKUP.overwrite                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2108
-## @ f_git                                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2123
-## :: f_path.is_git_tracked                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2126
-## :: f_file.git_lfs_track_add_f                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2177
-## :: function_name = f_gitattributes.split()                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2219
-## @ f_file.save                                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2256
-## :: f_objectname.size.write_rds.git_lfs_track_add_f                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2259
-## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2394
-## @ f_file.update                                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2418
-## :: env.internal\$f_file2.compare                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2421
-## :: env.internal\$f_url_destfile.DownloadIfDifferent                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2458
-# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2579
-## :: f_sourcePath.execute_if_not_sourced =                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2582
-## ::OPTION:: f_sourcePath.execute.force_reload                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2641
-## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2683
-# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2702
+## .GlobalEnv$env1 = new.env()                                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L273
+# @@ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L312
+## :: get_system_info                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L315
+## :: get_software_versions                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L348
+## :: warnings.summary                                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L359
+## :: warnings.last                                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L360
+## :: warnings.last10                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L361
+## :: message_if_VERBOSE                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L366
+## :: cat_if_VERBOSE                                                        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L371
+## :: f_env1_subenv_objectname.set_ALIAS                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L376
+## :: f_environment.list_objectnames.map_get.str                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L387
+## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L410
+## :: library.load.install_if_not_already_installed                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L420
+## :: library.load.warning_if_not_available                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L437
+## :: requireNamespace.library_load_if_necessary                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L458
+## :: f_environment.detach_and_reattach                                     # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L481
+## :: reattach.env1_f_env.internal.attach                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L495
+## :: f_environment.attached_search_path.dput                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L503
+## :: Sys.time.set_t0                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L514
+## :: Sys.time.set_t1                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L519
+## :: f_object.is_null.or_na.or_blank =                                     # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L527
+## :: f_object.is_not_null.nor_na.nor_blank =                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L540
+# @@ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L555
+## :: f_function.load2env.internal                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L557
+## :: f_text_function_arguments.identity_mapping                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L584
+## :: f_condition1.if_null_condition2                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L612
+## :: f_expression.eval.withCallingHandlers.attr_warnings.summary           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L624
+## :: f_expression.system.time.round.dput                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L684
+## :: f_object.get_objectname -PENDING                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L712
+## :: f_ObjectName.dput.ECHO                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L746
+## :: f_ObjectName.get.dput.ECHO                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L774
+## :: f_CodeText.ECHO                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L810
+## ::OPTION:: f_CodeText.parse.eval.dput.ECHO                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L931
+## :: f_CodeTexts.parse.eval.identical                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L947
+## :: f_TerminalFromRCodeText.ECHO                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L975
+## :: f_object.substitute.deparse2objectname                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L996
+# @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
+## :: getSourceEditorContext.path_FileNameExt                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1009
+## :: f_path_file.paste0_collapse_if_not_empty                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1026
+## :: f_path.relative                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1056
+## :: f_path.URL_github.browse_in_edge_app                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1071
+## :: f_path_relative.path_normalized_based_on_path1                        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1099
+## :: getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt =        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1118
+## :: f_path.file.info                                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1181
+## :: f_list_df.write_xlsx_table                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1230
+## :: f_path.file.info.xlsx                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1281
+## ::OPTION:: f_path.documents.file.info.xlsx                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1339
+## :: f_path.DOCs_Rcode.file.info.xlsx                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1352
+## :: f_path.size_files =                                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1416
+## :: f_path0.list_path_hierarchy =                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1468
+## :: f_vec_path.vec_FileName_sans_ext_extended =                           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1507
+## :: f_vec_path.vec_ext_extended =                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1530
+## :: f_path.df_FileNameExt_extended =                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1549
+## :: f_path_fileRegEX.rename =                                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1588
+## :: f_path.list.files_orphan_nb_html.remove                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1659
+## :: f_FileNameExt.append_suffix =                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1721
+## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1755
+## :: f_file.vec_TABLE_OF_CONTENTS.NESTED =                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1835
+## :: f_vec_chr.df_token_n_rowNum = function()                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1929
+## :: f_file.df_token_n_rowNum = function()                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2019
+## :: f_file.str_replace_all.old.ObjectName =                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2060
+## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2104
+## @ f_file.edit, f_file.open, f_URL.open                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2126
+## :: f_file.edit_if_exists                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2128
+## ::OPTION:: f_file.edit_if_exists.return2LastSourceEditorContext          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2167
+## :: f_file.edit_windows.or_browseURL                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2183
+## :: f_URL.browse_in_edge =                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2215
+## :: f_URL.browse_in_brave -PENDING                                        # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2305
+## :: f_file.systemStart                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2312
+## :: f_file_PDF.sumatra                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2324
+## :: f_file.system_switch_open                                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2367
+## :: f_file_xls.open_or_browseURL                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2397
+## @ f_file.BACKUP, f_path.BACKUP                                           # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2418
+## :: f_FileNameExt.createBACKUP                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2420
+## :: f_path_path.BACKUP.overwrite                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2459
+## @ f_git                                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2474
+## :: f_path.is_git_tracked                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2477
+## :: f_file.git_lfs_track_add_f                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2528
+## :: function_name = f_gitattributes.split()                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2570
+## @ f_file.save                                                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2607
+## :: f_objectname.size.write_rds.git_lfs_track_add_f                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2610
+## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2745
+## @ f_file.update                                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2769
+## :: env.internal\$f_file2.compare                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2772
+## :: env.internal\$f_url_destfile.DownloadIfDifferent                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2809
+# @@ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
+## :: constant_vec.SpecialChars32KeyboardLayout                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2931
+## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function()             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2937
+## :: f_list_RegExChrClass.union_df() = function()                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2964
+# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
+## :: f_sourcePath.execute_if_not_sourced =                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2993
+## ::OPTION:: f_sourcePath.execute.force_reload                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3052
+## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3094
+## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r")               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3099
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .FileName.source.r = "env1$env.internal" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.FileName.source.r,'"')) }  
