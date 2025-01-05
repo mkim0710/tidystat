@@ -285,19 +285,57 @@ Depending on the programming language, you may need additional escapes. For exam
 
         `"([\\.\\\\+*?^\\$(){}|\\[\\]\\-])"`
 
+  
+  
+# __________|------  
+# @@ DATA) example ----  
 
+## @ ASCII code (0:127) ----
+### \% intToUtf8(0:31) |> cat0()  
+### \% intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+### \% intToUtf8(48:57) |> cat0()    # 0123456789
+### \% intToUtf8(58:64) |> cat0()    # :;<=>?@
+### \% intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+### \% intToUtf8(91:96) |> cat0()    # [\]^_`
+### \% intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+### \% intToUtf8(123:126) |> cat0()    # {|}~
+### \% intToUtf8(127) |> cat0()    # DEL
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+intToUtf8(0:31) |> cat0()  
+intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+intToUtf8(48:57) |> cat0()    # 0123456789
+intToUtf8(58:64) |> cat0()    # :;<=>?@
+intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+intToUtf8(91:96) |> cat0()    # [\]^_`
+intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+intToUtf8(123:126) |> cat0()    # {|}~
+intToUtf8(127) |> cat0()    # DEL
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+c(32:47,58:64,91:96,123:126) |> intToUtf8() |> cat0()   #  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~  
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") |> unlist() |> set_names(vec_chr)  }}()
+vec_chr.ASCII_nonalphanumeric %>% str()
+```
+
+
+## inclusion_glob = 
+## exclusion_glob = 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+inclusion_glob  <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+exclusion_glob  <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
+```
 
 
 ###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-input_string %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
-
+inclusion_glob %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
+exclusion_glob %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
 ```
-  
-  
-# __________|------  
-# @@ DATA) example ----  
+
+
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
@@ -389,75 +427,82 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) function ----  
+# @@ START) function@o1 ----  
 ## https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379
-## :: f_vecChr.EscapeSpecialCharacters_vecChr 
+## :: f_vec.escapeRegex_vec 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-#' Escapes special regex characters in a character vector.
-#'
-#' @param input_vecChr A character vector to be processed.
-#' @param VERBOSE Logical indicating whether to print intermediate outputs
-#'   for debugging. Defaults to isTRUE(getOption("verbose")) (usually FALSE).
-#'
-#' @return A character vector where each special regex character is escaped.
-#'
-#' @references
-#' - R Documentation for 'gsub': https://stat.ethz.ch/R-manual/R-devel/library/base/html/gsub.html
-#'
-f_vecChr.EscapeSpecialCharacters_vecChr <- function(
-  input_vecChr,
+###############################################################################
+# Load Libraries
+###############################################################################
+library(tidyverse)
+library(purrr)
+
+###############################################################################
+# Function: f_vec.escapeRegex_vec
+# Description:
+#   Escapes special regex characters in a string vector, including the backslash.
+# Requested conventions:
+#   - Name prefix: "f_vec."
+#   - Suffix: "_vec" means we return a vector.
+#   - Additional parameter: VERBOSE for debug printing.
+###############################################################################
+
+f_vec.escapeRegex_vec <- function(
+  input_str_vec,
   VERBOSE = isTRUE(getOption("verbose"))
 ) {
-  if (VERBOSE) {
-    cat("Received input_vecChr:\n")
-    print(input_vecChr)
-  }
-  
-  # Define the regex pattern for special characters commonly used in regular expressions
-  pattern_chr <- "([.*+?^=!:|\\\\/()\\[\\]{}])"
-  
-  # This replacement ensures each special character is prefixed by one backslash
-  replacement_chr <- "\\\\\\1"
+  # The pattern includes the backslash with four backslashes in the R literal:
+  #  - "." and other chars are single backslash in front.
+  #  - the single backslash is represented as "\\\\" in the R code.
+  pattern_str <- "([.\\\\+*?^$(){}|\\[\\]\\-])"
   
   if (VERBOSE) {
-    cat("Regex pattern used for escaping special characters:\n")
-    print(pattern_chr)
-    cat("Replacement string:\n")
-    print(replacement_chr)
+    message("[DEBUG] f_vec.escapeRegex_vec: pattern_str = ", pattern_str)
+    message("[DEBUG] f_vec.escapeRegex_vec: length of input_str_vec = ", length(input_str_vec))
   }
   
-  # gsub is vectorized, so we can apply it directly across the entire vector
-  escaped_vecChr <- gsub(
-    pattern = pattern_chr,
-    replacement = replacement_chr,
-    x = input_vecChr,
-    perl = TRUE
-  )
+  # Perform the substitution with perl = TRUE for the PCRE engine
+  # "\\\\1" in R string literal means: Insert one backslash before the matched char
+  escaped_str_vec <- gsub(pattern_str, "\\\\\\1", input_str_vec, perl = TRUE)
   
   if (VERBOSE) {
-    cat("Escaped output:\n")
-    print(escaped_vecChr)
+    message("[DEBUG] f_vec.escapeRegex_vec: escaped_str_vec = ", paste(escaped_str_vec, collapse = ", "))
   }
   
-  return(escaped_vecChr)
+  return(escaped_str_vec)
 }
 
-# Example usage with well-known health data references:
-example_vecChr <- c(
-  "Systolic (BP)* is around 120 + 10?", 
-  "Patients' heart_rate^ might exceed 90!", 
-  "BloodSugar=100: PleaseCheck!"
+###############################################################################
+# Testing the Function for Backslashes and Other Special Chars
+###############################################################################
+
+# We create a character vector that includes various backslashes and other chars.
+health_data_examples_vec <- c(
+  "patient_name$",
+  "some\\backslash",
+  "more\\\\backslashes",
+  "blood^test+result",
+  "D:\\Hospital\\Care",
+  "[metadata]{info}"
 )
 
-# If you set VERBOSE = TRUE, you will see intermediate outputs:
-escaped_vecChr <- f_vecChr.EscapeSpecialCharacters_vecChr(
-  input_vecChr = example_vecChr,
-  VERBOSE = FALSE  # Change to TRUE to see debugging messages
+# 1) Default call (VERBOSE = FALSE)
+escaped_vec <- f_vec.escapeRegex_vec(health_data_examples_vec)
+
+cat("===== Without VERBOSE =====\n")
+cat("[Input]  health_data_examples_vec:\n")
+cat(paste(health_data_examples_vec, collapse = ", "), "\n\n")
+cat("[Output] escaped_vec:\n")
+cat(paste(escaped_vec, collapse = ", "), "\n\n")
+
+# 2) Debug call (VERBOSE = TRUE)
+cat("===== With VERBOSE = TRUE =====\n")
+escaped_verbose_vec <- f_vec.escapeRegex_vec(
+  input_str_vec = health_data_examples_vec,
+  VERBOSE = TRUE
 )
 
-# Expected outputs
-escaped_vecChr
 
 ```
   
@@ -484,7 +529,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) function ----  
+# @@ START) function@o1p ----  
 ## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
 ## :: f_vecChr.EscapeSpecialCharacters_vecChr 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

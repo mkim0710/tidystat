@@ -246,6 +246,36 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # @@ REFERENCES) ----  
+
+## @ ASCII code (0:127) ----
+### \% intToUtf8(0:31) |> cat0()  
+### \% intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+### \% intToUtf8(48:57) |> cat0()    # 0123456789
+### \% intToUtf8(58:64) |> cat0()    # :;<=>?@
+### \% intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+### \% intToUtf8(91:96) |> cat0()    # [\]^_`
+### \% intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+### \% intToUtf8(123:126) |> cat0()    # {|}~
+### \% intToUtf8(127) |> cat0()    # DEL
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+intToUtf8(0:31) |> cat0()  
+intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+intToUtf8(48:57) |> cat0()    # 0123456789
+intToUtf8(58:64) |> cat0()    # :;<=>?@
+intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+intToUtf8(91:96) |> cat0()    # [\]^_`
+intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+intToUtf8(123:126) |> cat0()    # {|}~
+intToUtf8(127) |> cat0()    # DEL
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+c(32:47,58:64,91:96,123:126) |> intToUtf8() |> cat0()   #  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~  
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") |> unlist() |> set_names(vec_chr)  }}()
+vec_chr.ASCII_nonalphanumeric %>% str()
+```
+
+
 ## https://cran.r-project.org/doc/FAQ/R-FAQ.pdf#page=42&view=FitV&navpanes=1
 ## https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html
 ###### ECHO \% |> () ----  
@@ -291,39 +321,52 @@ Depending on the programming language, you may need additional escapes. For exam
 ## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
 ### [.*+?^=!:|\\\\/()\\[\\]{}]
 
+  
+  
+
+## @ ASCII code (0:127) ----
+### \% intToUtf8(0:31) |> cat0()  
+### \% intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+### \% intToUtf8(48:57) |> cat0()    # 0123456789
+### \% intToUtf8(58:64) |> cat0()    # :;<=>?@
+### \% intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+### \% intToUtf8(91:96) |> cat0()    # [\]^_`
+### \% intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+### \% intToUtf8(123:126) |> cat0()    # {|}~
+### \% intToUtf8(127) |> cat0()    # DEL
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+intToUtf8(0:31) |> cat0()  
+intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+intToUtf8(48:57) |> cat0()    # 0123456789
+intToUtf8(58:64) |> cat0()    # :;<=>?@
+intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+intToUtf8(91:96) |> cat0()    # [\]^_`
+intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+intToUtf8(123:126) |> cat0()    # {|}~
+intToUtf8(127) |> cat0()    # DEL
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+c(32:47,58:64,91:96,123:126) |> intToUtf8() |> cat0()   #  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~  
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") |> unlist() |> set_names(vec_chr)  }}()
+vec_chr.ASCII_nonalphanumeric %>% str()
+```
+
+
+## inclusion_glob = 
+## exclusion_glob = 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+inclusion_glob  <- "{**/*.[rR],**/*.[rR][mM][dD],default.R,.Rprofile}"
+exclusion_glob  <- "{.history,-backup,r4ds-master,*symlink*,*.lnk}"
+```
+
+
 ###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-input_string %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
-
-```
-  
-  
-# __________|------  
-# @@ DATA) example ----  
-### RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-### RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
-### RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-RegExChrClass_strings_cheatsheet %>% dput
-RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
-# "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
-#  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
-RegExChrClass_gpt_o1 %>% dput
-RegExChrClass_gpt_o1 %>% {cat(" ",.,"\n", sep="")}
-# "[.\\\\+*?^$(){}|\\[\\]\\-]"
-#  [.\+*?^$(){}|\[\]\-]
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
-RegExChrClass_gpt_o1p %>% dput
-RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
-# "[.*+?^=!:|\\\\/()\\[\\]{}]"
-#  [.*+?^=!:|\\/()\[\]{}]
+inclusion_glob %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
+exclusion_glob %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
 ```
   
   
@@ -341,9 +384,10 @@ env0 = env1
 ```
   
   
-## \% ADS_time2event |>  
+###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+RegExChrClass_strings_cheatsheet %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
 
 ```
   

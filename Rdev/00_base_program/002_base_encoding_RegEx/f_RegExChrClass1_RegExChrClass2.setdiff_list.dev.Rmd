@@ -301,6 +301,37 @@ input_string %>% str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1")
   
 # __________|------  
 # @@ DATA) example ----  
+
+## @ ASCII code (0:127) ----
+### \% intToUtf8(0:31) |> cat0()  
+### \% intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+### \% intToUtf8(48:57) |> cat0()    # 0123456789
+### \% intToUtf8(58:64) |> cat0()    # :;<=>?@
+### \% intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+### \% intToUtf8(91:96) |> cat0()    # [\]^_`
+### \% intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+### \% intToUtf8(123:126) |> cat0()    # {|}~
+### \% intToUtf8(127) |> cat0()    # DEL
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+intToUtf8(0:31) |> cat0()  
+intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+intToUtf8(48:57) |> cat0()    # 0123456789
+intToUtf8(58:64) |> cat0()    # :;<=>?@
+intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+intToUtf8(91:96) |> cat0()    # [\]^_`
+intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+intToUtf8(123:126) |> cat0()    # {|}~
+intToUtf8(127) |> cat0()    # DEL
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+c(32:47,58:64,91:96,123:126) |> intToUtf8() |> cat0()   #  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~  
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") |> unlist() |> set_names(vec_chr)  }}()
+vec_chr.ASCII_nonalphanumeric %>% str()
+```
+
+
+## @ RegEx Special Characters ----
 ### RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
 ### RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
 ### RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
@@ -313,6 +344,10 @@ RegExChrClass_strings_cheatsheet %>% {cat(" ",.,"\n", sep="")}
 # "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
 #  []$*+.?[^{|(\#%&~_/<=>'!,:;`")}@-]
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass_strings_cheatsheet_MHsort = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_strings_cheatsheet_MHsort %>% dput
+RegExChrClass_strings_cheatsheet_MHsort %>% {cat(" ",.,"\n", sep="")}
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
 RegExChrClass_gpt_o1 %>% dput
 RegExChrClass_gpt_o1 %>% {cat(" ",.,"\n", sep="")}
@@ -324,6 +359,10 @@ RegExChrClass_gpt_o1p %>% dput
 RegExChrClass_gpt_o1p %>% {cat(" ",.,"\n", sep="")}
 # "[.*+?^=!:|\\\\/()\\[\\]{}]"
 #  [.*+?^=!:|\\/()\[\]{}]
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+RegExChrClass4RegExEscape_gpt_o1 = "[$()*+.?[^{|(\\#%&~_/<=>'!,:;`)}@-]"
+
+
 ```
   
   
@@ -563,10 +602,20 @@ f_str1_str2.compareCharClasses_list(RegExChrClass_gpt_o1, RegExChrClass_gpt_o1p)
 ```
   
   
+### \% vec_chr.ASCII_nonalphanumeric |> f_str1_str2.compareCharClasses_list() 
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+vec_chr.ASCII_nonalphanumeric = c(32:47,58:64,91:96,123:126) %>% {function(vec_chr) {  vec_chr |> intToUtf8() |> str_split("") |> unlist() |> set_names(vec_chr)  }}()
+vec_chr.ASCII_nonalphanumeric %>% str()
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
+RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+vec_chr.ASCII_nonalphanumeric |> f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet) %>% str
+vec_chr.ASCII_nonalphanumeric |> f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet) %>% str
+vec_chr.ASCII_nonalphanumeric |> f_str1_str2.compareCharClasses_list(RegExChrClass_strings_cheatsheet) %>% str
 ```
   
   
