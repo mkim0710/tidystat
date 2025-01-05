@@ -56,9 +56,9 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-## @ .subpath, .filename.source.r ======  
-.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
+## @ .relative.subpath, .filename.source.r ======  
+.relative.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
+# if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 .filename.source.r = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.relative.subpath_filename.source.r) ) ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
