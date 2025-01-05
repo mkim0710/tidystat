@@ -215,32 +215,92 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # @@ DATA) example ----  
-## \$  =  ----  
+  
+## @ ASCII code (0:127) ----
+### \% intToUtf8(0:31) |> cat0()  
+### \% intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+### \% intToUtf8(48:57) |> cat0()    # 0123456789
+### \% intToUtf8(58:64) |> cat0()    # :;<=>?@
+### \% intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+### \% intToUtf8(91:96) |> cat0()    # [\]^_`
+### \% intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+### \% intToUtf8(123:127) |> cat0()    # {|}~
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-letters %>% dput()
-LETTERS %>% dput()
-fruit %>% dput()
+intToUtf8(0:31) |> cat0()  
+intToUtf8(32:47) |> cat0()    #  !"#$%&'()*+,-./
+intToUtf8(48:57) |> cat0()    # 0123456789
+intToUtf8(58:64) |> cat0()    # :;<=>?@
+intToUtf8(65:90) |> cat0()    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+intToUtf8(91:96) |> cat0()    # [\]^_`
+intToUtf8(97:122) |> cat0()    # abcdefghijklmnopqrstuvwxyz
+intToUtf8(123:127) |> cat0()    # {|}~
+```
+
+
+### \% 12593:12622 |> intToUtf8() |> cat0()      # ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ  
+### \% 12623:12643 |> intToUtf8() |> cat0()      # ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+12593:12622 |> intToUtf8() |> cat0()      # ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ  
+12623:12643 |> intToUtf8() |> cat0()      # ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ  
+```
+
+
+## @ R Built-in Constants ----
+## \$ LETTERS     # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")   ----  
+## \$ letters     # c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")   ----  
+## \$ month.abb     # c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")   ----
+## \$ month.name     # c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")   ----
+## \$ fruit     # c("apple", "apricot", "avocado", "banana", "bell pepper", "bilberry", "blackberry", "blackcurrant", "blood orange", "blueberry", "boysenberry", "breadfruit", "canary melon", "cantaloupe", "cherimoya", "cherry", "chili pepper", "clementine", "cloudberry", "coconut", "cranberry", "cucumber", "currant", "damson", "date", "dragonfruit", "durian", "eggplant", "elderberry", "feijoa", "fig", "goji berry", "gooseberry", "grape", "grapefruit", "guava", "honeydew", "huckleberry", "jackfruit", "jambul", "jujube", "kiwi fruit", "kumquat", "lemon", "lime", "loquat", "lychee", "mandarine", "mango", "mulberry", "nectarine", "nut", "olive", "orange", "pamelo", "papaya", "passionfruit", "peach", "pear", "persimmon", "physalis", "pineapple", "plum", "pomegranate", "pomelo", "purple mangosteen", "quince", "raisin", "rambutan", "raspberry", "redcurrant", "rock melon", "salal berry", "satsuma", "star fruit", "strawberry", "tamarillo", "tangerine", "ugli fruit", "watermelon")   ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+letters %>% deparse.cat0()    # c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")  
+
+LETTERS %>% deparse.cat0()    # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")  
+month.abb %>% deparse.cat0()    # c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")  
+month.name %>% deparse.cat0()    # c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")  
+fruit %>% deparse.cat0()    # c("apple", "apricot", "avocado", "banana", "bell pepper", "bilberry", "blackberry", "blackcurrant", "blood orange", "blueberry", "boysenberry", "breadfruit", "canary melon", "cantaloupe", "cherimoya", "cherry", "chili pepper", "clementine", "cloudberry", "coconut", "cranberry", "cucumber", "currant", "damson", "date", "dragonfruit", "durian", "eggplant", "elderberry", "feijoa", "fig", "goji berry", "gooseberry", "grape", "grapefruit", "guava", "honeydew", "huckleberry", "jackfruit", "jambul", "jujube", "kiwi fruit", "kumquat", "lemon", "lime", "loquat", "lychee", "mandarine", "mango", "mulberry", "nectarine", "nut", "olive", "orange", "pamelo", "papaya", "passionfruit", "peach", "pear", "persimmon", "physalis", "pineapple", "plum", "pomegranate", "pomelo", "purple mangosteen", "quince", "raisin", "rambutan", "raspberry", "redcurrant", "rock melon", "salal berry", "satsuma", "star fruit", "strawberry", "tamarillo", "tangerine", "ugli fruit", "watermelon")  
+
+
+
+
 ```
   
   
 # __________|------  
 # @@ START) dev ----  
-## \%  |>  
+## \% LETTERS %>% map_int(utf8ToInt)  
+## \% (utf8ToInt("Z")+1):(utf8ToInt("a")-1)
+## \% letters %>% map_int(utf8ToInt)  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-LETTERS %>% map_int(utf8ToInt) %>% dput
-(utf8ToInt("Z")+1):(utf8ToInt("a")-1) %>% dput
-letters %>% map_int(utf8ToInt) %>% dput
+LETTERS %>% map_int(utf8ToInt) %>% dput    # 65:90
+(utf8ToInt("Z")+1):(utf8ToInt("a")-1) %>% dput    # 91:96
+letters %>% map_int(utf8ToInt) %>% dput    # 97:122
+```
+
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
 ```
   
   
-## \%  |>  
+###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-intToUtf8((utf8ToInt("Z")+1):(utf8ToInt("a")-1)) %>% cat("\n", sep="")
+
 ```
   
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```  
   
 # __________|------  
 # @@ START) function ----  
