@@ -961,13 +961,30 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path_file.paste0_collapse.faster ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_path_file.paste0_collapse.faster"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") file.path(..., fsep = collapse)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) paste0_collapse.path_file.faster  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "paste0_collapse.path_file.faster")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) file.path.paste0_collapse.faster  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.path.paste0_collapse.faster")
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_file.paste0_collapse_if_not_empty ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path_file.paste0_collapse_if_not_empty"
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, filename_ext) {  paste0(path,ifelse(path=="","","/"),filename_ext)  }
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") {  
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/", paste0_collapse_if_not_empty = TRUE) {  
     # paste0(path,ifelse(path=="","","/"),filename_ext)
-    c(...)[c(...) != ""] |> paste0(collapse = collapse)  
+    if(paste0_collapse_if_not_empty) {
+        c(...)[c(...) != ""] |> paste0(collapse = collapse)  
+    } else {
+        file.path(..., fsep = collapse)
+    }
 }
 ## *** Example Usage:  
 # f_path_file.paste0_collapse_if_not_empty("a", "b", "", "d")  # "a/b/d"
@@ -1102,7 +1119,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
 env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -2056,10 +2073,31 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_file.edit_if_exists ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_if_exists"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file, return2LastSourceEditorContext = FALSE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file, return2LastSourceEditorContext = FALSE, LastSourceEditorContex_as_in_env1_path = FALSE, VERBOSE = getOption("verbose")) {
+    if(VERBOSE) message(paste0("[VERBOSE] return2LastSourceEditorContext == ", return2LastSourceEditorContext))
+    if(return2LastSourceEditorContext) {
+        if(VERBOSE) message(paste0("[VERBOSE] LastSourceEditorContex_as_in_env1_path == ", LastSourceEditorContex_as_in_env1_path))
+        # .GlobalEnv$.tmp$LastSourceEditorContext.path_filename_ext = ifelse(  
+        #     LastSourceEditorContex_as_in_env1_path, 
+        #     env1$path$LastSourceEditorContext.path_filename_ext, 
+        #     rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+        # );
+        if(LastSourceEditorContex_as_in_env1_path) {
+            .GlobalEnv$.tmp$LastSourceEditorContext.path_filename_ext = env1$path$LastSourceEditorContext.path_filename_ext 
+        } else {
+            .GlobalEnv$.tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+        };  
+        if(VERBOSE) message(paste0("[VERBOSE] .tmp$LastSourceEditorContext.path_filename_ext == ", .tmp$LastSourceEditorContext.path_filename_ext))  
+    }
+    
     # path_file %>% {.[file.exists(.)]} |> file.edit(); 
+    if(VERBOSE) message(paste0("[VERBOSE] path_file == ", path_file))
     if(file.exists(path_file)) file.edit(path_file) else warning(paste0("The file does not exist: ", path_file))
-    if(return2LastSourceEditorContext) if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+
+    if(return2LastSourceEditorContext) {
+        if(VERBOSE) message(paste0("[VERBOSE] env1$f$f_object.is_not_null.nor_na.nor_blank(.GlobalEnv$.tmp$LastSourceEditorContext.path_filename_ext) == ", env1$f$f_object.is_not_null.nor_na.nor_blank(.GlobalEnv$.tmp$LastSourceEditorContext.path_filename_ext, show_warning  = FALSE))) 
+        if(env1$f$f_object.is_not_null.nor_na.nor_blank(.GlobalEnv$.tmp$LastSourceEditorContext.path_filename_ext)) .tmp$LastSourceEditorContext.path_filename_ext %>% {.[file.exists(.)]} |> file.edit()
+    }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) file.edit_if_exists  ----  
@@ -2074,8 +2112,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## ::OPTION:: f_file.edit_if_exists.return2LastSourceEditorContext ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file.edit_if_exists.return2LastSourceEditorContext"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file) {
-    env1$env.internal.attach$f_file.edit_if_exists(path_file, return2LastSourceEditorContext = TRUE)
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path_file, LastSourceEditorContex_as_in_env1_path = FALSE, VERBOSE = getOption("verbose")) {
+    env1$env.internal.attach$f_file.edit_if_exists(path_file, return2LastSourceEditorContext = TRUE, LastSourceEditorContex_as_in_env1_path = LastSourceEditorContex_as_in_env1_path, VERBOSE = VERBOSE)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) file.edit_if_exists.return2LastSourceEditorContext  ----  

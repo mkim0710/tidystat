@@ -208,7 +208,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
 env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -376,6 +376,32 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, width.cutoff
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) dput.deparse.cat0  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "dput.deparse.cat0")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_object.is_null.or_na.or_blank =  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_object.is_null.or_na.or_blank"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, show_warning = TRUE) {  
+    if(show_warning) {
+        if(is.null(x)) { warning("is.null(x)") } else if(is.na(x)) { warning("is.na(x)") } else if(identical(x, "")) { warning('identical(x, "")') }
+    }
+    is.null(x) || is.na(x) || identical(x, "")  
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) is_null.or_na.or_blank  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "is_null.or_na.or_blank")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_object.is_not_null.nor_na.nor_blank =  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_object.is_not_null.nor_na.nor_blank"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, show_warning = TRUE) {  
+    if(show_warning) {
+        if(is.null(x)) { warning("is.null(x)") } else if(is.na(x)) { warning("is.na(x)") } else if(identical(x, "")) { warning('identical(x, "")') }
+    }
+    !is.null(x) && !is.na(x) && !identical(x, "")  
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) is_not_null.nor_na.nor_blank  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "is_not_null.nor_na.nor_blank")
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
