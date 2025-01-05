@@ -291,14 +291,7 @@ Depending on the programming language, you may need additional escapes. For exam
 ## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
 ### [.*+?^=!:|\\\\/()\\[\\]{}]
 
-###### ECHO \% |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\$1") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-input_string |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
 
-```
-  
-  
 # __________|------  
 # @@ DATA) example ----  
 
@@ -456,7 +449,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) function ----  
+# @@ START) function o1p ----  
 ## https://chatgpt.com/c/6777996a-26bc-800e-b780-a661b714b672
 ## :: f_str1_str2.compareCharClasses_list()
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -464,8 +457,8 @@ options(width=120)
 
 #' Compare two character classes from regex patterns as sets of characters.
 #'
-#' @param input_str1 A string containing the first regex character class, e.g. "[abc]".
-#' @param input_str2 A string containing the second regex character class, e.g. "[xyz]".
+#' @param RegExChrClass1 A string containing the first regex character class, e.g. "[abc]".
+#' @param RegExChrClass2 A string containing the second regex character class, e.g. "[xyz]".
 #' @param VERBOSE Logical (default = isTRUE(getOption("verbose"))).
 #'   If TRUE, prints intermediate outputs for debugging.
 #' @param output_as_data_frame Logical. If FALSE (default), a named list is returned.
@@ -474,10 +467,10 @@ options(width=120)
 #'   each indicating (as logical) whether the union element is in that set.
 #'
 #' @return If \code{output_as_data_frame = FALSE}, returns a named list with elements:
-#'   \item{union}{Union of the characters from \code{input_str1} and \code{input_str2}.}
+#'   \item{union}{Union of the characters from \code{RegExChrClass1} and \code{RegExChrClass2}.}
 #'   \item{intersect}{Intersection of the characters.}
-#'   \item{setdiff_1_2}{Characters in \code{input_str1} but not in \code{input_str2}.}
-#'   \item{setdiff_2_1}{Characters in \code{input_str2} but not in \code{input_str1}.}
+#'   \item{setdiff_1_2}{Characters in \code{RegExChrClass1} but not in \code{RegExChrClass2}.}
+#'   \item{setdiff_2_1}{Characters in \code{RegExChrClass2} but not in \code{RegExChrClass1}.}
 #'
 #'   If \code{output_as_data_frame = TRUE}, returns a \code{tibble::tibble} with columns:
 #'   \item{union_char}{The union character.}
@@ -506,42 +499,31 @@ options(width=120)
 #'                                     VERBOSE = TRUE, output_as_data_frame = TRUE)
 #'
 #' @export
-f_str1_str2.compareCharClasses_list <- function(input_str1, 
-                                                input_str2, 
-                                                VERBOSE = isTRUE(getOption("verbose")),
-                                                output_as_data_frame = FALSE) {
-    library(stringr)
-    library(tibble) # for tibble::tibble
+f_str1_str2.compareCharClasses_list <- function(RegExChrClass1, 
+                                                RegExChrClass2, 
+                                                output_as_data_frame = FALSE, 
+                                                VERBOSE = isTRUE(getOption("verbose"))) {
     
     # 1) Remove leading '[' and trailing ']' (if present)
-    input_str1_noBrackets_chr <- str_remove_all(input_str1, "^\\[|\\]$")
-    input_str2_noBrackets_chr <- str_remove_all(input_str2, "^\\[|\\]$")
+    RegExChrClass1.removeBracket <- str_remove_all(RegExChrClass1, "^\\[|\\]$")
+    RegExChrClass2.removeBracket <- str_remove_all(RegExChrClass2, "^\\[|\\]$")
     
     # 2) Split into individual characters and keep them unique
-    set1_vec <- input_str1_noBrackets_chr %>%
+    RegExChrClass1.as_vector <- RegExChrClass1.removeBracket %>%
         str_split(pattern = "", n = Inf) %>%
         unlist() %>%
         unique()
     
-    set2_vec <- input_str2_noBrackets_chr %>%
+    RegExChrClass2.as_vector <- RegExChrClass2.removeBracket %>%
         str_split(pattern = "", n = Inf) %>%
         unlist() %>%
         unique()
-    
-    # Debug prints if VERBOSE is TRUE
-    if (VERBOSE) {
-        print("After removing brackets:")
-        print(list(input_str1_noBrackets_chr = input_str1_noBrackets_chr,
-                   input_str2_noBrackets_chr = input_str2_noBrackets_chr))
-        print("Sets from each input:")
-        print(list(set1_vec = set1_vec, set2_vec = set2_vec))
-    }
-    
+
     # 3) Perform set operations
-    union_vec       <- union(set1_vec, set2_vec)
-    intersect_vec   <- intersect(set1_vec, set2_vec)
-    setdiff_1_2_vec <- setdiff(set1_vec, set2_vec)
-    setdiff_2_1_vec <- setdiff(set2_vec, set1_vec)
+    union_vec       <- union(RegExChrClass1.as_vector, RegExChrClass2.as_vector)
+    intersect_vec   <- intersect(RegExChrClass1.as_vector, RegExChrClass2.as_vector)
+    setdiff_1_2_vec <- setdiff(RegExChrClass1.as_vector, RegExChrClass2.as_vector)
+    setdiff_2_1_vec <- setdiff(RegExChrClass2.as_vector, RegExChrClass1.as_vector)
     
     # Debug prints if VERBOSE is TRUE
     if (VERBOSE) {
@@ -556,8 +538,8 @@ f_str1_str2.compareCharClasses_list <- function(input_str1,
     if (output_as_data_frame) {
         df_out <- tibble(
             union_char      = union_vec,
-            vec1            = union_vec %in% set1_vec,
-            vec2            = union_vec %in% set2_vec,
+            vec1            = union_vec %in% RegExChrClass1.as_vector,
+            vec2            = union_vec %in% RegExChrClass2.as_vector,
             intersect       = union_vec %in% intersect_vec,
             setdiff_1_2     = union_vec %in% setdiff_1_2_vec,
             setdiff_2_1     = union_vec %in% setdiff_2_1_vec
@@ -566,8 +548,8 @@ f_str1_str2.compareCharClasses_list <- function(input_str1,
     } else {
         return(
             list(
-                vec1.character = set1_vec, 
-                vec2.character = set2_vec, 
+                vec1.character = RegExChrClass1.as_vector, 
+                vec2.character = RegExChrClass2.as_vector, 
                 union       = union_vec,
                 intersect   = intersect_vec,
                 setdiff_1_2 = setdiff_1_2_vec,
@@ -576,7 +558,6 @@ f_str1_str2.compareCharClasses_list <- function(input_str1,
         )
     }
 }
-
 
 
 pattern1 <- "[ABCD]"
@@ -639,6 +620,125 @@ options(width=120)
   
   
 # __________|------  
+# @@ START) function) internal) env1$f$f_vec1_vec2.setdiff_list() ----  
+## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() -dev -pending  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## ->> Not Yet included in env1$env.internal.source.r ----
+## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_RegExChrClass1_RegExChrClass2.setdiff_list" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(RegExChrClass1, 
+                                                            RegExChrClass2, 
+                                                            output_as_data_frame = FALSE, 
+                                                            VERBOSE = isTRUE(getOption("verbose"))) {
+    
+    # 1) Remove leading '[' and trailing ']' (if present)
+    RegExChrClass1.removeBracket <- str_remove_all(RegExChrClass1, "^\\[|\\]$")
+    RegExChrClass2.removeBracket <- str_remove_all(RegExChrClass2, "^\\[|\\]$")
+    
+    # 2) Split into individual characters and keep them unique
+    RegExChrClass1.as_vector <- RegExChrClass1.removeBracket %>%
+        str_split(pattern = "", n = Inf) %>%
+        unlist() %>%
+        unique()
+    
+    RegExChrClass2.as_vector <- RegExChrClass2.removeBracket %>%
+        str_split(pattern = "", n = Inf) %>%
+        unlist() %>%
+        unique()
+
+    env1$f$f_vec1_vec2.setdiff_list(vec1 = RegExChrClass1.as_vector, vec2 = RegExChrClass2.as_vector, output_as_data_frame = output_as_data_frame)
+}
+```
+  
+  
+###### ECHO \% |> f_RegExChrClass1_RegExChrClass2.setdiff_list() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+pattern1 <- "[ABCD]"
+pattern2 <- "[CDEF]"
+env1$env.internal.attach$f_RegExChrClass1_RegExChrClass2.setdiff_list(pattern1, pattern2) %>% str
+env1$env.internal.attach$f_RegExChrClass1_RegExChrClass2.setdiff_list(pattern1, pattern2, output_as_data_frame = TRUE)
+cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+pattern1 <- "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\\\")}@-]"
+pattern2 <- "[.\\\\+*?^$(){}|\\[\\]\\-]"
+env1$env.internal.attach$f_RegExChrClass1_RegExChrClass2.setdiff_list(pattern1, pattern2) %>% str
+env1$env.internal.attach$f_RegExChrClass1_RegExChrClass2.setdiff_list(pattern1, pattern2, output_as_data_frame = TRUE)
+cat("   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+pattern_icdV1 <- "[A00,A01,B00,B01]"
+pattern_icdV2 <- "[B01,B02,C00,C01]"
+env1$env.internal.attach$f_RegExChrClass1_RegExChrClass2.setdiff_list(pattern_icdV1, pattern_icdV2, VERBOSE = TRUE) %>% str
+env1$env.internal.attach$f_RegExChrClass1_RegExChrClass2.setdiff_list(pattern_icdV1, pattern_icdV2, output_as_data_frame = TRUE)
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ START) function) internal) env1$f$f_vec1_vec2.setdiff_list() ----  
+## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() -dev -pending  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## ->> Not Yet included in env1$env.internal.source.r ----
+## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() ====
+## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "f_RegExChrClass1_RegExChrClass2.setdiff_list" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(RegExChrClass1, 
+                                                            RegExChrClass2, 
+                                                            output_as_data_frame = FALSE, 
+                                                            VERBOSE = isTRUE(getOption("verbose"))) {
+    
+    # 1) Remove leading '[' and trailing ']' (if present)
+    RegExChrClass1.removeBracket <- str_remove_all(RegExChrClass1, "^\\[|\\]$")
+    RegExChrClass2.removeBracket <- str_remove_all(RegExChrClass2, "^\\[|\\]$")
+    
+    # 2) Split into individual characters and keep them unique
+    RegExChrClass1.as_vector <- RegExChrClass1.removeBracket %>%
+        str_split(pattern = "", n = Inf) %>%
+        unlist() %>%
+        unique()
+    
+    RegExChrClass2.as_vector <- RegExChrClass2.removeBracket %>%
+        str_split(pattern = "", n = Inf) %>%
+        unlist() %>%
+        unique()
+
+    env1$f$f_vec1_vec2.setdiff_list(vec1 = RegExChrClass1.as_vector, vec2 = RegExChrClass2.as_vector, output_as_data_frame = output_as_data_frame)
+}
+```
+
+
+# __________|------  
 # @@ START) function ----  
 ## :: function_name = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -692,6 +792,7 @@ options(width=120)
 options(width=120)
 
 ```
+  
   
   
   
