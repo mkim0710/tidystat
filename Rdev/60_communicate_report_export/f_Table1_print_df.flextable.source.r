@@ -8,7 +8,7 @@
 # # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r")  
 # file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.r") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 # file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.Rmd") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileNameExt)); 
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(env1$path$LastSourceEditorContext.path_FileNameExt); 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  

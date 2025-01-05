@@ -252,7 +252,7 @@ env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditor
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
 for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "05CodeBook"))) {
     .tmp$SourceFileNameExt = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
-    if(.tmp$SourceFileNameExt != basename(env1$path$LastSourceEditorContext.path_FileNameExt)) {|> file.edit(); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileNameExt))
+    if(.tmp$SourceFileNameExt != basename(env1$path$LastSourceEditorContext.path_FileNameExt)) {|> file.edit(); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(env1$path$LastSourceEditorContext.path_FileNameExt)
         .tmp$SourceFileNameExt %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
     }
 }
@@ -860,7 +860,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         if(!identical(.MetaData0, MetaData)) {
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-            .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds), NULL, paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileName.MetaData.rds))
+            .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds), NULL, env1$path$LastSourceEditorContext.path_FileName.MetaData.rds)
             # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
             env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
         }
@@ -953,8 +953,8 @@ paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
 paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileNameExt)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileName.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNameExt) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileName.nb.html) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   
