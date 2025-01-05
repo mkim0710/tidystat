@@ -331,6 +331,18 @@ vec_chr.ASCII_nonalphanumeric %>% str()
 ```
 
 
+## @ KeyboardLayout ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+"`~!@#$%^&*()-=_+
+[]\\{}|
+;':\"
+,./<>?" 
+"`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" |> str_split("") |> unlist() %>% str()
+"`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" %>% utf8ToInt() %>% as.numeric %>% dput.deparse.cat0()  # c(96, 126, 33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 45, 61, 95, 43, 91, 93, 92, 123, 125, 124, 59, 39, 58, 34, 44, 46, 47, 60, 62, 63)
+```
+
+
 ## @ RegEx Special Characters ----
 ### RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
 ### RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
