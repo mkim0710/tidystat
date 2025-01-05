@@ -26,7 +26,7 @@ if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.FileName.source.r,
 #| Ctrl+Alt+B: Run from start to current line 
 #| Shift+F9: Toggle Breakpoint 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# paste0(env1$path$path1,"/[Working Files List] ",basename(getwd()),".r") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()  
+# paste0("[Working Files List] ",basename(getwd()),".r") %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
@@ -111,21 +111,21 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
     env1$path$RTemplate.FileNameExt = "notebook.Rmd"  
     env1$path$MyTemplate.FileNameExt = "templates-00env1.minimum.Rmd"  
     if (Sys.info()["sysname"] == "Windows") {
-        if(basename(.LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}) == env1$path$MyTemplate.FileNameExt) {
+        if(basename(.LastSourceEditorContext.path_FileNameExt) == env1$path$MyTemplate.FileNameExt) {
             if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
             .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
             .destination_path_FileNameExt = file.path(.destination_path, env1$path$RTemplate.FileNameExt)
             .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path) 
             if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
             
-            if(file.copy(from=.LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
+            if(file.copy(from=.LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
             # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
             
             for ( .destination_path_FileNameExt in c(
                 file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.FileNameExt)
                 , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.FileNameExt)
-            )) {if(dir.exists(dirname(.destination_path_FileNameExt)) & .LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=NA) != .destination_path_FileNameExt) {
-                if(file.copy(from=.LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
+            )) {if(dir.exists(dirname(.destination_path_FileNameExt)) & .LastSourceEditorContext.path_FileNameExt|>normalizePath(winslash="/",mustWork=NA) != .destination_path_FileNameExt) {
+                if(file.copy(from=.LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
                 # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
             }}
             if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt))
