@@ -949,7 +949,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: getSourceEditorContext.path_FileNameExt ====  
 .tmp$objectname = "getSourceEditorContext.path_FileNameExt"
-.tmp$object = function(relative_path = TRUE) {
+.tmp$object = function(relative_path = FALSE) {
     SourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)
     if(relative_path) {
         SourceEditorContext.path_FileNameExt = SourceEditorContext.path_FileNameExt |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
