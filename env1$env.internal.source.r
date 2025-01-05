@@ -970,11 +970,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path, FileNameExt) {  paste0(path,ifelse(path=="","","/"),FileNameExt)  }
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/") {  
     # paste0(path,ifelse(path=="","","/"),FileNameExt)
-    # c(...)[c(...) != ""] |> paste0(collapse = collapse)  
+    # c(...) %>% {.[.!=""]} |> paste0(collapse = collapse)  
+    # c(...) %>% {.[nzchar(.)]} |> paste0(collapse = collapse)  
 
     arguments.list.unlist = unlist(list(...), use.names = FALSE)    # Rdev/00_base_program/004_base_environment/f_function.arguments.list.unlist-dev.r
-    # arguments.list.unlist[arguments.list.unlist != ""] |> paste0(collapse = collapse)
-    # arguments.list.unlist[nzchar(arguments.list.unlist)] |> paste0(collapse = collapse)
+    # arguments.list.unlist %>% {.[.!=""]} |> paste0(collapse = collapse)
+    # arguments.list.unlist %>% {.[nzchar(.)]} |> paste0(collapse = collapse)
 
     # Call file.path() with the non-empty parts
     do.call(file.path, c(as.list(arguments.list.unlist[nzchar(arguments.list.unlist)]), fsep = collapse))
@@ -1361,7 +1362,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     for (.dependancy in c("f_df.t.tribble_construct")) {
         if(!.dependancy %in% names(.GlobalEnv$env1)) {
             if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-            .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+            .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
         }
     }
     
@@ -2933,7 +2934,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = if(!is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) file.path(.RelativeSubPath, .FileName.source.r) else NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = if(!is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)} else NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     # options(DEVMODE = TRUE)
     # options(DEVMODE = FALSE)
     # options(DEBUGMODE = TRUE)
@@ -2945,7 +2946,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_Fil
     #  $ .RelativeSubPath                  : NULL
     #  $ .FileName.source.r        : NULL
     #  $ RELOAD_FUNCTION    : logi TRUE
-    # if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r)
+    # if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
     if(is.null(.FileName.source.r)) .FileName.source.r = basename(.RelativeSubPath_FileName.source.r)
     if(RELOAD_FUNCTION || !.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  
         RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). -> Caution: Even if getOption("RELOAD_FUNCTION") was NULL or FALSE, options(RELOAD_FUNCTION = TRUE) should be passed to the functions inside source(). 
@@ -2981,8 +2982,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_Fil
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DS.lbl.source.r = NULL
-# .FileName.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
-# .FileName.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+# .FileName.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# .FileName.source.r = NULL; env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 # env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source_if_not_sourced  ----  
@@ -3003,7 +3004,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 }
 ## *** Example Usage:  
 # env1$source$f_CodeBook_DS.lbl.source.r = ""
-# .FileName.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+# .FileName.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r"); .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute.force_reload(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 # env1$source$f_CodeBook_DS.lbl.source.r
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source.force_reload  ----  
@@ -3015,7 +3016,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## @ .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
 # # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/internal.f_path0.list_path_hierarchy.source.r")
-# .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+# .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #### \$ list_path_hierarchy  =======  
 .max_hierarchy = 5
@@ -3033,12 +3034,12 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput")
-.FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .RelativeSubPath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+.FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .RelativeSubPath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/CodeChunks.source.r")
-.FileName.source.r = "CodeChunks" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+.FileName.source.r = "CodeChunks" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  

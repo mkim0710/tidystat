@@ -158,22 +158,22 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     # ###### \% env1\$env.internal\$f_path0.list_path_hierarchy() ----  
     # # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/internal.f_path0.list_path_hierarchy.source.r"  
-    # .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+    # .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     #### env1\$f_df.t.tribble_construct() ----  
     # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r"  
     if(!"f_df.t.tribble_construct" %in% names(.GlobalEnv$env1)) {
-        .FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))  
+        .FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})  
     }  
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     # ###### \% env1\$f_path.size_files() ----  
     # # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/f_path.size_files.source.r"  
-    # .FileName.source.r = "f_path.size_files" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))  
+    # .FileName.source.r = "f_path.size_files" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})  
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     ##### env1\$info\$get_system_info() ----  
     # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/get_system_info.source.r"  
     if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
-        .FileName.source.r = "get_system_info" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
+        .FileName.source.r = "get_system_info" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
     }  
     .GlobalEnv$env1$info = env1$env.internal.attach$get_system_info()
     cat("> .tmp |> str(max.level = 1, give.attr = TRUE)", "  \n", sep="") 

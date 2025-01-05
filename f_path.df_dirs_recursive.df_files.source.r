@@ -61,7 +61,7 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 # env1$path$.SourceName_root = .SourceName_root  
 # env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
 # env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
-# env1$path$.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r)
+# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
 # cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 #     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
 #     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
