@@ -491,6 +491,32 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  .GlobalEnv$.tmp
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) Sys.time.from_t0  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "Sys.time.from_t0")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_object.is_null.or_na.or_blank =  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_object.is_null.or_na.or_blank"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, show_warning = TRUE) {  
+    if(show_warning) {
+        if(is.null(x)) { warning("is.null(x)") } else if(is.na(x)) { warning("is.na(x)") } else if(identical(x, "")) { warning('identical(x, "")') }
+    }
+    is.null(x) || is.na(x) || identical(x, "")  
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) is_null.or_na.or_blank  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "is_null.or_na.or_blank")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_object.is_not_null.nor_na.nor_blank =  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_object.is_not_null.nor_na.nor_blank"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, show_warning = TRUE) {  
+    if(show_warning) {
+        if(is.null(x)) { warning("is.null(x)") } else if(is.na(x)) { warning("is.na(x)") } else if(identical(x, "")) { warning('identical(x, "")') }
+    }
+    !is.null(x) && !is.na(x) && !identical(x, "")  
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) is_not_null.nor_na.nor_blank  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "is_not_null.nor_na.nor_blank")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -521,6 +547,7 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
         }
     }
 }
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_text_function_arguments.identity_mapping ====
 ## Rdev/00_base_program/007_base_expression/f_text_function_arguments.identity_mapping.dev.Rmd
