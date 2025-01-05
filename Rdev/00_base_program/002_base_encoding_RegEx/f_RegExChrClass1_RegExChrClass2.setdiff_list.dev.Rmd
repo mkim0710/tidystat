@@ -625,8 +625,7 @@ options(width=120)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Not Yet included in env1$env.internal.source.r ----
-## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() ====
@@ -700,71 +699,47 @@ options(width=120)
   
   
 # __________|------  
-# @@ START) function) internal) env1$f$f_vec1_vec2.setdiff_list() ----  
-## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() -dev -pending  
+# @@ START) function) internal) env1$f$f_list_vecs.union_df() ----  
+## :: f_list_RegExChrClass.union_df = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Not Yet included in env1$env.internal.source.r ----
-## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
+## ->> Now included in env1$env.internal.source.r ----
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() ====
+## :: f_list_RegExChrClass.union_df() = function() ====
 ## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_RegExChrClass1_RegExChrClass2.setdiff_list" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(RegExChrClass1, 
-                                                            RegExChrClass2, 
-                                                            output_as_data_frame = FALSE, 
+.tmp$objectname = "f_list_RegExChrClass.union_df" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_list_RegExChrClass, 
+                                                            print_str = TRUE, 
                                                             VERBOSE = isTRUE(getOption("verbose"))) {
     
     # 1) Remove leading '[' and trailing ']' (if present)
-    RegExChrClass1.removeBracket <- str_remove_all(RegExChrClass1, "^\\[|\\]$")
-    RegExChrClass2.removeBracket <- str_remove_all(RegExChrClass2, "^\\[|\\]$")
-    
+    input_list_RegExChrClass.removeBracket <- input_list_RegExChrClass %>% map(~str_remove_all(.x, "^\\[|\\]$"))
+
     # 2) Split into individual characters and keep them unique
-    RegExChrClass1.as_vector <- RegExChrClass1.removeBracket %>%
-        str_split(pattern = "", n = Inf) %>%
-        unlist() %>%
-        unique()
-    
-    RegExChrClass2.as_vector <- RegExChrClass2.removeBracket %>%
-        str_split(pattern = "", n = Inf) %>%
-        unlist() %>%
-        unique()
+    input_list_RegExChrClass.map_as_vector = input_list_RegExChrClass.removeBracket %>%
+        map(~str_split(.x, pattern = "", n = Inf) %>%
+            unlist() %>%
+            unique())
 
-    env1$f$f_vec1_vec2.setdiff_list(vec1 = RegExChrClass1.as_vector, vec2 = RegExChrClass2.as_vector, output_as_data_frame = output_as_data_frame)
-}
-```
-
-
-# __________|------  
-# @@ START) function ----  
-## :: function_name = function() -dev -pending  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## ->> Not Yet included in env1$env.internal.source.r ----
-## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
-
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: function_name = function() ====
-## Rdev/00_base_program/001_base_file/function_name.dev.Rmd
-.tmp$env1_subenv_name = "env.internal"
-.tmp$objectname = "function_name" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_object) {
-    output_object = input_object
-    invisible()
+    env1$f$f_list_vecs.union_df(input_list_vecs = input_list_RegExChrClass.map_as_vector, print_str = print_str, VERBOSE = VERBOSE)
 }
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+### \% f_list_RegExChrClass.union_df(list()) 
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+RegExChrClass_strings_cheatsheet = "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]"
+RegExChrClass_gpt_o1 = "[.\\\\+*?^$(){}|\\[\\]\\-]"
+RegExChrClass_gpt_o1p = "[.*+?^=!:|\\\\/()\\[\\]{}]"
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+env1$env.internal.attach$f_list_RegExChrClass.union_df(list(RegExChrClass_strings_cheatsheet, RegExChrClass_gpt_o1, RegExChrClass_gpt_o1p)) %>% as.data.frame
 
 ```
-  
+
   
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

@@ -499,7 +499,7 @@ f_list_vecs.union_df <- function(input_list_vecs, print_str = TRUE, VERBOSE = is
     if (print_str) {str(output_df); print(summary(output_df))}
 
     # 9. Return the tibble
-    invisible(output_df)
+    return(output_df)
 }
 
 
@@ -618,7 +618,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_list_vecs, pri
     if (print_str) {str(output_df); print(summary(output_df))}
 
     # 9. Return the tibble
-    invisible(output_df)
+    return(output_df)
 }
 ```
   
