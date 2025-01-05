@@ -216,7 +216,7 @@ ensure_package("tidyverse")
 ### \% trainset_cost.gradient_descent.dev-GPT.Rmd -----  
 .subpath_filename.source.r = "Rdev/50_model_formula_evaluation/52_model_estimation/trainset_cost.gradient_descent.dev-GPT.Rmd"
 .subpath_filename.source.r |> dirname() |> cat("\n"); .subpath_filename.source.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.source.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+file.path(env1$path$source_base, .subpath_filename.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -231,7 +231,7 @@ file.path(env1$path$source_base, .subpath_filename.source.r) %>% {.[file.exists(
 ### \% trainset.cv.glm.dev-GPT.Rmd -----  
 .subpath_filename.source.r = "Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glm.dev-GPT.Rmd"
 .subpath_filename.source.r |> dirname() |> cat("\n"); .subpath_filename.source.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.source.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+file.path(env1$path$source_base, .subpath_filename.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -246,7 +246,7 @@ file.path(env1$path$source_base, .subpath_filename.source.r) %>% {.[file.exists(
 ### \% f_DS.SMOTE.dev-GPT.Rmd -----  
 .subpath_filename.source.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DS.SMOTE.dev-GPT.Rmd"
 .subpath_filename.source.r |> dirname() |> cat("\n"); .subpath_filename.source.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.source.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+file.path(env1$path$source_base, .subpath_filename.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 

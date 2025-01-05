@@ -690,8 +690,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$object = function(ObjectName, envir = parent.frame(), LinePrefix4CodeText = "\t") {
     # *** 1-liner ***
     # cat("ObjectName == ", deparse(ObjectName), "  \n", sep = "")
+    # "ObjectName" %>% {cat(.," == ",deparse(get(.)),"  \n", sep="")}
     # Caution) not to be confused with: 
     # cat(ObjectName, " == ", deparse(get(ObjectName)), "  \n", sep = "")
+    # ObjectName %>% {cat(.," == ",deparse(get(.)),"  \n", sep="")}
+    # ObjectName %>% {cat(.,' == "',get(.),'"  \n', sep="")}
     if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
     cat(LinePrefix4CodeText); cat("ObjectName == ", deparse(ObjectName), "  \n", sep = "")
     invisible()
@@ -2798,8 +2801,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
     
     # # \% Edit the templates of RStudio (default.R, notebook.Rmd) ~~~~~~~~~~~~
-    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
-    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
     
     # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
     for (.filename_ext in c("default.R", "templates-00env1.minimum.Rmd")) {

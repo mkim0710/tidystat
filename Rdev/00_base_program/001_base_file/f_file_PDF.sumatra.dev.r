@@ -8,7 +8,7 @@
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.Rmd")
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.source.r")
-# "D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.source.r" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+# "D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.source.r" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 # https://github.com/rstudio/rstudio/issues/14370
 # https://stackoverflow.com/questions/77447391/how-to-set-sumatra-as-default-pdf-viewer-in-rstudio
@@ -154,7 +154,7 @@ env1$env.internal.attach$f_file.systemStart <- function(file) {
 
 
 
-.filename.source.r = "env1$env.internal" |> paste0(c(".source.r",".dev.r")); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); .relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r); file.path(env1$path$source_base, .relative.subpath_filename.source.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+.filename.source.r = "env1$env.internal" |> paste0(c(".source.r",".dev.r")); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); .relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r); file.path(env1$path$source_base, .relative.subpath_filename.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 

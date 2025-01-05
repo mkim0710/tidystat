@@ -190,7 +190,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ## @ .relative.subpath, .filename.source.r ======  
 #### env1$path$.relative.subpath_filename.source.r ----  
 # .relative.subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") {.relative.subpath = env1$path$LastSourceEditorContext.path_filename_ext |> dirname() |> env1$f$f_path.relative(); ".relative.subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") {.relative.subpath = env1$path$LastSourceEditorContext.path_filename_ext |> dirname() |> env1$f$f_path.relative(); env1$f$f_ObjectName.get.dput.ECHO(".relative.subpath") }
 # if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 # .filename.source.r = "default.template" |> paste0(".source.r")
 if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") {.sourcename_root = env1$path$LastSourceEditorContext.path_filename_ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
@@ -236,7 +236,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # file.edit(file.path(.path4APPDATA_RStudio, filename))
 if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 
-file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -364,8 +364,8 @@ if(.Platform$OS.type == "unix") {
 #|  @ .gitignore  
 
 # Caution) do not forget to add .gitignore to .gitignore
-# "~/.gitignore" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
-# ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+# "~/.gitignore" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+# ".gitignore" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ".gitignore" |> env1$env.internal.attach$f_file.edit_vscode()
 
 
@@ -382,10 +382,10 @@ if(.Platform$OS.type == "unix") {
 #### [1] "/home/rstudio"  #@ Rocker ----  
 #### [1] "/home/rstudio"  #@ Rocker ----  
 path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
-"~/.ssh/id_rsa.pub" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
-"~/.ssh/id_rsa" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
-"~/.ssh/id_ed25519.pub" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
-"~/.ssh/id_ed25519" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename_ext)) if(env1$path$LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext))
+"~/.ssh/id_rsa.pub" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+"~/.ssh/id_rsa" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+"~/.ssh/id_ed25519.pub" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+"~/.ssh/id_ed25519" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 #| Click Tools > Global Options > Git/SVN > [Create SSH Key]
 # if(!file.exists("~/.ssh/id_ed25519")) {
