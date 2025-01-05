@@ -353,8 +353,8 @@ vec_chr.ASCII_nonalphanumeric %>% str()
 ```
 
 
-## inclusion_glob = 
-## exclusion_glob = 
+### inclusion_glob = 
+### exclusion_glob = 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 inclusion_glob  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
@@ -367,6 +367,15 @@ exclusion_glob  <- "{.history,-[Bb][Aa][Cc][Kk][Uu][Pp],VScode Replace*.*,.git,.
 options(width=120)
 inclusion_glob |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
 exclusion_glob |> str_replace_all("([\\.\\\\+*?^\\$(){}|\\[\\]\\-])", "\\\\\\1")
+```
+  
+  
+### path_windows_D_OneDrive_Project_github_tidystat = 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+path_windows_D_OneDrive_Project_github_tidystat = r"(D:\OneDrive\[][Rproject]\github_tidystat)"
+path_windows_D_OneDrive_Project_github_tidystat %>% dput()
+path_windows_D_OneDrive_Project_github_tidystat %>% cat0()
 ```
   
   
