@@ -67,10 +67,10 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 # @@ SOURCE) -----  
 # ### @ .subpath, .filename.source.r ======  
 # # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.subpath = .LastSourceEditorContext.path_filename_ext |> dirname(); env1$f$f_ObjectName.get.dput.ECHO(".relative.subpath") }
+# if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.subpath = .LastSourceEditorContext.path_filename_ext |> dirname(); ".relative.subpath" |> env1$f$f_ObjectName.get.dput.ECHO() }
 # # if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 # # .filename.source.r = "default.template" |> paste0(".source.r")
-# if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.filename.source.r = .LastSourceEditorContext.path_filename_ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".filename.source.r" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+# if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.filename.source.r = .LastSourceEditorContext.path_filename_ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".filename.source.r" |> env1$f$f_ObjectName.get.dput.ECHO() }
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # env1$path$.relative.subpath = .relative.subpath
 # if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
