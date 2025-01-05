@@ -68,7 +68,7 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .filename.source.r = "read_rds_safely_with_logging" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
+env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.filename.source.r))
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 env1$path$.relative.subpath = .relative.subpath
 .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
