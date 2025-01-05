@@ -1,4 +1,4 @@
-# .filename.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+# .FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
 # f_df.Table1byExposure.xlsx.dev.r
 # f_df.Table1byExposure.xlsx.source.r
 # utils::browseURL("/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.r")
@@ -43,10 +43,10 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
@@ -56,12 +56,12 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-## @ .relative.subpath, .filename.source.r ======  
-.relative.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
-# if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-.filename.source.r = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
-### \% source( file.path(env1$path$source_base,.relative.subpath_filename.source.r) ) ----  
-# env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+## @ .RelativeSubPath, .FileName.source.r ======  
+.RelativeSubPath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
+# if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) ) ----  
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
 env1$f$f_df.printVars_byMainOutcome = function(DS, MainOutcome, VarName.selected) {

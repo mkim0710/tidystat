@@ -158,7 +158,7 @@ cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objec
 # > .CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")'; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 # ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  
 # ", sep="")  
-# c(".CodeText", ".dependancy", ".envname", ".First", ".GlobalEnv", ".Last", ".listname", ".max_hierarchy", ".objectname", ".packagename", ".parentname", ".path4read", ".path4write", ".filename.source.r", ".sourcename_root", ".subenvname", ".sublistname", ".subpath", ".subpath_filename.source.r", ".t0", ".tmp", "ADS_time2event", "DSN", "env0", "env1", "f_CodeText.ECHO", "MetaData", "object", "params") 
+# c(".CodeText", ".dependancy", ".envname", ".First", ".GlobalEnv", ".Last", ".listname", ".max_hierarchy", ".objectname", ".packagename", ".parentname", ".path4read", ".path4write", ".FileName.source.r", ".SourceName_root", ".subenvname", ".sublistname", ".RelativeSubPath", ".RelativeSubPath_FileName.source.r", ".t0", ".tmp", "ADS_time2event", "DSN", "env0", "env1", "f_CodeText.ECHO", "MetaData", "object", "params") 
 
 
 ##________________________________________________________________________________  

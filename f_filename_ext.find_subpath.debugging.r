@@ -182,10 +182,10 @@ env1$info$info_software_versions = env1$env.internal.attach$get_software_version
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd())  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -209,7 +209,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# .FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  
 ```
   
@@ -217,7 +217,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```{r dfDIRsRecursive-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
 #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
-.filename.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+.FileName.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
 env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
@@ -234,27 +234,26 @@ env1$path$print_tree_path_files.data |> cat("  \n", sep="")
 ```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
 #### env1\$f_path.size_files() ----  
-# .filename.source.r = "f_path.size_files" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# .FileName.source.r = "f_path.size_files" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #### env1\$f_DSN.Search.read.checkEntity() ----  
-.filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 env1$f$f_path.size_files(.path4read = .path4read)
 ```
   
   
 ```{r open-envCustom-dfDirs-CodeBook, eval=FALSE, include=FALSE}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
-env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+# env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## .GlobalEnv$.tmp = list() ---  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
 for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "05CodeBook"))) {
-    .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
-    if(.tmp$SourceFileName.ext != basename(env1$path$LastSourceEditorContext.path_filename.ext)) {
-        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
-        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+    .tmp$SourceFileNameExt = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
+    if(.tmp$SourceFileNameExt != basename(env1$path$LastSourceEditorContext.path_FileNameExt)) {|> file.edit(); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileNameExt))
+        .tmp$SourceFileNameExt %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
     }
 }
 ```
@@ -264,9 +263,9 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "05Co
 # @@ MetaData) Read & Check ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ## .GlobalEnv$MetaData = list() ====  
-env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
-if(file.exists(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) { 
-    .MetaData0 = env1$path$LastSourceEditorContext.path_filename.MetaData.rds |> read_rds() 
+env1$path$LastSourceEditorContext.path_FileName.MetaData.rds = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if(file.exists(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds)) { 
+    .MetaData0 = env1$path$LastSourceEditorContext.path_FileName.MetaData.rds |> read_rds() 
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
@@ -330,24 +329,24 @@ MetaData |> str(max.level = 2, give.attr = TRUE)
 ```
   
   
-## \$ MetaData\$tblVarName[[.filename.xlsx]]\$qryCodebookSelect ----  
+## \$ MetaData\$tblVarName[[.FileName.xlsx]]\$qryCodebookSelect ----  
 ```{r qryCodebookSelect-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)  
 if(!"ProjectDocuments" %in% names(.GlobalEnv$env1$path)) env1$path$ProjectDocuments = "ProjectDocuments"  
 ##________________________________________________________________________________  
-.filename.xlsx = "NationalFamilyAndFertiltySurvey2021_230314_CodeBookQuery.xlsx"  
-cat(" excel_sheets(",.filename.xlsx,") == ",deparse(readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.filename.xlsx))),"  \n", sep="")  
+.FileName.xlsx = "NationalFamilyAndFertiltySurvey2021_230314_CodeBookQuery.xlsx"  
+cat(" excel_sheets(",.FileName.xlsx,") == ",deparse(readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.FileName.xlsx))),"  \n", sep="")  
   
-MetaData$tblVarName[[.filename.xlsx]] = readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.filename.xlsx)) |> set_names() |> map(function(SheetName) {readxl::read_excel(file.path(env1$path$ProjectDocuments,.filename.xlsx), sheet=SheetName)})  
-MetaData$tblVarName[[.filename.xlsx]] = MetaData$tblVarName[[.filename.xlsx]] |> map(function(df) {if(!"Num" %in% names(df)) {df = df |> rownames_to_column("Num")} ; return(df) })  
-cat(" > str(MetaData$tblVarName$",.filename.xlsx,")","  \n", sep=""); str(MetaData$tblVarName[[.filename.xlsx]])  
+MetaData$tblVarName[[.FileName.xlsx]] = readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.FileName.xlsx)) |> set_names() |> map(function(SheetName) {readxl::read_excel(file.path(env1$path$ProjectDocuments,.FileName.xlsx), sheet=SheetName)})  
+MetaData$tblVarName[[.FileName.xlsx]] = MetaData$tblVarName[[.FileName.xlsx]] |> map(function(df) {if(!"Num" %in% names(df)) {df = df |> rownames_to_column("Num")} ; return(df) })  
+cat(" > str(MetaData$tblVarName$",.FileName.xlsx,")","  \n", sep=""); str(MetaData$tblVarName[[.FileName.xlsx]])  
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")  
-if("qryCodebookSelect" %in% names (MetaData$tblVarName[[.filename.xlsx]])) { 
-    cat(" > print(MetaData$tblVarName$",.filename.xlsx,"$qryCodebookSelect, n=99)", "  \n", sep="")
-        print(MetaData$tblVarName[[.filename.xlsx]]$qryCodebookSelect, n=99)
+if("qryCodebookSelect" %in% names (MetaData$tblVarName[[.FileName.xlsx]])) { 
+    cat(" > print(MetaData$tblVarName$",.FileName.xlsx,"$qryCodebookSelect, n=99)", "  \n", sep="")
+        print(MetaData$tblVarName[[.FileName.xlsx]]$qryCodebookSelect, n=99)
 } else {
-    cat(" > print(MetaData$tblVarName$",.filename.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.filename.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.filename.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.filename.xlsx]][[i]], n=99);cat(" \n")}  
-    cat(" > print(MetaData$tblVarName$",.filename.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.filename.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.filename.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.filename.xlsx]][[i]], n=99);cat(" \n")}  
+    cat(" > print(MetaData$tblVarName$",.FileName.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.FileName.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.FileName.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.FileName.xlsx]][[i]], n=99);cat(" \n")}  
+    cat(" > print(MetaData$tblVarName$",.FileName.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.FileName.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.FileName.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.FileName.xlsx]][[i]], n=99);cat(" \n")}  
 }
 ```
   
@@ -465,7 +464,7 @@ StudyPopulation = "c1202.ge1"
 ```{r Sex-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .VarName.regex = "Sex"
-.CodeBook = MetaData$tblVarName[[.filename.xlsx]]$qryCodebookSelect
+.CodeBook = MetaData$tblVarName[[.FileName.xlsx]]$qryCodebookSelect
 .CodeBook.filter = .CodeBook |> dplyr::filter(VarName |> str_detect(.VarName.regex|>regex(ignore_case=TRUE)))
 .VarName.selected = .CodeBook.filter$VarName |> as.character()
 cat("  > .VarName.selected == ", deparse(.VarName.selected), "  \n", sep="")
@@ -493,7 +492,7 @@ get(DSN.DNR) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) |> env1$f$f_df.pr
 ```{r Age-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .VarName.regex = "Age"
-.CodeBook = MetaData$tblVarName[[.filename.xlsx]]$qryCodebookSelect
+.CodeBook = MetaData$tblVarName[[.FileName.xlsx]]$qryCodebookSelect
 .CodeBook.filter = .CodeBook |> dplyr::filter(VarName |> str_detect(.VarName.regex|>regex(ignore_case=TRUE)))
 .VarName.selected = .CodeBook.filter$VarName |> as.character()
 cat("  > .VarName.selected == ", deparse(.VarName.selected), "  \n", sep="")
@@ -839,7 +838,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 ```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-if(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds)) env1$path$LastSourceEditorContext.path_filename.MetaData.rds = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if(is.null(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds)) env1$path$LastSourceEditorContext.path_FileName.MetaData.rds = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     if(exists("MetaData") && !is.null(unlist(MetaData))) {
         "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
@@ -857,11 +856,11 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         
         if(!exists(".MetaData0")) .MetaData0 = MetaData
         MetaData$DSNs = MetaData$DSNs %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
-        MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_filename.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
+        MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_FileName.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
         "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         if(!identical(.MetaData0, MetaData)) {
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-            .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_filename.MetaData.rds), NULL, paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.MetaData.rds))
+            .path_file = ifelse(is.null(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds), NULL, paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileName.MetaData.rds))
             # MetaData |> env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
             env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", .path_file = .path_file, createBACKUP = TRUE, EXECUTE = TRUE)
         }
@@ -894,18 +893,18 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         }
     }
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_filename.xlsx) else openxlsx2::xl_open(.path_filename.xlsx)
+    # .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_filename.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
+    # .path_FileName.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
     # if (Sys.info()["sysname"] == "Windows") {
-    #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-    #     openxlsx2::xl_open(.path_filename.xlsx)
+    #     readr::write_excel_csv(get(.objectname), file = .path_FileName.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+    #     openxlsx2::xl_open(.path_FileName.xlsx)
     # } else {
-    #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+    #     readr::write_excel_csv(get(.objectname), file = .path_FileName.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
     # }
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_filename.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
-    # readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+    # .path_FileName.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
+    # readr::write_csv(get(.objectname), file = .path_FileName.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 }
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     
@@ -916,46 +915,46 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 ```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```
   
   
 ```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-env1$path$LastSourceEditorContext.path_filename.pdf = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-env1$path$LastSourceEditorContext.path_filename.html = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+env1$path$LastSourceEditorContext.path_FileName.pdf = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+env1$path$LastSourceEditorContext.path_FileName.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     if (Sys.info()["sysname"] == "Windows") {
         .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
         .font_name = "roboto"; if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
         .font_name = "cascadia-code"; if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
-        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_filename.ext)),', output_format = "pdf_document")  \n')
-        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
-        .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_FileNameExt)),', output_format = "pdf_document")  \n')
+        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_FileNameExt |> normalizePath(winslash="/",mustWork=NA) %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
+        .path_file = env1$path$LastSourceEditorContext.path_FileName.pdf %>% {paste0(env1$path$path1,"/",.)}
         env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
-        env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename.ext = .path_file, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .path_file, .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)
         try(env1$env.internal.attach$f_file_PDF.sumatra(.path_file))
     }
 }
-# env1$path$LastSourceEditorContext.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename.ext = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
+# env1$path$LastSourceEditorContext.path_FileNameExt |> normalizePath(winslash="/",mustWork=NA) %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$LastSourceEditorContext.path_FileName.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE); cat('  env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = ',deparse(.path_file),', .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal.attach$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
 # cat("    ________________________________________________________________________    \n")
-env1$path$LastSourceEditorContext.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal.attach$f_filename_ext.createBACKUP(.BACKUP_to_path="-BACKUP", timeFormat="%y%m%d", overwrite=TRUE)  \n', sep=""); env1$path$LastSourceEditorContext.path_filename.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal.attach$f_URL.browse_in_edge_app()  \n', sep="")
+env1$path$LastSourceEditorContext.path_FileNameExt |> normalizePath(winslash="/",mustWork=NA) %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; env1$path$LastSourceEditorContext.path_FileName.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal.attach$f_FileNameExt.createBACKUP(.BACKUP_to_path="-BACKUP", timeFormat="%y%m%d", overwrite=TRUE)  \n', sep=""); env1$path$LastSourceEditorContext.path_FileName.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal.attach$f_URL.browse_in_edge_app()  \n', sep="")
 ```
   
   
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
-env1$path$LastSourceEditorContext.path_filename.nb.html = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+env1$path$LastSourceEditorContext.path_FileName.nb.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_FileName.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_FileName.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileNameExt)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileName.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   

@@ -175,8 +175,8 @@ recover_source_file <- function(metadata_file, content_file, out_folder) {
   # Read the metadata
   metadata <- fromJSON(metadata_file)
   
-  # Determine the output filename
-  filename <- if (!is.null(metadata$path)) {
+  # Determine the output FileName
+  FileName <- if (!is.null(metadata$path)) {
     basename(metadata$path)
   } else if (!is.null(metadata$properties$tempName)) {
     metadata$properties$tempName
@@ -194,11 +194,11 @@ recover_source_file <- function(metadata_file, content_file, out_folder) {
   }
   
   # Determine the output path
-  target <- file.path(out_folder, filename)
+  target <- file.path(out_folder, FileName)
   
-  # Ensure no filename conflicts
+  # Ensure no FileName conflicts
   if (file.exists(target)) {
-    target <- file.path(out_folder, paste0(tools::file_path_sans_ext(filename), "-", basename(metadata_file), ".", tools::file_ext(filename)))
+    target <- file.path(out_folder, paste0(tools::file_path_sans_ext(FileName), "-", basename(metadata_file), ".", tools::file_ext(FileName)))
   }
   
   # Write the contents to the target file

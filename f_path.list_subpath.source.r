@@ -38,43 +38,43 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-## @ .relative.subpath, .filename.source.r ======  
-.relative.subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-.filename.source.r = "f_path.list_subpath" |> paste0(".source.r")
+## @ .RelativeSubPath, .FileName.source.r ======  
+.RelativeSubPath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_path.list_subpath" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.relative.subpath = .relative.subpath
-# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-# env1$path$.sourcename_root = .sourcename_root  
-# env1$path$.relative.subpath_filename.dev.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.sourcename_root,".dev.r")
-# env1$path$.relative.subpath_filename.dev.Rmd = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r)
-# cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-#     "# ",env1$path$.subpath_filename.dev.r, "  \n",
-#     "# ",env1$path$.subpath_filename.dev.Rmd, "  \n",
-#     "# ",env1$path$.subpath_filename.source.r, "  \n",
-#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+# env1$path$.RelativeSubPath = .RelativeSubPath
+# .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+# env1$path$.SourceName_root = .SourceName_root  
+# env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
+# env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
+# env1$path$.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r)
+# cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.source.r, "  \n",
+#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.RelativeSubPath_FileName.source.r,'"))', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
 #     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.relative.subpath_filename.source.r) )  ----  
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -154,9 +154,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     
     vec_subpath <- unlist(list_subpath, use.names = FALSE)
     
-    # Print the structure of the final list of subpaths if at the top level
+    # Print the structure of the final list of .RelativeSubPaths if at the top level
     if (VERBOSE && max_depth == .initial_max_depth) {
-        cat("Structure of the final list of subpaths at the top level:\n")
+        cat("Structure of the final list of .RelativeSubPaths at the top level:\n")
         str(vec_subpath)
     }
     
@@ -217,9 +217,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     # Flatten the list_subpath to make it a character vector
     vec_subpath <- unlist(list_subpath, use.names = FALSE)
     
-    # Print the final vector of subpaths if requested
+    # Print the final vector of .RelativeSubPaths if requested
     if (VERBOSE) {
-        cat("Structure of the final list of subpaths:\n")
+        cat("Structure of the final list of .RelativeSubPaths:\n")
         print(str(vec_subpath))
     }
         
@@ -259,7 +259,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 # Subdirectories of  ./Rdev/40_visualize_explore_bivariate_stratified :  4 
 # Subdirectories of  ./Rdev/50_model_formula_evaluation :  7 
 # Subdirectories of  ./Rdev :  42 
-# Structure of the final list of subpaths at the top level:
+# Structure of the final list of .RelativeSubPaths at the top level:
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
 # > f_path.list_subpath(VERBOSE = T, BreadthFirstSearch = T) |> str(max.level = 2, give.attr = TRUE)
@@ -387,7 +387,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 # Queue length:  1 
 # Processing:  ./Rdev/50_model_formula_evaluation/59_model_evaluation  at depth  3 
 # Queue length:  0 
-# Structure of the final list of subpaths:
+# Structure of the final list of .RelativeSubPaths:
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
 # NULL
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...

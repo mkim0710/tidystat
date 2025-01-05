@@ -10,9 +10,9 @@
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .objectname, 
         CompressionMethod = case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz"), 
-        .filename_ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
+        .FileNameExt4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
         .path4write = env1$path$.path4write,
-        .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
+        .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }, 
         createBACKUP = FALSE, 
         .BACKUP_to_path="-BACKUP", 
         EXECUTE = FALSE, 
@@ -30,7 +30,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
     # List of 15
     #  $ .objectname        : chr "df_NewDMv3.CensorEND.n8845.select971"
-    #  $ .filename_ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
+    #  $ .FileNameExt4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
     #  $ .path4write        : chr "."
     #  $ .path_file         : NULL
     #  $ createBACKUP       : logi FALSE
@@ -70,20 +70,20 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ If .path_file is provided, it determines the .filename_ext4write (& CompressionMethod). 
-    ## Caution) when .objectname is provided, .filename_ext4write & .path_file could have been auto-generated. 
+    ##@ If .path_file is provided, it determines the .FileNameExt4write (& CompressionMethod). 
+    ## Caution) when .objectname is provided, .FileNameExt4write & .path_file could have been auto-generated. 
     
     if(!is.null(.path_file)) {
-        .filename_ext4write = basename(.path_file)
+        .FileNameExt4write = basename(.path_file)
     }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ If .filename_ext4write is provided, it may determine the CompressionMethod. 
-    ## Caution) When .filename_ext4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
-    if(!is.null(.filename_ext4write)) {
-        if(grepl("\\.xz$", .filename_ext4write)) {
+    ##@ If .FileNameExt4write is provided, it may determine the CompressionMethod. 
+    ## Caution) When .FileNameExt4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
+    if(!is.null(.FileNameExt4write)) {
+        if(grepl("\\.xz$", .FileNameExt4write)) {
             CompressionMethod = "xz"
-        } else if(grepl("\\.gz$", .filename_ext4write)) {
+        } else if(grepl("\\.gz$", .FileNameExt4write)) {
             CompressionMethod = "gz"
         # } else {
         #     CompressionMethod = "none" | "gz"  # gz compression may be done without ".gz" extension. 
@@ -96,21 +96,21 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     # if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path4write))            .path4write = ""
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-    ##@ .path_file may still be NULL if either .path4write or .filename_ext4write was NULL.
-    if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }
+    ##@ .path_file may still be NULL if either .path4write or .FileNameExt4write was NULL.
+    if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+    if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
-    if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+    if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4FileName = ',shQuote(.objectname),")  \n", sep="")
     
     if(EXECUTE) {
-        if(createBACKUP) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+        if(createBACKUP) env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
             .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-            if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
+            if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FileName = .objectname)
         }
     }
     
@@ -147,9 +147,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #         .object = NULL, .objectname = NULL, 
 #         CompressionMethod = {  if(is.null(.object)) {.object = get(.objectname)}; case_when(object.size(.object) >= 1e8 ~ "none", object.size(.object) >= 1e6 ~ "xz", TRUE ~ "gz")  }, 
-#         .filename_ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }, 
+#         .FileNameExt4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }, 
 #         .path4write = env1$path$.path4write,
-#         .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }, 
+#         .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }, 
 #         createBACKUP = FALSE, 
 #         .BACKUP_to_path="-BACKUP", 
 #         EXECUTE = FALSE, 
@@ -168,7 +168,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     # List of 15
 #     #  $ .object            : NULL
 #     #  $ .objectname        : chr "df_NewDMv3.CensorEND.n8845.select971"
-#     #  $ .filename_ext4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
+#     #  $ .FileNameExt4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
 #     #  $ .path4write        : chr "."
 #     #  $ .path_file         : NULL
 #     #  $ createBACKUP       : logi FALSE
@@ -188,11 +188,11 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     # Error in as.list.environment(., all.names = TRUE) : 
 #     #   promise already under evaluation: recursive default argument reference or earlier problems?
 #     # Browse[3]> ls(all.names = TRUE) |> dput()
-#     # c(".BACKUP_to_path", ".filename_ext4write", ".object", ".objectname", 
+#     # c(".BACKUP_to_path", ".FileNameExt4write", ".object", ".objectname", 
 #     # ".path_file", ".path4write", "CompressionMethod", "createBACKUP", 
 #     # "EXECUTE", "git_add_f", "git_lfs_track", "LinePrefix4CodeText", 
 #     # "path.size_files", "SkipIfAlreadyAdded", "VERBOSE")
-#     # Browse[3]> .filename_ext4write %>% str()
+#     # Browse[3]> .FileNameExt4write %>% str()
 #     # Error in str(.) : 
 #     #   promise already under evaluation: recursive default argument reference or earlier problems?
 #     # Browse[3]> .path_file %>% str()
@@ -278,20 +278,20 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     }
 #     ##________________________________________________________________________________  
 #     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#     ##@ If .path_file is provided, it determines the .filename_ext4write (& CompressionMethod). 
-#     ## Caution) when .objectname is provided, .filename_ext4write & .path_file could have been auto-generated. 
+#     ##@ If .path_file is provided, it determines the .FileNameExt4write (& CompressionMethod). 
+#     ## Caution) when .objectname is provided, .FileNameExt4write & .path_file could have been auto-generated. 
 #     
 #     if(!is.null(.path_file)) {
-#         .filename_ext4write = basename(.path_file)
+#         .FileNameExt4write = basename(.path_file)
 #     }
 #     ##________________________________________________________________________________  
 #     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#     ##@ If .filename_ext4write is provided, it may determine the CompressionMethod. 
-#     ## Caution) When .filename_ext4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
-#     if(!is.null(.filename_ext4write)) {
-#         if(grepl("\\.xz$", .filename_ext4write)) {
+#     ##@ If .FileNameExt4write is provided, it may determine the CompressionMethod. 
+#     ## Caution) When .FileNameExt4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
+#     if(!is.null(.FileNameExt4write)) {
+#         if(grepl("\\.xz$", .FileNameExt4write)) {
 #             CompressionMethod = "xz"
-#         } else if(grepl("\\.gz$", .filename_ext4write)) {
+#         } else if(grepl("\\.gz$", .FileNameExt4write)) {
 #             CompressionMethod = "gz"
 #         # } else {
 #         #     CompressionMethod = "none" | "gz"  # gz compression may be done without ".gz" extension. 
@@ -309,28 +309,28 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     #                       TRUE ~ "gz")  
 #     #         }
 #     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#     ##@ .filename_ext4write may still be NULL if .objectname is not provided. But now, .objectname should be auto-generated from deparse(substitute(.object)).  
-#     if(is.null(.filename_ext4write))    .filename_ext4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }
+#     ##@ .FileNameExt4write may still be NULL if .objectname is not provided. But now, .objectname should be auto-generated from deparse(substitute(.object)).  
+#     if(is.null(.FileNameExt4write))    .FileNameExt4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }
 #     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #     ##@ .path4write may still be NULL if env1$path$.path4write was NULL.
 #     # if(is.null(.path4write))            .path4write = env1$path$.path4write
 #     if(is.null(.path4write))            .path4write = ""
 #     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#     ##@ .path_file may still be NULL if either .path4write or .filename_ext4write was NULL.
-#     if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.filename_ext4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.filename_ext4write)  }
+#     ##@ .path_file may still be NULL if either .path4write or .FileNameExt4write was NULL.
+#     if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }
 #     ##________________________________________________________________________________  
 #     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#     if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+#     if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
 #     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
-#     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+#     if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4FileName = ',shQuote(.objectname),")  \n", sep="")
 #     
 #     if(EXECUTE) {
-#         if(createBACKUP) env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
+#         if(createBACKUP) env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
 #         if (.object.size >= 1e8) {
 #             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
 #         } else { 
 #             .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-#             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
+#             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FileName = .objectname)
 #         }
 #     }
 #     

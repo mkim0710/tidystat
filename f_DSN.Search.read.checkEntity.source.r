@@ -38,43 +38,43 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-## @ .relative.subpath, .filename.source.r ======  
-.relative.subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-.filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r")
+## @ .RelativeSubPath, .FileName.source.r ======  
+.RelativeSubPath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.relative.subpath = .relative.subpath
-# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-# env1$path$.sourcename_root = .sourcename_root  
-# env1$path$.relative.subpath_filename.dev.r = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.sourcename_root,".dev.r")
-# env1$path$.relative.subpath_filename.dev.Rmd = paste0(.relative.subpath,ifelse(.relative.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r)
-# cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-#     "# ",env1$path$.subpath_filename.dev.r, "  \n",
-#     "# ",env1$path$.subpath_filename.dev.Rmd, "  \n",
-#     "# ",env1$path$.subpath_filename.source.r, "  \n",
-#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_filename_ext)) file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext));', "  \n",
+# env1$path$.RelativeSubPath = .RelativeSubPath
+# .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+# env1$path$.SourceName_root = .SourceName_root  
+# env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
+# env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
+# env1$path$.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r)
+# cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.source.r, "  \n",
+#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.RelativeSubPath_FileName.source.r,'"))', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
 #     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.relative.subpath_filename.source.r) )  ----  
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -105,46 +105,46 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 ## @ for (.dependancy in c("")) { -----  
-# # for (.dependancy in c("f_filename_ext.find_subpath", "f_path.size_files")) {
+# # for (.dependancy in c("f_FileNameExt.find_subpath", "f_path.size_files")) {
 # for (.dependancy in c("f_path.size_files")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-#         .filename.source.r = .dependancy |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+#         .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #     }
 # }
 
 
 
 
-## @ .objectname = "f_DS_path_filename_ext.read.checkEntity" =========  
-.tmp$objectname = "f_DS_path_filename_ext.read.checkEntity"
-.tmp$object = function(DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
+## @ .objectname = "f_DS_path_FileNameExt.read.checkEntity" =========  
+.tmp$objectname = "f_DS_path_FileNameExt.read.checkEntity"
+.tmp$object = function(DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
     
-    if(VERBOSE) cat('DS_path_filename_ext = ', deparse(DS_path_filename_ext), '  \n', sep="")
+    if(VERBOSE) cat('DS_path_FileNameExt = ', deparse(DS_path_FileNameExt), '  \n', sep="")
 
-    .path4read = DS_path_filename_ext |> dirname() 
-    filename_ext = DS_path_filename_ext |> basename()
-    DSN = filename_ext |> str_remove("\\.(gz|bz2|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
+    .path4read = DS_path_FileNameExt |> dirname() 
+    FileNameExt = DS_path_FileNameExt |> basename()
+    DSN = FileNameExt |> str_remove("\\.(gz|bz2|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
     
-    # filename_ext.regex = filename_ext %>%  
+    # FileNameExt.regex = FileNameExt %>%  
     #     str_replace_all("\\.", "\\\\.") %>%
     #     str_replace_all("\\(", "\\\\(") %>% 
     #     str_replace_all("\\)", "\\\\)") %>% 
     #     str_replace_all("\\[", "\\\\[") %>% 
     #     str_replace_all("\\]", "\\\\]") %>% 
     #     str_replace_all("\\-", "\\\\-") 
-    # filename_ext.regex <- filename_ext |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
+    # FileNameExt.regex <- FileNameExt |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
 
     ## \% return.list$DSN ====
     return.list = list()
     return.list$DSN = DSN
     
     ## \% return.list$df_size_files ====
-    # return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], regex4filename = filename_ext.regex)
-    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_filename = filename_ext, print2console=print2console)
+    # return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], regex4FileName = FileNameExt.regex)
+    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_FileName = FileNameExt, print2console=print2console)
     
     ## \% return.list$read.proc_time ====
-    .path_file = file.path(.path4read[1], filename_ext)
+    .path_file = file.path(.path4read[1], FileNameExt)
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     # return.list$read.proc_time = system.time(assign(DSN, read_rds(.path_file, envir=.GlobalEnv)))
     # if(print2console) return.list$read.proc_time |> print()
@@ -253,7 +253,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     if (getwd()|>normalizePath(winslash="/",mustWork=NA) != .path4read[1]|>normalizePath(winslash="/",mustWork=NA)) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n");cat(MessageText4cat)}
 
     if(VERBOSE) cat('DSN = "', DSN, '"  \n', sep="")
-    filename_ext = paste0(DSN,".", ext)
+    FileNameExt = paste0(DSN,".", ext)
     
     
     # .path4read = c(.path4read, paste0(.path4read, "/data"))
@@ -261,13 +261,13 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     for (i in 1:length(.path4read)) {
         i.path4read=.path4read[i]
         if(VERBOSE) cat('i.path4read = "', i.path4read, '"  \n', sep="")
-        if(file.exists(file.path(i.path4read, filename_ext))) {
-            message( 'Found .path_filename_ext == ', deparse(file.path(i.path4read, filename_ext)) )
+        if(file.exists(file.path(i.path4read, FileNameExt))) {
+            message( 'Found .path_FileNameExt == ', deparse(file.path(i.path4read, FileNameExt)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
-        } else if(file.exists(file.path(i.path4read, paste0(filename_ext, ".xz")))) {
-            filename_ext = paste0(filename_ext, ".xz")
-            message( 'Found .path_filename_ext == ', deparse(file.path(i.path4read, filename_ext)) )
+        } else if(file.exists(file.path(i.path4read, paste0(FileNameExt, ".xz")))) {
+            FileNameExt = paste0(FileNameExt, ".xz")
+            message( 'Found .path_FileNameExt == ', deparse(file.path(i.path4read, FileNameExt)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         }  
@@ -276,34 +276,34 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
     if(!.tmp.file.found && BreathFirstSearch) {
         if(VERBOSE) cat('!.tmp.file.found && BreathFirstSearch  \n', sep="")
-        for (.dependancy in c("f_filename_ext.find_subpath")) {
+        for (.dependancy in c("f_FileNameExt.find_subpath")) {
             if(!.dependancy %in% names(.GlobalEnv$env1)) {
                 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-                .filename.source.r = .dependancy |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+                .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
             }
         }
         
-        path_filename_ext = env1$f$f_filename_ext.find_subpath(filename_ext, input_path = .path4read[1], max_depth = max_depth, VERBOSE = VERBOSE)
-        if (is.null(path_filename_ext)) {
-            path_filename_ext = env1$f$f_filename_ext.find_subpath(paste0(filename_ext, ".xz"), input_path = .path4read[1], max_depth = max_depth, VERBOSE = VERBOSE)
-            # if (is.null(path_filename_ext)) warning(paste0(filename_ext, " does not exist!")) 
+        path_FileNameExt = env1$f$f_FileNameExt.find_subpath(FileNameExt, input_path = .path4read[1], max_depth = max_depth, VERBOSE = VERBOSE)
+        if (is.null(path_FileNameExt)) {
+            path_FileNameExt = env1$f$f_FileNameExt.find_subpath(paste0(FileNameExt, ".xz"), input_path = .path4read[1], max_depth = max_depth, VERBOSE = VERBOSE)
+            # if (is.null(path_FileNameExt)) warning(paste0(FileNameExt, " does not exist!")) 
         }
-        if (!is.null(path_filename_ext)) { 
+        if (!is.null(path_FileNameExt)) { 
             .tmp.file.found = TRUE
-            .path4read = dirname(path_filename_ext)
-            message('Found subpath: ', '.path4read = ', deparse(.path4read))
-            filename_ext = basename(path_filename_ext)
+            .path4read = dirname(path_FileNameExt)
+            message('Found .RelativeSubPath: ', '.path4read = ', deparse(.path4read))
+            FileNameExt = basename(path_FileNameExt)
         }
     } 
     
     if(!.tmp.file.found) {
-        warning(paste0(filename_ext, " does not exist!")) 
+        warning(paste0(FileNameExt, " does not exist!")) 
     }
-    # if(VERBOSE) cat('filename_ext = "', filename_ext, '"  \n', sep="")
+    # if(VERBOSE) cat('FileNameExt = "', FileNameExt, '"  \n', sep="")
     
-    DS_path_filename_ext = file.path(.path4read, filename_ext)
+    DS_path_FileNameExt = file.path(.path4read, FileNameExt)
     
-    env1$f$f_DS_path_filename_ext.read.checkEntity(DS_path_filename_ext, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, VERBOSE = VERBOSE)
+    env1$f$f_DS_path_FileNameExt.read.checkEntity(DS_path_FileNameExt, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, VERBOSE = VERBOSE)
     
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----

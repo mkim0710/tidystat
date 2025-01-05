@@ -8,7 +8,7 @@ vector_of_Min.SC = c(0.4, 0.5, 0.6, 0.7, 0.8)
 vector_of_Max.Distance = c(20, 30, 60, 120)
 vector_of_Min.Pop = c(1000)
 
-filename.function.source = "function.MK.ClinicCluster.v6clean.r"
+FileName.function.source = "function.MK.ClinicCluster.v6clean.r"
 software.version = "v6"
 area.level = "SouthKorea"
 
@@ -53,7 +53,7 @@ ODMatrix.marginDF0 =
 
 
 
-source(filename.function.source)
+source(FileName.function.source)
 
 ## @ function.MK.output.nest_sigungu.SouthKorea$Min.SC$Max.Distance$Min.Pop$SGG_CD from input ................................................................................  
 .t0 = Sys.time(); t0

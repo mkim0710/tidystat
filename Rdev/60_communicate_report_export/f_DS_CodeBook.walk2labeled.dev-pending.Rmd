@@ -182,11 +182,11 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd())  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-# env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
-env1$path$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) Not using a relative path~!
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+# env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) Not using a relative path~!
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
@@ -208,7 +208,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .filename.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# .FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  
 ```
   
@@ -416,15 +416,15 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
-env1$path$LastSourceEditorContext.path_filename.nb.html = env1$path$LastSourceEditorContext.path_filename_ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+env1$path$LastSourceEditorContext.path_FileName.nb.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_FileName.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_FileName.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename_ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileNameExt)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_FileName.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   

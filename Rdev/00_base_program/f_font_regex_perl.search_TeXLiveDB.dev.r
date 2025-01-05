@@ -29,7 +29,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .filename.source.r = "function.detachAllPackages" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -41,17 +41,17 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # paste0("[Working Files List] ",basename(getwd()),".r") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-## @ .subpath, .filename.source.r ======  
+## @ .RelativeSubPath, .FileName.source.r ======  
 
 
 
@@ -98,10 +98,10 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) font_filename ====  
-### \% f_font_filename.search_path_local ====  
-f_font_filename.search_path_local <- function(font_filename) {
-    vec_path_file <- tinytex::tlmgr_search(what = font_filename, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
+# @@ START) font_FileName ====  
+### \% f_font_FileName.search_path_local ====  
+f_font_FileName.search_path_local <- function(font_FileName) {
+    vec_path_file <- tinytex::tlmgr_search(what = font_FileName, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
     vec_path = vec_path_file |> dirname() |> unique() |> sort()
     vec_path = vec_path[vec_path != "."]
     if (length(vec_path) > 0) {
@@ -110,12 +110,12 @@ f_font_filename.search_path_local <- function(font_filename) {
         return(NULL)
     }
 }
-"noname" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
-"inconsolata" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
-# > "noname" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
+"noname" |> f_font_FileName.search_path_local() |> env1$f$f_vec.dput_line_by_line()
+"inconsolata" |> f_font_FileName.search_path_local() |> env1$f$f_vec.dput_line_by_line()
+# > "noname" |> f_font_FileName.search_path_local() |> env1$f$f_vec.dput_line_by_line()
 # tlmgr search --all 'noname'
 # NULL
-# > "inconsolata" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
+# > "inconsolata" |> f_font_FileName.search_path_local() |> env1$f$f_vec.dput_line_by_line()
 # tlmgr search --all 'inconsolata'
 # c("	texmf-dist/fonts/enc/dvips/inconsolata",
 #   "	texmf-dist/fonts/map/dvips/inconsolata",
@@ -126,12 +126,12 @@ f_font_filename.search_path_local <- function(font_filename) {
 #   "	texmf-dist/tex/latex/inconsolata")
 
 
-### \% f_vec_font_filename.search_path_local ====  
-f_vec_font_filename.search_path_local <- function(vec_font_filename) {
-    if(is.null(names(vec_font_filename))) vec_font_filename = vec_font_filename %>% set_names()
-    names(vec_font_filename)[names(vec_font_filename)==""] = vec_font_filename[names(vec_font_filename)==""]
-    for (.font_name in names(vec_font_filename)) {
-        vec_font_path <- f_font_filename.search_path_local(vec_font_filename[.font_name])
+### \% f_vec_font_FileName.search_path_local ====  
+f_vec_font_FileName.search_path_local <- function(vec_font_FileName) {
+    if(is.null(names(vec_font_FileName))) vec_font_FileName = vec_font_FileName %>% set_names()
+    names(vec_font_FileName)[names(vec_font_FileName)==""] = vec_font_FileName[names(vec_font_FileName)==""]
+    for (.font_name in names(vec_font_FileName)) {
+        vec_font_path <- f_font_FileName.search_path_local(vec_font_FileName[.font_name])
         if (!is.null(vec_font_path)) {
             message(.font_name, " is already installed at the following path(s):\n", paste(vec_font_path, collapse = "\n"))
         } else {
@@ -140,8 +140,8 @@ f_vec_font_filename.search_path_local <- function(vec_font_filename) {
     }
 }
 
-c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local() 
-# > c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local() 
+c("noname", "inconsolata", "cascadia") |> f_vec_font_FileName.search_path_local() 
+# > c("noname", "inconsolata", "cascadia") |> f_vec_font_FileName.search_path_local() 
 # tlmgr search --all 'noname'
 # noname is not installed.
 # tlmgr search --all 'inconsolata'
@@ -787,9 +787,9 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/te
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-### \% f_filename.unix_find_path_local ====  
-f_filename.unix_find_path_local <- function(filename) {
-    vec_path_file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
+### \% f_FileName.unix_find_path_local ====  
+f_FileName.unix_find_path_local <- function(FileName) {
+    vec_path_file <- paste0('sudo find / -type f -iname "*',FileName,'*"') |> system(intern = TRUE)
     vec_path = vec_path_file |> dirname() |> unique() |> sort()
     vec_path = vec_path[vec_path != "."]
     if (length(vec_path) > 0) {
@@ -798,7 +798,7 @@ f_filename.unix_find_path_local <- function(filename) {
         return(NULL)
     }
 }
-"roboto" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
+"roboto" |> f_FileName.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
   "/usr/share/fonts/truetype/roboto/unhinted",
@@ -818,12 +818,12 @@ c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
   "/usr/share/lintian/overrides",
   "/var/lib/dpkg/info")
-"lmodern" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
+"lmodern" |> f_FileName.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/etc/X11/fonts/Type1",
   "/usr/local/texlive/texmf-dist/tex/latex/lm",
   "/var/lib/dpkg/info")
-"serif" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
+"serif" |> f_FileName.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",
@@ -995,10 +995,10 @@ vec_font_regex_perl.TexLiveDB_list |> str(max.level = 2, give.attr = TRUE)
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 # @@ END -----  
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename_ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ##________________________________________________________________________________  

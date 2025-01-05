@@ -1,8 +1,8 @@
 # Rdev/00_base_program/007_base_expression/f_CodeTexts.parse.eval.identical.dev.r
 
 
-env1$path$LastSourceEditorContext.path_filename_ext
-# set_LastSourceEditorContext.path_filename_ext()
+env1$path$LastSourceEditorContext.path_FileNameExt
+# set_LastSourceEditorContext.path_FileNameExt()
 
 f_CodeTexts.parse.eval.identical = function(CodeText1, CodeText2, show_CodeTexts.parse.eval = TRUE, show_in_one_line = FALSE, LinePrefix4CodeText = "\t") {
     CodeText1.parse.eval = eval(parse(text = CodeText1))
@@ -23,16 +23,16 @@ f_CodeTexts.parse.eval.identical = function(CodeText1, CodeText2, show_CodeTexts
     invisible(CodeTexts.parse.eval.identical)
 }
 
-f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_filename_ext", "rstudioapi::getSourceEditorContext()$path")
-# > f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_filename_ext", "rstudioapi::getSourceEditorContext()$path")
-# 	env1$path$LastSourceEditorContext.path_filename_ext  
+f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_FileNameExt", "rstudioapi::getSourceEditorContext()$path")
+# > f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_FileNameExt", "rstudioapi::getSourceEditorContext()$path")
+# 	env1$path$LastSourceEditorContext.path_FileNameExt  
 # 		 == NA  
 # 		 !=   
 # 	rstudioapi::getSourceEditorContext()$path  
 # 		 == "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_CodeTexts.parse.eval.identical.dev.r" 
 
-result = f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_filename_ext", "rstudioapi::getSourceEditorContext()$path", show_CodeTexts.parse.eval = FALSE)
+result = f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_FileNameExt", "rstudioapi::getSourceEditorContext()$path", show_CodeTexts.parse.eval = FALSE)
 result
-# > result = f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_filename_ext", "rstudioapi::getSourceEditorContext()$path", show_CodeTexts.parse.eval = FALSE)
+# > result = f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_FileNameExt", "rstudioapi::getSourceEditorContext()$path", show_CodeTexts.parse.eval = FALSE)
 # > result
 # [1] FALSE

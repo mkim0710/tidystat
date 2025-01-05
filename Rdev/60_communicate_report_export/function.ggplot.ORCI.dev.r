@@ -159,8 +159,8 @@ for (
     g+theme_bw()+theme(legend.position="bottom")
     g+labs(x = "PM25.tn1m_tn12m.mean.quartile")
     
-    filename = paste0("ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI", "$", i, "$", "PM25.tn1m_tn12m.mean.quartile", ".ggplot")
-    ggsave(paste0(filename, ".pdf"), width=8, height = 6)
+    FileName = paste0("ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI", "$", i, "$", "PM25.tn1m_tn12m.mean.quartile", ".ggplot")
+    ggsave(paste0(FileName, ".pdf"), width=8, height = 6)
 }
     
 
@@ -175,7 +175,7 @@ getwd()
 .path4write = env1$path$.path4write
 .objectname = "ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI"
 # write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress="gz", compression=9 )
-.path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_filename.xlsx) else openxlsx2::xl_open(.path_filename.xlsx)
+.path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
 
 
 

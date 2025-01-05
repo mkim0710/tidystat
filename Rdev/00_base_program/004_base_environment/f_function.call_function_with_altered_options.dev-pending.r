@@ -189,9 +189,9 @@ env1$env.internal.attach$f_function.call_function_with_altered_options = functio
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = NULL, .subpath = NULL, .filename.source.r = NULL,  RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE"))) {
-    if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.filename.source.r)) .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
-    if(RELOAD_FUNCTION || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL,  RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE"))) {
+    if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r)
+    if(RELOAD_FUNCTION || !.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.FileName.source.r]] = file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r); source(.GlobalEnv$env1$source[[.FileName.source.r]])  }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source_if_not_sourced  ----  
@@ -201,7 +201,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## ::OPTION:: f_sourcePath.execute.force_reload  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute.force_reload"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = NULL, .subpath = NULL, .filename.source.r = NULL, RELOAD_FUNCTION = TRUE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL, RELOAD_FUNCTION = TRUE) {
     # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
     # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
     # args = as.list(formals())

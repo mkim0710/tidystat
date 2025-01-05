@@ -3,24 +3,24 @@
 
 # Rproject_Infertility\00env1-NationalFamilyAndFertiltySurvey2021_230314.Rmd
 
-# ## \$ MetaData\$tblVarName[[.filename.xlsx]]\$qryCodebookSelect ----  
+# ## \$ MetaData\$tblVarName[[.FileName.xlsx]]\$qryCodebookSelect ----  
 # ```{r qryCodebookSelect-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # options(width=120)  
 # if(!"ProjectDocuments" %in% names(.GlobalEnv$env1$path)) env1$path$ProjectDocuments = "ProjectDocuments"  
 # ##________________________________________________________________________________  
-# .filename.xlsx = "NationalFamilyAndFertiltySurvey2021_230314_CodeBookQuery.xlsx"  
-# cat(" excel_sheets(",.filename.xlsx,") == ",deparse(readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.filename.xlsx))),"  \n", sep="")  
+# .FileName.xlsx = "NationalFamilyAndFertiltySurvey2021_230314_CodeBookQuery.xlsx"  
+# cat(" excel_sheets(",.FileName.xlsx,") == ",deparse(readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.FileName.xlsx))),"  \n", sep="")  
 #   
-# MetaData$tblVarName[[.filename.xlsx]] = readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.filename.xlsx)) |> set_names() |> map(function(SheetName) {readxl::read_excel(file.path(env1$path$ProjectDocuments,.filename.xlsx), sheet=SheetName)})  
-# MetaData$tblVarName[[.filename.xlsx]] = MetaData$tblVarName[[.filename.xlsx]] |> map(function(df) {if(!"Num" %in% names(df)) {df = df |> rownames_to_column("Num")} ; return(df) })  
-# cat(" > str(MetaData$tblVarName$",.filename.xlsx,")","  \n", sep=""); str(MetaData$tblVarName[[.filename.xlsx]])  
+# MetaData$tblVarName[[.FileName.xlsx]] = readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.FileName.xlsx)) |> set_names() |> map(function(SheetName) {readxl::read_excel(file.path(env1$path$ProjectDocuments,.FileName.xlsx), sheet=SheetName)})  
+# MetaData$tblVarName[[.FileName.xlsx]] = MetaData$tblVarName[[.FileName.xlsx]] |> map(function(df) {if(!"Num" %in% names(df)) {df = df |> rownames_to_column("Num")} ; return(df) })  
+# cat(" > str(MetaData$tblVarName$",.FileName.xlsx,")","  \n", sep=""); str(MetaData$tblVarName[[.FileName.xlsx]])  
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")  
-# if("qryCodebookSelect" %in% names (MetaData$tblVarName[[.filename.xlsx]])) { 
-#     cat(" > print(MetaData$tblVarName$",.filename.xlsx,"$qryCodebookSelect, n=99)", "  \n", sep="")
-#         print(MetaData$tblVarName[[.filename.xlsx]]$qryCodebookSelect, n=99)
+# if("qryCodebookSelect" %in% names (MetaData$tblVarName[[.FileName.xlsx]])) { 
+#     cat(" > print(MetaData$tblVarName$",.FileName.xlsx,"$qryCodebookSelect, n=99)", "  \n", sep="")
+#         print(MetaData$tblVarName[[.FileName.xlsx]]$qryCodebookSelect, n=99)
 # } else {
-#     cat(" > print(MetaData$tblVarName$",.filename.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.filename.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.filename.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.filename.xlsx]][[i]], n=99);cat(" \n")}  
-#     cat(" > print(MetaData$tblVarName$",.filename.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.filename.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.filename.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.filename.xlsx]][[i]], n=99);cat(" \n")}  
+#     cat(" > print(MetaData$tblVarName$",.FileName.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.FileName.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.FileName.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.FileName.xlsx]][[i]], n=99);cat(" \n")}  
+#     cat(" > print(MetaData$tblVarName$",.FileName.xlsx,", n=99)","\n", "List of ",length(MetaData$tblVarName[[.FileName.xlsx]]),"  \n", sep=""); for(i in names(MetaData$tblVarName[[.FileName.xlsx]])) {cat("  $ ",i,"  \n", sep=""); print(MetaData$tblVarName[[.FileName.xlsx]][[i]], n=99);cat(" \n")}  
 # }
 # ```
 
@@ -73,9 +73,9 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
+#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
+#   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 #     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", "rownum", 
@@ -152,9 +152,9 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
+#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", 
+#   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
@@ -231,9 +231,9 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.o..
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, re"..
+#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, re"..
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c"..
+#   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c"..
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 #     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", ""..
@@ -312,7 +312,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = get"..
 #     print2console = TRUE, VERBOSE = FALSE)  
-#   ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_fil"..
+#   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_fil"..
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cuto..
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
@@ -398,10 +398,10 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
-# ..$ f_path.size_files :function (.path4read = getwd(), literal_filename = NA, regex4filename =
+# ..$ f_path.size_files :function (.path4read = getwd(), literal_FileName = NA, regex4FileName =
 #    "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
 # print2console = TRUE, VERBOSE = FALSE)
-# ..$ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID =
+# ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID =
 #    c("rowname", "rownum", "Num", "ID", "CompositeKey",
 # "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE,
 # print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)
@@ -498,11 +498,11 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    regex_pattern, factor.ordered = FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
-# ..$ f_path.size_files :function (.path4read = getwd(), literal_filename = NA,
-#    regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
+# ..$ f_path.size_files :function (.path4read = getwd(), literal_FileName = NA,
+#    regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
 # print2console = TRUE, VERBOSE = FALSE)
-# ..$ f_DS_path_filename_ext.read.checkEntity:function
-#    (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum",
+# ..$ f_DS_path_FileNameExt.read.checkEntity:function
+#    (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum",
 # "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff =
 #    120 -
 # 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
@@ -618,9 +618,9 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 ## $ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 ## $ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-## $ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
+## $ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 ##    print2console = TRUE, VERBOSE = FALSE)  
-## $ f_DS_path_filename_ext.read.checkEntity:function (DS_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
+## $ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 ##    "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 ##    print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 ## $ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 

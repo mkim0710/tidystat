@@ -12,7 +12,7 @@
 # https://stackoverflow.com/questions/50750866/rstudio-global-settings-options-export-import
 # https://support.posit.co/hc/en-us/articles/200534577-Resetting-RStudio-Desktop-s-State
 # https://github.com/r-lib/rappdirs/blob/main/R/utils.R
-# file.edit(file.path(.path4APPDATA_RStudio, filename))
+# file.edit(file.path(.path4APPDATA_RStudio, FileName))
 if (.Platform$OS.type == "unix") {
     .path4APPDATA_RStudio = "~/.config/rstudio"
 } else if (Sys.info()["sysname"] == "Windows") {

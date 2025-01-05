@@ -256,8 +256,8 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function-part1 -----  
-# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
+# .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

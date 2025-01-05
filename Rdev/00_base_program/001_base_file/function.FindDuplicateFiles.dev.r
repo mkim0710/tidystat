@@ -43,7 +43,7 @@ head(duplicate_files)
  ## [2] "/Users/user/test_photo/folder_a/IMG_3481.JPG"     
  ## [3] "/Users/user/test_photo/folder_b/IMG_3481.JPG"
 
-# That completes the code conversion from python to R. However, to make the results a little more useful, we can split the unique and duplicate files by the length of the lists. An MD5 hash with more than one filename indicates duplicate files:
+# That completes the code conversion from python to R. However, to make the results a little more useful, we can split the unique and duplicate files by the length of the lists. An MD5 hash with more than one FileName indicates duplicate files:
 
 z = duplicate_files    
 z2 = sapply(z, function(x) {    
@@ -71,7 +71,7 @@ head(z3$"TRUE")
 # A previous attempt utilized a “for” loop o create the list of file digests. But as Jeffery Breen said in his excellent presentation on [grouping and summarizing data in r] (http://www.slideshare.net/jeffreybreen/grouping-summarizing-data-in-r)
 # “Rule of Thumb: If you are using a loop in R you’re probably doing something wrong.”
 
-fl = list()  #create and empty list to hold md5's and filenames
+fl = list()  #create and empty list to hold md5's and FileNames
 for (itm in filelist) {
     file_digest = digest(itm, file = TRUE, algo = "md5", length = 1000)
     fl[[file_digest]] = c(fl[[file_digest]], itm)

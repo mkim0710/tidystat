@@ -5,7 +5,7 @@ mainDir <- getwd()
 subDir <- "function.MK.output.nest_sigungu.Seoul11 -output"
 file.path(mainDir, subDir)
 dir.create(file.path(mainDir, subDir))
-file.path(mainDir, subDir, "filename")
+file.path(mainDir, subDir, "FileName")
 for (i in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows)) {
     for (j in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows[[i]])) {
         for (k in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows[[i]][[j]])) {

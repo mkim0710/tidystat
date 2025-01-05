@@ -21,42 +21,42 @@
 # <bytecode: 0x00000199623e2ee8>
 # <environment: namespace:tools>
 
-f_filename_ext.append_suffix <- function(path_filename_ext, append_suffix, compression = TRUE, VERBOSE = getOption("verbose")) {
-    # Extract the path, filename, and extension
-    if(VERBOSE) "path_filename_ext" %>% ECHO.dput_get_ObjectName()
+f_FileNameExt.append_suffix <- function(path_FileNameExt, append_suffix, compression = TRUE, VERBOSE = getOption("verbose")) {
+    # Extract the path, FileName, and extension
+    if(VERBOSE) "path_FileNameExt" %>% ECHO.dput_get_ObjectName()
     
-    path = path_filename_ext |> dirname()
+    path = path_FileNameExt |> dirname()
     if(VERBOSE) "path" %>% ECHO.dput_get_ObjectName()
-    filename_ext = path_filename_ext |> basename()
-    if(VERBOSE) "filename_ext" %>% ECHO.dput_get_ObjectName()
+    FileNameExt = path_FileNameExt |> basename()
+    if(VERBOSE) "FileNameExt" %>% ECHO.dput_get_ObjectName()
     if(compression) {
-        filename = filename_ext |> str_remove("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$")
-        ext = filename_ext |> str_extract("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$") |> str_remove("^\\.")
+        FileName = FileNameExt |> str_remove("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$")
+        ext = FileNameExt |> str_extract("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$") |> str_remove("^\\.")
     } else {
-        filename = filename_ext |> str_remove("\\.([[:alnum:]]+)$")
-        ext = filename_ext |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+        FileName = FileNameExt |> str_remove("\\.([[:alnum:]]+)$")
+        ext = FileNameExt |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
     }
-    if(VERBOSE) "filename" %>% ECHO.dput_get_ObjectName()
+    if(VERBOSE) "FileName" %>% ECHO.dput_get_ObjectName()
     if(VERBOSE) "ext" %>% ECHO.dput_get_ObjectName()
     
-    # Construct the new filename with appended text
-    filename_ext2 = paste0(filename, append_suffix, ".", ext)
-    if(VERBOSE) "filename_ext2" %>% ECHO.dput_get_ObjectName()
+    # Construct the new FileName with appended text
+    FileNameExt2 = paste0(FileName, append_suffix, ".", ext)
+    if(VERBOSE) "FileNameExt2" %>% ECHO.dput_get_ObjectName()
     
-    # Construct the new path with the updated filename
-    path_filename_ext2 = file.path(path, filename_ext2)
+    # Construct the new path with the updated FileName
+    path_FileNameExt2 = file.path(path, FileNameExt2)
     
-    return(path_filename_ext2)
+    return(path_FileNameExt2)
 }
 
 
 options(verbose = FALSE);  # getOption("verbose");
 # options(verbose = TRUE);  # getOption("verbose");
-"path/to/file.txt" |> f_filename_ext.append_suffix("2") 
-"path/to/file.txt.xz" |> f_filename_ext.append_suffix("2") 
-# > "path/to/file.txt" |> f_filename_ext.append_suffix("2") 
+"path/to/file.txt" |> f_FileNameExt.append_suffix("2") 
+"path/to/file.txt.xz" |> f_FileNameExt.append_suffix("2") 
+# > "path/to/file.txt" |> f_FileNameExt.append_suffix("2") 
 # [1] "path/to/file2.txt"
-# > "path/to/file.txt.xz" |> f_filename_ext.append_suffix("2") 
+# > "path/to/file.txt.xz" |> f_FileNameExt.append_suffix("2") 
 # [1] "path/to/file2.txt.xz"
 
 

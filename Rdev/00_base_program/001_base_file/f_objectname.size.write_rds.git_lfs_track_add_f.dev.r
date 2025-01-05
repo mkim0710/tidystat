@@ -3,10 +3,10 @@
 # Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # paste0("[Working Files List] ",basename(getwd()),".r") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
@@ -39,13 +39,13 @@ env0 = env1
 #     .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz")
 #     cat(.objectname, ' |> write_rds(',shQuote(.path_file),', compress = "xz", compression = 9L) |> system.time()', "  \n", sep="")
 #     # system.time(write_rds( get(.objectname), .path_file, compress = "xz", compression = 9L ))
-#     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+#     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4FileName = ',shQuote(.objectname),")  \n", sep="")
 #     env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, EXECUTE = FALSE)
 #     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # }
 # # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
-# # openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
+# # .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
+# # openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
 # # if (Sys.info()["sysname"] == "Linux") browseURL(FileName) else openxlsx2::xl_open(FileName)
 # ```
 
@@ -53,8 +53,8 @@ env0 = env1
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
-# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
+# .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 
 
 MetaData <- readRDS("rstudio-prefs/templates/templates-00env1.minimum.MetaData.rds")
@@ -111,15 +111,15 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index1
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
 # > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
 # 	fhs.index100le10 |> write_rds('NANAfhs.index100le10.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	env1$f$f_path.size_files(.path4read = 'NA', regex4filename = 'fhs.index100le10')  
+# 	env1$f$f_path.size_files(.path4read = 'NA', regex4FileName = 'fhs.index100le10')  
 # 	"git add -f 'NANAfhs.index100le10.rds'" |> system(intern=TRUE)  
 # > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
 # 	fhs.index100le10 |> write_rds('NANAfhs.index100le10.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	env1$f$f_path.size_files(.path4read = 'NA', regex4filename = 'fhs.index100le10')  
+# 	env1$f$f_path.size_files(.path4read = 'NA', regex4FileName = 'fhs.index100le10')  
 # 	"git add -f 'NANAfhs.index100le10.rds'" |> system(intern=TRUE)  
 # > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
 # 	fhs.index100le10 |> write_rds('./data/fhs.index100le10.rds.xz', compress = 'xz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	env1$f$f_path.size_files(.path4read = 'NA', regex4filename = 'fhs.index100le10')  
+# 	env1$f$f_path.size_files(.path4read = 'NA', regex4FileName = 'fhs.index100le10')  
 # 	"git add -f './data/fhs.index100le10.rds.xz'" |> system(intern=TRUE)
 
 ##________________________________________________________________________________  
@@ -131,7 +131,7 @@ MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # 
 # -> Trying: ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
 # 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
+# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4FileName = 'MetaData')  
 # 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
@@ -139,12 +139,12 @@ MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBACKUP 
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
+# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4FileName = 'MetaData')  
 # 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBACKUP = TRUE)
-# 	env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = "Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds", .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  
+# 	env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = "Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds", .BACKUP_to_path="-BACKUP", timeFormat="%y%m%d_%H", overwrite=TRUE)  
 # 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
+# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4FileName = 'MetaData')  
 # 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
 # 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  

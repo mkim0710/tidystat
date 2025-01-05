@@ -130,13 +130,13 @@ recovr_sessions <- function(sources_folder, out_folder) {
 recovr_source_file <- function(folder, id, out_folder) {
   metadata <- jsonlite::fromJSON(file.path(folder, id))
 
-  # recover filename
-  filename <- if (is.null(metadata$path)) {
+  # recover FileName
+  FileName <- if (is.null(metadata$path)) {
     if (is.null(metadata$properties) ||
         is.null(metadata$properties$tempName))
     {
       if (identical(metadata$type, "r_dataframe")) {
-        # data viewer .object; no filename
+        # data viewer .object; no FileName
         paste0("Data", "-", id)
       } else {
         # no way to infer a name, bail out and use the raw ID
@@ -147,7 +147,7 @@ recovr_source_file <- function(folder, id, out_folder) {
       metadata$properties$tempName
     }
   } else {
-    # we have a real path; use the base filename
+    # we have a real path; use the base FileName
     basename(metadata$path)
   }
 
@@ -194,16 +194,16 @@ recovr_source_file <- function(folder, id, out_folder) {
   })
 
   # ascertain target
-  target <- file.path(out_folder, filename)
+  target <- file.path(out_folder, FileName)
 
   # ensure target doesn't exist already; could happen if e.g. user had two
   # different foo.R files open in two different directories. in this case,
-  # make the filename unique: foo-0123456.R
+  # make the FileName unique: foo-0123456.R
   if (file.exists(target)) {
     target <- file.path(out_folder, paste0(
-      tools::file_path_sans_ext(filename),
+      tools::file_path_sans_ext(FileName),
         "-",
-        id, ".", tools::file_ext(filename)))
+        id, ".", tools::file_ext(FileName)))
   }
 
   # save the contents to the file
@@ -227,7 +227,7 @@ recovr_sources <- function(folder, out_folder) {
 
   # return data frame with results
   data.frame(
-    filename = basename(recovred),
+    FileName = basename(recovred),
     id = ids,
     origin = file.path(folder, ids),
     restored = recovred

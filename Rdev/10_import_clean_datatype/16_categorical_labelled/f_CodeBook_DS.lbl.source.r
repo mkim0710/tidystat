@@ -1,7 +1,7 @@
 # default.R
-.subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
-.sourcename_root = "f_CodeBook_DS.lbl"  
-# .sourcename_root = "f_CodeBook_DS.lbl"  
+.RelativeSubPath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
+.SourceName_root = "f_CodeBook_DS.lbl"  
+# .SourceName_root = "f_CodeBook_DS.lbl"  
 #### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.r----  
 #### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.dev.Rmd----  
 #### Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r----  
@@ -15,8 +15,8 @@
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
-# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-## .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
+# .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ----  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

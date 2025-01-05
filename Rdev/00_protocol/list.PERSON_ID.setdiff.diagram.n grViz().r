@@ -210,9 +210,9 @@ out.grViz
 library(DiagrammeRsvg)
 out.grViz.svg <- DiagrammeRsvg::export_svg(out.grViz)
 
-out.filename = "out.grViz.svg"
-rsvg::rsvg_pdf(charToRaw(out.grViz.svg), paste0(out.filename, ".pdf"))
-rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.filename, ".png"))
+out.FileName = "out.grViz.svg"
+rsvg::rsvg_pdf(charToRaw(out.grViz.svg), paste0(out.FileName, ".pdf"))
+rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.FileName, ".png"))
 
   
   

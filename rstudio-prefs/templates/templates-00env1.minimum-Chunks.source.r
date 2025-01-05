@@ -1,5 +1,5 @@
-.filename.source.r = "templates-00env1.minimum-Chunks" |> paste0(".source.r")  
-if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
+.FileName.source.r = "templates-00env1.minimum-Chunks" |> paste0(".source.r")  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.FileName.source.r,'"')) }  
 # rstudio-prefs/templates/f_df.t.tribble_construct.dev.r  
 # rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd  
 # rstudio-prefs/templates/f_df.t.tribble_construct.source.r  
@@ -7,9 +7,9 @@ if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,
 # # if(!file.exists("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.r")  
 # # if(!file.exists("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd")  
 # # if(!file.exists("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.source.r")  
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.r"); if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext));  
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd"); if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext));  
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.source.r"); if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext));  
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.r"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));  
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));  
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/f_df.t.tribble_construct.source.r"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -57,43 +57,43 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-# ### @ .subpath, .filename.source.r ======  
-# # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.subpath = .LastSourceEditorContext.path_filename_ext |> dirname(); ".relative.subpath" |> env1$f$f_ObjectName.get.dput.ECHO() }
-# # if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-# # .filename.source.r = "default.template" |> paste0(".source.r")
-# if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") {.filename.source.r = .LastSourceEditorContext.path_filename_ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".filename.source.r" |> env1$f$f_ObjectName.get.dput.ECHO() }
+# ### @ .RelativeSubPath, .FileName.source.r ======  
+# # .RelativeSubPath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") {.RelativeSubPath = .LastSourceEditorContext.path_FileNameExt |> dirname(); ".RelativeSubPath" |> env1$f$f_ObjectName.get.dput.ECHO() }
+# # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+# # .FileName.source.r = "default.template" |> paste0(".source.r")
+# if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") {.FileName.source.r = .LastSourceEditorContext.path_FileNameExt |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".FileName.source.r" |> env1$f$f_ObjectName.get.dput.ECHO() }
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# env1$path$.relative.subpath = .relative.subpath
-# if(!exists(".sourcename_root") && exists(".filename.source.r")) .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-# if(exists(".sourcename_root") && !exists(".filename.source.r")) .filename.source.r = .sourcename_root |> paste0(".source.r")
-# env1$path$.sourcename_root = .sourcename_root
-# env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-# env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
-# cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-#     "# ",env1$path$.subpath_filename.dev.r, "  \n",
-#     "# ",env1$path$.subpath_filename.dev.Rmd, "  \n",
-#     "# ",env1$path$.subpath_filename.source.r, "  \n",
-#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext));', "  \n",
+# env1$path$.RelativeSubPath = .RelativeSubPath
+# if(!exists(".SourceName_root") && exists(".FileName.source.r")) .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+# if(exists(".SourceName_root") && !exists(".FileName.source.r")) .FileName.source.r = .SourceName_root |> paste0(".source.r")
+# env1$path$.SourceName_root = .SourceName_root
+# env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
+# env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
+# env1$path$.RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".source.r")
+# cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.source.r, "  \n",
+#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.RelativeSubPath_FileName.source.r,'"))', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")', "  \n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));', "  \n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));', "  \n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));', "  \n",
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# # \% source( file.path(env1$path$source_base,.relative.subpath_filename.source.r) )  ----
-# env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -106,31 +106,31 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$ RmdChunk.updateTemplateNotebook =  ----  
 .tmp$objectname = "RmdChunk.updateTemplateNotebook"
-.tmp$object = function(.LastSourceEditorContext.path_filename_ext = env1$path$LastSourceEditorContext.path_filename_ext) {
+.tmp$object = function(.LastSourceEditorContext.path_FileNameExt = env1$path$LastSourceEditorContext.path_FileNameExt) {
     # @@ update tempate (notebook.Rmd) ----  
-    env1$path$RTemplate.filename_ext = "notebook.Rmd"  
-    env1$path$MyTemplate.filename_ext = "templates-00env1.minimum.Rmd"  
+    env1$path$RTemplate.FileNameExt = "notebook.Rmd"  
+    env1$path$MyTemplate.FileNameExt = "templates-00env1.minimum.Rmd"  
     if (Sys.info()["sysname"] == "Windows") {
-        if(basename(.LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}) == env1$path$MyTemplate.filename_ext) {
+        if(basename(.LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}) == env1$path$MyTemplate.FileNameExt) {
             if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
             .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
-            .destination_path_filename_ext = file.path(.destination_path, env1$path$RTemplate.filename_ext)
-            .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_filename_ext.createBACKUP(BACKUP_from_path_filename_ext = .destination_path_filename_ext, .BACKUP_to_path=.BACKUP_to_path) 
+            .destination_path_FileNameExt = file.path(.destination_path, env1$path$RTemplate.FileNameExt)
+            .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path) 
             if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
             
-            if(file.copy(from=.LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
-            # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
+            if(file.copy(from=.LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
+            # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
             
-            for ( .destination_path_filename_ext in c(
-                file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.filename_ext)
-                , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.filename_ext)
-            )) {if(dir.exists(dirname(.destination_path_filename_ext)) & .LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=NA) != .destination_path_filename_ext) {
-                if(file.copy(from=.LastSourceEditorContext.path_filename_ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_filename_ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_filename_ext)) else warning(paste0("Update failed: ", .destination_path_filename_ext))
-                # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_filename_ext)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_filename_ext),wait=FALSE)}  
+            for ( .destination_path_FileNameExt in c(
+                file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.FileNameExt)
+                , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.FileNameExt)
+            )) {if(dir.exists(dirname(.destination_path_FileNameExt)) & .LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/",mustWork=NA) != .destination_path_FileNameExt) {
+                if(file.copy(from=.LastSourceEditorContext.path_FileNameExt %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
+                # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
             }}
-            if(!is.null(.LastSourceEditorContext.path_filename_ext)) if(.LastSourceEditorContext.path_filename_ext != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_filename_ext))
+            if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt))
         }
-        # if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename_ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.filename_ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename_ext))
+        # if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))
     } 
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----

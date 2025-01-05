@@ -1,17 +1,17 @@
 
 
-fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "xz")) {
+fun.read_and_write_rds <- function(FileName, compress = c("none", "gz", "bz2", "xz")) {
   # Set the default compress method and ensure the user input is one of the allowed choices
   compress <- match.arg(compress)
 
   # Check if the file is either .rds or .rda
-  if (grepl("\\.[rR][dD][sS]$", filename)) {
-    .objectname <- gsub("\\.[rR][dD][sS]$", "", filename)
-    .object <- readRDS(filename)
-  } else if (grepl("\\.[rR][dD][aA]$", filename)) {
+  if (grepl("\\.[rR][dD][sS]$", FileName)) {
+    .objectname <- gsub("\\.[rR][dD][sS]$", "", FileName)
+    .object <- readRDS(FileName)
+  } else if (grepl("\\.[rR][dD][aA]$", FileName)) {
     # Loading .rda file
     env = new.env()
-    load(filename, env)
+    load(FileName, env)
     objectnames <- ls(env)
 
     # Check if there's exactly one .object in the .rda file

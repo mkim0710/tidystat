@@ -48,7 +48,7 @@ f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.Obje
         if(replace_input_path_file) {
             output_path_file <- input_path_file # Overwrite the original file
         } else {
-            output_path_file = input_path_file %>% f_filename_ext.append_suffix(paste0(".", new.ObjectName))
+            output_path_file = input_path_file %>% f_FileNameExt.append_suffix(paste0(".", new.ObjectName))
         }
     }
     
@@ -96,7 +96,7 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
         if(replace_input_path_file) {
             output_path_file <- input_path_file # Overwrite the original file
         } else {
-            output_path_file = input_path_file %>% f_filename_ext.append_suffix(paste0(".", new.ObjectName))
+            output_path_file = input_path_file %>% f_FileNameExt.append_suffix(paste0(".", new.ObjectName))
         }
     }
     

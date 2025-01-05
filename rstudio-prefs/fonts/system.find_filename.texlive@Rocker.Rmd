@@ -146,9 +146,9 @@ if(!exists("env1", envir=.GlobalEnv))
 .tmp$objectname = "source_base_github"; .tmp$object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 ## env1\$env.internal ----  
-.filename.source.r = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r); if(!.filename.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.subpath_filename.source.r = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); message('> source("',.source_base.subpath_filename.source.r,'")'); source(.source_base.subpath_filename.source.r)  }
+.FileName.source.r = "env1$env.internal" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r); if(!.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.FileName.source.r]] = .source_base.RelativeSubPath_FileName.source.r = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.RelativeSubPath_FileName.source.r); message('> source("',.source_base.RelativeSubPath_FileName.source.r,'")'); source(.source_base.RelativeSubPath_FileName.source.r)  }
 #### env1\$f_df.t.tribble_construct() ----  
-.filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+.FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #   
 ## Cf) {r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
@@ -512,10 +512,10 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# /usr/lib/rstudio-server/bin/quarto/bin/tools/pandoc +RTS -K512m -RTS system.find_filename.texlive@Rocker.knit.md --to latex --from markdown+autolink_bare_uris+tex_math_single_backslash --output system.find_filename.texlive@Rocker.tex --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --table-of-contents --toc-depth 6 --highlight-style tango --pdf-engine xelatex --variable graphics --include-in-header /tmp/RtmpzAV6ir/rmarkdown-str51c28523670.html 
+# /usr/lib/rstudio-server/bin/quarto/bin/tools/pandoc +RTS -K512m -RTS system.find_FileName.texlive@Rocker.knit.md --to latex --from markdown+autolink_bare_uris+tex_math_single_backslash --output system.find_FileName.texlive@Rocker.tex --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --table-of-contents --toc-depth 6 --highlight-style tango --pdf-engine xelatex --variable graphics --include-in-header /tmp/RtmpzAV6ir/rmarkdown-str51c28523670.html 
 # find: ‘/usr/share/texlive’: No such file or directory
 # find: ‘/usr/share/texlive’: No such file or directory
-# output file: system.find_filename.texlive@Rocker.knit.md
+# output file: system.find_FileName.texlive@Rocker.knit.md
 # 
 # tlmgr: package repository https://www.texlive.info/tlnet-archive/2024/04/23/tlnet (not verified: gpg unavailable)
 # [1/6, ??:??/??:??] install: euenc [4k]
@@ -539,7 +539,7 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 # tlmgr: package log updated: /opt/texlive/texmf-var/web2c/tlmgr.log
 # tlmgr: command log updated: /opt/texlive/texmf-var/web2c/tlmgr-commands.log
 # 
-# Output created: system.find_filename.texlive@Rocker.pdf
+# Output created: system.find_FileName.texlive@Rocker.pdf
 ```
   
   

@@ -27,7 +27,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .filename.source.r = "function.detachAllPackages" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -39,44 +39,44 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename_ext ====  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# .tmp$LastSourceEditorContext.path_filename_ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename_ext(check_rstudioapi = TRUE, overwrite = TRUE)
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # paste0("[Working Files List] ",basename(getwd()),".r") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
-## @ .relative.subpath, .filename.source.r ======  
-.relative.subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(.relative.subpath!="") .relative.subpath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-.filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")
+## @ .RelativeSubPath, .FileName.source.r ======  
+.RelativeSubPath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-env1$path$.relative.subpath = .relative.subpath
-.sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-env1$path$.sourcename_root = .sourcename_root  
-env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
-cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.relative.subpath_filename.dev.r, "----  \n",
-    "#### ",env1$path$.relative.subpath_filename.dev.Rmd, "----  \n",
-    "#### ",env1$path$.relative.subpath_filename.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.relative.subpath_filename.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.source.r,'")', "  \n",
-    '# "',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.dev.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
-    '# "',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.dev.Rmd,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
-    '# "',env1$path$source_base_local,"/",env1$path$.relative.subpath_filename.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+env1$path$.RelativeSubPath = .RelativeSubPath
+.SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+env1$path$.SourceName_root = .SourceName_root  
+env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
+env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
+env1$path$.RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r)
+cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
+    "#### ",env1$path$.RelativeSubPath_FileName.dev.r, "----  \n",
+    "#### ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "----  \n",
+    "#### ",env1$path$.RelativeSubPath_FileName.source.r, "----  \n",
+    '# # source(paste0(env1$path$source_base,"/","',env1$path$.RelativeSubPath_FileName.source.r,'"))', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")', "  \n",
+    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.relative.subpath_filename.source.r) )  ----  
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -641,15 +641,15 @@ env1$f$f_df.t.tribble_construct = function(df) {
     cat(out)
 }
 
-env1$f$f_path.size_files = function(.path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
-    filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
-    out = filenames %>% {file.info(file.path(.path4read,.))} %>%
-        rownames_to_column("filename") %>% select(filename, size) %>%
+env1$f$f_path.size_files = function(.path4read = getwd(), regex4FileName = "\\.(rdata|rda|rds)$") {
+    FileNames = list.files(path = .path4read) %>% {grep(regex4FileName, .,  ignore.case = T, value = T)}
+    out = FileNames %>% {file.info(file.path(.path4read,.))} %>%
+        rownames_to_column("FileName") %>% select(FileName, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
                KB = format(size/2^10, digits = 3, big.mark=","), 
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
-    out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
+    out = out %>% mutate(FileName = sub(.path4read, "", FileName, fixed = T) %>% {sub("^/", "", .)})
     env1$f$f_df.tribble_construct(out)
 }
 
@@ -661,7 +661,7 @@ ls.str(env1$env.internal) #-----
 # > ls.str(env1) #-----  
 # env.internal : <environment: 0x000001d6104168f8> 
 # f_df.transpose : function (df, varname4rowname = "varname")  
-# f_path.size_files : function (.path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
+# f_path.size_files : function (.path4read = getwd(), regex4FileName = "\\.(rdata|rda|rds)$")  
 # f_df.t.tribble_construct : function (df)  
 # f_df.tribble_construct : function (df)  
 # > ls.str(env1$env.internal) #-----  
@@ -736,7 +736,7 @@ if(subpath!="") utils::browseURL(normalizePath(subpath))
 
 
 
-## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$filename)) ----  
+## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$FileName)) ----  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .GlobalEnv$.tmp = list() ---  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
@@ -762,14 +762,14 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 .tmp$objectname = "path1"; .tmp$object = paste0(env1$path$path0,"/",unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 ### env1\$env.internal ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) {
-    .filename.source.r = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r); if(!.filename.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.filename.source.r]] = .source_base.subpath_filename.source.r = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.subpath_filename.source.r); message('> source("',.source_base.subpath_filename.source.r,'")'); source(.source_base.subpath_filename.source.r)  }
+    .FileName.source.r = "env1$env.internal" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r); if(!.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.FileName.source.r]] = .source_base.RelativeSubPath_FileName.source.r = paste0(env1$path$source_base,ifelse(env1$path$source_base=="","","/"),.RelativeSubPath_FileName.source.r); message('> source("',.source_base.RelativeSubPath_FileName.source.r,'")'); source(.source_base.RelativeSubPath_FileName.source.r)  }
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #### env1\$f_df.t.tribble_construct() ====  
 if(!"f_df.t.tribble_construct" %in% names(.GlobalEnv$env1)) {
-    .filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .relative.subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.relative.subpath_filename.source.r = file.path(.relative.subpath, .filename.source.r))
+    .FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = file.path(.RelativeSubPath, .FileName.source.r))
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
@@ -841,7 +841,7 @@ env1$f$f_path.size_files(.path4read, "\\.(rds)$") #-----
 #   )
 # > f_path.size_files("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----  
 # tibble::tribble(
-#                                         ~filename,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
+#                                         ~FileName,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
 #                              "ATC_RxNorm_NDC.rds", 79768376, "79,768,376", "77,898.80", "76.07305", "7.43e-02",
 #                                "fhs.index100.rds",   342010, "   342,010", "   333.99", " 0.32617", "3.19e-04",
 #                        "fhs.index100ge11le20.rds",    35515, "    35,515", "    34.68", " 0.03387", "3.31e-05",
