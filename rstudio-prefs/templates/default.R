@@ -289,7 +289,7 @@ DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # # .path4read.RelativeSubPath_FileNameExt = DSN |> paste0(".rds") %>% paste0(.path4read.RelativeSubPath,ifelse(.path4read.RelativeSubPath=="","","/"),.)
 # # .path_FileNameExt = ifelse( file.exists(.path4read.RelativeSubPath_FileNameExt), .path4read.RelativeSubPath_FileNameExt, paste0(env1$path$source_base_github,"/data/",DSN,".rds") )
 # # cat(".path_FileNameExt = ", .path_FileNameExt, "  \n", sep = "")
-#  DSN |> paste0(".rds") %>% paste0(.path4read.RelativeSubPath,ifelse(.path4read.RelativeSubPath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
+# DSN |> paste0(".rds") %>% paste0(.path4read.RelativeSubPath,ifelse(.path4read.RelativeSubPath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
 if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
 MetaData$DSNs[[DSN]] = env1$f$f_DSN.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.RelativeSubPath=="","","/"),.path4read.RelativeSubPath), return.output = TRUE)
 
