@@ -161,7 +161,7 @@ cache/
 *.[Ee][Xx][Ee]
 *.[Dd][Ll][Ll]
 *.[Bb][Ii][Nn]
-*.[Rr][Ee][Gg]
+# *.[Rr][Ee][Gg]
 *.[Mm][Ss][Ii]
 *.[Jj][Aa][Rr]
 *.[Dd][Oo][Ww][Nn][Ll][Oo][Aa][Dd]
