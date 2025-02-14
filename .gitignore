@@ -187,6 +187,7 @@ cache/
 # lock files & sync database files
 sync.ffs_lock
 *.ffs_db
+.tmp.driveupload/
 
 # MHahk
 msedgeprofile_autocoder/
