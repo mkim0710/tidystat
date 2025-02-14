@@ -84,8 +84,8 @@ cache/
 *-[Pp][Rr][Ii][Vv][Aa][Tt][Ee]*
 *-[Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ee]*
 *- [Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ee]*
-*-[Ee][Dd][Ii][Tt]*
-*- [Ee][Dd][Ii][Tt]*
+# *-[Ee][Dd][Ii][Tt]*
+# *- [Ee][Dd][Ii][Tt]*
 *-[Ii][Nn][Ff][Oo]*
 *- [Ii][Nn][Ff][Oo]*
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
