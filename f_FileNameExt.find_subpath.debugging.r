@@ -4,7 +4,8 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_notebook:  
+  html_notebook:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     toc_float:
@@ -17,11 +18,13 @@ output:
     fig_width: 10
     fig_height: 6
   word_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     fig_width: 9
     fig_height: 6
   html_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     toc_float:
@@ -33,7 +36,8 @@ output:
     highlight: textmate
     fig_width: 10
     fig_height: 6
-  pdf_document: 
+  pdf_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     fig_width: 10

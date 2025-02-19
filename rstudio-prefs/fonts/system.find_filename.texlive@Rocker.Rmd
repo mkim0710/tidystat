@@ -4,14 +4,16 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  pdf_document: 
+  pdf_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     fig_width: 10
     fig_height: 6
     latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
     keep_tex: true
-  html_notebook:  
+  html_notebook:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     toc_float:
@@ -24,6 +26,7 @@ output:
     fig_width: 10
     fig_height: 6
   html_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     toc_float:
@@ -36,6 +39,7 @@ output:
     fig_width: 10
     fig_height: 6
   word_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     fig_width: 9
