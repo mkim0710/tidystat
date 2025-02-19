@@ -71,7 +71,7 @@ FileName = paste0(.objectname,".rds")
 .objectname = FileName %>% gsub("\\.rds", "", .)
 print(.objectname)
 .t0 = Sys.time()
-assign$1.objectname$2
+assign(.objectname
        , readRDS(file.path(.path4read, FileName)) %>% 
            as_tibble
 )
