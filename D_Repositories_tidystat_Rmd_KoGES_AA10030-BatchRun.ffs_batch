@@ -28,6 +28,7 @@
             <Item>\.Rproj.user\</Item>
             <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
             <Item>*.Rproj</Item>
+            <Item>\Obsidian Templates</Item>
         </Exclude>
         <SizeMin Unit="None">0</SizeMin>
         <SizeMax Unit="None">0</SizeMax>
