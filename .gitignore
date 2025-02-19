@@ -188,6 +188,11 @@ cache/
 sync.ffs_lock
 *.ffs_db
 .tmp.driveupload/
+.obsidian/*
+!.obsidian/*.json
+!.obsidian/regex-rulesets/
+!.obsidian/regex-rulesets/*.RegExPipeLine
+.trash/
 
 # MHahk
 msedgeprofile_autocoder/
