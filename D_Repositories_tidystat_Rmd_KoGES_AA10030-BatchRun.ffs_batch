@@ -11,8 +11,8 @@
             <Left Create="right" Update="right" Delete="right"/>
             <Right Create="left" Update="left" Delete="left"/>
         </Changes>
-        <DeletionPolicy>RecycleBin</DeletionPolicy>
-        <VersioningFolder Style="Replace"/>
+        <DeletionPolicy>Versioning</DeletionPolicy>
+        <VersioningFolder Style="Replace">D:\D_FFS_Versioning</VersioningFolder>
     </Synchronize>
     <Filter>
         <Include>
