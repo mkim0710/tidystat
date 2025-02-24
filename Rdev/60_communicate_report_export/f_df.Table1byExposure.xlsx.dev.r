@@ -109,6 +109,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 # nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
 # nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
 
+# DS.DNR = DataSet.Date.NA.rmAllNA
 DS.DNR = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
     rownames_to_column() 
 
@@ -556,8 +557,11 @@ DS.Table1byExposure.print_showAllLevels.addCols |> print(n=999) #---
 
 
 
+# # DS.DNR = DataSet.Date.NA.rmAllNA
 # DS.DNR = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% dplyr::filter(!is.na(Cigar)) %>% dplyr::filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
+# DS.DNR = DataSet.Date.NA.rmAllNA
 DS.DNR = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% select(-seqnum:-`_merge`, -matches("^count"))
+# DS.DNR = DataSet.Date.NA.rmAllNA
 DS.DNR = DS.DNR %>% mutate(
     Male.lgl = Male |> as.logical()
     , RaceWhite.lgl = RaceWhite |> as.logical()
@@ -581,6 +585,7 @@ DS.DNR %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---
 #  Max.   :20.000   Max.   :50.000   Max.   :3910.71  
 #  NA's   :13960    NA's   :13857    NA's   :7502 
 
+# DS.DNR = DataSet.Date.NA.rmAllNA
 DS.DNR = DS.DNR %>% mutate(
     MissingPattern = is.na(Cigar) * 100 + is.na(N1GM0392_recode) * 10 + is.na(N1GM0394_recode)
     , MissingPattern = as.factor(MissingPattern)
