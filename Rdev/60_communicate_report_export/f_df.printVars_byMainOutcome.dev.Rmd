@@ -272,7 +272,7 @@ ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |
 #### \$ StudyPopulation = "StudyPopulation" ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# DSN.DNR = DataSetName.Date.NA.rmAllNA
+### :: DSN.DNR = DataSetName.Date.NA.rmAllNA = =====
 DSN.DNR = "ADS_time2event"
 MainOutcome = "event"
 StudyPopulation = "StudyPopulation"

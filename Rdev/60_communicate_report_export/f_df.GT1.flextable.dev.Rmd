@@ -550,7 +550,7 @@ options(width=120)
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# # DS.DNR = DataSet.Date.NA.rmAllNA
+# # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
 # DS.DNR = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
 #     rownames_to_column() 
 
@@ -657,15 +657,13 @@ c("SEX", "AGE", "DRINK", "SMOKE", "PACKYR",
   "B01", "B02", "B03", "B04", "B24")
 VarName.suffix.regex = VarNames.select.vec %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-# DS.DNR = DataSet.Date.NA.rmAllNA
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
-# # DS.DNR = DataSet.Date.NA.rmAllNA
 # DS.DNR = DS.DNR[sort(names(DS.DNR))]
-# DS.DNR = DataSet.Date.NA.rmAllNA
 DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
 DS.DNR |> str(max.level = 2, give.attr = TRUE)
 ```
@@ -732,15 +730,13 @@ VarName.suffix.regex =
                  "EDATE"))
     ) %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-# DS.DNR = DataSet.Date.NA.rmAllNA
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
     # select(matches("A00|A01|A07"))
     select(matches("A0[0-3]"))
-# # DS.DNR = DataSet.Date.NA.rmAllNA
 # DS.DNR = DS.DNR[sort(names(DS.DNR))]
-# DS.DNR = DataSet.Date.NA.rmAllNA
 DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
 DS.DNR |> str(max.level = 2, give.attr = TRUE)
 
