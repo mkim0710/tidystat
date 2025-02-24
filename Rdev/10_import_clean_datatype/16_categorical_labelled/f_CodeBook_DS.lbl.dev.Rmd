@@ -364,12 +364,7 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-.path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030")
-# .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NR.recode")
-DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode"
-# paste0(.path4read,"/",DSN,".rds") |> env1$f$f_DS_path_FileNameExt.read.checkEntity()
-
-env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode"; cat("DSN == ", deparse(DSN), "\n", sep = ""); assign(DSN, read_csv(paste0("../Rproject_KoGES_AA10030/",DSN,".UTF8.csv")))  }  
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
