@@ -347,9 +347,7 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-if(!exists("DSN")) {warning('!exists("DSN") --> setting DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"'); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"}
-cat("DSN == ", deparse(DSN), "\n", sep = "")
-env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))  
+if(!exists("DSN")) {  warning('!exists("DSN") --> setting DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"'); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct = read_csv(file.path("../Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct.UTF8.csv"))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
@@ -425,9 +423,7 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-if(!exists("DSN")) {warning('!exists("DSN") --> setting DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"'); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"}
-cat("DSN == ", deparse(DSN), "\n", sep = "")
-env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))  
+if(!exists("DSN")) {  warning('!exists("DSN") --> setting DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"'); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct = read_csv(file.path("../Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct.UTF8.csv"))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
