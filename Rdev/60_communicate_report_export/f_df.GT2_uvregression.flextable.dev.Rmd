@@ -503,7 +503,7 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSN == ", deparse(DSN), "\n", sep = ""); assign(DSN, read_csv(paste0("../Rproject_KoGES_AA10030/",DSN,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0("../Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
@@ -523,7 +523,7 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSN == ", deparse(DSN), "\n", sep = ""); assign(DSN, read_csv(paste0("../Rproject_KoGES_AA10030/",DSN,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0("../Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 VarName.suffix.regex =
@@ -574,7 +574,7 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSN == ", deparse(DSN), "\n", sep = ""); assign(DSN, read_csv(paste0("../Rproject_KoGES_AA10030/",DSN,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0("../Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
