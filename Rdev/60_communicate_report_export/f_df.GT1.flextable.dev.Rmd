@@ -657,7 +657,12 @@ c("SEX", "AGE", "DRINK", "SMOKE", "PACKYR",
   "B01", "B02", "B03", "B04", "B24")
 VarName.suffix.regex = VarNames.select.vec %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-# :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
+if(!exists("DSN")) {warning('!exists("DSN") --> setting DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"'); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"}
+cat("DSN == ", deparse(DSN), "\n", sep = "")
+env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
@@ -730,7 +735,12 @@ VarName.suffix.regex =
                  "EDATE"))
     ) %>% paste0(collapse="|")
 VarName.suffix.regex %>% dput
-# :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
+if(!exists("DSN")) {warning('!exists("DSN") --> setting DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"'); DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"}
+cat("DSN == ", deparse(DSN), "\n", sep = "")
+env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, ext = "rds", .path4read = .path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose")))  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
