@@ -31,6 +31,8 @@
             <Item>\Obsidian Templates</Item>
             <Item>*-NoSync*</Item>
             <Item>regex-rulesets</Item>
+            <Item>ObsidianFiles</Item>
+            <Item>ObsidianLinks</Item>
         </Exclude>
         <SizeMin Unit="None">0</SizeMin>
         <SizeMax Unit="None">0</SizeMax>
