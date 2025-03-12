@@ -26,8 +26,9 @@
             <Item>*\thumbs.db</Item>
             <Item>\.git\</Item>
             <Item>\.Rproj.user\</Item>
-            <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
+            <Item>*\.Rproj.user\</Item>
             <Item>*.Rproj</Item>
+            <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
             <Item>\Obsidian Templates</Item>
             <Item>*-NoSync*</Item>
             <Item>regex-rulesets</Item>
