@@ -299,8 +299,8 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 # unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]    # gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0) - escaped regex for special characters
 .tmp$objectname = "path1"; .tmp$object = paste0(env1$path$path0,"/",unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 
-if(!".path4read" %in% names(env1$path)) {.path4read = env1$path$.path4read = env1$path$path1}  
-if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = ifelse("LastSourceEditorContext.path" %in% names(env1$path), env1$path$LastSourceEditorContext.path, env1$path$path1)}  
+if(!".path4read" %in% names(env1$path)) {.path4read = env1$path$path4read = env1$path$path1}  
+if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$path4write = ifelse("LastSourceEditorContext.path" %in% names(env1$path), env1$path$LastSourceEditorContext.path, env1$path$path1)}  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -1157,8 +1157,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         .CodeText2Print = 'env1$path$LastSourceEditorContext.path_FileNameExt'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",deparse(eval(parse(text=.CodeText2Print)))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
         
         if(!".path4write" %in% names(env1$path)) {
-            .path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path
-            cat(LinePrefix4CodeText, ".path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path", "  \n", sep="")
+            .path4write = env1$path$path4write = env1$path$LastSourceEditorContext.path
+            cat(LinePrefix4CodeText, ".path4write = env1$path$path4write = env1$path$LastSourceEditorContext.path", "  \n", sep="")
         }  
     } else {
         env1$f$f_CodeTexts.parse.eval.identical("env1$path$LastSourceEditorContext.path_FileNameExt", 'rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")')
@@ -1176,7 +1176,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # # .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
 # env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
-# if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
+# if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.file.info ====
 ## Rdev/00_base_program/001_base_file/f_path.DOCs_Rcode.file.info.xlsx.dev.Rmd
@@ -2616,7 +2616,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .objectname, 
         CompressionMethod = case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz"), 
         .FileNameExt4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
-        .path4write = env1$path$.path4write,
+        .path4write = env1$path$path4write,
         .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }, 
         createBACKUP = FALSE, 
         .BACKUP_to_path="-BACKUP", 
@@ -2697,8 +2697,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ .path4write may still be NULL if env1$path$.path4write was NULL.
-    # if(is.null(.path4write))            .path4write = env1$path$.path4write
+    ##@ .path4write may still be NULL if env1$path$path4write was NULL.
+    # if(is.null(.path4write))            .path4write = env1$path$path4write
     if(is.null(.path4write))            .path4write = ""
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     ##@ .path_file may still be NULL if either .path4write or .FileNameExt4write was NULL.

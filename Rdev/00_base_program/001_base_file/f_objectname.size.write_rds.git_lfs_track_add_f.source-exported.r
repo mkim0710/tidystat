@@ -11,7 +11,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
         .objectname, 
         CompressionMethod = case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz"), 
         .FileNameExt4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
-        .path4write = env1$path$.path4write,
+        .path4write = env1$path$path4write,
         .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }, 
         createBACKUP = FALSE, 
         .BACKUP_to_path="-BACKUP", 
@@ -92,8 +92,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ .path4write may still be NULL if env1$path$.path4write was NULL.
-    # if(is.null(.path4write))            .path4write = env1$path$.path4write
+    ##@ .path4write may still be NULL if env1$path$path4write was NULL.
+    # if(is.null(.path4write))            .path4write = env1$path$path4write
     if(is.null(.path4write))            .path4write = ""
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     ##@ .path_file may still be NULL if either .path4write or .FileNameExt4write was NULL.
@@ -148,7 +148,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #         .object = NULL, .objectname = NULL, 
 #         CompressionMethod = {  if(is.null(.object)) {.object = get(.objectname)}; case_when(object.size(.object) >= 1e8 ~ "none", object.size(.object) >= 1e6 ~ "xz", TRUE ~ "gz")  }, 
 #         .FileNameExt4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }, 
-#         .path4write = env1$path$.path4write,
+#         .path4write = env1$path$path4write,
 #         .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }, 
 #         createBACKUP = FALSE, 
 #         .BACKUP_to_path="-BACKUP", 
@@ -312,8 +312,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #     ##@ .FileNameExt4write may still be NULL if .objectname is not provided. But now, .objectname should be auto-generated from deparse(substitute(.object)).  
 #     if(is.null(.FileNameExt4write))    .FileNameExt4write = if(is.null(.objectname)) {NULL} else {  paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))  }
 #     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#     ##@ .path4write may still be NULL if env1$path$.path4write was NULL.
-#     # if(is.null(.path4write))            .path4write = env1$path$.path4write
+#     ##@ .path4write may still be NULL if env1$path$path4write was NULL.
+#     # if(is.null(.path4write))            .path4write = env1$path$path4write
 #     if(is.null(.path4write))            .path4write = ""
 #     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #     ##@ .path_file may still be NULL if either .path4write or .FileNameExt4write was NULL.

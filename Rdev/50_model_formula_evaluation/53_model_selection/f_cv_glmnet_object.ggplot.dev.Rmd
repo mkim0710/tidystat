@@ -197,12 +197,12 @@ env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditor
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
-env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
-env1$path$.path4write = getwd()
-.path4read  = env1$path$.path4read
-.path4write = env1$path$.path4write
+# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$path4write = getwd()
+.path4read  = env1$path$path4read
+.path4write = env1$path$path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
 ## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
@@ -1121,7 +1121,7 @@ TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
 # # Save all glmnet models for future use
 # .objectname = "TheTrainSet.cv.glmnet_a10"
 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
+# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$path4write, createBACKUP = FALSE, EXECUTE = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
 
 cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")

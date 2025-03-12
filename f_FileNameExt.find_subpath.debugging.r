@@ -190,7 +190,7 @@ env1$info$info_software_versions = env1$env.internal.attach$get_software_version
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
 env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
-if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
+if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$project_base = "Rproject_HEALS0215"
@@ -198,12 +198,12 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
-env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
-env1$path$.path4write = getwd()
-.path4read  = env1$path$.path4read
-.path4write = env1$path$.path4write
+# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$path4write = getwd()
+.path4read  = env1$path$path4read
+.path4write = env1$path$path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
 ## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  

@@ -220,6 +220,6 @@ list.sas7bdat_PERSON_ID.setdiff |> str() #----
 # __________|------  
 # @@ END----  
 .objectname = "list.sas7bdat_PERSON_ID.setdiff"
-.path4write = env1$path$.path4write
+.path4write = env1$path$path4write
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 ))
 
