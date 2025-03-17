@@ -471,7 +471,7 @@ glob_to_regex <- function(glob_pattern, anchor = FALSE) {
 # -----------------------------------------------
 # Main function:
 #   Converts a single string of comma-separated patterns enclosed in braces, e.g.
-#     "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+#     "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 #   ...into one combined OR-based regex suitable for grepl().
 # -----------------------------------------------
 styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
@@ -502,7 +502,7 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 # Example usage
 # --------------------
-inclusion_str  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
 # Potential output (when shown via print()):
@@ -555,7 +555,7 @@ glob_to_regex <- function(glob_pattern, anchor = FALSE) {
 # -----------------------------------------------
 # Main function:
 #   Converts a single string of comma-separated patterns enclosed in braces, e.g.
-#     "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+#     "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 #   ...into one combined OR-based regex suitable for grepl().
 # -----------------------------------------------
 styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
@@ -587,7 +587,7 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 
 # Inclusion example
-inclusion_str  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
 # Example output might look like:

@@ -298,7 +298,7 @@ Depending on the programming language, you may need additional escapes. For exam
 ### exclusion_glob = 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-inclusion_glob  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+inclusion_glob  <- "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 exclusion_glob  <- "{.history,-[Bb][Aa][Cc][Kk][Uu][Pp],VScode Replace*.*,.git,.Rproj.user,*symlink*,r4ds-master}"
 ```
   
@@ -505,7 +505,7 @@ glob_to_regex <- function(glob_pattern, anchor = FALSE) {
 # -----------------------------------------------
 # Main function:
 #   Converts a single string of comma-separated patterns enclosed in braces, e.g.
-#     "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+#     "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 #   ...into one combined OR-based regex suitable for grepl().
 # -----------------------------------------------
 styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
@@ -536,7 +536,7 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 # Example usage
 # --------------------
-inclusion_str  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
 # Potential output (when shown via print()):
@@ -589,7 +589,7 @@ glob_to_regex <- function(glob_pattern, anchor = FALSE) {
 # -----------------------------------------------
 # Main function:
 #   Converts a single string of comma-separated patterns enclosed in braces, e.g.
-#     "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+#     "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 #   ...into one combined OR-based regex suitable for grepl().
 # -----------------------------------------------
 styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
@@ -621,7 +621,7 @@ styles_to_regex <- function(pattern_string, anchor_each = FALSE) {
 # --------------------
 
 # Inclusion example
-inclusion_str  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+inclusion_str  <- "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 inclusion_regex <- styles_to_regex(inclusion_str, anchor_each = FALSE)
 inclusion_regex
 # Example output might look like:

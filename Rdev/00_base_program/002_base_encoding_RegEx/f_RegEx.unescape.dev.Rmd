@@ -361,7 +361,7 @@ vec_chr.ASCII_nonalphanumeric %>% str()
 ### exclusion_glob = 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-inclusion_glob  <- "{**/*.[Rr],**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
+inclusion_glob  <- "{**/*.[Rr],**/*.[Rr].txt,**/*.[Rr][Mm][Dd],default.R,.Rprofile}"
 exclusion_glob  <- "{.history,-[Bb][Aa][Cc][Kk][Uu][Pp],VScode Replace*.*,.git,.Rproj.user,*symlink*,r4ds-master}"
 ```
 
