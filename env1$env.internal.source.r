@@ -556,7 +556,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_function.load2env.internal ====  
 env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE) {
+        if (!is.function(function_object)) {    stop(paste0("!is.function(function_object)"))    }
         
+
     if(is.null(env1_subenv_name)) {
         if(RELOAD_FUNCTION || !function_name %in% names(.GlobalEnv$env1)) {
             .GlobalEnv$env1[[function_name]] = function_object
