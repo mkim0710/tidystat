@@ -2534,7 +2534,7 @@ env1$path$git_path = env1$env.internal.attach$f_path.is_git_tracked()
 # https://gemini.google.com/app/c1606939ea272140
 env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIfAlreadyAdded = TRUE) {
      stopifnot(
-        missing(.path_file), is.character(.path_file), length(.path_file) == 1,
+        !missing(.path_file), is.character(.path_file), length(.path_file) == 1,
         is.logical(EXECUTE), length(EXECUTE) == 1,
         is.logical(SkipIfAlreadyAdded), length(SkipIfAlreadyAdded) == 1
     )
