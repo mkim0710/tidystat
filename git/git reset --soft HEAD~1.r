@@ -64,13 +64,13 @@
 
 
 
-# Checking filenames of staged changes:
+# Checking FileNames of staged changes:
 # git diff --cached --name-only
 'git diff --cached --name-only' |> system(intern=TRUE) |> cat(sep='\n')
 # Nothing
 
 
-# Checking filenames of unstaged changes:
+# Checking FileNames of unstaged changes:
 # git diff --name-only
 'git diff --name-only' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git diff --name-only' |> system(intern=TRUE) |> cat(sep='\n')

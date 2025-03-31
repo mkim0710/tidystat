@@ -313,9 +313,9 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 
 
 
-## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
-    analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
+## @ ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
+    ADS.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
@@ -345,8 +345,8 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
         
         out
     }
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# > ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
 # # A tibble: 20 x 9
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` nExposed0 nExposed1 nDisease0_Exposed0 nDisease0_Exposed1 nDisease1_Exposed0 nDisease1_Exposed1
 #    <chr>                     <chr>                        <chr>                            <int>     <int>              <int>              <int>              <int>              <int>
@@ -378,9 +378,9 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
     {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str(max.level = 2, give.attr = TRUE)
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
+# > ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
 # +     {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str(max.level = 2, give.attr = TRUE)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr  "1.43 (0.38, 5.44)" "1.00 (0.61, 1.66)" "1.03 (0.61, 1.74)" "0.00 (0.00, NaN)" ...
@@ -406,21 +406,21 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>%
 
 
 
-## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI =====  
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI = list()
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable =
-    analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% mutate(
+## @ ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI =====  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI = list()
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable =
+    ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% mutate(
         RiskDifferenceCI.list = pmap(list(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1), function.RiskDifferenceCI)
     ) %>% unnest #----
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$n =
-    analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1)
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f =
-    analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, matches("2f"))
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select3f =
-    analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, matches("3f"))
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----  
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$n =
+    ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1)
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f =
+    ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, matches("2f"))
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select3f =
+    ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, matches("3f"))
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----
+ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----
+# > ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----  
 # # A tibble: 20 x 7
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` `OddsRatio (95% CI) %.2f` `RiskRatio (95% CI) %.2f` `RiskDifference (95% CI) %.2f` `Percent (95% CI) %.2f`   
 #    <chr>                     <chr>                        <chr>                        <chr>                     <chr>                     <chr>                          <chr>                     
@@ -444,7 +444,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 # 18 SecondaryOutcome6         0 (0.00%)                    3 (2.65%)                    Inf (NaN, Inf)            Inf (NaN, Inf)            0.03 (-Inf, Inf)               2.65% (-Inf%, Inf%)       
 # 19 SecondaryOutcome7         0 (0.00%)                    0 (0.00%)                    NaN (NaN, NaN)            NaN (NaN, NaN)            0.00 (-Inf, Inf)               0.00% (-Inf%, Inf%)       
 # 20 SecondaryOutcomeP1456fhkl 128 (64.00%)                 65 (57.52%)                  0.76 (0.48, 1.22)         0.90 (0.74, 1.09)         -0.06 (-0.25, 0.12)            -6.48% (-25.43%, 12.47%)  
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----  
+# > ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----  
 # List of 4
 #  $ FullTable:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  30 variables:
 #   ..$ nDisease|Exposed0 (%) %.2f  : chr [1:20] "5 (2.50%)" "60 (30.00%)" "52 (26.00%)" "5 (2.50%)" ...
@@ -510,11 +510,10 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 # __________|------  
 # @@ END-----  
 getwd()
-.path4write = env1$path$.path4write
-.objectname = "analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
+.path4write = env1$path$path4write
+.objectname = "ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress="gz", compression=9 )
-openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE)
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
+.path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
 
 
 
@@ -788,8 +787,8 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # nNoncasesExposed = 108
 # nNoncasesUnexposed = 341
 
-## @ AnalyticDataset.byCaseExposure =====  
-AnalyticDataset.byCaseExposure = 
+## @ ADS.byCaseExposure =====  
+ADS.byCaseExposure = 
     tibble::tribble(
     ~Case,      ~Exposure,          ~n,
         T,              T,          60,
@@ -797,22 +796,22 @@ AnalyticDataset.byCaseExposure =
         F,              T,          108,
         F,              F,          341,
     )
-seq_len(nrow(AnalyticDataset.byCaseExposure))
-# > seq_len(nrow(AnalyticDataset.byCaseExposure))
+seq_len(nrow(ADS.byCaseExposure))
+# > seq_len(nrow(ADS.byCaseExposure))
 # [1] 1 2 3 4
 
 
-## @ AnalyticDataset =====  
-AnalyticDataset =
-    AnalyticDataset.byCaseExposure[rep(seq_len(nrow(AnalyticDataset.byCaseExposure)), AnalyticDataset.byCaseExposure$n), ] %>% 
+## @ ADS =====  
+ADS =
+    ADS.byCaseExposure[rep(seq_len(nrow(ADS.byCaseExposure)), ADS.byCaseExposure$n), ] %>% 
     select(-n)
-AnalyticDataset |> str() #----
-AnalyticDataset |> table() |> addmargins() #----
-# > AnalyticDataset |> str() #----  
+ADS |> str() #----
+ADS |> table() |> addmargins() #----
+# > ADS |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	554 obs. of  2 variables:
 #  $ Case    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ Exposure: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-# > AnalyticDataset |> table() |> addmargins() #----  
+# > ADS |> table() |> addmargins() #----  
 #        Exposure
 # Case    FALSE TRUE Sum
 #   FALSE   341  108 449
@@ -820,23 +819,23 @@ AnalyticDataset |> table() |> addmargins() #----
 #   Sum     386  168 554
 
 
-AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----
-AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----
-AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----
-AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----
-# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----  
+ADS %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----
+ADS %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----
+ADS %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----
+ADS %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----
+# > ADS %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----  
 # [1] 60
-# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----  
+# > ADS %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----  
 # [1] 45
-# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----  
+# > ADS %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----  
 # [1] 108
-# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----  
+# > ADS %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----  
 # [1] 341
 
-nCasesExposed       = AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow
-nCasesUnexposed     = AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow 
-nNoncasesExposed    = AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow
-nNoncasesUnexposed  = AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow
+nCasesExposed       = ADS %>% dplyr::filter(Case == T, Exposure == T) %>% nrow
+nCasesUnexposed     = ADS %>% dplyr::filter(Case == T, Exposure == F) %>% nrow 
+nNoncasesExposed    = ADS %>% dplyr::filter(Case == F, Exposure == T) %>% nrow
+nNoncasesUnexposed  = ADS %>% dplyr::filter(Case == F, Exposure == F) %>% nrow
 
 stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
@@ -879,70 +878,70 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
 
 
-# #@ AnalyticDataset.table ====  
-# AnalyticDataset.table = AnalyticDataset |> table()
-# AnalyticDataset.table |> str() #----  
-# AnalyticDataset.table |> dput() #----  
-# # > AnalyticDataset.table |> str() #----  
+# #@ ADS.table ====  
+# ADS.table = ADS |> table()
+# ADS.table |> str() #----  
+# ADS.table |> dput() #----  
+# # > ADS.table |> str() #----  
 # #  'table' int [1:2, 1:2] 341 45 108 60
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ Case    : chr [1:2] "FALSE" "TRUE"
 # #   ..$ Exposure: chr [1:2] "FALSE" "TRUE"
-# # > AnalyticDataset.table |> dput() #----  
+# # > ADS.table |> dput() #----  
 # # structure(c(341L, 45L, 108L, 60L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("FALSE", "TRUE"), Exposure = c("FALSE", "TRUE")), class = "table")
 # 
-# AnalyticDataset.table |> as.vector() |> dput() #----  
-# # > AnalyticDataset.table |> as.vector() |> dput() #----  
+# ADS.table |> as.vector() |> dput() #----  
+# # > ADS.table |> as.vector() |> dput() #----  
 # # c(341L, 45L, 108L, 60L)
 # 
-# AnalyticDataset.table["TRUE", "TRUE"]
-# AnalyticDataset.table["TRUE", "FALSE"]
-# AnalyticDataset.table["FALSE", "TRUE"]
-# AnalyticDataset.table["FALSE", "FALSE"]
-# # > AnalyticDataset.table["TRUE", "TRUE"]
+# ADS.table["TRUE", "TRUE"]
+# ADS.table["TRUE", "FALSE"]
+# ADS.table["FALSE", "TRUE"]
+# ADS.table["FALSE", "FALSE"]
+# # > ADS.table["TRUE", "TRUE"]
 # # [1] 60
-# # > AnalyticDataset.table["TRUE", "FALSE"]
+# # > ADS.table["TRUE", "FALSE"]
 # # [1] 45
-# # > AnalyticDataset.table["FALSE", "TRUE"]
+# # > ADS.table["FALSE", "TRUE"]
 # # [1] 108
-# # > AnalyticDataset.table["FALSE", "FALSE"]
+# # > ADS.table["FALSE", "FALSE"]
 # # [1] 341
 # 
 # 
 # 
-# AnalyticDataset.table[2:1, 2:1] #----  
-# AnalyticDataset.table[2:1, 2:1] |> str() #----  
-# AnalyticDataset.table[2:1, 2:1] |> dput() #----  
-# # > AnalyticDataset.table[2:1, 2:1] #----  
+# ADS.table[2:1, 2:1] #----  
+# ADS.table[2:1, 2:1] |> str() #----  
+# ADS.table[2:1, 2:1] |> dput() #----  
+# # > ADS.table[2:1, 2:1] #----  
 # #        Exposure
 # # Case    TRUE FALSE
 # #   TRUE    60    45
 # #   FALSE  108   341
-# # > AnalyticDataset.table[2:1, 2:1] |> str() #----  
+# # > ADS.table[2:1, 2:1] |> str() #----  
 # #  'table' int [1:2, 1:2] 60 108 45 341
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ Case    : chr [1:2] "TRUE" "FALSE"
 # #   ..$ Exposure: chr [1:2] "TRUE" "FALSE"
-# # > AnalyticDataset.table[2:1, 2:1] |> dput() #----  
+# # > ADS.table[2:1, 2:1] |> dput() #----  
 # # structure(c(60L, 108L, 45L, 341L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("TRUE", "FALSE"), Exposure = c("TRUE", "FALSE")), class = "table")
 # 
-# AnalyticDataset.table[2:1, 2:1] |> as.vector() #----  
-# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----  
-# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----  
-# # > AnalyticDataset.table[2:1, 2:1] |> as.vector() #----  
+# ADS.table[2:1, 2:1] |> as.vector() #----  
+# ADS.table[2:1, 2:1] %>% t |> as.vector() #----  
+# ADS.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----  
+# # > ADS.table[2:1, 2:1] |> as.vector() #----  
 # # [1]  60 108  45 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----  
+# # > ADS.table[2:1, 2:1] %>% t |> as.vector() #----  
 # # [1]  60  45 108 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----  
+# # > ADS.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----  
 # # [1] "60 45 108 341"
 # 
 # 
-# nCasesExposed = AnalyticDataset.table["TRUE", "TRUE"]
-# nCasesUnexposed = AnalyticDataset.table["TRUE", "FALSE"]
-# nNoncasesExposed = AnalyticDataset.table["FALSE", "TRUE"]
-# nNoncasesUnexposed = AnalyticDataset.table["FALSE", "FALSE"]
+# nCasesExposed = ADS.table["TRUE", "TRUE"]
+# nCasesUnexposed = ADS.table["TRUE", "FALSE"]
+# nNoncasesExposed = ADS.table["FALSE", "TRUE"]
+# nNoncasesUnexposed = ADS.table["FALSE", "FALSE"]
 # 
 # stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  

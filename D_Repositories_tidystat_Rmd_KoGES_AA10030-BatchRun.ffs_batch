@@ -11,8 +11,8 @@
             <Left Create="right" Update="right" Delete="right"/>
             <Right Create="left" Update="left" Delete="left"/>
         </Changes>
-        <DeletionPolicy>RecycleBin</DeletionPolicy>
-        <VersioningFolder Style="Replace"/>
+        <DeletionPolicy>Versioning</DeletionPolicy>
+        <VersioningFolder Style="Replace">D:\D_FFS_Versioning</VersioningFolder>
     </Synchronize>
     <Filter>
         <Include>
@@ -26,8 +26,14 @@
             <Item>*\thumbs.db</Item>
             <Item>\.git\</Item>
             <Item>\.Rproj.user\</Item>
-            <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
+            <Item>*\.Rproj.user\</Item>
             <Item>*.Rproj</Item>
+            <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
+            <Item>\Obsidian Templates</Item>
+            <Item>*-NoSync*</Item>
+            <Item>regex-rulesets</Item>
+            <Item>ObsidianFiles</Item>
+            <Item>ObsidianLinks</Item>
         </Exclude>
         <SizeMin Unit="None">0</SizeMin>
         <SizeMax Unit="None">0</SizeMax>

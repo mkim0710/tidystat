@@ -415,7 +415,7 @@ function.if_dichotomous2logical = function(x, dichotomous2integer = F) {
 }
     
 ## @ data4FullModel.by_varname_level.list_list ====  
-# data = analyticDF_C24.drop_pmhx_negativetime.list.cut[[name4MainData]]
+# data = ADS_C24.drop_pmhx_negativetime.list.cut[[name4MainData]]
 data = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate
 data = data[, varnames4FullModel] %>% map_df(function.if_dichotomous2logical)
 data = data %>% mutate_if(is.logical, as.factor)

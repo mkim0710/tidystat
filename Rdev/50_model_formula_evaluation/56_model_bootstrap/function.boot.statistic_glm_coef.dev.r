@@ -27,7 +27,7 @@ function.boot.statistic_glm_coef = function(data, index, glm.formula, glm.weight
 
 
 library(boot)
-data = analyticDF2797.ipw.PersonTime7 %>% select(Dk_plus1, Exposure, k, StabilizedWeight)
+data = ADS2797.ipw.PersonTime7 %>% select(Dk_plus1, Exposure, k, StabilizedWeight)
 glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2))
 glm.weights = data$StabilizedWeight
 nIteration = 1000  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
@@ -268,10 +268,10 @@ boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.
   
 # __________|------  
 # @@ END-----  
-write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.rds", "xz", compression=9)
+write_rds(boot.output, "ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.rds", "xz", compression=9)
 openxlsx2::write_xlsx(
     boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t |> as.data.frame() |> rownames_to_column() %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----
-    , "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.ci.xlsx", as_table=TRUE
+    , "ADS2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.ci.xlsx", as_table=TRUE
 )
 
 

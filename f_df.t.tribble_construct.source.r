@@ -1,5 +1,183 @@
-.filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")  
-if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,'"')) }  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ SOURCE)                                                                #L229
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
+# @@ env1\$f\$f_object                                                      #L283
+# @@ env1\$f\$f_vec                                                         #L395
+# @@ env1\$f\$f_list                                                        #L396
+# @@ env1\$f\$f_list_list                                                   #L796
+# @@ env1\$f\$f_matrix                                                      #L797
+# @@ env1\$f\$f_array                                                       #L798
+# @@ env1\$f\$f_formula                                                     #L887
+# @@ env1\$f\$f_df                                                          #L966
+# @@ env1\$env.internal functions                                           #L1155
+# @@ source()                                                               #L1631
+# ls.str(env1) #                                                            #L1700
+# ls.str(env1$env.internal) #                                               #L1701
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 2) ----  
+## env1\$path                                                               #L217
+# @@ SOURCE)                                                                #L229
+## @ .RelativeSubPath, .FileName.source.r                                   #L230
+## env1 = env0                                                              #L254
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
+## .GlobalEnv$env1 = new.env()                                              #L269
+# @@ env1\$f\$f_object                                                      #L283
+## :: str_max_level1 =                                                      #L285
+## :: str_max_level2 =                                                      #L290
+## :: str_give_attr_F =                                                     #L295
+## :: str_max_level1.give_attr_F =                                          #L300
+## :: str_max_level2.give_attr_F =                                          #L308
+## :: paste0_collapse0 =                                                    #L316
+## :: paste0_collapse0.print =                                              #L340
+## :: cat0 =                                                                #L351
+## :: catLF =                                                               #L365
+## :: deparse.cat0 =                                                        #L384
+# @@ env1\$f\$f_vec                                                         #L395
+# @@ env1\$f\$f_list                                                        #L396
+## :: env.internal\$f_vec.format_line_by_line =                             #L398
+## :: f_vec.dput_line_by_line =                                             #L409
+## :: env.internal\$f_list.format_line_by_line =                            #L430
+## :: f_list.dput_line_by_line =                                            #L446
+## :: f_list.str_by_element =                                               #L459
+## :: f_list.print_by_element =                                             #L480
+## :: f_list_tibble.print_by_element =                                      #L501
+## :: f_chrNameValuePairs2vector =                                          #L522
+## :: f_vec1_vec2.setdiff_list =                                            #L536
+## ::OPTION:: f_vec1_vec2.setdiff_df                                        #L572
+## :: f_list_vecs.union_df = function()                                     #L582
+## :: f_vec_chr.strsplit0_as_list_vec =                                     #L666
+## :: f_chr1.strsplit0_as_vec                                               #L677
+## :: f_chr1.strsplit0_as_vec.unique.sort                                   #L689
+## :: f_vec_chr.na_if_NotMatching =                                         #L702
+## :: f_vec_chr.add_line_numbers =                                          #L724
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    #L742
+## :: f_vec_chr.list_SECTION_nonSECTION =                                   #L753
+# @@ env1\$f\$f_list_list                                                   #L796
+# @@ env1\$f\$f_matrix                                                      #L797
+# @@ env1\$f\$f_array                                                       #L798
+## :: f_list_list.to_matrix =                                               #L800
+## :: f_list_list.to_data_frame =                                           #L819
+## :: f_matrix.to_list_list =                                               #L839
+## :: f_matrix.set_names.to_vector =                                        #L866
+# @@ env1\$f\$f_formula                                                     #L887
+## :: f_formula.lhs_rhs_vars =                                              #L889
+## :: f_list_formula.append_lhs_rhs_vars =                                  #L924
+# @@ env1\$f\$f_df                                                          #L966
+## :: f_df.tribble_construct =                                              #L968
+## :: f_df.transpose =                                                      #L984
+## :: f_df.t.tribble_construct =                                            #L998
+## :: f_df.print_byVar =                                                    #L1015
+## :: f_df.add_VarNameT.deltaT0 =                                           #L1030
+## :: f_df.add_VarNameT.pdeltaT0 =                                          #L1045
+## :: f_df.add_RegExVars.kbins =                                            #L1060
+## :: f_df.add_RegExVars.quintile_factor =                                  #L1089
+## :: f_df.add_RegExVars.quartile_factor =                                  #L1120
+# @@ env1\$env.internal functions                                           #L1155
+# @@ source()                                                               #L1631
+## @ for (.dependancy in c("")) {                                           #L1633
+## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       #L1642
+## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   #L1648
+## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       #L1655
+## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        #L1661
+## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source()                    #L1667
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!!       #L1674
+## @ "f_CodeBook_DS.lbl" |> paste0(".source.r") |> source()                 #L1676
+# ls.str(env1) #                                                            #L1700
+# ls.str(env1$env.internal) #                                               #L1701
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L229
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L260
+# @@ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
+# @@ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L395
+# @@ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L396
+# @@ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L796
+# @@ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L797
+# @@ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L798
+# @@ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L887
+# @@ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L966
+# @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
+# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
+# ls.str(env1) #                                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1700
+# ls.str(env1$env.internal) #                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1701
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 2) ----  
+## env1\$path                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L217
+# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L229
+## @ .RelativeSubPath, .FileName.source.r                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L230
+## env1 = env0                                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L254
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L260
+## .GlobalEnv$env1 = new.env()                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L269
+# @@ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
+## :: str_max_level1 =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L285
+## :: str_max_level2 =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L290
+## :: str_give_attr_F =                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L295
+## :: str_max_level1.give_attr_F =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L300
+## :: str_max_level2.give_attr_F =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L308
+## :: paste0_collapse0 =                                                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L316
+## :: paste0_collapse0.print =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L340
+## :: cat0 =                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L351
+## :: catLF =                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L365
+## :: deparse.cat0 =                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L384
+# @@ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L395
+# @@ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L396
+## :: env.internal\$f_vec.format_line_by_line =                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L398
+## :: f_vec.dput_line_by_line =                                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L409
+## :: env.internal\$f_list.format_line_by_line =                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L430
+## :: f_list.dput_line_by_line =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L446
+## :: f_list.str_by_element =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L459
+## :: f_list.print_by_element =                                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L480
+## :: f_list_tibble.print_by_element =                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L501
+## :: f_chrNameValuePairs2vector =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L522
+## :: f_vec1_vec2.setdiff_list =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L536
+## ::OPTION:: f_vec1_vec2.setdiff_df                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L572
+## :: f_list_vecs.union_df = function()                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L582
+## :: f_vec_chr.strsplit0_as_list_vec =                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L666
+## :: f_chr1.strsplit0_as_vec                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L677
+## :: f_chr1.strsplit0_as_vec.unique.sort                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L689
+## :: f_vec_chr.na_if_NotMatching =                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L702
+## :: f_vec_chr.add_line_numbers =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L724
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L742
+## :: f_vec_chr.list_SECTION_nonSECTION =                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L753
+# @@ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L796
+# @@ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L797
+# @@ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L798
+## :: f_list_list.to_matrix =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L800
+## :: f_list_list.to_data_frame =                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L819
+## :: f_matrix.to_list_list =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L839
+## :: f_matrix.set_names.to_vector =                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L866
+# @@ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L887
+## :: f_formula.lhs_rhs_vars =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L889
+## :: f_list_formula.append_lhs_rhs_vars =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L924
+# @@ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L966
+## :: f_df.tribble_construct =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L968
+## :: f_df.transpose =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L984
+## :: f_df.t.tribble_construct =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L998
+## :: f_df.print_byVar =                                                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1015
+## :: f_df.add_VarNameT.deltaT0 =                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1030
+## :: f_df.add_VarNameT.pdeltaT0 =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1045
+## :: f_df.add_RegExVars.kbins =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1060
+## :: f_df.add_RegExVars.quintile_factor =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1089
+## :: f_df.add_RegExVars.quartile_factor =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1120
+# @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
+# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
+## @ for (.dependancy in c("")) {                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1633
+## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1642
+## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1648
+## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1655
+## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1661
+## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source()                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1667
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!!       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1674
+## @ "f_CodeBook_DS.lbl" |> paste0(".source.r") |> source()                 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1676
+# ls.str(env1) #                                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1700
+# ls.str(env1$env.internal) #                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1701
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+.FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.FileName.source.r,'"')) }  
 # # f_df.t.tribble_construct.source.r
 # # f_df.tribble_construct.source.r
 # # f_df.transpose.source.r
@@ -21,7 +199,7 @@ if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.filename.source.r,
 #| Ctrl+Alt+B: Run from start to current line 
 #| Shift+F9: Toggle Breakpoint 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit( paste0("[Working Files List] ",basename(getwd()),".r") )  
+# paste0("[Working Files List] ",basename(getwd()),".r") %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
@@ -37,46 +215,46 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
-# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
+# if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
-# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
-if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
+# # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# # .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+# env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
+# if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.pathth
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) source -----  
-## @ .subpath, .filename.source.r ======  
-.subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")
+# @@ SOURCE) -----  
+## @ .RelativeSubPath, .FileName.source.r ======  
+.RelativeSubPath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.subpath = .subpath
-# .sourcename_root = .filename.source.r |> str_replace("\\.source\\.r$", "")
-# env1$path$.sourcename_root = .sourcename_root  
-# env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-# env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
-# cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-#     "# ",env1$path$.subpath_filename.dev.r, "  \n",
-#     "# ",env1$path$.subpath_filename.dev.Rmd, "  \n",
-#     "# ",env1$path$.subpath_filename.source.r, "  \n",
-#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
+# env1$path$.RelativeSubPath = .RelativeSubPath
+# .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
+# env1$path$.SourceName_root = .SourceName_root  
+# env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
+# env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
+# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
+# cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
+#     "# ",env1$path$.RelativeSubPath_FileName.source.r, "  \n",
+#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.RelativeSubPath_FileName.source.r,'"))', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'")', "  \n",
+#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'")', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.dev.Rmd,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
+#    '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
 #     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) ) ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -86,7 +264,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-## .GlobalEnv$.tmp = list() ====  
+## .GlobalEnv$.tmp = list() ---  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
 ## .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }
@@ -104,6 +282,11 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ env1\$f\$f_object ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: str_max_level1 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "str_max_level1"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 1)  }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: str_max_level2 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_max_level2"
@@ -113,44 +296,98 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "str_give_attr_F"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., give.attr = FALSE)  }
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: paste_collapse0 =  ----  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: str_max_level1.give_attr_F =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "paste_collapse0"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
-    paste0(..., collapse = "")
+.tmp$objectname = "str_max_level1.give_attr_F"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 1, give.attr = FALSE)  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) str_give_attr_F.max_level1  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_give_attr_F.max_level1")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: str_max_level2.give_attr_F =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "str_max_level2.give_attr_F"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., max.level = 2, give.attr = FALSE)  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) str_give_attr_F.max_level2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_give_attr_F.max_level2")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: paste0_collapse0 =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "paste0_collapse0"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "", DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {  
+    # options(DEBUGMODE = TRUE)
+    # options(DEBUGMODE = FALSE)
+    if(DEBUGMODE) browser()
+    # Browse[1]> ls(all.names = TRUE)
+    # [1] "..."       "collapse"  "DEBUGMODE"
+    # Browse[1]> list(...) %>% str
+    # List of 3
+    #  $ : chr "a"
+    #  $ : chr "b"
+    #  $ : int [1:3] 1 2 3
+    if(any(list(...) %>% map_lgl(function(Element) length(Element) > 1))) {
+        warning("Some elements have length > 1. Be cautious about recycled vector term-by-term paste!")
+    }
+    paste0(..., collapse = collapse)
 }
+## *** Example Usage:  
+# paste("a", "b", 1:3, collapse = "")  # "a b 1a b 2a b 3"
+# paste0("a", "b", 1:3, collapse = "")  # "ab1ab2ab3"
+# paste0_collapse0("a", "b", 1:3)  # "ab1ab2ab3"
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: paste_collapse0.print =  ----  
+## :: paste0_collapse0.print =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "paste_collapse0.print"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
-    print(paste0(..., collapse = ""))
+.tmp$objectname = "paste0_collapse0.print"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "") {  
+    # print(paste0(..., collapse = collapse))
+    print(env1$env.internal.attach$paste0_collapse0(..., collapse = collapse))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.paste_collapse0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0")
+#### (ALIAS) print.paste0_collapse0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "print.paste0_collapse0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: cat0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "cat0"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
+    # paste0(..., collapse = "") |> cat("  \n", sep="")
     cat(..., "  \n", sep="")
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.paste_collapse0.cat0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0.cat0")
+#### (ALIAS) print.paste0_collapse0.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "print.paste0_collapse0.cat0")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = paste_collapse0.cat0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "paste_collapse0.cat0")
+#### (ALIAS) paste0_collapse0.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "paste0_collapse0.cat0")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: catLF =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "catLF"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., trailing_double_spaces = TRUE) {  
+    # input_vec_chr |> paste0(collapse = "  \n") |> cat("  \n", sep="")
+    # paste0(..., collapse = "  \n") |> cat("  \n", sep="")
+    if (trailing_double_spaces) {
+        cat(..., sep="  \n"); cat("  \n")
+    } else {
+        cat(..., sep="\n"); cat("\n")
+    }
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) print.paste0_collapseLF.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "print.paste0_collapseLF.cat0")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) paste0_collapseLF.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "paste0_collapseLF.cat0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: deparse.cat0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "deparse.cat0"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, width.cutoff = 500L) {  object |> deparse(width.cutoff = width.cutoff) |> cat("  \n", sep="")  }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = dput.deparse.cat0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.deparse.cat0")
+#### (ALIAS) dput.deparse.cat0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "dput.deparse.cat0")
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
@@ -176,16 +413,19 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 # }
 .tmp$object = function(vec, space_between_vec_elements="  \n  ", sep_parentheses = FALSE, end_of_text = "  \n") {
     if(space_between_vec_elements=="  \n  " && sep_parentheses == FALSE && end_of_text == "  \n") {
+        # paste0('"',vec,'"  \n') |> cat(sep="")
+        # paste0('"',vec,'"') |> paste0(collapse=', ') %>% {cat('c(',.,')  \n', sep="")}
+        # paste0('"',vec,'"') |> paste0(collapse=',  \n  ') %>% {cat('c(',.,')  \n', sep="")}
         vec |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}  # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
     } else {
         env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
     }
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = dput.vec.line_by_line  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.vec.line_by_line")
+#### (ALIAS) dput.vec.line_by_line  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "dput.vec.line_by_line")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
 ## :: env.internal\$f_list.format_line_by_line =  ----  
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -208,11 +448,11 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 .tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = dput.list.line_by_line  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "dput.list.line_by_line")
+#### (ALIAS) dput.list.line_by_line  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "dput.list.line_by_line")
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -231,11 +471,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         cat("# ________________________________________________________________________________    \n")
     }
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = str.list_by_element  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "str.list_by_element")
+#### (ALIAS) str.list_by_element  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str.list_by_element")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_list.print_by_element =  ----  
 .tmp$objectname = "f_list.print_by_element"
@@ -252,11 +492,11 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         cat("# ________________________________________________________________________________    \n")
     }
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.list.by_element  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.list.by_element")
+#### (ALIAS) print.list.by_element  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "print.list.by_element")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_list_tibble.print_by_element =  ----  
 .tmp$objectname = "f_list_tibble.print_by_element"
@@ -273,44 +513,281 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         cat("# ________________________________________________________________________________    \n")
     }
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.list_tibble.by_element  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.list_tibble.by_element")
+#### (ALIAS) print.list_tibble.by_element  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "print.list_tibble.by_element")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_chrNameValuePairs2vector =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
 .tmp$objectname = "f_chrNameValuePairs2vector"
 .tmp$object = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
-    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
+    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) |> unlist() 
     list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
-    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist()
+    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) |> unlist()
     if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
     return(vecNamed)    
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec1_vec2.setdiff_list =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff_list.dev.r
 .tmp$objectname = "f_vec1_vec2.setdiff_list"
-.tmp$object = function(vec1, vec2) {
-    out = list()
-    out$vec1.character = vec1 = as.character(vec1)
-    out$vec2.character = vec2 = as.character(vec2)
-    out$union = union(vec1, vec2)
-    out$intersect = intersect(vec1, vec2)
-    out$setdiff_1_2 = setdiff(vec1, vec2)
-    out$setdiff_2_1 = setdiff(vec2, vec1)
-    out$identical = all.equal(vec1, vec2)
-    out
+.tmp$object = function(vec1, vec2, print_str = TRUE, output_as_data_frame = FALSE) {
+    vec1 = as.character(vec1)
+    vec2 = as.character(vec2)
+    output_list = list(
+        vec1.character = vec1, 
+        vec2.character = vec2, 
+        union = union(vec1, vec2), 
+        intersect = intersect(vec1, vec2), 
+        setdiff_1_2 = setdiff(vec1, vec2), 
+        setdiff_2_1 = setdiff(vec2, vec1), 
+        identical = all.equal(vec1, vec2)
+    )
+    if (output_as_data_frame) {
+        output_df = data.frame(
+            union         = output_list$union,
+            vec1          = output_list$union %in% output_list$vec1.character,
+            vec2          = output_list$union %in% output_list$vec2.character,
+            intersect     = output_list$union %in% output_list$intersect,
+            setdiff_1_2   = output_list$union %in% output_list$setdiff_1_2,
+            setdiff_2_1   = output_list$union %in% output_list$setdiff_2_1
+        )
+        if (print_str) {str(output_df); print(summary(output_df))}
+        return(output_df)
+    }
+    if (print_str) str(output_list)
+    invisible(output_list)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = setdiff_list.vec1_vec2  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "setdiff_list.vec1_vec2")
+#### (ALIAS) setdiff_list.vec1_vec2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_list.vec1_vec2")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## ::OPTION:: f_vec1_vec2.setdiff_df  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_vec1_vec2.setdiff_df"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(vec1, vec2, print_str = TRUE) {
+    env1$f$f_vec1_vec2.setdiff_list(vec1 = vec1, vec2 = vec2, print_str = print_str, output_as_data_frame = TRUE)
+} 
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) setdiff_df.vec1_vec2  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.vec1_vec2")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_list_vecs.union_df = function() ====
+## Rdev/00_base_program/009_base_computation/f_list_vecs.union_df.dev.Rmd
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_list_vecs.union_df" 
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_list_vecs, print_str = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
+    # 1. If verbose, print the function call
+    if (VERBOSE) {
+        cat("[DEBUG] Entering f_list_vecs.union_df()\n")
+    }
+
+    # 2. Check that the input is indeed a list
+    if (!is.list(input_list_vecs)) {
+        stop("The input must be a list of vectors.")
+    }
+    
+    # 3. Handle unnamed vectors by assigning default names only where needed
+    originalNames_vec <- names(input_list_vecs)
+    
+    # If no names exist at all, create them:
+    if (is.null(originalNames_vec)) {
+        defaultNames_vec <- paste0("vec", seq_along(input_list_vecs))
+        names(input_list_vecs) <- defaultNames_vec
+        if (VERBOSE) {
+            cat("[DEBUG] All vectors were unnamed. Assigned default names:\n")
+            print(defaultNames_vec)
+        }
+    } else {
+        # If some are named and others are empty, only replace the empty ones
+        for (i in seq_along(originalNames_vec)) {
+            if (is.na(originalNames_vec[i]) || originalNames_vec[i] == "") {
+                originalNames_vec[i] <- paste0("Vec", i)
+            }
+        }
+        names(input_list_vecs) <- originalNames_vec
+        if (VERBOSE) {
+            cat("[DEBUG] Some vectors were unnamed. Assigned default names for those only:\n")
+            print(originalNames_vec)
+        }
+    }
+    
+    # 4. Convert all vectors to character
+    input_list_vecs.as_character <- purrr::map(
+        .x = input_list_vecs,
+        .f = function(single_vec) {
+            as.character(single_vec)
+        }
+    )
+
+    # 5. Compute the union of all elements (sorted, unique)
+    union_vec <- sort(unique(unlist(input_list_vecs.as_character)))
+    if (VERBOSE) {
+        cat("[DEBUG] union_vec (all unique elements):\n")
+        print(union_vec)
+    }
+
+    # 6. Initialize output tibble
+    output_df <- tibble::tibble(UNION = union_vec)
+
+    # 7. Create logical indicator columns
+    for (vec_name in names(input_list_vecs.as_character)) {
+        membership_vec <- output_df[["UNION"]] %in% input_list_vecs.as_character[[vec_name]]
+        output_df[[vec_name]] <- membership_vec
+        if (VERBOSE) {
+            cat("[DEBUG] Processed membership for:", vec_name, "\n")
+        }
+    }
+
+    # 8. Print final output if requested
+    if (print_str) {str(output_df); print(summary(output_df))}
+
+    # 9. Return the tibble
+    return(output_df)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) f_vecsList.union_df  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_vecsList.setdiff_df")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) setdiff_df.list_vecs  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "setdiff_df.list_vecs")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) union_df.list_vecs  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "union_df.list_vecs")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.strsplit0_as_list_vec =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_vec_chr.strsplit0_as_list_vec"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, split = "", n = Inf, simplify = FALSE) {
+    # output_list = input_vec_chr %>% strsplit(split)
+    output_list = stringr::str_split(string = input_vec_chr, pattern = split, n = n, simplify = simplify)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) strsplit0_as_list_vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0_as_list_vec")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_chr1.strsplit0_as_vec  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_chr1.strsplit0_as_vec"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = "") {
+    # if(length(input_chr1) > 1) warning("length(input_chr1) > 1")
+    # output_vec_chr = input_chr1 |> str_split(pattern = split) |> unlist()
+    stringr::str_split_1(string = input_chr1, pattern = split)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) strsplit0.unlist_as_vec  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0.unlist_as_vec")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_chr1.strsplit0_as_vec.unique.sort  ----  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_chr1.strsplit0_as_vec.unique.sort"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_chr1, split = "") {
+    # if(length(input_chr1) > 1) warning("length(input_chr1) > 1")
+    # output_vec_chr = input_chr1 |> str_split(pattern = split) |> unlist() |> unique() |> sort()
+    stringr::str_split_1(string = input_chr1, pattern = split) |> unique() |> sort()
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) strsplit0.unlist_as_vec.unique.sort  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "strsplit0.unlist_as_vec.unique.sort")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.na_if_NotMatching =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.na_if_NotMatching.dev.r
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_vec_chr.na_if_NotMatching"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx4keep) {
+    # RegEx4keep.modified = RegEx4keep
+    # if(!str_detect(RegEx4keep, "^\\^")) RegEx4keep.modified = paste0("^.*",RegEx4keep)
+    # if(!str_detect(RegEx4keep, "\\$$")) RegEx4keep.modified = paste0(RegEx4keep,".*$")
+    # input_vec_chr |> str_extract(RegEx4keep.modified)
+    ifelse(str_detect(input_vec_chr, RegEx4keep), input_vec_chr, NA)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) str_subset.keep_vector_length.na_if_NotMatching  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_subset.keep_vector_length.na_if_NotMatching")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) str_replace.na_if_NotMatching  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_replace.na_if_NotMatching")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) str_extract.na_if_NotMatching.return_whole_element_if_Matching  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "str_extract.na_if_NotMatching.return_whole_element_if_Matching")
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.add_line_numbers =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.add_line_numbers"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L, URL4line_numbers = FALSE, prefix4line_numbers = ifelse(!URL4line_numbers, "#L",  paste0("# https://github.com/mkim0710/tidystat/blob/master/", env1$f$f_path.relative(rstudioapi::getSourceEditorContext()$path), "#L"))) {
+    input_vec_chr = 
+        ifelse(
+            is.na(input_vec_chr) | input_vec_chr == "", input_vec_chr, 
+            paste0(
+                input_vec_chr, 
+                strrep(" ",pmax(4, width.cutoff - nchar(input_vec_chr))),
+                prefix4line_numbers, 
+                1:length(input_vec_chr)
+            )
+        )
+    input_vec_chr
+}
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.add_line_numbers.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.add_line_numbers.paste_collapse_LF_cat"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, width.cutoff = 80L-4L) {
+    out = env1$env.internal$f_vec_chr.add_line_numbers(input_vec_chr, width.cutoff)
+    out %>% paste(collapse = "\n") %>% cat("\n", sep="")
+    invisible(out)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_vec_chr.list_SECTION_nonSECTION =  ----
+# https://github.com/mkim0710/blob/main/Rdev/00_base_program/009_base_computation/f_vec_chr.list_SECTION_nonSECTION.dev.r
+.tmp$env1_subenv_name = "env.internal"
+.tmp$objectname = "f_vec_chr.list_SECTION_nonSECTION"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx4SECTION_start = "^##H+ BEGINNING OF TABLE OF CONTENTS H+## *$", RegEx4SECTION_end = "^##H+ THE END OF TABLE OF CONTENTS H+## *$") {
+    # Validate input
+    if (!is.character(input_vec_chr) || length(input_vec_chr) == 0) {
+        stop("Input 'input_vec_chr' must be a non-empty character vector.")
+    }
+    
+    # Reference: https://cran.r-project.org/web/packages/stringr/stringr.pdf
+    library(stringr)
+    
+    # Locate all start and end markers
+    vec_indices.SECTION_start <- which(str_detect(input_vec_chr, RegEx4SECTION_start))
+    vec_indices.SECTION_end   <- which(str_detect(input_vec_chr, RegEx4SECTION_end))
+    
+    if (length(vec_indices.SECTION_start) == 0 || length(vec_indices.SECTION_end) == 0) {
+        # No existing SECTION_extracted markers found
+        warning("No existing SECTION_extracted markers found. The entire content will be considered non-SECTION_extracted.")
+        return(list(
+            SECTION = character(0),
+            nonSECTION = input_vec_chr
+        ))
+    } else {
+        # Create a range from the first start marker to the last end marker
+        SECTION_range <- min(vec_indices.SECTION_start):max(vec_indices.SECTION_end)
+        # Extract lines belonging to the SECTION_extracted
+        input_vec_chr.SECTION_extracted <- input_vec_chr[SECTION_range]
+        # All other lines are non-SECTION_extracted
+        input_vec_chr.SECTION_removed <- input_vec_chr[-SECTION_range]
+        
+        return(list(
+            SECTION    = input_vec_chr.SECTION_extracted,
+            nonSECTION = input_vec_chr.SECTION_removed
+        ))
+    }
+}
 
 
 ##________________________________________________________________________________  
@@ -337,7 +814,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     out2
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_list_list.to_data_frame =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_list_list.to_data_frame.dev.r
@@ -357,7 +834,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     out2
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_matrix.to_list_list =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_matrix.to_list_list.dev.r
@@ -384,7 +861,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     out_list_list
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_matrix.set_names.to_vector =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_matrix.set_names.to_vector.dev.r
@@ -400,7 +877,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) %>% c()
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 
@@ -442,7 +919,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_list_formula.append_lhs_rhs_vars =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_list_formula.append_lhs_rhs_vars.source.r  
@@ -478,7 +955,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 
@@ -496,8 +973,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) tribble_construct  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "tribble_construct")
+
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 ## :: f_df.transpose =  ----  
@@ -507,8 +988,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     out = df %>% t |> as.data.frame() %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }                                    
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) transpose_df  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "transpose_df")
+
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.t.tribble_construct =  ----  
 .tmp$objectname = "f_df.t.tribble_construct"
@@ -517,8 +1002,15 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) transpose.tribble_construct  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "transpose.tribble_construct")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### (ALIAS) tribble_construct.transposed  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "tribble_construct.transposed")
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_df.print_byVar =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
@@ -532,51 +1024,51 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
         by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) |> 
         print(n = n)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.deltaT0"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0", logical_as_numeric = FALSE) {
-    if(logical_as_numeric && is.logical(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.logical(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(is.numeric(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.numeric(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarName0]]) && lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+.tmp$object = function(DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".deltaT0", logical_as_numeric = FALSE) {
+    if(logical_as_numeric && is.logical(DS.DNR[[VarName0]]) && is.logical(DS.DNR[[VarNameT]])) {
+    } else if(is.numeric(DS.DNR[[VarName0]]) && is.numeric(DS.DNR[[VarNameT]])) {
+    } else if(lubridate::is.Date(DS.DNR[[VarName0]]) && lubridate::is.Date(DS.DNR[[VarNameT]])) {
     } else {
         stop("Both ",VarName0," and ",VarNameT," must be in the same class, either numeric or Date.")
     }
-    DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
+    DS.DNR |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_VarNameT.pdeltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.pdeltaT0"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0", logical_as_numeric = FALSE) {
-    if(logical_as_numeric && is.logical(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.logical(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(is.numeric(DataSet.Date.NA.rmAllNA[[VarName0]]) && is.numeric(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
-    } else if(lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarName0]]) && lubridate::is.Date(DataSet.Date.NA.rmAllNA[[VarNameT]])) {
+.tmp$object = function(DS.DNR, VarName0, VarNameT, prefix = "", suffix = ".pdeltaT0", logical_as_numeric = FALSE) {
+    if(logical_as_numeric && is.logical(DS.DNR[[VarName0]]) && is.logical(DS.DNR[[VarNameT]])) {
+    } else if(is.numeric(DS.DNR[[VarName0]]) && is.numeric(DS.DNR[[VarNameT]])) {
+    } else if(lubridate::is.Date(DS.DNR[[VarName0]]) && lubridate::is.Date(DS.DNR[[VarNameT]])) {
     } else {
         stop("Both ",VarName0," and ",VarNameT," must be in the same class, either numeric or Date.")
     }
-    DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
+    DS.DNR |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.kbins =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
 # Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.kbins"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"bins")) {
-    if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
-        stop("DataSet.Date.NA.rmAllNA must be a data frame.")
+.tmp$object = function(DS.DNR, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".",length(breaks)-1,"bins")) {
+    if (!is.data.frame(DS.DNR)) {
+        stop("DS.DNR must be a data frame.")
     }
     
     # Apply the cut operation across columns matching the regex pattern
-    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+    DS.DNR <- DS.DNR %>%
         mutate(across(
             .cols = matches(regex_pattern), # Select columns matching the regex pattern
             .fns = ~ cut(., 
@@ -586,21 +1078,21 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
             .names = paste0("{.col}", suffix) # Naming convention for new columns
         ))
     
-    return(DataSet.Date.NA.rmAllNA)
+    return(DS.DNR)
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = f_df.add_RegExVars.cut  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "f_df.add_RegExVars.cut")
+#### (ALIAS) f_df.add_RegExVars.cut  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_df.add_RegExVars.cut")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.quintile_factor"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE) {
-  DataSet.Date.NA.rmAllNA %>%
+.tmp$object = function(DS.DNR, regex_pattern, factor.ordered = FALSE) {
+  DS.DNR %>%
     mutate(across(
       .cols = matches(paste0(regex_pattern)), 
       .fns = ~ {
@@ -622,16 +1114,16 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
       .names = "{.col}.quintile"
     ))
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.quartile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.quartile_factor"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE) {
-    DataSet.Date.NA.rmAllNA %>%
+.tmp$object = function(DS.DNR, regex_pattern, factor.ordered = FALSE) {
+    DS.DNR %>%
         mutate(across(
             .cols = matches(paste0(regex_pattern)), 
             .fns = ~ {
@@ -651,8 +1143,8 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object =
             .names = "{.col}.quartile"
         ))
 }
-### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 
@@ -1142,49 +1634,49 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 # for (.dependancy in c("f_path.size_files")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-#         .filename.source.r = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+#         .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 #     }
 # }
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r") |> source() ----  
-.subpath=r"()"|>str_replace_all("\\\\","/"); 
-.filename.source.r = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); 
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source() ----  
+.RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); 
+.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source() ----  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
-.subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/") 
-.filename.source.r = "f_df.NotNA_p_df" |> paste0(".source.r"); 
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+.RelativeSubPath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/") 
+.FileName.source.r = "f_df.NotNA_p_df" |> paste0(".source.r"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source() ----  
-.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
-.filename.source.r = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+.RelativeSubPath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
+.FileName.source.r = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source() ----  
-.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
-.filename.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+.RelativeSubPath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
+.FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ "f_df.cv.glmnet" |> paste0(".source.r") |> source() ----  
-.subpath = r"(Rdev/50_model_formula_evaluation/53_model_selection)" |> str_replace_all("\\\\","/")  
-.filename.source.r = "f_df.cv.glmnet" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+.RelativeSubPath = r"(Rdev/50_model_formula_evaluation/53_model_selection)" |> str_replace_all("\\\\","/")  
+.FileName.source.r = "f_df.cv.glmnet" |> paste0(".source.r")
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ----  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## @ "f_CodeBook_DataSet.lbl" |> paste0(".source.r") |> source() ----  
-.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)" |> str_replace_all("\\\\","/")  
-.filename.source.r = "f_CodeBook_DataSet.lbl" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+## @ "f_CodeBook_DS.lbl" |> paste0(".source.r") |> source() ----  
+.RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)" |> str_replace_all("\\\\","/")  
+.FileName.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r")
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -1210,7 +1702,7 @@ env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.
 # # > ls.str(env1) #-----  
 # # env.internal : <environment: 0x000001d6104168f8> 
 # # f_df.transpose : function (df, varname4rowname = "varname")  
-# # f_path.size_files : function (.path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
+# # f_path.size_files : function (.path4read = getwd(), regex4FileName = "\\.(rdata|rda|rds)$")  
 # # f_df.t.tribble_construct : function (df)  
 # # f_df.tribble_construct : function (df)  
 # # > ls.str(env1$env.internal) #-----  

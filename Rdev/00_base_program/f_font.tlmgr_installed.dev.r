@@ -21,7 +21,7 @@
 #| Ctrl+Alt+B: Run from start to current line 
 #| Shift+F9: Toggle Breakpoint 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit( paste0("[Working Files List] ",basename(getwd()),".r") )  
+# paste0("[Working Files List] ",basename(getwd()),".r") %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
@@ -29,7 +29,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .filename.source.r = "function.detachAllPackages" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -38,20 +38,18 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
-# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/",mustWork=NA) ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
+# if (Sys.info()['sysname'] == 'Windows') { "." |> normalizePath(winslash="/",mustWork=NA) |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
-# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
-if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
+# # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# # .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+# env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
+# if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) source -----  
-## @ .subpath, .filename.source.r ======  
+# @@ SOURCE) -----  
+## @ .RelativeSubPath, .FileName.source.r ======  
 
 
 
@@ -105,7 +103,7 @@ c(
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
-  "i atbegshi: Execute stuff at \\shipout time",
+  "i atbegshi: EXECUTE stuff at \\shipout time",
   "i atveryend: Hooks at the very end of a document",
   "i auxhook: Hooks for auxiliary files",
   "i babel: Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX",
@@ -239,7 +237,7 @@ c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
   "i arphic: Arphic (Chinese) font packages",
-  "i atbegshi: Execute stuff at \\shipout time",
+  "i atbegshi: EXECUTE stuff at \\shipout time",
   "i atveryend: Hooks at the very end of a document",
   "i auxhook: Hooks for auxiliary files",
   "i babel: Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX",
@@ -381,9 +379,9 @@ c("i amscls: AMS document classes for LaTeX",
 ### > .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff_list(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
 # List of 7
 #  $ vec1.character: chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i arphic: Arphic (Chinese) font packages" ...
-#  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
+#  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: EXECUTE stuff at \\shipout time" ...
 #  $ union         : chr [1:140] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i arphic: Arphic (Chinese) font packages" ...
-#  $ intersect     : chr [1:124] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
+#  $ intersect     : chr [1:124] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: EXECUTE stuff at \\shipout time" ...
 #  $ setdiff_1_2   : chr [1:14] "i arphic: Arphic (Chinese) font packages" "i cascadia-code: The Cascadia Code font with support for LaTeX and pdfLaTeX" "i cjk: CJK language support" "i cjk-ko: Extension of the CJK package for Korean typesetting" ...
 #  $ setdiff_2_1   : chr [1:2] "i epstopdf: Convert EPS to PDF using Ghostscript" "i epstopdf.windows: windows files of epstopdf"
 #  $ identical     : chr [1:2] "Lengths (138, 126) differ (string compare on first 126)" "123 string mismatches"
@@ -409,7 +407,7 @@ c("i arphic: Arphic (Chinese) font packages",
 .tlmgr_installed_packages.RockerVerse = c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
-  "i atbegshi: Execute stuff at \\shipout time",
+  "i atbegshi: EXECUTE stuff at \\shipout time",
   "i atveryend: Hooks at the very end of a document",
   "i auxhook: Hooks for auxiliary files",
   "i babel: Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX",
@@ -528,10 +526,10 @@ c("i arphic: Arphic (Chinese) font packages",
 #  chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
 ### > .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff_list(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
 # List of 7
-#  $ vec1.character: chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
-#  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
-#  $ union         : chr [1:160] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
-#  $ intersect     : chr [1:81] "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" "i atveryend: Hooks at the very end of a document" ...
+#  $ vec1.character: chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: EXECUTE stuff at \\shipout time" ...
+#  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: EXECUTE stuff at \\shipout time" ...
+#  $ union         : chr [1:160] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: EXECUTE stuff at \\shipout time" ...
+#  $ intersect     : chr [1:81] "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: EXECUTE stuff at \\shipout time" "i atveryend: Hooks at the very end of a document" ...
 #  $ setdiff_1_2   : chr [1:34] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i bibtex.x86_64-linux: x86_64-linux files of bibtex" "i context: The ConTeXt macro package" "i context-companion-fonts: companion fonts with fixes for ConTeXt" ...
 #  $ setdiff_2_1   : chr [1:45] "i amscls: AMS document classes for LaTeX" "i bibtex.windows: windows files of bibtex" "i booktabs: Publication quality tables in LaTeX" "i ctablestack: Catcode table stable support" ...
 #  $ identical     : chr [1:2] "Lengths (115, 126) differ (string compare on first 115)" "104 string mismatches"
@@ -633,10 +631,10 @@ c("i amscls: AMS document classes for LaTeX",
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 # @@ END -----  
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ##________________________________________________________________________________  

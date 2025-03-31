@@ -1,6 +1,6 @@
 # MarketScan PREGCOHORT Step62 Regression CompositeOutcome time interaction coxph 190720.pptm
-# analyticDF2797.coxphTimeOutcome_Exposure_tt from analyticDF2797.r
-# analyticDF2797.coxphTimeOutcome_Exposure from analyticDF2797.r
+# ADS2797.coxphTimeOutcome_Exposure_tt from ADS2797.r
+# ADS2797.coxphTimeOutcome_Exposure from ADS2797.r
 # OneDrive - Harvard University\[Note]\[[Stat]] CRAN R\[[[Data Analysis]]] Statistics\[[survival]] library(survival)\CRAN) timedep - tt().pdf
 
 
@@ -21,9 +21,9 @@
 
 
 # @@@@ A quick & dirty way below~!!! ................................................................................  
-## @ analyticDF2797.coxphTimeOutcome_Exposure_tt ====  
+## @ ADS2797.coxphTimeOutcome_Exposure_tt ====  
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
+data = ADS2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
            # , Time2Censor = PrimaryOutcome123456.time #, Censor = PrimaryOutcome123456
     ) %>% 
@@ -32,20 +32,20 @@ data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin")
            # , Age_at_lmp, `year(lmp)`
            # , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
     )
-analyticDF2797.coxphTimeOutcome_Exposure_tt = 
+ADS2797.coxphTimeOutcome_Exposure_tt = 
     coxph(formula = Surv(time=Time2Event,event=Event) ~ . + tt(Exposure), data = data, method = "breslow"
           , tt = function(x, t, ...) {x * log(t+1)})
-analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
-analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----
-analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% plot(var = c("Exposure"))
-analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Exposure"), font.main = 12, caption = "")}
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----  
+ADS2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
+ADS2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----
+ADS2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% plot(var = c("Exposure"))
+ADS2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Exposure"), font.main = 12, caption = "")}
+# > ADS2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----  
 # # A tibble: 2 x 5
 #   rowname      `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 #   <chr>                 <dbl>   <dbl>    <dbl>      <dbl>
 # 1 Exposure               0.1     0.02     0.53       0.01
 # 2 tt(Exposure)           1.45    1.05     1.99       0.02
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----  
+# > ADS2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----  
 #                 rho chisq        p
 # Exposure     -0.119  12.8 0.000339
 # tt(Exposure)  0.118  12.6 0.000376
@@ -53,9 +53,9 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% {survminer::ggcoxzph
 
 
 
-## @ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates ====  
+## @ ADS2797.coxphTimeOutcome_Exposure_tt_Covariates ====  
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
+data = ADS2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
            # , Time2Censor = PrimaryOutcome123456.time #, Censor = PrimaryOutcome123456
     ) %>% 
@@ -64,14 +64,14 @@ data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin")
            , Age_at_lmp, `year(lmp)`
            , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset
     )
-analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates = 
+ADS2797.coxphTimeOutcome_Exposure_tt_Covariates = 
     coxph(formula = Surv(time=Time2Event,event=Event) ~ . + tt(Exposure), data = data, method = "breslow"
           , tt = function(x, t, ...) {x * log(t+1)})
-analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
-analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----
-analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% plot(var = c("Exposure"))
-analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Exposure"), font.main = 12, caption = "")}
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----  
+ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
+ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----
+ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% plot(var = c("Exposure"))
+ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Exposure"), font.main = 12, caption = "")}
+# > ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----  
 # # A tibble: 14 x 5
 #    rowname                                   `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 #    <chr>                                              <dbl>   <dbl>    <dbl>      <dbl>
@@ -89,7 +89,7 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survmine
 # 12 t_N180_42.ICD9_Acne                                 0.45    0.19     1.08       0.07
 # 13 t_N180_42.ICD9_CPT_PregnancyTest.Superset           1.63    1.43     1.86       0   
 # 14 tt(Exposure)                                        1.44    1.05     1.98       0.03
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----  
+# > ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----  
 #                                                rho   chisq        p
 # Exposure                                  -0.11820 12.7201 0.000362
 # Age_at_lmp                                -0.07712  5.9328 0.014862
@@ -112,8 +112,8 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survmine
 
 ## @ HazardRatios.list_df =====  
 HazardRatios.list_df = list(
-    coxphTimeOutcome_Exposure_tt = analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
-    , coxphTimeOutcome_Exposure_tt_Covariates = analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
+    coxphTimeOutcome_Exposure_tt = ADS2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
+    , coxphTimeOutcome_Exposure_tt_Covariates = ADS2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
 ) %>% map(function(df) {
     df %>% transmute(
         rowname = rowname

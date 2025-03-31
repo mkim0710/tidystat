@@ -14,18 +14,18 @@
 .path4write = "ATC_RxNorm_NDC/"
 
 
-## @ filenames = list.files(.path4read) %>% grep("csv$",. , value = T) ====  
-filenames = list.files(.path4read) %>% grep("csv$",. , value = T) 
-filenames |> dput()
-# > filenames |> dput()
+## @ FileNames = list.files(.path4read) %>% grep("csv$",. , value = T) ====  
+FileNames = list.files(.path4read) %>% grep("csv$",. , value = T) 
+FileNames |> dput()
+# > FileNames |> dput()
 # c("CONCEPT.csv", "CONCEPT_ANCESTOR.csv", "CONCEPT_CLASS.csv", 
 # "CONCEPT_RELATIONSHIP.csv", "CONCEPT_SYNONYM.csv", "DOMAIN.csv", 
 # "DRUG_STRENGTH.csv", "RELATIONSHIP.csv", "VOCABULARY.csv")
 
 
-filenames %>% map(function(i) {
+FileNames %>% map(function(i) {
     # .extension = ".csv"
-    # filename = gsub(paste0(.extension, "$"), "", i)
+    # FileName = gsub(paste0(.extension, "$"), "", i)
 
     print("i")
     print(i)
@@ -45,10 +45,10 @@ filenames %>% map(function(i) {
     # Sys.time() - .t0
     # out
     i
-}) %>% set_names(filenames)
-# > filenames %>% map(function(i) {
+}) %>% set_names(FileNames)
+# > FileNames %>% map(function(i) {
 # +     # .extension = ".csv"
-# +     # filename = gsub(paste0(.extension, "$"), "", i)
+# +     # FileName = gsub(paste0(.extension, "$"), "", i)
 # + 
 # +     print("i")
 # +     print(i)
@@ -68,7 +68,7 @@ filenames %>% map(function(i) {
 # +     # Sys.time() - .t0
 # +     # out
 # +     i
-# + }) %>% set_names(filenames)
+# + }) %>% set_names(FileNames)
 # [1] "i"
 # [1] "CONCEPT.csv"
 #   adding: ATC_RxNorm_NDC/CONCEPT.csv (deflated 80%)
@@ -125,64 +125,64 @@ filenames %>% map(function(i) {
 
 
 
-out.list = filenames %>% map(function(i) {
+out.list = FileNames %>% map(function(i) {
     .extension = ".csv"
     # i = gsub(".rds$", "", i)
     # i = gsub(".rda$", "", i)
-    filename = gsub(paste0(.extension, "$"), "", i)
-    print("filename")
-    print(filename)
+    FileName = gsub(paste0(.extension, "$"), "", i)
+    print("FileName")
+    print(FileName)
     # .t0 = Sys.time()
     # print("t0")
     # print(t0)
 
     # assign(
-    #     filename
-    #     , read_tsv(paste0(.path4read, filename, .extension))
+    #     FileName
+    #     , read_tsv(paste0(.path4read, FileName, .extension))
     # )
-    # saveRDS(eval(parse(text = filename)), paste0(.path4write, filename, ".rds"))
+    # saveRDS(eval(parse(text = FileName)), paste0(.path4write, FileName, ".rds"))
 
-    out = read_tsv(paste0(.path4read, filename, .extension))
-    saveRDS(out, paste0(.path4write, filename, ".rds"))
+    out = read_tsv(paste0(.path4read, FileName, .extension))
+    saveRDS(out, paste0(.path4write, FileName, ".rds"))
 
     
-    # rm(filename)
+    # rm(FileName)
     # gc()
     # print("Sys.time() - .t0")
     # print(Sys.time() - .t0)
     # Sys.time() - .t0
     out
-}) %>% set_names(filenames)
+}) %>% set_names(FileNames)
 out.list |> str(max.level = 1, give.attr = TRUE)
-# > out.list = filenames %>% map(function(i) {
+# > out.list = FileNames %>% map(function(i) {
 # +     .extension = ".csv"
 # +     # i = gsub(".rds$", "", i)
 # +     # i = gsub(".rda$", "", i)
-# +     filename = gsub(paste0(.extension, "$"), "", i)
-# +     print("filename")
-# +     print(filename)
+# +     FileName = gsub(paste0(.extension, "$"), "", i)
+# +     print("FileName")
+# +     print(FileName)
 # +     # .t0 = Sys.time()
 # +     # print("t0")
 # +     # print(t0)
 # + 
 # +     # assign(
-# +     #     filename
-# +     #     , read_tsv(paste0(.path4read, filename, .extension))
+# +     #     FileName
+# +     #     , read_tsv(paste0(.path4read, FileName, .extension))
 # +     # )
-# +     # saveRDS(eval(parse(text = filename)), paste0(.path4write, filename, ".rds"))
+# +     # saveRDS(eval(parse(text = FileName)), paste0(.path4write, FileName, ".rds"))
 # + 
-# +     out = read_tsv(paste0(.path4read, filename, .extension))
-# +     saveRDS(out, paste0(.path4write, filename, ".rds"))
+# +     out = read_tsv(paste0(.path4read, FileName, .extension))
+# +     saveRDS(out, paste0(.path4write, FileName, ".rds"))
 # + 
 # +     
-# +     # rm(filename)
+# +     # rm(FileName)
 # +     # gc()
 # +     # print("Sys.time() - .t0")
 # +     # print(Sys.time() - .t0)
 # +     # Sys.time() - .t0
 # +     out
-# + }) %>% set_names(filenames)
-# [1] "filename"
+# + }) %>% set_names(FileNames)
+# [1] "FileName"
 # [1] "CONCEPT"
 # Parsed with column specification:
 # cols(
@@ -197,7 +197,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   valid_end_date = col_integer(),
 #   invalid_reason = col_character()
 # )
-# [1] "filename"
+# [1] "FileName"
 # [1] "CONCEPT_ANCESTOR"
 # Parsed with column specification:
 # cols(
@@ -206,7 +206,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   min_levels_of_separation = col_integer(),
 #   max_levels_of_separation = col_integer()
 # )
-# [1] "filename"
+# [1] "FileName"
 # [1] "CONCEPT_CLASS"
 # Parsed with column specification:
 # cols(
@@ -214,7 +214,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   concept_class_name = col_character(),
 #   concept_class_concept_id = col_integer()
 # )
-# [1] "filename"
+# [1] "FileName"
 # [1] "CONCEPT_RELATIONSHIP"
 # Parsed with column specification:
 # cols(
@@ -226,7 +226,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   invalid_reason = col_character()
 # )
 # |................................................................................| 100%  159 MB
-# [1] "filename"
+# [1] "FileName"
 # [1] "CONCEPT_SYNONYM"
 # Parsed with column specification:
 # cols(
@@ -234,7 +234,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   concept_synonym_name = col_character(),
 #   language_concept_id = col_integer()
 # )
-# [1] "filename"
+# [1] "FileName"
 # [1] "DOMAIN"
 # Parsed with column specification:
 # cols(
@@ -242,7 +242,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   domain_name = col_character(),
 #   domain_concept_id = col_integer()
 # )
-# [1] "filename"
+# [1] "FileName"
 # [1] "DRUG_STRENGTH"
 # Parsed with column specification:
 # cols(
@@ -260,7 +260,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   invalid_reason = col_character()
 # )
 # |................................................................................| 100%    9 MB
-# [1] "filename"
+# [1] "FileName"
 # [1] "RELATIONSHIP"
 # Parsed with column specification:
 # cols(
@@ -271,7 +271,7 @@ out.list |> str(max.level = 1, give.attr = TRUE)
 #   reverse_relationship_id = col_character(),
 #   relationship_concept_id = col_integer()
 # )
-# [1] "filename"
+# [1] "FileName"
 # [1] "VOCABULARY"
 # Parsed with column specification:
 # cols(

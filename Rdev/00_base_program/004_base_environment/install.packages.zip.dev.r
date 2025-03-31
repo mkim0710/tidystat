@@ -121,13 +121,13 @@ regex4winpath = paste0("[A-Z]:[", regex4path_letters, "]*")
 
 
 
-### |> f_str_RegEx.gregexpr.regmatches(regex4winpath) ----
+### |> f_chr_RegEx.gregexpr.regmatches(regex4winpath) ----
 # Rdev/00_base_program/f_RegEx.gregexpr.regmatches.dev.r
-f_str_RegEx.gregexpr.regmatches = function(input_string, RegEx) {
+f_chr_RegEx.gregexpr.regmatches = function(input_string, RegEx) {
     regmatches(input_string, gregexpr(RegEx, input_string)) |> unlist()
 }
 
-vec.path_file = install.packages.zip.warnings |> f_str_RegEx.gregexpr.regmatches(regex4winpath) 
+vec.path_file = install.packages.zip.warnings |> f_chr_RegEx.gregexpr.regmatches(regex4winpath) 
 vec.path_file |> deparse(width.cutoff = 500) |> cat("\n")
 # > vec.path_file |> deparse(width.cutoff = 500) |> cat("\n")
 # c("C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll") 

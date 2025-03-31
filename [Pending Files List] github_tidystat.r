@@ -83,17 +83,17 @@ ensure_package("tidyverse")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##@ f_chr_utf8.ToInt.dev.Rmd ---- 
 
-##@ f_path.escape_special_characters.dev.Rmd ----
+##@ f_path_shell.escapeSpecialCharacters.dev.Rmd ----
 
 ##@ f_CodeText.eval_cat.dev.r ----
 
-##@ f_expression.substitute_echo_and_dput.source.r ----
+##@ f_expression.substitute_ECHO_and_dput.source.r ----
 
-##@ f_filename.unix_find_path_local.dev.r ----
+##@ f_FileName.unix_find_path_local.dev.r ----
 ##@ f_font.tlmgr_installed.dev.r ----
 ##@ f_font_regex_perl.search_TeXLiveDB.dev.r ----
 
-##@ f_lgl.not_and_or.dev.r ----
+##@ f_vec_lgl.not_and_or.dev.r ----
 ##@ f_list.dput_line_by_line.dev.r ----
 ##@ f_list.substitute.deparse.dev.Rmd ----
 
@@ -198,9 +198,9 @@ ensure_package("tidyverse")
 #@@ Rdev/20_tidy_group_by_match/ ----
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##@ f_Metadata_CodeToCreateDataSet.parse_eval.dev.Rmd -----
-##@ f_Metadata_CodeToCreateDataSet.parse_eval.dev-GPT-pending.Rmd -----
-##@ f_Metadata_CodeToCreateDataSet.parse_eval.dev-Gemini-pending.Rmd -----
+##@ f_Metadata_CodeToCreateDS.parse_eval.dev.Rmd -----
+##@ f_Metadata_CodeToCreateDS.parse_eval.dev-GPT-pending.Rmd -----
+##@ f_Metadata_CodeToCreateDS.parse_eval.dev-Gemini-pending.Rmd -----
 
 
 
@@ -214,9 +214,9 @@ ensure_package("tidyverse")
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### \% trainset_cost.gradient_descent.dev-GPT.Rmd -----  
-.subpath_filename.r = "Rdev/50_model_formula_evaluation/52_model_estimation/trainset_cost.gradient_descent.dev-GPT.Rmd"
-.subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+.RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/52_model_estimation/trainset_cost.gradient_descent.dev-GPT.Rmd"
+.RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
+file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -229,9 +229,9 @@ file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |>
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### \% trainset.cv.glm.dev-GPT.Rmd -----  
-.subpath_filename.r = "Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glm.dev-GPT.Rmd"
-.subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+.RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glm.dev-GPT.Rmd"
+.RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
+file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -243,10 +243,10 @@ file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |>
 #@@ Rdev/50_model_formula_evaluation/56_model_bootstrap/ ----
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### \% f_DataSet.SMOTE.dev-GPT.Rmd -----  
-.subpath_filename.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DataSet.SMOTE.dev-GPT.Rmd"
-.subpath_filename.r |> dirname() |> cat("\n"); .subpath_filename.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .subpath_filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+### \% f_DS.SMOTE.dev-GPT.Rmd -----  
+.RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DS.SMOTE.dev-GPT.Rmd"
+.RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
+file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 

@@ -1,4 +1,4 @@
-# @@ Now included in env1$env.internal.source.r ----
+# ->> Now included in env1$env.internal.source.r ----
 
 
 f_file.system_switch_open <- function(file) {

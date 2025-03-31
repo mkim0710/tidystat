@@ -210,16 +210,16 @@ out.grViz
 library(DiagrammeRsvg)
 out.grViz.svg <- DiagrammeRsvg::export_svg(out.grViz)
 
-out.filename = "out.grViz.svg"
-rsvg::rsvg_pdf(charToRaw(out.grViz.svg), paste0(out.filename, ".pdf"))
-rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.filename, ".png"))
+out.FileName = "out.grViz.svg"
+rsvg::rsvg_pdf(charToRaw(out.grViz.svg), paste0(out.FileName, ".pdf"))
+rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.FileName, ".png"))
 
   
   
 # __________|------  
 # @@ END----  
 .objectname = "list.PERSON_ID.setdiff.diagram"
-.path4write = env1$path$.path4write
+.path4write = env1$path$path4write
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 ))
 
 

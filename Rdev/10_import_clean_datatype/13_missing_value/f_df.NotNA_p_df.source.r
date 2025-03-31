@@ -1,4 +1,4 @@
-# .filename.source.r = "f_df.NotNA_p_df" |> paste0(".source.r")
+# .FileName.source.r = "f_df.NotNA_p_df" |> paste0(".source.r")
 # f_df.NotNA_p_df.dev.r
 # f_df.NotNA_p_df.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.dev.r
@@ -23,7 +23,7 @@
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-## .GlobalEnv$.tmp = list() ====  
+## .GlobalEnv$.tmp = list() ---  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
 ## .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }

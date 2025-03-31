@@ -189,19 +189,19 @@ env1$env.internal.attach$f_function.call_function_with_altered_options = functio
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = NULL, .subpath = NULL, .filename.source.r = NULL,  option.function.reload = isTRUE(options()$function.reload)) {
-    if(is.null(.subpath_filename.source.r) && !is.null(.subpath) && !is.null(.filename.source.r)) .subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r)
-    if(option.function.reload || !.filename.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.filename.source.r]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.filename.source.r]])  }
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL,  RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE"))) {
+    if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r)
+    if(RELOAD_FUNCTION || !.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.FileName.source.r]] = file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r); source(.GlobalEnv$env1$source[[.FileName.source.r]])  }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = source_if_not_sourced  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "source_if_not_sourced")
+#### (ALIAS) source_if_not_sourced  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "source_if_not_sourced")
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_sourcePath.execute.force_reload  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute.force_reload"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.source.r = NULL, .subpath = NULL, .filename.source.r = NULL, option.function.reload = TRUE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL, RELOAD_FUNCTION = TRUE) {
     # # list_objectnames <- ls(envir = environment(), all.names = TRUE)  # Use ls(all.names = TRUE) to list all objects, including hidden ones
     # # args <- mget(list_objectnames, envir = environment())    # Use mget() to get all these objects as a list
     # args = as.list(formals())
@@ -211,7 +211,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.subpath_filename.so
         args.additional = list(...)
         args = args.additional |> c(args[!names(args) %in% names(args.additional)])
     }
-    do.call(env1$f$f_env1_subenv_objectname.set_alias, args)   # Dynamically pass the args to another function
+    do.call(env1$f$f_env1_subenv_objectname.set_ALIAS, args)   # Dynamically pass the args to another function
 }
 
 
@@ -226,22 +226,22 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(
 .tmp$objectname = "str_give_attr_F"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, ...) {  str(object, ..., give.attr = FALSE)  }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: paste_collapse0 =  ----  
+## :: paste0_collapse0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "paste_collapse0"
+.tmp$objectname = "paste0_collapse0"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     paste0(..., collapse = "")
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: paste_collapse0.print =  ----  
+## :: paste0_collapse0.print =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "paste_collapse0.print"
+.tmp$objectname = "paste0_collapse0.print"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     print(paste0(..., collapse = ""))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.paste_collapse0  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "print.paste_collapse0")
+#### (ALIAS) print.paste0_collapse0  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "print.paste0_collapse0")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: cat0 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -268,8 +268,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(envir = parent.frame
     }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = ls.map_get.str  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_alias(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4alias = "env.internal.attach", aliasname = "ls.map_get.str")
+#### (ALIAS) ls.map_get.str  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "ls.map_get.str")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_environment.list_objectnames_incl_hidden.map_get.str  ----  
 .tmp$env1_subenv_name = "f"

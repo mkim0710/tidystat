@@ -1,0 +1,37 @@
+List of 5
+ $ tblVarName     : NULL
+ $ DSNs           :List of 2
+  ..$ ADS_time2event.NA :List of 1
+  .. ..$ DSN: chr "ADS_time2event.NA"
+  ..$ ADS_time2event.DNR:List of 1
+  .. ..$ DSN: chr "ADS_time2event.DNR"
+ $ VarNames       :List of 11
+  ..$ Event       :List of 4
+  .. ..$ DM  : list()
+  .. ..$ HTN : list()
+  .. ..$ DL  : list()
+  .. ..$ MetS: list()
+  ..$ Mediator    :List of 2
+  .. ..$ BMI  : list()
+  .. ..$ Waist: list()
+  ..$ Exposure    :List of 4
+  .. ..$ Exercise: list()
+  .. ..$ Diet    : list()
+  .. ..$ Alcohol : list()
+  .. ..$ Smoking : list()
+  ..$ PMHx        : list()
+  ..$ Tx          : list()
+  ..$ FHx         : list()
+  ..$ Exam        : list()
+  ..$ Social      :List of 6
+  .. ..$ Age      : list()
+  .. ..$ Sex      : list()
+  .. ..$ Income   : list()
+  .. ..$ Education: list()
+  .. ..$ Residence: list()
+  .. ..$ Marriage : list()
+  ..$ Behavioral  : list()
+  ..$ Unclassified: list()
+  ..$ Calculated  : list()
+ $ VarNames.select: list()
+ $ ModelList      : list()

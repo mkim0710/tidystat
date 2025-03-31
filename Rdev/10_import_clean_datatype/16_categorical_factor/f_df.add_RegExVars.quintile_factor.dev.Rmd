@@ -4,7 +4,8 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_notebook:  
+  html_notebook:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     toc_float:
@@ -17,6 +18,7 @@ output:
     fig_width: 10
     fig_height: 6
   html_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     toc_float:
@@ -28,7 +30,8 @@ output:
     highlight: textmate
     fig_width: 10
     fig_height: 6
-  pdf_document: 
+  pdf_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     fig_width: 10
@@ -36,6 +39,7 @@ output:
     latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
     keep_tex: true
   word_document:
+    md_extensions: -smart
     toc: yes
     toc_depth: 6
     fig_width: 9
@@ -58,9 +62,9 @@ header-includes:
   - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
   - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
   - \usepackage[hangul]{kotex}
-  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
-  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
-  - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+  # - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  # - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  # - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
@@ -126,7 +130,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 
   
 ```{r setup, echo=FALSE, results="hide"}
-# ```{r setup, eval=TRUE, include=FALSE}
+## Cf) {r setup, eval=TRUE, include=FALSE}
 if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.UTF-8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
@@ -147,7 +151,7 @@ knitr::opts_chunk$set(
 knitr::opts_knit$set(global.par = TRUE)
 
 
-# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+## Cf) {r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
@@ -158,12 +162,9 @@ if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubus
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
-# ```
+env1$info$options.width = getOption("width"); cat('\tgetOption("width") == ', env1$info$options.width, "  \n", sep="")
 #   
-# <font size="3">\% env1</font>  
-#   
-# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+## Cf) {r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 env1$info$info_software_versions = env1$env.internal.attach$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
 # str(env1$info$info_software_versions)
@@ -176,151 +177,165 @@ env1$info$info_software_versions = env1$env.internal.attach$get_software_version
   
   
 # __________|------  
-# @@ START) source ----  
-## @ .subpath, .filename.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
+# @@ SOURCE) ----  
+## @ .RelativeSubPath, .FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 ```
 
 
-```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+```{r .RelativeSubPath_FileName.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
-options(function.reload = TRUE);  # getOption("function.reload")
-.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
-### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
+.RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ```
   
   
 # __________|------  
-# @@ START) Data ----  
-## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds  
+# @@ DATA) mutate() ----  
+```{r DATA-MUTATE-SYNC, eval=FALSE, include=FALSE}
+paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
+```
+## ->> Now synced to: ""  
+## ()()()()()()()()()()------  
+## ()()()()()()()()()()------  
+## ->> PENDING synced to: ""  
+## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode.rds  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
   
 
-# \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
+# \$ assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) ) ====  
 # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# DSN = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 .path4read = paste0(env1$path$path1,"/data")
-DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds" |> str_replace("\\.rds$", "")
-assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
+DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.rds" |> str_replace("\\.rds$", "")
+assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) )
 
-# df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+# df_NewDMv3.CensorEND.n88.select293.NR.recode |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
 
-df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> str_subset("^A0[01]") |> paste0(collapse = ",  \n") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+df_NewDMv3.CensorEND.n88.select293.NR.recode |> names() |> str_subset("^A0[01]") |> paste0(collapse = ",  \n") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
 
 ```
 
 
-## \$ DataSet.Date.NA.rmAllNA =  
+## \$ DS.DNR =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-DataSet.Date.NA.rmAllNA = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+DS.DNR = df_NewDMv3.CensorEND.n88.select293.NR.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
     rownames_to_column() 
-DataSet.Date.NA.rmAllNA |> str(max.level = 2, give.attr = TRUE)
+DS.DNR |> str(max.level = 2, give.attr = TRUE)
 ```
 
-#### \$ A01_BMI.4bins =  
+
+# __________|------  
+## @ DATA) mutate(byVar = ) ----  
+### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  
+### ->> Now synced to: "35CodeBook_DS.recode-df_NewDMv3.CensorEND.select971.NR.lbl.fct.recode-deltaj.cut.51.Rmd"  
+#### (STANDARD) \$ A01_BMI.4bins =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.5bins()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+```{r DATA-MUTATE-add_BMI, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_df.add_BMI.5bins" |> paste0(".source.r") |> source() ----  
-.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
-.filename.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.source.r))
+### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
+.RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
+.FileName.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 
 for(i in 1:7) {
-    DataSet.Date.NA.rmAllNA =
-        DataSet.Date.NA.rmAllNA %>% 
+    DS.DNR.lbl.fct =
+        DS.DNR.lbl.fct %>% 
         env1$f$f_df.add_BMI_calculated(varname_Height = paste0("A0",i,"_","HEIGHT"), varname_Weight = paste0("A0",i,"_","WEIGHT"), varname_BMI = paste0("A0",i,"_","BMI")) %>% 
         env1$f$f_df.add_BMI.5bins(varname_BMI = paste0("A0",i,"_","BMI"))
 }
 
-DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
+DS.DNR.lbl.fct %>% select(matches("HEIGHT|WEIGHT|BMI")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
-#### \$ A02_BMI_ge300.delta =  
+#### (VOID) \$ A02_BMI_ge300.delta =  
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# ## \$ f_df.add_VarNameT.deltaT0 =  ----  
+# ## :: f_df.add_VarNameT.deltaT0 =  ----  
 # ## -> included in "f_df.t.tribble_construct.source.r"
 # .RegEx2match = "BMI"
 # i = 2
-# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+# DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+# DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 # 
 # for (i in 2:7) {
 #     # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
 #     for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
 #         print(paste0("A0",i,"_",.VarName.suffix,".delta"))
-#         DataSet.Date.NA.rmAllNA = 
-#             DataSet.Date.NA.rmAllNA %>% 
+#         # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+#         DS.DNR = 
+#             DS.DNR %>% 
 #             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
 #     }
 # }
-# DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 2, give.attr = TRUE)
+# DS.DNR %>% select(matches("BMI")) %>% select(matches("A02")) |> str(max.level = 2, give.attr = TRUE)
 ```
   
 
-#### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
+#### (CONTINUOUS) \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----
-## -> included in "f_df.t.tribble_construct.source.r"
+### # DATA) mutate() f_df.add_VarNameT.deltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
-            DataSet.Date.NA.rmAllNA =
-                DataSet.Date.NA.rmAllNA |>
+            # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+            DS.DNR =
+                DS.DNR |>
                 env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
         }
     }
 }
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
+DS.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
-#### \$ A0{1+j}_BMI.pdeltaj =  
-##### \% f_df.add_VarNameT.dpT0()  
+#### (VOID, CONTINUOUS) \$ A0{1+j}_BMI.pdeltaj =  
+##### \% f_df.add_VarNameT.pdeltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.dpT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
+### # DATA) mutate() f_df.add_VarNameT.pdeltaT0(VarName0, VarNameT)  ----  
 .RegEx2match = "BMI|WEIGHT"
 i = 7
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) |> str(max.level = 2, give.attr = TRUE)
+DS.DNR %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".pdelta",j)))
-            DataSet.Date.NA.rmAllNA = 
-                DataSet.Date.NA.rmAllNA |> 
+            # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+            DS.DNR = 
+                DS.DNR |> 
                 env1$f$f_df.add_VarNameT.pdeltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".pdelta",j))
         }
     }
 }
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
+DS.DNR %>% select(matches("BMI")) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
 ```
 
 
@@ -331,18 +346,19 @@ for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         # for (.VarName.suffix in c("BMI", "WEIGHT")) {
         #     print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
-        #     DataSet.Date.NA.rmAllNA =
-        #         DataSet.Date.NA.rmAllNA %>%
+        #     # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+        #     DS.DNR =
+        #         DS.DNR %>%
         #         env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
         # }
         .VarName.suffix = c("BMI", "WEIGHT")
-        # DataSet.Date.NA.rmAllNA[c(
+        # DS.DNR[c(
         #     paste0("A0",i-j,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix), 
         #     paste0("A0",i,"_",.VarName.suffix,".delta",j), 
         #     paste0("A0",i,"_",.VarName.suffix,".pdelta",j) 
         # )] |> head() |> as.data.frame() |> print()
-        DataSet.Date.NA.rmAllNA[c(
+        DS.DNR[c(
             paste0("A0",i-j,"_"), 
             paste0("A0",i,"_"), 
             paste0("A0",i,"_"), 
@@ -355,11 +371,11 @@ for (j in 1:(7-1)) {
 ```
   
   
-#### \$ A0{1+j}_BMI.pdeltaj.5bins =  
+#### (VOID) \$ A0{1+j}_BMI.pdeltaj.5bins =  
 ##### \% f_df.add_RegExVars.kbins()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_RegExVars.kbins =  ----  
+## :: f_df.add_RegExVars.kbins =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
 # Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.kbins.dev.Rmd
@@ -367,23 +383,23 @@ options(width=120)
 # .regex_pattern_part = "\\.pdelta[1-6]"
 # .breaks4cut = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf)
 # .suffix = paste0(".",length(.breaks4cut)-1,"bins")
-# DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA |> env1$f$f_df.add_RegExVars.kbins(regex_pattern = paste0(.regex_pattern_part,"$"), breaks = .breaks4cut, suffix = .suffix)
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.regex_pattern_part,.suffix,"$"))) %>% summary
+# DS.DNR <- DS.DNR |> env1$f$f_df.add_RegExVars.kbins(regex_pattern = paste0(.regex_pattern_part,"$"), breaks = .breaks4cut, suffix = .suffix)
+# DS.DNR %>% select(matches(paste0(.regex_pattern_part,.suffix,"$"))) %>% summary
 
 ```
   
   
-#### \$ A0{1+j}_BMI.pdeltaj.quintile =  
+#### (REFERENCE) \$ A0{1+j}_BMI.pdeltaj.quintile =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.dpT0 =  ----  
+## :: f_df.add_VarNameT.pdeltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # .RegEx2match = "\\.pdelta[1-6]"
 # 
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+# DS.DNR %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) |> str(max.level = 2, give.attr = TRUE)
+# DS.DNR %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 # 
-# DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+# DS.DNR <- DS.DNR %>%
 #   # Adding .quintile variables as ordered factors with rounded labels
 #   mutate(across(
 #     .cols = matches(paste0(.RegEx2match, "$")), 
@@ -405,15 +421,15 @@ options(width=120)
 #     },
 #     .names = "{.col}.quintile"
 #   ))
-# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
+# DS.DNR %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
 ```
   
 
-#### \$ A0{1+j}_BMI.pdeltaj.quintile =  
+#### (REFERENCE) \$ A0{1+j}_BMI.pdeltaj.quintile =  
 ##### \% f_df.add_RegExVars.quintile_factor ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_RegExVars.quintile_factor =  ----  
+## :: f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
@@ -442,11 +458,11 @@ options(width=120)
     ))
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 .RegEx2match = "\\.pdelta[1-6]"
-DataSet.Date.NA.rmAllNA <- env1$f$f_df.add_RegExVars.quintile_factor(DataSet.Date.NA.rmAllNA, paste0(.RegEx2match,"$"))
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
+DS.DNR <- env1$f$f_df.add_RegExVars.quintile_factor(DS.DNR, paste0(.RegEx2match,"$"))
+DS.DNR %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
 
 ```
   
@@ -502,42 +518,11 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
   
   
-```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# __________|------  
-## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-.path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
-if(exists("MetaData")) {
-    # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-    cat("    ________________________________________________________________________    \n")
-    for (DataSetName in names(MetaData$DataSetNames)) {
-        assign(DataSetName, structure(get(DataSetName), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-        env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = DataSetName, .path4write = .path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
-        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    }
-}
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
-# openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
-# if (Sys.info()["sysname"] == "Windows") {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-#     openxlsx2::xl_open(.path_filename.xlsx)
-# } else {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-# }
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
-# readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-```
-  
-  
-```{r createBackup, eval=TRUE, include=FALSE}
+```{r createBACKUP, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal.attach$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%dT%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%dT%H", overwrite=TRUE)
     # }
 }
 ```
@@ -545,15 +530,15 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
-env1$path$LastSourceEditorContext.path_filename.nb.html = env1$path$LastSourceEditorContext.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$LastSourceEditorContext.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+env1$path$LastSourceEditorContext.path_FileName.nb.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_FileName.nb.html|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_FileName.nb.html|>normalizePath(winslash="/",mustWork=TRUE)) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNameExt) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileName.nb.html) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   

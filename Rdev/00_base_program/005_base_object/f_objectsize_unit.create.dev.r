@@ -346,8 +346,8 @@ f_objectsize_unit.convert2bytes = function(objectsize = 1 * 1024^2, objectsize_u
     if (is.character(objectsize)) {
         'is.character(objectsize)  -->  attempting to deparse into `numeric unit`' |> warning(call. = FALSE, immediate. = TRUE)
         objectsize0 = objectsize
-        objectsize = objectsize0 %>% strsplit(" ") %>% unlist() %>% pluck(1) %>% {eval(parse(text = .))}
-        objectsize_unit = objectsize0 %>% strsplit(" ") %>% unlist() %>% pluck(2) 
+        objectsize = objectsize0 %>% strsplit(" ") |> unlist() %>% pluck(1) %>% {eval(parse(text = .))}
+        objectsize_unit = objectsize0 %>% strsplit(" ") |> unlist() %>% pluck(2) 
         cat("objectsize = ", deparse(objectsize), "\n")
         cat("objectsize_unit = ", deparse(objectsize_unit), "\n")
     }

@@ -99,7 +99,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
-    # df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
+    # df = ADS_C24.drop_pmhx_negativetime._5yr.cut.01sample
     # vec = c("evnttrth_C24_r", "fuduration_yr"
     #         , "AGE"
     #         , "SEX"
@@ -516,14 +516,14 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
   
   
 # __________|------  
-# @@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
+# @@ data_list.cut.coxph_list.HRCI from ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
 ## @ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
+ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
+# > ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, give.attr = TRUE)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -535,17 +535,17 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1, 
 #   ..- attr(*, "srcref")= 'srcref' int [1:8] 2 37 300 1 37 1 2 300
 #   .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000029f91bf0> 
 
-is.list(analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list)
-# > is.list(analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list)
+is.list(ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list)
+# > is.list(ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list)
 # [1] TRUE
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
+ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
+# > ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
 # [1] TRUE
 
-# @@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
+# @@ data_list.cut.coxph_list.HRCI from ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
 data_list.cut.coxph_list.HRCI =
-    analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
+    ADS_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
     map(function(list_object.coxph) {
         if(is.list(list_object.coxph)) {
             list_object.coxph %>% map(function(ob) {
@@ -871,13 +871,12 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
                                           
 # @@ END-----  
 getwd()
-.path4write = env1$path$.path4write
+.path4write = env1$path$path4write
 .objectname = ""
 # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="gz", compression=9 ))
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 ))
-# system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
-openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table = F, withFilter = F)
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
+# .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
+.path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=FALSE, row_names=TRUE, table_style="none", col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
 
 
 

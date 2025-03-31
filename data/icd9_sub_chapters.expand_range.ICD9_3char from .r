@@ -751,7 +751,7 @@ icd9_sub_chapters.expand_range.ICD9_3char %>% toJSON(pretty = T) %>% write("icd9
 # @@ END-----  
 
 getwd()
-.path4write = env1$path$.path4write
+.path4write = env1$path$path4write
 .objectname = "icd9_chapters.expand_range"
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="gz", compression=9 )
 .objectname = "icd9_chapters.expand_range.ICD9_3char"

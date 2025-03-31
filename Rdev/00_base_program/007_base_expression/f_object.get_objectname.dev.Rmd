@@ -1,0 +1,1361 @@
+---
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  # - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  # - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  # - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+  
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+  
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# __________|------  
+<!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
+<!-- ##### Rstudio RMarkDown Shortcuts -->
+<!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html   -->
+<!-- Insert R chunk	Ctrl+Alt+I	Command+Option+I   -->
+<!-- Preview HTML	Ctrl+Shift+K	Command+Shift+K   -->
+<!-- Run all chunks above	Ctrl+Alt+P	Command+Option+P   -->
+<!-- Run current chunk	Ctrl+Alt+C	Command+Option+C   -->
+<!-- Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter   -->
+<!-- Run next chunk	Ctrl+Alt+N	Command+Option+N   -->
+<!-- Run all chunks	Ctrl+Alt+R	Command+Option+R   -->
+<!-- Go to next chunk/title	Ctrl+PgDown	Command+PgDown   -->
+<!-- Go to previous chunk/title	Ctrl+PgUp	Command+PgUp   -->
+<!-- Show/hide document outline	Ctrl+Shift+O	Command+Shift+O   -->
+<!-- F7 spell-check your document.   -->
+<!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
+<!--    -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
+
+  
+```{r setup, echo=FALSE, results="hide"}
+## Cf) {r setup, eval=TRUE, include=FALSE}
+if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.UTF-8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+
+
+## Cf) {r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+#   
+## Cf) {r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal.attach$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+
+
+###### env1\$info\$DocumentTitle1 ----  
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    sep="")
+```
+  
+  
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+###### env1\$path ----  
+# cat(" getwd() == "); dput(getwd())  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# .tmp$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) not a relative path~!  
+# env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) Not using a relative path~!
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# env1$path$project_base = "Rproject_HEALS0215"
+# env1$path$data_suffix = "_01"
+# # env1$path$data_suffix = ""
+# env1$path$project_suffix = "GJ3"
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$path4write = getwd()
+.path4read  = env1$path$path4read
+.path4write = env1$path$path4write
+# cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+
+## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# .FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  
+```
+  
+  
+
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ START) function 
+##@ Base R ----  
+## :: f_object.get_objectname <- function(input_object) deparse(substitute(input_object)) ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object) {
+  input_object.name <- deparse(substitute(input_object))
+  return(input_object.name)
+}
+
+tmp <- 42
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "."
+
+```
+  
+  
+## :: f_object.get_objectname <- function(input_object) as.character(match.call()$input_object) ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object) {
+  input_object.name <- as.character(match.call()$input_object)
+  return(input_object.name)
+}
+
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > tmp_object <- 42
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "."
+```
+  
+  
+## :: f_object.get_objectname <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object) {
+  call <- match.call()
+  input_object.name <- deparse(substitute(input_object))
+  
+  # Handle magrittr pipe (%>%) case where input becomes "."
+  if (input_object.name == ".") {
+    input_object.name <- as.character(call$input_object)
+  }
+  
+  return(input_object.name)
+}
+
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > tmp_object <- 42
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "."
+
+```
+  
+  
+## :: f_object.get_objectname <- function(input_object) { ----
+```{r eval=FALSE, include=FALSE}
+options(width=120)
+
+# f_object.get_objectname <- function(input_object) {
+#   expr <- substitute(input_object)
+#   obj_name <- deparse(expr)
+#   
+#   if (obj_name == ".") {
+#     # Retrieve the parent call
+#     parent_call <- sys.call(-1)
+#     
+#     # Check if the parent call is a pipe operator
+#     if (is.call(parent_call) && (parent_call[[1]] == `%>%` || parent_call[[1]] == `|>`)) {
+#       # Extract the left-hand side of the pipe
+#       lhs <- parent_call[[2]]
+#       obj_name <- deparse(lhs)
+#     } else {
+#       obj_name <- "."
+#     }
+#   }
+#   
+#   return(obj_name)
+# }
+# tmp_object <- 42
+# f_object.get_objectname(tmp_object)
+# tmp_object |> f_object.get_objectname()
+# tmp_object %>% f_object.get_objectname()
+# # > f_object.get_objectname(tmp_object)
+# # [1] "tmp_object"
+# # > tmp_object |> f_object.get_objectname()
+# # [1] "tmp_object"
+# # > tmp_object %>% f_object.get_objectname()
+# # Error in parent_call[[1]] == `%>%` : 
+# #   comparison (==) is possible only for atomic and list types
+
+```
+  
+  
+## :: *** f_object.get_objectname <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object) {
+  # Capture the expression passed to the function
+  obj_expr <- substitute(input_object)
+  obj_name <- deparse(obj_expr)
+  
+  # Check if the function was called using the magrittr pipe (%>%)
+  if (identical(obj_expr, quote(.))) {
+    # Retrieve the parent call (the call to the pipe)
+    parent_call <- sys.call(-1)
+    
+    # Extract the first argument from the parent call, which is the original object
+    if (!is.null(parent_call)) {
+      original_obj <- parent_call[[2]]
+      obj_name <- deparse(original_obj)
+    } else {
+      obj_name <- "."
+    }
+  }
+  
+  return(obj_name)
+}
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+```
+  
+  
+## :: *** f_object.get_objectname <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object) {
+  # Capture the expression passed to the function
+  obj_expr <- substitute(input_object)
+  obj_name <- deparse(obj_expr)
+  
+  # Check if the function was called using a pipe
+  if (identical(obj_expr, quote(.))) {
+    # Retrieve the parent call (the call to the pipe)
+    parent_call <- sys.call(-1)
+    if (!is.null(parent_call)) {
+      obj_name <- deparse(parent_call[[2]])  # Left-hand side of the pipe
+    }
+  } else {
+    # Check if we're inside another function
+    parent_call <- sys.call(-1)
+    if (!is.null(parent_call)) {
+      # Retrieve the parent frame
+      parent_frame <- parent.frame()
+      if (exists(as.character(obj_expr), envir = parent_frame)) {
+        obj_name <- as.character(obj_expr)
+      }
+    }
+  }
+  
+  return(obj_name)
+}
+
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+```
+
+
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+##@ library(rlang) ====
+## :: f_object.get_objectname_rlang <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# f_object.get_objectname_rlang <- function(input_object) {
+#   # Capture the expression using rlang
+#   expr <- enquo(input_object)
+#   obj_name <- as_label(expr)
+#   
+#   # If the object is the placeholder '.', attempt to retrieve the original name
+#   if (obj_name == ".") {
+#     # Capture the parent frame's expression
+#     expr <- rlang::get_expr(enquo(input_object), parent = 1)
+#     obj_name <- as_label(expr)
+#   }
+#   
+#   return(obj_name)
+# }
+# tmp_object <- 42
+# f_object.get_objectname_rlang(tmp_object)
+# tmp_object |> f_object.get_objectname_rlang()
+# tmp_object %>% f_object.get_objectname_rlang()
+# # > f_object.get_objectname_rlang(tmp_object)
+# # [1] "tmp_object"
+# # > tmp_object |> f_object.get_objectname_rlang()
+# # [1] "tmp_object"
+# # > tmp_object %>% f_object.get_objectname_rlang()
+# # Error in rlang::get_expr(enquo(input_object), parent = 1) : 
+# #   unused argument (parent = 1)
+```
+  
+  
+## :: f_object.get_objectname_rlang <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname_rlang <- function(input_object) {
+  # Capture the expression using rlang
+  expr <- enquo(input_object)
+  obj_name <- as_label(expr)
+  
+  # If the object is the placeholder '.', attempt to retrieve the original name
+  if (obj_name == ".") {
+    # Retrieve the caller's call (the piping call)
+    parent_call <- rlang::caller_call()
+    
+    if (!is.null(parent_call)) {
+      # Extract the first argument from the parent call, which is the original object
+      original_obj <- parent_call[[2]]
+      obj_name <- as_label(original_obj)
+    } else {
+      obj_name <- "."
+    }
+  }
+  
+  return(obj_name)
+}
+tmp_object <- 42
+f_object.get_objectname_rlang(tmp_object)
+tmp_object |> f_object.get_objectname_rlang()
+tmp_object %>% f_object.get_objectname_rlang()
+# > tmp_object <- 42
+# > f_object.get_objectname_rlang(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname_rlang()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname_rlang()
+# [1] "."
+
+```
+  
+  
+## :: f_object.get_objectname_rlang <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname_rlang <- function(input_object) {
+  # Capture the expression using rlang
+  expr <- enquo(input_object)
+  obj_name <- as_label(expr)
+  
+  # If the object is the placeholder '.', attempt to retrieve the original name
+  if (obj_name == ".") {
+    # Retrieve the caller's call (the piping call)
+    parent_call <- rlang::caller_call()
+    
+    if (!is.null(parent_call)) {
+      # Extract the first argument from the parent call, which is the original object
+      original_obj <- parent_call[[2]]
+      obj_name <- as_label(original_obj)
+    } else {
+      obj_name <- "."
+    }
+  }
+  
+  return(obj_name)
+}
+
+tmp_object <- 42
+f_object.get_objectname_rlang(tmp_object)
+tmp_object |> f_object.get_objectname_rlang()
+tmp_object %>% f_object.get_objectname_rlang()
+# > f_object.get_objectname_rlang(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname_rlang()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname_rlang()
+# [1] "."
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+#@@ env1$env.internal.source.r ====
+## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
+Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
+Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
+https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
+https://gemini.google.com/app/6d9de55c5c7085c6 
+
+## :: f_object.get_objectname <- function(input_object, VERBOSE = isTRUE(getOption("verbose"))) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object, VERBOSE = isTRUE(getOption("verbose"))) {
+    input_object.name <- deparse(substitute(input_object))
+    if (input_object.name == ".") {
+        warning('input_object.name == ',deparse(input_object.name),'   #@ sys.nframe() == ', sys.nframe(), "  \n", immediate. = TRUE)
+        # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(input_object, parent.frame(n = n)))}) |> str(max.level = 2, give.attr = TRUE)
+        if (VERBOSE) 0:sys.nframe() %>% set_names() %>% map(function(n) { ls(envir = sys.frame(which = n)) }) %>% dput()
+        # message('-> Trying: ','deparse(substitute(input_object, parent.frame(n = 2)))')
+        # input_object.name <- deparse(substitute(input_object, parent.frame(n = 2)))
+        message('-> Trying: ','ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, input_object)) %>% names')
+        input_object.name = ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, input_object)) %>% names
+        if (length(input_object.name) > 1) {
+            warning('length(input_object.name) > 1', "  \n", immediate. = TRUE)
+            input_object.name %>% dput()
+            if (any(!input_object.name %in% c(".", "input_object"))) {
+                input_object.name = input_object.name[!input_object.name %in% c(".", "input_object")][1]
+            } else {
+                input_object.name = input_object.name[1]
+            }
+        }
+        if (input_object.name %in% c(".", "input_object")) {
+            warning('input_object.name == ',deparse(input_object.name),'   #@ sys.nframe() == ', sys.nframe())
+            "Try using `|>` instead of` `%>%`, or provide a valid object." |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
+        }
+    }
+    return(input_object.name)
+}
+tmp <- 42
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > tmp <- 42
+# > tmp_object <- 42
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# Warning in f_object.get_objectname(.) :
+#   input_object.name == "."   #@ sys.nframe() == 2  
+# 
+# -> Trying: ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, input_object)) %>% names
+# Warning in f_object.get_objectname(.) : length(input_object.name) > 1  
+# 
+# c("tmp", "tmp_object")
+# [1] "tmp"
+```
+  
+  
+## :: *** f_object.get_objectname <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Define the refined function
+f_object.get_objectname <- function(input_object) {
+  # Capture the expression passed to the function
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Check if the object is the magrittr placeholder '.'
+  if (obj_name == ".") {
+    # Retrieve the parent call (the call to the pipe)
+    parent_call <- sys.call(-1)
+    
+    # Determine the type of pipe used
+    pipe_operator <- as.character(parent_call[[1]])
+    is_magrittr_pipe <- pipe_operator == "%>%"
+    is_base_pipe <- pipe_operator == "|>"
+    
+    if (is_magrittr_pipe || is_base_pipe) {
+      # Extract the left-hand side (lhs) of the pipe
+      lhs <- parent_call[[2]]
+      
+      # Attempt to retrieve the name of the lhs
+      lhs_name <- deparse(lhs)
+      
+      # Handle cases where lhs is more complex (e.g., expressions)
+      # If lhs is a symbol, deparse returns its name; otherwise, it returns the expression as a string
+      if (length(lhs_name) > 1) {
+        # If the expression is complex, return a placeholder or handle accordingly
+        lhs_name <- "complex_expression"
+      }
+      
+      return(lhs_name)
+    } else {
+      # If not a recognized pipe operator, return the placeholder
+      return(obj_name)
+    }
+  }
+  
+  return(obj_name)
+}
+
+# Create test objects
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "tmp_object"
+```
+  
+  
+## :: *** f_object.get_objectname <- function(input_object) { ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the lhs of the pipe
+          lhs <- current_call[[2]]
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            return(placeholder)
+          } else {
+            return(lhs_name)
+          }
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+tmp_object <- 42
+f_object.get_objectname(tmp_object)
+tmp_object |> f_object.get_objectname()
+tmp_object %>% f_object.get_objectname()
+# > f_object.get_objectname(tmp_object)
+# [1] "tmp_object"
+# > tmp_object |> f_object.get_objectname()
+# [1] "tmp_object"
+# > tmp_object %>% f_object.get_objectname()
+# [1] "tmp_object"
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+#@@ Usage Inside Another Function ====
+## :: process_data <- function(data) { ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Define the enhanced get_objectname function
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Helper function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the left-hand side (lhs) of the pipe
+          lhs <- current_call[[2]]
+          
+          # Attempt to retrieve the name of the lhs
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            # Assign a placeholder name for complex expressions
+            lhs_name <- placeholder
+          }
+          
+          return(lhs_name)
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# # 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+
+```
+  
+  
+## :: process_data <- function(data) { ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Define the enhanced get_objectname function
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Helper function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the left-hand side (lhs) of the pipe
+          lhs <- current_call[[2]]
+          
+          # Attempt to retrieve the name of the lhs
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            # Assign a placeholder name for complex expressions
+            lhs_name <- placeholder
+          }
+          
+          return(lhs_name)
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it
+  expr <- substitute(input_object)
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+
+```
+
+
+## :: process_data <- function(data) { ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+f_object.get_objectname <- function(input_object, 
+                                    pipe_ops = c("%>%", "|>"), 
+                                    placeholder = "complex_expression") {
+  # Helper function to traverse the call stack and find the original object name
+  find_original_object <- function(call_stack, pipe_ops, placeholder) {
+    for (i in seq_along(call_stack)) {
+      current_call <- call_stack[[i]]
+      
+      if (is.call(current_call)) {
+        # Extract the pipe operator
+        pipe_operator <- as.character(current_call[[1]])
+        
+        # Check if it's a recognized pipe
+        if (pipe_operator %in% pipe_ops) {
+          # Extract the left-hand side (lhs) of the pipe
+          lhs <- current_call[[2]]
+          
+          # Attempt to retrieve the name of the lhs
+          lhs_name <- deparse(lhs)
+          
+          # Check if lhs is a complex expression
+          if (length(lhs_name) > 1 || grepl("[+*/()-]", lhs_name)) {
+            # Assign a placeholder name for complex expressions
+            lhs_name <- placeholder
+          }
+          
+          return(lhs_name)
+        }
+      }
+    }
+    # If no pipe operator is found in the call stack
+    return(placeholder)
+  }
+  
+  # Capture the expression passed to the function without evaluating it, from the parent frame
+  expr <- substitute(input_object, parent.frame())
+  obj_name <- deparse(expr)
+  
+  # Define recognized placeholders indicating a pipe operation
+  recognized_placeholders <- c(".", "input_object")
+  
+  # Check if the object is a recognized placeholder
+  if (obj_name %in% recognized_placeholders) {
+    # Retrieve the entire call stack
+    call_stack <- sys.calls()
+    
+    # Remove the current function call from the stack
+    call_stack <- call_stack[-length(call_stack)]
+    
+    # Attempt to find the original object name by traversing the call stack
+    original_name <- find_original_object(call_stack, pipe_ops, placeholder)
+    
+    # If the original name is still the placeholder, issue a warning
+    if (original_name == placeholder) {
+      warning("Encountered a complex expression or could not determine the original object name.")
+    }
+    
+    return(original_name)
+  }
+  
+  # If not a placeholder, return the deparsed object name
+  return(obj_name)
+}
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Define an outer function that uses f_object.get_objectname
+process_data <- function(data, ...) {
+  # Retrieve the name of the data object
+  data_name <- f_object.get_objectname(data, ...)
+  
+  # Example operation: print a message with the data name
+  message("Processing data object: ", data_name)
+  
+  # Return the data unchanged (for demonstration purposes)
+  return(data)
+}
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Create a test object
+my_dataset <- data.frame(x = 1:5, y = letters[1:5])
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# Test cases
+
+# 1. Direct Function Call
+process_data(my_dataset)
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 2. Using Base R Pipe (|>)
+my_dataset |> process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 3. Using magrittr Pipe (%>%)
+my_dataset %>% process_data()
+# Expected Output: "Processing data object: my_dataset"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 4. Passing a Complex Expression Directly
+process_data(my_dataset[my_dataset$x > 2, ])
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 5. Using Pipe with a Complex Expression
+(my_dataset %>% subset(x > 2)) %>% process_data()
+# Expected Output: Warning and "Processing data object: complex_expression"
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# 6. Using a Custom Pipe Operator
+# `%custom%` <- function(lhs, rhs) rhs(lhs)
+# my_dataset %custom% process_data(pipe_ops = c("%custom%", "%>%", "|>"))
+# Expected Output: "Processing data object: my_dataset"
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ END ----  
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ END ----  
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
+cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")
+cat("    ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()    \n")
+cat("    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>    \n")
+cat("    HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH    \n")
+cat("    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    \n")
+cat("    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    \n")
+cat("    VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV    \n")
+cat("    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW    \n")
+cat("    -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|    \n")
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+
+  
+```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
+env1$path$LastSourceEditorContext.path_FileName.nb.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_FileName.nb.html|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_FileName.nb.html|>normalizePath(winslash="/",mustWork=TRUE)) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat("* To revert to the last commited file, run the following terminal command:  \n")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNameExt) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileName.nb.html) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+```
+  
+  

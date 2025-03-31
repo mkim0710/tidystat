@@ -7,7 +7,7 @@
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #!/bin/bash
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_filename.unix_find_path_local.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_FileName.unix_find_path_local.dev.r
 ## Ctrl+Alt+Enter @ Rstudio
 whoami
 echo $PATH 
@@ -38,9 +38,9 @@ dir("/usr/local/texlive/tlpkg/tlpobj")
 dir("/usr/local/texlive/texmf-dist")
 dir("/usr/local/texlive/texmf-dist/fonts")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### \% f_filename.unix_find_path_local ====  
-f_filename.unix_find_path_local <- function(filename) {
-    vec_path_file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
+### \% f_FileName.unix_find_path_local ====  
+f_FileName.unix_find_path_local <- function(FileName) {
+    vec_path_file <- paste0('sudo find / -type f -iname "*',FileName,'*"') |> system(intern = TRUE)
     vec_path = vec_path_file |> dirname() |> unique() |> sort()
     vec_path = vec_path[vec_path != "."]
     if (length(vec_path) > 0) {
@@ -49,7 +49,7 @@ f_filename.unix_find_path_local <- function(filename) {
         return(NULL)
     }
 }
-"roboto" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
+"roboto" |> f_FileName.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
   "/usr/share/fonts/truetype/roboto/unhinted",
@@ -69,12 +69,12 @@ c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
   "/usr/share/lintian/overrides",
   "/var/lib/dpkg/info")
-"lmodern" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
+"lmodern" |> f_FileName.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/etc/X11/fonts/Type1",
   "/usr/local/texlive/texmf-dist/tex/latex/lm",
   "/var/lib/dpkg/info")
-"serif" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
+"serif" |> f_FileName.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",

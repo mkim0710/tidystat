@@ -7,8 +7,8 @@
 
 # f_df.PersonTime.dev.r
 # MarketScan PREGCOHORT Step67 Regression SecondaryOutcomes 190818.pptm
-# analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes from .r
-# analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes from .r
+# ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes from .r
+# ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes from .r
 
 
 
@@ -39,12 +39,12 @@ print(tblID_Event_Time2Event)
 
 set.seed(123)  # for reproducibility
 # Generate sample data
-analyticDF2797 <- tibble::tibble(
+ADS2797 <- tibble::tibble(
   ENROLID = c(130298303, 357944602, 514563701, 585415901, 597484206),
   PrimaryOutcome123456.time = sample(240:275, 5),  # Random times between 240 and 275
   PrimaryOutcome123456 = sample(c(TRUE, FALSE), 5, replace = TRUE)  # Random event occurrence
 )
-print(analyticDF2797)
+print(ADS2797)
 # Output:
 # # A tibble: 5 x 3
 #      ENROLID PrimaryOutcome123456.time PrimaryOutcome123456
@@ -58,7 +58,7 @@ print(analyticDF2797)
 
 
 
-## @ analyticDF2797.PersonTime7 ====  
+## @ ADS2797.PersonTime7 ====  
 library(dplyr)
 library(purrr)
 library(tidyr)
@@ -83,7 +83,7 @@ convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event <- function(tblID_
 }
 
 # Example Usage:
-# convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event(analyticDF2797, "ENROLID", "PrimaryOutcome123456", "PrimaryOutcome123456.time", 84)
+# convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event(ADS2797, "ENROLID", "PrimaryOutcome123456", "PrimaryOutcome123456.time", 84)
 # # A tibble: 18 × 10
 #      ENROLID PrimaryOutcome123456 PrimaryOutcome123456.time PeriodSeq Period     time event timesq     k Dk_plus1
 #        <dbl> <lgl>                                    <int>     <int> <fct>     <dbl> <lgl>  <dbl> <dbl> <lgl>   
@@ -112,14 +112,14 @@ convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event <- function(tblID_
 
 
 
-## @ analyticDF2797.PersonTime7 ====  
+## @ ADS2797.PersonTime7 ====  
 Interval = 7 * 12
 
-analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
+ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval)))
-analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
+ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest
-analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
+ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%  
     mutate(
         Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
@@ -129,7 +129,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
         , k = PeriodSeq - 1  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks
         , Dk_plus1 = event  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks 
     ) 
-# > analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
+# > ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
 # +     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval)))
 # # A tibble: 2,797 x 4
 #      ENROLID PrimaryOutcome123456.time PrimaryOutcome123456 PeriodSeq
@@ -145,7 +145,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
 #  9 673451601                       273 FALSE                <int [4]>
 # 10 685036801                       273 FALSE                <int [4]>
 # # ... with 2,787 more rows
-# > analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
+# > ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
 # +     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest
 # # A tibble: 9,561 x 4
 #      ENROLID PrimaryOutcome123456.time PrimaryOutcome123456 PeriodSeq
@@ -161,7 +161,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
 #  9 514563701                       273 FALSE                        2
 # 10 514563701                       273 FALSE                        3
 # # ... with 9,551 more rows
-# > analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
+# > ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
 # +     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%  
 # +     mutate(
 # +         Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
@@ -200,21 +200,21 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
   
   
 # __________|------  
-# @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====  
+# @@ ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====  
 .t0 = Sys.time()
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes =
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes =
     c("PrimaryOutcome123456", "PrimaryOutcome1", "PrimaryOutcome2", "PrimaryOutcome3", "PrimaryOutcome4", "PrimaryOutcome5", "PrimaryOutcome6") %>% set_names(.) %>% 
     map(function(i) {
         warning(i)
-        data = analyticDF2797.PersonTime7 %>% 
+        data = ADS2797.PersonTime7 %>% 
             mutate( Dk_plus1 = eval(parse(text = paste0("(", i, " == 1) & (", i, ".time <= PeriodSeq * Interval)") )) ) %>% 
             mutate(ksq = k*k) %>% select(
                 Dk_plus1, Exposure, k, ksq
                 , Age_at_lmp, `year(lmp)`
                 , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
             )
-        analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
-        analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates
+        ADS2797.PersonTime7.glmOutcome_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
+        ADS2797.PersonTime7.glmOutcome_Exposure_Covariates
     })
 Sys.time() - .t0
 warnings()
@@ -250,10 +250,10 @@ warnings()
 
 
 
-## @ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
-    analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
+## @ ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
+    ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
     map(function(glmObject) {
         out = glmObject %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble()
         out = out %>% mutate(
@@ -265,8 +265,8 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
         out %>% dplyr::filter(rowname %in% c("Exposuremetformin_after_insulin"))
     }) %>% bind_rows(.id = ".id")
 
-analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$nOutcome_byExposure =
-    analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
+ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$nOutcome_byExposure =
+    ADS2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
     {bind_cols(
         transmute(., Exposure = Exposure, `n()` = paste0(`n()`, " (100%)"))
         ,
@@ -283,8 +283,8 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
   
 # __________|------  
 # @@ END-----  
-openxlsx2::write_xlsx(analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI
-                     , "analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI.xlsx", as_table=TRUE)
+openxlsx2::write_xlsx(ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI
+                     , "ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI.xlsx", as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 
 
 
@@ -297,10 +297,10 @@ openxlsx2::write_xlsx(analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.
                                                          
                                                          
 
-## @ analyticDF2797.Outcome2PersonTime7 ====  
+## @ ADS2797.Outcome2PersonTime7 ====  
 Interval = 7
-analyticDF2797.Outcome2PersonTime7 =
-    analyticDF2797 %>% 
+ADS2797.Outcome2PersonTime7 =
+    ADS2797 %>% 
     mutate(PeriodSeq = SecondaryOutcomeP1456fhkl.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%  
     mutate(
         Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
@@ -310,8 +310,8 @@ analyticDF2797.Outcome2PersonTime7 =
         , k = PeriodSeq - 1  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks
         , Dk_plus1 = event  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks 
     ) 
-analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----
-# > analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----  
+ADS2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----
+# > ADS2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----  
 # # A tibble: 93,336 x 10
 #      ENROLID SecondaryOutcomeP1456fhkl.time SecondaryOutcomeP1456fhkl PeriodSeq Period   time timesq event     k Dk_plus1
 #        <dbl>                          <int> <lgl>                         <int> <fct>   <dbl>  <dbl> <lgl> <dbl> <lgl>   
@@ -329,27 +329,27 @@ analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl
 
 
 ## @ Check the counts/proportions of each outcome by exposure -----  
-analyticDF2797 %>% select(Exposure, matches("Outcome"), -matches("time")) |> summary() #----
-analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(sum)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
-analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(mean)) %>% column_to_rownames("Exposure") %>% t |> addmargins() %>% round(2) #----
+ADS2797 %>% select(Exposure, matches("Outcome"), -matches("time")) |> summary() #----
+ADS2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(sum)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
+ADS2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(mean)) %>% column_to_rownames("Exposure") %>% t |> addmargins() %>% round(2) #----
   
   
 # __________|------  
-# @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates ====  
-data = analyticDF2797.Outcome2PersonTime7 %>% mutate(ksq = k*k) %>% select(
+# @@ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates ====  
+data = ADS2797.Outcome2PersonTime7 %>% mutate(ksq = k*k) %>% select(
     Dk_plus1, Exposure, k, ksq
     , Age_at_lmp, `year(lmp)`
     , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset
 )
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
 
   
   
 # __________|------  
-# @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====  
+# @@ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====  
 .t0 = Sys.time()
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes =
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes =
     c("PrimaryOutcome123456", "SecondaryOutcomeP1456fhkl", "PrimaryOutcome1", 
       "PrimaryOutcome2", "PrimaryOutcome3", "PrimaryOutcome4", "PrimaryOutcome5", 
       "PrimaryOutcome6", "SecondaryOutcome1", "SecondaryOutcome4", 
@@ -359,15 +359,15 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
       "SecondaryOutcome21") %>% set_names(.) %>% 
     map(function(i) {
         warning(i)
-        data = analyticDF2797.Outcome2PersonTime7 %>% 
+        data = ADS2797.Outcome2PersonTime7 %>% 
             mutate( Dk_plus1 = eval(parse(text = paste0("(", i, " == 1) & (", i, ".time <= PeriodSeq * Interval)") )) ) %>% 
             mutate(ksq = k*k) %>% select(
                 Dk_plus1, Exposure, k, ksq
                 , Age_at_lmp, `year(lmp)`
                 , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
             )
-        analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
-        analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates
+        ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
+        ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates
     })
 Sys.time() - .t0
 warnings()
@@ -392,7 +392,7 @@ warnings()
 # 14: glm.fit: fitted probabilities numerically 0 or 1 occurred
 
 
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes %>% 
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes %>% 
     map(function(glmObject) {
         out = glmObject %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble()
         out = out %>% mutate(
@@ -413,10 +413,10 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
 
 
 
-## @ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI =====  
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI = list()
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI$list_SecondaryOutcomes.ORCI = 
-    analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes %>% 
+## @ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI =====  
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI = list()
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI$list_SecondaryOutcomes.ORCI = 
+    ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes %>% 
     map(function(glmObject) {
         out = glmObject %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble()
         out = out %>% mutate(
@@ -428,8 +428,8 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
         out %>% dplyr::filter(rowname %in% c("Exposuremetformin_after_insulin"))
     }) %>% bind_rows(.id = ".id")
 
-analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI$nOutcome_byExposure =
-    analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
+ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI$nOutcome_byExposure =
+    ADS2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
     {bind_cols(
         transmute(., Exposure = Exposure, `n()` = paste0(`n()`, " (100%)"))
         ,
@@ -441,8 +441,8 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
   
 # __________|------  
 # @@ END-----  
-openxlsx2::write_xlsx(analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI
-                     , "analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI.xlsx", as_table=TRUE)
+openxlsx2::write_xlsx(ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI
+                     , "ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI.xlsx", as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 
 
 

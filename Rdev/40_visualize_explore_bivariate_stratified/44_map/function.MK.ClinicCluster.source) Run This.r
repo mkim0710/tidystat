@@ -8,7 +8,7 @@ vector_of_Min.SC = c(0.4, 0.5, 0.6, 0.7, 0.8)
 vector_of_Max.Distance = c(20, 30, 60, 120)
 vector_of_Min.Pop = c(1000)
 
-filename.function.source = "function.MK.ClinicCluster.v6clean.r"
+FileName.function.source = "function.MK.ClinicCluster.v6clean.r"
 software.version = "v6"
 area.level = "SouthKorea"
 
@@ -53,7 +53,7 @@ ODMatrix.marginDF0 =
 
 
 
-source(filename.function.source)
+source(FileName.function.source)
 
 ## @ function.MK.output.nest_sigungu.SouthKorea$Min.SC$Max.Distance$Min.Pop$SGG_CD from input ................................................................................  
 .t0 = Sys.time(); t0
@@ -261,7 +261,7 @@ function.MK.output.nest_sigungu.SouthKorea.metadata =
     }) %>% bind_rows(.id = "Min.SC")
 dir.create(path.output, showWarnings = F)
 saveRDS(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.rds"))
-openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE)
+openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 
 
 

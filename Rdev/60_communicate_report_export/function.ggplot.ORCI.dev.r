@@ -33,9 +33,9 @@ ggplot(coef, aes(term, estimate))+
 
 
 
-## @ AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI$full_join = ====  
-AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI$full_join = 
-    AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI %>% map(function(input_object_name_of_map_function_to_investigate) {
+## @ ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI$full_join = ====  
+ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI$full_join = 
+    ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI %>% map(function(input_object_name_of_map_function_to_investigate) {
         # Codes to insert inside in the beginning annonymous function for map
         parent.x = get(".x", envir = parent.frame())
         i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, input_object_name_of_map_function_to_investigate) } ))
@@ -53,8 +53,8 @@ AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI$full_join =
         names(out)[2] = names(parent.x)[i]
         out
     }) %>% reduce(full_join)
-AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI |> str() #-----
-# > AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI |> str() #-----  
+ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI |> str() #-----
+# > ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI |> str() #-----  
 # List of 6
 #  $ glm_LC_Stage234_1var:'data.frame':	6 obs. of  14 variables:
 #   ..$ rowname      : chr [1:6] "(Intercept)" "PM25.tn1m.floor_month.cut[16,36)" "PM25.tn1m.floor_month.cut[36,76)" "PM25.tn1m_tn12m.mean.quartile[22.1,23.7)" ...
@@ -148,7 +148,7 @@ for (
     i in c("glm_LC_Stage234_1var", "glm_LC_Stage234_2var", "glm_LC_Stage234_3var", "glm_LC_Stage234_4var", "glm_LC_Stage234_5var", "glm_LC_Stage234_7var")
 ) {
     
-    g = AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI[[i]] %>% 
+    g = ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI[[i]] %>% 
         dplyr::filter(grepl("PM25.tn1m_tn12m.mean.quartile", rowname)) %>% 
         add_row(rowname = " Reference", `exp(Estimate)` = 1, .before = 1) %>% 
         mutate(rowname = paste(c("1st", "2nd", "3rd", "4th"), "quartile")) %>% 
@@ -159,8 +159,8 @@ for (
     g+theme_bw()+theme(legend.position="bottom")
     g+labs(x = "PM25.tn1m_tn12m.mean.quartile")
     
-    filename = paste0("AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI", "$", i, "$", "PM25.tn1m_tn12m.mean.quartile", ".ggplot")
-    ggsave(paste0(filename, ".pdf"), width=8, height = 6)
+    FileName = paste0("ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI", "$", i, "$", "PM25.tn1m_tn12m.mean.quartile", ".ggplot")
+    ggsave(paste0(FileName, ".pdf"), width=8, height = 6)
 }
     
 
@@ -172,11 +172,10 @@ for (
 
 
 getwd()
-.path4write = env1$path$.path4write
-.objectname = "AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI"
+.path4write = env1$path$path4write
+.objectname = "ADS200621.nonsmoker.glm_LC_Stage234_list.ORCI"
 # write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress="gz", compression=9 )
-openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE)
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
+.path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
 
 
 

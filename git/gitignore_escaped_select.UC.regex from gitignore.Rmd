@@ -24,7 +24,7 @@ output: html_notebook
 
   
 ```{r setup, echo=FALSE, results="hide"}
-# ```{r setup, eval=TRUE, include=FALSE}
+## Cf) {r setup, eval=TRUE, include=FALSE}
 if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.UTF-8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
@@ -45,7 +45,7 @@ knitr::opts_chunk$set(
 knitr::opts_knit$set(global.par = TRUE)
 
 
-# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+## Cf) {r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
@@ -56,12 +56,9 @@ if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubus
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
-# ```
+env1$info$options.width = getOption("width"); cat('\tgetOption("width") == ', env1$info$options.width, "  \n", sep="")
 #   
-# <font size="3">\% env1</font>  
-#   
-# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+## Cf) {r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 env1$info$info_software_versions = env1$env.internal.attach$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
 # str(env1$info$info_software_versions)
@@ -85,14 +82,14 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
   
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 f_vec.extract_non_alphanumeric_list <- function(input_vec) {
-  f_str.extract_non_alphanumeric_vec <- function(input_string) {
+  f_chr.extract_non_alphanumeric_vec <- function(input_string) {
     positions <- gregexpr("[^[:alnum:]]", input_string)  # Match any non-alphanumeric character
     non_alnum_chars <- regmatches(input_string, positions)
     unlist(non_alnum_chars)  # Unlist to get a vector of non-alphanumeric characters
   }
   
-  # Use map to apply f_str.extract_non_alphanumeric_vec to each element and maintain list structure
-  result_list <- map(input_vec, f_str.extract_non_alphanumeric_vec)
+  # Use map to apply f_chr.extract_non_alphanumeric_vec to each element and maintain list structure
+  result_list <- map(input_vec, f_chr.extract_non_alphanumeric_vec)
   
   # Set the names of the list elements to match the input vector
   names(result_list) <- input_vec
@@ -118,7 +115,7 @@ gitignore = read_lines(".gitignore", skip_empty_rows = T)
 gitignore |> dput()
 c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip", 
 "*.7z", "*.r.gz", "*.r.xz", "*.rmd.gz", "*.rmd.xz", "*.Rproj", 
-".gitignore", ".git", ".github", "MH)*.r", "*.lnk", "*alias", 
+".gitignore", ".git", ".github", "MH)*.r", "*.lnk", "*ALIAS", 
 "*.ppt", "*.pptx", "*.xls", "*.xlsx", "*.doc", "*.docx", "*- void*.*", 
 "*-void*.*", "*- info.*", "*-info.*", "*-dev*.*", "*debug*.*", 
 "-tmp", "*- tmp*.*", "*-tmp*.*", "*- old.*", "*-old.*", "*-log*.*", 
@@ -146,7 +143,7 @@ gitignore_escaped |> dput()
 c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata", 
 ".*\\.zip", ".*\\.7z", ".*\\.r\\.gz", ".*\\.r\\.xz", ".*\\.rmd\\.gz", 
 ".*\\.rmd\\.xz", ".*\\.Rproj", "\\.gitignore", "\\.git", "\\.github", 
-"MH\\).*\\.r", ".*\\.lnk", ".*alias", ".*\\.ppt", ".*\\.pptx", 
+"MH\\).*\\.r", ".*\\.lnk", ".*ALIAS", ".*\\.ppt", ".*\\.pptx", 
 ".*\\.xls", ".*\\.xlsx", ".*\\.doc", ".*\\.docx", ".*\\- void.*\\..*", 
 ".*\\-void.*\\..*", ".*\\- info\\..*", ".*\\-info\\..*", ".*\\-dev.*\\..*", 
 ".*debug.*\\..*", "\\-tmp", ".*\\- tmp.*\\..*", ".*\\-tmp.*\\..*", 
@@ -165,7 +162,7 @@ gitignore_escaped_select |> dput() #----
 c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata", 
 ".*\\.zip", ".*\\.7z", ".*\\.r\\.gz", ".*\\.r\\.xz", ".*\\.rmd\\.gz", 
 ".*\\.rmd\\.xz", ".*\\.Rproj", "\\.gitignore", "\\.git", "\\.github", 
-"MH\\).*\\.r", ".*\\.lnk", ".*alias", ".*\\- void.*\\..*", ".*\\-void.*\\..*", 
+"MH\\).*\\.r", ".*\\.lnk", ".*ALIAS", ".*\\- void.*\\..*", ".*\\-void.*\\..*", 
 ".*\\- info\\..*", ".*\\-info\\..*", ".*\\-dev.*\\..*", ".*debug.*\\..*", 
 "\\-tmp", ".*\\- tmp.*\\..*", ".*\\-tmp.*\\..*", ".*\\- old\\..*", 
 ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf")

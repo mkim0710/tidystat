@@ -2,10 +2,10 @@
 
 
 
-## @ analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates ====  
+## @ ADS.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates ====  
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-# data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Exposure = ifelse(Intervention, "1 InsulinMetformin", "0 InsulinOnly") %>% as.factor) %>% mutate_if(is.logical, as.numeric) %>% 
-data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Metformin = Intervention) %>% mutate_if(is.logical, as.numeric) %>% 
+# data = ADS.TargetTrial2v40.2.206vs373 %>% mutate(Exposure = ifelse(Intervention, "1 InsulinMetformin", "0 InsulinOnly") %>% as.factor) %>% mutate_if(is.logical, as.numeric) %>% 
+data = ADS.TargetTrial2v40.2.206vs373 %>% mutate(Metformin = Intervention) %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
            # , Time2Censor = PrimaryOutcome123456.time #, Censor = PrimaryOutcome123456
     ) %>% 
@@ -44,12 +44,12 @@ data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Metformin = Intervention
 data %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
 data |> names() |> deparse() |> cat("  \n", sep="") #----
 data |> names() |> paste(collapse=", ") #----
-analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates = 
+ADS.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates = 
     coxph(formula = Surv(time=Time2Event,event=Event) ~ . , data = data, method = "breslow")
-analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() |> print(n=99) #----
-analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph #----
-analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph %>% plot(var = c("Metformin"))
-analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Metformin"), font.main = 12, caption = "")}
+ADS.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() |> print(n=99) #----
+ADS.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph #----
+ADS.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph %>% plot(var = c("Metformin"))
+ADS.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Metformin"), font.main = 12, caption = "")}
 
   
   

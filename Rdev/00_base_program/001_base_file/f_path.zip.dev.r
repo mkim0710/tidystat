@@ -4,8 +4,8 @@
 list.files(recursive = TRUE) |> paste0(collapse = '",\n  "') %>% {cat('c("',.,'")', "  \n", sep="")}
 
 
-rstudioapi::getSourceEditorContext()$path |> dirname() |> normalizePath(winslash="/")
-# > rstudioapi::getSourceEditorContext()$path |> dirname() |> normalizePath(winslash="/")
+rstudioapi::getSourceEditorContext()$path |> dirname() |> normalizePath(winslash="/",mustWork=NA)
+# > rstudioapi::getSourceEditorContext()$path |> dirname() |> normalizePath(winslash="/",mustWork=NA)
 # [1] "/cloud/project"
 
 rstudioapi::getSourceEditorContext()$path|>dirname()|>basename()

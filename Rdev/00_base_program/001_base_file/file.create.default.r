@@ -15,10 +15,10 @@
 
 
 
-# file.edit(file.path(.path4APPDATA_RStudio, filename))
+# file.edit(file.path(.path4APPDATA_RStudio, FileName))
 if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 
 if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
-filename.ext = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
-filename.ext = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
+FileNameExt = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))
+FileNameExt = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))
 
