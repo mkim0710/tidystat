@@ -2615,7 +2615,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_objectname.read_rds_or_xz ====  
-env1$f$f_objectname.read_rds_or_xz = function(
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_objectname.read_rds_or_xz"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         .objectname, 
         .path4read = env1$path$path4read,
         vec.folder = paste0(.path4read,c("", paste0("/",.objectname))),
