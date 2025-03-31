@@ -1196,6 +1196,11 @@ env1$path$git_path = env1$env.internal.attach$f_path.is_git_tracked()
 # https://chatgpt.com/c/6719a3d0-9a2c-800e-8651-2ae6901ae573
 # https://gemini.google.com/app/c1606939ea272140
 env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIfAlreadyAdded = TRUE) {
+     stopifnot(
+        missing(.path_file), is.character(.path_file), length(.path_file) == 1,
+        is.logical(EXECUTE), length(EXECUTE) == 1,
+        is.logical(SkipIfAlreadyAdded), length(SkipIfAlreadyAdded) == 1
+    )
     git_lfs_available = try(system2("git", args = "lfs version", stdout = FALSE, stderr = FALSE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
     
     # if(git_lfs_available) {
