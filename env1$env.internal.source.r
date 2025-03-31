@@ -2633,7 +2633,11 @@ env1$f$f_objectname.read_rds_or_xz = function(
     assign(.objectname, read_rds(.objectpath), envir = .GlobalEnv)
     cat(" length(",.objectname,") == ",deparse(length(get(.objectname))),"  \n", sep="")
     cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
+    invisible(get(.objectname, envir = .GlobalEnv))
 }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) read_rds_or_xz  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "read_rds_or_xz")
 
 
 #_________________________________________________________________________________|----  
