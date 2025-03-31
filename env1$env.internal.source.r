@@ -2611,6 +2611,33 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ f_file.read ----  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_objectname.read_rds_or_xz ====  
+env1$f$f_objectname.read_rds_or_xz = function(
+        .objectname, 
+        .path4read = env1$path$path4read,
+        vec.folder = paste0(.path4read,c("", paste0("/",.objectname))),
+        vec.extension = paste0(".rds",c("", ".xz")),
+        VERBOSE = isTRUE(getOption("verbose")),
+        DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+    .objectpath = outer(
+        vec.folder, 
+        vec.extension, 
+        function(.objectfolder, .objectextension) {paste0(.objectfolder,"/",.objectname,.objectextension)}
+    ) |> keep(file.exists) |> first()
+    if (VERBOSE) {
+        cat("  .objectpath == ",deparse(.objectpath),"  \n", sep="")
+    }
+    assign(.objectname, read_rds(.objectpath), envir = .GlobalEnv)
+    cat(" length(",.objectname,") == ",deparse(length(get(.objectname))),"  \n", sep="")
+    cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
+}
+
+
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.save ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
