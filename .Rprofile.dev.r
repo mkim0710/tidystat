@@ -153,7 +153,7 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
     ### env1\$env.internal ----  
     # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/env1%24env.internal.source.r"  
     if(!"env.internal" %in% names(.GlobalEnv$env1)) {
-        .FileName.source.r = "env1$env.internal" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); if(!.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.FileName.source.r]] = list(env1$path$source_base, .RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)}; message('> source("',.GlobalEnv$env1$source[[.FileName.source.r]],'")'); source(.GlobalEnv$env1$source[[.FileName.source.r]])  }  
+        .FileName.source.r = "env1$env.internal" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); if(!.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  .GlobalEnv$env1$source[[.FileName.source.r]] = list(env1$path$source_base, .RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; message('> source("',.GlobalEnv$env1$source[[.FileName.source.r]],'")'); source(.GlobalEnv$env1$source[[.FileName.source.r]])  }  
     }  
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     # ###### \% env1\$env.internal\$f_path0.list_path_hierarchy() ----  
