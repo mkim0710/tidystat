@@ -272,7 +272,7 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 #### \% f_df.t.tribble_construct -----  
 .FileName.source.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #### \% f_DSN.Search.read.checkEntity -----  
-.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
