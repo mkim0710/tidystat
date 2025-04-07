@@ -3033,7 +3033,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = if(!is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)} else NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = if(!is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)} else NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
     # options(DEVMODE = TRUE)
     # options(DEVMODE = FALSE)
     # options(DEBUGMODE = TRUE)
@@ -3045,7 +3045,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_Fil
     #  $ .RelativeSubPath                  : NULL
     #  $ .FileName.source.r        : NULL
     #  $ RELOAD_FUNCTION    : logi TRUE
-    # if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)}
+    # if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
     if(is.null(.FileName.source.r)) .FileName.source.r = basename(.RelativeSubPath_FileName.source.r)
     if(RELOAD_FUNCTION || !.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  
         RELOAD_FUNCTION0 = getOption("RELOAD_FUNCTION"); options(RELOAD_FUNCTION = TRUE)  # Temporarily set options(RELOAD_FUNCTION = TRUE). -> Caution: Even if getOption("RELOAD_FUNCTION") was NULL or FALSE, options(RELOAD_FUNCTION = TRUE) should be passed to the functions inside source(). 
