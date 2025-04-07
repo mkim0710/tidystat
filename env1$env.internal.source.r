@@ -5,7 +5,7 @@
 # @@ f_file, f_URL, f_path                                                  #L1006
 # @@ f_RegEx                                                                #L2928
 # @@ source()                                                               #L2990
-# \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
@@ -103,7 +103,7 @@
 ## ::OPTION:: f_sourcePath.execute.force_reload                             #L3052
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       #L3094
 ## @ .FileName.source.r = "CodeChunks" |> paste0("-source.R")               #L3099
-# \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
@@ -112,7 +112,7 @@
 # @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
 # @@ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
 # @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
-# \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
@@ -210,7 +210,7 @@
 ## ::OPTION:: f_sourcePath.execute.force_reload                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3052
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3094
 ## @ .FileName.source.r = "CodeChunks" |> paste0("-source.R")               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3099
-# \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .FileName.source.r = "env1$env.internal" |> paste0(".source.r")  
 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.FileName.source.r,'"')) }  
@@ -1038,8 +1038,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/")
     # arguments.list.unlist %>% {.[.!=""]} |> paste0(collapse = collapse)
     # arguments.list.unlist %>% {.[nzchar(.)]} |> paste0(collapse = collapse)
 
-    # Call here::here() with the non-empty parts
-    do.call(here::here, c(as.list(arguments.list.unlist[nzchar(arguments.list.unlist)]), fsep = collapse))
+    # Call file.path() with the non-empty parts
+    do.call(file.path, c(as.list(arguments.list.unlist[nzchar(arguments.list.unlist)]), fsep = collapse))
     
     # *** 1liner *** list(...) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
 }
@@ -1050,8 +1050,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/")
 #### (ALIAS) paste0_collapse.path_file.if_not_empty  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "paste0_collapse.path_file.if_not_empty")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) here::here.paste0_collapse_if_not_empty  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "here::here.paste0_collapse_if_not_empty")
+#### (ALIAS) file.path.paste0_collapse_if_not_empty  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.path.paste0_collapse_if_not_empty")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -1347,7 +1347,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         all.files = FALSE, full.names = TRUE, recursive = ifelse(is.null(pattern), FALSE, TRUE),
         ignore.case = TRUE, include.dirs = TRUE, no.. = TRUE,
         arrange_by = c("mtime"), 
-        output_FileName.xlsx = here::here.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
+        output_FileName.xlsx = file.path.paste0_collapse_if_not_empty(env1$path$path1, "FolderName-documents.file.info-YYMMDD.xlsx"), overwrite = FALSE, xls.open_or_browseURL = TRUE, orphan_nb_html.remove = TRUE) {
     env1$f$f_path.file.info.xlsx(input_path = input_path, pattern = pattern, all.files = all.files, full.names = full.names, recursive = recursive, ignore.case = ignore.case, include.dirs = include.dirs, no.. = no.., arrange_by = arrange_by, output_FileName.xlsx = output_FileName.xlsx, overwrite = overwrite, xls.open_or_browseURL = xls.open_or_browseURL, orphan_nb_html.remove = orphan_nb_html.remove)
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -1445,7 +1445,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     }
     if(VERBOSE) FileNames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
-    out = FileNames %>% {file.info(here::here(.path4read,.))} %>%
+    out = FileNames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("FileName") %>% select(FileName, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
                KB = format(size/2^10, digits = 3, big.mark=","), 
@@ -1690,13 +1690,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
 
             # Create BACKUP directories and move files
             for (i.file in vec_path_file.nb.html.orphan) {
-                BACKUP_dir <- here::here(dirname(i.file), "-BACKUP")
+                BACKUP_dir <- file.path(dirname(i.file), "-BACKUP")
 
                 if (!dir.exists(BACKUP_dir)) {
                     dir.create(BACKUP_dir)
                 }
 
-                file.rename(i.file, here::here(BACKUP_dir, basename(i.file)))
+                file.rename(i.file, file.path(BACKUP_dir, basename(i.file)))
             }
         } else {
             message("Set execute = TRUE to move the orphan files to a '-BACKUP' folder.")
@@ -1746,7 +1746,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     if(VERBOSE) "FileNameExt2" %>% ECHO.dput_get_ObjectName()
     
     # Construct the new path with the updated FileName
-    path_FileNameExt2 = here::here(path, FileNameExt2)
+    path_FileNameExt2 = file.path(path, FileNameExt2)
     
     return(path_FileNameExt2)
 }
@@ -2207,7 +2207,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 .tmp$objectname = "f_file.edit_windows_vscode.or_browseURL"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {
-        .path4editor = c( here::here(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""') |> shell(wait=FALSE)
+        .path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""') |> shell(wait=FALSE)
     } else {warning('Sys.info()["sysname"] != "Windows"'); browseURL(.file2edit)}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -2334,9 +2334,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
         ...
 ) {
     potentialPaths <- c(
-        here::here(Sys.getenv("LOCALAPPDATA"), "SumatraPDF", "SumatraPDF.exe"),
-        here::here(Sys.getenv("APPDATA"), "SumatraPDF", "SumatraPDF.exe"),
-        here::here(sub("rstudio.exe$", "", Sys.getenv("RSTUDIO_DESKTOP_EXE")), "resources/app/bin/sumatra/SumatraPDF.exe")
+        file.path(Sys.getenv("LOCALAPPDATA"), "SumatraPDF", "SumatraPDF.exe"),
+        file.path(Sys.getenv("APPDATA"), "SumatraPDF", "SumatraPDF.exe"),
+        file.path(sub("rstudio.exe$", "", Sys.getenv("RSTUDIO_DESKTOP_EXE")), "resources/app/bin/sumatra/SumatraPDF.exe")
     )
     # If path.SumatraPDF.exe is not provided, find the first existing path from the list
     if (is.null(path.SumatraPDF.exe)) { path.SumatraPDF.exe <- potentialPaths[which(file.exists(potentialPaths))[1]] }
@@ -2422,7 +2422,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_FileNameExt.createBACKUP ====  
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_FileNameExt.createBACKUP"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(BACKUP_from_path_FileNameExt, BACKUP_from_ext = NA, .BACKUP_to_path = here::here(env1$path$path0, "-BACKUP"), timeFormat = "%y%m%dT%H%M", overwrite=TRUE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(BACKUP_from_path_FileNameExt, BACKUP_from_ext = NA, .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP"), timeFormat = "%y%m%dT%H%M", overwrite=TRUE) {
     # Wrap the main BACKUP logic in a tryCatch for error handling
     tryCatch({
         # Determine the FileName and extension if not provided
@@ -2434,7 +2434,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(BACKUP_from_path_Fil
         }
         
         # Construct the destination BACKUP path with timestamp
-        .BACKUP_to_path_FileNameExt = here::here( .BACKUP_to_path, paste0(BACKUP_from_path_FileName,"-",format(Sys.time(),timeFormat),".",BACKUP_from_ext) )
+        .BACKUP_to_path_FileNameExt = file.path( .BACKUP_to_path, paste0(BACKUP_from_path_FileName,"-",format(Sys.time(),timeFormat),".",BACKUP_from_ext) )
         
         # Create the BACKUP directory if it doesn't exist
         if(!dir.exists(.BACKUP_to_path)) dir.create(.BACKUP_to_path, recursive = TRUE)
@@ -2487,7 +2487,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = getwd(), chec
     # Traverse up the directory tree if check_parents is TRUE
     while (TRUE) {
         # Check if the .git directory exists in the current path
-        git_dir <- here::here(path, ".git")
+        git_dir <- file.path(path, ".git")
         if (dir.exists(git_dir)) {
             return(git_dir)
         }
@@ -2637,11 +2637,30 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
     invisible(get(.objectname, envir = .GlobalEnv))
 }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_FileNameExt.read_rds_or_xz ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f_FileNameExt.read_rds_or_xz"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+        .FileNameExt, 
+        .objectname = .FileNameExt |> str_remove("\\.xz$") |> str_remove("\\.rds$"),
+        .path4read = env1$path$path4read,
+        vec.folder = paste0(.path4read,c("", paste0("/",.objectname))),
+        vec.extension = paste0(".rds",c("", ".xz")),
+        VERBOSE = isTRUE(getOption("verbose")),
+        DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
+    env1$f$f_objectname.read_rds_or_xz(
+        .objectname = .objectname, 
+        .path4read = .path4read,
+        vec.folder = vec.folder,
+        vec.extension = vec.extension,
+        VERBOSE = VERBOSE,
+        DEBUGMODE = DEBUGMODE
+    )
+}
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) read_rds_or_xz  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "read_rds_or_xz")
-
-
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.save ----  
@@ -2886,22 +2905,22 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
-        if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+        if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
     }
     
     # Create the templates directory if it doesn't exist
-    if(!dir.exists(here::here(.path4APPDATA_RStudio, "templates"))) dir.create(here::here(.path4APPDATA_RStudio, "templates"))
+    if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
     
     # # \% Edit the templates of RStudio (default.R, notebook.Rmd) ~~~~~~~~~~~~
-    # "default.R" %>% here::here(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-    # "notebook.Rmd" %>% here::here(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
     
     # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
     for (.FileNameExt in c("default.R", "templates-00env1.minimum.Rmd")) {
         if (.FileNameExt == "templates-00env1.minimum.Rmd") {
-            .file.copy.to = here::here(.path4APPDATA_RStudio, "templates", "notebook.Rmd")
+            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd")
         } else {
-            .file.copy.to = here::here(.path4APPDATA_RStudio, "templates", .FileNameExt)
+            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .FileNameExt)
         }
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.FileNameExt)
         UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
@@ -2921,9 +2940,9 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     for (.FileNameExt in c(".gitignore", ".Rprofile")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        # for (.file.copy.to in here::here(env1$path$path1,.FileNameExt)) {
-        for (.file.copy.to in c(here::here(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
-            if(file.exists(.file.copy.to) || .file.copy.to == here::here(env1$path$path1,.FileNameExt)) {
+        # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
+        for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), file.path("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
                 UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
             }
         }
@@ -2932,7 +2951,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
     for (.FileNameExt in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        .file.copy.to = here::here(env1$path$path1,.FileNameExt)
+        .file.copy.to = file.path(env1$path$path1,.FileNameExt)
         UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     }
     
@@ -3110,7 +3129,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "source.force_reload")
 ## Example Usage: 
 # options(DEVMODE = TRUE)
-# if(isTRUE(getOption("DEVMODE"))) source.force_reload(here::here.paste0_collapse_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
+# if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_collapse_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## @ .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
@@ -3151,14 +3170,14 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 # @@ END -----  
-# source(here::here("D:/OneDrive/[][Rproject]/github_tidystat", "env1$env.internal.source.r"))
-# # source(here::here("https://raw.githubusercontent.com/mkim0710/tidystat/master", "env1$env.internal.source.r"))
+# source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env1$env.internal.source.r"))
+# # source(file.path("https://raw.githubusercontent.com/mkim0710/tidystat/master", "env1$env.internal.source.r"))
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) ) ----  
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) ) ----  
 
 # .tmp$objectname = "get_system_info"
-# #  source(here::here(env1$path$source_base,"",paste0(.tmp$objectname,".source.r")))
+# #  source(file.path(env1$path$source_base,"",paste0(.tmp$objectname,".source.r")))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
