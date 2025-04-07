@@ -192,7 +192,7 @@ options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
 # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 .FileName.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
 ### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
-env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ```
   
   
@@ -249,7 +249,7 @@ options(width=120)
 ### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
 .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
 .FileName.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 
 for(i in 1:7) {
     DS.DNR.lbl.fct =
