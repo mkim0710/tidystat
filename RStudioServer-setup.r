@@ -231,10 +231,10 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 ### @ rstudio-prefs ----  
 #|  @ rstudio-prefs  
 
-# file.edit(here::here(.path4APPDATA_RStudio, FileName))
-if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+# file.edit(file.path(.path4APPDATA_RStudio, FileName))
+if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 
-here::here(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -289,9 +289,9 @@ here::here(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.att
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ### @ templates ----  
 # #|  @ templates  
-# # if(!dir.exists(here::here(.path4APPDATA_RStudio, "templates"))) dir.create(here::here(.path4APPDATA_RStudio, "templates"))
-# # FileNameExt = "default.R"; if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))
-# # FileNameExt = "notebook.Rmd"; if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))
+# # if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
+# # FileNameExt = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))
+# # FileNameExt = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))
 
 
 

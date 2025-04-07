@@ -11,16 +11,16 @@
 # https://stackoverflow.com/questions/50750866/rstudio-global-settings-options-export-import
 # https://support.posit.co/hc/en-us/articles/200534577-Resetting-RStudio-Desktop-s-State
 # https://github.com/r-lib/rappdirs/blob/main/R/utils.R
-# file.edit(here::here(.path4APPDATA_RStudio, FileName))
+# file.edit(file.path(.path4APPDATA_RStudio, FileName))
 if (.Platform$OS.type == "unix") {
     .path4APPDATA_RStudio = "~/.config/rstudio"
 } else if (Sys.info()["sysname"] == "Windows") {
-    .path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio")
+    .path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")
 } 
-file.edit(here::here(.path4APPDATA_RStudio, "rstudio-prefs.json"))
+file.edit(file.path(.path4APPDATA_RStudio, "rstudio-prefs.json"))
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # Specify the path to the RStudio preferences file
-rstudio_prefs_json_path <- here::here(.path4APPDATA_RStudio, "rstudio-prefs.json")
+rstudio_prefs_json_path <- file.path(.path4APPDATA_RStudio, "rstudio-prefs.json")
 # Specify the path for the BACKUP file
 BACKUP_file_path <- paste0(gsub(".json$","",rstudio_prefs_json_path), "-BACKUP", format(Sys.Date(), "%Y%m%d"), ".json")
 # Copy the original file to the BACKUP location
@@ -61,7 +61,7 @@ if (tolower(overwrite) == "yes") {
 } else {
   cat("Operation aborted. The preferences file has not been overwritten.\n")
 }
-file.edit(here::here(.path4APPDATA_RStudio, "rstudio-prefs.json"))
+file.edit(file.path(.path4APPDATA_RStudio, "rstudio-prefs.json"))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

@@ -305,7 +305,7 @@ rstudio_desktop_folder <- function() {
 
   # Check for RStudio 1.4 folders
   v14_folder <- if (identical(.Platform$OS.type, "windows")) {
-    here::here(Sys.getenv("LOCALAPPDATA"), "RStudio")
+    file.path(Sys.getenv("LOCALAPPDATA"), "RStudio")
   } else {
     path.expand("~/.local/share/rstudio")
   }
@@ -315,7 +315,7 @@ rstudio_desktop_folder <- function() {
 
   # Check for RStudio 1.3 and prior folders
   if (identical(.Platform$OS.type, "windows")) {
-    here::here(Sys.getenv("LOCALAPPDATA"), "RStudio-Desktop")
+    file.path(Sys.getenv("LOCALAPPDATA"), "RStudio-Desktop")
   } else {
     path.expand("~/.rstudio-desktop")
   }

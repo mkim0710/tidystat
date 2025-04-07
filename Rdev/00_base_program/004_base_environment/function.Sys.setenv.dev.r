@@ -212,7 +212,7 @@ cat(setme,file=here::here(R.home(),'etc/Rprofile.site'),sep="\n")
 # 
 # if(!nzchar(Sys.getenv("R_LIBS_USER")))
 #     Sys.setenv(R_LIBS_USER=
-#                here::here(Sys.getenv("R_USER"), "R",
+#                file.path(Sys.getenv("R_USER"), "R",
 #                          "win-library",
 #                          paste(R.version$major,
 #                                sub("\\..*$", "", R.version$minor),
@@ -222,7 +222,7 @@ cat(setme,file=here::here(R.home(),'etc/Rprofile.site'),sep="\n")
 
 if(!nzchar(Sys.getenv("R_LIBS_USER")))
     Sys.setenv(R_LIBS_USER=
-#                here::here(Sys.getenv("R_USER"), "R",
+#                file.path(Sys.getenv("R_USER"), "R",
                here::here("c:/R packages download", "R",
                          "win-library",
                          paste(R.version$major,

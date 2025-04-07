@@ -75,8 +75,8 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
 # Get current R version and determine user library path dynamically
 r_version <- paste0(R.version$major, ".", R.version$minor)
 user_lib <- switch(.Platform$OS.type,
-                   "windows" = here::here(Sys.getenv("USERPROFILE"), "Documents", "R", "win-library", r_version),
-                   here::here(Sys.getenv("HOME"), "R", paste0(ifelse(.Platform$OS.type == "unix", Sys.info()["machine"], "x86_64-pc-linux-gnu"), "-library"), r_version))
+                   "windows" = file.path(Sys.getenv("USERPROFILE"), "Documents", "R", "win-library", r_version),
+                   file.path(Sys.getenv("HOME"), "R", paste0(ifelse(.Platform$OS.type == "unix", Sys.info()["machine"], "x86_64-pc-linux-gnu"), "-library"), r_version))
 
 # Set library path if system library is not writable
 if (!file.access(.libPaths()[1], 2) == 0) {

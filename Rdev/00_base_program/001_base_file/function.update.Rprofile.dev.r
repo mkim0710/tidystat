@@ -67,7 +67,7 @@ if (!is.null(.path4Rprofile)) {
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 # Define the path to the .Rprofile file in the user's home directory
-r_profile_path <- here::here(Sys.getenv("HOME"), ".Rprofile")
+r_profile_path <- file.path(Sys.getenv("HOME"), ".Rprofile")
 
 # Function to update or add language setting
 update_language_setting <- function(file_path, setting) {

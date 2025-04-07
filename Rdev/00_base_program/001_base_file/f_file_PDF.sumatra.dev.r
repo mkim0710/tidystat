@@ -102,9 +102,9 @@ env1$env.internal.attach$f_file_PDF.sumatra <- function(
         ...
 ) {
     potentialPaths <- c(
-        here::here(Sys.getenv("LOCALAPPDATA"), "SumatraPDF", "SumatraPDF.exe"),
-        here::here(Sys.getenv("APPDATA"), "SumatraPDF", "SumatraPDF.exe"),
-        here::here(sub("rstudio.exe$", "", Sys.getenv("RSTUDIO_DESKTOP_EXE")), "resources/app/bin/sumatra/SumatraPDF.exe")
+        file.path(Sys.getenv("LOCALAPPDATA"), "SumatraPDF", "SumatraPDF.exe"),
+        file.path(Sys.getenv("APPDATA"), "SumatraPDF", "SumatraPDF.exe"),
+        file.path(sub("rstudio.exe$", "", Sys.getenv("RSTUDIO_DESKTOP_EXE")), "resources/app/bin/sumatra/SumatraPDF.exe")
     )
     # If path.SumatraPDF.exe is not provided, find the first existing path from the list
     if (is.null(path.SumatraPDF.exe)) { path.SumatraPDF.exe <- potentialPaths[which(file.exists(potentialPaths))[1]] }

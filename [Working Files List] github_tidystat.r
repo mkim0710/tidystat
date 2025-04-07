@@ -130,12 +130,12 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ RStudio Setup -----  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### \% file.edit(here::here(.path4APPDATA_RStudio, FileName)) ----  
-# if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+### \% file.edit(file.path(.path4APPDATA_RStudio, FileName)) ----  
+# if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### \$ rstudio-prefs.json ----  
-# here::here(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-FileNameExt = "rstudio-prefs.json"; if (Sys.info()["sysname"] == "Windows") { here::here(Sys.getenv("APPDATA"), "RStudio", FileNameExt) |> env1$env.internal.attach$f_file.edit_vscode() } else { paste0("~/.config/rstudio/",FileNameExt) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext() }
+# file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+FileNameExt = "rstudio-prefs.json"; if (Sys.info()["sysname"] == "Windows") { file.path(Sys.getenv("APPDATA"), "RStudio", FileNameExt) |> env1$env.internal.attach$f_file.edit_vscode() } else { paste0("~/.config/rstudio/",FileNameExt) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext() }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### @ sumatraPDF settings ----  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -218,7 +218,7 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 ### @ sourceTemplate.path_FileNameExt -----  
 # env1$path$sourceTemplate.path_FileNameExt = paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"); env1$path$sourceTemplate.path_FileNameExt |> source(local=FALSE, echo=TRUE, print.eval=TRUE, spaced=FALSE, verbose=FALSE, max.deparse.length=150, width.cutoff=500L, chdir=TRUE, prompt.echo="> ", continue.echo="+ ", skip.echo=Inf)
 # # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(env1$path$sourceTemplate.path_FileNameExt)) |> shell(wait=FALSE)}
-# if (Sys.info()["sysname"] == "Windows") {.path4editor = c( here::here(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); paste0('cmd /c ""',.path4editor, '" "',env1$path$sourceTemplate.path_FileNameExt, '""') |> shell(wait=FALSE)}
+# if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/",mustWork=NA); paste0('cmd /c ""',.path4editor, '" "',env1$path$sourceTemplate.path_FileNameExt, '""') |> shell(wait=FALSE)}
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
 #### @ default.R -----  

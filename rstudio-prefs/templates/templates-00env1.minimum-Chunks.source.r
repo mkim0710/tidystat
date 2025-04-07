@@ -112,8 +112,8 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
     env1$path$MyTemplate.FileNameExt = "templates-00env1.minimum.Rmd"  
     if (Sys.info()["sysname"] == "Windows") {
         if(basename(.LastSourceEditorContext.path_FileNameExt) == env1$path$MyTemplate.FileNameExt) {
-            if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(here::here(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
-            .destination_path = here::here(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
+            if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
+            .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
             .destination_path_FileNameExt = here::here(.destination_path, env1$path$RTemplate.FileNameExt)
             .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path) 
             if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
@@ -130,7 +130,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
             }}
             if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt))
         }
-        # if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))
+        # if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))
     } 
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
