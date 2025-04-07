@@ -3138,7 +3138,7 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/CodeChunks.source.r")
-.FileName.source.r = "CodeChunks" |> paste0("-source.r"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+.FileName.source.r = "CodeChunks" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
