@@ -1640,8 +1640,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ "f_DSname.Search.read.checkEntity" |> paste0(".source.r") |> source() ----  
-.RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); 
-.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0(".source.r"); 
+.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
 env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
