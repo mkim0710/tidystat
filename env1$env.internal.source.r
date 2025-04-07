@@ -1025,6 +1025,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: (ALIAS) file.path.here ====  
+file.path.here = function(...) {  
+    here::here(...)  
+}
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path_file.paste0_collapse_if_not_empty ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_path_file.paste0_collapse_if_not_empty"
@@ -2642,7 +2648,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "f_FileNameExt.read_rds_or_xz"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        .FileNameExt, 
+        .FileNameExt = NA, 
         .objectname = .FileNameExt |> str_remove("\\.xz$") |> str_remove("\\.rds$"),
         .path4read = env1$path$path4read,
         vec.folder = paste0(.path4read,c("", paste0("/",.objectname))),
