@@ -198,8 +198,8 @@ env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditor
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+# env1$path$path4read = here::here(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = here::here(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
 env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
 env1$path$path4write = getwd()
 .path4read  = env1$path$path4read
@@ -213,7 +213,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# .FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  
 ```
   
@@ -381,7 +381,7 @@ function(dir, exts, all.files = FALSE, full.names = TRUE)
     files <- grep(patt, files, value = TRUE)
     if(full.names)
         files <- if(length(files))
-            file.path(dir, files)
+            here::here(dir, files)
         else
             character()
     files
@@ -406,12 +406,12 @@ function(dir, type, all.files = FALSE, full.names = TRUE,
 
     if(type %in% c("code", "docs")) {
         for(os in OS_subdirs) {
-            os_dir <- file.path(dir, os)
+            os_dir <- here::here(dir, os)
             if(dir.exists(os_dir)) {
                 os_files <- list_files_with_exts(os_dir, exts,
                                                  all.files = all.files,
                                                  full.names = FALSE)
-                os_files <- file.path(if(full.names) os_dir else os,
+                os_files <- here::here(if(full.names) os_dir else os,
                                       os_files)
                 files <- c(files, os_files)
             }
@@ -432,14 +432,14 @@ function(dir, type, all.files = FALSE, full.names = TRUE,
 list_code_files_in_package <-
 function(dir) {
     dir <- normalizePath(dir)
-    code_dir <- file.path(dir, "R")
+    code_dir <- here::here(dir, "R")
     code_files <- list_files_with_type(code_dir, "code")
     if(!length(code_files)) return(code_files)
     meta <- .get_package_metadata(dir)
     collate_fields <- c(paste0("Collate.", .OStype()), "Collate")
     if(any(i <- (collate_fields %in% names(meta)))) {
         collate <-
-            file.path(code_dir,
+            here::here(code_dir,
                       .read_collate_field(meta[collate_fields[i][1L]]))
         ## Note that matching code files and collate spec really only is
         ## appropriate after having run configure as part of installing,
@@ -688,8 +688,8 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
-# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# # \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 ```
   
   

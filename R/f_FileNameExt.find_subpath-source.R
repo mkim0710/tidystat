@@ -57,7 +57,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 # env1$path$.SourceName_root = .SourceName_root  
 # env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
 # env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
-# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
+# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)}
 # cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 #     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
 #     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
@@ -72,9 +72,9 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -107,7 +107,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 #         .objectname = .dependancy
-#         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
+#         source(here::here(env1$path$source_base,"",paste0(.objectname,".source.r")))
 #     }
 # }
 
@@ -133,8 +133,8 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
         cat("Searching: ", input_path, strrep(" ", max(50-nchar(input_path),0)), "\t at depth ", 0, "  \n", sep="")
     }
     
-    if (file.exists(file.path(input_path, FileNameExt))) {
-        return(file.path(input_path, FileNameExt))
+    if (file.exists(here::here(input_path, FileNameExt))) {
+        return(here::here(input_path, FileNameExt))
     } else if (BreathFirstSearch) {
         return(env1$f$f_FileNameExt.find_subpath.BreathFirstSearch(FileNameExt=FileNameExt, input_path=input_path, max_depth=max_depth, VERBOSE=VERBOSE, findMultiple=findMultiple))
     } else {
@@ -176,9 +176,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
                         cat("Searching: ", i_files_subpath, strrep(" ", max(50-nchar(i_files_subpath),0)), "\t at depth ", list_path_depth.current$depth+1, "; ", sep="")
                         cat("Queue length: ", length(list_list_path_depth)+1, "  \n", sep="")
                     }
-                    if (file.exists(file.path(i_files_subpath, FileNameExt))) {
-                        if (findMultiple == FALSE) return(file.path(i_files_subpath, FileNameExt))
-                        list_out <- c(list_out, list(file.path(i_files_subpath, FileNameExt)))
+                    if (file.exists(here::here(i_files_subpath, FileNameExt))) {
+                        if (findMultiple == FALSE) return(here::here(i_files_subpath, FileNameExt))
+                        list_out <- c(list_out, list(here::here(i_files_subpath, FileNameExt)))
                     }
                     # Enqueue subdirectories with incremented depth
                     list_list_path_depth <- c(list_list_path_depth, list(list(path = i_files_subpath, depth = list_path_depth.current$depth + 1)))

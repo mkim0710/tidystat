@@ -191,8 +191,8 @@ options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
 .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 .FileName.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
-### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
-env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 ```
   
   
@@ -211,7 +211,7 @@ options(width=120)
   
 
 # \$ assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) ) ====  
-# .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# .path4read = here::here(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # DSN = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 .path4read = paste0(env1$path$path1,"/data")
 DSN = "df_NewDMv3.CensorEND.n88.select293.NR.recode.rds" |> str_replace("\\.rds$", "")
@@ -249,7 +249,7 @@ options(width=120)
 ### # DATA) mutate() env1$f$f_df.add_BMI.5bins(varname_BMI)  ----  
 .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_factor)" |> str_replace_all("\\\\","/")  
 .FileName.source.r = "f_df.add_BMI.5bins" |> paste0(".source.r")
-env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 
 for(i in 1:7) {
     DS.DNR.lbl.fct =

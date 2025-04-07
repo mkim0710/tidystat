@@ -191,7 +191,7 @@ env1$env.internal.attach$f_function.call_function_with_altered_options = functio
 .tmp$objectname = "f_sourcePath.execute_if_not_sourced"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.RelativeSubPath_FileName.source.r = NULL, .RelativeSubPath = NULL, .FileName.source.r = NULL,  RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE"))) {
     if(is.null(.RelativeSubPath_FileName.source.r) && !is.null(.RelativeSubPath) && !is.null(.FileName.source.r)) .RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r)
-    if(RELOAD_FUNCTION || !.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.FileName.source.r]] = file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r); source(.GlobalEnv$env1$source[[.FileName.source.r]])  }
+    if(RELOAD_FUNCTION || !.FileName.source.r %in% names(.GlobalEnv$env1$source)) {  message('> source("',here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.FileName.source.r]] = here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r); source(.GlobalEnv$env1$source[[.FileName.source.r]])  }
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) source_if_not_sourced  ----  

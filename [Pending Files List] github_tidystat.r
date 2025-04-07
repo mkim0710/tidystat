@@ -26,8 +26,8 @@
 # Get current R version and determine user library path dynamically
 r_version <- paste0(R.version$major, ".", R.version$minor)
 user_lib <- switch(.Platform$OS.type,
-                   "windows" = file.path(Sys.getenv("USERPROFILE"), "Documents", "R", "win-library", r_version),
-                   file.path(Sys.getenv("HOME"), "R", paste0(ifelse(.Platform$OS.type == "unix", Sys.info()["machine"], "x86_64-pc-linux-gnu"), "-library"), r_version))
+                   "windows" = here::here(Sys.getenv("USERPROFILE"), "Documents", "R", "win-library", r_version),
+                   here::here(Sys.getenv("HOME"), "R", paste0(ifelse(.Platform$OS.type == "unix", Sys.info()["machine"], "x86_64-pc-linux-gnu"), "-library"), r_version))
 
 # Set library path if system library is not writable
 if (!file.access(.libPaths()[1], 2) == 0) {
@@ -216,7 +216,7 @@ ensure_package("tidyverse")
 ### \% trainset_cost.gradient_descent.dev-GPT.Rmd -----  
 .RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/52_model_estimation/trainset_cost.gradient_descent.dev-GPT.Rmd"
 .RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -231,7 +231,7 @@ file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env
 ### \% trainset.cv.glm.dev-GPT.Rmd -----  
 .RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glm.dev-GPT.Rmd"
 .RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -246,7 +246,7 @@ file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env
 ### \% f_DS.SMOTE.dev-GPT.Rmd -----  
 .RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DS.SMOTE.dev-GPT.Rmd"
 .RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
-file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 

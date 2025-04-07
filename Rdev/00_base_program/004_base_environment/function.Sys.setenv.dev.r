@@ -178,7 +178,7 @@ invisible(loadNamespace('httr'))
 mytz <- rgeolocate::ip_api(httr::content(httr::GET('https://api.ipify.org?format=json'))[1])[['timezone']]
 Sys.setenv(TZ=mytz)"
 
-cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
+cat(setme,file=here::here(R.home(),'etc/Rprofile.site'),sep="\n")
 
 
 
@@ -212,7 +212,7 @@ cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
 # 
 # if(!nzchar(Sys.getenv("R_LIBS_USER")))
 #     Sys.setenv(R_LIBS_USER=
-#                file.path(Sys.getenv("R_USER"), "R",
+#                here::here(Sys.getenv("R_USER"), "R",
 #                          "win-library",
 #                          paste(R.version$major,
 #                                sub("\\..*$", "", R.version$minor),
@@ -222,8 +222,8 @@ cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
 
 if(!nzchar(Sys.getenv("R_LIBS_USER")))
     Sys.setenv(R_LIBS_USER=
-#                file.path(Sys.getenv("R_USER"), "R",
-               file.path("c:/R packages download", "R",
+#                here::here(Sys.getenv("R_USER"), "R",
+               here::here("c:/R packages download", "R",
                          "win-library",
                          paste(R.version$major,
                                sub("\\..*$", "", R.version$minor),

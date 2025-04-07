@@ -130,7 +130,7 @@ local({
 ###-*- R -*-
 
 ## this will break if R is on a network share
-.Library <- file.path(chartr("\\", "/", R.home()), "library")
+.Library <- here::here(chartr("\\", "/", R.home()), "library")
 
 .Library.site <- Sys.getenv("R_LIBS_SITE")
 if (!nzchar(.Library.site)) {
@@ -155,7 +155,7 @@ local({
 local({
     popath <- Sys.getenv("R_TRANSLATIONS", "")
     if(!nzchar(popath)) {
-        paths <- file.path(.libPaths(), "translations", "DESCRIPTION")
+        paths <- here::here(.libPaths(), "translations", "DESCRIPTION")
         popath <- dirname(paths[file.exists(paths)][1])
     }
     bindtextdomain("R", popath)
@@ -174,7 +174,7 @@ if(nzchar(Sys.getenv("R_PAPERSIZE"))) {
 
 options(pager = if(length(grep("--ess", commandArgs()))) "console" else "internal",
         useFancyQuotes = (.Platform$GUI == "Rgui"),
-        pdfviewer = Sys.getenv("R_PDFVIEWER", file.path(R.home("bin"), "open.exe")))
+        pdfviewer = Sys.getenv("R_PDFVIEWER", here::here(R.home("bin"), "open.exe")))
 
 if(.Platform$GUI == "Rgui")
     Sys.setenv(GFORTRAN_STDOUT_UNIT = "-1", GFORTRAN_STDERR_UNIT = "-1")
@@ -186,7 +186,7 @@ local({
     if(nzchar(tests_startup)) source(tests_startup)
     ca_cert <- Sys.getenv("CURL_CA_BUNDLE", NA_character_)
     if(is.na(ca_cert) &&
-       file.exists(ca_path <- file.path(R.home("etc"), "curl-ca-bundle.crt")))
+       file.exists(ca_path <- here::here(R.home("etc"), "curl-ca-bundle.crt")))
         Sys.setenv(CURL_CA_BUNDLE = ca_path)
 })
 

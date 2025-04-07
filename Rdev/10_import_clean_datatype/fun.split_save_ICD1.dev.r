@@ -55,8 +55,8 @@ fun.split_save_ICD1 <- function(dataset_name = "nsc2_m20.sas7bdat",
     
     tmp.df[[varname_icd1]] = NULL
     .t0_write <- Sys.time()
-    if (is.null(write_rds_compress)) write_rds(tmp.df, file.path(.path4write, FileName))
-    else write_rds(tmp.df, file.path(.path4write, FileName), compress = write_rds_compress)
+    if (is.null(write_rds_compress)) write_rds(tmp.df, here::here(.path4write, FileName))
+    else write_rds(tmp.df, here::here(.path4write, FileName), compress = write_rds_compress)
     cat("Time elapsed for write_rds(", .objectname, "): ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     return(.objectname)
   })
@@ -101,7 +101,7 @@ fun.split_save_ICD1_v2 <- function(dataset_name = "nsc2_m20.sas7bdat",
     filtered_data[[varname_icd1]] <- NULL
 
     .t0_write <- Sys.time()
-    write_rds(filtered_data, file.path(.path4write, FileName), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
+    write_rds(filtered_data, here::here(.path4write, FileName), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
     cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
     return(.objectname)
@@ -140,7 +140,7 @@ fun.split_save_ICD1_v3 <- function(dataset_name = "nsc2_m20.sas7bdat",
     FileName <- paste0(.objectname,".rds")
 
     .t0_write <- Sys.time()
-    write_rds(filtered_data, file.path(.path4write, FileName), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
+    write_rds(filtered_data, here::here(.path4write, FileName), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
     cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
     return(.objectname)
@@ -191,7 +191,7 @@ fun.split_save_ICD1_db <- function(dataset_name = "nsc2_m20.sas7bdat",
     FileName <- paste0(.objectname,".rds")
 
     .t0_write <- Sys.time()
-    write_rds(filtered_data, file.path(.path4write, FileName), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
+    write_rds(filtered_data, here::here(.path4write, FileName), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
     cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
     return(.objectname)

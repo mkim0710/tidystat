@@ -161,7 +161,7 @@ c("build_options", "copilot_options", "pcs/debug-breakpoints.pper",
 library(jsonlite)
 
 # Define the path to the session directory
-session_dir <- file.path(".Rproj.user", "E3EEE3A9", "sources", "session-36531e49")
+session_dir <- here::here(".Rproj.user", "E3EEE3A9", "sources", "session-36531e49")
 
 # List all files in the session directory
 session_files <- list.files(session_dir, full.names = TRUE)
@@ -194,11 +194,11 @@ recover_source_file <- function(metadata_file, content_file, out_folder) {
   }
   
   # Determine the output path
-  target <- file.path(out_folder, FileName)
+  target <- here::here(out_folder, FileName)
   
   # Ensure no FileName conflicts
   if (file.exists(target)) {
-    target <- file.path(out_folder, paste0(tools::file_path_sans_ext(FileName), "-", basename(metadata_file), ".", tools::file_ext(FileName)))
+    target <- here::here(out_folder, paste0(tools::file_path_sans_ext(FileName), "-", basename(metadata_file), ".", tools::file_ext(FileName)))
   }
   
   # Write the contents to the target file

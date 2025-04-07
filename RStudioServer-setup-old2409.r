@@ -73,7 +73,7 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # "https://github.com/mkim0710/tidystat/blob/master/.Rprofile" %>% paste0("if (Sys.info()['sysname'] == 'Windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }") %>% {eval(parse(text=.))}  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
@@ -213,9 +213,9 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #|________________________________________________________________________________|#  
@@ -229,10 +229,10 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 ### @ rstudio-prefs ----  
 #|  @ rstudio-prefs  
 
-# file.edit(file.path(.path4APPDATA_RStudio, FileName))
-if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+# file.edit(here::here(.path4APPDATA_RStudio, FileName))
+if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 
-file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+here::here(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -292,9 +292,9 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ templates ----  
 #|  @ templates  
-# if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
-# FileNameExt = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))
-# FileNameExt = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", FileNameExt))
+# if(!dir.exists(here::here(.path4APPDATA_RStudio, "templates"))) dir.create(here::here(.path4APPDATA_RStudio, "templates"))
+# FileNameExt = "default.R"; if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))
+# FileNameExt = "notebook.Rmd"; if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", FileNameExt))
 
 
 
@@ -366,8 +366,8 @@ path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
 
 system("sudo chmod 600 ~/.ssh/id_ed25519")  # read & write for the owner
 system("sudo chmod 400 ~/.ssh/id_ed25519")  # read only for the owner
-path_file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path_file)) file.edit(path_file)
-path_file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path_file)) file.edit(path_file)
+path_file = here::here(env1$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path_file)) file.edit(path_file)
+path_file = here::here(env1$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path_file)) file.edit(path_file)
 
 system("git status")
 

@@ -92,8 +92,8 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 #     '# file.edit("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'"); if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt));', "  \n",
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----
-# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# # \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -112,25 +112,25 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
     env1$path$MyTemplate.FileNameExt = "templates-00env1.minimum.Rmd"  
     if (Sys.info()["sysname"] == "Windows") {
         if(basename(.LastSourceEditorContext.path_FileNameExt) == env1$path$MyTemplate.FileNameExt) {
-            if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
-            .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
-            .destination_path_FileNameExt = file.path(.destination_path, env1$path$RTemplate.FileNameExt)
-            .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path) 
+            if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(here::here(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
+            .destination_path = here::here(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
+            .destination_path_FileNameExt = here::here(.destination_path, env1$path$RTemplate.FileNameExt)
+            .BACKUP_to_path = here::here(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path) 
             if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
             
             if(file.copy(from=.LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
             # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
             
             for ( .destination_path_FileNameExt in c(
-                file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.FileNameExt)
-                , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.FileNameExt)
+                here::here(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.FileNameExt)
+                , here::here(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.FileNameExt)
             )) {if(dir.exists(dirname(.destination_path_FileNameExt)) & .LastSourceEditorContext.path_FileNameExt|>normalizePath(winslash="/",mustWork=NA) != .destination_path_FileNameExt) {
                 if(file.copy(from=.LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
                 # if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
             }}
             if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") file.edit(paste0(env1$path$path1,"/",.LastSourceEditorContext.path_FileNameExt))
         }
-        # if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))
+        # if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.FileNameExt))
     } 
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----

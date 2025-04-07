@@ -57,7 +57,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 # env1$path$.SourceName_root = .SourceName_root  
 # env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
 # env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
-# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
+# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)}
 # cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 #     "# ",env1$path$.RelativeSubPath_FileName.dev.r, "  \n",
 #     "# ",env1$path$.RelativeSubPath_FileName.dev.Rmd, "  \n",
@@ -72,9 +72,9 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -109,7 +109,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 # for (.dependancy in c("f_path.size_files")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-#         .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+#         .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 #     }
 # }
 
@@ -144,7 +144,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_FileName = FileNameExt, print2console=print2console)
     
     ## \% return.list$read.proc_time ====
-    .path_file = file.path(.path4read[1], FileNameExt)
+    .path_file = here::here(.path4read[1], FileNameExt)
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     # return.list$read.proc_time = system.time(assign(DSN, read_rds(.path_file, envir=.GlobalEnv)))
     # if(print2console) return.list$read.proc_time |> print()
@@ -261,13 +261,13 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     for (i in 1:length(.path4read)) {
         i.path4read=.path4read[i]
         if(VERBOSE) cat('i.path4read = "', i.path4read, '"  \n', sep="")
-        if(file.exists(file.path(i.path4read, FileNameExt))) {
-            message( 'Found .path_FileNameExt == ', deparse(file.path(i.path4read, FileNameExt)) )
+        if(file.exists(here::here(i.path4read, FileNameExt))) {
+            message( 'Found .path_FileNameExt == ', deparse(here::here(i.path4read, FileNameExt)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
-        } else if(file.exists(file.path(i.path4read, paste0(FileNameExt, ".xz")))) {
+        } else if(file.exists(here::here(i.path4read, paste0(FileNameExt, ".xz")))) {
             FileNameExt = paste0(FileNameExt, ".xz")
-            message( 'Found .path_FileNameExt == ', deparse(file.path(i.path4read, FileNameExt)) )
+            message( 'Found .path_FileNameExt == ', deparse(here::here(i.path4read, FileNameExt)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         }  
@@ -279,7 +279,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
         for (.dependancy in c("f_FileNameExt.find_subpath")) {
             if(!.dependancy %in% names(.GlobalEnv$env1)) {
                 if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-                .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+                .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
             }
         }
         
@@ -301,7 +301,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     }
     # if(VERBOSE) cat('FileNameExt = "', FileNameExt, '"  \n', sep="")
     
-    DS_path_FileNameExt = file.path(.path4read, FileNameExt)
+    DS_path_FileNameExt = here::here(.path4read, FileNameExt)
     
     env1$f$f_DS_path_FileNameExt.read.checkEntity(DS_path_FileNameExt, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, VERBOSE = VERBOSE)
     

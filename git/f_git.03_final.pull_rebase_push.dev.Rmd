@@ -198,8 +198,8 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+# env1$path$path4read = here::here(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = here::here(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
 env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
 env1$path$path4write = getwd()
 .path4read  = env1$path$path4read
@@ -213,7 +213,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# .FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  
 ```
   
@@ -304,24 +304,24 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # @@ update default notebook.Rmd ----  
 template.FileNameExt = "templates-00env1.minimum.Rmd"
 LastSourceEditorContext.path_FileNameExt=rstudioapi::getSourceEditorContext()$path; if(basename(LastSourceEditorContext.path_FileNameExt) == template.FileNameExt) {
-    if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
-    if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates")) 
+    if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
+    if(!dir.exists(here::here(.path4APPDATA_RStudio, "templates"))) dir.create(here::here(.path4APPDATA_RStudio, "templates")) 
     
-    .destination_path_FileNameExt = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt)); if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
+    .destination_path_FileNameExt = here::here(.path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt)); if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
     for ( .destination_path_FileNameExt in c(
-        file.path(env1$path$source_base_local, "rstudio-prefs", "templates", template.FileNameExt)
-        , file.path(env1$path$path0, "Rproject_Rmd", template.FileNameExt)
+        here::here(env1$path$source_base_local, "rstudio-prefs", "templates", template.FileNameExt)
+        , here::here(env1$path$path0, "Rproject_Rmd", template.FileNameExt)
     )) {if(LastSourceEditorContext.path_FileNameExt != .destination_path_FileNameExt) {
         destination.FileName = basename(.destination_path_FileNameExt) |> str_remove("\\.([[:alnum:]]+)$")
         destination.ext = basename(.destination_path_FileNameExt) |> str_extract("\\.([[:alnum:]]+)$")
-        BACKUP.path_FileName = file.path(env1$path$path0, "Rproject_Rmd", "-BACKUP", paste0(destination.FileName,"-",format(Sys.time(),"%y%m%dT%H%M"),destination.ext))
+        BACKUP.path_FileName = here::here(env1$path$path0, "Rproject_Rmd", "-BACKUP", paste0(destination.FileName,"-",format(Sys.time(),"%y%m%dT%H%M"),destination.ext))
         file.copy(from=.destination_path_FileNameExt, to=BACKUP.path_FileName, overwrite=TRUE); message(paste0("- BACKUP file created: ",BACKUP.path_FileName))
         if(file.copy(from=LastSourceEditorContext.path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
         if (Sys.info()["sysname"] == "Windows") {paste0("notepad.exe"," ",shQuote(.destination_path_FileNameExt)) |> shell(wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path_FileNameExt),wait=FALSE)}  
     }}
     file.edit(LastSourceEditorContext.path_FileNameExt)
 }
-# template.FileNameExt = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", template.FileNameExt))) file.create(file.path(.path4APPDATA_RStudio, "templates", template.FileNameExt)); file.edit(file.path(.path4APPDATA_RStudio, "templates", template.FileNameExt))
+# template.FileNameExt = "notebook.Rmd"; if(!file.exists(here::here(.path4APPDATA_RStudio, "templates", template.FileNameExt))) file.create(here::here(.path4APPDATA_RStudio, "templates", template.FileNameExt)); file.edit(here::here(.path4APPDATA_RStudio, "templates", template.FileNameExt))
 ```
   
   

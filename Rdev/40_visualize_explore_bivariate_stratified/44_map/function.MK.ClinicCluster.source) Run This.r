@@ -111,7 +111,7 @@ for (Min.SC in vector_of_Min.SC) {
 Sys.time() - .t0
 warnings() #----
 dir.create(path.output, showWarnings = F)
-saveRDS(function.MK.output.nest_sigungu.SouthKorea, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.rds"))
+saveRDS(function.MK.output.nest_sigungu.SouthKorea, here::here(path.output, "function.MK.output.nest_sigungu.SouthKorea.rds"))
 
 
 
@@ -130,7 +130,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows =
         })
     })
 dir.create(path.output, showWarnings = F)
-saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows.rds"))
+saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows, here::here(path.output, "function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows.rds"))
 
 
 
@@ -150,7 +150,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows =
     })
 # path.output = "output.SouthKorea"
 # dir.create(path.output, showWarnings = F)
-# saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.rds"))
+# saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows, here::here(path.output, "function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.rds"))
 
 
 
@@ -191,7 +191,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean =
         })
     })
 dir.create(path.output, showWarnings = F)
-saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean.rds"))
+saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean, here::here(path.output, "function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean.rds"))
 
 
 
@@ -209,7 +209,7 @@ for (i in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bin
                     , Cluster.tbl.bind_rows.Korean = function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean[[i]][[j]][[k]]
                     # , Population.df = Population.df0
                 )
-                , file.path(path.output, paste0("function.MK.output.nest_sigungu.SouthKorea", "$", i, "$", j, "$", k, "[CodeDF, Cluster.tbl]", ".xlsx"))
+                , here::here(path.output, paste0("function.MK.output.nest_sigungu.SouthKorea", "$", i, "$", j, "$", k, "[CodeDF, Cluster.tbl]", ".xlsx"))
                 , as_table=TRUE
             )
         }
@@ -260,8 +260,8 @@ function.MK.output.nest_sigungu.SouthKorea.metadata =
         }) %>% bind_rows(.id = "Max.Distance")
     }) %>% bind_rows(.id = "Min.SC")
 dir.create(path.output, showWarnings = F)
-saveRDS(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.rds"))
-openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
+saveRDS(function.MK.output.nest_sigungu.SouthKorea.metadata, here::here(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.rds"))
+openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, here::here(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 
 
 

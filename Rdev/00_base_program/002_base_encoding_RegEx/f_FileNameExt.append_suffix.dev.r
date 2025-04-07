@@ -44,7 +44,7 @@ f_FileNameExt.append_suffix <- function(path_FileNameExt, append_suffix, compres
     if(VERBOSE) "FileNameExt2" %>% ECHO.dput_get_ObjectName()
     
     # Construct the new path with the updated FileName
-    path_FileNameExt2 = file.path(path, FileNameExt2)
+    path_FileNameExt2 = here::here(path, FileNameExt2)
     
     return(path_FileNameExt2)
 }

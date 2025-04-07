@@ -27,7 +27,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -72,9 +72,9 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
-# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+# env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
@@ -641,7 +641,7 @@ env1$f$f_df.t.tribble_construct = function(df) {
 
 env1$f$f_path.size_files = function(.path4read = getwd(), regex4FileName = "\\.(rdata|rda|rds)$") {
     FileNames = list.files(path = .path4read) %>% {grep(regex4FileName, .,  ignore.case = T, value = T)}
-    out = FileNames %>% {file.info(file.path(.path4read,.))} %>%
+    out = FileNames %>% {file.info(here::here(.path4read,.))} %>%
         rownames_to_column("FileName") %>% select(FileName, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
                KB = format(size/2^10, digits = 3, big.mark=","), 
@@ -702,17 +702,17 @@ ls.str(env1$env.internal) #-----
 # #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------  
 # source_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 # .t0 = Sys.time()
-# load((file.path(source_path, "f_df.t.tribble_construct.RData")))
+# load((here::here(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - .t0 # Time difference of 0.002126932 secs
 # .t0 = Sys.time()
-# env1$env.internal = read_rds(file.path(source_path, paste0("env1$env.internal", ".rds")))
-# env1$f$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
-# env1$f$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
-# env1$f$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f$f_path.size_files", ".rds")))
-# env1$f$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f$f_df.transpose", ".rds")))
+# env1$env.internal = read_rds(here::here(source_path, paste0("env1$env.internal", ".rds")))
+# env1$f$f_df.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
+# env1$f$f_df.t.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
+# env1$f$f_path.size_files = read_rds(here::here(source_path, paste0("env1$f$f_path.size_files", ".rds")))
+# env1$f$f_df.transpose = read_rds(here::here(source_path, paste0("env1$f$f_df.transpose", ".rds")))
 # Sys.time() - .t0 # Time difference of 0.01374888 secs
 # .t0 = Sys.time()
-# source(file.path(source_path, "f_df.t.tribble_construct.source.r"))
+# source(here::here(source_path, "f_df.t.tribble_construct.source.r"))
 # Sys.time() - .t0 # Time difference of 0.003256798 secs
 
 
@@ -721,20 +721,20 @@ ls.str(env1$env.internal) #-----
 if(subpath!="") utils::browseURL(normalizePath(subpath))
 # source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath)
 # .t0 = Sys.time()
-# load(url(file.path(source_path, "f_df.t.tribble_construct.RData")))
+# load(url(here::here(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - .t0 # Time difference of 0.7511199  secs
 # .t0 = Sys.time()
-# env1$env.internal = read_rds(file.path(source_path, paste0("env1$env.internal", ".rds")))
-# env1$f$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
-# env1$f$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
-# env1$f$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f$f_path.size_files", ".rds")))
-# env1$f$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f$f_df.transpose", ".rds")))
+# env1$env.internal = read_rds(here::here(source_path, paste0("env1$env.internal", ".rds")))
+# env1$f$f_df.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
+# env1$f$f_df.t.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
+# env1$f$f_path.size_files = read_rds(here::here(source_path, paste0("env1$f$f_path.size_files", ".rds")))
+# env1$f$f_df.transpose = read_rds(here::here(source_path, paste0("env1$f$f_df.transpose", ".rds")))
 # Sys.time() - .t0 # Time difference of 3.066839 secs
 
 
 
 
-## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$FileName)) ----  
+## @ source(here::here(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$FileName)) ----  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .GlobalEnv$.tmp = list() ---  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
@@ -750,7 +750,7 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 .tmp$objectname = "getwd"; .tmp$object = getwd(); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 if(!".path4read" %in% names(env1$path)) {.path4read = env1$path$path4read = env1$path$path1}  
 if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$path4write = ifelse("LastSourceEditorContext.path" %in% names(env1$path), env1$path$LastSourceEditorContext.path, env1$path$path1)}  
-# c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd()))
+# c(here::here("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd()))
 # c("D:/D_Repositories", "D:/OneDrive/[][Rproject]", "/home/rstudio", "/cloud", dirname(getwd())) %>% {.[dir.exists(.)][1]}
 # Filter(dir.exists, c("D:/D_Repositories", "D:/OneDrive/[][Rproject]", "/home/rstudio", "/cloud", dirname(getwd())))[1]
 .tmp$objectname = "path0"; .tmp$object = Filter(dir.exists, c("D:/D_Repositories", "D:/OneDrive/[][Rproject]", "/home/rstudio", "/cloud", dirname(getwd())))[1]; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
@@ -767,7 +767,7 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) {
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #### env1\$f_df.t.tribble_construct() ====  
 if(!"f_df.t.tribble_construct" %in% names(.GlobalEnv$env1)) {
-    .FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+    .FileName.source.r = "f_df.t.tribble_construct" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)})
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 

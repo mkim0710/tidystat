@@ -62,7 +62,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$path$.SourceName_root = .SourceName_root  
 # env1$path$.RelativeSubPath_FileName.dev.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.r")
 # env1$path$.RelativeSubPath_FileName.dev.Rmd = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.SourceName_root,".dev.Rmd")
-# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
+# env1$path$.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)}
 # cat("# ",'.SourceName_root = "',.SourceName_root,'"', "\n",
 #     "# ",.SourceName_root,".dev.r", "\n",
 #     "# ",.SourceName_root,".source.r", "\n",
@@ -83,9 +83,9 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # if(.FileName.source.r == "default.template") { warning('.FileName.source.r == "default.template"') } else {
-#     # # if(!file.exists(env1$path$subpath_FileName.dev.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath_FileName.dev.r); env1$path$subpath_FileName.dev.r |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-#     # if(!file.exists(env1$path$subpath_FileName.dev.Rmd)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath_FileName.dev.Rmd); env1$path$subpath_FileName.dev.Rmd |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-#     # if(!file.exists(env1$path$subpath_FileName.source.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath_FileName.source.r); env1$path$subpath_FileName.source.r |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+#     # # if(!file.exists(env1$path$subpath_FileName.dev.r)) file.copy(from=here::here(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath_FileName.dev.r); env1$path$subpath_FileName.dev.r |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+#     # if(!file.exists(env1$path$subpath_FileName.dev.Rmd)) file.copy(from=here::here(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath_FileName.dev.Rmd); env1$path$subpath_FileName.dev.Rmd |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+#     # if(!file.exists(env1$path$subpath_FileName.source.r)) file.copy(from=here::here(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath_FileName.source.r); env1$path$subpath_FileName.source.r |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #     file2create = env1$path$subpath_FileName.dev.Rmd; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(env1$path$LastSourceEditorContext.path_FileNameExt)
 #     file2create = env1$path$subpath_FileName.source.r; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(env1$path$LastSourceEditorContext.path_FileNameExt)
 # }

@@ -199,8 +199,8 @@ env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditor
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+# env1$path$path4read = here::here(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = here::here(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
 env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
 env1$path$path4write = getwd()
 .path4read  = env1$path$path4read
@@ -214,7 +214,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .SourceName = "f_DSname.Search.read.checkEntity" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = .SourceName %>% paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.); if(isTRUE(options()$function.reload) || !.SourceName %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.SourceName]] = file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.SourceName]]))  }
+# .SourceName = "f_DSname.Search.read.checkEntity" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = .SourceName %>% paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.); if(isTRUE(options()$function.reload) || !.SourceName %in% names(.GlobalEnv$env1$source)) {  message('> source("',here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.SourceName]] = here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.SourceName]]))  }
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  
 ```
   
@@ -328,9 +328,9 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'"); if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) file.edit(env1$path$LastSourceEditorContext.path_FileNameExt);', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+# # \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # .RelativeSubPath_FileName.source.r = .SourceName %>% paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.)
-# if(isTRUE(options()$function.reload) || !.SourceName %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.SourceName]] = file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r); source(.GlobalEnv$env1$source[[.SourceName]])}
+# if(isTRUE(options()$function.reload) || !.SourceName %in% names(.GlobalEnv$env1$source)) {message('> source("',here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r),'")'); .GlobalEnv$env1$source[[.SourceName]] = here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r); source(.GlobalEnv$env1$source[[.SourceName]])}
 ```
   
   

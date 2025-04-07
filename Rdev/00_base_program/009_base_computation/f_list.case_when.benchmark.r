@@ -11,10 +11,10 @@ library(purrr)
 
 # Define functions for each approach
 # switch_approach <- function() {
-#   .Rprofile.path <- switch(
+#   .Rprohere::here <- switch(
 #     TRUE,
 #     file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/"),
-#     file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/"),
+#     file.exists(here::here("~", ".Rprofile")) ~ normalizePath(here::here("~", ".Rprofile"), winslash = "/"),
 #     NA_character_
 #   )
 # }
@@ -27,31 +27,31 @@ library(purrr)
 if_approach <- function() {
   if (file.exists(".Rprofile")) {
     normalizePath(".Rprofile", winslash = "/")
-  } else if (file.exists(file.path("~", ".Rprofile"))) {
-    normalizePath(file.path("~", ".Rprofile"), winslash = "/")
+  } else if (file.exists(here::here("~", ".Rprofile"))) {
+    normalizePath(here::here("~", ".Rprofile"), winslash = "/")
   } else {
     NA_character_
   }
 }
 
 case_when_approach <- function() {
-  .Rprofile.path <- case_when(
+  .Rprohere::here <- case_when(
     file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/"),
-    file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/"),
+    file.exists(here::here("~", ".Rprofile")) ~ normalizePath(here::here("~", ".Rprofile"), winslash = "/"),
     TRUE ~ NA_character_
   )
-  return(.Rprofile.path)
+  return(.Rprohere::here)
 }
 
 keep_map_chr_first_approach <- function() {
-  .Rprofile.path <- list(
+  .Rprohere::here <- list(
     ".Rprofile",
-    file.path("~", ".Rprofile")
+    here::here("~", ".Rprofile")
   ) %>%
     keep(file.exists) %>%
     map_chr(normalizePath, winslash = "/") %>%
     first(default = NA_character_)
-  return(.Rprofile.path)
+  return(.Rprohere::here)
 }
 
 # Run benchmark
