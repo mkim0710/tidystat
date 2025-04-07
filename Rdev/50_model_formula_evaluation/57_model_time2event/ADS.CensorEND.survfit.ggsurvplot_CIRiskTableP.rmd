@@ -112,13 +112,13 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # __________|------  
 # @@ START) Baseline ----  
 ## \$ as1.na.Date.fct.select89 =  ----  
-@ assign(.objectname, read_rds(here::here(.path4read, paste0(.objectname,".rds")))) 
+@ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
 ```{r DSN-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .objectname = "as1.na.Date.fct.select89"; cat(" ----\n> ", '.objectname = "', .objectname, '"  \n', sep="")
-FileName2read = if(file.exists(here::here(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")
+FileName2read = if(file.exists(file.path(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")
 env1$f$f_path.size_files(.path4read = .path4read, regex4FileName = FileName2read)
-system.time(assign(.objectname, readRDS(here::here(.path4read, FileName2read)), envir=.GlobalEnv))
+system.time(assign(.objectname, readRDS(file.path(.path4read, FileName2read)), envir=.GlobalEnv))
 cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
   
 get(.objectname) %>% {.$PERSON_ID} |> n_distinct()
@@ -134,13 +134,13 @@ cat(" ----\n> ", "str(get(.objectname), max.level = 2, give.attr = F)", "  \n", 
 # __________|------  
 # @@ START) Outcome ----  
 ## \$ as1_7.na.Date.fct.cumulative_DM.list =  ----  
-@ assign(.objectname, read_rds(here::here(.path4read, paste0(.objectname,".rds")))) 
+@ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
 ```{r DSN-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat(" ----\n> ", '.objectname = "', .objectname, '"  \n', sep="")
-FileName2read = if(file.exists(here::here(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")
+FileName2read = if(file.exists(file.path(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")
 env1$f$f_path.size_files(.path4read = .path4read, regex4FileName = FileName2read)
-system.time(assign(.objectname, readRDS(here::here(.path4read, FileName2read)), envir=.GlobalEnv))
+system.time(assign(.objectname, readRDS(file.path(.path4read, FileName2read)), envir=.GlobalEnv))
 cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
   
 get(.objectname) %>% {.$PERSON_ID} |> n_distinct()
@@ -566,7 +566,7 @@ paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNa
 ```
   
   
-## \$ df_NewDMv3.NAtime200621 \%>\% { write_rds(here::here(.path4write, paste0(deparse(substitute(.)),".rds"))) } ----  
+## \$ df_NewDMv3.NAtime200621 \%>\% { write_rds(file.path(.path4write, paste0(deparse(substitute(.)),".rds"))) } ----  
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

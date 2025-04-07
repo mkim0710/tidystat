@@ -133,8 +133,8 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
         cat("Searching: ", input_path, strrep(" ", max(50-nchar(input_path),0)), "\t at depth ", 0, "  \n", sep="")
     }
     
-    if (file.exists(here::here(input_path, FileNameExt))) {
-        return(here::here(input_path, FileNameExt))
+    if (file.exists(file.path(input_path, FileNameExt))) {
+        return(file.path(input_path, FileNameExt))
     } else if (BreathFirstSearch) {
         return(env1$f$f_FileNameExt.find_subpath.BreathFirstSearch(FileNameExt=FileNameExt, input_path=input_path, max_depth=max_depth, VERBOSE=VERBOSE, findMultiple=findMultiple))
     } else {
@@ -176,9 +176,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
                         cat("Searching: ", i_files_subpath, strrep(" ", max(50-nchar(i_files_subpath),0)), "\t at depth ", list_path_depth.current$depth+1, "; ", sep="")
                         cat("Queue length: ", length(list_list_path_depth)+1, "  \n", sep="")
                     }
-                    if (file.exists(here::here(i_files_subpath, FileNameExt))) {
-                        if (findMultiple == FALSE) return(here::here(i_files_subpath, FileNameExt))
-                        list_out <- c(list_out, list(here::here(i_files_subpath, FileNameExt)))
+                    if (file.exists(file.path(i_files_subpath, FileNameExt))) {
+                        if (findMultiple == FALSE) return(file.path(i_files_subpath, FileNameExt))
+                        list_out <- c(list_out, list(file.path(i_files_subpath, FileNameExt)))
                     }
                     # Enqueue subdirectories with incremented depth
                     list_list_path_depth <- c(list_list_path_depth, list(list(path = i_files_subpath, depth = list_path_depth.current$depth + 1)))

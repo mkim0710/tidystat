@@ -641,7 +641,7 @@ env1$f$f_df.t.tribble_construct = function(df) {
 
 env1$f$f_path.size_files = function(.path4read = getwd(), regex4FileName = "\\.(rdata|rda|rds)$") {
     FileNames = list.files(path = .path4read) %>% {grep(regex4FileName, .,  ignore.case = T, value = T)}
-    out = FileNames %>% {file.info(here::here(.path4read,.))} %>%
+    out = FileNames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("FileName") %>% select(FileName, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
                KB = format(size/2^10, digits = 3, big.mark=","), 
@@ -702,17 +702,17 @@ ls.str(env1$env.internal) #-----
 # #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------  
 # source_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 # .t0 = Sys.time()
-# load((here::here(source_path, "f_df.t.tribble_construct.RData")))
+# load((file.path(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - .t0 # Time difference of 0.002126932 secs
 # .t0 = Sys.time()
-# env1$env.internal = read_rds(here::here(source_path, paste0("env1$env.internal", ".rds")))
-# env1$f$f_df.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
-# env1$f$f_df.t.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
-# env1$f$f_path.size_files = read_rds(here::here(source_path, paste0("env1$f$f_path.size_files", ".rds")))
-# env1$f$f_df.transpose = read_rds(here::here(source_path, paste0("env1$f$f_df.transpose", ".rds")))
+# env1$env.internal = read_rds(file.path(source_path, paste0("env1$env.internal", ".rds")))
+# env1$f$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
+# env1$f$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
+# env1$f$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f$f_path.size_files", ".rds")))
+# env1$f$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f$f_df.transpose", ".rds")))
 # Sys.time() - .t0 # Time difference of 0.01374888 secs
 # .t0 = Sys.time()
-# source(here::here(source_path, "f_df.t.tribble_construct.source.r"))
+# source(file.path(source_path, "f_df.t.tribble_construct.source.r"))
 # Sys.time() - .t0 # Time difference of 0.003256798 secs
 
 
@@ -721,20 +721,20 @@ ls.str(env1$env.internal) #-----
 if(subpath!="") utils::browseURL(normalizePath(subpath))
 # source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath)
 # .t0 = Sys.time()
-# load(url(here::here(source_path, "f_df.t.tribble_construct.RData")))
+# load(url(file.path(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - .t0 # Time difference of 0.7511199  secs
 # .t0 = Sys.time()
-# env1$env.internal = read_rds(here::here(source_path, paste0("env1$env.internal", ".rds")))
-# env1$f$f_df.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
-# env1$f$f_df.t.tribble_construct = read_rds(here::here(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
-# env1$f$f_path.size_files = read_rds(here::here(source_path, paste0("env1$f$f_path.size_files", ".rds")))
-# env1$f$f_df.transpose = read_rds(here::here(source_path, paste0("env1$f$f_df.transpose", ".rds")))
+# env1$env.internal = read_rds(file.path(source_path, paste0("env1$env.internal", ".rds")))
+# env1$f$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
+# env1$f$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
+# env1$f$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f$f_path.size_files", ".rds")))
+# env1$f$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f$f_df.transpose", ".rds")))
 # Sys.time() - .t0 # Time difference of 3.066839 secs
 
 
 
 
-## @ source(here::here(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$FileName)) ----  
+## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$FileName)) ----  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .GlobalEnv$.tmp = list() ---  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }

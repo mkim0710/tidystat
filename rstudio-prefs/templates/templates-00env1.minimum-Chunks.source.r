@@ -114,7 +114,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
         if(basename(.LastSourceEditorContext.path_FileNameExt) == env1$path$MyTemplate.FileNameExt) {
             if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
             .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
-            .destination_path_FileNameExt = here::here(.destination_path, env1$path$RTemplate.FileNameExt)
+            .destination_path_FileNameExt = file.path(.destination_path, env1$path$RTemplate.FileNameExt)
             .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP") ; env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path) 
             if(Sys.info()["sysname"] == "Windows") {browseURL(.BACKUP_to_path)}
             

@@ -669,14 +669,14 @@ f_df.cv.glmnet <- function(
     
     # Save model if required
     if (save_models) {
-        model_FileName <- here::here(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
+        model_FileName <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
         saveRDS(cv_glmnet_object, model_FileName)
         message(paste("Saved model to", model_FileName))
     }
     
     # Plot cross-validation results if required
     if (save_plots) {
-        plot_FileName <- here::here(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
+        plot_FileName <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
         png(plot_FileName, width = plot_size, height = plot_size, units = "px", bg = "transparent")
         plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
         dev.off()
@@ -1383,14 +1383,14 @@ f_df.cv.glmnet <- function(
     
     # Save model if required
     if (save_models) {
-      model_FileName <- here::here(output_dir, paste0("cv_glmnet_a", i.alpha, ".rds"))
+      model_FileName <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, ".rds"))
       saveRDS(cv_glmnet_object, model_FileName)
       message(paste("Saved model to", model_FileName))
     }
     
     # Plot cross-validation results if required
     if (save_plots) {
-      plot_FileName <- here::here(output_dir, paste0("cv_glmnet_a", i.alpha, "_plot.png"))
+      plot_FileName <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, "_plot.png"))
       png(plot_FileName, width = plot_size, height = plot_size, units = "px", bg = "transparent")
       plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
       dev.off()

@@ -327,13 +327,13 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(project_path = env1$
 
             # Create BACKUP directories and move files
             for (i.file in vec_path_file.nb.html.orphan) {
-                BACKUP_dir <- here::here(dirname(i.file), "-BACKUP")
+                BACKUP_dir <- file.path(dirname(i.file), "-BACKUP")
 
                 if (!dir.exists(BACKUP_dir)) {
                     dir.create(BACKUP_dir)
                 }
 
-                file.rename(i.file, here::here(BACKUP_dir, basename(i.file)))
+                file.rename(i.file, file.path(BACKUP_dir, basename(i.file)))
             }
         } else {
             message("Set execute = TRUE to move the orphan files to a '-BACKUP' folder.")

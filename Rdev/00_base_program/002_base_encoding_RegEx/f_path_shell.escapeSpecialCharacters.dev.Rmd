@@ -388,7 +388,7 @@ file_name_without_shell_chars <- function(file) {
   name <- gsub(.shell_chars_regex, '-', basename(file))
   dir <- dirname(file)
   if (nzchar(dir) && !identical(dir, "."))
-    here::here(dir, name)
+    file.path(dir, name)
   else
     name
 }

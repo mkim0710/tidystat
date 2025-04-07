@@ -891,7 +891,7 @@ f_cv_glmnet_object.plot <- function(
     plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
         
     if (save_plots) {
-        plot_FileName <- here::here(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
+        plot_FileName <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
         png(plot_FileName, width = plot_size, height = plot_size, units = "px", bg = "transparent")
         plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
         dev.off()

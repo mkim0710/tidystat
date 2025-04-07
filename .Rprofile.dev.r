@@ -12,7 +12,7 @@
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile  
-# file.edit(here::here("~", ".Rprofile")) # edit .Rprofile in HOME  
+# file.edit(file.path("~", ".Rprofile")) # edit .Rprofile in HOME  
 # file.edit(".Rprofile") # edit project specific .Rprofile   
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -144,8 +144,8 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
     # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.case_when.benchmark.r
     .GlobalEnv$env1$source$.Rprofile = if (file.exists(".Rprofile")) {
         normalizePath(".Rprofile", winslash = "/")
-    } else if (file.exists(here::here("~", ".Rprofile"))) {
-        normalizePath(here::here("~", ".Rprofile"), winslash = "/")
+    } else if (file.exists(file.path("~", ".Rprofile"))) {
+        normalizePath(file.path("~", ".Rprofile"), winslash = "/")
     } else {
         NA_character_
     }  

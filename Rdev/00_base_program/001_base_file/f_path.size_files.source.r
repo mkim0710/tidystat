@@ -123,7 +123,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #     }
 #     if(VERBOSE) FileNames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
 #     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
-#     out = FileNames %>% {file.info(here::here(.path4read,.))} %>%
+#     out = FileNames %>% {file.info(file.path(.path4read,.))} %>%
 #         rownames_to_column("FileName") %>% select(FileName, size) %>%
 #         mutate(bytes = format(size, digits = 3, big.mark=","), 
 #                KB = format(size/2^10, digits = 3, big.mark=","), 

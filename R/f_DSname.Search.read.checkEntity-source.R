@@ -144,7 +144,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_FileName = FileNameExt, print2console=print2console)
     
     ## \% return.list$read.proc_time ====
-    .path_file = here::here(.path4read[1], FileNameExt)
+    .path_file = file.path(.path4read[1], FileNameExt)
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     # return.list$read.proc_time = system.time(assign(DSN, read_rds(.path_file, envir=.GlobalEnv)))
     # if(print2console) return.list$read.proc_time |> print()
@@ -261,13 +261,13 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     for (i in 1:length(.path4read)) {
         i.path4read=.path4read[i]
         if(VERBOSE) cat('i.path4read = "', i.path4read, '"  \n', sep="")
-        if(file.exists(here::here(i.path4read, FileNameExt))) {
-            message( 'Found .path_FileNameExt == ', deparse(here::here(i.path4read, FileNameExt)) )
+        if(file.exists(file.path(i.path4read, FileNameExt))) {
+            message( 'Found .path_FileNameExt == ', deparse(file.path(i.path4read, FileNameExt)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
-        } else if(file.exists(here::here(i.path4read, paste0(FileNameExt, ".xz")))) {
+        } else if(file.exists(file.path(i.path4read, paste0(FileNameExt, ".xz")))) {
             FileNameExt = paste0(FileNameExt, ".xz")
-            message( 'Found .path_FileNameExt == ', deparse(here::here(i.path4read, FileNameExt)) )
+            message( 'Found .path_FileNameExt == ', deparse(file.path(i.path4read, FileNameExt)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         }  
@@ -301,7 +301,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     }
     # if(VERBOSE) cat('FileNameExt = "', FileNameExt, '"  \n', sep="")
     
-    DS_path_FileNameExt = here::here(.path4read, FileNameExt)
+    DS_path_FileNameExt = file.path(.path4read, FileNameExt)
     
     env1$f$f_DS_path_FileNameExt.read.checkEntity(DS_path_FileNameExt, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, VERBOSE = VERBOSE)
     

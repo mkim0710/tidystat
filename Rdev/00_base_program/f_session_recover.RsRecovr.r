@@ -54,10 +54,10 @@ recovr <- function(project_path,
     if (!is.null(project_path) && project_path != "all") {
       # we are recovering a single project; put the recovery folder at
       # the project root
-      out_folder <- here::here(project_path, stem)
+      out_folder <- file.path(project_path, stem)
     } else {
       # no project home; just use the current working directory
-      out_folder <- here::here(getwd(), stem)
+      out_folder <- file.path(getwd(), stem)
     }
   }
 
@@ -73,8 +73,8 @@ recovr <- function(project_path,
   }
 
   # create the output folder and saved/unsaved folders
-  dir.create(here::here(out_folder, "saved"), recursive = TRUE)
-  dir.create(here::here(out_folder, "unsaved"), recursive = TRUE)
+  dir.create(file.path(out_folder, "saved"), recursive = TRUE)
+  dir.create(file.path(out_folder, "unsaved"), recursive = TRUE)
 
   # recover requested content
   results <- if (is.null(project_path)) {
@@ -108,7 +108,7 @@ recovr_sessions <- function(sources_folder, out_folder) {
   results <- lapply(session_ids, function(session_id) {
 
     # recover the sources from this session
-    recovred <- recovr_sources(here::here(sources_folder, session_id),
+    recovred <- recovr_sources(file.path(sources_folder, session_id),
                                out_folder)
 
     if (nrow(recovred) > 0) {
@@ -128,7 +128,7 @@ recovr_sessions <- function(sources_folder, out_folder) {
 # Recover a single source file. Returns the path to the recovered file, or NA
 # if file recovery did not take place.
 recovr_source_file <- function(folder, id, out_folder) {
-  metadata <- jsonlite::fromJSON(here::here(folder, id))
+  metadata <- jsonlite::fromJSON(file.path(folder, id))
 
   # recover FileName
   FileName <- if (is.null(metadata$path)) {
@@ -152,7 +152,7 @@ recovr_source_file <- function(folder, id, out_folder) {
   }
 
   # recover content
-  contents_file <- here::here(folder, paste0(id, "-contents"))
+  contents_file <- file.path(folder, paste0(id, "-contents"))
   contents <- if (file.exists(contents_file) && file.info(contents_file)$size > 0) {
     # newer RStudio versions keep the contents alongside the metadata
     readLines(con = contents_file)
@@ -164,7 +164,7 @@ recovr_source_file <- function(folder, id, out_folder) {
   }
 
   # put it in saved/unsaved depending on whether or not the file is dirty
-  out_folder <- here::here(out_folder, if (isTRUE(metadata$dirty)) {
+  out_folder <- file.path(out_folder, if (isTRUE(metadata$dirty)) {
     # explicitly marked dirty; we know it's unsaved
     "unsaved"
   } else {
@@ -194,13 +194,13 @@ recovr_source_file <- function(folder, id, out_folder) {
   })
 
   # ascertain target
-  target <- here::here(out_folder, FileName)
+  target <- file.path(out_folder, FileName)
 
   # ensure target doesn't exist already; could happen if e.g. user had two
   # different foo.R files open in two different directories. in this case,
   # make the FileName unique: foo-0123456.R
   if (file.exists(target)) {
-    target <- here::here(out_folder, paste0(
+    target <- file.path(out_folder, paste0(
       tools::file_path_sans_ext(FileName),
         "-",
         id, ".", tools::file_ext(FileName)))
@@ -229,7 +229,7 @@ recovr_sources <- function(folder, out_folder) {
   data.frame(
     FileName = basename(recovred),
     id = ids,
-    origin = here::here(folder, ids),
+    origin = file.path(folder, ids),
     restored = recovred
   )
 }
@@ -241,7 +241,7 @@ recovr_user <- function(out_folder) {
   # recover sessions for RStudio Desktop
   desktop_folder <- rstudio_desktop_folder()
   if (file.exists(desktop_folder)) {
-    results <- recovr_sessions(here::here(desktop_folder, "sources"), out_folder)
+    results <- recovr_sessions(file.path(desktop_folder, "sources"), out_folder)
   }
 
   # recover sessions for RStudio Server v1.3. (v1.4 and
@@ -250,7 +250,7 @@ recovr_user <- function(out_folder) {
   server_folder <- path.expand("~/.rstudio")
   if (file.exists(server_folder)) {
     results <- rbind(results, recovr_sessions(
-      here::here(server_folder, "sources"),
+      file.path(server_folder, "sources"),
       out_folder))
   }
 
@@ -261,7 +261,7 @@ recovr_user <- function(out_folder) {
 # Recovers RStudio content from a single project
 recovr_project <- function(project_folder, out_folder) {
 
-  state_folder <- here::here(normalizePath(project_folder), ".Rproj.user")
+  state_folder <- file.path(normalizePath(project_folder), ".Rproj.user")
   if (!file.exists(state_folder)) {
     stop("The folder ", project_folder, " does not appear to contain an ",
          "RStudio project.")
@@ -273,7 +273,7 @@ recovr_project <- function(project_folder, out_folder) {
   # recover the sources from each context
   results <- lapply(contexts, function(context_id) {
     # recover the sources from this session
-    recovred <- recovr_sessions(here::here(state_folder, context_id, "sources"),
+    recovred <- recovr_sessions(file.path(state_folder, context_id, "sources"),
                                 out_folder)
 
     if (!is.null(recovred) && nrow(recovred) > 0) {
@@ -300,7 +300,7 @@ rstudio_desktop_folder <- function() {
   }
   xdgDataHome <- Sys.getenv("XDG_DATA_HOME")
   if (nzchar(xdgDataHome)) {
-    return(here::here(xdgDataHome, "rstudio"))
+    return(file.path(xdgDataHome, "rstudio"))
   }
 
   # Check for RStudio 1.4 folders
@@ -328,7 +328,7 @@ recovr_all <- function(out_folder) {
 
   # look for a project MRU to examine
   for (folder in c(rstudio_desktop_folder(), path.expand("~/.rstudio"))) {
-    mru <- here::here(folder, "monitored", "lists", "project_mru")
+    mru <- file.path(folder, "monitored", "lists", "project_mru")
     if (file.exists(mru)) {
       projects <- c(projects, readLines(mru))
     }

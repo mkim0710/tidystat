@@ -9,7 +9,7 @@
   options(help_type="html")
 
 # set a site library
-# .Library.site <- here::here(chartr("\\", "/", R.home()), "site-library")
+# .Library.site <- file.path(chartr("\\", "/", R.home()), "site-library")
 
 # set a CRAN mirror
 # local({r <- getOption("repos")
