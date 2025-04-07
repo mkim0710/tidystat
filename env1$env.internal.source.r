@@ -102,7 +102,7 @@
 ## :: f_sourcePath.execute_if_not_sourced =                                 #L2993
 ## ::OPTION:: f_sourcePath.execute.force_reload                             #L3052
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       #L3094
-## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r")               #L3099
+## @ .FileName.source.r = "CodeChunks" |> paste0("-source.R")               #L3099
 # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
@@ -209,7 +209,7 @@
 ## :: f_sourcePath.execute_if_not_sourced =                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2993
 ## ::OPTION:: f_sourcePath.execute.force_reload                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3052
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3094
-## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r")               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3099
+## @ .FileName.source.r = "CodeChunks" |> paste0("-source.R")               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3099
 # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 .FileName.source.r = "env1$env.internal" |> paste0(".source.r")  
@@ -3136,7 +3136,7 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r"); .RelativeSubPath=r"(Rdev/00_base_program/007_base_expression)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ .FileName.source.r = "CodeChunks" |> paste0(".source.r") =======  
+## @ .FileName.source.r = "CodeChunks" |> paste0("-source.R") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/CodeChunks.source.r")
 .FileName.source.r = "CodeChunks" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 
