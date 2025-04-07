@@ -1041,7 +1041,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(..., collapse = "/")
     # Call here::here() with the non-empty parts
     do.call(here::here, c(as.list(arguments.list.unlist[nzchar(arguments.list.unlist)]), fsep = collapse))
     
-    # *** 1liner *** list(...) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(here::here, .)}
+    # *** 1liner *** list(...) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}
 }
 ## *** Example Usage:  
 # env1$f$f_path_file.paste0_collapse_if_not_empty("a", "b", "", "d")  # "a/b/d"
