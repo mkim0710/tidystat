@@ -48,9 +48,9 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ SOURCE) -----  
 ## @ .RelativeSubPath, .FileName.source.r ======  
-.RelativeSubPath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+.RelativeSubPath = r"(R)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0(".source.r")
+.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0("-source.R")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.RelativeSubPath = .RelativeSubPath
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
