@@ -77,7 +77,7 @@
 # @@ env1\$env.internal functions                                           #L1155
 # @@ source()                                                               #L1631
 ## @ for (.dependancy in c("")) {                                           #L1633
-## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       #L1642
+## @ "f_DSname.Search.read.checkEntity" |> paste0(".source.r") |> source()       #L1642
 ## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   #L1648
 ## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       #L1655
 ## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        #L1661
@@ -166,7 +166,7 @@
 # @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
 # @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
 ## @ for (.dependancy in c("")) {                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1633
-## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1642
+## @ "f_DSname.Search.read.checkEntity" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1642
 ## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1648
 ## @ "f_df.printVars_byMainOutcome" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1655
 ## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source()        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1661
@@ -1639,9 +1639,9 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 # }
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_DSN.Search.read.checkEntity" |> paste0(".source.r") |> source() ----  
+## @ "f_DSname.Search.read.checkEntity" |> paste0(".source.r") |> source() ----  
 .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); 
-.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r"); 
+.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0(".source.r"); 
 env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

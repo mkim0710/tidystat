@@ -78,7 +78,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 #     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", "rownum", 
+#   ..$ f_DSname.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, 
 #     .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, 
 #     VERBOSE = FALSE)  
@@ -93,7 +93,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
+#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
@@ -158,7 +158,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
+#   ..$ f_DSname.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
 #     "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), 
 #     BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15, 
 #     print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
@@ -175,7 +175,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
+#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
@@ -236,7 +236,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c"..
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 #     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", ""..
+#   ..$ f_DSname.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", ""..
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, 
 #     .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.name..
 #     VERBOSE = FALSE)  
@@ -251,7 +251,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/f_expressi"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.check"..
+#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.check"..
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/1"..
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_expo"..
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_expo"..
@@ -316,7 +316,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cuto..
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 #     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-#   ..$ f_DSN.Search.read.checkEntity       :function (DSN, ext"..
+#   ..$ f_DSname.Search.read.checkEntity       :function (DSN, ext"..
 #     "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), 
 #     BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15, 
 #     print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
@@ -333,7 +333,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/"..
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/"..
-#   ..$ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/"..
+#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/"..
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/"..
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/"..
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/"..
@@ -405,7 +405,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    c("rowname", "rownum", "Num", "ID", "CompositeKey",
 # "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE,
 # print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)
-# ..$ f_DSN.Search.read.checkEntity :function (DSN, ext = "rds", .path4read = c(".", "data"),
+# ..$ f_DSname.Search.read.checkEntity :function (DSN, ext = "rds", .path4read = c(".", "data"),
 #    vec_candidate4ID = c("rowname", "rownum",
 # "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3,
 # .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
@@ -425,8 +425,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 # ..$ f_df.t.tribble_construct.source.r : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr "~/github_tidystat/f_path.size_files.source.r"
-# ..$ f_DSN.Search.read.checkEntity.source.r: chr
-#    "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
+# ..$ f_DSname.Search.read.checkEntity.source.r: chr
+#    "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
 # ..$ f_df.NotNA_p_df.source.r : chr
 #    "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 # ..$ f_df.printVars_byMainOutcome.source.r : chr
@@ -507,7 +507,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    120 -
 # 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
 # print.names.tidyeval = FALSE, VERBOSE = FALSE)
-# ..$ f_DSN.Search.read.checkEntity :function (DSN, ext = "rds",
+# ..$ f_DSname.Search.read.checkEntity :function (DSN, ext = "rds",
 #    .path4read = c(".", "data"), vec_candidate4ID = c("rowname",
 # "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"),
 # BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15,
@@ -533,8 +533,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr
 #    "~/github_tidystat/f_path.size_files.source.r"
-# ..$ f_DSN.Search.read.checkEntity.source.r: chr
-#    "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
+# ..$ f_DSname.Search.read.checkEntity.source.r: chr
+#    "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
 # ..$ f_df.NotNA_p_df.source.r : chr
 #    "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.Not"..
 # ..$ f_df.printVars_byMainOutcome.source.r : chr
@@ -623,7 +623,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 ##    "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
 ##    print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
-## $ f_DSN.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
+## $ f_DSname.Search.read.checkEntity       :function (DSN, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
 ##    "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, 
 ##    max_depth = 3, .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
 ##    print.names.tidyeval = FALSE, VERBOSE = FALSE)  
@@ -639,7 +639,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 ## $ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 ## $ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-## $ f_DSN.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.checkEntity.source.r"
+## $ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
 ## $ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 ## $ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 ## $ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"

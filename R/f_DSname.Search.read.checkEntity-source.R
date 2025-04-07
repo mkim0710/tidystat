@@ -1,8 +1,8 @@
-# # .objectname = "f_DSN.Search.read.checkEntity"
-# # f_DSN.Search.read.checkEntity.dev.r
-# # f_DSN.Search.read.checkEntity.source.r
-# #         https://github.com/mkim0710/tidystat/blob/master/f_DSN.Search.read.checkEntity.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DSN.Search.read.checkEntity.source.r")
+# # .objectname = "f_DSname.Search.read.checkEntity"
+# # f_DSname.Search.read.checkEntity.dev.r
+# # f_DSname.Search.read.checkEntity.source.r
+# #         https://github.com/mkim0710/tidystat/blob/master/f_DSname.Search.read.checkEntity.dev.r
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DSname.Search.read.checkEntity.source.r")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -50,7 +50,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ## @ .RelativeSubPath, .FileName.source.r ======  
 .RelativeSubPath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
-.FileName.source.r = "f_DSN.Search.read.checkEntity" |> paste0(".source.r")
+.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.RelativeSubPath = .RelativeSubPath
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
@@ -244,8 +244,8 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 
-## @ .objectname = "f_DSN.Search.read.checkEntity" =========  
-.tmp$objectname = "f_DSN.Search.read.checkEntity"
+## @ .objectname = "f_DSname.Search.read.checkEntity" =========  
+.tmp$objectname = "f_DSname.Search.read.checkEntity"
 .tmp$object = function(DSN, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = isTRUE(getOption("verbose"))) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     MessageText2 = .path4read[1] %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
@@ -312,15 +312,15 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 # # \$ DSN = "fhs.index100le10" =======  
 # DSN = "fhs.index100le10"
-# out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, print2console = FALSE)
+# out = env1$f$f_DSname.Search.read.checkEntity(DSN = DSN, print2console = FALSE)
 # # Warning messages:
-# # 1: In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN) :
+# # 1: In env1$f$f_DSname.Search.read.checkEntity(DSN = DSN) :
 # #   getwd() != .path4read == "."
-# # 2: In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN) :
+# # 2: In env1$f$f_DSname.Search.read.checkEntity(DSN = DSN) :
 # #   varname for ID not identified among: c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-# out = env1$f$f_DSN.Search.read.checkEntity(DSN = DSN, vec_candidate4ID = "randid", print2console = FALSE)
+# out = env1$f$f_DSname.Search.read.checkEntity(DSN = DSN, vec_candidate4ID = "randid", print2console = FALSE)
 # # Warning message:
-# # In env1$f$f_DSN.Search.read.checkEntity(DSN = DSN,  :
+# # In env1$f$f_DSname.Search.read.checkEntity(DSN = DSN,  :
 # #   getwd() != .path4read == "."
 
 
