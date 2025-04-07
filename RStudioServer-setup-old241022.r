@@ -214,7 +214,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________    
@@ -406,8 +406,8 @@ if(FALSE) {  # Do not auto-run
     system("sudo chmod 600 ~/.ssh/id_ed25519")  # read & write for the owner
     system("sudo chmod 400 ~/.ssh/id_ed25519")  # read only for the owner
 }
-path_file = here::here(env1$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path_file)) file.edit(path_file)
-path_file = here::here(env1$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path_file)) file.edit(path_file)
+path_file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path_file)) file.edit(path_file)
+path_file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path_file)) file.edit(path_file)
 
 system("git status")
 

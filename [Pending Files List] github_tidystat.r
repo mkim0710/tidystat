@@ -216,7 +216,7 @@ ensure_package("tidyverse")
 ### \% trainset_cost.gradient_descent.dev-GPT.Rmd -----  
 .RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/52_model_estimation/trainset_cost.gradient_descent.dev-GPT.Rmd"
 .RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
-here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -231,7 +231,7 @@ here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$en
 ### \% trainset.cv.glm.dev-GPT.Rmd -----  
 .RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glm.dev-GPT.Rmd"
 .RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
-here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 
@@ -246,7 +246,7 @@ here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$en
 ### \% f_DS.SMOTE.dev-GPT.Rmd -----  
 .RelativeSubPath_FileName.source.r = "Rdev/50_model_formula_evaluation/56_model_bootstrap/f_DS.SMOTE.dev-GPT.Rmd"
 .RelativeSubPath_FileName.source.r |> dirname() |> cat("\n"); .RelativeSubPath_FileName.source.r |> basename() |> cat("\n");
-here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 
 
 

@@ -75,7 +75,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #     sep="")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
-### \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1 = env0
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 #________________________________________________________________________________|----  
@@ -143,7 +143,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 # +     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 # +         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 # +         .objectname = .dependancy
-# +         source(here::here(env1$path$source_base,"",paste0(.objectname,".source.r")))
+# +         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 # +     }
 # + }
 # sys.nframe() = 0

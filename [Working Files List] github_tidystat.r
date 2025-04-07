@@ -166,8 +166,8 @@ paste0(env1$path$source_base,"/","f_file_PDF.sumatra.dev.r") |> env1$env.interna
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ git -----  
-.RelativeSubPath="git"; .FileName.source.r = "ssh-add@Rocker.r"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.RelativeSubPath="git"; .FileName.source.r = "git config --global core.autocrlf input.r"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "ssh-add@Rocker.r"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "git config --global core.autocrlf input.r"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### \$ .gitignore -----  
 # ".gitignore" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
@@ -200,15 +200,15 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
 "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-.RelativeSubPath="git"; .FileName.source.r = "git automatic commit.r"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.RelativeSubPath="git"; .FileName.source.r = "git stash.r"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.RelativeSubPath="git"; .FileName.source.r = "git merge conflicts.r"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "git automatic commit.r"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "git stash.r"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "git merge conflicts.r"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-.RelativeSubPath="git"; .FileName.source.r = "f_git.03_final.pull_rebase_push" |> paste0(c(".source.r",".dev.r")); here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "f_git.03_final.pull_rebase_push" |> paste0(c(".source.r",".dev.r")); file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### @ git filter-repo --path-glob .pdf --invert-paths.sh ----  
-.RelativeSubPath="git"; .FileName.source.r = "git filter-repo --path-glob .pdf --invert-paths.r"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.RelativeSubPath="git"; .FileName.source.r = "git filter-repo --path-glob .pdf --invert-paths.sh"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "git filter-repo --path-glob .pdf --invert-paths.r"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath="git"; .FileName.source.r = "git filter-repo --path-glob .pdf --invert-paths.sh"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
   
@@ -224,76 +224,76 @@ if (getwd() |> normalizePath(winslash="/",mustWork=NA) == .overwrite_from_path) 
 #### @ default.R -----  
 # .file2edit = paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"); if (Sys.info()["sysname"] == "Windows") {.file2edit |> shQuote(type="cmd") |> shell.exec()} else {.file2edit |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()}
 .file2edit = paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"); if (Sys.info()["sysname"] == "Windows") {.file2edit |> env1$env.internal.attach$f_file.edit_vscode()} else {.file2edit |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()}
-.RelativeSubPath=r"(rstudio-prefs/templates)"; .FileName.source.r = "default.R"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath=r"(rstudio-prefs/templates)"; .FileName.source.r = "default.R"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 
 #### @ templates-00env1.minimum.Rmd -----  
 # .file2edit = paste0(env1$path$source_base,"/","rstudio-prefs/templates/templates-00env1.minimum.Rmd"); if (Sys.info()["sysname"] == "Windows") {.file2edit |> env1$env.internal.attach$f_file.edit_vscode()} else {.file2edit |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()}
-# .RelativeSubPath=r"(rstudio-prefs/templates)"; .FileName.source.r = "templates-00env1.minimum.Rmd"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+# .RelativeSubPath=r"(rstudio-prefs/templates)"; .FileName.source.r = "templates-00env1.minimum.Rmd"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 .file2edit = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd"; if (Sys.info()["sysname"] == "Windows") {.file2edit |> env1$env.internal.attach$f_file.edit_vscode()} else {.file2edit |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()}
 # "templates-00env1.minimum.Rmd" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.RelativeSubPath=r"(rstudio-prefs/templates)"; .FileName.source.r = "templates-00env1.minimum.Rmd"; here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath=r"(rstudio-prefs/templates)"; .FileName.source.r = "templates-00env1.minimum.Rmd"; file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ## @ env1$env.internal -----  
-.FileName.source.r = "env1$env.internal" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "env1$env.internal" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .FileName.source.r = "function.detachAllPackages" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.FileName.source.r = "function.detachAllPackages.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+# .FileName.source.r = "function.detachAllPackages" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "function.detachAllPackages.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-.FileName.source.r = "Encoding.txt"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.FileName.source.r = "options.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.FileName.source.r = "function.update.Rprofile.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-.FileName.source.r = "function.Sys.setenv.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "Encoding.txt"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "options.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "function.update.Rprofile.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "function.Sys.setenv.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-.FileName.source.r = "f_clipboard_path_BackSlash.to_URL.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_clipboard_path_BackSlash.to_URL.dev.r"; .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ### \% f_path -----  
 #### \% internal.f_path0.list_path_hierarchy -----  
-.FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #### \% f_path.list_subpath -----  
-.FileName.source.r = "f_path.list_subpath" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_path.list_subpath" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #### \% f_path.df_dirs_recursive.df_files -----  
-.FileName.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_path.df_dirs_recursive.df_files" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### \% f_file -----  
 #### \% f_FileNameExt.find_subpath -----  
-.FileName.source.r = "f_FileNameExt.find_subpath" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_FileNameExt.find_subpath" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #### \% f_path.size_files -----  
-.FileName.source.r = "f_path.size_files" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_path.size_files" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ### \% f_df -----  
 #### \% f_df.t.tribble_construct -----  
-.FileName.source.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #### \% f_DSname.Search.read.checkEntity -----  
-.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; here::here(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.FileName.source.r = "f_DSname.Search.read.checkEntity" |> paste0(c("-source.R","-dev.R")); .RelativeSubPath=c("R", "Rdev")|>str_replace_all("\\\\","/"); .RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)}; file.path(env1$path$source_base, .RelativeSubPath_FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ## @ .RelativeSubPath = r"(Rdev/00_base_program)" |> str_replace_all("\\\\","/") -----  
 #### \% f_df.NotNA_p_df -----  
-.RelativeSubPath = r"(00_base_program)"; .FileName.source.r = "f_df.NotNA_p_df" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath = r"(00_base_program)"; .FileName.source.r = "f_df.NotNA_p_df" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ## @ .RelativeSubPath = r"(Rdev/10_import_clean_datatype/13_missing_value)" |> str_replace_all("\\\\","/") -----  
 #### \% f_CodeText.ECHO -----  
-.RelativeSubPath = r"(Rdev/10_import_clean_datatype/13_missing_value)"; .FileName.source.r = "f_CodeText.ECHO" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath = r"(Rdev/10_import_clean_datatype/13_missing_value)"; .FileName.source.r = "f_CodeText.ECHO" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ## @ .RelativeSubPath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/") -----  
 #### \% f_df.Table1byExposure.xlsx -----  
-.RelativeSubPath = r"(Rdev/60_communicate_report_export)"; .FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath = r"(Rdev/60_communicate_report_export)"; .FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 "Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.Rmd" %>% file.edit
 #### \% f_Table1_print_df.flextable  -----  
-.RelativeSubPath = r"(Rdev/60_communicate_report_export)"; .FileName.source.r = "f_Table1_print_df.flextable" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); here::here(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
+.RelativeSubPath = r"(Rdev/60_communicate_report_export)"; .FileName.source.r = "f_Table1_print_df.flextable" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); file.path(env1$path$source_base, .RelativeSubPath, .FileName.source.r) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 

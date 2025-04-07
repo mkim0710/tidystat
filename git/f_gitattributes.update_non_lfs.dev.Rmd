@@ -198,8 +198,8 @@ env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditor
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$path4read = here::here(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$path4write = here::here(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
 env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
 env1$path$path4write = getwd()
 .path4read  = env1$path$path4read
@@ -270,9 +270,9 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     for (.FileNameExt in c(".gitignore", ".gitattributes", ".Rprofile")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        # for (.file.copy.to in here::here(env1$path$path1,.FileNameExt)) {
-        for (.file.copy.to in c(here::here(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
-            if(file.exists(.file.copy.to) || .file.copy.to == here::here(env1$path$path1,.FileNameExt)) {
+        # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
+        for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
                 UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
             }
         }
@@ -281,7 +281,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
     for (.FileNameExt in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        .file.copy.to = here::here(env1$path$path1,.FileNameExt)
+        .file.copy.to = file.path(env1$path$path1,.FileNameExt)
         UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     }
     
@@ -413,7 +413,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+# # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ```
   
@@ -497,9 +497,9 @@ options(width=120)
     # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     # for (.FileNameExt in c(".gitignore", ".Rprofile")) {
     #     .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-    #     # for (.file.copy.to in here::here(env1$path$path1,.FileNameExt)) {
-    #     for (.file.copy.to in c(here::here(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
-    #         if(file.exists(.file.copy.to) || .file.copy.to == here::here(env1$path$path1,.FileNameExt)) {
+    #     # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
+    #     for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
+    #         if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
     #             UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     #         }
     #     }
@@ -507,9 +507,9 @@ options(width=120)
 
     for (.FileNameExt in c(".gitattributes", ".lfs.gitattributes", ".non_lfs.gitattributes")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        # for (.file.copy.to in here::here(env1$path$path1,.FileNameExt)) {
-        for (.file.copy.to in c(here::here(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
-            if(file.exists(.file.copy.to) || .file.copy.to == here::here(env1$path$path1,.FileNameExt)) {
+        # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
+        for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), here::here("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
                 UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
             }
         }

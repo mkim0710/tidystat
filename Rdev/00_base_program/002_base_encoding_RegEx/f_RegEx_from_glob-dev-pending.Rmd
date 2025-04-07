@@ -228,8 +228,8 @@ env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditor
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$path4read = here::here(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$path4write = here::here(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
 env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
 env1$path$path4write = getwd()
 .path4read  = env1$path$path4read
@@ -383,7 +383,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     '# "',env1$path$source_base_local,"/",env1$path$.RelativeSubPath_FileName.source.r,'" |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+# # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ```
   

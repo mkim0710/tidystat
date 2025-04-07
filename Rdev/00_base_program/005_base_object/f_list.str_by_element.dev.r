@@ -9,9 +9,9 @@
 # if(!"ProjectDocuments" %in% names(.GlobalEnv$env1$path)) env1$path$ProjectDocuments = "ProjectDocuments"  
 # ##________________________________________________________________________________  
 # .FileName.xlsx = "NationalFamilyAndFertiltySurvey2021_230314_CodeBookQuery.xlsx"  
-# cat(" excel_sheets(",.FileName.xlsx,") == ",deparse(readxl::excel_sheets(here::here(env1$path$ProjectDocuments,.FileName.xlsx))),"  \n", sep="")  
+# cat(" excel_sheets(",.FileName.xlsx,") == ",deparse(readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.FileName.xlsx))),"  \n", sep="")  
 #   
-# MetaData$tblVarName[[.FileName.xlsx]] = readxl::excel_sheets(here::here(env1$path$ProjectDocuments,.FileName.xlsx)) |> set_names() |> map(function(SheetName) {readxl::read_excel(here::here(env1$path$ProjectDocuments,.FileName.xlsx), sheet=SheetName)})  
+# MetaData$tblVarName[[.FileName.xlsx]] = readxl::excel_sheets(file.path(env1$path$ProjectDocuments,.FileName.xlsx)) |> set_names() |> map(function(SheetName) {readxl::read_excel(file.path(env1$path$ProjectDocuments,.FileName.xlsx), sheet=SheetName)})  
 # MetaData$tblVarName[[.FileName.xlsx]] = MetaData$tblVarName[[.FileName.xlsx]] |> map(function(df) {if(!"Num" %in% names(df)) {df = df |> rownames_to_column("Num")} ; return(df) })  
 # cat(" > str(MetaData$tblVarName$",.FileName.xlsx,")","  \n", sep=""); str(MetaData$tblVarName[[.FileName.xlsx]])  
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")  

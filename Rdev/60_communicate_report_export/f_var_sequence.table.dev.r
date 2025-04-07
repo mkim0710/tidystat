@@ -5,8 +5,8 @@
 # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 .FileName.source.r = "f_var_sequence.table" |> paste0(".source.r")
 .RelativeSubPath_FileName.source.r = paste0(.RelativeSubPath,ifelse(.RelativeSubPath=="","","/"),.FileName.source.r)
-# \% source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ------------  
-source( here::here(env1$path$source_base,.RelativeSubPath_FileName.source.r) ) 
+# \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ------------  
+source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) ) 
 
 
 

@@ -328,7 +328,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # @@ update default notebook.Rmd ----  
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ update default notebook.Rmd ----  
-# FileNameExt = here::here(env1$path$source_base_local,"Rproject_Rmd","00env1.minimum.Rmd")
+# FileNameExt = file.path(env1$path$source_base_local,"Rproject_Rmd","00env1.minimum.Rmd")
 FileNameExt = "templates-00env1.minimum.Rmd"; if(file.exists(FileNameExt)) {
     if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = here::here(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
     if(!dir.exists(here::here(.path4APPDATA_RStudio, "templates"))) dir.create(here::here(.path4APPDATA_RStudio, "templates")) 
