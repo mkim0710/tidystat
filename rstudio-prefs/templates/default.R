@@ -57,77 +57,9 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.path_FileNameExt(check_rstudioapi = TRUE, overwrite = TRUE)
 # if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
-# .FileName.source.r = "f_path.df_dirs_recursive.df_files" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
-# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
-# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
-# env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")
-# # Rdev
-# # Rdev/-dev
-# # Rdev/00_base_program
-# # Rdev/00_base_program/001_base_file
-# # Rdev/00_base_program/002_base_encoding_RegEx
-# # Rdev/00_base_program/004_base_environment
-# # Rdev/00_base_program/005_base_object
-# # Rdev/00_base_program/007_base_expression
-# # Rdev/00_base_program/009_base_computation
-# # Rdev/00_protocol
-# # Rdev/00_protocol/01_sample_size
-# # Rdev/10_import_clean_datatype
-# # Rdev/10_import_clean_datatype/11_literature
-# # Rdev/10_import_clean_datatype/11_metadata
-# # Rdev/10_import_clean_datatype/12_import_files
-# # Rdev/10_import_clean_datatype/12_import_sqlite
-# # Rdev/10_import_clean_datatype/12_import_vocabulary
-# # Rdev/10_import_clean_datatype/13_duplicated
-# # Rdev/10_import_clean_datatype/13_missing_value
-# # Rdev/10_import_clean_datatype/13_split_fold
-# # Rdev/10_import_clean_datatype/15_cleaning_text
-# # Rdev/10_import_clean_datatype/15_cleaning_time
-# # Rdev/10_import_clean_datatype/16_categorical_factor
-# # Rdev/10_import_clean_datatype/16_categorical_labelled
-# # Rdev/10_import_clean_datatype/17_categorical_indicators
-# # Rdev/10_import_clean_datatype/18_dichotomous_logical
-# # Rdev/10_import_clean_datatype/19_datetime
-# # Rdev/10_import_clean_datatype/19_numeric_integer
-# # Rdev/10_import_clean_datatype/array_list
-# # Rdev/20_tidy_group_by_match
-# # Rdev/20_tidy_group_by_match/23_group_by_PersonID
-# # Rdev/20_tidy_group_by_match/25_study_population
-# # Rdev/20_tidy_group_by_match/27_match
-# # Rdev/30_transform_scale_categorical
-# # Rdev/40_visualize_explore_bivariate_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/43_network
-# # Rdev/40_visualize_explore_bivariate_stratified/44_map
-# # Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
-# # Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/49_time
-# # Rdev/50_model_formula_evaluation
-# # Rdev/50_model_formula_evaluation/51_model_formula
-# # Rdev/50_model_formula_evaluation/52_model_estimation
-# # Rdev/50_model_formula_evaluation/53_model_selection
-# # Rdev/50_model_formula_evaluation/55_model_weighted
-# # Rdev/50_model_formula_evaluation/56_model_bootstrap
-# # Rdev/50_model_formula_evaluation/57_model_time2event
-# # Rdev/50_model_formula_evaluation/57_model_trajectory
-# # Rdev/50_model_formula_evaluation/59_model_evaluation
-# # Rdev/60_communicate_report_export
-# # Rdev/Rmd
-# # Rdev/examples
-# # Rdev/others
-# # Rdev/others/Batch
-# # Rdev/others/VBA
-# # data
-# # git
-# # git/hooks
-# # git/hooks/sample
-# # rstudio-prefs
-# # rstudio-prefs/Rocker
-# # rstudio-prefs/VScode-R
-# # rstudio-prefs/fonts
-# # rstudio-prefs/templates
-# # rstudio-prefs/themes
-# # rstudio-prefs/themes/GitHub 
+### env1\$f\$showProjectPathsRecursively() ----  
+# env1$f$showProjectPathsRecursively()
+# env1$f$showProjectPathsAtTidyStat()
 ##________________________________________________________________________________  
 "ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
