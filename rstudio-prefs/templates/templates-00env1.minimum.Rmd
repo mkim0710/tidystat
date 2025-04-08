@@ -576,24 +576,24 @@ options(width=120)
 # --> Now included in "f_df.t.tribble_construct.source.r"
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-if(!exists("DSN.Date")) DSN.Date = ifelse(exists(paste0(DSN,".Date")), paste0(DSN,".Date"), DSN)
-.vec_nlevel_lt20.value_number.unique = 'get(DSN.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+if(!exists("DSname.Date")) DSname.Date = ifelse(exists(paste0(DSN,".Date")), paste0(DSN,".Date"), DSN)
+.vec_nlevel_lt20.value_number.unique = 'get(DSname.Date) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date) |> mutate_if(is.factor, as.character) ); MetaData$DSNs[[DSN.Date.NA]] = list(DSN = DSN.Date.NA)
+DSname.Date.NA = DSname.Date |> paste0(".NA"); assign( DSname.Date.NA, get(DSname.Date) |> mutate_if(is.factor, as.character) ); MetaData$DSNs[[DSname.Date.NA]] = list(DSN = DSname.Date.NA)
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
-    DSN.Date.NA = DSN.Date |> paste0(".NA"); assign( DSN.Date.NA, get(DSN.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
+    DSname.Date.NA = DSname.Date |> paste0(".NA"); assign( DSname.Date.NA, get(DSname.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
-### :: DSN.DNR = DataSetName.Date.NA.rmAllNA = =====
-DSN.DNR = paste0(DSN,".DNR"); assign( DSN.DNR, get(DSN.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSN.DNR]] = list(DSN = DSN.DNR)
-cat(" dim(",DSN.Date,") == ",deparse(dim(get(DSN.Date))),"  \n", sep="") 
-cat(" dim(",DSN.DNR,") == ",deparse(dim(get(DSN.DNR))),"  \n", sep="") 
+### :: DSname.DNR = DataSetName.Date.NA.rmAllNA = =====
+DSname.DNR = paste0(DSN,".DNR"); assign( DSname.DNR, get(DSname.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSname.DNR]] = list(DSN = DSname.DNR)
+cat(" dim(",DSname.Date,") == ",deparse(dim(get(DSname.Date))),"  \n", sep="") 
+cat(" dim(",DSname.DNR,") == ",deparse(dim(get(DSname.DNR))),"  \n", sep="") 
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
-DS.DNR = get(DSN.DNR)
+DS.DNR = get(DSname.DNR)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-"get(DSN.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"get(DSname.Date.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
@@ -602,7 +602,7 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-for (varname in vec_candidate4ID) {if(varname %in% names(get(DSN.DNR))) cat(" n_distinct(",DSN.DNR,"$",varname,") == ",n_distinct(get(DSN.DNR)[[varname]]),"  \n", sep="")}
+for (varname in vec_candidate4ID) {if(varname %in% names(get(DSname.DNR))) cat(" n_distinct(",DSname.DNR,"$",varname,") == ",n_distinct(get(DSname.DNR)[[varname]]),"  \n", sep="")}
   
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
@@ -610,13 +610,13 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
 "ADS_time2event.DNR |> select_if(is.logical) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); 
-DSN.Date.NA = DSN.Date |> paste0(".NA"); 
-### :: DSN.DNR = DataSetName.Date.NA.rmAllNA = =====
-DSN.DNR = paste0(DSN.DNR); 
-DSN.DNR.lbl_pending.fct = paste0(DSN.DNR,".fct"); 
-"assign( DSN.DNR.lbl_pending.fct, get(DSN.DNR) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+DSname.Date.NA = DSname.Date |> paste0(".NA"); 
+### :: DSname.DNR = DataSetName.Date.NA.rmAllNA = =====
+DSname.DNR = paste0(DSname.DNR); 
+DSname.DNR.lbl_pending.fct = paste0(DSname.DNR,".fct"); 
+"assign( DSname.DNR.lbl_pending.fct, get(DSname.DNR) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); 
-"get(DSN.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+"get(DSname.DNR.lbl_pending.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
   
@@ -644,8 +644,8 @@ paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case 
 options(width=120)
 .InclusionCriteria = "time_ge30"
 .ExclusionCriteria = "age_lt40_gt70"
-assign(DSN.DNR.lbl_pending.fct, 
-       get(DSN.DNR.lbl_pending.fct) %>% mutate(
+assign(DSname.DNR.lbl_pending.fct, 
+       get(DSname.DNR.lbl_pending.fct) %>% mutate(
            !!rlang::sym(.InclusionCriteria) := (time >= 30),
            !!rlang::sym(.ExclusionCriteria) := (age < 40) | (age > 70) | (is.na(age))
        )
@@ -666,7 +666,7 @@ assign(DSN.DNR.lbl_pending.fct,
 ### \% DS1.recode |> 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-DS1.recode = get(DSN.DNR.lbl_pending.fct)
+DS1.recode = get(DSname.DNR.lbl_pending.fct)
 DSN1.recode.n = paste0(DSN,".DNR",".lbl_pending",".fct",".recode",".n",nrow(DS1.recode))
 DSN1.recode.n
 DS1.recode

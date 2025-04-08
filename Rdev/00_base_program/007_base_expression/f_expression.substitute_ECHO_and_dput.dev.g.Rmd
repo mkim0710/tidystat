@@ -929,7 +929,7 @@ substitute_and_evaluate <- function(expr_text) {
 # Define some character variables in .GlobalEnv
 DS = "ADS"
 DSN <- "ADS_time2event"
-DSN.Date <- "ADS_time2event2"
+DSname.Date <- "ADS_time2event2"
 AnotherVar <- "someOtherValue"
 
 # Create a dummy data frame as an example
