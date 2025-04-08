@@ -515,8 +515,8 @@ if(file.exists(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds)) {
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-# for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "ModelList")) {
+# for (.sublistname in c("tblVarName", "DSnames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSnames", "VarNames", "VarNames.select", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 

@@ -392,8 +392,8 @@ if(file.exists(env1$path$LastSourceEditorContext.path_FileName.MetaData.rds)) {
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-# for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "ModelList")) {
+# for (.sublistname in c("tblVarName", "DSnames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSnames", "VarNames", "VarNames.select", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
@@ -467,7 +467,7 @@ options(width=120)
 # # # cat(".path_FileNameExt = ", .path_FileNameExt, "  \n", sep = "")
 # # DSN |> paste0(".rds") %>% paste0(.path4read.RelativeSubPath,ifelse(.path4read.RelativeSubPath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
 # if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
-# MetaData$DSNs[[DSN]] = env1$f$f_DSname.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.RelativeSubPath=="","","/"),.path4read.RelativeSubPath), return.output = TRUE)
+# MetaData$DSnames[[DSN]] = env1$f$f_DSname.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.RelativeSubPath=="","","/"),.path4read.RelativeSubPath), return.output = TRUE)
 ```
   
   
@@ -581,13 +581,13 @@ if(!exists("DSname.Date")) DSname.Date = ifelse(exists(paste0(DSN,".Date")), pas
 .vec_nlevel_lt20.value_number.unique |> str(max.level = 2, give.attr = TRUE)
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DSname.Date.NA = DSname.Date |> paste0(".NA"); assign( DSname.Date.NA, get(DSname.Date) |> mutate_if(is.factor, as.character) ); MetaData$DSNs[[DSname.Date.NA]] = list(DSN = DSname.Date.NA)
+DSname.Date.NA = DSname.Date |> paste0(".NA"); assign( DSname.Date.NA, get(DSname.Date) |> mutate_if(is.factor, as.character) ); MetaData$DSnames[[DSname.Date.NA]] = list(DSN = DSname.Date.NA)
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
     DSname.Date.NA = DSname.Date |> paste0(".NA"); assign( DSname.Date.NA, get(DSname.Date.NA) |> mutate_if(is.character, na_if, .value4NA) )
 }
 ### :: DSname.DNR = DataSetName.Date.NA.rmAllNA = =====
-DSname.DNR = paste0(DSN,".DNR"); assign( DSname.DNR, get(DSname.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSNs[[DSname.DNR]] = list(DSN = DSname.DNR)
+DSname.DNR = paste0(DSN,".DNR"); assign( DSname.DNR, get(DSname.Date.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DSnames[[DSname.DNR]] = list(DSN = DSname.DNR)
 cat(" dim(",DSname.Date,") == ",deparse(dim(get(DSname.Date))),"  \n", sep="") 
 cat(" dim(",DSname.DNR,") == ",deparse(dim(get(DSname.DNR))),"  \n", sep="") 
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
@@ -807,7 +807,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        # "MetaData$DSNs |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+        # "MetaData$DSnames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
@@ -817,7 +817,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         
         if(!exists(".MetaData0")) .MetaData0 = MetaData
-        MetaData$DSNs = MetaData$DSNs %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
+        MetaData$DSnames = MetaData$DSnames %>% map(function(ls) {  if("str" %in% names(attributes(ls))) {  if(!is.environment(attributes(ls)$str)) {  attributes(ls)$str = as.environment(list(DSN.get.str.capture.output = attributes(ls)$str))  }  }; ls  })
         MetaData %>% list_modify(tblVarName = NULL) %>% str(vec.len = 100, list.len = 1000) %>% capture.output(file = env1$path$LastSourceEditorContext.path_FileName.MetaData.rds %>% str_replace("\\.rds$", "-str.txt"))
         "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
         if(!identical(.MetaData0, MetaData)) {
@@ -837,9 +837,9 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSnames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DSN in names(MetaData$DSNs)) {    
+        for (DSN in names(MetaData$DSnames)) {    
             if(exists(DSN)) {
                 assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
                 if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN

@@ -525,7 +525,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
     .wb <- openxlsx2::wb_workbook()
 
     .names4data.frame = if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        MetaData$DSNs |> names()
+        MetaData$DSnames |> names()
     } else mget(ls()) |> keep(is.data.frame) |> names()
     cat(".names4data.frame == ", deparse(.names4data.frame), "  \n", sep="")
     # for (.objectname in .names4data.frame) {    # name of the data.frame .object

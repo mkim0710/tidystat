@@ -210,9 +210,9 @@ print(result)
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSnames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DSN in names(MetaData$DSNs)) {    
+        for (DSN in names(MetaData$DSnames)) {    
             if(exists(DSN)) {
                 assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
                 if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN

@@ -2708,8 +2708,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     .object.size <- object.size(.object)
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        if("DSNs" %in% names(MetaData)) {
-            if(.objectname %in% names(MetaData$DSNs)) {
+        if("DSnames" %in% names(MetaData)) {
+            if(.objectname %in% names(MetaData$DSnames)) {
                 # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
                 assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
                 assign(".object", structure(.object, MetaData = as.environment(MetaData)))

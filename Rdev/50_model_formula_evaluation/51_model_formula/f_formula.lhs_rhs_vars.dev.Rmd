@@ -240,7 +240,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "05Co
 ## .GlobalEnv$MetaData = list() ====  
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .listname = "tblVarName"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
-.listname = "DSNs"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "DSnames"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
 .listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
 .listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
 .listname = "VarNames.filter"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }

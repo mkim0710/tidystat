@@ -171,7 +171,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 ## .GlobalEnv$MetaData = list() ====  
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
-for (.sublistname in c("tblVarName", "DSNs", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DSnames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 #________________________________________________________________________________|----  
@@ -185,7 +185,7 @@ DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # # cat(".path_FileNameExt = ", .path_FileNameExt, "  \n", sep = "")
 # DSN |> paste0(".rds") %>% paste0(.path4read.RelativeSubPath,ifelse(.path4read.RelativeSubPath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv)
 if(!exists("DSN0")) {DSN0 = DSN; cat('  Setting DSN0 = "',DSN0,'"  \n', sep="")}
-MetaData$DSNs[[DSN]] = env1$f$f_DSname.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.RelativeSubPath=="","","/"),.path4read.RelativeSubPath), return.output = TRUE)
+MetaData$DSnames[[DSN]] = env1$f$f_DSname.Search.read.checkEntity(DSN=DSN,ext="rds", .path4read=.path4read|>paste0(ifelse(.path4read.RelativeSubPath=="","","/"),.path4read.RelativeSubPath), return.output = TRUE)
 
 
 
@@ -211,9 +211,9 @@ MetaData$DSNs[[DSN]] = env1$f$f_DSname.Search.read.checkEntity(DSN=DSN,ext="rds"
 if (Sys.getenv("PARENT_RENDERING") != "YES") {    
     .path4write = .path4write %>% str_replace(fixed(env1$path$path1), "") %>% str_replace("^/", "")  # [][Rproject] makes an error in git bash
     if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        # MetaData$DSNs |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+        # MetaData$DSnames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
         cat("    ________________________________________________________________________    \n")
-        for (DSN in names(MetaData$DSNs)) {    
+        for (DSN in names(MetaData$DSnames)) {    
             if(exists(DSN)) {
                 assign(DSN, structure(get(DSN, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
                 if(is.null(attributes(.GlobalEnv[[DSN]])$DSN)) attributes(.GlobalEnv[[DSN]])$DSN = DSN
