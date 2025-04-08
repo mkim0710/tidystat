@@ -16,25 +16,12 @@
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-#| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
-#| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
-#| Ctrl+Alt+Shift+Left/Right: First/Last tab
-#| Ctrl+Alt+D: Show diff between current and last commit
-#| Ctrl+Alt+M: Commit changes to Git
-#| Ctrl+Shift+O: Show/Hide Document Outline
-#| Alt+Shift+Drag: Multiline Cursor
-#| Ctrl+Shift+F10: Restart R Session 
-#| Ctrl+Alt+B: Run from start to current line 
-#| Shift+F9: Toggle Breakpoint 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # paste0("[Working Files List] ",basename(getwd()),".r") %>% {paste0(env1$path$path1,"/",.)} |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R"  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd"  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# rm(list=ls())
-# rstudioapi::restartSession()  # ctrl+shift+f10
-# https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
+# env1$f$showCodeText2restartSession.pending()
 # .FileName.source.r = "function.detachAllPackages" |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/.Rprofile"    
