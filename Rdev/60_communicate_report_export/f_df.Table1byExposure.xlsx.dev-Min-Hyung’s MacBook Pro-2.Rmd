@@ -1,0 +1,715 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    md_extensions: -smart
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  # - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  # - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  # - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+  
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+  
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# __________|------  
+<!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
+<!-- ##### Rstudio RMarkDown Shortcuts -->
+<!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html   -->
+<!-- Insert R chunk	Ctrl+Alt+I	Command+Option+I   -->
+<!-- Preview HTML	Ctrl+Shift+K	Command+Shift+K   -->
+<!-- Run all chunks above	Ctrl+Alt+P	Command+Option+P   -->
+<!-- Run current chunk	Ctrl+Alt+C	Command+Option+C   -->
+<!-- Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter   -->
+<!-- Run next chunk	Ctrl+Alt+N	Command+Option+N   -->
+<!-- Run all chunks	Ctrl+Alt+R	Command+Option+R   -->
+<!-- Go to next chunk/title	Ctrl+PgDown	Command+PgDown   -->
+<!-- Go to previous chunk/title	Ctrl+PgUp	Command+PgUp   -->
+<!-- Show/hide document outline	Ctrl+Shift+O	Command+Shift+O   -->
+<!-- F7 spell-check your document.   -->
+<!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
+<!--    -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
+
+  
+```{r setup, echo=FALSE, results="hide"}
+## Cf) {r setup, eval=TRUE, include=FALSE}
+if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.UTF-8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+
+
+## Cf) {r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# env1$f$MH_shortcuts()
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+env1$info$options.width = getOption("width"); cat('\tgetOption("width") == ', env1$info$options.width, "  \n", sep="")
+#   
+## Cf) {r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal.attach$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+```
+  
+  
+```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+
+```
+  
+  
+# __________|------  
+# @@ SOURCE) ----  
+## @ .RelativeSubPath, .FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+```
+
+
+```{r .RelativeSubPath_FileName.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+options(DEVMODE = TRUE);  # isTRUE(getOption("DEVMODE"))
+.RelativeSubPath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
+.FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+```
+  
+  
+# __________|------  
+# @@ DATA) mutate() ----  
+```{r DATA-MUTATE-SYNC, eval=FALSE, include=FALSE}
+paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
+```
+## ->> Now synced to: ""  
+## ()()()()()()()()()()------  
+## ()()()()()()()()()()------  
+## ->> PENDING synced to: ""  
+## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
+#### \$ DS.DNR =  
+#### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# # \$ assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) ) ====  
+# # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# # DSN = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# .path4read = paste0(env1$path$path1,"/data")
+# DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
+# assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) )
+# 
+# CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+# # > CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----  
+# # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
+# # HEIGHT, WEIGHT, 
+# # BP_HIGH, BP_LWST, BLDS, 
+# # TOT_CHOLE, 
+# # HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, 
+# # WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, 
+# # CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, 
+# # BMI.4bins, FPG, 
+# # FPG_ge100, FPG_ge126, 
+# # SBP, DBP, BP_ESCESH2018, 
+# # FPG_ge100lt126, 
+# # TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, 
+# # nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
+# # nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+# DS.DNR = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
+#     rownames_to_column() 
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# DS.DNR %>% 
+#     select(
+#         SEX,
+#         HEIGHT, WEIGHT, 
+#         BMI.4bins, 
+#         WAIST, 
+#         WAIST_ge9080, WAIST_ge9085, 
+#         SBP, DBP, BP_ESCESH2018, 
+#         BP_ge130_85, 
+#         FPG, 
+#         FPG_ge100, FPG_ge126, 
+#         TOT_CHOLE, 
+#         TRIGLYCERIDE, 
+#         HDL_CHOLE, LDL_CHOLE, 
+#         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
+#         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
+#         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
+#     ) |> env1$f$f_df.Table1byExposure.xlsx(DSN4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
+```
+  
+  
+# __________|------  
+# @@ DATA) select(matches(VarName.suffix.regex)) ----  
+## @ VarNames.select.vec = VarNames.select.txt %>% strsplit("\n") %>% unlist
+## :: VarName.suffix.regex = VarNames.select.vec %>% paste0(collapse="|")
+## :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
+### \% |> select(matches("A0[0-3]")) ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+VarNames.select.txt = "SEX
+AGE
+DRINK
+SMOKE
+PACKYR
+PHYACTL
+PHYACTM
+PHYACTH
+MET
+EXERCUR
+EXER
+EXERFQ
+EXERDU
+IB1_2
+IB1_3
+IB1_4
+BODYFAT
+OBDIG1
+OBDIG2
+OBDEG
+HBA1C
+GLU0_TR
+GLU60_TR
+GLU120_TR
+R_GTP_TR
+TCHL_TR
+HDL_TR
+TRIGLY_TR
+INS0
+INS60
+INS120
+SBP_L
+DBP_L
+SBP_R
+DBP_R
+WAIST
+HIP
+MEALRG
+OVEREAT
+MEALSPD
+MEATFAT
+CKOIL
+CKOILETC
+SPCOIL
+SPCOILETC
+RMEALFQA
+BMEALFQA
+SKPMEAL
+ALNMEALFQ
+FRFOILY
+B01
+B02
+B03
+B04
+B24"
+
+VarNames.select.vec = VarNames.select.txt %>% strsplit("\n") %>% unlist
+VarNames.select.vec %>% dput
+# > VarNames.select.vec %>% dput
+c("SEX", "AGE", "DRINK", "SMOKE", "PACKYR",
+  "PHYACTL", "PHYACTM", "PHYACTH", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU",
+  "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG", # "IB1_2", "IB1_3", "IB1_4",
+  "HBA1C", "GLU0_TR", "GLU60_TR", "GLU120_TR",
+  "R_GTP_TR",
+  "TCHL_TR", "HDL_TR", "TRIGLY_TR",
+  "INS0", "INS60", "INS120",
+  "SBP_L", "DBP_L", "SBP_R", "DBP_R",
+  "WAIST", "HIP",
+  "BRF", "MEALRG", "AFTDNN", "OVEREAT", "MEALSPD",
+  "MEATFAT", # "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC", "RMEALFQA", "BMEALFQA", "SKPMEAL", "ALNMEALFQ", "FRFOILY",
+  "B01", "B02", "B03", "B04", "B24")
+VarName.suffix.regex = VarNames.select.vec %>% paste0(collapse="|")
+VarName.suffix.regex %>% dput
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
+# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0("../Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0("../Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
+DS.DNR = get(DSN) %>% 
+    select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+    # select(matches("A00|A01|A04|A07"))
+    # select(matches("A00|A01|A07"))
+    select(matches("A0[0-3]"))
+# DS.DNR = DS.DNR[sort(names(DS.DNR))]
+DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DS.DNR |> str(max.level = 2, give.attr = TRUE)
+```
+  
+
+## \$ df_NewDMv3.CensorEND.n88.select293.NR.recode  
+### :: VarName.suffix.regex = "A0[0-2]"
+### :: DS.DNR = get(DSN) |> select(matches(VarName.suffix.regex))
+#### \% |> select(matches("A0[0-3]")) ----  
+#### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0("../Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+VarName.suffix.regex =
+    c(
+        paste0("A0[1-5]_",
+               c("WEIGHT", "HEIGHT",
+                 "BMI.5bins")),
+        # outer(c("delta", "pdelta"), 1:4, paste0),
+        paste0("A02_", ".*",
+               c("delta", "pdelta"),
+               "1"),
+        paste0("A03_", ".*",
+               c("delta", "pdelta"),
+               "1"),
+        paste0("A03_", ".*",
+               c("delta", "pdelta"),
+               "2"),
+        paste0("A05_", ".*",
+               c("delta", "pdelta"),
+               "4"),
+        paste0("A00_",
+               c("SEX")),
+        "Female",
+        paste0("A01_",
+               c("AGE", "INCOME",
+                 "WAIST", "HIP",
+                 "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG",
+                 # "BP", "PULSE", "HTN_C", "HTNCU", "TREATD1", "DRUGHTCU", "FMHTN",
+                 "PULSE", "HTN_C", "HTNCU", "DRUGHTCU", "FMHTN",
+                 "HBA1C", "GLU0_TR", "GLU60_TR", "GLU120_TR", "DM_C", "DMCU", "TREATD2", "DRUGDMCU", "DRUGINSCU", "FMDM",
+                 "INS0", "INS60", "INS120", 
+                 # "PHYSTB", "PHYSIT", 
+                 # "PHYACTL", "PHYACTM", "PHYACTH",
+                 "MET", "EXERCUR", "EXER", "EXERDU", # "EXERFQ", 
+                 "BRF", "MEALRG", "AFTDNN", "OVEREAT", "MEALSPD",
+                 "MEATFAT", # "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC", "RMEALFQA", "BMEALFQA", "SKPMEAL", "ALNMEALFQ", "FRFOILY",
+                 "B01", "B02", "B03", "B04", "B24", 
+                 "DRINK", # "DRDU",
+                 "SMOKE", "PACKYR", # "SMAG", "SMDU", "SMAM", "PSM", "PSMDU",
+                 "TCHL_TR", "HDL_TR", "TRIGLY_TR", "LIPCU", 
+                 # "MICU", "CHFCU", "CADCU", "PVDCU", "TREATD8", "FMHEA",
+                 # "R_GTP_TR", 
+                 # "CEVACU",
+                 # "KIDCU", "TREATD14",
+                 "EDATE"))
+    ) %>% paste0(collapse="|")
+VarName.suffix.regex %>% dput
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
+# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0("../Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0("../Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
+DS.DNR = get(DSN) %>% 
+    select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+    # select(matches("A00|A01|A04|A07"))
+    # select(matches("A00|A01|A07"))
+    select(matches("A0[0-3]"))
+# DS.DNR = DS.DNR[sort(names(DS.DNR))]
+DS.DNR = DS.DNR %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DS.DNR |> str(max.level = 2, give.attr = TRUE)
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+.VarNames4Exposure =  c("A01_BMI.5bins")  
+.DSN4output = DSN
+# DS.DNR |> env1$f$f_df.Table1byExposure.xlsx(DSN4output = .DSN4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES") |> env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
+```
+
+
+# \% library(tableone) -----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+.packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+
+```
+
+##@ DS.Table1 -----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# #@ DS.Table1 -----  
+# # DS.Table1 = DS.DNR %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
+# #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
+# DS.Table1 = DS.DNR %>% 
+#     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 19) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
+#     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
+# DS.is.na.Table1 = DS.DNR %>% 
+#     map_df(is.na) %>% setNames(paste0(names(.), ".is.na")) %>% 
+#     as.data.frame %>%  # debug181115 not to remove numeric 
+#     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
+
+# Vars4IQR = names(DS.DNR)[DS.DNR %>% map_lgl(is.numeric)]
+
+# sink(paste0(.path4write,"/","DS.Table1.txt"), append = FALSE)
+# DS.Table1 |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
+# sink()
+# sink(paste0(.path4write,"/","DS.Table1.IQR.txt"), append = FALSE)
+# DS.Table1 |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
+# sink()
+
+
+# # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----  
+# DS.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+#     write.csv("DS.Table1 -clean.csv")
+# DS.is.na.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+#     write.csv("DS.is.na.Table1 -clean.csv")
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DS.Table1 -clean.csv")
+
+# list(
+#     Table1 = DS.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
+#     , Table1.IQR = DS.Table1 |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
+#     , is.na.Table1 = DS.is.na.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
+# ) %>% openxlsx2::write_xlsx("DS.Table1.xlsx")
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DS.Table1.xlsx")
+```
+
+
+##@ DS.Table1.byExposure -----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+## @ DS.Table1.byExposure -----  
+DS.DNR %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+DS.DNR.select = DS.DNR |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
+    mutate(Intervention.ge1 = !BMI_ge300) %>% 
+    # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
+    # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
+    mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
+DS.DNR.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+# DS.DNR.select %>% mutate_if(is.numeric, replace_na, 0)
+                          
+VarNames4Exposure =  c("InterventionGroup")
+DSN = "DS.DNR"
+DSN.select = paste0(DSN,".select")
+DSN.Table1byExposure = paste0(DSN,".Table1by", VarNames4Exposure)
+DSN.is.na.Table1byExposure = paste0(DSN,".is.na.Table1by", VarNames4Exposure)
+DSN.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+DSN.Table1byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+DSN.is.na.Table1byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+                              
+assign(DSN.Table1byExposure, 
+       get(DSN.select) %>% 
+           {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
+           CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+)
+assign(DSN.is.na.Table1byExposure, 
+       get(DSN.select) %>% 
+           {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
+           map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
+           # mutate( !!rlang::sym(VarNames4Exposure) :=get(DSN.select)[[VarNames4Exposure]]) %>%
+           cbind(get(DSN.select)[VarNames4Exposure]) |>
+           as.data.frame() %>%
+           CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+)
+
+Vars4IQR = names(get(DSN.select))[get(DSN.select) %>% map_lgl(is.numeric)]
+# get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
+# get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
+# get(DSN.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
+# sink(paste0(env1$path$LastSourceEditorContext.path,"/",DSN.Table1byExposure, " -AllLevels.txt"), append = FALSE)
+get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+# sink()
+# sink(paste0(env1$path$LastSourceEditorContext.path,"/",DSN.Table1byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+# sink()
+# sink(paste0(env1$path$LastSourceEditorContext.path,"/",DSN.is.na.Table1byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+get(DSN.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+# sink()
+
+
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
+DS.is.na.Table1byExposure.print = get(DSN.is.na.Table1byExposure) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.is.na.Table1byExposure.print |> print(n=5) ###### |> print(n=5) ----
+
+DS.Table1byExposure.print = get(DSN.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.Table1byExposure.print_showAllLevels = get(DSN.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.Table1byExposure.print_showAllLevels.IQR = get(DSN.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DS.Table1byExposure.print |> print(n=5) ###### |> print(n=5) ----
+DS.Table1byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
+DS.Table1byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
+              
+# DS.Table1byExposure.print %>% writexl::write_xlsx(paste0(DSN.Table1byExposure, " -clean.xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DSN.Table1byExposure, " -clean.xlsx"))
+# DS.Table1byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DSN.Table1byExposure, " -AllLevels -clean.xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DSN.Table1byExposure, " -AllLevels -clean.xlsx"))
+# DS.Table1byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DSN.Table1byExposure, " -AllLevels -IQR -clean.xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DSN.Table1byExposure, " -IQR -clean.xlsx"))
+```
+  
+  
+## \% function.DS.Table1byExposure.print.addCols() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+## \% function.DS.Table1byExposure.print.addCols() ----
+function.DS.Table1byExposure.print.addCols = function(DS.Table1byExposure.print) {
+    DS.Table1byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+        select(-p, -test, p, test) %>%
+        {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
+        add_column(VarType = as.character(NA), .before = "Variable") %>%
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
+        mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
+        mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
+        mutate_at(vars(matches("mean$"), matches("sd$"), matches("G[0-9]n$"), matches("prop$")), as.numeric) %>%
+        mutate(G1geG2 = if_else(VarType == "numeric", G1mean >= G2mean, G1geG2), G1leG2 = if_else(VarType == "numeric", G1mean <= G2mean, G1leG2)) %>% 
+        mutate(G1geG2 = if_else(VarType %in% c("factor", "level"), G1prop >= G2prop, G1geG2), G1leG2 = if_else(VarType %in% c("factor", "level"), G1prop <= G2prop, G1leG2)) %>% 
+        mutate(greatest = paste0(if_else(G1geG2, "G1", ""), if_else(G1leG2, "G2", ""))) %>% 
+        {add_column(., `#` = 1:nrow(.), `#2` = "", Class = "", .before = 1)} %>%    
+        add_column(`p-value` = "", star = "   ", .before = "p") %>% mutate(`p-value` = p, p = as.numeric(if_else(p == "<0.001", "0", p))) %>% 
+        mutate(star = case_when(p<0.001~"***", p<0.01~"** ", p<0.05~"*  ", p<0.1~".  ", is.na(p)~"   ", TRUE~"   ")) %>% 
+        add_column(smd = as.numeric(NA), .before = "p") %>% mutate(smd = as.numeric(SMD)) %>% 
+        add_column(Label = "", Level = "", .before = "Overall") %>% 
+        as_tibble
+}
+```
+  
+  
+## \% function.df.edit_Label_Level()  ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+function.df.edit_Label_Level = function(DS.DNR) {
+    # :: DS.DNR = DataSet.Date.NA.rmAllNA = =====
+    DS.DNR = DS.DNR %>% 
+        mutate(Level = if_else(VarType  == "level", Variable |> str_replace_all("^   ", ""), Level)) %>% 
+        mutate(Level = if_else(Variable |> str_detect(" = "), Variable |> str_extract(" = .*$") |> str_replace_all("^ = ", ""), Level)) %>% 
+        mutate(Level = if_else(Level == "TRUE", "", Level)) %>% 
+        mutate(Level = if_else(Level == "NA", "N/A", Level)) %>% 
+        mutate(Label = if_else(VarType  %in% c("factor", "numeric"), Variable, Label)) %>% 
+        mutate(Label = if_else(Variable |> str_detect(" = "), Label |> str_extract("^.* = ") |> str_replace_all(" = $", ""), Label)) %>% 
+        mutate(Label = Label |> str_replace_all("[_\\.]", " ")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)lt([0-9]+)", "[\\1~,\\2)")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)le([0-9]+)", "(\\1~,\\2]")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)", ">\\1")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)", ">=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("lt([0-9]+)", "<\\1")) %>%
+        mutate(Label = Label |> str_replace_all("le([0-9]+)", "<=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
+        as_tibble
+    DS.DNR
+}
+```
+  
+  
+## \% function.DS.Table1byExposure.print_showAllLevels.addCols()  ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+function.DS.Table1byExposure.print_showAllLevels.addCols = function(DS.Table1byExposure.print_showAllLevels) {
+    DS.Table1byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+        select(-p, -test, p, test) %>%
+        {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
+        add_column(VarType = as.character(NA), .before = "Variable") %>%
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
+        mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
+        mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
+        mutate_at(vars(matches("mean$"), matches("sd$"), matches("G[0-9]n$"), matches("prop$")), as.numeric) %>%
+        mutate(G1geG2 = if_else(VarType == "numeric", G1mean >= G2mean, G1geG2), G1leG2 = if_else(VarType == "numeric", G1mean <= G2mean, G1leG2)) %>% 
+        mutate(G1geG2 = if_else(VarType %in% c("factor", "level"), G1prop >= G2prop, G1geG2), G1leG2 = if_else(VarType %in% c("factor", "level"), G1prop <= G2prop, G1leG2)) %>% 
+        mutate(greatest = paste0(if_else(G1geG2, "G1", ""), if_else(G1leG2, "G2", ""))) %>% 
+        {add_column(., `#` = 1:nrow(.), `#2` = "", Class = "", .before = 1)} %>%    
+        add_column(`p-value` = "", star = "   ", .before = "p") %>% mutate(`p-value` = p, p = as.numeric(if_else(p == "<0.001", "0", p))) %>% 
+        mutate(star = case_when(p<0.001~"***", p<0.01~"** ", p<0.05~"*  ", p<0.1~".  ", is.na(p)~"   ", TRUE~"   ")) %>% 
+        add_column(smd = as.numeric(NA), .before = "p") %>% mutate(smd = as.numeric(SMD)) %>% 
+        add_column(Label = "", Level = "", .before = "Overall") %>% 
+        as_tibble
+}
+
+```
+  
+  
+## @ writexl::write_xlsx(paste0(DSN.Table1byExposure, "(list).xlsx")) -----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+list(
+    byExposure = DS.Table1byExposure.print %>% function.DS.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
+    , byExposure.AllLevels = DS.Table1byExposure.print_showAllLevels %>% function.DS.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+    , byExposure.IQR = DS.Table1byExposure.print_showAllLevels.IQR
+    # , is.na.byExposure = DS.is.na.Table1byExposure.print
+) %>% writexl::write_xlsx(paste0(DSN.Table1byExposure, "(list).xlsx"))
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DSN.Table1byExposure, "(list).xlsx"))
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ END ----  
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ END ----  
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
+cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")
+cat("    ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()    \n")
+cat("    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>    \n")
+cat("    HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH    \n")
+cat("    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    \n")
+cat("    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    \n")
+cat("    VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV    \n")
+cat("    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW    \n")
+cat("    -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|    \n")
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+```
+  
+  
+```{r createBACKUP, eval=TRUE, include=FALSE}
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    # if (Sys.info()["sysname"] == "Windows") {
+        env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%dT%H", overwrite=TRUE)
+        # env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .BACKUP_to_path="-BACKUP", timeFormat="%y%m%dT%H", overwrite=TRUE)
+    # }
+}
+```
+  
+
+```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
+env1$path$LastSourceEditorContext.path_FileName.nb.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") {  try(  paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$LastSourceEditorContext.path_FileName.nb.html|>normalizePath(winslash="/",mustWork=TRUE),'"') |> shell(wait=FALSE)  )  }  # else { browseURL(env1$path$LastSourceEditorContext.path_FileName.nb.html|>normalizePath(winslash="/",mustWork=TRUE)) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat("* To revert to the last commited file, run the following terminal command:  \n")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNameExt) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileName.nb.html) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+```
+  
+  
