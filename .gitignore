@@ -125,7 +125,7 @@ cache/
 *.[Rr][Dd][Aa][Tt][Aa]
 *.[Rr][Dd][Aa]
 *.[Rr][Dd][Ss]
-*.[Cc][Ss][Vv]
+# *.[Cc][Ss][Vv]
 
 # Temporary and debug files
 [Tt][Ee][Mm][Pp]
