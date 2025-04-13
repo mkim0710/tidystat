@@ -224,6 +224,7 @@ bin/
 # @@ Re-exclusion to override the `Re-inclusion by Negation` (Last Rule Wins)
 GitIgnoreFiles/
 *-[Gg]it[Ii]gnore*
+*git.bfg-report/
 
 # Machine-specific backup files
 *-ID92i5-4570T*
