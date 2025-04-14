@@ -3,6 +3,49 @@
 ## @ f_file.save ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: constant_outputDirPath ====
+env1$env.internal.attach$constant_outputDirPath = "./output/"
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: dir.create.outputDirPath =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "dir.create.outputDirPath"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(outputDirPath = env1$env.internal.attach$constant_outputDirPath) {  
+    # Ensure output directory exists
+    if (!dir.exists(outputDirPath)) {
+        dir.create(outputDirPath, recursive = TRUE)
+    }
+}
+
+#________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: template.yymmddThhmm =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "template.yymmddThhmm"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  format(Sys.time(), "%y%m%dT%H%M")  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) template.TimeStamp  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "template.TimeStamp")##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) TimeStamp  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TimeStamp")
+
+#________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: outputFilenamePrefix =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "outputFilenamePrefix"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  tools::file_path_sans_ext(  basename(rstudioapi::getSourceEditorContext()$path)  )  }
+
+
+#________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: outputFilenamePath =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "outputFilenamePath"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  file.path(  outputDirPath,  paste0(env1$env.internal.attach$outputFilenamePrefix(), "-", env1$env.internal.attach$template.yymmddThhmm(), ".rds")  )  }
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
 # Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
 # Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
