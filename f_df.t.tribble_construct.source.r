@@ -11,6 +11,7 @@
 # @@ env1\$f\$f_array                                                       #L798
 # @@ env1\$f\$f_formula                                                     #L887
 # @@ env1\$f\$f_df                                                          #L966
+# @@ env1\$f\$f_DS ----  
 # @@ env1\$env.internal functions                                           #L1155
 # @@ source()                                                               #L1631
 # ls.str(env1) #                                                            #L1700
@@ -66,6 +67,7 @@
 ## :: f_formula.lhs_rhs_vars =                                              #L889
 ## :: f_list_formula.append_lhs_rhs_vars =                                  #L924
 # @@ env1\$f\$f_df                                                          #L966
+# @@ env1\$f\$f_DS                                                          #L966
 ## :: f_df.tribble_construct =                                              #L968
 ## :: f_df.transpose =                                                      #L984
 ## :: f_df.t.tribble_construct =                                            #L998
@@ -373,6 +375,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ env1\$f\$f_df ----  
+# @@ env1\$f\$f_DS ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_df.tribble_construct =  ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
