@@ -35,99 +35,269 @@
 
 
 
-#' @title fDf_fiter_mismatched_rows
-#'
-#' @description Filters rows from a data frame where two specified columns differ,
-#'   optionally treating \code{NA}s as distinct, adding a row-number column, and
-#'   customizing output column names.
-#'
-#' @param inputDf A data frame containing the columns to compare.
-#' @param colName1 A character string of the first column name.
-#' @param colName2 A character string of the second column name.
-#' @param mismatch_col_name A character string naming the logical column
-#'   indicating mismatch (default: \code{"mismatched"}).
-#' @param na_distinct Logical. If \code{TRUE}, treat \code{NA} as different from \code{NA};
-#'   if \code{FALSE}, two \code{NA}s in the same row are not considered a mismatch.
-#'   Defaults to \code{FALSE}.
-#' @param add_row_number Logical. If \code{TRUE}, adds a column with row numbers
-#'   (default is \code{FALSE}).
-#' @param prefix A character string to prepend to newly created columns (default "").
-#' @param suffix A character string to append to newly created columns (default "").
-#' @param verbose Logical. If \code{TRUE}, prints summary info for debugging (default \code{FALSE}).
-#'
-#' @return A data frame containing only the rows where the two specified columns
-#'   differ (including \code{NA} mismatch if \code{na_distinct=TRUE}). An added logical
-#'   column (by default named \code{mismatched}) indicates the mismatch status.
-#'
-#' @examples
-#' # Create example data
-#' exampleDf = data.frame(
-#'   id = 1:7,
-#'   colA = c(1, 2, NA, 3, 4, NA, 5),
-#'   colB = c(1, 2, 2, NA, 4, NA, 7)
-#' )
-#'
-#' # Basic usage (treating NA == NA as not mismatched)
-#' mismatches1 = fDf_fiter_mismatched_rows(exampleDf, "colA", "colB")
-#' mismatches1
-#'
-#' # When na_distinct=TRUE, NA vs NA is considered a mismatch
-#' mismatches2 = fDf_fiter_mismatched_rows(exampleDf, "colA", "colB", na_distinct=TRUE)
-#' mismatches2
-#'
-#' # Add row numbering and custom mismatch column name
-#' mismatches3 = fDf_fiter_mismatched_rows(exampleDf, "colA", "colB",
-#'   add_row_number=TRUE, mismatch_col_name="isDifferent", verbose=TRUE)
-#' mismatches3
-#'
-fDf_fiter_mismatched_rows = function(
+fDf_filter_mismatched_rows = function(
   inputDf,
-  colName1,
-  colName2,
-  mismatch_col_name = "mismatched",
-  na_distinct = FALSE,
-  add_row_number = FALSE,
+  colName1 = NULL,
+  colName2 = NULL,
+  output_varName = "is_mismatched",
+  na_handling = "distinct",
+  add_original_cols = FALSE,
+  add_row_number = TRUE,
+  tol = 1e-8,
   prefix = "",
   suffix = "",
   verbose = FALSE
 ) {
-  # 1) Safety checks
+  #' Identify Mismatched Rows Between Two Variables in a Dataframe
+  #' 
+  #' This function identifies rows where values differ between two columns,
+  #' with flexible handling of NA values, numeric tolerance, and output formatting options.
+  #' If no column names are provided, it will automatically use the first two columns.
+  #'
+  #' @param inputDf A dataframe containing the variables to compare
+  #' @param colName1 Name of the first variable (default: first column of inputDf)
+  #' @param colName2 Name of the second variable (default: second column of inputDf)
+  #' @param output_varName Name for the logical indicator column (default: "is_mismatched")
+  #' @param na_handling Treatment of NA values: "distinct" (default), "ignore", or "match"
+  #'                    "distinct": NA != non-NA, NA != NA
+  #'                    "ignore": Skip rows with any NA values
+  #'                    "match": NA == NA, NA != non-NA
+  #' @param add_original_cols Logical, whether to include the original columns in output (default: FALSE)
+  #' @param add_row_number Logical, whether to add row numbers to output (default: TRUE)
+  #' @param tol Numeric tolerance for comparing numeric values (default: 1e-8)
+  #' @param prefix Prefix to add to output column names
+  #' @param suffix Suffix to add to output column names
+  #' @param verbose Logical, whether to print additional information (default: FALSE)
+  #'
+  #' @return A dataframe containing only mismatched rows with indicator columns
+  #'
+  #' @examples
+  #' # Basic example with column names
+  #' sample_df = data.frame(
+  #'   a = c(1, 2, 3, NA, 5), 
+  #'   b = c(1, 3, 3, 4, NA)
+  #' )
+  #' fDf_filter_mismatched_rows(sample_df, "a", "b")
+  #' 
+  #' # Example with auto-detection of columns
+  #' two_col_df = data.frame(
+  #'   first = c(1, 2, 3, NA, 5),
+  #'   second = c(1, 3, 3, 4, NA)
+  #' )
+  #' fDf_filter_mismatched_rows(two_col_df)
+  #'
+  #' # Example with different NA handling
+  #' na_df = data.frame(
+  #'   x = c(1, NA, 3, NA), 
+  #'   y = c(1, 2, NA, NA)
+  #' )
+  #' fDf_filter_mismatched_rows(na_df, na_handling = "match")
+  
+  # Input validation
+  if (!inherits(inputDf, "data.frame")) {
+    stop("Input 'inputDf' must be a data frame.")
+  }
+  
+  # Check the number of columns
+  if (ncol(inputDf) < 2) {
+    stop("Input 'inputDf' must have at least two columns.")
+  }
+  
+  # Validate na_handling parameter
+  if (!na_handling %in% c("distinct", "ignore", "match")) {
+    stop("na_handling must be one of: 'distinct', 'ignore', or 'match'")
+  }
+  
+  # Auto-detect columns if not provided
+  if (is.null(colName1)) {
+    colName1 = names(inputDf)[1]
+    if (verbose) {
+      cat(paste0("Using first column: '", colName1, "'\n"))
+    }
+  }
+  
+  if (is.null(colName2)) {
+    colName2 = names(inputDf)[2]
+    if (verbose) {
+      cat(paste0("Using second column: '", colName2, "'\n"))
+    }
+  }
+  
+  # Check if colName1 and colName2 are in inputDf
   if (!all(c(colName1, colName2) %in% names(inputDf))) {
-    stop("One or both specified columns do not exist in the data frame.")
+    missing_cols = c(colName1, colName2)[!c(colName1, colName2) %in% names(inputDf)]
+    stop(paste("Variables", paste(missing_cols, collapse=", "), "not found in dataframe"))
   }
-
-  # 2) Optionally add a row number column (potentially with prefix/suffix)
-  if (isTRUE(add_row_number)) {
-    inputDf[[paste0(prefix, "row_number", suffix)]] = seq_len(nrow(inputDf))
+  
+  # Create variable references using tidyeval
+  col1_sym = rlang::sym(colName1)
+  col2_sym = rlang::sym(colName2)
+  
+  # Check if columns are numeric for tolerance comparison
+  is_col1_numeric = is.numeric(inputDf[[colName1]])
+  is_col2_numeric = is.numeric(inputDf[[colName2]])
+  both_numeric = is_col1_numeric && is_col2_numeric
+  
+  # Print warning if types don't match
+  if (!identical(class(inputDf[[colName1]]), class(inputDf[[colName2]]))) {
+    warning(paste0(
+      "Column types don't match: '", colName1, "' is ", class(inputDf[[colName1]]), 
+      ", '", colName2, "' is ", class(inputDf[[colName2]]), 
+      ". Type conversion may affect comparison results."
+    ))
   }
-
-  # 3) Extract columns
-  col1 = inputDf[[colName1]]
-  col2 = inputDf[[colName2]]
-
-  # 4) Create a logical vector of mismatches
-  if (isTRUE(na_distinct)) {
-    # Treat NA as always different, so mismatch if value differs OR NA pattern differs
-    mismatchVec = (col1 != col2) | (is.na(col1) != is.na(col2))
-  } else {
-    # Mismatch if not equal and not both NA
-    mismatchVec = !( (col1 == col2) | (is.na(col1) & is.na(col2)) )
+  
+  # Add row numbers if requested
+  if (add_row_number) {
+    inputDf = inputDf %>%
+      dplyr::mutate(row_number = dplyr::row_number())
   }
-
-  # 5) Subset rows
-  mismatchRows = inputDf[mismatchVec %in% TRUE, , drop=FALSE]
-
-  # 6) Add mismatch indicator column
-  mismatchRows[[paste0(prefix, mismatch_col_name, suffix)]] = TRUE
-
-  # 7) Verbose output
-  if (isTRUE(verbose)) {
-    message("Number of rows in original DF: ", nrow(inputDf))
-    message("Number of mismatched rows: ", nrow(mismatchRows))
+  
+  # Filter rows with differences based on na_handling preference
+  if (na_handling == "distinct") {
+    # Treat NA values as distinct (NA != NA)
+    if (both_numeric) {
+      # For numeric columns, use tolerance-based comparison
+      mismatched_rows = inputDf %>%
+        dplyr::filter(
+          ((!is.na(!!col1_sym) & !is.na(!!col2_sym)) & 
+             (abs(!!col1_sym - !!col2_sym) > tol)) |
+          (is.na(!!col1_sym) & !is.na(!!col2_sym)) |
+          (!is.na(!!col1_sym) & is.na(!!col2_sym))
+        )
+    } else {
+      # For non-numeric columns, use standard comparison
+      mismatched_rows = inputDf %>%
+        dplyr::filter(
+          ((!is.na(!!col1_sym) & !is.na(!!col2_sym)) & (!!col1_sym != !!col2_sym)) |
+          (is.na(!!col1_sym) & !is.na(!!col2_sym)) |
+          (!is.na(!!col1_sym) & is.na(!!col2_sym))
+        )
+    }
+  } else if (na_handling == "ignore") {
+    # Skip rows with any NA values
+    if (both_numeric) {
+      mismatched_rows = inputDf %>%
+        dplyr::filter(
+          !is.na(!!col1_sym) & !is.na(!!col2_sym) & 
+            abs(!!col1_sym - !!col2_sym) > tol
+        )
+    } else {
+      mismatched_rows = inputDf %>%
+        dplyr::filter(
+          !is.na(!!col1_sym) & !is.na(!!col2_sym) & 
+            !!col1_sym != !!col2_sym
+        )
+    }
+  } else if (na_handling == "match") {
+    # NA matches NA, but not non-NA
+    if (both_numeric) {
+      mismatched_rows = inputDf %>%
+        dplyr::filter(
+          (is.na(!!col1_sym) != is.na(!!col2_sym)) |
+            (!is.na(!!col1_sym) & !is.na(!!col2_sym) & 
+               abs(!!col1_sym - !!col2_sym) > tol)
+        )
+    } else {
+      mismatched_rows = inputDf %>%
+        dplyr::filter(
+          (is.na(!!col1_sym) != is.na(!!col2_sym)) |
+            (!is.na(!!col1_sym) & !is.na(!!col2_sym) & 
+               !!col1_sym != !!col2_sym)
+        )
+    }
   }
-
-  # 8) Return results
-  return(mismatchRows)
+  
+  # Add mismatch indicator
+  mismatched_rows = mismatched_rows %>%
+    dplyr::mutate(!!output_varName := TRUE)
+  
+  # Add original columns if requested
+  if (add_original_cols) {
+    mismatched_rows = mismatched_rows %>%
+      dplyr::mutate(
+        !!paste0(prefix, colName1, suffix) := !!col1_sym,
+        !!paste0(prefix, colName2, suffix) := !!col2_sym
+      )
+  }
+  
+  # Calculate and display statistics if verbose
+  if (verbose) {
+    # Count NA patterns
+    na_pattern_counts = inputDf %>%
+      dplyr::select(!!col1_sym, !!col2_sym) %>%
+      dplyr::mutate(
+        na_pattern = dplyr::case_when(
+          is.na(!!col1_sym) & is.na(!!col2_sym) ~ "both_NA",
+          is.na(!!col1_sym) & !is.na(!!col2_sym) ~ "only_col1_NA",
+          !is.na(!!col1_sym) & is.na(!!col2_sym) ~ "only_col2_NA",
+          !!col1_sym == !!col2_sym ~ "equal_values",
+          TRUE ~ "different_values"
+        )
+      ) %>%
+      dplyr::count(na_pattern, name = "count") %>%
+      dplyr::arrange(dplyr::desc(count))
+    
+    cat("\n--- Summary Statistics ---\n")
+    cat(paste0("Column 1: ", colName1, " (", class(inputDf[[colName1]]), ")\n"))
+    print(summary(inputDf[[colName1]]))
+    cat(paste0("\nColumn 2: ", colName2, " (", class(inputDf[[colName2]]), ")\n"))
+    print(summary(inputDf[[colName2]]))
+    
+    cat("\nNA and difference patterns:\n")
+    print(na_pattern_counts)
+    
+    if (both_numeric) {
+      cat(paste0("\nUsing numeric tolerance: ", tol, "\n"))
+      
+      # Calculate difference statistics for non-NA pairs
+      not_na_rows = inputDf %>%
+        dplyr::filter(!is.na(!!col1_sym) & !is.na(!!col2_sym))
+      
+      if (nrow(not_na_rows) > 0) {
+        diff_values = not_na_rows %>%
+          dplyr::mutate(diff = !!col1_sym - !!col2_sym) %>%
+          dplyr::filter(abs(diff) > tol)
+        
+        if (nrow(diff_values) > 0) {
+          cat("\nStatistics for differences exceeding tolerance (col1 - col2):\n")
+          cat(paste0("Count: ", nrow(diff_values), "\n"))
+          diff_summary = summary(diff_values$diff)
+          print(diff_summary)
+        } else {
+          cat("\nNo differences exceeding tolerance found in non-NA rows.\n")
+        }
+      }
+    } else {
+      # Calculate difference statistics for non-NA pairs
+      not_na_rows = inputDf %>%
+        dplyr::filter(!is.na(!!col1_sym) & !is.na(!!col2_sym))
+      
+      if (nrow(not_na_rows) > 0) {
+        diff_rows = not_na_rows %>%
+          dplyr::filter(!!col1_sym != !!col2_sym)
+        
+        if (nrow(diff_rows) > 0) {
+          cat("\nFound ", nrow(diff_rows), " non-NA rows with different values.\n")
+          
+          # For character columns, show sample differences
+          if (is.character(inputDf[[colName1]]) && is.character(inputDf[[colName2]]) && nrow(diff_rows) > 0) {
+            sample_size = min(5, nrow(diff_rows))
+            sample_rows = diff_rows %>% 
+              dplyr::select(!!col1_sym, !!col2_sym) %>% 
+              utils::head(sample_size)
+            
+            cat("\nSample differences (first", sample_size, "rows):\n")
+            print(sample_rows)
+          }
+        } else {
+          cat("\nNo non-NA rows with different values found.\n")
+        }
+      }
+    }
+  }
+  
+  return(mismatched_rows)
 }
 
 ##////////////////////////////////////////////////////////////////////////////////  
