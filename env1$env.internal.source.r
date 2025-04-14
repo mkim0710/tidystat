@@ -2407,630 +2407,30 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.BACKUP, f_path.BACKUP ====  
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_FileNameExt.createBACKUP ====  
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_FileNameExt.createBACKUP"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(BACKUP_from_path_FileNameExt, BACKUP_from_ext = NA, .BACKUP_to_path = file.path(env1$path$path0, "-BACKUP"), timeFormat = "%y%m%dT%H%M", overwrite=TRUE) {
-    # Wrap the main BACKUP logic in a tryCatch for error handling
-    tryCatch({
-        # Determine the FileName and extension if not provided
-        if(is.na(BACKUP_from_ext)) {
-            BACKUP_from_path_FileName = basename(BACKUP_from_path_FileNameExt) |> str_remove("\\.([[:alnum:]]+)$")
-            BACKUP_from_ext = basename(BACKUP_from_path_FileNameExt) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
-        } else {
-            BACKUP_from_path_FileName = basename(BACKUP_from_path_FileNameExt) |> str_remove(paste0("\\.",BACKUP_from_ext|>str_replace_all("\\.","\\\\."),"$"))
-        }
-        
-        # Construct the destination BACKUP path with timestamp
-        .BACKUP_to_path_FileNameExt = file.path( .BACKUP_to_path, paste0(BACKUP_from_path_FileName,"-",format(Sys.time(),timeFormat),".",BACKUP_from_ext) )
-        
-        # Create the BACKUP directory if it doesn't exist
-        if(!dir.exists(.BACKUP_to_path)) dir.create(.BACKUP_to_path, recursive = TRUE)
-        
-
-        if(!file.exists(BACKUP_from_path_FileNameExt)) stop(paste0("File to BACKUP does not exist: ", BACKUP_from_path_FileNameExt))
-        if(file.exists(.BACKUP_to_path_FileNameExt) && !overwrite) stop(paste0("BACKUP file already exists: ", .BACKUP_to_path_FileNameExt))
-        
-        # Copy the file to the BACKUP location; if successful, print a message. Otherwise, stop with an error. 
-        if (file.copy(from=BACKUP_from_path_FileNameExt, to=.BACKUP_to_path_FileNameExt, overwrite=overwrite)) {message(paste0("- BACKUP file created: ", .BACKUP_to_path_FileNameExt))} else {stop("File copy failed for unknown reasons.")}
-    }, error = function(e) {
-        # Error handling block to catch any issues during the BACKUP process
-        message(paste("Failed to create BACKUP for:", BACKUP_from_path_FileNameExt))
-        message("Error:", e$message)
-    })
-}
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) file.BACKUP  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.BACKUP")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) file.copy_createBACKUP  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file.copy_createBACKUP")
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_path_path.BACKUP.overwrite ====  
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_path_path.BACKUP.overwrite"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.overwrite_from_path_FileNameExt, .destination_path_FileNameExt, .BACKUP_to_path = dirname(.destination_path_FileNameExt), timeFormat = "%y%m%d", createFile = FALSE) {
-    if(createFile || file.exists(.destination_path_FileNameExt)) {
-        if(!is.null(.BACKUP_to_path)) {
-            env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .destination_path_FileNameExt, .BACKUP_to_path=.BACKUP_to_path, timeFormat=timeFormat)
-        }
-        if(file.copy(from=.overwrite_from_path_FileNameExt, to=.destination_path_FileNameExt, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path_FileNameExt)) else warning(paste0("Update failed: ", .destination_path_FileNameExt))
-    } else {warning(paste0("File does not exist: ", .destination_path_FileNameExt))}
-}
-
-
-#_________________________________________________________________________________|----  
+# R/fChr-fFilePath.BACKUP-source.R
+#_________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_git ----  
+# R/fChr-fFilePath.git-source.R
 ##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.is_git_tracked  =======  
-# Function to check if the current project or any of its parent directories are tracked by Git
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_path.is_git_tracked"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path = getwd(), check_parents = TRUE) {
-    # Normalize the path
-    path <- normalizePath(path, winslash = "/", mustWork = TRUE)
-    
-    # Traverse up the directory tree if check_parents is TRUE
-    while (TRUE) {
-        # Check if the .git directory exists in the current path
-        git_dir <- file.path(path, ".git")
-        if (dir.exists(git_dir)) {
-            return(git_dir)
-        }
-        
-        # If not checking parent directories, return NA
-        if (!check_parents) {
-            return(NA)
-        }
-        
-        # Move to the parent directory
-        parent_path <- dirname(path)
-        
-        # If the parent directory is the same as the current directory, we've reached the root
-        if (parent_path == path) {
-            return(NA)
-        }
-        
-        # Update the current path to the parent path
-        path <- parent_path
-    }
-}
-
-# # Usage example: Check if the current working directory or its parent directories are tracked by Git
-# git_path <- is_git_tracked(check_parents = TRUE)
-# if (!is.na(git_path)) {
-#   message("The current project is tracked by Git at: ", git_path)
-# } else {
-#   message("The current project is not tracked by Git.")
-# }
-
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### :: env1\$path\$git_path =  =======  
-env1$path$git_path = env1$env.internal.attach$f_path.is_git_tracked()
-# env1$path$no_git = is.na(env1$path$git_path)
-
-
-
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_file.git_lfs_track_add_f ====  
-
-# Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
-# https://chatgpt.com/c/6719a3d0-9a2c-800e-8651-2ae6901ae573
-# https://gemini.google.com/app/c1606939ea272140
-env1$f$f_file.git_lfs_track_add_f = function(.path_file, EXECUTE = FALSE, SkipIfAlreadyAdded = TRUE) {
-     stopifnot(
-        !missing(.path_file), is.character(.path_file), length(.path_file) == 1,
-        is.logical(EXECUTE), length(EXECUTE) == 1,
-        is.logical(SkipIfAlreadyAdded), length(SkipIfAlreadyAdded) == 1
-    )
-    git_lfs_available = try(system2("git", args = "lfs version", stdout = FALSE, stderr = FALSE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
-    
-    # if(git_lfs_available) {
-    #     invisible(
-    #         list(
-    #             paste0( "git lfs track ",shQuote(.path_file) )
-    #             , paste0( "git add -f ",shQuote(.path_file) )
-    #         ) |> map(env1$f$f_TerminalFromRCodeText.ECHO, EXECUTE)
-    #     )
-    # } else {
-    #     warning("git lfs is not available  \n")
-    #     invisible(
-    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.ECHO(EXECUTE = EXECUTE)
-    #     )
-    # }
-    
-    if(!git_lfs_available) warning("git lfs is not available  \n")
-    
-    # Check if the file is already tracked by git without lfs
-    git_ls_files_output = system2("git", args = c("ls-files", shQuote(.path_file)), stdout = TRUE, stderr = TRUE)
-
-    is.AlreadyAdded = length(git_ls_files_output) > 0
-
-    if (SkipIfAlreadyAdded && is.AlreadyAdded) {
-        message(paste(.path_file, "is already added to git. Skipping git lfs track."))
-        return(invisible())
-    } else {
-        return(invisible(
-            list(
-                paste0( "git lfs track ",shQuote(.path_file) )
-                , paste0( "git add -f ",shQuote(.path_file) )
-            ) |> map(env1$f$f_TerminalFromRCodeText.ECHO, EXECUTE)
-        ))
-    }
-}
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: function_name = f_gitattributes.split() ====
-## git/f_gitattributes.split_lfs.dev.Rmd
-## git/f_gitattributes.update_non_lfs.dev.Rmd
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_gitattributes.split" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        input_path = paste0(env1$path$path1,"/.gitattributes"), 
-        output_path.lfs = paste0(env1$path$path1,"/.lfs.gitattributes"), 
-        split_non_lfs = TRUE,
-        output_path.non_lfs = paste0(env1$path$path1,"/.non_lfs.gitattributes"), 
-        OPEN_OUTPUT = FALSE) {
-    # Read the .gitattributes file
-    input_path.lines <- readLines(input_path)
-
-    # Separate input_path.lines into LFS and non-LFS groups
-    
-    if(TRUE) {
-        input_path.lines.lfs <- input_path.lines %>% str_subset("\\blfs\\b")
-        # Write LFS input_path.lines to a new file
-        writeLines(input_path.lines.lfs, output_path.lfs)
-        cat("LFS lines extracted to \t:", deparse(output_path.lfs), "  \n", sep="")
-        if(OPEN_OUTPUT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path.lfs)
-    }
-
-    if(split_non_lfs) {
-        input_path.lines.non_lfs <- input_path.lines %>% str_subset("\\blfs\\b", negate = TRUE)
-        # Write non-LFS input_path.lines to another new file
-        writeLines(input_path.lines.non_lfs, output_path.non_lfs)
-        cat("Non-LFS lines extracted to \t:", deparse(output_path.non_lfs), "  \n", sep="")
-        if(OPEN_OUTPUT) env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path.non_lfs)
-    }
-    
-    invisible()
-}
-
-#_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.read ----  
+# R/fChr-fFilePath.read-source.R
 ##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_objectname.read_rds_or_xz ====  
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_objectname.read_rds_or_xz"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        .objectname, 
-        .path4read = env1$path$path4read,
-        vec.folder = paste0(.path4read,c("", paste0("/",.objectname))),
-        vec.extension = paste0(".rds",c("", ".xz")),
-        VERBOSE = isTRUE(getOption("verbose")),
-        DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
-    .objectpath = outer(
-        vec.folder, 
-        vec.extension, 
-        function(.objectfolder, .objectextension) {paste0(.objectfolder,"/",.objectname,.objectextension)}
-    ) |> keep(file.exists) |> first()
-    if (VERBOSE) {
-        cat("  .objectpath == ",deparse(.objectpath),"  \n", sep="")
-    }
-    assign(.objectname, read_rds(.objectpath), envir = .GlobalEnv)
-    cat(" length(",.objectname,") == ",deparse(length(get(.objectname))),"  \n", sep="")
-    cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
-    invisible(get(.objectname, envir = .GlobalEnv))
-}
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_FileNameExt.read_rds_or_xz ====  
-.tmp$env1_subenv_name = "f"
-.tmp$objectname = "f_FileNameExt.read_rds_or_xz"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
-        .FileNameExt = NA, 
-        .objectname = .FileNameExt |> str_remove("\\.xz$") |> str_remove("\\.rds$"),
-        .path4read = env1$path$path4read,
-        vec.folder = paste0(.path4read,c("", paste0("/",.objectname))),
-        vec.extension = paste0(".rds",c("", ".xz")),
-        VERBOSE = isTRUE(getOption("verbose")),
-        DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
-    env1$f$f_objectname.read_rds_or_xz(
-        .objectname = .objectname, 
-        .path4read = .path4read,
-        vec.folder = vec.folder,
-        vec.extension = vec.extension,
-        VERBOSE = VERBOSE,
-        DEBUGMODE = DEBUGMODE
-    )
-}
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) read_rds_or_xz  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "read_rds_or_xz")
-#_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.save ----  
+# R/fChr-fFilePath.save-source.R
 ##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
-# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
-# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
-# https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
-# https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
-        .objectname, 
-        CompressionMethod = case_when(object.size(get(.objectname)) >= 1e8 ~ "none", object.size(get(.objectname)) >= 1e6 ~ "xz", TRUE ~ "gz"), 
-        .FileNameExt4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", "")), 
-        .path4write = env1$path$path4write,
-        .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }, 
-        createBACKUP = FALSE, 
-        .BACKUP_to_path="-BACKUP", 
-        EXECUTE = FALSE, 
-        path.size_files = TRUE, 
-        git_lfs_track = "determine based on object size", 
-        git_add_f = TRUE, 
-        SkipIfAlreadyAdded = TRUE, 
-        LinePrefix4CodeText = "\t", 
-        VERBOSE = isTRUE(getOption("verbose")),
-        DEBUGMODE = isTRUE(getOption("DEBUGMODE"))) {
-    
-    # options(DEBUGMODE = TRUE)
-    # options(DEBUGMODE = FALSE)
-    if(DEBUGMODE) browser()
-    # Browse[1]> environment() %>% as.list(all.names = TRUE) %>% str()
-    # List of 15
-    #  $ .objectname        : chr "df_NewDMv3.CensorEND.n8845.select971"
-    #  $ .FileNameExt4write: chr "df_NewDMv3.CensorEND.n8845.select971.rds.xz"
-    #  $ .path4write        : chr "."
-    #  $ .path_file         : NULL
-    #  $ createBACKUP       : logi FALSE
-    #  $ .BACKUP_to_path    : chr "-BACKUP"
-    #  $ EXECUTE            : logi FALSE
-    #  $ path.size_files    : logi TRUE
-    #  $ git_lfs_track      : logi TRUE
-    #  $ git_add_f          : logi TRUE
-    #  $ SkipIfAlreadyAdded : logi TRUE
-    #  $ CompressionMethod  : chr "xz"
-    #  $ LinePrefix4CodeText: chr "\t"
-    #  $ VERBOSE            : logi FALSE
-    
-    
-    ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-    ##@ If only .objectname is provided, get .object from get(.objectname)
-    .object <- get(.objectname)
-
-    ##________________________________________________________________________________  
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ -> By here, both .object and .objectname are available.
-    .object.size <- object.size(.object)
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(exists("MetaData") && !is.null(unlist(MetaData))) {
-        if("DSnames" %in% names(MetaData)) {
-            if(.objectname %in% names(MetaData$DSnames)) {
-                # assign(.objectname, structure(get(.objectname, envir = .GlobalEnv), MetaData = as.environment(MetaData)), envir = .GlobalEnv)
-                assign(.objectname, structure(get(.objectname), MetaData = as.environment(MetaData)))
-                assign(".object", structure(.object, MetaData = as.environment(MetaData)))
-            }
-        } 
-    }
-    ##________________________________________________________________________________  
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if (.object.size >= 1e8) {
-        paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
-    }
-    ##________________________________________________________________________________  
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ If .path_file is provided, it determines the .FileNameExt4write (& CompressionMethod). 
-    ## Caution) when .objectname is provided, .FileNameExt4write & .path_file could have been auto-generated. 
-    
-    if(!is.null(.path_file)) {
-        .FileNameExt4write = basename(.path_file)
-    }
-    ##________________________________________________________________________________  
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ If .FileNameExt4write is provided, it may determine the CompressionMethod. 
-    ## Caution) When .FileNameExt4write & .path4write is provided, .path_file can be auto-generated, so .path_file may not be NULL. 
-    if(!is.null(.FileNameExt4write)) {
-        if(grepl("\\.xz$", .FileNameExt4write)) {
-            CompressionMethod = "xz"
-        } else if(grepl("\\.gz$", .FileNameExt4write)) {
-            CompressionMethod = "gz"
-        # } else {
-        #     CompressionMethod = "none" | "gz"  # gz compression may be done without ".gz" extension. 
-        }
-    }
-
-    ##________________________________________________________________________________  
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    ##@ .path4write may still be NULL if env1$path$path4write was NULL.
-    # if(is.null(.path4write))            .path4write = env1$path$path4write
-    if(is.null(.path4write))            .path4write = ""
-    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-    ##@ .path_file may still be NULL if either .path4write or .FileNameExt4write was NULL.
-    if(is.null(.path_file))             .path_file = if(is.null(.path4write) || is.null(.FileNameExt4write)) {NULL} else {  paste0(.path4write,ifelse(.path4write=="","","/"),.FileNameExt4write)  }
-    ##________________________________________________________________________________  
-    ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    if(createBACKUP) cat(LinePrefix4CodeText, 'env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = ',deparse(.path_file),', .BACKUP_to_path=',deparse(.BACKUP_to_path),', timeFormat="%y%m%dT%H", overwrite=TRUE)', "  \n", sep="")
-    cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
-    if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4FileName = ',shQuote(.objectname),")  \n", sep="")
-    
-    if(EXECUTE) {
-        if(createBACKUP) env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%dT%H", overwrite=TRUE) 
-        if (.object.size >= 1e8) {
-            paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
-        } else { 
-            .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-            if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FileName = .objectname)
-        }
-    }
-    
-    if(git_add_f) {
-        if (git_lfs_track == "determine based on object size") {
-            if(.object.size > 1e7) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
-            } else {
-                env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
-            }
-        } else if (git_lfs_track == TRUE) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, EXECUTE = FALSE); if(EXECUTE) warning("Caution: halting auto-execution of glt lfs track.  \n") 
-        } else {
-            env1$f$f_TerminalFromRCodeText.ECHO(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), EXECUTE = EXECUTE)
-        }
-    }
-    
-    invisible()
-}
-## *** Example Usage:  
-# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
-# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
-# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
-
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_object.get_objectname.size.write_rds.git_lfs_track_add_f  - PENDING ====  
-# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
-# Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r
-# https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
-# https://gemini.google.com/app/6d9de55c5c7085c6 
-
-# env1$f$f_object.get_objectname.size.write_rds.git_lfs_track_add_f = function(.object, ...) {
-#     ##________________________________________________________________________________  
-#     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#     ##@ Check if the .object and .objectname are confused.
-#     if (!is.null(.object)) {
-#         if(is.character(.object) && length(.object) == 1) {
-#             # .objectname <- .object
-#             # .object <- get(.object)
-#             "is.character(.object) && length(.object) == 1 --> Did you provide an object name instead of the object itself?" |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
-#         } 
-#     }
-#     
-#     env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = env1$env.internal.attach$f_object.get_objectname(.object), ...)
-# }
-
-
-#_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.update ----  
+# R/fChr-fFilePath.update-source.R
 ##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: env.internal\$f_file2.compare ====  
-# Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_file2.compare"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file1, file2, chunk_size = 65536) {
-    # Open both files in binary mode
-    con1 <- file(file1, "rb")
-    con2 <- file(file2, "rb")
-    
-    # Ensure files are closed after comparison
-    on.exit({
-        close(con1)
-        close(con2)
-    })
-    
-    # Initialize the first chunks
-    chunk1 <- readBin(con1, what = "raw", n = chunk_size)
-    chunk2 <- readBin(con2, what = "raw", n = chunk_size)
-    
-    # While at least one of the chunks has content, continue comparing
-    while(length(chunk1) > 0 || length(chunk2) > 0) {
-        # If the chunks differ, return FALSE
-        if (!identical(chunk1, chunk2)) {
-            return(FALSE)
-        }
-        
-        # Read the next chunk for both files
-        # The file pointer moves automatically as you read, so each call to readBin() continues where the last one left off.
-        chunk1 <- readBin(con1, what = "raw", n = chunk_size)
-        chunk2 <- readBin(con2, what = "raw", n = chunk_size)
-    }
-    
-    # If all chunks are identical and EOF is reached for both files, return TRUE
-    return(TRUE)
-}
-
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: env.internal\$f_url_destfile.DownloadIfDifferent ====  
-# Function to download a file only if the web file is different from the local file
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_url_destfile.DownloadIfDifferent"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk_size = 65536, VERBOSE = getOption("verbose"), EXECUTE = FALSE) {  # Default 64KB chunk size
-    tryCatch({
-        # Temporary file to download the remote file for comparison
-        temp_file <- tempfile()
-        download.file(url, temp_file, quiet = TRUE)
-        
-        # Compare the local file and the remote file (if local file exists)
-        if (file.exists(destfile)) {
-            files_are_identical <- env1$env.internal.attach$f_file2.compare(destfile, temp_file, chunk_size)
-            
-            if (files_are_identical) {
-                message(paste0("No update needed for: ", destfile))
-                return(FALSE)
-            }
-        }
-        
-        # If files are different or local file doesn't exist, proceed with the download
-        if(VERBOSE||!EXECUTE) message(paste0("* Update needed for: ", destfile))
-        if(VERBOSE||!EXECUTE) cat("> file.copy(from = ", deparse(temp_file), ", to = ", deparse(destfile), ", overwrite = TRUE)", "  \n", sep="") 
-        if(EXECUTE) {file.copy(from = temp_file, to = destfile, overwrite = TRUE); message(paste0("Downloaded & updated: ", destfile))}
-        return(EXECUTE)
-        
-    }, error = function(e) {
-        message(paste0("Failed to download or update: ", url))
-        message("Error:", e$message)
-        return(FALSE)
-    })
-}
-
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-#### \$f\$f.updateTemplates ====  
-# https://github.com/mkim0710/f.updateTemplates.exe.r
-env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = TRUE) {
-    #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
-    # Assign .path4APPDATA_RStudio based on the platform if it's NULL
-    if (is.null(.path4APPDATA_RStudio)) {
-        if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
-    }
-    
-    # Create the templates directory if it doesn't exist
-    if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
-    
-    # # \% Edit the templates of RStudio (default.R, notebook.Rmd) ~~~~~~~~~~~~
-    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
-    
-    # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
-    for (.FileNameExt in c("default.R", "templates-00env1.minimum.Rmd")) {
-        if (.FileNameExt == "templates-00env1.minimum.Rmd") {
-            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd")
-        } else {
-            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .FileNameExt)
-        }
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.FileNameExt)
-        UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
-        
-        if (Sys.info()["sysname"] == "Windows") {
-            # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
-            # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_FileNameExt), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
-            
-            .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.FileNameExt)
-            .BACKUP_to_path = "D:/OneDrive/[][Rproject]/-BACKUP"
-            UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
-            if(UPDATED) env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .file.copy.to, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%dT%H", overwrite=TRUE)
-        }
-    }
-    if (Sys.info()["sysname"] == "Windows" && UPDATED)  cat('browseURL("D:/OneDrive/[][Rproject]/-BACKUP")', "\n")
-    
-    # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
-    for (.FileNameExt in c(".gitignore", ".Rprofile")) {
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
-        for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), file.path("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
-            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
-                UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
-            }
-        }
-    }
-    
-    # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
-    for (.FileNameExt in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
-        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-        .file.copy.to = file.path(env1$path$path1,.FileNameExt)
-        UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
-    }
-    
-    # # remove old files
-    # for (.file.old in c("updateTemplates.R", "f.updateTemplates.source.r")) {
-    #     if (file.exists(.file.old) && file.exists("f.updateTemplates.exe.r")) {
-    #         file.remove(.file.old)
-    #         warning(paste0("Removed old file: ", .file.old))
-    #     }
-    # }
-    
-    # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
-    
-    # if(.Platform$OS.type == "unix") {
-    #     if(Sys.info()["sysname"] == "Linux") {
-    #         if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
-    #             
-    #         } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
-    #             .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
-    #             .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
-    #             UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
-    #         } else if(Sys.info()["sysname"] == "Darwin") {
-    #             
-    #         }
-    #     } else if(Sys.info()["sysname"] == "Windows") {
-    #         
-    #     }
-    # }
-}
-
-#_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_RegEx ----  
+# R/fChr-fRegEx-source.R
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: constant_vec.SpecialChars32KeyboardLayout ====
-## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
-env1$env.internal.attach$constant_vec.SpecialChars32KeyboardLayout = "`~!@#$%^&*()-=_+[]\\{}|;':\",./<>?" |> str_split_1("")  # no unique() no sort()
 
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function() ====
-## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_RegExChrClass1_RegExChrClass2.setdiff_list" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(RegExChrClass1, 
-                                                            RegExChrClass2, 
-                                                            output_as_data_frame = FALSE, 
-                                                            VERBOSE = isTRUE(getOption("verbose"))) {
-    
-    # 1) Remove leading '[' and trailing ']' (if present)
-    RegExChrClass1.removeBracket <- str_remove_all(RegExChrClass1, "^\\[|\\]$")
-    RegExChrClass2.removeBracket <- str_remove_all(RegExChrClass2, "^\\[|\\]$")
-    
-    # 2) Split into individual characters and keep them unique
-    RegExChrClass1.as_vector <- RegExChrClass1.removeBracket %>%
-        str_split(pattern = "", n = Inf) %>%
-        unlist() %>%
-        unique()
-    
-    RegExChrClass2.as_vector <- RegExChrClass2.removeBracket %>%
-        str_split(pattern = "", n = Inf) %>%
-        unlist() %>%
-        unique()
-
-    env1$f$f_vec1_vec2.setdiff_list(vec1 = RegExChrClass1.as_vector, vec2 = RegExChrClass2.as_vector, output_as_data_frame = output_as_data_frame)
-}
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_list_RegExChrClass.union_df() = function() ====
-## Rdev/00_base_program/002_base_encoding_RegEx/f_RegExChrClass1_RegExChrClass2.setdiff_list.dev.Rmd
-.tmp$env1_subenv_name = "env.internal.attach"
-.tmp$objectname = "f_list_RegExChrClass.union_df" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_list_RegExChrClass, 
-                                                            print_str = TRUE, 
-                                                            VERBOSE = isTRUE(getOption("verbose"))) {
-    
-    # 1) Remove leading '[' and trailing ']' (if present)
-    input_list_RegExChrClass.removeBracket <- input_list_RegExChrClass %>% map(~str_remove_all(.x, "^\\[|\\]$"))
-
-    # 2) Split into individual characters and keep them unique
-    input_list_RegExChrClass.map_as_vector = input_list_RegExChrClass.removeBracket %>%
-        map(~str_split(.x, pattern = "", n = Inf) %>%
-            unlist() %>%
-            unique())
-
-    env1$f$f_list_vecs.union_df(input_list_vecs = input_list_RegExChrClass.map_as_vector, print_str = print_str, VERBOSE = VERBOSE)
-}
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### (ALIAS) f_RegExChrClassList.union_df  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_RegExChrClassList.union_df")
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
@@ -3119,6 +2519,51 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## Example Usage: 
 # options(DEVMODE = TRUE)
 # if(isTRUE(getOption("DEVMODE"))) source.force_reload(file.path.paste0_collapse_if_not_empty(env1$path$source_base, "Rdev/00_base_program/001_base_file/f_objectname.size.write_rds.git_lfs_track_add_f.source-exported.r"))
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fSys-fEnv" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fSys-fEnv" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath-fURL" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath-fURL" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath.open.edit" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath.open.edit" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath.BACKUP" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath.BACKUP" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath.git" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath.git" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath.read" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath.read" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath.save" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath.save" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fFilePath.update" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fFilePath.update" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fChr-fRegEx" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fChr-fRegEx" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## @ .FileName.source.r = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
