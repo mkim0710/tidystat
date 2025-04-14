@@ -442,6 +442,109 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
     }
 }
 
+
+
+
+
+
+#' Fill NA Gaps Using Last Observation Carried Forward (LOCF)
+#' 
+#' @description 
+#' Replaces NA values with previous non-NA value, handling leading NAs and 
+#' preserving vector type. Works with any atomic vector type including
+#' numeric, character, logical, and factors.
+#'
+#' @param x Input atomic vector (numeric, character, logical, factor)
+#' @param fillLeadingNA Replace leading NAs with first non-NA? (default: FALSE)
+#' @param defaultValue Value used when fillLeadingNA=TRUE and all values are NA
+#' @param verbose Show processing messages? (default: FALSE)
+#'
+#' @return Vector with NAs replaced, preserving original type
+#'
+#' @examples
+#' # Basic usage with a numeric vector
+#' vec_with_na = c(1, NA, NA, 2, NA, 3, NA, NA)
+#' fVec.na.locf(vec_with_na)
+#' # Returns: [1, 1, 1, 2, 2, 3, 3, 3]
+#'
+#' # Clinical lab values example
+#' lab_results = c(NA, 8.2, NA, 8.5, NA, NA, 9.0)
+#' fVec.na.locf(lab_results)  
+#' # Returns: [NA, 8.2, 8.2, 8.5, 8.5, 8.5, 9.0]
+#' 
+#' # Example with character vector (e.g., diagnostic codes)
+#' diagnosis_codes = c("R50.9", NA, NA, "E11.9", NA)
+#' fVec.na.locf(diagnosis_codes)  
+#' # Returns: ["R50.9", "R50.9", "R50.9", "E11.9", "E11.9"]
+#'
+#' # Vector with leading NAs
+#' y = c(NA, NA, 1, NA, 2)
+#' fVec.na.locf(y, fillLeadingNA = TRUE)
+#' # Returns: [1, 1, 1, 1, 2]
+#'
+#' # Example with all NAs
+#' z = c(NA, NA, NA)
+#' fVec.na.locf(z, fillLeadingNA = TRUE, defaultValue = 0)
+#' # Returns: [0, 0, 0]
+#'
+#' # Using with real dataset
+#' data("airquality")
+#' summary(airquality$Ozone)  # Contains NAs
+#' filledOzone = fVec.na.locf(airquality$Ozone)
+#' summary(filledOzone)  # Fewer NAs after filling
+#'
+#' @export
+fVec.na.locf = function(x, fillLeadingNA = FALSE, defaultValue = NA, verbose = FALSE) {
+  # Input validation
+  if (!is.atomic(x) || !is.null(dim(x))) {
+    stop("Input must be atomic vector (numeric/character/logical/factor)")
+  }
+  
+  # Handle empty vector edge case
+  if (length(x) == 0) {
+    if (verbose) message("Empty vector input")
+    return(x)
+  }
+  
+  # Initialize tracking variables
+  resultVec = x
+  lastValue = NA
+  firstNonNAIndex = NA_integer_
+  
+  # Single-pass processing
+  for (indexInt in seq_along(resultVec)) {
+    currentVal = resultVec[indexInt]
+    
+    if (!is.na(currentVal)) {
+      lastValue = currentVal
+      if (is.na(firstNonNAIndex)) {
+        firstNonNAIndex = indexInt
+        if (verbose) message("First non-NA at position ", indexInt)
+      }
+    } else if (!is.na(lastValue)) {
+      resultVec[indexInt] = lastValue
+      if (verbose) message("Filled position ", indexInt, " with ", lastValue)
+    }
+  }
+  
+  # Handle leading NAs if requested
+  if (fillLeadingNA && !is.na(firstNonNAIndex) && firstNonNAIndex > 1) {
+    fillValue = resultVec[firstNonNAIndex]
+    resultVec[1:(firstNonNAIndex - 1)] = fillValue
+    if (verbose) message("Filled ", firstNonNAIndex - 1, " leading NAs with ", fillValue)
+  } else if (fillLeadingNA && is.na(firstNonNAIndex)) {
+    # All values are NA, use default value
+    resultVec[] = defaultValue
+    if (verbose) message("All NA - using default value")
+  }
+  
+  return(resultVec)
+}
+
+
+
+
+
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
