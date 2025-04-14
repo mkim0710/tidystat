@@ -3,6 +3,7 @@
 # @@ SOURCE)                                                                #L229
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
 # @@ env1\$f\$f_object                                                      #L283
+# @@ env1\$f\$f_str                                                         #L283
 # @@ env1\$f\$f_vec                                                         #L395
 # @@ env1\$f\$f_list                                                        #L396
 # @@ env1\$f\$f_list_list                                                   #L796
@@ -266,6 +267,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ env1\$f\$f_object ----  
+# @@ env1\$f\$f_str ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: str_max_level1 =  ----  
 .tmp$env1_subenv_name = "env.internal.attach"
@@ -1150,8 +1152,8 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 # }
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "fObj" |> paste0("-source.R") |> source() ----  
-.FileName.source.r = "fObj" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
+## @ "fObj-fStr" |> paste0("-source.R") |> source() ----  
+.FileName.source.r = "fObj-fStr" |> paste0("-source.R"); .RelativeSubPath=r"(R)"|>str_replace_all("\\\\","/"); 
 env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
