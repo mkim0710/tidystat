@@ -1,3 +1,33 @@
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 1) ----  
+# @@ SOURCE)                                                                #L229
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
+# @@ env1\$f\$f_object                                                      #L283
+# @@ env1\$f\$f_vec                                                         #L395
+# @@ env1\$f\$f_list                                                        #L396
+# @@ env1\$f\$f_list_list                                                   #L796
+# @@ env1\$f\$f_matrix                                                      #L797
+# @@ env1\$f\$f_array                                                       #L798
+# @@ env1\$f\$f_formula                                                     #L887
+# @@ env1\$f\$f_df                                                          #L966
+# @@ env1\$env.internal functions                                           #L1155
+# @@ source()                                                               #L1631
+# ls.str(env1) #                                                            #L1700
+# ls.str(env1$env.internal) #                                               #L1701
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+# TABLE OF CONTENTS (level 2) ----  
+
+# @@ env1\$f\$f_list_list                                                   #L796
+# @@ env1\$f\$f_matrix                                                      #L797
+# @@ env1\$f\$f_array                                                       #L798
+## :: f_list_list.to_matrix =                                               #L800
+## :: f_list_list.to_data_frame =                                           #L819
+## :: f_matrix.to_list_list =                                               #L839
+## :: f_matrix.set_names.to_vector =                                        #L866
+##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+
+
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
@@ -87,3 +117,25 @@
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+
+
+##////////////////////////////////////////////////////////////////////////////////  
+##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##********************************************************************************  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
+# @@ END -----  
+# cat("* To revert to the last commited file, run the following terminal command:\n", 
+#     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
