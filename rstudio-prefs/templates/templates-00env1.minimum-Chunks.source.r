@@ -50,7 +50,7 @@ env1$env.internal.attach$getSourceEditorContext.update_LastSourceEditorContext.p
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ⸿ SOURCE) -----  
-# ### @ .RelativeSubPath, .FileName.source.r ======  
+# ### § .RelativeSubPath, .FileName.source.r ======  
 # # .RelativeSubPath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(!is.null(.LastSourceEditorContext.path_FileNameExt)) if(.LastSourceEditorContext.path_FileNameExt != "") {.RelativeSubPath = .LastSourceEditorContext.path_FileNameExt |> dirname(); ".RelativeSubPath" |> env1$f$f_ObjectName.get.dput.ECHO() }
 # # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
