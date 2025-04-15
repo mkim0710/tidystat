@@ -1,24 +1,24 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ REFERENCES)                                                            #L159
-# @@ DATA) example                                                          #L165
-# @@ START) dev                                                             #L181
-# @@ SOURCE)                                                                #L188
-# @@ START) function                                                        #L222
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L273
-# @@ MetaData                                                               #L278
-# @@ DATA) Read & Check                                                     #L287
+# ⸿ REFERENCES)                                                            #L159
+# ⸿ DATA) example                                                          #L165
+# ⸿ START) dev                                                             #L181
+# ⸿ SOURCE)                                                                #L188
+# ⸿ START) function                                                        #L222
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L273
+# ⸿ MetaData                                                               #L278
+# ⸿ DATA) Read & Check                                                     #L287
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L159
-# @@ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L165
-# @@ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L181
-# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L188
-# @@ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L222
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L273
-# @@ MetaData                                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L278
-# @@ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L287
+# ⸿ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L159
+# ⸿ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L165
+# ⸿ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L181
+# ⸿ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L188
+# ⸿ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L222
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L273
+# ⸿ MetaData                                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L278
+# ⸿ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R#L287
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # default.R
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -66,13 +66,13 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ REFERENCES) ----  
+# ⸿ REFERENCES) ----  
 ##  ----  
 ## 
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ DATA) example ----  
+# ⸿ DATA) example ----  
 ## \$ ADS_time2event =  ----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
@@ -88,14 +88,14 @@ assign(
 ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
+# ⸿ START) dev -----  
 ## env0 = env1 ----
 env0 = env1
 
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ SOURCE) -----  
+# ⸿ SOURCE) -----  
 ## @ .RelativeSubPath, .FileName.source.r ======  
 #### env1$path$.RelativeSubPath_FileName.source.r ----  
 # .RelativeSubPath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
@@ -111,7 +111,7 @@ env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function -----  
+# ⸿ START) function -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -162,12 +162,12 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ MetaData ----  
+# ⸿ MetaData ----  
 ## .GlobalEnv$MetaData = list() ====  
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
@@ -176,7 +176,7 @@ for (.sublistname in c("tblVarName", "DSnames", "VarNames", "VarNames.select", "
 }
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ DATA) Read & Check-----
+# ⸿ DATA) Read & Check-----
 ## \$ DSN |> paste0(".rds") %>% paste0(.path4read.RelativeSubPath,ifelse(.path4read.RelativeSubPath=="","","/"),.) |> read_rds() %>% assign(DSN, value = ., envir = .GlobalEnv) ====
 .path4read.RelativeSubPath = r"(data)"|>str_replace_all("\\\\","/")
 DSN = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
@@ -255,7 +255,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# @@ END -----  
+# ⸿ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
 paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)

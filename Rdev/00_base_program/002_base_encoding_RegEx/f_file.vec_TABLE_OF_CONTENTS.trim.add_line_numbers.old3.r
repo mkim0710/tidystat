@@ -2,16 +2,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1                                                         ...60
 ##@ Heading 1.1                                                       ...63
-# @@ Heading 2                                                        ...65
+# ⸿ Heading 2                                                        ...65
 ## @ Heading 2.1                                                      ...67
-# @@ START) dev.old                                                   ...73
+# ⸿ START) dev.old                                                   ...73
 ## env0 = env1                                                        ...74
-# @@ START) dev                                                       ...117
+# ⸿ START) dev                                                       ...117
 ## env0 = env1                                                        ...118
-# @@ START) function.old                                              ...167
+# ⸿ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
-# @@ START) function                                                  ...233
+# ⸿ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
@@ -19,16 +19,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
-# @@ Heading 2 
+# ⸿ Heading 2 
 ## @ Heading 2.1 
-# @@ START) dev.old   
+# ⸿ START) dev.old   
 ## env0 = env1 
-# @@ START) dev   
+# ⸿ START) dev   
 ## env0 = env1 
-# @@ START) function.old   
+# ⸿ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
-# @@ START) function   
+# ⸿ START) function   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -58,13 +58,13 @@
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ REFERENCES) ----  
+# ⸿ REFERENCES) ----  
 ##  ----  
 ## 
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ DATA) example ----  
+# ⸿ DATA) example ----  
 
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
@@ -72,7 +72,7 @@
 
 ##@ Heading 1.1 ----
 
-# @@ Heading 2 ====
+# ⸿ Heading 2 ====
 
 ## @ Heading 2.1 ----
 
@@ -103,7 +103,7 @@ input_vec_chr |> paste(collapse = "\n") |> cat("\n")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
+# ⸿ START) dev -----  
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 ## env0 = env1 ----
@@ -151,7 +151,7 @@ input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% str
 #  chr [1:37] NA "# TABLE OF CONTENTS ----  " NA NA NA NA NA NA NA "#_________________________________________________________________________________|----  " NA ...
 # > input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if_NotMatching(RegEx4heading) %>% na.omit %>% str
-#  chr [1:9] "# TABLE OF CONTENTS ----  " "#_________________________________________________________________________________|----  " "# @@ START) dev -----  " ...
+#  chr [1:9] "# TABLE OF CONTENTS ----  " "#_________________________________________________________________________________|----  " "# ⸿ START) dev -----  " ...
 #  - attr(*, "na.action")= 'omit' int [1:28] 1 3 4 5 6 7 8 9 11 13 ...
 
 
@@ -179,14 +179,14 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(tr
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # # TABLE OF CONTENTS                                                         ...2
 # #_________________________________________________________________________________|      ...10
-# # @@ START) dev                                                             ...12
+# # ⸿ START) dev                                                             ...12
 # # ## env0 = env1                                                            ...13
 # #_________________________________________________________________________________|      ...15
-# # @@ START) function                                                        ...17
+# # ⸿ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
 # #|________________________________________________________________________________|#        ...36
-# # @@ END                                                                    ...37 
+# # ⸿ END                                                                    ...37 
 
 ### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
 if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> str_subset(paste0("[a-zA-Z]{2,}",ifelse(add_line_numbers,ifelse(URL4line_numbers,".*http",".*#L"),"")))    # remove_lines_with_no_2alphabet_word (if add_line_numbers, before #)  
@@ -196,11 +196,11 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(tr
 #  chr [1:6] "# TABLE OF CONTENTS                                                         ...2" ...
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # # TABLE OF CONTENTS                                                         ...2
-# # @@ START) dev                                                             ...12
-# # @@ START) function                                                        ...17
+# # ⸿ START) dev                                                             ...12
+# # ⸿ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
-# # @@ END                                                                    ...37 
+# # ⸿ END                                                                    ...37 
 
 
 ### vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> format_BEGINNING_END ====  
@@ -211,10 +211,10 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers = vec_TABLE_OF_CONTENTS.trim.add_lin
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
 vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers %>% str
-#  chr [1:4] "# @@ START) dev                                                             ...12" ...
+#  chr [1:4] "# ⸿ START) dev                                                             ...12" ...
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
-# # @@ START) dev                                                             ...12
-# # @@ START) function                                                        ...17
+# # ⸿ START) dev                                                             ...12
+# # ⸿ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19 
 
@@ -232,8 +232,8 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(tr
 # > vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ START) dev                                                             ...12
-# # @@ START) function                                                        ...17
+# # ⸿ START) dev                                                             ...12
+# # ⸿ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -244,7 +244,7 @@ vec_TABLE_OF_CONTENTS.trim.add_line_numbers |> env1$env.internal.attach$catLF(tr
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function -----  
+# ⸿ START) function -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -370,15 +370,15 @@ input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line
 # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f78729f450c.txt")  
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ START) dev                                                             ...12
-# # @@ START) function                                                        ...17
+# # ⸿ START) dev                                                             ...12
+# # ⸿ START) function                                                        ...17
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 # > input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT(cat2console = TRUE, add_line_numbers = FALSE)
 # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f782dd42ac0.txt")  
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ START) dev   
-# # @@ START) function   
+# # ⸿ START) dev   
+# # ⸿ START) function   
 # ## ->> Not Yet included in env1$env.internal.source.r 
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -386,8 +386,8 @@ input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line
 # env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL("C:\\Users\\mkim0\\AppData\\Local\\Temp\\RtmpQNP3r1\\FileSample_with_TABLE_OF_CONTENTS.r-TableOfContents-11f7847e547ad.txt")  
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ START) dev                                                             ...12
-# # @@ START) function                                                        ...17
+# # ⸿ START) dev                                                             ...12
+# # ⸿ START) function                                                        ...17
 # ## ->> Not Yet included in env1$env.internal.source.r                       ...18
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...19
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -422,7 +422,7 @@ input_path_file %>% env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function (NESTED) -----  
+# ⸿ START) function (NESTED) -----  
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$env1_subenv_name = "f"
@@ -545,7 +545,7 @@ env1$f$f_file.vec_TABLE_OF_CONTENTS.NESTED(max.level4TOC = 2, cat2console = TRUE
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# @@ END -----  
+# ⸿ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
 paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)

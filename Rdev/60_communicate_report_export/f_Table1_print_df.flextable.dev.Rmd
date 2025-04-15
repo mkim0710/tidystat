@@ -218,7 +218,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 https://www.r-bloggers.com/2021/11/publication-ready-tables-with-flextable-and-own-theme-in-r/#:~:text=function%20can%20be%20used%20to%20export%20Table%201.&text=package%20is%20a%20great%20package%20for%2C%20you%20guessed%20it%2C%20generating,the%20output%20that%20you%20need.  
 https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b  
-# @@ DATA) example ----  
+# ⸿ DATA) example ----  
 ## \$ GermanBreastCancerStudyGroup =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -254,14 +254,14 @@ GermanBreastCancerStudyGroup %>% as_tibble
   
   
 # __________|------  
-# @@ START) dev ----  
+# ⸿ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
 
   
 # __________|------  
-# @@ START) function ----  
+# ⸿ START) function ----  
 ## @ f_df.Table1byExposure.xlsx.dev.r  
 ```{r EchoNoEval, eval=FALSE, echo=TRUE}
 ##________________________________________________________________________________  
@@ -602,7 +602,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ END ----  
+# ⸿ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -611,7 +611,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ END ----  
+# ⸿ END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

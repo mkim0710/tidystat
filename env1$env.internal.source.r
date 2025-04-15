@@ -1,16 +1,16 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ system, environment                                                    #L312
-# @@ f_function, f_expression, f_CodeText                                   #L555
-# @@ f_file, f_URL, f_path                                                  #L1006
-# @@ f_RegEx                                                                #L2928
-# @@ source()                                                               #L2990
+# ⸿ system, environment                                                    #L312
+# ⸿ f_function, f_expression, f_CodeText                                   #L555
+# ⸿ f_file, f_URL, f_path                                                  #L1006
+# ⸿ f_RegEx                                                                #L2928
+# ⸿ source()                                                               #L2990
 # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       #L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
 ## .GlobalEnv$env1 = new.env()                                              #L273
-# @@ system, environment                                                    #L312
+# ⸿ system, environment                                                    #L312
 ## :: get_system_info                                                       #L315
 ## :: get_software_versions                                                 #L348
 ## :: warnings.summary                                                      #L359
@@ -31,7 +31,7 @@
 ## :: Sys.time.set_t1                                                       #L519
 ## :: f_object.is_null.or_na.or_blank =                                     #L527
 ## :: f_object.is_not_null.nor_na.nor_blank =                               #L540
-# @@ f_function, f_expression, f_CodeText                                   #L555
+# ⸿ f_function, f_expression, f_CodeText                                   #L555
 ## :: f_function.load2env.internal                                          #L557
 ## :: f_text_function_arguments.identity_mapping                            #L584
 ## :: f_condition1.if_null_condition2                                       #L612
@@ -45,7 +45,7 @@
 ## :: f_CodeTexts.parse.eval.identical                                      #L947
 ## :: f_TerminalFromRCodeText.ECHO                                          #L975
 ## :: f_object.substitute.deparse2objectname                                #L996
-# @@ f_file, f_URL, f_path                                                  #L1006
+# ⸿ f_file, f_URL, f_path                                                  #L1006
 ## :: getSourceEditorContext.path_FileNameExt                               #L1009
 ## :: f_path_file.paste0_collapse_if_not_empty                              #L1026
 ## :: f_path.relative                                                       #L1056
@@ -94,11 +94,11 @@
 ## @ f_file.update                                                          #L2769
 ## :: env.internal\$f_file2.compare                                         #L2772
 ## :: env.internal\$f_url_destfile.DownloadIfDifferent                      #L2809
-# @@ f_RegEx                                                                #L2928
+# ⸿ f_RegEx                                                                #L2928
 ## :: constant_vec.SpecialChars32KeyboardLayout                             #L2931
 ## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function()             #L2937
 ## :: f_list_RegExChrClass.union_df() = function()                          #L2964
-# @@ source()                                                               #L2990
+# ⸿ source()                                                               #L2990
 ## :: f_sourcePath.execute_if_not_sourced =                                 #L2993
 ## ::OPTION:: f_sourcePath.execute.force_reload                             #L3052
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       #L3094
@@ -107,17 +107,17 @@
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L312
-# @@ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L555
-# @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
-# @@ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
-# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
+# ⸿ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L312
+# ⸿ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L555
+# ⸿ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
+# ⸿ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
+# ⸿ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
 # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3118
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
 ## .GlobalEnv$env1 = new.env()                                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L273
-# @@ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L312
+# ⸿ system, environment                                                    # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L312
 ## :: get_system_info                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L315
 ## :: get_software_versions                                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L348
 ## :: warnings.summary                                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L359
@@ -138,7 +138,7 @@
 ## :: Sys.time.set_t1                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L519
 ## :: f_object.is_null.or_na.or_blank =                                     # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L527
 ## :: f_object.is_not_null.nor_na.nor_blank =                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L540
-# @@ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L555
+# ⸿ f_function, f_expression, f_CodeText                                   # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L555
 ## :: f_function.load2env.internal                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L557
 ## :: f_text_function_arguments.identity_mapping                            # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L584
 ## :: f_condition1.if_null_condition2                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L612
@@ -152,7 +152,7 @@
 ## :: f_CodeTexts.parse.eval.identical                                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L947
 ## :: f_TerminalFromRCodeText.ECHO                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L975
 ## :: f_object.substitute.deparse2objectname                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L996
-# @@ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
+# ⸿ f_file, f_URL, f_path                                                  # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1006
 ## :: getSourceEditorContext.path_FileNameExt                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1009
 ## :: f_path_file.paste0_collapse_if_not_empty                              # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1026
 ## :: f_path.relative                                                       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L1056
@@ -201,11 +201,11 @@
 ## @ f_file.update                                                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2769
 ## :: env.internal\$f_file2.compare                                         # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2772
 ## :: env.internal\$f_url_destfile.DownloadIfDifferent                      # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2809
-# @@ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
+# ⸿ f_RegEx                                                                # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2928
 ## :: constant_vec.SpecialChars32KeyboardLayout                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2931
 ## :: f_RegExChrClass1_RegExChrClass2.setdiff_list = function()             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2937
 ## :: f_list_RegExChrClass.union_df() = function()                          # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2964
-# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
+# ⸿ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2990
 ## :: f_sourcePath.execute_if_not_sourced =                                 # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L2993
 ## ::OPTION:: f_sourcePath.execute.force_reload                             # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3052
 ## @ .FileName.source.r = "f_expression.substitute_ECHO_and_dput" |> paste0(".source.r")       # https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.source.r#L3094
@@ -292,7 +292,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$path4write = i
 ##________________________________________________________________________________  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ system, environment ----  
+# ⸿ system, environment ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: get_system_info ====  
@@ -535,7 +535,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ f_function, f_expression, f_CodeText ----  
+# ⸿ f_function, f_expression, f_CodeText ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_function.load2env.internal ====  
 env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE) {
@@ -988,7 +988,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ f_file, f_URL, f_path ----  
+# ⸿ f_file, f_URL, f_path ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: getSourceEditorContext.path_FileNameExt ====  
@@ -2426,7 +2426,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 # R/fChr-fFilePath.update-source.R
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ f_RegEx ----  
+# ⸿ f_RegEx ----  
 # R/fChr-fRegEx-source.R
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -2435,7 +2435,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ source() ----  
+# ⸿ source() ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_sourcePath.execute_if_not_sourced =  ----  
@@ -2609,7 +2609,7 @@ env1$path$list_path_hierarchy = env1$env.internal.attach$f_path0.list_path_hiera
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# @@ END -----  
+# ⸿ END -----  
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env1$env.internal.source.r"))
 # # source(file.path("https://raw.githubusercontent.com/mkim0710/tidystat/master", "env1$env.internal.source.r"))
 

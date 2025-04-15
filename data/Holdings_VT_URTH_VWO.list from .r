@@ -623,7 +623,7 @@ Holdings_VT_URTH_VWO.list =
     )  
   
 # __________|------  
-# @@ END----  
+# ⸿ END----  
 getwd()
 .path4write = env1$path$path4write
 .objectname = "Holdings_VT_URTH_VWO.list"

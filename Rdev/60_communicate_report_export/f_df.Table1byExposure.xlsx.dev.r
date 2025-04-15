@@ -41,7 +41,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ SOURCE) -----  
+# ⸿ SOURCE) -----  
 ## @ .RelativeSubPath, .FileName.source.r ======  
 .RelativeSubPath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
 .FileName.source.r = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
@@ -68,7 +68,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     sep="")
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) data -----  
+# ⸿ START) data -----  
 # \$ assign( DSN, read_rds(paste0(.path4read,"/",DSN,".rds")) ) ====  
 # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # DSN = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
@@ -241,7 +241,7 @@ DS.Table1byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) -
   
   
 # __________|------  
-# @@ START) function -----  
+# ⸿ START) function -----  
 function.DS.Table1byExposure.print.addCols = function(DS.Table1byExposure.print) {
     DS.Table1byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
@@ -983,7 +983,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
   
   
 # __________|------  
-# @@ END------  
+# ⸿ END------  
 ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list = list()
 ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.evnttrth_C16_r =
     ADS.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1by.evnttrth_C16_r

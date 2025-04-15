@@ -215,7 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# @@ REFERENCES) ----  
+# ⸿ REFERENCES) ----  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -224,7 +224,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ DATA) example ----  
+# ⸿ DATA) example ----  
 ## \$ ADS_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -244,7 +244,7 @@ ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()
   
   
 # __________|------  
-# @@ START) dev ----  
+# ⸿ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
@@ -272,7 +272,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START-GPT) function ----  
+# ⸿ START-GPT) function ----  
 https://chatgpt.com/c/6704c7a7-5300-800e-ab73-107106b8d594
 
 ## \% |> calculate_smd()  
@@ -393,7 +393,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START-GPT2) function ----  
+# ⸿ START-GPT2) function ----  
 https://chatgpt.com/c/6704d71a-6620-800e-87ff-2c435e0408d2
 
 ## \% |> calculate_smd()  
@@ -552,7 +552,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START-Gemini) function ----  
+# ⸿ START-Gemini) function ----  
 
 ## \% |> calculate_smd()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -620,7 +620,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ START-Gemini_coding) function ----  
+# ⸿ START-Gemini_coding) function ----  
 
 ## \% |> calculate_smd()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -714,7 +714,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ SOURCE) ----  
+# ⸿ SOURCE) ----  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -783,7 +783,7 @@ options(width=120)
   
   
 # __________|------  
-# @@ END ----  
+# ⸿ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -792,7 +792,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ END ----  
+# ⸿ END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

@@ -2,16 +2,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1                                                         ...60
 ##@ Heading 1.1                                                       ...63
-# @@ Heading 2                                                        ...65
+# ⸿ Heading 2                                                        ...65
 ## @ Heading 2.1                                                      ...67
-# @@ START) dev.old                                                   ...73
+# ⸿ START) dev.old                                                   ...73
 ## env0 = env1                                                        ...74
-# @@ START) dev                                                       ...117
+# ⸿ START) dev                                                       ...117
 ## env0 = env1                                                        ...118
-# @@ START) function.old                                              ...167
+# ⸿ START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
-# @@ START) function                                                  ...233
+# ⸿ START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
@@ -19,16 +19,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
-# @@ Heading 2 
+# ⸿ Heading 2 
 ## @ Heading 2.1 
-# @@ START) dev.old   
+# ⸿ START) dev.old   
 ## env0 = env1 
-# @@ START) dev   
+# ⸿ START) dev   
 ## env0 = env1 
-# @@ START) function.old   
+# ⸿ START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
-# @@ START) function   
+# ⸿ START) function   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -59,13 +59,13 @@
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ REFERENCES) ----  
+# ⸿ REFERENCES) ----  
 ##  ----  
 ## 
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ DATA) example ----  
+# ⸿ DATA) example ----  
 
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
@@ -73,7 +73,7 @@
 
 ##@ Heading 1.1 ----
 
-# @@ Heading 2 ====
+# ⸿ Heading 2 ====
 
 ## @ Heading 2.1 ----
 
@@ -104,7 +104,7 @@ input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev-part1 -----  
+# ⸿ START) dev-part1 -----  
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 
@@ -175,7 +175,7 @@ vec_TABLE_OF_CONTENTS.trim = input_vec_chr.except_TOC %>% env1$f$f_vec_chr.na_if
 vec_TABLE_OF_CONTENTS.trim %>% str
 vec_TABLE_OF_CONTENTS.trim |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim %>% str
-#  chr [1:31] "#_________________________________________________________________________________|----  " "# @@ REFERENCES) ----  " ...
+#  chr [1:31] "#_________________________________________________________________________________|----  " "# ⸿ REFERENCES) ----  " ...
 #  - attr(*, "na.action")= 'omit' int [1:259] 1 2 3 4 5 6 7 8 9 10 ...
 
 vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
@@ -183,22 +183,22 @@ vec_TABLE_OF_CONTENTS.trim %>% str
 vec_TABLE_OF_CONTENTS.trim |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS %>% str_replace_all("(-{4,}|={4,})( *)$", "\\2")    # Remove the trailing "----" or "====", but keep the trailing spaces. This step should be done before applying env1$env.internal$f_vec_chr.add_line_numbers(). 
 # > vec_TABLE_OF_CONTENTS.trim %>% str
-#  chr [1:31] "#_________________________________________________________________________________|  " "# @@ REFERENCES)   " ...
+#  chr [1:31] "#_________________________________________________________________________________|  " "# ⸿ REFERENCES)   " ...
 
 ### |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word ----  
 if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim |> str_subset("[a-zA-Z]{2,}")    # remove_lines_with_no_2alphabet_word  
 vec_TABLE_OF_CONTENTS.trim %>% str
 vec_TABLE_OF_CONTENTS.trim |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # > vec_TABLE_OF_CONTENTS.trim %>% str
-#  chr [1:22] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
+#  chr [1:22] "# ⸿ REFERENCES)   " "# ⸿ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# ⸿ Heading 2 " ...
 
 vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
     str_subset("^# TABLE OF CONTENTS", negate = TRUE)
 vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
-    str_subset("^# @@ END", negate = TRUE)
+    str_subset("^# ⸿ END", negate = TRUE)
 vec_TABLE_OF_CONTENTS.trim %>% str
 # > vec_TABLE_OF_CONTENTS.trim %>% str
-#  chr [1:21] "# @@ REFERENCES)   " "# @@ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# @@ Heading 2 " ...
+#  chr [1:21] "# ⸿ REFERENCES)   " "# ⸿ START) data example   " "#@@ Heading 1 " "##@ Heading 1.1 " "# ⸿ Heading 2 " ...
 
 vec_TABLE_OF_CONTENTS.trim = 
     c(
@@ -214,27 +214,27 @@ vec_TABLE_OF_CONTENTS.trim |> env1$env.internal.attach$catLF(trailing_double_spa
 # > vec_TABLE_OF_CONTENTS.trim |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ REFERENCES)   
-# # @@ START) data example   
+# # ⸿ REFERENCES)   
+# # ⸿ START) data example   
 # #@@ Heading 1 
 # ##@ Heading 1.1 
-# # @@ Heading 2 
+# # ⸿ Heading 2 
 # ## @ Heading 2.1 
 # #  chr [1:348] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 
 # # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 
-# # @@ START) dev   
+# # ⸿ START) dev   
 # ## env0 = env1 
 # #  $ SECTION   : chr [1:13] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS ----  " "#| ------------------------- < To be covered at .Rprofile >                 ...128" "#|  
 # #  chr [1:23] "#|________________________________________________________________________________|#  ----  " "#@@ Heading 1 
-# #  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 
-# #  chr [1:14] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# @@ Heading 2 ====" "## @ Heading 2.1 
+# #  chr [1:17] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# ⸿ Heading 2 ====" "## @ Heading 2.1 
+# #  chr [1:14] "#@@ Heading 1 ----" "##@ Heading 1.1 ----" "# ⸿ Heading 2 ====" "## @ Heading 2.1 
 # #  chr [1:17] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
 # #  chr [1:405] "##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  " "# TABLE OF CONTENTS   
-# # @@ START) function   
+# # ⸿ START) function   
 # ## ->> Now included in env1$env.internal.source.r 
 # ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =    
-# # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
+# # ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B   
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
@@ -255,7 +255,7 @@ input_vec_chr.except_TOC.add_new_TOC_as_blank.add_line_numbers %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function-part1 -----  
+# ⸿ START) function-part1 -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -285,7 +285,7 @@ if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_
     vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
         str_subset("^# TABLE OF CONTENTS", negate = TRUE)
     vec_TABLE_OF_CONTENTS.trim = vec_TABLE_OF_CONTENTS.trim %>% 
-        str_subset("^# @@ END", negate = TRUE)
+        str_subset("^# ⸿ END", negate = TRUE)
     
     vec_TABLE_OF_CONTENTS.trim = 
         c(
@@ -306,9 +306,9 @@ input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.lis
 # > input_path_file %>% readLines(warn = FALSE) %>% {env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(.)$nonSECTION} %>% env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() |> env1$env.internal.attach$catLF(trailing_double_spaces = FALSE)
 # ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # # TABLE OF CONTENTS ----  
-# # @@ START) dev   
+# # ⸿ START) dev   
 # ## env0 = env1 
-# # @@ START) function   
+# # ⸿ START) function   
 # ## ->> Not Yet included in env1$env.internal.source.r 
 # ## ->> Not Yet included in f_df.t.tribble_construct.source.r 
 # ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  

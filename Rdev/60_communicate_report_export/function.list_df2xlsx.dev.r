@@ -14,7 +14,7 @@ function.list_df2xlsx = function(list_df, as_table=TRUE, overwrite2annotate = F,
   
   
 # __________|------  
-# @@ END----  
+# ⸿ END----  
 getwd()
 .path4write = "../data/data.ID_DATE_DX.distinct"
 .path4write = env1$path$path4write

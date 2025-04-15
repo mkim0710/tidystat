@@ -44,13 +44,13 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ REFERENCES) ----  
+# ⸿ REFERENCES) ----  
 ##  ----  
 ## 
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ DATA) example ----  
+# ⸿ DATA) example ----  
 
 ## \% input_vec_chr = fruit[1:8*10] ----
 input_vec_chr = fruit[1:8*10]
@@ -68,12 +68,12 @@ input_vec_chr.SECTION_extracted =
     c("##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  ", 
       "# TABLE OF CONTENTS ----  ", "#| ------------------------- < To be covered at .Rprofile >                 ...128", 
       "#| ------------------------- < If .Rprofile not available >                 ...131", 
-      "# @@ system, environment                                                    ...189", 
-      "# @@ f_function, f_expression, f_CodeText                                   ...345", 
-      "# @@ f_file, f_URL, f_path                                                  ...792", 
+      "# ⸿ system, environment                                                    ...189", 
+      "# ⸿ f_function, f_expression, f_CodeText                                   ...345", 
+      "# ⸿ f_file, f_URL, f_path                                                  ...792", 
       "# ## ::OPTION:: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.merge_with_input_vec_chr.except_TOC       ...1549", 
       "# ### (ALIAS) CurrentSourceEditorContext.str_subset.lines4heading.add_TABLE_OF_CONTENTS      ...1556", 
-      "# @@ source()                                                               ...2308", 
+      "# ⸿ source()                                                               ...2308", 
       "# ## @ .FileName.source.r = \"internal.f_path0.list_path_hierarchy\" |> paste0(\".source.r\")       ...2394", 
       "# \\% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )       ...2431", 
       "##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  "
@@ -87,7 +87,7 @@ input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
+# ⸿ START) dev -----  
 ## env0 = env1 ----
 env0 = env1
 
@@ -95,7 +95,7 @@ env0 = env1
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ SOURCE) -----  
+# ⸿ SOURCE) -----  
 ## @ .RelativeSubPath, .FileName.source.r ======  
 #### env1$path$.RelativeSubPath_FileName.source.r ----  
 # .RelativeSubPath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
@@ -116,7 +116,7 @@ env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function by GPT -----  
+# ⸿ START) function by GPT -----  
 
 #@ https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627
 #' Separate SECTION_extracted and non-SECTION_extracted Lines
@@ -149,7 +149,7 @@ env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) function -----  
+# ⸿ START) function -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -216,7 +216,7 @@ env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input_vec_chr) %>% str
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# @@ END -----  
+# ⸿ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
 paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)

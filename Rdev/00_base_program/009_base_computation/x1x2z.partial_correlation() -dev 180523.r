@@ -1,7 +1,7 @@
 # x1x2z.partial_correlation() -dev 180523.r  
   
 # __________|------  
-# @@ old function -----  
+# ? old function -----  
 
 ## @ x1x2z.partial_correlation() ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
@@ -112,7 +112,7 @@ out
   
   
 # __________|------  
-# @@ new function 180523 =====  
+# ? new function 180523 =====  
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
@@ -744,7 +744,7 @@ glm((stackloss$Air.Flow/abs(stackloss$Air.Flow) + 1)/2 ~ stackloss$Water.Temp, f
   
   
 # __________|------  
-# @@ new function 180523 v2 -----  
+# ? new function 180523 v2 -----  
 out = map(
     seq_along(cor_method)
     , function(i) {
@@ -1020,7 +1020,7 @@ out %>% map(function(ls) ls %>% map(unname)) |> str(max.level = 2, give.attr = T
   
   
 # __________|------  
-# @@ new function 180523 v3 -----  
+# ? new function 180523 v3 -----  
 out = map(
     seq_along(cor_method)
     , function(i) {
@@ -1083,7 +1083,7 @@ out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), start
   
   
 # __________|------  
-# @@ new function 180523 v4 -----  
+# ? new function 180523 v4 -----  
 out = map(
     seq_along(cor_method)
     , function(i) {
@@ -1300,7 +1300,7 @@ out %>% map(unlist) %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") 
   
   
 # __________|------  
-# @@ new function 180523 v5 -----  
+# ? new function 180523 v5 -----  
 out = map(
     seq_along(cor_method)
     , function(i) {
@@ -1620,6 +1620,6 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
   
   
 # __________|------  
-# @@ END----  
+# ? END----  
 
 

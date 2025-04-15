@@ -1,31 +1,31 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ SOURCE)                                                                #L229
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
-# @@ env1\$f\$f_object                                                      #L283
-# @@ env1\$f\$f_str                                                         #L283
-# @@ env1\$f\$f_vec                                                         #L395
-# @@ env1\$f\$f_list                                                        #L396
-# @@ env1\$f\$f_list_list                                                   #L796
-# @@ env1\$f\$f_matrix                                                      #L797
-# @@ env1\$f\$f_array                                                       #L798
-# @@ env1\$f\$f_formula                                                     #L887
-# @@ env1\$f\$f_df                                                          #L966
-# @@ env1\$f\$f_DS ----  
-# @@ env1\$env.internal functions                                           #L1155
-# @@ source()                                                               #L1631
+# ⸿ SOURCE)                                                                #L229
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
+# ⸿ env1\$f\$f_object                                                      #L283
+# ⸿ env1\$f\$f_str                                                         #L283
+# ⸿ env1\$f\$f_vec                                                         #L395
+# ⸿ env1\$f\$f_list                                                        #L396
+# ⸿ env1\$f\$f_list_list                                                   #L796
+# ⸿ env1\$f\$f_matrix                                                      #L797
+# ⸿ env1\$f\$f_array                                                       #L798
+# ⸿ env1\$f\$f_formula                                                     #L887
+# ⸿ env1\$f\$f_df                                                          #L966
+# ⸿ env1\$f\$f_DS ----  
+# ⸿ env1\$env.internal functions                                           #L1155
+# ⸿ source()                                                               #L1631
 # ls.str(env1) #                                                            #L1700
 # ls.str(env1$env.internal) #                                               #L1701
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
 ## env1\$path                                                               #L217
-# @@ SOURCE)                                                                #L229
+# ⸿ SOURCE)                                                                #L229
 ## @ .RelativeSubPath, .FileName.source.r                                   #L230
 ## env1 = env0                                                              #L254
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
 ## .GlobalEnv$env1 = new.env()                                              #L269
-# @@ env1\$f\$f_object                                                      #L283
+# ⸿ env1\$f\$f_object                                                      #L283
 ## :: str_max_level1 =                                                      #L285
 ## :: str_max_level2 =                                                      #L290
 ## :: str_give_attr_F =                                                     #L295
@@ -36,8 +36,8 @@
 ## :: cat0 =                                                                #L351
 ## :: catLF =                                                               #L365
 ## :: deparse.cat0 =                                                        #L384
-# @@ env1\$f\$f_vec                                                         #L395
-# @@ env1\$f\$f_list                                                        #L396
+# ⸿ env1\$f\$f_vec                                                         #L395
+# ⸿ env1\$f\$f_list                                                        #L396
 ## :: env.internal\$f_vec.format_line_by_line =                             #L398
 ## :: f_vec.dput_line_by_line =                                             #L409
 ## :: env.internal\$f_list.format_line_by_line =                            #L430
@@ -56,18 +56,18 @@
 ## :: f_vec_chr.add_line_numbers =                                          #L724
 ## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    #L742
 ## :: f_vec_chr.list_SECTION_nonSECTION =                                   #L753
-# @@ env1\$f\$f_list_list                                                   #L796
-# @@ env1\$f\$f_matrix                                                      #L797
-# @@ env1\$f\$f_array                                                       #L798
+# ⸿ env1\$f\$f_list_list                                                   #L796
+# ⸿ env1\$f\$f_matrix                                                      #L797
+# ⸿ env1\$f\$f_array                                                       #L798
 ## :: f_list_list.to_matrix =                                               #L800
 ## :: f_list_list.to_data_frame =                                           #L819
 ## :: f_matrix.to_list_list =                                               #L839
 ## :: f_matrix.set_names.to_vector =                                        #L866
-# @@ env1\$f\$f_formula                                                     #L887
+# ⸿ env1\$f\$f_formula                                                     #L887
 ## :: f_formula.lhs_rhs_vars =                                              #L889
 ## :: f_list_formula.append_lhs_rhs_vars =                                  #L924
-# @@ env1\$f\$f_df                                                          #L966
-# @@ env1\$f\$f_DS                                                          #L966
+# ⸿ env1\$f\$f_df                                                          #L966
+# ⸿ env1\$f\$f_DS                                                          #L966
 ## :: f_df.tribble_construct =                                              #L968
 ## :: f_df.transpose =                                                      #L984
 ## :: f_df.t.tribble_construct =                                            #L998
@@ -77,8 +77,8 @@
 ## :: f_df.add_RegExVars.kbins =                                            #L1060
 ## :: f_df.add_RegExVars.quintile_factor =                                  #L1089
 ## :: f_df.add_RegExVars.quartile_factor =                                  #L1120
-# @@ env1\$env.internal functions                                           #L1155
-# @@ source()                                                               #L1631
+# ⸿ env1\$env.internal functions                                           #L1155
+# ⸿ source()                                                               #L1631
 ## @ for (.dependancy in c("")) {                                           #L1633
 ## @ "f_DSname.Search.read.checkEntity" |> paste0(".source.r") |> source()       #L1642
 ## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   #L1648
@@ -92,30 +92,30 @@
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L229
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L260
-# @@ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
-# @@ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L395
-# @@ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L396
-# @@ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L796
-# @@ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L797
-# @@ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L798
-# @@ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L887
-# @@ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L966
-# @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
-# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
+# ⸿ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L229
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L260
+# ⸿ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
+# ⸿ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L395
+# ⸿ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L396
+# ⸿ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L796
+# ⸿ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L797
+# ⸿ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L798
+# ⸿ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L887
+# ⸿ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L966
+# ⸿ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
+# ⸿ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
 # ls.str(env1) #                                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1700
 # ls.str(env1$env.internal) #                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1701
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
 ## env1\$path                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L217
-# @@ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L229
+# ⸿ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L229
 ## @ .RelativeSubPath, .FileName.source.r                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L230
 ## env1 = env0                                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L254
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L260
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L260
 ## .GlobalEnv$env1 = new.env()                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L269
-# @@ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
+# ⸿ env1\$f\$f_object                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L283
 ## :: str_max_level1 =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L285
 ## :: str_max_level2 =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L290
 ## :: str_give_attr_F =                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L295
@@ -126,8 +126,8 @@
 ## :: cat0 =                                                                # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L351
 ## :: catLF =                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L365
 ## :: deparse.cat0 =                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L384
-# @@ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L395
-# @@ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L396
+# ⸿ env1\$f\$f_vec                                                         # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L395
+# ⸿ env1\$f\$f_list                                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L396
 ## :: env.internal\$f_vec.format_line_by_line =                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L398
 ## :: f_vec.dput_line_by_line =                                             # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L409
 ## :: env.internal\$f_list.format_line_by_line =                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L430
@@ -146,17 +146,17 @@
 ## :: f_vec_chr.add_line_numbers =                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L724
 ## :: f_vec_chr.add_line_numbers.paste_collapse_LF_cat =                    # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L742
 ## :: f_vec_chr.list_SECTION_nonSECTION =                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L753
-# @@ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L796
-# @@ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L797
-# @@ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L798
+# ⸿ env1\$f\$f_list_list                                                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L796
+# ⸿ env1\$f\$f_matrix                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L797
+# ⸿ env1\$f\$f_array                                                       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L798
 ## :: f_list_list.to_matrix =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L800
 ## :: f_list_list.to_data_frame =                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L819
 ## :: f_matrix.to_list_list =                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L839
 ## :: f_matrix.set_names.to_vector =                                        # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L866
-# @@ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L887
+# ⸿ env1\$f\$f_formula                                                     # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L887
 ## :: f_formula.lhs_rhs_vars =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L889
 ## :: f_list_formula.append_lhs_rhs_vars =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L924
-# @@ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L966
+# ⸿ env1\$f\$f_df                                                          # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L966
 ## :: f_df.tribble_construct =                                              # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L968
 ## :: f_df.transpose =                                                      # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L984
 ## :: f_df.t.tribble_construct =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L998
@@ -166,8 +166,8 @@
 ## :: f_df.add_RegExVars.kbins =                                            # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1060
 ## :: f_df.add_RegExVars.quintile_factor =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1089
 ## :: f_df.add_RegExVars.quartile_factor =                                  # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1120
-# @@ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
-# @@ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
+# ⸿ env1\$env.internal functions                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1155
+# ⸿ source()                                                               # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1631
 ## @ for (.dependancy in c("")) {                                           # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1633
 ## @ "f_DSname.Search.read.checkEntity" |> paste0(".source.r") |> source()       # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1642
 ## @ "f_df.NotNA_p_df" |> paste0(".source.r") |> source()                   # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.source.r#L1648
@@ -214,7 +214,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ SOURCE) -----  
+# ⸿ SOURCE) -----  
 ## @ .RelativeSubPath, .FileName.source.r ======  
 .RelativeSubPath = r"(R)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
@@ -245,7 +245,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
+# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -268,8 +268,8 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ env1\$f\$f_object ----  
-# @@ env1\$f\$f_str ----  
+# ⸿ env1\$f\$f_object ----  
+# ⸿ env1\$f\$f_str ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # R/fObj-fStr-source.R
 
@@ -277,17 +277,17 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ env1\$f\$f_vec ----  
-# @@ env1\$f\$f_list ----  
+# ⸿ env1\$f\$f_vec ----  
+# ⸿ env1\$f\$f_list ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # R/fLs-fVec-source.R
 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ env1\$f\$f_list_list ----  
-# @@ env1\$f\$f_matrix ----  
-# @@ env1\$f\$f_array ----  
+# ⸿ env1\$f\$f_list_list ----  
+# ⸿ env1\$f\$f_matrix ----  
+# ⸿ env1\$f\$f_array ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # R/fLsLs-fMat-fArr-source.R
 
@@ -295,7 +295,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ env1\$f\$f_formula ----  
+# ⸿ env1\$f\$f_formula ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
@@ -374,8 +374,8 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ env1\$f\$f_df ----  
-# @@ env1\$f\$f_DS ----  
+# ⸿ env1\$f\$f_df ----  
+# ⸿ env1\$f\$f_DS ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_df.tribble_construct =  ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
@@ -460,7 +460,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ env1\$env.internal functions ----  
+# ⸿ env1\$env.internal functions ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
@@ -936,7 +936,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ source() ----  
+# ⸿ source() ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ for (.dependancy in c("")) { -----  
 # for (.dependancy in c("f_path.size_files")) {
@@ -1019,7 +1019,7 @@ env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# @@ END -----  
+# ⸿ END -----  
 # cat("* To revert to the last commited file, run the following terminal command:\n", 
 #     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 ##________________________________________________________________________________  

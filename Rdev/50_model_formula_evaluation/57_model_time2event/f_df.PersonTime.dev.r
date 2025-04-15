@@ -200,7 +200,7 @@ ADS2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>%
   
   
 # __________|------  
-# @@ ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====  
+# ⸿ ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====  
 .t0 = Sys.time()
 ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes =
     c("PrimaryOutcome123456", "PrimaryOutcome1", "PrimaryOutcome2", "PrimaryOutcome3", "PrimaryOutcome4", "PrimaryOutcome5", "PrimaryOutcome6") %>% set_names(.) %>% 
@@ -282,7 +282,7 @@ ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$nOu
   
   
 # __________|------  
-# @@ END-----  
+# ⸿ END-----  
 openxlsx2::write_xlsx(ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI
                      , "ADS2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI.xlsx", as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 
@@ -335,7 +335,7 @@ ADS2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matche
   
   
 # __________|------  
-# @@ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates ====  
+# ⸿ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates ====  
 data = ADS2797.Outcome2PersonTime7 %>% mutate(ksq = k*k) %>% select(
     Dk_plus1, Exposure, k, ksq
     , Age_at_lmp, `year(lmp)`
@@ -347,7 +347,7 @@ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates %>% {cbind( `exp(coe
   
   
 # __________|------  
-# @@ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====  
+# ⸿ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====  
 .t0 = Sys.time()
 ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes =
     c("PrimaryOutcome123456", "SecondaryOutcomeP1456fhkl", "PrimaryOutcome1", 
@@ -440,7 +440,7 @@ ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcom
   
   
 # __________|------  
-# @@ END-----  
+# ⸿ END-----  
 openxlsx2::write_xlsx(ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI
                      , "ADS2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI.xlsx", as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)
 

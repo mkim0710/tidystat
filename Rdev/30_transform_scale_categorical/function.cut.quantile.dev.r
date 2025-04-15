@@ -99,5 +99,5 @@ out$propensities %>% cut(., quantile(., 0:5/5), include.lowest = T, right = T) |
   
   
 # __________|------  
-# @@ END-----  
+# ⸿ END-----  
 

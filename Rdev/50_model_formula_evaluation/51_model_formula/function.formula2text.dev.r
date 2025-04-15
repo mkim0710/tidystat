@@ -184,6 +184,6 @@ parse(text = paste0("lm(", deparse(formula), ")"))
   
   
 # __________|------  
-# @@ END-----  
+# ⸿ END-----  
 
 

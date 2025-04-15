@@ -125,7 +125,7 @@ data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>
 #  3rd Qu.:2011-09-29  
 #  Max.   :2011-12-10  
 #  NA's   :3        
-# @@ END-----  
+# ⸿ END-----  
 
 
 
@@ -400,4 +400,4 @@ as.Date("2002-01-01") %>% lubridate::is.Date(.)
   
   
 # __________|------  
-# @@ END-----  
+# ⸿ END-----  

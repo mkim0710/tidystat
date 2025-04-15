@@ -568,5 +568,5 @@ KNHIS.02ID.2089.sqlite.tbl
   
   
 # __________|------  
-# @@ END----  
+# ⸿ END----  
 save(KNHIS.02ID.2089.sqlite.tbl, file = "KNHIS.02ID.2089.sqlite.tbl.rda")
