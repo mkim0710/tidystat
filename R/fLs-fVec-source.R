@@ -446,7 +446,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
 
 
 
-
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fVec.na.locf =  ----
 #' Fill NA Gaps Using Last Observation Carried Forward (LOCF)
 #' 
 #' @description 
@@ -494,7 +495,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(input_vec_chr, RegEx
 #' summary(filledOzone)  # Fewer NAs after filling
 #'
 #' @export
-fVec.na.locf = function(x, fillLeadingNA = FALSE, defaultValue = NA, verbose = FALSE) {
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fVec.na.locf"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, fillLeadingNA = FALSE, defaultValue = NA, verbose = FALSE) {
   # Input validation
   if (!is.atomic(x) || !is.null(dim(x))) {
     stop("Input must be atomic vector (numeric/character/logical/factor)")

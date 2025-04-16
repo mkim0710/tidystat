@@ -151,7 +151,9 @@
 #'
 #' @importFrom jsonlite write_json toJSON
 #' @importFrom tools file_path_sans_ext
-fLsLs_exportJSON <- function(
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fLsLs_exportJSON"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     inputLsLs, 
     outputFilePathText = NULL,
     prettyBool = TRUE, 
@@ -245,7 +247,9 @@ fLsLs_exportJSON <- function(
 #' @importFrom readr write_csv
 #' @importFrom tibble as_tibble_row tibble
 #' @importFrom purrr map
-fLsLs_exportCSV <- function(
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fLsLs_exportCSV"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     inputLsLs, 
     outputFilePathText = NULL,
     serializationMethodText = c("dput", "deparse"),

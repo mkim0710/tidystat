@@ -53,6 +53,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "read_rds_or_xz")
 
 
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fExcelPath_readAllSheets ==== 
 #' function.read_excel_allsheets-Cl.r
 #' LsCodeBookXLS from 지역사회기반코호트_(1기)기반=01-02년~(8기)7차추적=15-16년_201912-Table.xlsx.r
 #' Ls_tblWAVE_VARNAME from KoGES_지역사회기반코호트_반복_추적조사_통합자료_코드북(ver3.1)_201912.xlsx
@@ -98,7 +101,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 #' @importFrom purrr map set_names
 #'
 #' @export
-fExcelPath_readAllSheets = function(filenamePath, 
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fExcelPath_readAllSheets"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(filenamePath, 
                                    colNamesFlag = TRUE, 
                                    colTypesVec = NULL, 
                                    naText = "", 
@@ -177,7 +182,9 @@ fExcelPath_readAllSheets = function(filenamePath,
     stop("Error reading Excel data: ", e$message)
   })
 }
-
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) readxl.excel_sheets.read_excel  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "readxl.excel_sheets.read_excel")
 
 
 

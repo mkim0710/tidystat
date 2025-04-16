@@ -33,7 +33,8 @@
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 
-
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fDf_fiter_mismatched_rows ====  
 #' @title fDf_fiter_mismatched_rows
 #'
 #' @description Filters rows from a data frame where two columns differ based
@@ -92,7 +93,9 @@
 #' fDf_fiter_mismatched_rows(df_na, na_mode="match")
 #' # "ignore": no rows => mismatch
 #' fDf_fiter_mismatched_rows(df_na, na_mode="ignore")
-fDf_fiter_mismatched_rows = function(
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fDf_fiter_mismatched_rows"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   inputDf,
   colName1 = names(inputDf)[1],
   colName2 = names(inputDf)[2],
@@ -154,7 +157,7 @@ fDf_fiter_mismatched_rows = function(
   }
 
   # 4) Define row-by-row mismatch logic
-  rowMismatch = function(v1, v2) {
+  .rowMismatch = function(v1, v2) {
     # NA logic
     if (is.na(v1) || is.na(v2)) {
       if (na_mode == "ignore") {
@@ -174,7 +177,7 @@ fDf_fiter_mismatched_rows = function(
   }
 
   # Apply mismatch logic across rows
-  mismatchVec = mapply(rowMismatch, col1, col2)
+  mismatchVec = mapply(.rowMismatch, col1, col2)
 
   # 5) Subset rows
   mismatchRows = inputDf[mismatchVec, , drop=FALSE]
@@ -234,7 +237,9 @@ fDf_fiter_mismatched_rows = function(
 
   return(mismatchRows)
 }
-
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) fiter_mismatched_rows  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "fiter_mismatched_rows")
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
