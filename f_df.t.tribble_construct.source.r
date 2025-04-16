@@ -1009,6 +1009,12 @@ env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = 
 .RelativeSubPath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)" |> str_replace_all("\\\\","/")  
 .FileName.source.r = "f_CodeBook_DS.lbl" |> paste0(".source.r")
 env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "fDfFromToRelationship_CodeText4Mermaid" |> paste0("-source.R") |> source() ----  
+.RelativeSubPath = r"(Rdev/40_visualize_explore_bivariate_stratified/43_network)" |> str_replace_all("\\\\","/")  
+.FileName.source.r = "fDfFromToRelationship_CodeText4Mermaid" |> paste0("-source.R")
+env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
