@@ -1009,7 +1009,9 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: (ALIAS) file.path.here ====  
-file.path.here = function(...) {  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "file.path.here"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  
     here::here(...)  
 }
 ##________________________________________________________________________________  
