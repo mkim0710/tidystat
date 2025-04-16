@@ -11,8 +11,43 @@
 # ⸿ rstudio-prefs/templates/default.R ----  
 
 
-
-
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: CodeSnippet.END ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "CodeSnippet.END"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {
+    text2cat = paste0('
+##////////////////////////////////////////////////////////////////////////////////  
+##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##********************************************************************************  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
+# ⸿ END -----  
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0(\'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="\',.,\'"\') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0(\'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="\',.,\'"\') %>% paste0("\'",.,"\' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0(\'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="\',.,\'"\') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0(\'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="\',.,\'"\') %>% paste0("\'",.,"\' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat("* To revert to the last commited file, run the following terminal command:  \n")
+paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+')
+    text2cat %>% cat("\n")
+    invisible()
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) Snippet.END  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "Snippet.END")
 
 
 ##________________________________________________________________________________  
@@ -28,6 +63,53 @@
 
 
 
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# ⸿ MH Templates ----  
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: CodeTemplate.env1.env.internal.attach ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "CodeTemplate.env1.env.internal.attach"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.objectname = "NewFunctionName", .env1_subenv_name = "env.internal.attach") {
+    text2cat = paste0('
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: ',.objectname,' ====  
+.tmp$env1_subenv_name = "',.env1_subenv_name,'"
+.tmp$objectname = "',.objectname,'"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function
+')
+    text2cat %>% cat("\n")
+    invisible()
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) Template.env1.env.internal.attach  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "Template.env1.env.internal.attach")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: CodeTemplate.env1.env.internal.attach.ALIAS ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "CodeTemplate.env1.env.internal.attach.ALIAS"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.ALIASname = "NewFunctionName", .env1_subenv_name = "env.internal.attach") {
+    text2cat = paste0('
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) ',.ALIASname,'  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "',.env1_subenv_name,'", ALIASname = "',.ALIASname,'")
+')
+    text2cat %>% cat("\n")
+    invisible()
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### (ALIAS) Template.env1.env.internal.attach.ALIAS  ----
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "Template.env1.env.internal.attach.ALIAS")
 
 
 
