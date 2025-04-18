@@ -122,11 +122,6 @@ cache/
 *.[Hh][Tt][Mm][Ll]
 *_[Ff][Ii][Ll][Ee][Ss]/
 
-*.[Rr][Dd][Aa][Tt][Aa]
-*.[Rr][Dd][Aa]
-*.[Rr][Dd][Ss]
-# *.[Cc][Ss][Vv]
-
 # Temporary and debug files
 [Tt][Ee][Mm][Pp]
 [Tt][Mm][Pp]
@@ -155,7 +150,7 @@ cache/
 *.[Rr][Dd][Aa][Tt][Aa]
 *.[Rr][Dd][Aa]
 *.[Rr][Dd][Ss]
-# *.[Cc][Ss][Vv] # -> use pre-commit hook to block commit based on the size limit
+*.[Cc][Ss][Vv] # -> use pre-commit hook to block commit based on the size limit?
 
 # Executable files & Binary files
 *.[Ee][Xx][Ee]
