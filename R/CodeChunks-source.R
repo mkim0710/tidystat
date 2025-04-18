@@ -86,7 +86,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.objectname = "NewFu
 ## :: ',.objectname,' ====  
 .tmp$env1_subenv_name = "',.env1_subenv_name,'"
 .tmp$objectname = "',.objectname,'"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(){
+    
+}
 ')
     text2cat %>% cat("\n")
     invisible()
