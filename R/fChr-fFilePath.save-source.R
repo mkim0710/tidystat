@@ -25,7 +25,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(outputDirPath = env1
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {  format(Sys.time(), "%y%m%dT%H%M")  }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) template.TimeStamp  ----  
-env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "template.TimeStamp")##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "template.TimeStamp")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) TimeStamp  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "TimeStamp")
 
@@ -203,6 +204,21 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 # }
 
 
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: write_rds.ECHO.CodeText ====  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "write_rds.ECHO.CodeText"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.objectname){
+    'write_rds(get(.objectname), paste0(.objectname,".rds"))' %>% ECHO.CodeText(substitute_ObjectNames = TRUE)
+}
+    
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) ECHO.CodeText.write_rds  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "ECHO.CodeText.write_rds")
+Template.env1.env.internal.attach("write_rds.ECHO.CodeText")
 
 
 ##////////////////////////////////////////////////////////////////////////////////  
