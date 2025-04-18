@@ -111,7 +111,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     if (.object.size >= 1e8) {
-        paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
+        paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC"),"(IEC) >= 1e8 bytes (100 MB(SI)) --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.") |> warning(call. = FALSE, immediate. = TRUE)
     }
     ##________________________________________________________________________________  
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -152,7 +152,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
     if(EXECUTE) {
         if(createBACKUP) env1$env.internal.attach$f_FileNameExt.createBACKUP(BACKUP_from_path_FileNameExt = .path_file, .BACKUP_to_path=.BACKUP_to_path, timeFormat="%y%m%dT%H", overwrite=TRUE) 
         if (.object.size >= 1e8) {
-            paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC")," GiB(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
+            paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC"),"(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
             .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FileName = .objectname)
