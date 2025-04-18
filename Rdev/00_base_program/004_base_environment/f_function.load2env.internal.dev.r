@@ -181,8 +181,10 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
             cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         }
     }
+    #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    .objectname |> write_rds.ECHO.CodeText()
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx") |> str_replace("^D:/D_Repositories", "D:/OneDrive/[][Rproject]")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)
+    # .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx") |> str_replace("^D:/D_Repositories", "D:/OneDrive/[][Rproject]")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)    
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # .path_FileName.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv") |> str_replace("^D:/D_Repositories", "D:/OneDrive/[][Rproject]")
     # if (Sys.info()["sysname"] == "Windows") {
