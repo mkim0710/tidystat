@@ -179,6 +179,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10)
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "fhs.index100le10")
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(fhs.index100le10, .path_file = "./data/fhs.index100le10.rds.xz")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) write_rds.git_lfs_track_add_f.based_on_size  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "write_rds.git_lfs_track_add_f.based_on_size")
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -212,7 +215,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "write_rds.ECHO.CodeText"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.objectname){
+    env1$f$fObject.DfObjectSize_IEC(.objectname)
     'write_rds(get(.objectname), paste0(.objectname,".rds"))' %>% ECHO.CodeText(substitute_ObjectNames = TRUE)
+    paste0('write_rds( ',.objectname,', "',.path4write,ifelse(.path4write=="","","/"),.objectname,'.rds.xz", compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")') %>% ECHO.CodeText(substitute_ObjectNames = FALSE)
 }
     
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
