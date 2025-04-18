@@ -199,7 +199,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 #' fObject.DfObjectSize_IEC(c("a","b"), return="list")  # names, list
 #'
 #' @export
-.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$env1_subenv_name = "f"
 .tmp$objectname = "fObject.DfObjectSize_IEC"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputObjects,
                                      digits   = 2L,
