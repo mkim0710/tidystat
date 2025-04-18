@@ -148,6 +148,137 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(object, width.cutoff
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "dput.deparse.cat0")
 
 
+
+
+
+
+
+
+
+
+
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fObject.DfObjectSize_IEC ====  
+#' IEC‑unit size summary — wide columns (GiB / MiB / KiB / B)
+#'
+#' @description
+#' `fObject.DfObjectSize_IEC()` reports the memory footprint of one object *or*
+#' a set of objects supplied by name.  
+#' • **Direct mode**  – pass an object.  
+#' • **Name mode**    – pass a character vector of names; they are looked‑up in
+#'   `env` (default `parent.frame()`).
+#'
+#' The default return is a **wide tibble** with **exactly** these columns  
+#' `ObjectName`, `Size_GiB`, `Size_MiB`, `Size_KiB`, `Size_B` (numeric).  
+#' For users who prefer the “named‑list of formatted strings” style from the
+#' alternative implementation, set `return = "list"`.
+#'
+#' @param inputObjects  An R object **or** a character vector of object names.
+#' @param digits        Decimal places for GiB/MiB/KiB columns (default `2L`).
+#' @param env           Environment in which to resolve names
+#'                      (default `parent.frame()`).
+#' @param return        `"tibble"` *(default)* or `"list"` (see Details).
+#' @param verbose       Logical; prints diagnostics when `TRUE`
+#'                      (default honours `getOption("verbose")`).
+#'
+#' @details
+#' * When `return = "tibble"` the table is numeric‑friendly for downstream
+#'   calculations or sorting. `Size_B` is left un‑rounded for full precision.  
+#' * When `return = "list"` each element is a character vector of formatted
+#'   sizes (`"0.01 MiB"`, etc.) exactly as produced by
+#'   `format(object.size(), standard = "IEC")`, matching the other model’s API.
+#'
+#' @return A tibble (default) or named list, depending on `return`.
+#'
+#' @examples
+#' a <- 1:10
+#' b <- matrix(runif(1e4), 100)
+#' fObject.DfObjectSize_IEC(a)                       # direct object
+#' fObject.DfObjectSize_IEC(c("a","b"))              # names, tibble
+#' fObject.DfObjectSize_IEC(c("a","b"), return="list")  # names, list
+#'
+#' @export
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "fObject.DfObjectSize_IEC"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputObjects,
+                                     digits   = 2L,
+                                     env      = parent.frame(),
+                                     return   = c("tibble", "list"),
+                                     verbose  = isTRUE(getOption("verbose"))) {
+
+    return <- match.arg(return)
+
+    ## divisors (powers of 1024)
+    divs <- c(GiB = 1024^3, MiB = 1024^2, KiB = 1024, B = 1)
+
+    ## helper: build one row or one formatted vector --------------------- ##
+    size_one <- function(obj, obj_name, want_list = FALSE) {
+
+        bytes <- as.numeric(object.size(obj))
+
+        if (want_list) {
+            vapply(names(divs),
+                   \(u) format(bytes, units = u, standard = "IEC"),
+                   character(1))
+        } else {
+            sizes <- round(bytes / divs, digits)
+            tibble::tibble(
+                ObjectName = obj_name,
+                Size_GiB   = sizes["GiB"],
+                Size_MiB   = sizes["MiB"],
+                Size_KiB   = sizes["KiB"],
+                Size_B     = bytes       # keep exact bytes
+            )
+        }
+    }
+
+    ## resolve names vs direct object ------------------------------------ ##
+    build_result <- function(objs, labels) {
+        if (return == "list") {
+            setNames(lapply(seq_along(objs),
+                            \(i) size_one(objs[[i]], labels[i],
+                                          want_list = TRUE)),
+                     labels)
+        } else {                               # tibble
+            purrr::map_dfr(seq_along(objs),
+                           \(i) size_one(objs[[i]], labels[i]))
+        }
+    }
+
+    if (is.character(inputObjects)) {                       # NAME MODE
+        if (verbose)
+            message("Processing object names: ",
+                    paste(inputObjects, collapse = ", "))
+
+        missing <- inputObjects[!vapply(inputObjects,
+                                         exists, logical(1),
+                                         envir = env, inherits = FALSE)]
+        if (length(missing))
+            stop("Objects not found: ", paste(missing, collapse = ", "))
+
+        objs    <- lapply(inputObjects,
+                          \(nm) get(nm, envir = env, inherits = FALSE))
+        result  <- build_result(objs, inputObjects)
+
+    } else {                                                # DIRECT MODE
+        label   <- deparse(substitute(inputObjects), n = 1L)
+        result  <- build_result(list(inputObjects), label)
+    }
+
+    if (verbose) {
+        if (return == "tibble") print(result) else str(result)
+    }
+    result
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) object.size.DfObjectSize_IEC  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "object.size.DfObjectSize_IEC")
+
+
+
+
+
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
