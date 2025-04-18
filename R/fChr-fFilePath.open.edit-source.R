@@ -1,11 +1,12 @@
 
-
-
-
-
-
-
-
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fPath.browseURL =  ----  
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "fPath.browseURL"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(...) {  browseURL(...)  }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) open_path.using_browseURL  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "open_path.using_browseURL")
 
 
 
