@@ -34,5 +34,6 @@
     "copilot_enabled": true,
     "copilot_indexing_enabled": true,
     "jobs_tab_visibility": "shown",
-    "show_panel_focus_rectangle": true
+    "show_panel_focus_rectangle": true,
+    "editor_scroll_multiplier": 30
 }
