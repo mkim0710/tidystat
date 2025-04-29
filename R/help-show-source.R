@@ -244,7 +244,11 @@ rstudio-prefs/themes/RStudio Built-in"); cat("\n")
 .tmp$object = function() {
     cat("* To revert to the last commited file, run the following terminal command:  \n")
 
-    paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    # paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNameExt) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    if(tolower(tools::file_ext(env1$path$LastSourceEditorContext.path_FileNameExt)) == "rmd") {
+        paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileName.nb.html) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    }
 
     invisible()
 }
