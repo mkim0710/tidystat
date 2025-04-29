@@ -242,7 +242,6 @@ rstudio-prefs/themes/RStudio Built-in"); cat("\n")
 .tmp$objectname = "showCodeText2revert2LastCommit"
 .tmp$object = function() {
     env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) Not using a relative path~!
-    env1$source[[basename(env1$path$LastSourceEditorContext.path_FileNameExt)]] = env1$path$LastSourceEditorContext.path_FileNameExt
 
     # cat("* To revert to the last commited file, run the following terminal command:  \n")
 
