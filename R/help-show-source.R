@@ -226,14 +226,13 @@ rstudio-prefs/themes/RStudio Built-in"); cat("\n")
 ## :: showCodeText2openSourceInGitHub =  ----  
 .tmp$objectname = "showCodeText2openSourceInGitHub"
 .tmp$object = function() {
-    # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+    # paste0("https://github.com/mkim0710/",basename(env1$path$path1),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+    # paste0("https://github.com/mkim0710/",basename(env1$path$path1),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 
-    paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+    # paste0("https://github.com/mkim0710/",basename(env1$path$path1),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)    
+    paste0("https://github.com/mkim0710/",basename(env1$path$path1),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 
-    # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-    
-    paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$LastSourceEditorContext.path_FileNameExt) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-
+    "env1$env.internal$showCodeText2revert2LastCommit()" %>% cat("\n")
     invisible()
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
@@ -242,11 +241,15 @@ rstudio-prefs/themes/RStudio Built-in"); cat("\n")
 ## :: showCodeText2revert2LastCommit =  ----  
 .tmp$objectname = "showCodeText2revert2LastCommit"
 .tmp$object = function() {
-    cat("* To revert to the last commited file, run the following terminal command:  \n")
+    env1$path$LastSourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)    # Caution) Not using a relative path~!
+    env1$source[[basename(env1$path$LastSourceEditorContext.path_FileNameExt)]] = env1$path$LastSourceEditorContext.path_FileNameExt
+
+    # cat("* To revert to the last commited file, run the following terminal command:  \n")
 
     # paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileNameExt) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     if(tolower(tools::file_ext(env1$path$LastSourceEditorContext.path_FileNameExt)) == "rmd") {
+        env1$path$LastSourceEditorContext.path_FileName.nb.html = env1$path$LastSourceEditorContext.path_FileNameExt |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
         paste0( "git checkout -- ",shQuote(env1$path$LastSourceEditorContext.path_FileName.nb.html) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     }
 
