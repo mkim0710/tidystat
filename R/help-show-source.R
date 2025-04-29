@@ -195,7 +195,7 @@ rstudio-prefs/themes/RStudio Built-in"); cat("\n")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: showCodeText2open.FileName.source.r =  ----  
 .tmp$objectname = "showCodeText2open.FileName.source.r"
-.tmp$object = function(.RelativeSubPath, .FileName.source.r, .SourceName_root = NULL, assign_to_env1_path = TRUE) {
+.tmp$object = function(.RelativeSubPath = "", .FileName.source.r, .SourceName_root = NULL, assign_to_env1_path = TRUE) {
     if(!exists(".SourceName_root") && exists(".FileName.source.r")) .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
     .FileName.source.r = .SourceName_root |> paste0(".source.r")
 
