@@ -29,7 +29,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$f$showSymbolPaths()
 # env1$f$showProjectPathFiles()
 # env1$f$showProjectPathsRecursively()
-# env1$f$showProjectPathsAtTidyStat()
+# env1$env.internal$showProjectPathsAtTidyStat()
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -91,7 +91,7 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 # .FileName.source.r = "default.template" |> paste0(".source.r")
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) {    .SourceName_root = env1$path$LastSourceEditorContext.path_FileNameExt |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),"")  ;    ".SourceName_root" |> env1$f$f_ObjectName.get.dput.ECHO()    }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
+env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
 ### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
@@ -173,8 +173,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #|________________________________________________________________________________|#  ----  
 # ⸿ END -----  
 env1$f$showCodeText2openSourceInGitHub()
-cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+env1$env.internal$showCodeText2revert2LastCommit()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

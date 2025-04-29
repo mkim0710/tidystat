@@ -214,8 +214,7 @@ print(decrypted_dataset)
 #|________________________________________________________________________________|#  ----  
 # ⸿ END -----  
 env1$f$showCodeText2openSourceInGitHub()
-cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+env1$env.internal$showCodeText2revert2LastCommit()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

@@ -26,7 +26,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$f$showSymbolPaths()
 # env1$f$showProjectPathFiles()
 # env1$f$showProjectPathsRecursively()
-# env1$f$showProjectPathsAtTidyStat()
+# env1$env.internal$showProjectPathsAtTidyStat()
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -47,7 +47,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 .FileName.source.r = "f_vec_lgl.not_and_or" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
+env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
@@ -147,8 +147,7 @@ all(c(FALSE, FALSE))
 #|________________________________________________________________________________|#  ----  
 # ⸿ END -----  
 env1$f$showCodeText2openSourceInGitHub()
-cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+env1$env.internal$showCodeText2revert2LastCommit()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

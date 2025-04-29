@@ -23,7 +23,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$f$showSymbolPaths()
 # env1$f$showProjectPathFiles()
 # env1$f$showProjectPathsRecursively()
-# env1$f$showProjectPathsAtTidyStat()
+# env1$env.internal$showProjectPathsAtTidyStat()
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -978,8 +978,7 @@ vec_font_regex_perl.TexLiveDB_list |> str(max.level = 2, give.attr = TRUE)
 #|________________________________________________________________________________|#  ----  
 # ⸿ END -----  
 env1$f$showCodeText2openSourceInGitHub()
-cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+env1$env.internal$showCodeText2revert2LastCommit()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

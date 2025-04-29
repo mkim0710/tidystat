@@ -29,7 +29,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$f$showSymbolPaths()
 # env1$f$showProjectPathFiles()
 # env1$f$showProjectPathsRecursively()
-# env1$f$showProjectPathsAtTidyStat()
+# env1$env.internal$showProjectPathsAtTidyStat()
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!

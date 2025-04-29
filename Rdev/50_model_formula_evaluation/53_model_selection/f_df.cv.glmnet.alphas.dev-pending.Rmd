@@ -1677,7 +1677,7 @@ if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContex
 # .FileName.source.r = "default.template" |> paste0(".source.r")
 if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path_FileNameExt)) {    .SourceName_root = env1$path$LastSourceEditorContext.path_FileNameExt |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),"")  ;    ".SourceName_root" |> env1$f$f_ObjectName.get.dput.ECHO()    }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
+env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # # \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
 # env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})

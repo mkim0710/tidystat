@@ -29,7 +29,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # env1$f$showSymbolPaths()
 # env1$f$showProjectPathFiles()
 # env1$f$showProjectPathsRecursively()
-# env1$f$showProjectPathsAtTidyStat()
+# env1$env.internal$showProjectPathsAtTidyStat()
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### env1\$path\$LastSourceEditorContext.path_FileNameExt ====  
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -50,7 +50,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
 .FileName.source.r = "f_URL.GET_content" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$f$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
+env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileName.source.r)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1 = env0 ----
 ### \% source( file.path(env1$path$source_base,.RelativeSubPath_FileName.source.r) )  ----  
