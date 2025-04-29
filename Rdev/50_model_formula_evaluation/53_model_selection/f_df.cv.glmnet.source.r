@@ -86,7 +86,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
     return(cv_glmnet_object)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_cv_glmnet_object.mat_coef =  ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -105,7 +105,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
     cv_glmnet_object.mat_coef
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_cv_glmnet_object.lamda_1se.vec_VarName = function(cv_glmnet_object, lambda = "lambda.1se") ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -131,7 +131,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
     return(vec_VarName_lamda)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_cv_glmnet_object.lamda_list.vec_VarName =  ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -142,7 +142,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
     return(list_VarName_lamda)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_cv_glmnet_object.lamda_1se.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se", attr_warnings.summary = TRUE) ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -168,7 +168,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
     return(glm_object)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_cv_glmnet_object.lamda_list.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, vec_lambda = c("lambda.min", "lambda.1se")) ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -179,7 +179,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
     return(list_VarName_lamda)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_cv_glmnet_object.ggplot = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -299,7 +299,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 }
 
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### ::: f_cv_glmnet_object_enet.ggplot = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE, alpha = NULL) ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
@@ -453,7 +453,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 }
 
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 

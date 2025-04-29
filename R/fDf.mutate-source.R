@@ -46,7 +46,7 @@
     DS.DNR |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_VarNameT.pdeltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -61,7 +61,7 @@
     DS.DNR |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.kbins =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -87,7 +87,7 @@
     return(DS.DNR)
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) f_df.add_RegExVars.cut  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "f_df.add_RegExVars.cut")
@@ -121,7 +121,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
     ))
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.quartile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -150,7 +150,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
         ))
 }
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = .tmp$env1_subenv_name == "f", RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
 
 
 
