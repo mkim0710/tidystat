@@ -236,12 +236,12 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: fDf.write_xlsx_to_onedrive ====  
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "fDf.write_xlsx_to_onedrive"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.path4write, .objectname, windows_path_changed_from = "^D:/D_Repositories", windows_path_changed_to = "D:/OneDrive/[][Rproject]") {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.path4write, .objectname, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2, windows_path_changed_from = "^D:/D_Repositories", windows_path_changed_to = "D:/OneDrive/[][Rproject]") {
     # .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx") |> str_replace("^D:/D_Repositories", "D:/OneDrive/[][Rproject]")  ;  openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)    
     
     .path_FileName.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx") |> str_replace(windows_path_changed_from, windows_path_changed_to)  ;  
     
-    openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  
+    openxlsx2::write_xlsx(get(.objectname), file = .path_FileName.xlsx, as_table=as_table, table_style=table_style, row_names=row_names, col_widths=col_widths, first_active_row=first_active_row, first_active_col=first_active_col) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  ;  
     
     if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)    
 }
