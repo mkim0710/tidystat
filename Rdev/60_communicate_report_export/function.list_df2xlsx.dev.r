@@ -20,5 +20,5 @@ getwd()
 .path4write = env1$path$path4write
 .objectname = "d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.DDD"
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress="gz", compression=9 )
-env1$f$fDf.write_xlsx_to_onedrive(.path4write, .objectname)
+env1$f$fDf.write_xlsx_to_onedrive(.objectname, .path4write)
 

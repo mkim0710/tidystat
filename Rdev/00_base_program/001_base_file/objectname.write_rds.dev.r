@@ -10,7 +10,7 @@ getwd()
 .path4write = env1$path$path4write
 .objectname = "ADS200621"
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 ))
-# env1$f$fDf.write_xlsx_to_onedrive(.path4write, .objectname)
+# env1$f$fDf.write_xlsx_to_onedrive(.objectname, .path4write)
 
   
   
@@ -33,7 +33,7 @@ getwd()
 # R.utils::gzip(file.path(.path4write, paste0(.objectname,".rds")), overwrite=T, remove=F, compression=9)
 # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="gz", compression=9 ))
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 ))
-# env1$f$fDf.write_xlsx_to_onedrive(.path4write, .objectname)
+# env1$f$fDf.write_xlsx_to_onedrive(.objectname, .path4write)
 
   
   
@@ -44,7 +44,7 @@ getwd()
 .objectname = "tblGADM_kor_level1_NL_NAME_1.SIDO_CD"
 # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="gz", compression=9 ))
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 ))
-env1$f$fDf.write_xlsx_to_onedrive(.path4write, .objectname)
+env1$f$fDf.write_xlsx_to_onedrive(.objectname, .path4write)
 
 
 

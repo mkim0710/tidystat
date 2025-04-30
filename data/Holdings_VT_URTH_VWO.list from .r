@@ -628,6 +628,6 @@ getwd()
 .path4write = env1$path$path4write
 .objectname = "Holdings_VT_URTH_VWO.list"
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
-env1$f$fDf.write_xlsx_to_onedrive(.path4write, .objectname)
+env1$f$fDf.write_xlsx_to_onedrive(.objectname, .path4write)
 
 
