@@ -245,12 +245,36 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.path4write, .object
     
     if (Sys.info()["sysname"] == "Linux") browseURL(.path_FileName.xlsx) else openxlsx2::xl_open(.path_FileName.xlsx)    
 }
-    
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) write_xlsx_to_onedrive  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "write_xlsx_to_onedrive")
 
 
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fDf.write_csv_UTF8BOM_to_onedrive ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fDf.write_csv_UTF8BOM_to_onedrive"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(.path4write, .objectname, windows_path_changed_from = "^D:/D_Repositories", windows_path_changed_to = "D:/OneDrive/[][Rproject]") {
+    
+  .path_FileName.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv") |> str_replace(windows_path_changed_from, windows_path_changed_to)
+  
+  if (Sys.info()["sysname"] == "Windows") {
+      readr::write_excel_csv(get(.objectname), file = .path_FileName.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+      openxlsx2::xl_open(.path_FileName.UTF8BOM.csv)
+  } else {
+      readr::write_excel_csv(get(.objectname), file = .path_FileName.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+  }
+  
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) write_csv_UTF8BOM_to_onedrive  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "write_csv_UTF8BOM_to_onedrive")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) write_excel_csv_UTF8BOM_to_onedrive  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "write_excel_csv_UTF8BOM_to_onedrive")
 
 
 
