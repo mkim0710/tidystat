@@ -310,13 +310,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # env1$f$fDf.write_xlsx_to_onedrive(.objectname, .path4write)    
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # .path_FileName.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv") |> str_replace("^D:/D_Repositories", "D:/OneDrive/[][Rproject]")
-    # if (Sys.info()["sysname"] == "Windows") {
-    #     readr::write_excel_csv(get(.objectname), file = .path_FileName.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-    #     openxlsx2::xl_open(.path_FileName.UTF8BOM.csv)
-    # } else {
-    #     readr::write_excel_csv(get(.objectname), file = .path_FileName.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-    # }
+    # env1$f$fDf.write_csv_UTF8BOM_to_onedrive(.objectname, .path4write)
     # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # .path_FileName.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
     # readr::write_csv(get(.objectname), file = .path_FileName.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
