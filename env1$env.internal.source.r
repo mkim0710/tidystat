@@ -1409,44 +1409,44 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: f_path.size_files =  ----  
 # Rdev/00_base_program/f_path.size_files.source.r
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
+.tmp$object = function(.path4read = getwd(), literal_FilePath = NA, regex4FilePath = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
     
     for (.dependancy in c("f_df.t.tribble_construct")) {
         if(!.dependancy %in% names(.GlobalEnv$env1)) {
             if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-            .FileName.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FileName.source.r = list(.RelativeSubPath, .FileName.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
+            .FilePath.source.r = .dependancy |> paste0(".source.r"); .RelativeSubPath=r"()"|>str_replace_all("\\\\","/"); env1$f$f_sourcePath.execute_if_not_sourced(.RelativeSubPath_FilePath.source.r = list(.RelativeSubPath, .FilePath.source.r) %>% {.[nzchar(.)]} %>% c(fsep = "/") %>% {do.call(file.path, .)})
         }
     }
     
-    if (is.na(literal_FileName)) {
-        # FileNames = list.files(path = .path4read) %>% {grep(regex4FileName, .,  ignore.case = TRUE, value = TRUE)}
-        FileNames = list.files(path = .path4read, pattern = regex4FileName, ignore.case = TRUE)
-        if (length(FileNames) == 0) {
-            cat("No files found matching the regex4FileName: ", regex4FileName, "\n")
+    if (is.na(literal_FilePath)) {
+        # FilePaths = list.files(path = .path4read) %>% {grep(regex4FilePath, .,  ignore.case = TRUE, value = TRUE)}
+        FilePaths = list.files(path = .path4read, pattern = regex4FilePath, ignore.case = TRUE)
+        if (length(FilePaths) == 0) {
+            cat("No files found matching the regex4FilePath: ", regex4FilePath, "\n")
             return()
         }
     } else {
-        # # FileNames = list.files(path = .path4read) %>% {grep(literal_FileName, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
-        # FileNames = list.files(path = .path4read) %>% {grep(literal_FileName, ., value = TRUE, fixed = TRUE)}
-        FileNames = list.files(path = .path4read) |> str_subset(fixed(literal_FileName))
-        if (length(FileNames) == 0) {
-            cat("No files found matching the literal_FileName: ", literal_FileName, "\n")
+        # # FilePaths = list.files(path = .path4read) %>% {grep(literal_FilePath, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
+        # FilePaths = list.files(path = .path4read) %>% {grep(literal_FilePath, ., value = TRUE, fixed = TRUE)}
+        FilePaths = list.files(path = .path4read) |> str_subset(fixed(literal_FilePath))
+        if (length(FilePaths) == 0) {
+            cat("No files found matching the literal_FilePath: ", literal_FilePath, "\n")
             return()
         }
     }
-    if(VERBOSE) FileNames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
+    if(VERBOSE) FilePaths |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
-    out = FileNames %>% {file.info(file.path(.path4read,.))} %>%
-        rownames_to_column("FileName") %>% select(FileName, size) %>%
+    out = FilePaths %>% {file.info(file.path(.path4read,.))} %>%
+        rownames_to_column("FilePath") %>% select(FilePath, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
-               KB = format(size/2^10, digits = 3, big.mark=","), 
-               MB = format(size/2^20, digits = 3, big.mark=","), 
-               GB = format(size/2^30, digits = 3, big.mark=","))
-    # out = out %>% mutate(FileName = sub(.path4read, "", FileName, fixed = TRUE) %>% {sub("^/", "", .)})
-    out = out %>% mutate(FileName = FileName |> env1$f$f_path.relative()) 
+               KiB = format(size/2^10, digits = 3, big.mark=","), 
+               MiB = format(size/2^20, digits = 3, big.mark=","), 
+               GiB = format(size/2^30, digits = 3, big.mark=","))
+    # out = out %>% mutate(FilePath = sub(.path4read, "", FilePath, fixed = TRUE) %>% {sub("^/", "", .)})
+    out = out %>% mutate(FilePath = FilePath |> env1$f$f_path.relative()) 
     if(print2console) env1$f$f_df.tribble_construct(out)
     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
-    return(out %>% select(FileName, size))
+    return(out %>% select(FilePath, size))
 } 
 #### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, RELOAD_FUNCTION = isTRUE(getOption("RELOAD_FUNCTION"))||isTRUE(getOption("DEVMODE")), runLoadedFunction = FALSE)
@@ -1458,6 +1458,20 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "dir.size")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #### (ALIAS) file_sizes_in_path  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file_sizes_in_path")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: fVecFile.size.format ====
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fVecFile.size.format"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(VecFile) {
+    VecFile %>% {data.frame(FilePath = ., size = file.size(.))} %>%
+        mutate(bytes = format(size, digits = 3, big.mark=","), 
+               KiB = format(size/2^10, digits = 3, big.mark=","), 
+               MiB = format(size/2^20, digits = 3, big.mark=","), 
+               GiB = format(size/2^30, digits = 3, big.mark=","))
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) file_sizes.format_df  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "file_sizes_in_path")
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
