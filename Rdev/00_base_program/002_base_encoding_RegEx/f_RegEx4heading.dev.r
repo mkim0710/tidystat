@@ -2,16 +2,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1                                                         ...60
 ##@ Heading 1.1                                                       ...63
-# ⸿ Heading 2                                                        ...65
+# 〚〛 Heading 2                                                        ...65
 ## @ Heading 2.1                                                      ...67
-# ⸿ START) dev.old                                                   ...73
+# 〚〛 START) dev.old                                                   ...73
 ## env0 = env1                                                        ...74
-# ⸿ START) dev                                                       ...117
+# 〚〛 START) dev                                                       ...117
 ## env0 = env1                                                        ...118
-# ⸿ START) function.old                                              ...167
+# 〚〛 START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
-# ⸿ START) function                                                  ...233
+# 〚〛 START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
@@ -19,16 +19,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
-# ⸿ Heading 2 
+# 〚〛 Heading 2 
 ## @ Heading 2.1 
-# ⸿ START) dev.old   
+# 〚〛 START) dev.old   
 ## env0 = env1 
-# ⸿ START) dev   
+# 〚〛 START) dev   
 ## env0 = env1 
-# ⸿ START) function.old   
+# 〚〛 START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
-# ⸿ START) function   
+# 〚〛 START) function   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -56,7 +56,7 @@
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ REFERENCES) ----  
+# 〚〛 REFERENCES) ----  
 ## ^(?!NegativeLookahead)MainPatternToMatch ----  
 ## https://chatgpt.com/g/g-p-676526fc1c848191a84f233bacf2df34-RegEx/c/67651b58-d21c-800e-9f60-b8d16e9a13a7
 ## e.g.) remove all non-heading lines, when heading lines starts with "# @" 
@@ -68,7 +68,7 @@
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
@@ -76,7 +76,7 @@
 
 ##@ Heading 1.1 ----
 
-# ⸿ Heading 2 ====
+# 〚〛 Heading 2 ====
 
 ## @ Heading 2.1 ----
 
@@ -103,7 +103,7 @@ input_vec_chr |> paste(collapse = "\n") |> cat("\n")
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev-MH -----  
+# 〚〛 START) dev-MH -----  
 ## env0 = env1 ----
 
 ## :: input_vec_chr.except_TOC ====
@@ -156,7 +156,7 @@ input_vec_chr.except_TOC %>% str_extract(RegEx4heading) %>% na.omit() %>% paste(
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev-GPT -----  
+# 〚〛 START) dev-GPT -----  
 # https://chatgpt.com/c/6767d118-9118-800e-ad40-890f04e7c0a1 ----
 ## env0 = env1 ----
 
@@ -248,7 +248,7 @@ data.frame(Line = test_lines, Matches = results)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function -----  
+# 〚〛 START) function -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -306,7 +306,7 @@ env1$f$f_chr_RegEx4heading("Rdev/00_base_program/002_base_encoding_RegEx/FileSam
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 env1$f$showCodeText2openSourceInGitHub()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

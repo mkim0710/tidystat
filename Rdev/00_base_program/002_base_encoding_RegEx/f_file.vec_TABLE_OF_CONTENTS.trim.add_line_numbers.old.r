@@ -2,16 +2,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1                                                         ...60
 ##@ Heading 1.1                                                       ...63
-# ⸿ Heading 2                                                        ...65
+# 〚〛 Heading 2                                                        ...65
 ## @ Heading 2.1                                                      ...67
-# ⸿ START) dev.old                                                   ...73
+# 〚〛 START) dev.old                                                   ...73
 ## env0 = env1                                                        ...74
-# ⸿ START) dev                                                       ...117
+# 〚〛 START) dev                                                       ...117
 ## env0 = env1                                                        ...118
-# ⸿ START) function.old                                              ...167
+# 〚〛 START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
-# ⸿ START) function                                                  ...233
+# 〚〛 START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
@@ -19,16 +19,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
-# ⸿ Heading 2 
+# 〚〛 Heading 2 
 ## @ Heading 2.1 
-# ⸿ START) dev.old   
+# 〚〛 START) dev.old   
 ## env0 = env1 
-# ⸿ START) dev   
+# 〚〛 START) dev   
 ## env0 = env1 
-# ⸿ START) function.old   
+# 〚〛 START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
-# ⸿ START) function   
+# 〚〛 START) function   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -62,7 +62,7 @@
 
 ##@ Heading 1.1 ----
 
-# ⸿ Heading 2 ====
+# 〚〛 Heading 2 ====
 
 ## @ Heading 2.1 ----
 
@@ -71,7 +71,7 @@
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev.old -----
+# 〚〛 START) dev.old -----
 # env0 = env1 ----
 # input_path_file = rstudioapi::getSourceEditorContext()$path
 input_path_file = "Rdev/00_base_program/002_base_encoding_RegEx/FileSample_with_TABLE_OF_CONTENTS.r" |> env1$f$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)|> env1$path$f_path_relative.path_normalized_based_on_path1()  # input_path_file = paste0(env1$path$path1,ifelse(env1$path$path1=="","","/"),input_path_file)
@@ -120,7 +120,7 @@ input_vec_chr.except_TOC.na_if_NotMatching.trim |> env1$env.internal.attach$catL
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function.old -----  
+# 〚〛 START) function.old -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -187,7 +187,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = NULL
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
+# 〚〛 Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 #_________________________________________________________________________________|----  
@@ -217,7 +217,7 @@ env1$f$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old("f_df.t.tribble_co
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 env1$f$showCodeText2openSourceInGitHub()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

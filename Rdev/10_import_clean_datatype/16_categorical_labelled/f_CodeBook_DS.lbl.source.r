@@ -14,7 +14,7 @@
 # file.edit("~/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DS.lbl.source.r") |> env1$env.internal.attach$f_file.edit_if_exists.return2LastSourceEditorContext()
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function -----  
+# 〚〛 START) function -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -112,5 +112,5 @@
   
   
 # __________|------  
-# ⸿ END -----  
+# 〚〛 END -----  
 

@@ -1,33 +1,33 @@
 ---
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# ⸿ REFERENCES)                                                            #L247
-# ⸿ DATA) example                                                          #L256
-# ⸿ START) dev                                                             #L276
-# ⸿ SOURCE)                                                                #L311
-# ⸿ START) function                                                        #L353
-# ⸿ MetaData) Read & Check                                                 #L402
-# ⸿ DATA) Read & Check                                                     #L472
-# ⸿ ANALYSIS) (Breif) byVar =                                              #L638
-# ⸿ DATA) mutate()                                                         #L644
-# ⸿ DATA) filter() -> New DS                                               #L675
-# ⸿ DATA) select(matches(VarName.suffix.regex))                            #L708
-# ⸿ ANALYSIS) byVar =                                                      #L722
+# 〚〛 REFERENCES)                                                            #L247
+# 〚〛 DATA) example                                                          #L256
+# 〚〛 START) dev                                                             #L276
+# 〚〛 SOURCE)                                                                #L311
+# 〚〛 START) function                                                        #L353
+# 〚〛 MetaData) Read & Check                                                 #L402
+# 〚〛 DATA) Read & Check                                                     #L472
+# 〚〛 ANALYSIS) (Breif) byVar =                                              #L638
+# 〚〛 DATA) mutate()                                                         #L644
+# 〚〛 DATA) filter() -> New DS                                               #L675
+# 〚〛 DATA) select(matches(VarName.suffix.regex))                            #L708
+# 〚〛 ANALYSIS) byVar =                                                      #L722
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# ⸿ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L247
-# ⸿ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L256
-# ⸿ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L276
-# ⸿ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L311
-# ⸿ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L353
-# ⸿ MetaData) Read & Check                                                 # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L402
-# ⸿ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L472
-# ⸿ ANALYSIS) (Breif) byVar =                                              # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L638
-# ⸿ DATA) mutate()                                                         # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L644
-# ⸿ DATA) filter() -> New DS                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L675
-# ⸿ DATA) select(matches(VarName.suffix.regex))                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L708
-# ⸿ ANALYSIS) byVar =                                                      # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L722
+# 〚〛 REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L247
+# 〚〛 DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L256
+# 〚〛 START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L276
+# 〚〛 SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L311
+# 〚〛 START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L353
+# 〚〛 MetaData) Read & Check                                                 # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L402
+# 〚〛 DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L472
+# 〚〛 ANALYSIS) (Breif) byVar =                                              # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L638
+# 〚〛 DATA) mutate()                                                         # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L644
+# 〚〛 DATA) filter() -> New DS                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L675
+# 〚〛 DATA) select(matches(VarName.suffix.regex))                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L708
+# 〚〛 ANALYSIS) byVar =                                                      # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L722
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
@@ -246,7 +246,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# ⸿ REFERENCES) ----  
+# 〚〛 REFERENCES) ----  
 ## https://cran.r-project.org/doc/FAQ/R-FAQ.pdf#page=42&view=FitV&navpanes=1
 ## https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html
 ###### ECHO \% |> () ----  
@@ -289,7 +289,7 @@ Depending on the programming language, you may need additional escapes. For exam
   
   
 # __________|------  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 
 ## @ ASCII code (0:127) ----
 ### \% intToUtf8(0:31) |> cat0()  
@@ -382,7 +382,7 @@ RegExChrClass4RegExEscape_gpt_o1 = "[$()*+.?[^{|(\\#%&~_/<=>'!,:;`)}@-]"
   
   
 # __________|------  
-# ⸿ START) dev ----  
+# 〚〛 START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
@@ -417,7 +417,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ SOURCE) ----  
+# 〚〛 SOURCE) ----  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -448,7 +448,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ START) function@o1 ----  
+# 〚〛 START) function@o1 ----  
 ## https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379
 ## :: f_vec.escapeRegex_vec 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -553,7 +553,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ START) function@o1p ----  
+# 〚〛 START) function@o1p ----  
 ## https://chatgpt.com/c/67776103-6c28-800e-9b02-b455688f189e
 ## :: f_vecChr.EscapeSpecialCharacters_vecChr 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -648,7 +648,7 @@ options(width=120)
 
 
 # __________|------  
-# ⸿ START) function ----  
+# 〚〛 START) function ----  
 ## :: function_name = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -705,7 +705,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -714,7 +714,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

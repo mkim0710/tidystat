@@ -203,7 +203,7 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 options(width=120)  
   
 # __________|------  
-# ⸿ END----  
+# 〚〛 END----  
   
 ```
   
@@ -212,7 +212,7 @@ options(width=120)
 options(width=120)  
   
 # __________|------  
-# ⸿ END----  
+# 〚〛 END----  
   
 ```
   

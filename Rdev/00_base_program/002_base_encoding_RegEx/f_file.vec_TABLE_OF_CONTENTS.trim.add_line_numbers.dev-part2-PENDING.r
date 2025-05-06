@@ -2,16 +2,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1                                                         ...60
 ##@ Heading 1.1                                                       ...63
-# ⸿ Heading 2                                                        ...65
+# 〚〛 Heading 2                                                        ...65
 ## @ Heading 2.1                                                      ...67
-# ⸿ START) dev.old                                                   ...73
+# 〚〛 START) dev.old                                                   ...73
 ## env0 = env1                                                        ...74
-# ⸿ START) dev                                                       ...117
+# 〚〛 START) dev                                                       ...117
 ## env0 = env1                                                        ...118
-# ⸿ START) function.old                                              ...167
+# 〚〛 START) function.old                                              ...167
 ## ->> Now included in env1$env.internal.source.r                      ...173
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =                           ...180
-# ⸿ START) function                                                  ...233
+# 〚〛 START) function                                                  ...233
 ## ->> Now included in env1$env.internal.source.r                      ...239
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers =                               ...246
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##
@@ -19,16 +19,16 @@
 # TABLE OF CONTENTS ----  
 #@@ Heading 1 
 ##@ Heading 1.1 
-# ⸿ Heading 2 
+# 〚〛 Heading 2 
 ## @ Heading 2.1 
-# ⸿ START) dev.old   
+# 〚〛 START) dev.old   
 ## env0 = env1 
-# ⸿ START) dev   
+# 〚〛 START) dev   
 ## env0 = env1 
-# ⸿ START) function.old   
+# 〚〛 START) function.old   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.old =    
-# ⸿ START) function   
+# 〚〛 START) function   
 ## ->> Now included in env1$env.internal.source.r 
 ## :: f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT =    
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
@@ -59,13 +59,13 @@
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ REFERENCES) ----  
+# 〚〛 REFERENCES) ----  
 ##  ----  
 ## 
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 
 #|________________________________________________________________________________|#  ----  
 #@@ Heading 1 ----
@@ -73,7 +73,7 @@
 
 ##@ Heading 1.1 ----
 
-# ⸿ Heading 2 ====
+# 〚〛 Heading 2 ====
 
 ## @ Heading 2.1 ----
 
@@ -103,7 +103,7 @@ input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev-part1 -----  
+# 〚〛 START) dev-part1 -----  
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658d76-9448-800e-bb66-6257dd27e7b5 ----
 # https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627 ----
 
@@ -113,7 +113,7 @@ input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function-part1 -----  
+# 〚〛 START) function-part1 -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -179,7 +179,7 @@ env1$env.internal$f_vec_chr.vec_TABLE_OF_CONTENTS.trim() |> env1$env.internal.at
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev-part2 -----  
+# 〚〛 START) dev-part2 -----  
 ## env0 = env1 ----
 
 
@@ -278,7 +278,7 @@ env1$env.internal.attach$f_file.edit_windows_notepad.or_browseURL(output_path_fi
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function-part2 -----  
+# 〚〛 START) function-part2 -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -391,7 +391,7 @@ if (remove_lines_with_no_2alphabet_word) vec_TABLE_OF_CONTENTS.trim = vec_TABLE_
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
+# 〚〛 Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 #_________________________________________________________________________________|----  
@@ -425,7 +425,7 @@ env1$env.internal$f_file.vec_TABLE_OF_CONTENTS.trim.add_line_numbers.browseTXT("
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 env1$f$showCodeText2openSourceInGitHub()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

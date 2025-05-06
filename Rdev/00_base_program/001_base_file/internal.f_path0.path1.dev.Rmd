@@ -221,7 +221,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
 # __________|------  
-# ⸿ START) problem ----  
+# 〚〛 START) problem ----  
 #### \$ rstudioapi::getSourceEditorContext()\$path |> normalizePath(winslash="/",mustWork=NA) |> str_replace(fixed(getwd()|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "") ----  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -250,7 +250,7 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork
   
   
 # __________|------  
-# ⸿ START) dev) f_path0.1path ----  
+# 〚〛 START) dev) f_path0.1path ----  
 ## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 library(stringr)
@@ -302,7 +302,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -311,7 +311,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

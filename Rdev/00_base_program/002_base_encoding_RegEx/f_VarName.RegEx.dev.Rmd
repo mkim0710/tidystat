@@ -215,7 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 ## \$ vec_names =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -230,7 +230,7 @@ df_vec_names |>
   
   
 # __________|------  
-# ⸿ START) dev ----  
+# 〚〛 START) dev ----  
 # https://chatgpt.com/c/1c2ab05c-692c-4ab3-a420-53d8e76e896f
 ## \% vec_names |> str_replace_all  
 Caution) \\w includes Letters (a-z, A-Z), Digits (0-9), and Underscore (_). 
@@ -400,7 +400,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ START) dev) perl=TRUE ----  
+# 〚〛 START) dev) perl=TRUE ----  
 # https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
 ## \% vec_names |> str_replace_all  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -416,7 +416,7 @@ df_vec_names |> mutate(
   
   
 # __________|------  
-# ⸿ START) function ----  
+# 〚〛 START) function ----  
 ## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -475,7 +475,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -484,7 +484,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

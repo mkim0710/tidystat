@@ -1,33 +1,33 @@
 ---
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# ⸿ REFERENCES)                                                            #L247
-# ⸿ DATA) example                                                          #L256
-# ⸿ START) dev                                                             #L276
-# ⸿ SOURCE)                                                                #L311
-# ⸿ START) function                                                        #L353
-# ⸿ MetaData) Read & Check                                                 #L402
-# ⸿ DATA) Read & Check                                                     #L472
-# ⸿ ANALYSIS) (Breif) byVar =                                              #L638
-# ⸿ DATA) mutate()                                                         #L644
-# ⸿ DATA) filter() -> New DS                                               #L675
-# ⸿ DATA) select(matches(VarName.suffix.regex))                            #L708
-# ⸿ ANALYSIS) byVar =                                                      #L722
+# 〚〛 REFERENCES)                                                            #L247
+# 〚〛 DATA) example                                                          #L256
+# 〚〛 START) dev                                                             #L276
+# 〚〛 SOURCE)                                                                #L311
+# 〚〛 START) function                                                        #L353
+# 〚〛 MetaData) Read & Check                                                 #L402
+# 〚〛 DATA) Read & Check                                                     #L472
+# 〚〛 ANALYSIS) (Breif) byVar =                                              #L638
+# 〚〛 DATA) mutate()                                                         #L644
+# 〚〛 DATA) filter() -> New DS                                               #L675
+# 〚〛 DATA) select(matches(VarName.suffix.regex))                            #L708
+# 〚〛 ANALYSIS) byVar =                                                      #L722
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# ⸿ REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L247
-# ⸿ DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L256
-# ⸿ START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L276
-# ⸿ SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L311
-# ⸿ START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L353
-# ⸿ MetaData) Read & Check                                                 # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L402
-# ⸿ DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L472
-# ⸿ ANALYSIS) (Breif) byVar =                                              # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L638
-# ⸿ DATA) mutate()                                                         # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L644
-# ⸿ DATA) filter() -> New DS                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L675
-# ⸿ DATA) select(matches(VarName.suffix.regex))                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L708
-# ⸿ ANALYSIS) byVar =                                                      # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L722
+# 〚〛 REFERENCES)                                                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L247
+# 〚〛 DATA) example                                                          # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L256
+# 〚〛 START) dev                                                             # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L276
+# 〚〛 SOURCE)                                                                # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L311
+# 〚〛 START) function                                                        # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L353
+# 〚〛 MetaData) Read & Check                                                 # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L402
+# 〚〛 DATA) Read & Check                                                     # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L472
+# 〚〛 ANALYSIS) (Breif) byVar =                                              # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L638
+# 〚〛 DATA) mutate()                                                         # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L644
+# 〚〛 DATA) filter() -> New DS                                               # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L675
+# 〚〛 DATA) select(matches(VarName.suffix.regex))                            # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L708
+# 〚〛 ANALYSIS) byVar =                                                      # https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd#L722
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##   
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/  
@@ -246,7 +246,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# ⸿ REFERENCES) ----  
+# 〚〛 REFERENCES) ----  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -255,7 +255,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 ### :: vec1 = 1:6
 ### :: vec2 = 1:3 * 2
 ### :: vec3 = 1:2 * 3
@@ -298,7 +298,7 @@ f_vec1_vec2.setdiff_list(vec1, vec2, output_as_data_frame = TRUE)
   
   
 # __________|------  
-# ⸿ START) dev ----  
+# 〚〛 START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
@@ -326,7 +326,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ SOURCE) ----  
+# 〚〛 SOURCE) ----  
 ```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -350,7 +350,7 @@ env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileNam
   
   
 # __________|------  
-# ⸿ START) function o1p ----  
+# 〚〛 START) function o1p ----  
 
 ## https://chatgpt.com/g/g-p-6774e267f75c8191bd6b9efd78dc6392-o1-pro/c/67780ea5-dfb8-800e-a3c9-0d73059a1dd4
 ## :: f_vecs.setdiff_df = function() -dev -pending  
@@ -408,7 +408,7 @@ f_vecs.setdiff_df(DiabetesCodes, HypertensionCodes, RespiratoryCodes, VERBOSE = 
   
   
 # __________|------  
-# ⸿ START) function o1p ----  
+# 〚〛 START) function o1p ----  
 
 ## https://chatgpt.com/g/g-p-6774e267f75c8191bd6b9efd78dc6392-o1-pro/c/67780ea5-dfb8-800e-a3c9-0d73059a1dd4
 ## :: f_listVec.setdiff_df = function() -dev -pending  
@@ -522,7 +522,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ START) function ----  
+# 〚〛 START) function ----  
 ## :: function_name = function() -dev -pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -638,7 +638,7 @@ options(width=120)
 
 
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -647,7 +647,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

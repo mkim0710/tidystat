@@ -149,7 +149,7 @@ input_matrix |> str(max.level = 2, give.attr = TRUE)
 #   ..$ : chr [1:3] "C1" "C2" "C3"
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 
 
 

@@ -1,26 +1,26 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 1) ----  
-# ⸿ SOURCE)                                                                #L229
-# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
-# ⸿ env1\$f\$f_object                                                      #L283
-# ⸿ env1\$f\$f_str                                                         #L283
-# ⸿ env1\$f\$f_vec                                                         #L395
-# ⸿ env1\$f\$f_list                                                        #L396
-# ⸿ env1\$f\$f_list_list                                                   #L796
-# ⸿ env1\$f\$f_matrix                                                      #L797
-# ⸿ env1\$f\$f_array                                                       #L798
-# ⸿ env1\$f\$f_formula                                                     #L887
-# ⸿ env1\$f\$f_df                                                          #L966
-# ⸿ env1\$env.internal functions                                           #L1155
-# ⸿ source()                                                               #L1631
+# 〚〛 SOURCE)                                                                #L229
+# 〚〛 Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B                   #L260
+# 〚〛 env1\$f\$f_object                                                      #L283
+# 〚〛 env1\$f\$f_str                                                         #L283
+# 〚〛 env1\$f\$f_vec                                                         #L395
+# 〚〛 env1\$f\$f_list                                                        #L396
+# 〚〛 env1\$f\$f_list_list                                                   #L796
+# 〚〛 env1\$f\$f_matrix                                                      #L797
+# 〚〛 env1\$f\$f_array                                                       #L798
+# 〚〛 env1\$f\$f_formula                                                     #L887
+# 〚〛 env1\$f\$f_df                                                          #L966
+# 〚〛 env1\$env.internal functions                                           #L1155
+# 〚〛 source()                                                               #L1631
 # ls.str(env1) #                                                            #L1700
 # ls.str(env1$env.internal) #                                               #L1701
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS (level 2) ----  
 
-# ⸿ env1\$f\$f_vec                                                         #L395
-# ⸿ env1\$f\$f_list                                                        #L396
+# 〚〛 env1\$f\$f_vec                                                         #L395
+# 〚〛 env1\$f\$f_list                                                        #L396
 ## :: env.internal\$f_vec.format_line_by_line =                             #L398
 ## :: f_vec.dput_line_by_line =                                             #L409
 ## :: env.internal\$f_list.format_line_by_line =                            #L430
@@ -45,8 +45,8 @@
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ env1\$f\$f_vec ----  
-# ⸿ env1\$f\$f_list ----  
+# 〚〛 env1\$f\$f_vec ----  
+# 〚〛 env1\$f\$f_list ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
 ## :: env.internal\$f_vec.format_line_by_line =  ----  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -558,7 +558,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, fillLeadingNA = F
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 # cat("* To revert to the last commited file, run the following terminal command:\n", 
 #     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 ##________________________________________________________________________________  

@@ -216,7 +216,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # __________|------  
-# ⸿ START ----  
+# 〚〛 START ----  
   
 ## source("https://raw.githubusercontent.com/mkim0710/tidystat/master/git/f_git.03_final.pull_rebase_push.source.r")  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -268,7 +268,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -277,7 +277,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")
@@ -298,7 +298,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-# ⸿ update default notebook.Rmd ----  
+# 〚〛 update default notebook.Rmd ----  
 template.FileNameExt = "templates-00env1.minimum.Rmd"
 LastSourceEditorContext.path_FileNameExt=rstudioapi::getSourceEditorContext()$path; if(basename(LastSourceEditorContext.path_FileNameExt) == template.FileNameExt) {
     if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 

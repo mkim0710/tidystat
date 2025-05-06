@@ -35,7 +35,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ SOURCE) -----  
+# 〚〛 SOURCE) -----  
 ## § .RelativeSubPath, .FileName.source.r ======  
 
 
@@ -44,7 +44,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ SOURCE) -----  
+# 〚〛 SOURCE) -----  
 ## § .RelativeSubPath, .FileName.source.r ======  
 .RelativeSubPath=r"(Rdev/10_import_clean_datatype/11_metadata)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork=TRUE) |> utils::browseURL() |> try()
@@ -72,7 +72,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
     sep="")
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ f_vecID.nestedSample -----  
+# 〚〛 f_vecID.nestedSample -----  
 #|  f_vecID.nestedSample |#
 # Function to create nested samples
 f_vecID.nestedSample <- function(vecID, seed=123) {
@@ -107,11 +107,11 @@ PERSON_ID %>% f_vecID.nestedSample() |> str(max.level = 2, give.attr = TRUE)
 
 #________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
+# 〚〛 Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) data -----  
+# 〚〛 START) data -----  
 # \$ assign( .objectname, read_rds(paste0(.path4read,"/",.objectname,".rds")) ) ====  
 .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
@@ -270,7 +270,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols %>% dim
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 env1$f$showCodeText2openSourceInGitHub()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

@@ -25,7 +25,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # if(env1$f$f_object.is_not_null.nor_na.nor_blank(env1$path$LastSourceEditorContext.path)) env1$path$path4write = .path4write = env1$path$LastSourceEditorContext.path
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ SOURCE) -----  
+# 〚〛 SOURCE) -----  
 ## § .RelativeSubPath, .FileName.source.r ======  
 
 
@@ -38,7 +38,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ #1. Remove the Local Repository ====  
+# 〚〛 #1. Remove the Local Repository ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## @ #1-1a. (Preferred) Recursively Remove PDF Files from the Index Using git rm --cached (wihout deleting the files in the local file system) ----  
 'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat("  ", sep="  \n")
@@ -59,7 +59,7 @@ git commit -m "Untrack PDF/HTML files from the index"
 git push origin main
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ #2. Clone the Repository "--mirror" Cleanly ====  
+# 〚〛 #2. Clone the Repository "--mirror" Cleanly ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## @ #2-1a. (preferred) Clone a fresh repository "--mirror" into the new directory ----  
 # Caution) note the dot at the end~!! 
@@ -77,7 +77,7 @@ paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> sy
 # cd subdir-name
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ #3. Use git filter-repo: Removes PDF files from the entire Git history. ====  
+# 〚〛 #3. Use git filter-repo: Removes PDF files from the entire Git history. ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## @ #3-0. pip install git-filter-repo ====  
 # "pip install git-filter-repo" |> system(intern=TRUE) |> cat("  ", sep="  \n")
@@ -92,7 +92,7 @@ paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> sy
 git push origin --force --mirror
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ #4. Re-clone the Repository (including the PC where the filter-repo was run): Ensures that everyone works with the updated history. ====  
+# 〚〛 #4. Re-clone the Repository (including the PC where the filter-repo was run): Ensures that everyone works with the updated history. ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## @ #4-0. delete/rename/archive the old repository directory ====  
 # rm -rf /path/to/your/repo
@@ -153,7 +153,7 @@ git add .gitignore
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 env1$f$showCodeText2openSourceInGitHub()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

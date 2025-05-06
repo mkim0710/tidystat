@@ -44,13 +44,13 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.ECHO(EXECUTE = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ REFERENCES) ----  
+# 〚〛 REFERENCES) ----  
 ##  ----  
 ## 
 ## 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 
 ## \% input_vec_chr = fruit[1:8*10] ----
 input_vec_chr = fruit[1:8*10]
@@ -87,7 +87,7 @@ input_vec_chr %>% str
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev -----  
+# 〚〛 START) dev -----  
 ## env0 = env1 ----
 env0 = env1
 
@@ -95,7 +95,7 @@ env0 = env1
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ SOURCE) -----  
+# 〚〛 SOURCE) -----  
 ## § .RelativeSubPath, .FileName.source.r ======  
 #### env1$path$.RelativeSubPath_FileName.source.r ----  
 # .RelativeSubPath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
@@ -116,7 +116,7 @@ env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileNam
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function by GPT -----  
+# 〚〛 START) function by GPT -----  
 
 #@ https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-r-project/c/67658de1-d780-800e-ab6e-ca18fc2fa627
 #' Separate SECTION_extracted and non-SECTION_extracted Lines
@@ -149,7 +149,7 @@ env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileNam
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function -----  
+# 〚〛 START) function -----  
 # .SourceName_root = .FileName.source.r |> str_replace("\\.source\\.r$", "")
 ## .GlobalEnv$env1$f[[.SourceName_root]] = "Sourcing..." 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -216,7 +216,7 @@ env1$env.internal$f_vec_chr.list_SECTION_nonSECTION(input_vec_chr) %>% str
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 env1$f$showCodeText2openSourceInGitHub()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

@@ -1043,7 +1043,7 @@ icd10_sub_chapters.expand_range.ICD10_3char %>% toJSON(pretty = T)
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 save(icd10_chapters, file = "icd10_chapters.rda")
 save(icd10_sub_chapters, file = "icd10_sub_chapters.rda")
 

@@ -278,7 +278,7 @@ openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.
   
   
 # __________|------  
-# ⸿ END============  
+# 〚〛 END============  
 
 
 

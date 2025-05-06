@@ -4,7 +4,7 @@
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 
 getwd()
 .path4write = env1$path$path4write
@@ -15,7 +15,7 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 .objectname = "NHID_GY20_0213.bind_rows"
 .path4write = env1$path$path4write
 .t0 = Sys.time()
@@ -24,7 +24,7 @@ print(Sys.time() - .t0)
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 
 getwd()
 .path4write = env1$path$path4write
@@ -38,7 +38,7 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 getwd()
 .path4write = env1$path$path4write
 .objectname = "tblGADM_kor_level1_NL_NAME_1.SIDO_CD"

@@ -218,7 +218,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Rdev/00_base_program/f_CodeText.substitute.ECHO.dev.r -> incorporated in f_CodeText.ECHO.dev.r  
   
 # __________|------  
-# ⸿ DATA) example ----  
+# 〚〛 DATA) example ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ADS_time2event <- matrix(1:72, nrow=24, ncol=12) %>% data.frame %>% as_tibble
@@ -230,7 +230,7 @@ DSN <- "ADS_time2event"
 ```
   
 # __________|------  
-# ⸿ DATA)SetName = ----  
+# 〚〛 DATA)SetName = ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 DSN <- "ADS_time2event"
@@ -343,7 +343,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 # __________|------  
-# ⸿ void- START) dev) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="") ----  
+# 〚〛 void- START) dev) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="") ----  
 ## \$ .text_expression = 
 ## \% substitute(.text_expression, env = list(.text_expression = .text_expression))  
 ### -> "dim(get(DSN))"
@@ -371,7 +371,7 @@ eval(as.expression(.text_expression))
   
   
 # __________|------  
-# ⸿ START) parse(text=.text_expression)[[1]]  ----  
+# 〚〛 START) parse(text=.text_expression)[[1]]  ----  
 ## \% parse(text=.text_expression)[[1]] 
 ### -> language dim(get(DSN))
 #### *** !! dim(get(DSN)) |> substitute() == parse(text=.text_expression)[[1]]  
@@ -719,7 +719,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -728,7 +728,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")

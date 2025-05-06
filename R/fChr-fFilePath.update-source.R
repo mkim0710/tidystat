@@ -171,7 +171,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  
 # cat("* To revert to the last commited file, run the following terminal command:\n", 
 #     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 ##________________________________________________________________________________  

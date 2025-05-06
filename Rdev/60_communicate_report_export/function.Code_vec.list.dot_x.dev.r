@@ -644,6 +644,6 @@ openxlsx2::write_xlsx(CovariateDefinition191128.dot_x, "CovariateDefinition19112
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 
 

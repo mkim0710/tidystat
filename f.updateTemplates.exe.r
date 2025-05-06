@@ -62,7 +62,7 @@ env1$f$f.updateTemplates()
 
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ Not yet included in env1$env.internal.source.r ----
+# 〚〛 Not yet included in env1$env.internal.source.r ----
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## |> rstudioapi::addTheme(apply=TRUE, force=TRUE) ====  
 "https://raw.githubusercontent.com/mattia-liuzzo/RStudio-VScode-theme/main/rs-vscode.rstheme" %>% rstudioapi::addTheme(apply=TRUE, force=TRUE)

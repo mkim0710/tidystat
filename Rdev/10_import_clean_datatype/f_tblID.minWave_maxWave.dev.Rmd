@@ -180,7 +180,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
   
   
 # __________|------  
-# ⸿ DATA) mutate() ----  
+# 〚〛 DATA) mutate() ----  
 ```{r DATA-MUTATE-SYNC, eval=FALSE, include=FALSE}
 paste0('### ->> Now synced to: "',dir(env1$path$path1, ".*\\.Rmd$", ignore.case = TRUE),'"  \n') |> cat(sep="")
 ```
@@ -292,7 +292,7 @@ options(width=120)
   
   
 # __________|------  
-# ⸿ END ----  
+# 〚〛 END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -301,7 +301,7 @@ options(width=120)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ END ----  
+# 〚〛 END ----  
 cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
 cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
 cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")
@@ -322,9 +322,9 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 # __________|------  
-# ⸿ update default notebook.Rmd ----  
+# 〚〛 update default notebook.Rmd ----  
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-# ⸿ update default notebook.Rmd ----  
+# 〚〛 update default notebook.Rmd ----  
 # FileNameExt = file.path(env1$path$source_base_local,"Rproject_Rmd","00env1.minimum.Rmd")
 FileNameExt = "templates-00env1.minimum.Rmd"; if(file.exists(FileNameExt)) {
     if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 

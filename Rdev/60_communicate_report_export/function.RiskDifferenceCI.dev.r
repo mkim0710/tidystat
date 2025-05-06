@@ -508,7 +508,7 @@ ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #--
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 getwd()
 .path4write = env1$path$path4write
 .objectname = "ADS.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
@@ -986,6 +986,6 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
 
 

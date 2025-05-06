@@ -1433,7 +1433,7 @@ fhs |> str(give.attr = F) #----
 #  $ index100 : int  78 50 39 25 94 79 84 26 85 74 ...  
   
 # __________|------  
-# ⸿ END----  
+# 〚〛 END----  
 saveRDS(fhs.index100, "fhs.index100.rds")
 write.csv(fhs.index100, "fhs.index100.csv")
 openxlsx2::write_xlsx(fhs.index100, "fhs.index100.xlsx", as_table=TRUE, table_style="none", row_names=TRUE, col_widths="auto", first_active_row=2, first_active_col=2)

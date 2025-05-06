@@ -1,20 +1,20 @@
 ##HHHHHHHHHHHHHHHHHH BEGINNING OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 # TABLE OF CONTENTS ----  
-# ⸿ START) dev                                                             ...4
+# 〚〛 START) dev                                                             ...4
 ## env0 = env1                                                              ...5
-# ⸿ START) function                                                        ...9
+# 〚〛 START) function                                                        ...9
 ## ->> Not Yet included in env1$env.internal.source.r                       ...10
 ## ->> Not Yet included in f_df.t.tribble_construct.source.r                ...11
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) dev -----  
+# 〚〛 START) dev -----  
 # ## env0 = env1 ----
 # env0 = env1
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ START) function -----  
+# 〚〛 START) function -----  
 ## ->> Not Yet included in env1$env.internal.source.r ----
 ## ->> Not Yet included in f_df.t.tribble_construct.source.r ----
 
@@ -34,4 +34,4 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(formula, include_inp
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #|________________________________________________________________________________|#  ----  
-# ⸿ END -----  
+# 〚〛 END -----  

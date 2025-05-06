@@ -57,7 +57,7 @@ dput(options("RStata.StataVersion"))
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ test for one sample proportion =====  
+# 〚〛 test for one sample proportion =====  
 # Null hypothesis (H0):         p0 = 0.5
 # Alternative hypothesis (H1):  p1 = 0.7
 # sd = (n*p0*(1-p0))^0.5  -> also a function of n~!!   # under null?!
@@ -176,7 +176,7 @@ stata.out
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ test for two sample proportion comparison (sample size ratio = 1) =====  
+# 〚〛 test for two sample proportion comparison (sample size ratio = 1) =====  
 # Null hypothesis (H0):         p2 - p1 = 0
 # Alternative hypothesis (H1):  p2 - p1 = 0.2
 # sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  
@@ -361,7 +361,7 @@ stata.out
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ test for two sample proportion comparison (when sample size of one group is fixed) =====  
+# 〚〛 test for two sample proportion comparison (when sample size of one group is fixed) =====  
 # Null hypothesis (H0):         p2 - p1 = 0
 # Alternative hypothesis (H1):  p2 - p1 = 0.2
 # sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  
@@ -533,7 +533,7 @@ stata.out
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ test for two sample proportion comparison (sample size ratio = Nexperimental/Ncontrol = 1/5) =====  
+# 〚〛 test for two sample proportion comparison (sample size ratio = Nexperimental/Ncontrol = 1/5) =====  
 # Null hypothesis (H0):         p2 - p1 = 0
 # Alternative hypothesis (H1):  p2 - p1 = 0.2
 # sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  
@@ -593,7 +593,7 @@ stata.out
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ Cox ====  
+# 〚〛 Cox ====  
 
 # ?ES.h
 # Compute effect size h for two proportions
@@ -704,7 +704,7 @@ stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, sta
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ⸿ matched case-control ====  
+# 〚〛 matched case-control ====  
 
 stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
@@ -1034,4 +1034,4 @@ z=log(OR)*sqrt(nB)/sqrt(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  

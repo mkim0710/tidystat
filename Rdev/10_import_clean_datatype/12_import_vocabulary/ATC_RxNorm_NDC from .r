@@ -333,4 +333,4 @@ saveRDS(out.list, "ATC_RxNorm_NDC.rds")
   
   
 # __________|------  
-# ⸿ END-----  
+# 〚〛 END-----  
