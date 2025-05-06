@@ -25,23 +25,31 @@
 #' @return Object of same type and structure as input with processed values
 #'
 #' @examples
-#' fNum_preserveDecimals_signif(c(12345.6789, 1.23456, 0.0012345))
-#' # [1] 12345.68   1.235    0.001235
+#' fNum.signif_preserve_decimals(c(12345.6789, 1.23456, 0.0012345)) %>% dput
+#' # c(12345.679, 1.235, 0.001234)
+#' # # [1] 12345.679000     1.235000     0.001234
 #'
 #' # Matrix example
 #' m <- matrix(c(123.456, 0.012345), nrow = 1)
-#' fNum_preserveDecimals_signif(m)
+#' fNum.signif_preserve_decimals(m) %>% dput
+#' # structure(c(123.456, 0.01234), dim = 1:2)
+#' #         [,1]    [,2]
+#' # [1,] 123.456 0.01234
 #'
 #' # Data frame with mixed columns
 #' df <- data.frame(a = c(12345.6789, 0.01234), b = 1:2, ch = c("x","y"))
-#' fNum_preserveDecimals_signif(df)
+#' fNum.signif_preserve_decimals(df) %>% dput
+#' # structure(list(a = c(12345.679, 0.01234), b = c(1, 2), ch = c("x", "y")), row.names = c(NA, -2L), class = "data.frame")
+#' #             a b ch
+#' # 1 12345.67900 1  x
+#' # 2     0.01234 2  y
 #'
 #' @export
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "fNum.signif_preserve_decimals" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(numVec, 
                                       signifDigitsInt = 4L, 
-                                      roundDigitsInt = 2L, 
+                                      roundDigitsInt = 3L, 
                                       verboseBool = isTRUE(getOption("verbose"))) {
   # Input validation ----
   if (!is.numeric(numVec) && !is.data.frame(numVec)) {
