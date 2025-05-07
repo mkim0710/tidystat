@@ -834,7 +834,8 @@ GT1 |>
 ##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.byVar = "A01_BMI.5bins"
+# .byVar = "A01_BMI.5bins"
+.byVar = "A00_SEX"
 DS = DS.DNR %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
