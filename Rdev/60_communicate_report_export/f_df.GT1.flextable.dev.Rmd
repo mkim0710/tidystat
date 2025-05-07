@@ -833,10 +833,13 @@ GT1 |>
 ##### **ECHO** \% |> bold_p(t = 0.10) ----  
 ##### **ECHO** \% |> bold_labels() ----  
 ##### **ECHO** \% |> italicize_levels() ----  
+
+####    § .byVar = "A01_BMI_ge250" =-=-=----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# .byVar = "A00_SEX"
+.byVar = "A01_BMI_ge250"
 # .byVar = "A01_BMI.5bins"
-.byVar = "A00_SEX"
 DS = DS.DNR %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -873,10 +876,46 @@ GT1 |>
 ```
   
   
-###### \% |> () ----  
+####    § .byVar = "A01_BMI.cut5" =-=-=----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+# .byVar = "A00_SEX"
+# .byVar = "A01_BMI_ge250"
+# .byVar = "A01_BMI.5bins"
+.byVar = "A01_BMI.cut5"
+DS = DS.DNR %>% 
+    mutate_if(is.factor, droplevels) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
+    select_if(function(vec) !is.Date(vec))
+env1$env.internal.attach$Sys.time.set_t0()
+GT1 = DS %>% 
+    mutate_if(is.factor, droplevels) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
+    select_if(function(vec) !is.Date(vec)) %>% 
+    tbl_summary(
+        by = !!rlang::sym(.byVar),
+        statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)"),
+        # statistic = list(all_continuous() ~ "**{median}** ({p25};{p75})", all_categorical() ~ "{n} (**{p}%**)"),
+        missing = "ifany"
+    ) |> 
+    # add_n() %>%
+    # add_overall() |>
+    # Z.gtsummary.addons::add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
+    add_p() |>
+    modify_header(label = "**Variable (label)**", all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |> 
+    # modify_table_styling(columns = "label", fmt_fun = function(i.label) {paste0(names(DS), " (", i.label, ")")}) |>
+    modify_table_body(  ~ .x %>% mutate( label = if_else(row_type == "level", label, if_else(label == variable, label, paste0(variable, " (", label, ")"))) )  ) |>
+    # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
+    # modify_spanning_header(all_stat_cols() ~ paste0("**",.$meta_data %>% filter(variable == .byvar) %>% pull(var_label),"**")) |>
+    modify_spanning_header(all_stat_cols() ~ paste0("**",ifelse(is.null(labelled::var_label(DS[[.byVar]])), .byVar, labelled::var_label(DS[[.byVar]])),"**")) |>
+    bold_p(t = 0.10) |>
+    bold_labels() |>
+    italicize_levels()
+env1$env.internal.attach$Sys.time.from_t0()
+GT1 %>% show_header_names
+GT1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
+GT1 |>
+    print() |> invisible()
 ```
   
   
