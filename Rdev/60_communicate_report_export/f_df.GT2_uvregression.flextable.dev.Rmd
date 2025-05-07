@@ -216,24 +216,6 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # 〚〛 DATA) example ----  
-## \$ ADS_time2event =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-# suppressPackageStartupMessages(library(survival))
-for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-# ?survival::lung
-.objectname = DSN = "ADS_time2event"
-assign(
-    DSN, 
-    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
-)
-ADS_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
-```
-  
-  
 ## \$ gtsummary::trial ----  
 
 We’ll be using the [`trial`](https://www.danieldsjoberg.com/gtsummary/reference/trial.html) data set throughout this example.
@@ -500,8 +482,8 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }
+# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
@@ -647,14 +629,16 @@ GT2_uvregression |>
 ##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.byVar = "A01_BMI_ge250"
+# .byVar = "A01_BMI_ge250"
+.byVar = "A00_SEX"
 # DS = DS.DNR %>% 
 #     mutate_if(is.factor, droplevels) %>% 
 #     select_if(function(x) all(!is.na(x))) %>% 
 #     select_if(function(vec) !is.Date(vec))
 DS = DS.DNR %>% 
     # select(matches("A01_BMI"))
-    select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
+    # select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
+    select(!!rlang::sym(.byVar), A01_BMI, A01_BMI_ge230)
 GT2_uvregression = DS %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
