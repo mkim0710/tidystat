@@ -482,8 +482,8 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }
-# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }
+# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
@@ -503,8 +503,8 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.5bins"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
+# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 VarName.suffix.regex =
@@ -555,8 +555,8 @@ VarName.suffix.regex %>% dput
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # :: DS.DNR = DataSet.Date.NA.rmAllNA = ===== 
-# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
-if(!exists("DSN")) {  warning('!exists("DSN"); '); DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
+# if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = DSsampleName = "df_NewDMv3.CensorEND.n88.select293.NR.recode.lbl.fct"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_csv(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,".UTF8.csv")))  }  
+if(!exists("DSN")) {  warning('!exists("DSN"); '); DSN = DSsampleName = "as1_7.na.Date.fct.select.sample.03"; cat("DSsampleName == ", deparse(DSsampleName), "\n", sep = ""); assign(DSsampleName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",DSsampleName,"/",DSsampleName,".rds.xz")))  }  
 DS.DNR = get(DSN) %>% 
     select(matches(VarName.suffix.regex)) %>% # select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
     # select(matches("A00|A01|A04|A07"))
