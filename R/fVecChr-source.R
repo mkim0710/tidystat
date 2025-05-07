@@ -3,162 +3,114 @@
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: fChr.as_numeric_safe_automatic = function() ====
-#' fChr.as_numeric_safe_automatic - Strict Character-to-Numeric Converter
+#' fChr.as_numeric_safe_automatic – strict all-or-nothing character → numeric
 #'
-#' Converts character or factor input to numeric values ONLY if ALL elements are numeric after cleaning.
-#' By default, returns the original vector unchanged if any non-numeric elements exist.
-#' Attaches metadata for audit purposes.
+#' Converts a character / factor vector that *should* be numeric and returns a
+#' numeric vector **only if every cleaned token parses**.  
+#' If any token remains non-numeric after cleaning, the default is to return the
+#' original vector unchanged.  
+#' • Set `force = TRUE` to coerce anyway.  
+#' • Combine with `remove_non_num = TRUE` to *replace* the offending elements
+#'   with `NA` (vector length is always preserved, so it plays nicely inside
+#'   `dplyr::mutate()`).
 #'
-#' @param charVec Character vector or single whitespace-separated string
-#'                (factors are silently coerced to character)
-#' @param decimal_sep Decimal separator in the text (default ".", use "," for EU)
-#' @param thousands_sep Thousands separator to strip (default ",", use "" to skip)
-#' @param missing_codes Values that should become NA before parsing (default c("NA", ""))
-#' @param force Logical. Override strict checking and convert anyway (default FALSE)
-#' @param removeNonNumeric Logical. If TRUE and force=TRUE, drop non-numeric elements (default FALSE)
-#' @param verbose Logical. Show debugging info (default: getOption("verbose") or FALSE)
+#' A lightweight `conversion_info` attribute keeps an audit trail.
 #'
-#' @return Either a numeric vector (on success or force=TRUE) or the original charVec (when conversion aborted).
-#'         Successful numeric output has a conversion_info attribute storing audit metadata.
+#' @param char_vec        Character vector or single whitespace-separated string
+#'                        (factors are coerced to character).
+#' @param decimal_sep     Decimal mark in the text (default `"."`; e.g. `","`).
+#' @param thousands_sep   Thousands separator to strip (default `","`; `""` = none).
+#' @param missing_codes   Tokens that should map directly to `NA`.
+#' @param force           `FALSE` (default) → abort on any bad token; `TRUE` → proceed.
+#' @param remove_non_num  With `force = TRUE`, replace bad tokens by `NA` (keeps length).
+#' @param verbose         Logical; honours `options(verbose)`.
+#'
+#' @return Numeric vector (on success or when `force = TRUE`) carrying
+#'         `conversion_info`, **or** the untouched `char_vec` when aborted.
 #'
 #' @examples
-#' # All numeric - converts successfully
-#' fChr.as_numeric_safe_automatic("3925.355442 1716.978343")
-#' 
-#' # With currency symbol and thousands separator
-#' fChr.as_numeric_safe_automatic(c("$3,925.35", "1,716.97"))
-#' 
-#' # Contains non-numeric value - returns original vector
-#' fChr.as_numeric_safe_automatic(c("3925.355442", "abc"))
-#' 
-#' # Force conversion with non-numeric values
-#' fChr.as_numeric_safe_automatic(c("3925.355442", "abc"), force = TRUE)
-#'
-#' @export
+#' x <- c("3,925.355442", "(1 716.978343)", "$bad", "43.1")
+#' fChr.as_numeric_safe_automatic(x)                      # aborted, returns x
+#' fChr.as_numeric_safe_automatic(x, force = TRUE)        # bad tokens → NA
+#' fChr.as_numeric_safe_automatic(x, force = TRUE,
+#'                                remove_non_num = TRUE)  # bad tokens kept as NA
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "fChr.as_numeric_safe_automatic" 
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec, 
-                           decimal_sep = ".",
-                           thousands_sep = ",",
-                           missing_codes = c("NA", ""),
-                           force = FALSE,
-                           removeNonNumeric = FALSE, 
-                           verbose = isTRUE(getOption("verbose"))) {
-  # For dplyr safety, save original length
-  originalLength = length(charVec)
-  
-  # Handle single NA inputs
-  if (length(charVec) == 1 && is.na(charVec)) {
-    return(NA_real_)
-  }
-  
-  # 1 - Input validation & factor handling
-  if (is.factor(charVec)) {
-    if (verbose) message("Coercing factor to character")
-    charVec = as.character(charVec)
-  }
-  stopifnot(is.character(charVec))
-  
-  # 2 - Handle empty input
-  if (length(charVec) == 0 || all(is.na(charVec) | charVec == "")) {
-    if (verbose) message("Empty input → returning NA values")
-    # Return NA vector of original length for dplyr safety
-    return(rep(NA_real_, originalLength))
-  }
-  
-  # Handle whitespace-separated string
-  charVecCleaned = charVec
-  if (length(charVec) == 1 && !is.na(charVec) && grepl("\\s", charVec)) {
-    charVecCleaned = unlist(strsplit(charVec, "\\s+"), use.names = FALSE)
-  }
-  
-  # 3 - Clean input
-  cleanedVec = trimws(charVecCleaned)
-  cleanedVec[cleanedVec %in% missing_codes | is.na(cleanedVec)] = NA_character_
-  
-  # Only process non-NA values
-  nonNAidx = which(!is.na(cleanedVec))
-  if (length(nonNAidx) > 0) {
-    cleanedVec[nonNAidx] = sub("^\\((.*)\\)$", "-\\1", cleanedVec[nonNAidx])
-    cleanedVec[nonNAidx] = gsub("[\\$€£¥%]", "", cleanedVec[nonNAidx])
-    
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(char_vec, 
+                                           decimal_sep      = ".",
+                                           thousands_sep    = ",",
+                                           missing_codes    = c("NA", ""),
+                                           force            = FALSE,
+                                           remove_non_num   = FALSE,
+                                           verbose          = isTRUE(getOption("verbose"))) {
+
+    ## 0 – fast path for single NA (helps mutate/across on all-NA columns)
+    if (length(char_vec) == 1L && is.na(char_vec)) return(NA_real_)
+
+    ## 1 – factor → character
+    if (is.factor(char_vec)) {
+        if (verbose) message("Coercing factor to character")
+        char_vec <- as.character(char_vec)
+    }
+    stopifnot(is.character(char_vec))
+    original_len <- length(char_vec)
+
+    ## 1a – **NEW**: make sure byte sequences are valid UTF-8 ------------------
+    char_vec <- iconv(char_vec, from = "", to = "UTF-8", sub = "byte")
+    # any element that still failed to convert becomes NA_character_
+    bad_enc <- which(is.na(char_vec))
+    if (length(bad_enc) && verbose)
+        message("Invalid byte sequence(s) replaced by NA at index: ",
+                paste(bad_enc, collapse = ", "))
+    char_vec[bad_enc] <- NA_character_
+
+    ## 2 – allow a single pasted line of numbers
+    if (original_len == 1L && grepl("\\s", char_vec))
+        char_vec <- unlist(strsplit(char_vec, "\\s+"), use.names = FALSE)
+
+    if (length(char_vec) == 0L) {
+        if (verbose) message("Empty input → numeric(0).")
+        return(numeric(0))
+    }
+
+    ## 3 – cleaning
+    cleaned <- trimws(char_vec)
+    cleaned[cleaned %in% missing_codes] <- NA_character_
+    cleaned <- sub("^\\((.*)\\)$", "-\\1", cleaned)          # "(123)" → -123
+    cleaned <- gsub("[\\$€£¥%]", "", cleaned)                # currency / %
     if (nzchar(thousands_sep))
-      cleanedVec[nonNAidx] = gsub(paste0("\\", thousands_sep), "", cleanedVec[nonNAidx], fixed = FALSE)
-    
+        cleaned <- gsub(paste0("\\", thousands_sep), "", cleaned, fixed = FALSE)
     if (decimal_sep != ".")
-      cleanedVec[nonNAidx] = sub(decimal_sep, ".", cleanedVec[nonNAidx], fixed = TRUE)
-  }
-  
-  # 4 - Attempt coercion
-  numericValuesVec = suppressWarnings(as.numeric(cleanedVec))
-  badIndicesVec = which(is.na(numericValuesVec) & !is.na(cleanedVec))
-  
-  # 5 - Abort or continue?
-  if (length(badIndicesVec) && !force) {
-    if (verbose) {
-      message("Conversion aborted: non-numeric token(s) detected → ",
-              paste(unique(cleanedVec[badIndicesVec]), collapse = ", "),
-              ". Use force = TRUE to override.")
+        cleaned <- sub(decimal_sep, ".", cleaned, fixed = TRUE)
+
+    ## 4 – coercion
+    num_vec <- suppressWarnings(as.numeric(cleaned))
+    bad_idx <- which(is.na(num_vec) & !is.na(cleaned))
+
+    ## 5 – strict default
+    if (length(bad_idx) && !force) {
+        if (verbose)
+            message("Conversion aborted; non-numeric token(s): ",
+                    paste(unique(cleaned[bad_idx]), collapse = ", "),
+                    ".  Use force = TRUE to override.")
+        return(char_vec)
     }
-    # Return original for abort case, preserving original length
-    return(charVec)
-  }
-  
-  # 6 - When forcing, optionally drop bad tokens
-  if (length(badIndicesVec) && removeNonNumeric) {
-    numericValuesVec = numericValuesVec[-badIndicesVec]
-    cleanedVec = cleanedVec[-badIndicesVec]  # only for verbose message
-    
-    if (verbose) {
-      message("Non-numeric token(s) removed: ", 
-              paste(unique(cleanedVec[badIndicesVec]), collapse = ", "))
-    }
-    
-    # If removal resulted in empty vector, return NA vector of original length
-    if (length(numericValuesVec) == 0) {
-      return(rep(NA_real_, originalLength))
-    }
-    
-    # For dplyr, if we've removed elements, we need to return a single value
-    # or original length vector
-    if (length(numericValuesVec) != originalLength) {
-      if (length(numericValuesVec) == 1) {
-        # If we have a single value, return it (will be recycled by dplyr)
-        return(numericValuesVec)
-      } else {
-        # Otherwise, we need to create a vector of the original length with NAs
-        resultVec = rep(NA_real_, originalLength)
-        # Put values where they belong (if we can determine this)
-        if (length(numericValuesVec) <= originalLength) {
-          resultVec[seq_along(numericValuesVec)] = numericValuesVec
-        }
-        return(resultVec)
-      }
-    }
-  }
-  
-  # 7 - Attach audit metadata
-  attr(numericValuesVec, "conversion_info") = 
-    list(original_length = originalLength,
-         na_count = sum(is.na(numericValuesVec)),
-         bad_indices = if (length(badIndicesVec)) badIndicesVec else integer(0))
-  
-  # If we're returning a vector with different length, adjust for dplyr
-  if (length(numericValuesVec) != originalLength) {
-    if (length(numericValuesVec) == 0) {
-      return(rep(NA_real_, originalLength))
-    } else if (length(numericValuesVec) == 1) {
-      return(numericValuesVec) # Single value will be recycled
-    } else {
-      # Fill with values where possible, NAs elsewhere
-      resultVec = rep(NA_real_, originalLength)
-      resultVec[seq_along(numericValuesVec)] = numericValuesVec
-      return(resultVec)
-    }
-  }
-  
-  return(numericValuesVec)
+
+    ## 6 – force: keep length, bad tokens → NA (or already NA via remove_non_num)
+    if (length(bad_idx) && remove_non_num && verbose)
+        message("Non-numeric token(s) replaced by NA: ",
+                paste(unique(cleaned[bad_idx]), collapse = ", "))
+
+    ## 7 – audit info
+    attr(num_vec, "conversion_info") <-
+        list(original_length = original_len,
+             na_count        = sum(is.na(num_vec)),
+             bad_indices     = bad_idx)
+
+    num_vec
 }
+
+
 # # All numeric - works as before
 # fChr.as_numeric_safe_automatic("3925.355442 1716.978343") %>% dput
 # # c(3925.355442, 1716.978343)
