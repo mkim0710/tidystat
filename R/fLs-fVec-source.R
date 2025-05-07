@@ -636,23 +636,35 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
       return(NULL)
     }
 
-    ## (D) recurse through attributes -------------------------------------
+    ## (D) recurse through attributes -----------------------------------------
     attrNames.ToKeep = c("names", "row.names", "class", "dim", "dimnames")
     inputObjAttributesList = attributes(inputObj)
     if (!is.null(inputObjAttributesList)) {
       for (attrNames.NotToKeep in setdiff(names(inputObjAttributesList),
                                           attrNames.ToKeep)) {
+    
         attrValueObj = inputObjAttributesList[[attrNames.NotToKeep]]
+    
         if (is.list(attrValueObj) || is.environment(attrValueObj)) {
-          attr(inputObj, attrNames.NotToKeep) =
-            fObj.recursive_clean_attr(attrValueObj)
+          cleanedAttrValue = fObj.recursive_clean_attr(attrValueObj)
+    
+          # keep attribute name; replace env with list() if requested
+          if (is.environment(attrValueObj) && drop_env_objects) {
+            attr(inputObj, attrNames.NotToKeep) = list()
+          } else {
+            attr(inputObj, attrNames.NotToKeep) = cleanedAttrValue
+          }
         }
       }
     }
-
-    ## (E) recurse through list elements ----------------------------------
-    if (is.list(inputObj))
-      inputObj = lapply(inputObj, fObj.recursive_clean_attr)
+    
+    ## (E) recurse through list elements *in place* ---------------------------
+    if (is.list(inputObj)) {
+      for (elementIndexInt in seq_along(inputObj)) {
+        inputObj[[elementIndexInt]] =
+          fObj.recursive_clean_attr(inputObj[[elementIndexInt]])
+      }
+    }
 
     inputObj
   }
