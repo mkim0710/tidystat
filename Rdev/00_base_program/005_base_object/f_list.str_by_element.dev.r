@@ -73,7 +73,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
+#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FilePath = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 #     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
@@ -152,7 +152,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
+#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FilePath = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 #     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 
@@ -231,7 +231,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.o..
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, re"..
+#   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_FilePath = NA, re"..
 #     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c"..
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
@@ -398,7 +398,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
-# ..$ f_path.size_files :function (.path4read = getwd(), literal_FileName = NA, regex4FileName =
+# ..$ f_path.size_files :function (.path4read = getwd(), literal_FilePath = NA, regex4FileName =
 #    "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
 # print2console = TRUE, VERBOSE = FALSE)
 # ..$ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID =
@@ -498,7 +498,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    regex_pattern, factor.ordered = FALSE)
 # ..$ f_formula.lhs_rhs_vars :function (formula, include_input_in_output = TRUE)
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
-# ..$ f_path.size_files :function (.path4read = getwd(), literal_FileName = NA,
+# ..$ f_path.size_files :function (.path4read = getwd(), literal_FilePath = NA,
 #    regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
 # print2console = TRUE, VERBOSE = FALSE)
 # ..$ f_DS_path_FileNameExt.read.checkEntity:function
@@ -618,7 +618,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_df.add_RegExVars.quartile_factor          :function (DS.DNR, regex_pattern, factor.ordered = FALSE)  
 ## $ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 ## $ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
-## $ f_path.size_files                           :function (.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
+## $ f_path.size_files                           :function (.path4read = getwd(), literal_FilePath = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
 ##    print2console = TRUE, VERBOSE = FALSE)  
 ## $ f_DS_path_FileNameExt.read.checkEntity:function (DS_path_FileNameExt, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 ##    "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 

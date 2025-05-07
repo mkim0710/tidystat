@@ -126,7 +126,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     
     ## \% return.list$df_size_files ====
     # return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], regex4FileName = FileNameExt.regex)
-    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_FileName = FileNameExt, print2console=print2console)
+    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_FilePath = FileNameExt, print2console=print2console)
     
     ## \% return.list$read.proc_time ====
     .path_file = file.path(.path4read[1], FileNameExt)
