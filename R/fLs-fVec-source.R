@@ -549,6 +549,44 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, fillLeadingNA = F
 
 # __________|------  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# https://chatgpt.com/g/g-p-6765276504708191bde554c8d2095b8b-coderdevelopment/c/681b7135-2474-800e-96ef-510e74ae9989
+## :: fLs.map_keepAttrs =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fLs.map_keepAttrs"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
+                             funCallback,
+                             drop_env_objects = FALSE,
+                             verbose = isTRUE(getOption("verbose"))) {
+
+    if (!is.list(inputList))   stop("'inputList' must be a list")
+    if (!is.function(funCallback)) stop("'funCallback' must be a function")
+
+    original_attrs = attributes(inputList)
+    if (length(original_attrs) == 0L)
+        return(lapply(inputList, funCallback))
+
+    newList = lapply(inputList, funCallback)
+
+    if (drop_env_objects) {
+        core = c("names", "row.names", "class", "dim", "dimnames")
+        env_idx = vapply(original_attrs, is.environment, logical(1))
+        env_idx[names(original_attrs) %in% core] = FALSE
+        original_attrs[env_idx] = replicate(sum(env_idx), list(), FALSE)
+    }
+
+    mostattributes(newList) = original_attrs
+    newList
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) map_keepAttrs  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "map_keepAttrs")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) lapply_keepAttrs  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "lapply_keepAttrs")
+
+
+# __________|------  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## 1. Core cleaner  ---------------------------------------------------------
 #' Remove all `.Environment` attributes (and, optionally, raw environments)
 #' from a nested list.
