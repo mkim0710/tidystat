@@ -547,6 +547,173 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, fillLeadingNA = F
 
 
 
+# __________|------  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## 1  Core cleaner  ---------------------------------------------------------
+## :: fLs.removeEnvAttr =  ----
+#' Strip all `.Environment` attributes (and, optionally, raw environments)
+#' from a nested list
+#'
+#' @param inputList        A (possibly deeply-nested) list.
+#' @param drop_env_objects If TRUE, environments that appear *as elements*
+#'                         (not just attributes) are replaced by NULL.
+#' @param verbose          Print a short summary of what was done.
+#'
+#' @return The cleaned list.
+#' @export
+## :: fLs.has_envAttr =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fLs.removeEnvAttr"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
+                                    drop_env_objects = FALSE,
+                                    verbose          = FALSE) {
+  stopifnot(is.list(inputList))
+
+  n_attr <- 0L   # .Environment attributes removed
+  n_env  <- 0L   # raw environments replaced (optional)
+
+  clean_one <- function(x) {
+
+    ## -- 1  Rebuild formulas with a minimal environment  ------------------
+    if (inherits(x, "formula")) {
+      # move the formula to baseenv(); keeps operators, drops user objects
+      environment(x) <- baseenv()
+      # its terms object may hold its own env
+      trm <- attr(x, "terms")
+      if (!is.null(trm) && !is.null(attr(trm, ".Environment"))) {
+        attr(trm, ".Environment") <- NULL
+        attr(x,  "terms")         <- trm
+        n_attr <<- n_attr + 1L
+      }
+    }
+
+    ## -- 2  Remove .Environment attribute from any object -----------------
+    if (!is.null(attr(x, ".Environment"))) {
+      attr(x, ".Environment") <- NULL
+      n_attr <<- n_attr + 1L
+    }
+
+    ## -- 3  Optionally drop raw environments -----------------------------
+    if (is.environment(x) && drop_env_objects) {
+      n_env <<- n_env + 1L
+      return(NULL)
+    }
+
+    ## -- 4  Recurse over attributes too ----------------------------------
+    att <- attributes(x)
+    if (!is.null(att)) {
+      keep <- c("names", "row.names", "class", "dim", "dimnames")
+      for (nm in setdiff(names(att), keep)) {
+        if (is.list(att[[nm]]) || is.environment(att[[nm]])) {
+          attr(x, nm) <- clean_one(att[[nm]])
+        }
+      }
+    }
+    x
+  }
+
+  out <- purrr::modify_depth(inputList, Inf, clean_one)
+
+  if (verbose) {
+    msg <- sprintf("Removed %d .Environment attribute(s)", n_attr)
+    if (drop_env_objects) msg <- sprintf("%s; replaced %d bare env(s)", msg, n_env)
+    message(msg, ".")
+  }
+  out
+}
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## 2  Validation helper  ----------------------------------------------------
+#' Does a list (still) contain any environments?
+#'
+#' Prints up to \code{max_paths} locations where environments were found.
+#'
+#' @return TRUE if *any* environment remains, FALSE otherwise.
+#' @export
+## :: fLs.has_envAttr =  ----
+.tmp$env1_subenv_name = "env.internal.attach"
+.tmp$objectname = "fLs.has_envAttr"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, max_paths = 5) {
+  found <- character(0)
+
+  check <- function(obj, path = "x") {
+    if (length(found) >= max_paths) return()
+
+    if (is.environment(obj)) {
+      found <<- c(found, path)
+      return()
+    }
+    if (!is.null(attr(obj, ".Environment"))) {
+      found <<- c(found, paste0(path, " attr(.Environment)"))
+    }
+    if (inherits(obj, "formula")) {
+      trm <- attr(obj, "terms")
+      if (!is.null(trm) && !is.null(attr(trm, ".Environment"))) {
+        found <<- c(found, paste0(path, " attr(terms).Environment"))
+      }
+    }
+    if (is.list(obj)) {
+      for (i in seq_along(obj)) {
+        nm <- names(obj)[i]
+        if (is.null(nm) || nm == "") nm <- i
+        check(obj[[i]], paste0(path, "$", nm))
+      }
+    }
+  }
+
+  check(x)
+  if (length(found)) {
+    cat("Found", length(found), "environment reference(s):\n",
+        paste(" •", head(found, max_paths)), sep = "\n")
+    TRUE
+  } else {
+    FALSE
+  }
+}
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## 3  Convenience wrappers  --------------------------------------------------
+#' Print a clean `str()` without pointer noise
+#' @export
+## :: fLs.str_clean =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fLs.str_clean"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, ...) {
+  utils::str(fLs.removeEnvAttr(x), ...)
+}
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+#' Clean and save (fail-fast if anything is left)
+#' @export
+## :: fLs.save_clean =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fLs.save_clean"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(x, file_path,
+                            compression = "xz",
+                            drop_env_objects = FALSE,
+                            verbose = FALSE) {
+  dir.create(dirname(file_path), recursive = TRUE, showWarnings = FALSE)
+  clean <- fLs.removeEnvAttr(x,
+                                    drop_env_objects = drop_env_objects,
+                                    verbose          = verbose)
+  if (fLs.has_envAttr(clean)) {
+    stop("Cleaning incomplete: environment references remain.")
+  }
+  saveRDS(clean, file_path, compress = compression)
+  invisible(file_path)
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
