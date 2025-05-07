@@ -531,7 +531,7 @@ VarName.suffix.regex =
         "Female",
         paste0("A01_",
                c("AGE", "INCOME",
-                 "WAIST", "HIP",
+                 "BMI", "WAIST", "HIP",
                  "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG",
                  # "BP", "PULSE", "HTN_C", "HTNCU", "TREATD1", "DRUGHTCU", "FMHTN",
                  "PULSE", "HTN_C", "HTNCU", "DRUGHTCU", "FMHTN",
