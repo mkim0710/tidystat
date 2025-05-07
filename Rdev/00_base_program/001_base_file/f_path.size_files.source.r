@@ -81,7 +81,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 
 
 # .tmp$objectname = "f_path.size_files"
-# .tmp$object = function(.path4read = getwd(), literal_FileName = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
+# .tmp$object = function(.path4read = getwd(), literal_FilePath = NA, regex4FileName = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = isTRUE(getOption("verbose"))) {
 
 #     for (.dependancy in c("f_df.t.tribble_construct")) {
 #         if(!.dependancy %in% names(.GlobalEnv$env1)) {
@@ -90,7 +90,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #         }
 #     }
 
-#     if (is.na(literal_FileName)) {
+#     if (is.na(literal_FilePath)) {
 #         # FileNames = list.files(path = .path4read) %>% {grep(regex4FileName, .,  ignore.case = TRUE, value = TRUE)}
 #         FileNames = list.files(path = .path4read, pattern = regex4FileName, ignore.case = TRUE)
 #         if (length(FileNames) == 0) {
@@ -98,11 +98,11 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #             return()
 #         }
 #     } else {
-#         # # FileNames = list.files(path = .path4read) %>% {grep(literal_FileName, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
-#         # FileNames = list.files(path = .path4read) %>% {grep(literal_FileName, ., value = TRUE, fixed = TRUE)}
-#         FileNames = list.files(path = .path4read) |> str_subset(fixed(literal_FileName))
+#         # # FileNames = list.files(path = .path4read) %>% {grep(literal_FilePath, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
+#         # FileNames = list.files(path = .path4read) %>% {grep(literal_FilePath, ., value = TRUE, fixed = TRUE)}
+#         FileNames = list.files(path = .path4read) |> str_subset(fixed(literal_FilePath))
 #         if (length(FileNames) == 0) {
-#             cat("No files found matching the literal_FileName: ", literal_FileName, "\n")
+#             cat("No files found matching the literal_FilePath: ", literal_FilePath, "\n")
 #             return()
 #         }
 #     }
@@ -149,7 +149,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 # ----  
 
 
-# > env1$f$f_path.size_files(path = "data", literal_FileName = "rds")
+# > env1$f$f_path.size_files(path = "data", literal_FilePath = "rds")
 # c("ATC_RxNorm_NDC.rds", "fhs.index100.rds", "fhs.index100ge11le20.rds", "fhs.index100le10.rds", "Holdings_VT_URTH_VWO.list.rds", "icd10cm2019.rds", "ICD9_3char_sub_chapter.tibble.rds", "icd9_chapters.expand_range.ICD9_3char.rds", "icd9_chapters.expand_range.rds", "icd9_sub_chapters.expand_range.ICD9_3char.rds", "icd9_sub_chapters.expand_range.rds", "jinseob2kim_jinseob2kim.github.io_master_fstexample.rds", "jinseob2kim_lecture-snuhlab_master_data_example_bnc.rds", "jinseob2kim_lecture-snuhlab_master_data_example_g1e.rds", "RDataMining-Tweets-20160212.rds")
 # ----  
 # tibble::tribble(
@@ -172,7 +172,7 @@ if(.RelativeSubPath!="") .RelativeSubPath |> normalizePath(winslash="/",mustWork
 #   )
 # ----  
 # Warning message:
-# In grep(literal_FileName, ., ignore.case = TRUE, value = TRUE, fixed = TRUE) :
+# In grep(literal_FilePath, ., ignore.case = TRUE, value = TRUE, fixed = TRUE) :
 #   argument 'ignore.case = TRUE' will be ignored
 
   
