@@ -438,7 +438,7 @@ options(width=120)
 
 
 # __________|------  
-## @ EPI library(gtsummary) library(Z.gtsummary.addons) add_SMD().Rmd
+## @ EPI library(gtsummary) library(Z.gtsummary.addons) Z.gtsummary.addons::add_SMD().Rmd
 
 ## https://github.com/zheer-kejlberg/Z.gtsummary.addons  
 ## library(gtsummary) ----  
@@ -451,29 +451,30 @@ options(width=120)
 
 for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
-devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
+# if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("zheer-kejlberg/Z.gtsummary_addons")
+if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("ddsjoberg/Z.gtsummary_addons")
 library(Z.gtsummary.addons)
 ```
   
   
 ### ECHO \% |> tbl_summary() ----  
-#### **ECHO** \% |> add_SMD(location = "both") ----  
+#### **ECHO** \% |> Z.gtsummary.addons::add_SMD(location = "both") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 trial %>%
   tbl_summary(by = grade, include = c(age, stage)) %>%
-  add_SMD(location = "both") |>
+  Z.gtsummary.addons::add_SMD(location = "both") |>
     print() |> invisible()
 ```
   
   
 ### ECHO \% |> tbl_summary() ----  
-#### **ECHO** \% |> add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";") ----  
+#### **ECHO** \% |> Z.gtsummary.addons::add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 trial %>% 
   tbl_summary(by = grade, include = c(age, stage)) %>%
-  add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";") |>
+  Z.gtsummary.addons::add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";") |>
     print() |> invisible()
 ```
   
@@ -771,7 +772,8 @@ options(width=120)
 
 for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
-devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
+# if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("zheer-kejlberg/Z.gtsummary_addons")
+if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("ddsjoberg/Z.gtsummary_addons")
 library(Z.gtsummary.addons)
 ```
 
@@ -781,7 +783,7 @@ library(Z.gtsummary.addons)
 ### **ECHO** \% |> tbl_summary(by, statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)")) ---- 
 #### \% |> add_n() ----  
 #### \% |> add_overall() ----  
-#### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
+#### **ECHO** \% |> Z.gtsummary.addons::add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
 #### **ECHO** \% |> add_p() ----  
 ##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
 ###### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
@@ -802,7 +804,7 @@ GT1 = trial %>%
     ) |> 
     # add_n() %>%
     # add_overall() |>
-    add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
+    Z.gtsummary.addons::add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
     modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
@@ -824,7 +826,7 @@ GT1 |>
 ### **ECHO** \% |> tbl_summary(by, statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)")) ---- 
 #### \% |> add_n() ----  
 #### \% |> add_overall() ----  
-#### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
+#### **ECHO** \% |> Z.gtsummary.addons::add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
 #### **ECHO** \% |> add_p() ----  
 ##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
 ##### **ECHO** \% |> modify_table_body(  ~ .x %>% mutate( label = if_else(row_type == "level", label, if_else(label == variable, label, paste0(variable, " (", label, ")"))) )  ) ----  
@@ -852,7 +854,7 @@ GT1 = DS %>%
     ) |> 
     # add_n() %>%
     # add_overall() |>
-    # add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
+    # Z.gtsummary.addons::add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
     modify_header(label = "**Variable (label)**", all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |> 
     # modify_table_styling(columns = "label", fmt_fun = function(i.label) {paste0(names(DS), " (", i.label, ")")}) |>
