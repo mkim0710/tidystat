@@ -110,7 +110,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC"),"(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
         } else { 
             .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-            if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FileName = .objectname)
+            if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FilePath = .objectname)
         }
     }
     
@@ -330,7 +330,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
 #             paste0(".object.size == ",.object.size|>format(units="GiB",standard="IEC"),"(IEC) >= 1e8 bytes (100 MB(SI)) --> No Auto-execution.") |> warning(call. = FALSE, immediate. = TRUE)
 #         } else { 
 #             .object |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-#             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FileName = .objectname)
+#             if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4FilePath = .objectname)
 #         }
 #     }
 #     
