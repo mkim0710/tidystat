@@ -451,8 +451,7 @@ options(width=120)
 
 for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
-# if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("zheer-kejlberg/Z.gtsummary_addons")
-if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("ddsjoberg/Z.gtsummary_addons")
+devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
 library(Z.gtsummary.addons)
 ```
   
@@ -772,8 +771,7 @@ options(width=120)
 
 for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
-# if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("zheer-kejlberg/Z.gtsummary_addons")
-if (!requireNamespace("Z.gtsummary.addons", quietly = TRUE)) remotes::install_github("ddsjoberg/Z.gtsummary_addons")
+devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
 library(Z.gtsummary.addons)
 ```
 
