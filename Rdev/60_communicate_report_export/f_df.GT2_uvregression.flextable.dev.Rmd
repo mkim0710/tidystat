@@ -677,6 +677,8 @@ GT2_uvregression |>
 ##### **ECHO** \% |> bold_p(t = 0.10) ----  
 ##### **ECHO** \% |> bold_labels() ----  
 ##### **ECHO** \% |> italicize_levels() ----  
+
+####    § .byVar = "A01_BMI_ge250" =-=-=----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .byVar = "A01_BMI_ge250"
