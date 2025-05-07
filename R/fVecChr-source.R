@@ -38,51 +38,63 @@
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "fChr.as_numeric_safe_automatic" 
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec, 
-                             decimal_sep = ".",
-                             thousands_sep = ",",
-                             missing_codes = c("NA", ""),
-                             force = FALSE,
-                             removeNonNumeric = FALSE, 
-                             verbose = isTRUE(getOption("verbose"))) {
-  # 1 — Input validation & factor handling
+                           decimal_sep = ".",
+                           thousands_sep = ",",
+                           missing_codes = c("NA", ""),
+                           force = FALSE,
+                           removeNonNumeric = FALSE, 
+                           verbose = isTRUE(getOption("verbose"))) {
+  # Handle single NA inputs (common when used with mutate)
+  if (length(charVec) == 1 && is.na(charVec)) {
+    return(NA_real_)
+  }
+  
+  # 1 - Input validation & factor handling
   if (is.factor(charVec)) {
     if (verbose) message("Coercing factor to character")
     charVec = as.character(charVec)
   }
   stopifnot(is.character(charVec))
   
-  # 2 — Handle empty input and split whitespace-separated strings
-  if (length(charVec) == 0 || all(charVec == "")) {
+  # 2 - Handle empty input and split whitespace-separated strings
+  # Fixed condition to handle NA values properly
+  if (length(charVec) == 0 || all(is.na(charVec) | charVec == "")) {
     if (verbose) message("Empty input → numeric(0).")
     return(numeric(0))
   }
   
-  if (length(charVec) == 1L && grepl("\\s", charVec)) {
+  # Handle whitespace-separated string
+  if (length(charVec) == 1 && !is.na(charVec) && grepl("\\s", charVec)) {
     charVec = unlist(strsplit(charVec, "\\s+"), use.names = FALSE)
   }
   
-  # 3 — Clean input
+  # 3 - Clean input
   cleanedVec = trimws(charVec)
-  cleanedVec[cleanedVec %in% missing_codes] = NA_character_
-  cleanedVec = sub("^\\((.*)\\)$", "-\\1", cleanedVec)       # "(123)" → "-123"
-  cleanedVec = gsub("[\\$€£¥%]", "", cleanedVec)             # strip currency/%
+  cleanedVec[cleanedVec %in% missing_codes | is.na(cleanedVec)] = NA_character_
   
-  if (nzchar(thousands_sep))
-    cleanedVec = gsub(paste0("\\", thousands_sep), "", cleanedVec, fixed = FALSE)
-  
-  if (decimal_sep != ".")
-    cleanedVec = sub(decimal_sep, ".", cleanedVec, fixed = TRUE)
+  # Only process non-NA values
+  nonNAidx = which(!is.na(cleanedVec))
+  if (length(nonNAidx) > 0) {
+    cleanedVec[nonNAidx] = sub("^\\((.*)\\)$", "-\\1", cleanedVec[nonNAidx])
+    cleanedVec[nonNAidx] = gsub("[\\$€£¥%]", "", cleanedVec[nonNAidx])
+    
+    if (nzchar(thousands_sep))
+      cleanedVec[nonNAidx] = gsub(paste0("\\", thousands_sep), "", cleanedVec[nonNAidx], fixed = FALSE)
+    
+    if (decimal_sep != ".")
+      cleanedVec[nonNAidx] = sub(decimal_sep, ".", cleanedVec[nonNAidx], fixed = TRUE)
+  }
   
   if (verbose) {
     cat("After cleaning:\n")
     print(cleanedVec)
   }
   
-  # 4 — Attempt coercion
+  # 4 - Attempt coercion
   numericValuesVec = suppressWarnings(as.numeric(cleanedVec))
   badIndicesVec = which(is.na(numericValuesVec) & !is.na(cleanedVec))
   
-  # 5 — Abort or continue?
+  # 5 - Abort or continue?
   if (length(badIndicesVec) && !force) {
     if (verbose) {
       message("Conversion aborted: non-numeric token(s) detected → ",
@@ -92,7 +104,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec,
     return(charVec)  # unchanged
   }
   
-  # 6 — When forcing, optionally drop bad tokens
+  # 6 - When forcing, optionally drop bad tokens
   if (length(badIndicesVec)) {
     if (removeNonNumeric) {
       numericValuesVec = numericValuesVec[-badIndicesVec]
@@ -106,7 +118,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec,
     }
   }
   
-  # 7 — Attach audit metadata
+  # 7 - Attach audit metadata
   attr(numericValuesVec, "conversion_info") = 
     list(original_length = length(charVec),
          na_count = sum(is.na(numericValuesVec)),
