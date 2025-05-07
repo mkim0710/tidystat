@@ -44,7 +44,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec,
                            force = FALSE,
                            removeNonNumeric = FALSE, 
                            verbose = isTRUE(getOption("verbose"))) {
-  # Handle single NA inputs (common when used with mutate)
+  # For dplyr safety, save original length
+  originalLength = length(charVec)
+  
+  # Handle single NA inputs
   if (length(charVec) == 1 && is.na(charVec)) {
     return(NA_real_)
   }
@@ -56,20 +59,21 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec,
   }
   stopifnot(is.character(charVec))
   
-  # 2 - Handle empty input and split whitespace-separated strings
-  # Fixed condition to handle NA values properly
+  # 2 - Handle empty input
   if (length(charVec) == 0 || all(is.na(charVec) | charVec == "")) {
-    if (verbose) message("Empty input → numeric(0).")
-    return(numeric(0))
+    if (verbose) message("Empty input → returning NA values")
+    # Return NA vector of original length for dplyr safety
+    return(rep(NA_real_, originalLength))
   }
   
   # Handle whitespace-separated string
+  charVecCleaned = charVec
   if (length(charVec) == 1 && !is.na(charVec) && grepl("\\s", charVec)) {
-    charVec = unlist(strsplit(charVec, "\\s+"), use.names = FALSE)
+    charVecCleaned = unlist(strsplit(charVec, "\\s+"), use.names = FALSE)
   }
   
   # 3 - Clean input
-  cleanedVec = trimws(charVec)
+  cleanedVec = trimws(charVecCleaned)
   cleanedVec[cleanedVec %in% missing_codes | is.na(cleanedVec)] = NA_character_
   
   # Only process non-NA values
@@ -85,11 +89,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec,
       cleanedVec[nonNAidx] = sub(decimal_sep, ".", cleanedVec[nonNAidx], fixed = TRUE)
   }
   
-  if (verbose) {
-    cat("After cleaning:\n")
-    print(cleanedVec)
-  }
-  
   # 4 - Attempt coercion
   numericValuesVec = suppressWarnings(as.numeric(cleanedVec))
   badIndicesVec = which(is.na(numericValuesVec) & !is.na(cleanedVec))
@@ -101,28 +100,62 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(charVec,
               paste(unique(cleanedVec[badIndicesVec]), collapse = ", "),
               ". Use force = TRUE to override.")
     }
-    return(charVec)  # unchanged
+    # Return original for abort case, preserving original length
+    return(charVec)
   }
   
   # 6 - When forcing, optionally drop bad tokens
-  if (length(badIndicesVec)) {
-    if (removeNonNumeric) {
-      numericValuesVec = numericValuesVec[-badIndicesVec]
-      cleanedVec = cleanedVec[-badIndicesVec]  # only for verbose message
-    }
+  if (length(badIndicesVec) && removeNonNumeric) {
+    numericValuesVec = numericValuesVec[-badIndicesVec]
+    cleanedVec = cleanedVec[-badIndicesVec]  # only for verbose message
     
     if (verbose) {
-      message("Non-numeric token(s) ", 
-              if (removeNonNumeric) "removed:" else "coerced to NA:",
-              " ", paste(unique(cleanedVec[badIndicesVec]), collapse = ", "))
+      message("Non-numeric token(s) removed: ", 
+              paste(unique(cleanedVec[badIndicesVec]), collapse = ", "))
+    }
+    
+    # If removal resulted in empty vector, return NA vector of original length
+    if (length(numericValuesVec) == 0) {
+      return(rep(NA_real_, originalLength))
+    }
+    
+    # For dplyr, if we've removed elements, we need to return a single value
+    # or original length vector
+    if (length(numericValuesVec) != originalLength) {
+      if (length(numericValuesVec) == 1) {
+        # If we have a single value, return it (will be recycled by dplyr)
+        return(numericValuesVec)
+      } else {
+        # Otherwise, we need to create a vector of the original length with NAs
+        resultVec = rep(NA_real_, originalLength)
+        # Put values where they belong (if we can determine this)
+        if (length(numericValuesVec) <= originalLength) {
+          resultVec[seq_along(numericValuesVec)] = numericValuesVec
+        }
+        return(resultVec)
+      }
     }
   }
   
   # 7 - Attach audit metadata
   attr(numericValuesVec, "conversion_info") = 
-    list(original_length = length(charVec),
+    list(original_length = originalLength,
          na_count = sum(is.na(numericValuesVec)),
          bad_indices = if (length(badIndicesVec)) badIndicesVec else integer(0))
+  
+  # If we're returning a vector with different length, adjust for dplyr
+  if (length(numericValuesVec) != originalLength) {
+    if (length(numericValuesVec) == 0) {
+      return(rep(NA_real_, originalLength))
+    } else if (length(numericValuesVec) == 1) {
+      return(numericValuesVec) # Single value will be recycled
+    } else {
+      # Fill with values where possible, NAs elsewhere
+      resultVec = rep(NA_real_, originalLength)
+      resultVec[seq_along(numericValuesVec)] = numericValuesVec
+      return(resultVec)
+    }
+  }
   
   return(numericValuesVec)
 }
