@@ -32,3 +32,21 @@
 ## :: f_object.is_null.or_na.or_blank =                                     #L527
 ## :: f_object.is_not_null.nor_na.nor_blank =                               #L540
 ##HHHHHHHHHHHHHHHHHHHH THE END OF TABLE OF CONTENTS HHHHHHHHHHHHHHHHHHHHHH##  
+
+
+# __________|------  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: fEnv.asList.allNames =  ----
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "fEnv.asList.allNames"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputEnv, all.names = TRUE, sorted = FALSE) {
+  # keep all bindings, including hidden ones
+  as.list.environment(inputEnv, all.names = all.names, sorted = sorted)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) as.list.environment.allNames  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "as.list.environment.allNames")
+
+
+
+
