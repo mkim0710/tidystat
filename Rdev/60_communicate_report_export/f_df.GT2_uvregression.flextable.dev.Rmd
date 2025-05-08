@@ -634,15 +634,15 @@ GT2_uvregression |>
 options(width=120)
 .byVar = "A00_SEX"
 # .byVar = "A01_BMI_ge250"
-# DS = DS.DNR %>% 
+# DS4uvregression = DS.DNR %>% 
 #     mutate_if(is.factor, droplevels) %>% 
 #     select_if(function(x) all(!is.na(x))) %>% 
 #     select_if(function(vec) !is.Date(vec))
-DS = DS.DNR %>% 
+DS4uvregression = DS.DNR %>% 
     # select(matches("A01_BMI"))
     # select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
     select(!!rlang::sym(.byVar), A01_BMI, A01_BMI_ge230)
-GT2_uvregression = DS %>% 
+GT2_uvregression = DS4uvregression %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
