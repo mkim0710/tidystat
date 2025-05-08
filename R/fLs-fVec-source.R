@@ -600,7 +600,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: fLs.removeEnvAttr =  ----
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "fLs.removeEnvAttr"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = fLs.removeEnvAttr = function(inputList,
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
                              drop_env_objects    = FALSE,
                              convert_env_to_list = FALSE,
                              verbose             = FALSE) {
