@@ -600,14 +600,18 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 ## :: fLs.removeEnvAttr =  ----
 .tmp$env1_subenv_name = "f"
 .tmp$objectname = "fLs.removeEnvAttr"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
-                             drop_env_objects = FALSE,
-                             verbose          = FALSE) {
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = fLs.removeEnvAttr = function(inputList,
+                             drop_env_objects    = FALSE,
+                             convert_env_to_list = FALSE,
+                             verbose             = FALSE) {
 
   stopifnot(is.list(inputList))
+  if (isTRUE(drop_env_objects) && isTRUE(convert_env_to_list))
+    stop("Choose *either* drop_env_objects=TRUE or convert_env_to_list=TRUE.")
 
   removedAttrCountInt = 0L
-  removedEnvCountInt  = 0L
+  replacedEnvCountInt = 0L
+  convertedEnvCountInt = 0L
 
   ## :: internal recursive worker --------------------------------------------
   fObj.recursive_clean_attr = function(inputObj) {
@@ -630,35 +634,48 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
       removedAttrCountInt <<- removedAttrCountInt + 1L
     }
 
-    ## (C) optionally delete raw environments -----------------------------
-    if (is.environment(inputObj) && drop_env_objects) {
-      removedEnvCountInt <<- removedEnvCountInt + 1L
-      return(NULL)
+    ## (C) handle raw environments ----------------------------------------
+    if (is.environment(inputObj)) {
+      if (convert_env_to_list) {
+        convertedEnvCountInt <<- convertedEnvCountInt + 1L
+        inputObj = lapply(as.list.environment(inputObj, all.names = TRUE), fObj.recursive_clean_attr)
+      } else if (drop_env_objects) {
+        replacedEnvCountInt <<- replacedEnvCountInt + 1L
+        return(list())                # keep placeholder so structure remains
+      } else {
+        return(inputObj)              # leave untouched
+      }
     }
 
-    ## (D) recurse through attributes -----------------------------------------
+    ## (D) recurse through attributes -------------------------------------
     attrNames.ToKeep = c("names", "row.names", "class", "dim", "dimnames")
     inputObjAttributesList = attributes(inputObj)
     if (!is.null(inputObjAttributesList)) {
       for (attrNames.NotToKeep in setdiff(names(inputObjAttributesList),
                                           attrNames.ToKeep)) {
-    
+
         attrValueObj = inputObjAttributesList[[attrNames.NotToKeep]]
-    
-        if (is.list(attrValueObj) || is.environment(attrValueObj)) {
-          cleanedAttrValue = fObj.recursive_clean_attr(attrValueObj)
-    
-          # keep attribute name; replace env with list() if requested
-          if (is.environment(attrValueObj) && drop_env_objects) {
-            attr(inputObj, attrNames.NotToKeep) = list()
-          } else {
+
+        if (is.environment(attrValueObj)) {
+          if (convert_env_to_list) {
+            cleanedAttrValue = lapply(
+              as.list.environment(attrValueObj, all.names = TRUE),
+              fObj.recursive_clean_attr
+            )
             attr(inputObj, attrNames.NotToKeep) = cleanedAttrValue
+            convertedEnvCountInt <<- convertedEnvCountInt + 1L
+          } else if (drop_env_objects) {
+            attr(inputObj, attrNames.NotToKeep) = list()
+            replacedEnvCountInt <<- replacedEnvCountInt + 1L
           }
+        } else if (is.list(attrValueObj)) {
+          attr(inputObj, attrNames.NotToKeep) =
+            fObj.recursive_clean_attr(attrValueObj)
         }
       }
     }
-    
-    ## (E) recurse through list elements *in place* ---------------------------
+
+    ## (E) recurse through list elements *in place* -----------------------
     if (is.list(inputObj)) {
       for (elementIndexInt in seq_along(inputObj)) {
         inputObj[[elementIndexInt]] =
@@ -675,8 +692,11 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList,
     msgText = sprintf("→ Removed %d .Environment attribute(s)",
                       removedAttrCountInt)
     if (drop_env_objects)
-      msgText = sprintf("%s; replaced %d bare env(s)",
-                        msgText, removedEnvCountInt)
+      msgText = sprintf("%s; replaced %d env object(s)", msgText,
+                        replacedEnvCountInt)
+    if (convert_env_to_list)
+      msgText = sprintf("%s; converted %d env object(s) to list(s)",
+                        msgText, convertedEnvCountInt)
     message(msgText, ".")
   }
   cleanedList
@@ -764,13 +784,15 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList, file_path,
                                      compression      = "xz",
                                      drop_env_objects = FALSE,
+                                     convert_env_to_list = FALSE,
                                      verbose          = FALSE) {
   dir.create(dirname(file_path), recursive = TRUE, showWarnings = FALSE)
 
   cleanedList = env1$f$fLs.removeEnvAttr(inputList,
-                                  drop_env_objects = drop_env_objects,
-                                  verbose          = verbose)
-
+                                  drop_env_objects    = drop_env_objects,
+                                  convert_env_to_list = convert_env_to_list,
+                                  verbose             = verbose)
+  
   if (env1$env.internal.attach$fLs.hasEnvAttr(cleanedList))
     stop("Cleaning incomplete: environment references remain.")
 
@@ -781,16 +803,33 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(inputList, file_path
 #### (ALIAS) fLs.saveRDS_clean  ----  
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "fLs.saveRDS_clean")
 
+
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## 4  Quick demo -------------------------------------------------------------
 if (interactive() && FALSE) {
   library(survival)
   demoFormulaObj = Surv(time, status) + 0 ~ age + sex   # captures env
-  demoList = list(modelInfo = demoFormulaObj,
-                  nestedList = list(myEnv = new.env(), valNum = 42))
+
+  demoEnv = new.env(); demoEnv$foo = 1; demoEnv$bar = letters[1:3]
+
+  demoList = list(modelInfo   = demoFormulaObj,
+                  nestedList  = list(myEnv = demoEnv, valNum = 42),
+                  message   = "hello")
+  attr(demoList, "myEnvAttr") = demoEnv       
 
   cat("⟡ Before cleaning\n")
-  env1$env.internal.attach$fLs.hasEnvAttr(demoList)
+  demoList %>% str
+    #   demoList %>% str
+    # List of 3
+    #  $ modelInfo :Class 'formula'  language Surv(time, status) + 0 ~ age + sex
+    #   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+    #  $ nestedList:List of 2
+    #   ..$ myEnv :<environment: 0x558254a64e80> 
+    #   ..$ valNum: num 42
+    #  $ message   : chr "hello"
+    #  - attr(*, "myEnvAttr")=<environment: 0x558254a64e80> 
+  
+    env1$env.internal.attach$fLs.hasEnvAttr(demoList)
     # → Found environment reference(s): 2
     #  • inputList$modelInfo attr(.Environment) 
     #  • inputList$nestedList$myEnv 
@@ -806,21 +845,15 @@ if (interactive() && FALSE) {
     # [1] TRUE
   
   cat("\n⟡ Compact structure\n")
-  env1$f$fLs.removeEnvAttr.str(cleanedDemoList, max.level = 2)
-    # >   env1$f$fLs.removeEnvAttr.str(cleanedDemoList, max.level = 2)
-    # List of 2
+  demoList %>% env1$f$fLs.removeEnvAttr() %>% str(max.level = 2)
+  demoList %>% env1$f$fLs.removeEnvAttr.str(max.level = 2)
+    # >   demoList %>% env1$f$fLs.removeEnvAttr.str(max.level = 2)
+    # List of 3
     #  $ modelInfo :Class 'formula'  language Surv(time, status) + 0 ~ age + sex
     #  $ nestedList:List of 2
-    #   ..$ myEnv :<environment: 0x564dafe7f200> 
-    #   ..$ valNum: num 42  
-  
-  str(cleanedDemoList, max.level = 2)
-    # >   str(cleanedDemoList, max.level = 2)
-    # List of 2
-    #  $ modelInfo :Class 'formula'  language Surv(time, status) + 0 ~ age + sex
-    #  $ nestedList:List of 2
-    #   ..$ myEnv :<environment: 0x564dafe7f200> 
-    #   ..$ valNum: num 42  
+    #   ..$ myEnv :<environment: 0x558254a64e80> 
+    #   ..$ valNum: num 42
+    #  $ message   : chr "hello"
   
   cleanedDemoList2 = fLs.removeEnvAttr(demoList,
                                      drop_env_objects = TRUE,
@@ -829,13 +862,29 @@ if (interactive() && FALSE) {
   
   fLs.hasEnvAttr(cleanedDemoList2)   # → FALSE  (no environments left)
   
-  fLs.removeEnvAttr.str(cleanedDemoList2, max.level = 2)
-  ## List of 2
-  ##  $ modelInfo :Class 'formula' language Surv(time, status) + 0 ~ age + sex
-  ##  $ nestedList:List of 2
-  ##   ..$ myEnv : NULL
-  ##   ..$ valNum: num 42
+  demoList %>% fLs.removeEnvAttr(drop_env_objects = TRUE) %>% str(max.level = 2)
+    # >   demoList %>% fLs.removeEnvAttr(drop_env_objects = TRUE) %>% str(max.level = 2)
+    # List of 3
+    #  $ modelInfo :Class 'formula'  language Surv(time, status) + 0 ~ age + sex
+    #  $ nestedList:List of 2
+    #   ..$ myEnv : NULL
+    #   ..$ valNum: num 42
+    #  $ message   : chr "hello"
 
+  demoList %>% fLs.removeEnvAttr(convert_env_to_list  = TRUE) %>% str(max.level = 3)
+    # >   demoList %>% fLs.removeEnvAttr(convert_env_to_list  = TRUE) %>% str(max.level = 3)
+    # List of 3
+    #  $ modelInfo :Class 'formula'  language Surv(time, status) + 0 ~ age + sex
+    #  $ nestedList:List of 2
+    #   ..$ myEnv :List of 2
+    #   .. ..$ foo: num 1
+    #   .. ..$ bar: chr [1:3] "a" "b" "c"
+    #   ..$ valNum: num 42
+    #  $ message   : chr "hello"
+    #  - attr(*, "myEnvAttr")=List of 2
+    #   ..$ foo: num 1
+    #   ..$ bar: chr [1:3] "a" "b" "c"
+  
   # .tmpFilePath = tempfile(fileext = ".rds")
   .tmpFilePath = "/tmp/Rtmpu5qk48/file13c661a47c2fc.rds"
   env1$f$fLs.removeEnvAttr.saveRDS(cleanedDemoList, .tmpFilePath, verbose = TRUE)
