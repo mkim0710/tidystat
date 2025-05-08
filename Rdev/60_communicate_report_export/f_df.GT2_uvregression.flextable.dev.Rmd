@@ -684,10 +684,16 @@ GT2_uvregression |>
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .byVar = "A01_BMI_ge250"
+.Regex4proxies.byVar = .byVar %>% str_extract("^[A-Za-z0-9]+_[A-Za-z0-9]+")
 DS4uvregression = DS.DNR %>% 
-    mutate_if(is.factor, droplevels) %>% 
+    select(matches("^A0[0-1]"), all_of(.byVar)) %>% 
+    select(-matches(.Regex4proxies.byVar), all_of(.byVar)) %>% 
+    # mutate_if(is.factor, droplevels) %>%
+    # select_if(function(x) !is.factor(x) || is.factor(x) && length(levels(x)) = 2) %>% 
+    select_if(function(x) !is.factor(x)) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
+env1$env.internal.attach$Sys.time.set_t0()
 GT2_uvregression = DS4uvregression %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -709,7 +715,10 @@ GT2_uvregression = DS4uvregression %>%
     # modify_spanning_header(all_stat_cols() ~ "summary") |>
     bold_p(t = 0.10) |>
     bold_labels() |>
-    italicize_levels()
+    italicize_levels() |>
+    env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
+env1$env.internal.attach$Sys.time.from_t0()  # Time difference of 4.008291 mins → Time difference of 31.2056 secs @ select_if(function(x) !is.factor(x)) 
+
 GT2_uvregression %>% show_header_names
 GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
 GT2_uvregression |>
