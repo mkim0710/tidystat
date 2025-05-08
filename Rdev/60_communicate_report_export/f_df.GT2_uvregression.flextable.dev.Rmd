@@ -629,11 +629,11 @@ GT2_uvregression |>
 ##### **ECHO** \% |> bold_labels() ----  
 ##### **ECHO** \% |> italicize_levels() ----  
 
-####    § .byVar = "A00_SEX" =-=-=----  
+####    § byVar = "A00_SEX" =-=-=----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.byVar = "A00_SEX"
-# .byVar = "A01_BMI_ge250"
+byVar = "A00_SEX"
+# byVar = "A01_BMI_ge250"
 # DS4uvregression = DS.DNR %>% 
 #     mutate_if(is.factor, droplevels) %>% 
 #     select_if(function(x) all(!is.na(x))) %>% 
@@ -641,7 +641,7 @@ options(width=120)
 DS4uvregression = DS.DNR %>% 
     # select(matches("A01_BMI"))
     # select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
-    select(!!rlang::sym(.byVar), A01_BMI, A01_BMI_ge230)
+    select(!!rlang::sym(byVar), A01_BMI, A01_BMI_ge230)
 GT2_uvregression = DS4uvregression %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -650,7 +650,7 @@ GT2_uvregression = DS4uvregression %>%
     tbl_uvregression(
         method = glm,
         method.arg = list(family = binomial),
-        y = !!rlang::sym(.byVar),
+        y = !!rlang::sym(byVar),
         exponentiate = TRUE
     ) %>%
     add_global_p(keep = TRUE) %>%
@@ -680,14 +680,14 @@ GT2_uvregression |>
 ##### **ECHO** \% |> bold_labels() ----  
 ##### **ECHO** \% |> italicize_levels() ----  
 
-####    § .byVar = "A01_BMI_ge250" =-=-=----  
+####    § byVar = "A01_BMI_ge250" =-=-=----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.byVar = "A01_BMI_ge250"
-.Regex4proxies.byVar = .byVar %>% str_extract("^[A-Za-z0-9]+_[A-Za-z0-9]+")
+byVar = "A01_BMI_ge250"
+.Regex4proxies.byVar = byVar %>% str_extract("^[A-Za-z0-9]+_[A-Za-z0-9]+")
 DS4uvregression = DS.DNR %>% 
-    select(matches("^A0[0-1]"), all_of(.byVar)) %>% 
-    select(-matches(.Regex4proxies.byVar), all_of(.byVar)) %>% 
+    select(matches("^A0[0-1]"), all_of(byVar)) %>% 
+    select(-matches(.Regex4proxies.byVar), all_of(byVar)) %>% 
     # mutate_if(is.factor, droplevels) %>%
     # select_if(function(x) !is.factor(x) || is.factor(x) && length(levels(x)) = 2) %>% 
     select_if(function(x) !is.factor(x)) %>% 
@@ -702,7 +702,7 @@ GT2_uvregression = DS4uvregression %>%
     tbl_uvregression(
         method = glm,
         method.arg = list(family = binomial),
-        y = !!rlang::sym(.byVar),
+        y = !!rlang::sym(byVar),
         exponentiate = TRUE
     ) %>%
     add_global_p(keep = TRUE) %>%
