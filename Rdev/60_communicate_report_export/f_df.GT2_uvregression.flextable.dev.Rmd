@@ -684,11 +684,11 @@ GT2_uvregression |>
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .byVar = "A01_BMI_ge250"
-DS = DS.DNR %>% 
+DS4uvregression = DS.DNR %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-GT2_uvregression = DS %>% 
+GT2_uvregression = DS4uvregression %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
