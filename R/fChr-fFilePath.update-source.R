@@ -143,8 +143,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
         }
     }
     
-    # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
-    for (.FileNameExt in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
+    # \% Update the f.updateTemplates.exe.r, f.update_rstudio_prefs-dev.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
+    for (.FileNameExt in c("f.updateTemplates.exe.r", "f.update_rstudio_prefs-dev.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
         .file.copy.to = file.path(env1$path$path1,.FileNameExt)
         UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
