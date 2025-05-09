@@ -297,7 +297,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     #         if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
     #             
     #         } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
-    #             .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+    #             .file.copy.from = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
     #             .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
     #             UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     #         } else if(Sys.info()["sysname"] == "Darwin") {

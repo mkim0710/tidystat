@@ -482,7 +482,7 @@ options(width=120)
 # # save(list = .objectname, file = .path_file)
 # # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 # 
-# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_coxExample_tibble.rda"))
+# load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_glmnet_coxExample_tibble.rda"))
 # glmnet_coxExample_tibble
 # glmnet_coxExample_tibble.round3 = glmnet_coxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
 # glmnet_coxExample_tibble.round3
@@ -546,7 +546,7 @@ options(width=120)
 # # .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
 # # save(list = .objectname, file = .path_file)
 # # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
-# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
+# load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_glmnet_gaussianExample_tibble.rda"))
 # 
 # glmnet_gaussianExample_tibble |> str(max.level = 2, give.attr = TRUE)
 # glmnet_gaussianExample_tibble
@@ -619,7 +619,7 @@ options(width=120)
 # .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
 # save(list = .objectname, file = .path_file)
 # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_binomialExample_tibble.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_glmnet_binomialExample_tibble.rda"))
 
 glmnet_binomialExample_tibble |> str(max.level = 2, give.attr = TRUE)
 glmnet_binomialExample_tibble

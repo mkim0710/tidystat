@@ -220,10 +220,10 @@ file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") |> env1$env.internal.atta
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #@ rstudio-prefs.json@PositCloud ----
 # file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH241015copilot-false.json")
-.url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
+.url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #@ rstudio-prefs.json@Rocker ----
-.url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+.url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
 # "ls ~/.config/rstudio" %>% system(intern=TRUE)
