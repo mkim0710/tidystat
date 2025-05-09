@@ -41,6 +41,10 @@
     </Filter>
     <FolderPairs>
         <Pair>
+            <Left>D:\D_Repositories\Rproject_NoDependency</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_NoDependency</Right>
+        </Pair>
+        <Pair>
             <Left>D:\D_Repositories\Rproject-MHdaily</Left>
             <Right>D:\OneDrive\[][Rproject]\Rproject-MHdaily</Right>
         </Pair>
