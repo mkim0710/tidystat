@@ -1,4 +1,5 @@
-
+# https://github.com/mkim0710/tidystat/blob/master/R/fChr-fFilePath.update-source.R
+# https://raw.githubusercontent.com/mkim0710/tidystat/master/R/fChr-fFilePath.update-source.R
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.update ----  
@@ -9,6 +10,9 @@
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_file2.compare"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file1, file2, chunk_size = 65536) {
+    # https://github.com/mkim0710/tidystat/blob/master/R/fChr-fFilePath.update-source.R
+    # https://raw.githubusercontent.com/mkim0710/tidystat/master/R/fChr-fFilePath.update-source.R
+
     # Open both files in binary mode
     con1 <- file(file1, "rb")
     con2 <- file(file2, "rb")
@@ -46,6 +50,8 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(file1, file2, chunk_
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_url_destfile.DownloadIfDifferent"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk_size = 65536, VERBOSE = getOption("verbose"), EXECUTE = FALSE) {  # Default 64KB chunk size
+    # https://github.com/mkim0710/tidystat/blob/master/R/fChr-fFilePath.update-source.R
+    # https://raw.githubusercontent.com/mkim0710/tidystat/master/R/fChr-fFilePath.update-source.R
     tryCatch({
         # Temporary file to download the remote file for comparison
         temp_file <- tempfile()
@@ -76,8 +82,10 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(url, destfile, chunk
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #### \$f\$f.updateTemplates ====  
-# https://github.com/mkim0710/f.updateTemplates.exe.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = TRUE) {
+    # https://github.com/mkim0710/tidystat/blob/master/R/fChr-fFilePath.update-source.R
+    # https://raw.githubusercontent.com/mkim0710/tidystat/master/R/fChr-fFilePath.update-source.R
+    # https://github.com/mkim0710/f.updateTemplates.exe.r
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
@@ -113,8 +121,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     }
     if (Sys.info()["sysname"] == "Windows" && UPDATED)  cat('browseURL("D:/OneDrive/[][Rproject]/-BACKUP")', "\n")
     
-    # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
-    for (.FileNameExt in c(".gitignore", ".Rprofile")) {
+    # \% Update the .gitignore / .gitattributes  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
+    for (.FileNameExt in c(".gitignore")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
         # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
         for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), file.path("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE), paste0(Sys.getenv("USERPROFILE"),"/",.FileNameExt), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.FileNameExt))) {
@@ -123,9 +131,20 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
             }
         }
     }
+
+    # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
+    for (.FileNameExt in c(".Rprofile")) {
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
+        # for (.file.copy.to in file.path(env1$path$path1,.FileNameExt)) {
+        for (.file.copy.to in c(file.path(env1$path$path1,.FileNameExt), file.path("~",.FileNameExt)|>normalizePath(winslash="/",mustWork=FALSE))) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
+                UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+            }
+        }
+    }
     
-    # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
-    for (.FileNameExt in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
+    # \% Update the f.updateTemplates.exe.r, f.update_rstudio_prefs-dev.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
+    for (.FileNameExt in c("f.updateTemplates.exe.r", "f.update_rstudio_prefs-dev.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
         .file.copy.to = file.path(env1$path$path1,.FileNameExt)
         UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
@@ -146,7 +165,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRU
     #         if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
     #             
     #         } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
-    #             .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+    #             .file.copy.from = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
     #             .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
     #             UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
     #         } else if(Sys.info()["sysname"] == "Darwin") {

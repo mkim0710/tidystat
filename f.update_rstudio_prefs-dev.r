@@ -58,5 +58,42 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$path4write = i
 # https://github.com/mkim0710/f.updateTemplates.exe.r
 #| moved f.updateTemplates() to env1$env.internal.source.r
 
-env1$f$f.updateTemplates()
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# 〚〛 Not yet included in env1$env.internal.source.r ----
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## |> rstudioapi::addTheme(apply=TRUE, force=TRUE) ====  
+"https://raw.githubusercontent.com/mattia-liuzzo/RStudio-VScode-theme/main/rs-vscode.rstheme" %>% rstudioapi::addTheme(apply=TRUE, force=TRUE)
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## f.update_rstudio_prefs() ====  
+env1$env.internal$f.update_rstudio_prefs = function(.file.copy.from = NULL, .file.copy.to = NULL) {
+    .CodeText = '.Platform$OS.type'; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
+    .CodeText = 'Sys.info()["sysname"]'; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
+    
+    if(.Platform$OS.type == "unix") {
+        if(Sys.info()["sysname"] == "Linux") {
+            if (is.null(.file.copy.from)) {
+                if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
+                    .file.copy.from = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+                } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
+                    .file.copy.from = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
+                }
+            }
+            if (is.null(.file.copy.to)) {
+                .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
+            }
+            UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+        } else if(Sys.info()["sysname"] == "Darwin") {
+            if (is.null(.file.copy.from)) {
+                warning("f.update_rstudio_prefs() not available for macOS")
+            }
+        }
+    } else if(Sys.info()["sysname"] == "Windows") {
+        if (is.null(.file.copy.from)) {
+            warning("f.update_rstudio_prefs() not available for windows")
+        }
+    }
+}
+env1$env.internal$f.update_rstudio_prefs()
 
