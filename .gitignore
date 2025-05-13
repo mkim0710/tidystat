@@ -60,12 +60,13 @@
 # R/RStudio files
 *.Rhistory
 *.Rapp.history
-# .Renviron
-# *.Renviron*
 .Ruserdata
 *.Rproj
 .Rproj.user/
 rsconnect/
+# .Renviron: may store <APIKEY>
+.Renviron
+*.Renviron*
 
 # knitr and R markdown default cache directories/temporary files
 *_cache/
