@@ -171,7 +171,7 @@ cache/
 *.[Gg][Ii][Ff]
 *.[Tt][Ii][Ff]
 *.[Bb][Mm][Pp]
-*.[Ss][Vv][Gg]
+# *.[Ss][Vv][Gg]
 
 # lock files & sync database files
 sync.ffs_lock
