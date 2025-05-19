@@ -108,6 +108,7 @@ cache/
 # Link or alias files
 *.[Ll][Nn][Kk]
 *alias
+*alias [2-9]
 
 # Document files
 *.[Pp][Pp][Tt]
