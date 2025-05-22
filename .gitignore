@@ -173,6 +173,10 @@ cache/
 *.[Bb][Mm][Pp]
 # *.[Ss][Vv][Gg]
 
+# Media files
+*.[Ww][Aa][Vv]
+*.[Mm][Pp][34]
+
 # lock files & sync database files
 sync.ffs_lock
 *.ffs_db
