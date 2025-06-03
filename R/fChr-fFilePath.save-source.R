@@ -280,6 +280,37 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "write_excel_csv_UTF8BOM_to_onedrive")
 
 
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f.generateText4TimeStamp.yymmddThhmm ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f.generateText4TimeStamp.yymmddThhmm"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(timeFormat = "%y%m%dT%H%M") {
+    format(Sys.time(), timeFormat)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) yymmddThhmm  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "yymmddThhmm")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f.generateText4TimeStamp.yymmddThh ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f.generateText4TimeStamp.yymmddThh"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(timeFormat = "%y%m%dT%H") {
+    format(Sys.time(), timeFormat)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) yymmddThh  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "yymmddThh")
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f.generateText4TimeStamp.yymmdd ====  
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f.generateText4TimeStamp.yymmdd"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(timeFormat = "%y%m%d") {
+    format(Sys.time(), timeFormat)
+}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) yymmdd  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "yymmdd")
 
 
 
