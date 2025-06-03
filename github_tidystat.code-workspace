@@ -2,15 +2,19 @@
 	"folders": [
 		{
 			"path": "D:/D_Repositories/github_tidystat",
-			"name": "github_tidystat@D:/D_Repositories/github_tidystat"
+			"name": "github_tidystat@💾D:/D_Repositories"
 		},
 		{
 			"path": "D:/OneDrive/[][Rproject]/github_tidystat",
-			"name": "github_tidystat@D:/OneDrive/[][Rproject]"
+			"name": "github_tidystat@☁️D:/OneDrive/[][Rproject]"
 		},
 		{
-			"path": "${env:HOME}/OneDrive/[][Rproject]/github_tidystat",
-			"name": "github_tidystat@${env:HOME}/OneDrive/[][Rproject]"
+			"path": "~/repos/github_tidystat",
+			"name": "github_tidystat@💾~/repos"
+		},
+		{
+			"path": "~/OneDrive/[][Rproject]/github_tidystat",
+			"name": "github_tidystat@☁️~/OneDrive/[][Rproject]"
 		}
 	],
 	"settings": {}
