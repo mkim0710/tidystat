@@ -167,7 +167,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   if (!is.list(inputLsLs)) stop("Input must be a list object")
   
   # Generate output file path
-  outputFilePathText <- .fText_generateOutputPath(
+  outputFilePathText <- env1$f$f.generateOutputPath(
     outputFilePathText, 
     "json", 
     autoTimestampBool, 
@@ -264,7 +264,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   serializationMethodText <- match.arg(serializationMethodText)
   
   # Generate output file path
-  outputFilePathText <- .fText_generateOutputPath(
+  outputFilePathText <- env1$f$f.generateOutputPath(
     outputFilePathText, 
     "csv", 
     autoTimestampBool, 
@@ -375,6 +375,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   return(outputFilePathText)
 }
 
+# __________|------  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f.generateOutputPath =  ----
 #' Generate Output File Path
 #'
 #' @description
@@ -388,11 +391,14 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 #' @return Full file path
 #'
 #' @keywords internal
-.fText_generateOutputPath <- function(
-    pathText, 
-    extensionText, 
-    timestampBool, 
-    verboseBool
+.tmp$env1_subenv_name = "f"
+.tmp$objectname = "f.generateOutputPath"
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
+    pathText = NULL, 
+    extensionText = "tmp", 
+    outputDirText = "output",
+    timestampBool = TRUE, 
+    verboseBool = isTRUE(getOption("verbose"))
 ) {
   if (!is.null(pathText)) return(pathText)
   
@@ -410,7 +416,6 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   }
   
   # Build full path with "output/" subpath
-  outputDirText <- "output"
   finalPathText <- file.path(outputDirText, paste0(baseNameText, ".", extensionText))
   
   # Create output directory if it doesn't exist
@@ -420,6 +425,9 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   
   return(finalPathText)
 }
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+#### (ALIAS) fPath4Output.generate  ----  
+env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object = .tmp$env1_subenv_name, objectname = .tmp$objectname, subenv_name4ALIAS = "env.internal.attach", ALIASname = "fPath4Output.generate")
 
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
