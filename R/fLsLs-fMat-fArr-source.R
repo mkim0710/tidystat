@@ -167,7 +167,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   if (!is.list(inputLsLs)) stop("Input must be a list object")
   
   # Generate output file path
-  outputFilePathText <- env1$f$f.generateOutputPath(
+  outputFilePathText <- env1$f$f.generateText4OutputPath(
     outputFilePathText, 
     "json", 
     autoTimestampBool, 
@@ -264,7 +264,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
   serializationMethodText <- match.arg(serializationMethodText)
   
   # Generate output file path
-  outputFilePathText <- env1$f$f.generateOutputPath(
+  outputFilePathText <- env1$f$f.generateText4OutputPath(
     outputFilePathText, 
     "csv", 
     autoTimestampBool, 
@@ -377,7 +377,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 
 # __________|------  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f.generateOutputPath =  ----
+## :: f.generateText4OutputPath =  ----
 #' Generate Output File Path
 #'
 #' @description
@@ -392,7 +392,7 @@ env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
 #'
 #' @keywords internal
 .tmp$env1_subenv_name = "f"
-.tmp$objectname = "f.generateOutputPath"
+.tmp$objectname = "f.generateText4OutputPath"
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(
     pathText = NULL, 
     extensionText = "tmp", 
