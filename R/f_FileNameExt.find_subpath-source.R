@@ -1,8 +1,8 @@
 # # .objectname = "f_FileNameExt.find_subpath"
 # # f_FileNameExt.find_subpath.dev.r
-# # f_FileNameExt.find_subpath.source.r
+# # f_FileNameExt.find_subpath-source.R
 # #         https://github.com/mkim0710/tidystat/blob/master/f_FileNameExt.find_subpath.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_FileNameExt.find_subpath.source.r")
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_FileNameExt.find_subpath-source.R")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

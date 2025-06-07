@@ -1,8 +1,8 @@
 # .objectname = "f_FileNameExt.find_subpath"
 # f_FileNameExt.find_subpath.dev.r
-# f_FileNameExt.find_subpath.source.r
+# f_FileNameExt.find_subpath-source.R
 #         https://github.com/mkim0710/tidystat/blob/master/f_FileNameExt.find_subpath.dev.r
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_FileNameExt.find_subpath.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_FileNameExt.find_subpath-source.R")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -66,9 +66,9 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-env1$source$f_FileNameExt.find_subpath.source.r = NULL
+env1$source[["f_FileNameExt.find_subpath-source.R"]] = NULL
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_FileNameExt.find_subpath.source.r")
+source("f_FileNameExt.find_subpath-source.R")
 FileNameExt = "fhs"
 env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 # > env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
@@ -77,7 +77,7 @@ env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_FileNameExt.find_subpath.source.r")
+source("f_FileNameExt.find_subpath-source.R")
 FileNameExt = "fhs.index100le10"
 env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 # > env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
@@ -151,7 +151,7 @@ env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_FileNameExt.find_subpath.source.r")
+source("f_FileNameExt.find_subpath-source.R")
 FileNameExt = "fhs.index100le10.rds"
 env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 # > env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
@@ -220,7 +220,7 @@ env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_FileNameExt.find_subpath.source.r")
+source("f_FileNameExt.find_subpath-source.R")
 FileNameExt = "does not exist.r"
 env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 # > env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
@@ -294,7 +294,7 @@ env1$f$f_FileNameExt.find_subpath(FileNameExt, VERBOSE = T)
 
 
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-source("f_FileNameExt.find_subpath.source.r")
+source("f_FileNameExt.find_subpath-source.R")
 FileNameExt = "tblID_gj3_jk.rds"
 env1$f$f_FileNameExt.find_subpath(FileNameExt, input_path = dirname(env1$path$source_base), VERBOSE = T)
 # > env1$f$f_FileNameExt.find_subpath(FileNameExt, input_path = dirname(env1$path$source_base), VERBOSE = T)

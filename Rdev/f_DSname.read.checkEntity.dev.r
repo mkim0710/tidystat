@@ -73,7 +73,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 env1$source$f_DSname.Search.read.checkEntity.source.r = NULL
 env1$f$f_DSname.Search.read.checkEntity = NULL
-env1$source$f_FileNameExt.find_subpath.source.r = NULL
+env1$source[["f_FileNameExt.find_subpath-source.R"]] = NULL
 env1$f$f_FileNameExt.find_subpath = NULL
 env1$f$f_FileNameExt.find_subpath.BreathFirstSearch = NULL
 source("f_DSname.Search.read.checkEntity.source.r")
@@ -102,7 +102,7 @@ out = env1$f$f_DSname.Search.read.checkEntity(DSN = DSN, .path4read = ".", print
 # DSN = "fhs.index100le10"  
 # i.path4read = "."  
 # !.tmp.file.found && BreathFirstSearch  
-# > source("~/github_tidystat/f_FileNameExt.find_subpath.source.r")  
+# > source("~/github_tidystat/f_FileNameExt.find_subpath-source.R")  
 # Loading: .GlobalEnv$env1$f$f_FileNameExt.find_subpath
 # Loading: .GlobalEnv$env1$f$f_FileNameExt.find_subpath.BreathFirstSearch
 # Searching: .                                                 	 at depth 0  
