@@ -93,7 +93,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
+#   ..$ f_DSname.Search.read.checkEntity-source.R: chr "~/github_tidystat/f_DSname.Search.read.checkEntity-source.R"
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
@@ -175,7 +175,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
+#   ..$ f_DSname.Search.read.checkEntity-source.R: chr "~/github_tidystat/f_DSname.Search.read.checkEntity-source.R"
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
@@ -251,7 +251,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/f_expressi"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSN.Search.read.check"..
+#   ..$ f_DSname.Search.read.checkEntity-source.R: chr "~/github_tidystat/f_DSN.Search.read.check"..
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/1"..
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_expo"..
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_expo"..
@@ -333,7 +333,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/"..
 #   ..$ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/"..
 #   ..$ f_path.size_files.source.r                    : chr "~/github_tidystat/"..
-#   ..$ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/"..
+#   ..$ f_DSname.Search.read.checkEntity-source.R: chr "~/github_tidystat/"..
 #   ..$ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/"..
 #   ..$ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/"..
 #   ..$ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/"..
@@ -425,8 +425,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 # ..$ f_df.t.tribble_construct.source.r : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr "~/github_tidystat/f_path.size_files.source.r"
-# ..$ f_DSname.Search.read.checkEntity.source.r: chr
-#    "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
+# ..$ f_DSname.Search.read.checkEntity-source.R: chr
+#    "~/github_tidystat/f_DSname.Search.read.checkEntity-source.R"
 # ..$ f_df.NotNA_p_df.source.r : chr
 #    "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 # ..$ f_df.printVars_byMainOutcome.source.r : chr
@@ -533,8 +533,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    "~/github_tidystat/f_df.t.tribble_construct.source.r"
 # ..$ f_path.size_files.source.r : chr
 #    "~/github_tidystat/f_path.size_files.source.r"
-# ..$ f_DSname.Search.read.checkEntity.source.r: chr
-#    "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
+# ..$ f_DSname.Search.read.checkEntity-source.R: chr
+#    "~/github_tidystat/f_DSname.Search.read.checkEntity-source.R"
 # ..$ f_df.NotNA_p_df.source.r : chr
 #    "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.Not"..
 # ..$ f_df.printVars_byMainOutcome.source.r : chr
@@ -639,7 +639,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_expression.substitute_ECHO_and_dput.source.r: chr "~/github_tidystat/Rdev/00_base_program/007_base_expression/f_expression.substitute_ECHO_and_dput.source.r"
 ## $ f_df.t.tribble_construct.source.r             : chr "~/github_tidystat/f_df.t.tribble_construct.source.r"
 ## $ f_path.size_files.source.r                    : chr "~/github_tidystat/f_path.size_files.source.r"
-## $ f_DSname.Search.read.checkEntity.source.r: chr "~/github_tidystat/f_DSname.Search.read.checkEntity.source.r"
+## $ f_DSname.Search.read.checkEntity-source.R: chr "~/github_tidystat/f_DSname.Search.read.checkEntity-source.R"
 ## $ f_df.NotNA_p_df.source.r                      : chr "~/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r"
 ## $ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 ## $ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"

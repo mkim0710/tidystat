@@ -1,8 +1,8 @@
 # # .objectname = "f_DSname.Search.read.checkEntity"
 # # f_DSname.Search.read.checkEntity.dev.r
-# # f_DSname.Search.read.checkEntity.source.r
+# # f_DSname.Search.read.checkEntity-source.R
 # #         https://github.com/mkim0710/tidystat/blob/master/f_DSname.Search.read.checkEntity.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DSname.Search.read.checkEntity.source.r")
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/f_DSname.Search.read.checkEntity-source.R")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

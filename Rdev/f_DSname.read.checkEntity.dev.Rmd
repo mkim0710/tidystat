@@ -243,8 +243,8 @@ env1$env.internal$showCodeText2open.FileName.source.r(.RelativeSubPath, .FileNam
 ```
   
 ```{r}
-# "f_DSname.Search.read.checkEntity.source.r" %>% env1$env.internal.attach$f_file.edit_if_exists()
-source("f_DSname.Search.read.checkEntity.source.r")
+# "f_DSname.Search.read.checkEntity-source.R" %>% env1$env.internal.attach$f_file.edit_if_exists()
+source("f_DSname.Search.read.checkEntity-source.R")
 ```
 
   
