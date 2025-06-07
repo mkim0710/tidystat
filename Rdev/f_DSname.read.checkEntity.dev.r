@@ -71,7 +71,7 @@ cat("# ",'.SourceName_root = "',.SourceName_root,'"  \n',
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-env1$source$f_DSname.Search.read.checkEntity-source.R = NULL
+env1$source[["f_DSname.Search.read.checkEntity-source.R"]] = NULL
 env1$f$f_DSname.Search.read.checkEntity = NULL
 env1$source[["f_FileNameExt.find_subpath-source.R"]] = NULL
 env1$f$f_FileNameExt.find_subpath = NULL
