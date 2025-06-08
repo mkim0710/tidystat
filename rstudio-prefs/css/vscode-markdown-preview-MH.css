@@ -1,0 +1,48 @@
+/*
+ * Remove width constraints using verified selectors from your inspection.
+ * Using "body.vscode-body" is more specific and prevents conflicts.
+ */
+body.vscode-body, .markdown-body {
+    max-width: none !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 2em 40px; /* em units scale with font size */
+}
+
+/*
+ * Control font size independently on the verified body element
+ */
+body.vscode-body {
+    font-size: 16px; /* Adjust as needed */
+}
+
+/*
+ * Prefix headings with .markdown-body to ensure styles only apply 
+ * to markdown preview, not other VSCode webviews.
+ */
+.markdown-body h1 { font-size: 2.2rem; }
+.markdown-body h2 { font-size: 1.8rem; }
+.markdown-body h3 { font-size: 1.5rem; }
+.markdown-body h4 { font-size: 1.2rem; }
+
+/*
+ * Handle wide content gracefully within the markdown container
+ */
+.markdown-body table,
+.markdown-body pre,
+.markdown-body code {
+    max-width: 100%;
+    overflow-x: auto;
+    word-wrap: break-word;
+}
+
+/* Optional: Theme-aware styling based on your inspection data */
+body[data-vscode-theme-kind="vscode-dark"] .markdown-body {
+    /* Dark theme customizations */
+    background-color: #161b22;
+}
+
+body[data-vscode-theme-kind="vscode-light"] .markdown-body {
+    /* Light theme customizations */
+    background-color: #f6f8fa;
+}
