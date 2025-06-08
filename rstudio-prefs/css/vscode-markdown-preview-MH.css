@@ -1,45 +1,147 @@
+/* Header Styling */
+/* h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #007acc;
+} */
+
+/* Code Block Styling */
+/* pre, code {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 8px;
+    border-radius: 5px;
+} */
+
+/* Links Styling */
+/* a {
+    color: #0066cc; 
+    text-decoration: underline;
+} */
+
+/* Blockquote Styling */
+/* blockquote {
+    border-left: 4px solid #007acc;
+    padding-left: 10px;
+    color: #666;
+} */
+
+
 /*
  * Remove width constraints using verified selectors from your inspection.
  * Using "body.vscode-body" is more specific and prevents conflicts.
  */
-body.vscode-body, .markdown-body {
+body.vscode-body, 
+.markdown-body,
+.github-markdown-body,
+.github-markdown-content {
     max-width: none !important;
     width: 100% !important;
     box-sizing: border-box;
     padding: 2em 40px; /* em units scale with font size */
+    /* line-height: 1.3 !important; */
+    line-height: 1.2 !important;
+    /* line-height: 1.1 !important;   */
 }
 
 /*
  * Control font size independently on the verified body element
  */
-body.vscode-body {
-    font-size: 16px; /* Adjust as needed */
-}
+/* body.vscode-body {
+    font-size: 16px; 
+} */
 
 /*
  * Prefix headings with .markdown-body to ensure styles only apply 
  * to markdown preview, not other VSCode webviews.
  */
-.markdown-body h1 { font-size: 2.2rem; }
-.markdown-body h2 { font-size: 1.8rem; }
-.markdown-body h3 { font-size: 1.5rem; }
+/* .markdown-body h1 { font-size: 2.2rem; } */
+/* .markdown-body h2 { font-size: 1.8rem; } */
+/* .markdown-body h3 { font-size: 1.5rem; } */
+/* .markdown-body h4 { font-size: 1.2rem; } */
+.markdown-body h1 { font-size: 2.0rem; }
+.markdown-body h2 { font-size: 1.7rem; }
+.markdown-body h3 { font-size: 1.4rem; }
 .markdown-body h4 { font-size: 1.2rem; }
+
 
 /*
  * Handle wide content gracefully within the markdown container
  */
 .markdown-body table,
-.markdown-body pre,
-.markdown-body code {
+.github-markdown-body table,
+.github-markdown-content table {
     max-width: 100%;
+	font-size: 0.9rem;
     overflow-x: auto;
     word-wrap: break-word;
+    border-collapse: collapse !important;  /* Ensures no extra space between cells */
+    border-spacing: 0 !important;          /* No spacing between cells */
+}
+/* Minimal padding and line height for compact tables */
+.markdown-body table th,
+.github-markdown-body table th{
+    /* padding: 4px 8px !important;  */
+    /* padding: 2px 4px !important;  */
+    padding: 1px 3px !important; 
+    border: 1px solid #ddd;  /* Thin borders */
+    /* line-height: 1.3 !important; */
+    /* line-height: 1.2 !important; */
+    line-height: 1.1 !important;  
+    font-size: 0.9rem;  /* font size for table heading */
+}
+.markdown-body table td,
+.github-markdown-body table td {
+    /* padding: 4px 8px !important;  */
+    /* padding: 2px 4px !important;  */
+    padding: 1px 3px !important; 
+    border: 1px solid #ddd;  /* Thin borders */
+    /* line-height: 1.3 !important; */
+    /* line-height: 1.2 !important; */
+    line-height: 1.1 !important;  
+    font-size: 0.8rem;  /* Smaller font size for table data */
+}
+
+/* Code Blocks - More Specific Targeting */
+.markdown-body pre,
+.markdown-body code,
+.github-markdown-body pre,
+.github-markdown-body code,
+.github-markdown-content pre,
+.github-markdown-content code {
+    max-width: 100%;
+    font-size: 0.8rem;
+    overflow-x: auto;
+	/* white-space: nowrap; */
+    /* white-space: pre;  */ /* Preserve code formatting */
+    white-space: pre-wrap;  /* Wraps long lines but preserves whitespace */
+    /* word-wrap: normal;  */ /* Prevents breaking */
+    overflow-wrap: break-word; /* Allows breaking long words : newer CSS property, less intrusive than word-wrap */
+    /* padding: 1rem !important; */
+    /* border-radius: 0.5rem !important; */
+}
+
+/* Only for inline code, allow some breaking */
+.markdown-body :not(pre) > code,
+.github-markdown-body :not(pre) > code {
+    padding: 0.1em 0.3em !important;    /* Reduced from default 0.2em 0.4em */
+	font-size: 87% !important;         /* Adjust for better alignment with surrounding text. */
+	border-radius: 3px !important;     /* Softens the corners of the gray background. */
+    margin: 0 !important;
+    background-color: #f6f8fa; /* GitHub's light gray */
+	word-wrap: break-word;
+	white-space: normal;
 }
 
 /* Optional: Theme-aware styling based on your inspection data */
 body[data-vscode-theme-kind="vscode-dark"] .markdown-body {
     /* Dark theme customizations */
     background-color: #161b22;
+}
+body[data-vscode-theme-kind="vscode-dark"] .markdown-body :not(pre) > code,
+body[data-vscode-theme-kind="vscode-dark"] .github-markdown-body :not(pre) > code {
+    background-color: #161b22;
+    color: #f0f6fc;
 }
 
 body[data-vscode-theme-kind="vscode-light"] .markdown-body {
