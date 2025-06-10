@@ -38,11 +38,15 @@ body.vscode-body,
     max-width: none !important;
     width: 100% !important;
     box-sizing: border-box;
-    padding: 2em 40px; /* em units scale with font size */
+    /* padding: 2em 40px;  */
+    /* padding: 0.5rem 1rem !important; */  /* Minimal padding: 8px top/bottom, 16px left/right */
+    /* padding: 0.25rem 0.5rem !important; */  /* Very minimal: 4px top/bottom, 8px left/right */
+    padding: 0rem 0rem !important;
     /* line-height: 1.3 !important; */
     line-height: 1.2 !important;
     /* line-height: 1.1 !important;   */
     /* font-size: 14px;  */
+    margin: 0 !important;             /* Remove all margins */
 }
 
 
