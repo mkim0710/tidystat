@@ -62,6 +62,7 @@
 # *.[Rr][Ee][Gg] text eol=crlf diff  # if using UTF-8+BOM
 # *.[Rr][Ee][Gg] text working-tree-encoding=UTF-16 eol=crlf diff   # Git detects LE vs BE from the BOM
 *.[Rr][Ee][Gg] text working-tree-encoding=UTF-16LE-BOM eol=crlf diff
+*.[Rr][Dd][Pp] text working-tree-encoding=UTF-16LE-BOM eol=CRLF diff
 *.[Ii][Nn][Ii] text eol=crlf diff
 #==========================================#
 # *** Treat binary files correctly *** ----
