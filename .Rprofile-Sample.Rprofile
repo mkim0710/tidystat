@@ -184,6 +184,11 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
         }
         return(SourceEditorContext.path_FileNameExt)
     }
+    ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+	env1$f$setwd.as_SourceEditorContext = function() {
+        SourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)
+        setwd(dirname(SourceEditorContext.path_FileNameExt))
+    }
 	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     "ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" %>% {cat("r$> ", ., "\n", sep="")}
 	ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
