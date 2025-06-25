@@ -137,7 +137,30 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
     # env1$path$getwd |> str_replace((env1$path$path0 |> str_replace_all("([\\[\\](){}+*^$|?\\\\])", "\\\\\\1")), "") |> str_extract("[^/]+")    # str_replace_all("([\\[\\](){}+*^$|?\\\\])", "\\\\\\1")), "") - escaped regex for special characters
 # sub("/.*", "", sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd))    # gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0) - escaped regex for special characters
 # unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]    # gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0) - escaped regex for special characters
-.tmp$objectname = "path1"; .tmp$object = paste0(env1$path$path0,"/",unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
+# .tmp$objectname = "path1"; .tmp$object = paste0(env1$path$path0,"/",unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
+    .tmp$objectname = "path1"
+    .tmp$object = {                                    # self-contained assignment
+      base <- env1$path$path0          # path0 (root)
+      wd   <- env1$path$getwd          # current working dir
+      ## ── basic input validation ───────────────────────────────────────────
+      if (is.null(base) || is.null(wd) ||
+          anyNA(c(base, wd)) ||
+          !nzchar(base) || !nzchar(wd)) {
+        NA_character_
+      ## ── three clear cases ────────────────────────────────────────────────
+      } else if (fs::path_same(wd, base)) {            # 1) wd == path0
+        base
+      } else if (fs::path_has_parent(wd, base)) {      # 2) wd inside path0
+        first_level <- fs::path_split(fs::path_rel(wd, base))[[1]][1]
+        fs::path_join(c(base, first_level))
+      } else {                                         # 3) wd outside path0
+        warning(sprintf(
+          "Working directory '%s' is not inside path0 '%s'; using fallback.",
+          wd, base), call. = FALSE)
+        fs::path_join(c(base, fs::path_file(wd)))      # fallback: path0/<wd folder>
+      }
+    }
+    if (!.tmp$objectname %in% names(.GlobalEnv$env1$path)) .GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     .sublistname = "source"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
