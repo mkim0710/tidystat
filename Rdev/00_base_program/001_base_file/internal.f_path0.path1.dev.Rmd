@@ -292,25 +292,31 @@ env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(en
 # .tmp$objectname = "path1"; .tmp$object = paste0(env1$path$path0,"/",unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
     .tmp$objectname = "path1"
     .tmp$object = {                                    # self-contained assignment
-      base <- env1$path$path0          # path0 (root)
-      wd   <- env1$path$getwd          # current working dir
-      ## ── basic input validation ───────────────────────────────────────────
-      if (is.null(base) || is.null(wd) ||
-          anyNA(c(base, wd)) ||
-          !nzchar(base) || !nzchar(wd)) {
-        NA_character_
-      ## ── three clear cases ────────────────────────────────────────────────
-      } else if (fs::path_same(wd, base)) {            # 1) wd == path0
-        base
-      } else if (fs::path_has_parent(wd, base)) {      # 2) wd inside path0
-        first_level <- fs::path_split(fs::path_rel(wd, base))[[1]][1]
-        fs::path_join(c(base, first_level))
-      } else {                                         # 3) wd outside path0
-        warning(sprintf(
-          "Working directory '%s' is not inside path0 '%s'; using fallback.",
-          wd, base), call. = FALSE)
-        fs::path_join(c(base, fs::path_file(wd)))      # fallback: path0/<wd folder>
-      }
+        base <- env1$path$path0          # path0 root
+        wd   <- env1$path$getwd          # current working dir
+        ## ── input validation ────────────────────────────────────────────────
+        if (is.null(base) || is.null(wd) || anyNA(c(base, wd)) || !nzchar(base) || !nzchar(wd)) {
+            NA_character_
+        } else {
+            base_real <- fs::path_real(base)   # canonical, absolute
+            wd_real   <- fs::path_real(wd)
+            ## ── branch 1: wd == path0 ─────────────────────────────────────────
+            if (wd_real == base_real) {
+                base_real
+                ## ── branch 2: wd is inside path0 ─────────────────────────────────
+            } else if (fs::path_has_parent(wd_real, base_real)) {
+                first_level <- fs::path_split(
+                    fs::path_rel(wd_real, start = base_real)
+                )[[1]][1]
+                fs::path_join(c(base_real, first_level))
+                ## ── branch 3: wd outside path0  (fallback) ───────────────────────
+            } else {
+                # warning(sprintf("Working directory '%s' is not inside path0 '%s'; using fallback strategy.", wd, base), call. = FALSE)
+                # fs::path_join(c(base_real, fs::path_file(wd_real)))  # path0/<wd folder>
+                warning(sprintf("Working directory '%s' is not inside path0 '%s'.", wd, base), call. = FALSE)
+                NA_character_
+            }
+        }
     }
     if (!.tmp$objectname %in% names(.GlobalEnv$env1$path)) .GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object
 env1$path$path1
