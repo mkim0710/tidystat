@@ -127,7 +127,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     cat("Loading time for .Rprofile: ", difftime(Sys.time(), .t0, units = "secs"), " secs \n", sep="")
     cat("Loaded without error: ", .GlobalEnv$env1$source$.Rprofile, "  \n",
         '    Sys.getlocale() == "', Sys.getlocale(), '"  \n',
-        "    Today is: ", date(), "  \n", sep="")
+        "    Timestamp: ", date(), "  \n", sep="")
     
     attach(env1$f)
     # attach(env1$env.internal)

@@ -185,7 +185,7 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
     cat("Loading time for .Rprofile: ", difftime(Sys.time(), .t0, units = "secs"), " secs \n", sep="")
     cat("Loaded without error: ", .GlobalEnv$env1$info$.Rprofile, "  \n",
         '    Sys.getlocale() == "', Sys.getlocale(), '"  \n',
-        "    Today is: ", date(), "  \n", sep="")
+        "    Timestamp: ", date(), "  \n", sep="")
 }  
 
 ##________________________________________________________________________________  
