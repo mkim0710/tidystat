@@ -226,10 +226,12 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
         # \% Update the .Rprofile  @ User Folder ~~~~~~~~~~~~
         for (.FileNameExt in c(".Rprofile-NoDependency.Rprofile")) {
             .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.FileNameExt)
-    		.file.copy.to = file.path("~",".Rprofile")|>normalizePath(winslash="/",mustWork=FALSE)
-    		if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
-    			UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
-    		}
+    		vec.file.copy.to = file.path("~",".Rprofile")|>normalizePath(winslash="/",mustWork=FALSE)
+            for (.file.copy.to in vec.file.copy.to) {
+                if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.FileNameExt)) {
+                    UPDATED = env1$env.internal.attach$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to, VERBOSE = VERBOSE, EXECUTE = EXECUTE)
+                }
+            }
         }
         
         # \% Update the f.updateTemplates.exe.r, f.update_rstudio_prefs-dev.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
