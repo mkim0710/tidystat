@@ -106,6 +106,17 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
 		if(execute.Rprofile) .First()
 	}
 	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+    "ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> cat("\n", sep="")
+	ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    ".tmp |> str(max.level = 1, give.attr = FALSE)" |> cat("\n", sep="")
+	.tmp |> str(max.level = 1, give.attr = FALSE)
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    # "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> cat("\n", sep="")
+	# env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)
+    "env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)" |> cat("\n", sep="")
+	env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     cat("##________________________________________________________________________________", "  \n", sep="")
     cat("Loading time for .Rprofile: ", difftime(Sys.time(), .t0, units = "secs"), " secs \n", sep="")
     cat("Loaded without error: ", .GlobalEnv$env1$source$.Rprofile, "  \n",
