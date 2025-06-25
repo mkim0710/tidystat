@@ -163,6 +163,14 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
 		if(execute.Rprofile) .First()
 	}
 	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+	env1$f$getSourceEditorContext.path_FileNameExt = function(relative_path = FALSE) {
+        SourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)
+        if(relative_path) {
+            SourceEditorContext.path_FileNameExt = SourceEditorContext.path_FileNameExt |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/",mustWork=NA)), "") |> str_replace("^/", "")
+        }
+        return(SourceEditorContext.path_FileNameExt)
+    }
+	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     #### \$f\$f.updateTemplates ====  
     env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL, TestMode = TRUE, VERBOSE = getOption("verbose"), EXECUTE = TRUE) {
         # https://github.com/mkim0710/tidystat/blob/master/R/fChr-fFilePath.update-source.R
