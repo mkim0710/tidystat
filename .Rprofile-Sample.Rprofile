@@ -134,15 +134,15 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
 		if(execute.Rprofile) .First()
 	}
 	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-    "ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> cat("\n", sep="")
+    "ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" %>% {cat("r$> ", ., "\n", sep="")}
 	ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    ".tmp |> str(max.level = 1, give.attr = FALSE)" |> cat("\n", sep="")
+    ".tmp |> str(max.level = 1, give.attr = FALSE)" %>% {cat("r$> ", ., "\n", sep="")}
 	.tmp |> str(max.level = 1, give.attr = FALSE)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    # "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> cat("\n", sep="")
+    # "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" %>% {cat("r$> ", ., "\n", sep="")}
 	# env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)
-    "env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)" |> cat("\n", sep="")
+    "env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)" %>% {cat("r$> ", ., "\n", sep="")}
 	env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     cat("##________________________________________________________________________________", "  \n", sep="")
