@@ -1043,6 +1043,7 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function() {
     SourceEditorContext.path_FileNameExt = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/",mustWork=NA)
     setwd(dirname(SourceEditorContext.path_FileNameExt))
+    cat("Working directory set to:", getwd(), "\n")
 }
 
 ##________________________________________________________________________________  
