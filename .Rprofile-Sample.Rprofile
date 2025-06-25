@@ -129,7 +129,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     }  
     attributes(.GlobalEnv$env1$source$.Rprofile)$complete = FALSE
 	##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-	env1$env.internal.attach$tidystat.Rprofile = env1$env.internal.attach$.Rprofile.tidystat = function(execute.Rprofile = TRUE) {
+	env1$f$tidystat.Rprofile = env1$env.internal.attach$.Rprofile.tidystat = function(execute.Rprofile = TRUE) {
 		source("https://raw.githubusercontent.com/mkim0710/tidystat/refs/heads/master/.Rprofile")
 		if(execute.Rprofile) .First()
 	}
