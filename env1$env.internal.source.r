@@ -1505,42 +1505,79 @@ env1$env.internal.attach$f_env1_subenv_objectname.set_ALIAS(subenv_name4object =
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path0.list_path_hierarchy =  ----  
+#' Build a list of cumulative child paths (fs backend)
+#'
+#' Returns *path1*, *path2*, … (the descendants of `path0`) up to `path_last`.
+#' When `path_last` is **not** under `path0`, a list of `NA_character_`
+#' of length `.max_hierarchy` is returned.
+#'
+#' @param path0          Root directory (e.g. "D:/repo").
+#' @param path_last      Deepest directory (default `getwd()`).
+#' @param .max_hierarchy Positive integer — length of the returned list.
+#' @param check_exists   `TRUE` = abort if either path is missing;
+#'                       `FALSE` = allow not-yet-created dirs.
+#' @param VERBOSE        Show diagnostics (default follows
+#'                       `getOption("verbose")`).
+#' @return **list** of character paths (length `.max_hierarchy`,
+#'         padded with `NA_character_` when needed).
+#' @export
 # Rdev/00_base_program/internal.f_path0.list_path_hierarchy.source.r
 .tmp$env1_subenv_name = "env.internal.attach"
 .tmp$objectname = "f_path0.list_path_hierarchy"
-env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = isTRUE(getOption("verbose"))) {
-    # Initialize a list to hold the path hierarchy
-    list_path = list()
-    
-    # Initialize a variable to keep track of the previous directory
-    prev_dir <- ""
-    
-    # Loop to dynamically check the relationship between path_last and path0
-    while (TRUE) {
-        list_path <- c(list(path_last), list_path)  # Prepend the current path to the hierarchy
-        if (VERBOSE) {
-            cat("> # Current path: ", path_last, "\n")
-            # cat("Current list_path: ", toString(list_path), "\n\n")
-            cat("> str(list_path)\n"); str(list_path)
-        }
-        
-        # Check if we have reached path0 or if path_last does not change (indicating the root directory)
-        if (path_last == path0 || path_last == prev_dir) {
-            break
-        }
-
-        # Update prev_dir to the current directory before changing path_last
-        prev_dir <- path_last
-        path_last <- dirname(path_last)  # Update path_last to its parent directory
-    }
-    
-    # Ensure the list is of length .max_hierarchy, filling excess with NA
-    list_path_hierarchy <- list_path[seq_len(min(.max_hierarchy+1, length(list_path)))]
-    if (length(list_path_hierarchy) < .max_hierarchy+1) {
-        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, .max_hierarchy+1 - length(list_path_hierarchy)))
-    }
-    
-    return(list_path_hierarchy)
+env1[[.tmp$env1_subenv_name]][[.tmp$objectname]] = function(path0 = env1$path$path0,
+                                           path_last      = getwd(),
+                                           .max_hierarchy = 5,
+                                           check_exists   = TRUE,
+                                           VERBOSE        = isTRUE(getOption("verbose")))
+{
+  ## ---- 1  argument sanity --------------------------------------------------
+  onestr <- function(x, nm)
+    if (!is.character(x) || length(x) != 1L || is.na(x))
+      stop(sprintf("`%s` must be one non-NA character string.", nm), call. = FALSE)
+  onestr(path0,     "path0")
+  onestr(path_last, "path_last")
+  if (!is.numeric(.max_hierarchy) || .max_hierarchy < 1)
+    stop("`.max_hierarchy` must be a positive integer.", call. = FALSE)
+  if (!is.logical(check_exists) || length(check_exists) != 1L || is.na(check_exists))
+    stop("`check_exists` must be a single logical flag.", call. = FALSE)
+  ## ---- 2  canonicalise with fs --------------------------------------------
+  canon <- function(p) {
+    p <- fs::path_abs(p)                       # resolves '..' and symlinks
+    if (check_exists && !fs::dir_exists(p))
+      stop("Directory does not exist: ", p, call. = FALSE)
+    fs::path_norm(p)                           # unifies separators to "/"
+  }
+  path0     <- canon(path0)
+  path_last <- canon(path_last)
+  ## ---- 3  descendant check -------------------------------------------------
+  if (!fs::path_has_parent(path_last, path0) && path_last != path0) {
+    if (VERBOSE)
+      message("[f_path0.list_path_hierarchy] `path_last` outside `path0`; returning NA list")
+    return(rep(list(NA_character_), .max_hierarchy))
+  }
+  ## ---- 4  relative components ---------------------------------------------
+  rel    <- fs::path_rel(path_last, start = path0)      # "." if identical
+  pieces <- if (rel == ".") character(0) else fs::path_split(rel)[[1]]
+  ## ---- 5  build cumulative paths (purrr + fs::path) -----------------------
+  requireNamespace("purrr", quietly = TRUE)
+  paths <- if (length(pieces))
+             purrr::accumulate(pieces, ~ fs::path(.x, .y),
+                               .init = path0)[-1]        # drop path0
+           else character(0)
+  ## ---- 6  pad / truncate & coerce to plain character ----------------------
+  paths_chr <- as.character(paths)                       # <- borrowed idea
+  out <- as.list(
+           head(c(paths_chr, rep(NA_character_, .max_hierarchy)),
+                .max_hierarchy))
+  ## ---- 7  optional verbose -------------------------------------------------
+  if (VERBOSE) {
+    cat("> path0      :", path0, "\n")
+    cat("> path_last  :", path_last, "\n")
+    cat("> components :", toString(pieces), "\n")
+    cat("> result (n=", length(out), ")\n", sep = "")
+    str(out)
+  }
+  return(out)
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec_path.vec_FileName_sans_ext_extended =  ----  
