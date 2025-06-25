@@ -5,12 +5,6 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# # https://mran.microsoft.com/faq#change-repos
-# options(repos = c(CRAN = "https://mran.revolutionanalytics.com/snapshot/2021-03-31"))
-# # https://cran.r-project.org/bin/windows/base/old/
-# # R version 4.0.5 (Shake and Throw) was released on 2021-03-31.  
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile  
 # file.edit(file.path("~", ".Rprofile")) # edit .Rprofile in HOME  
 # file.edit(".Rprofile") # edit project specific .Rprofile   
