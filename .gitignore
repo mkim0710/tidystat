@@ -178,7 +178,9 @@ cache/
 
 # Media files
 *.[Ww][Aa][Vv]
+*.[Ww][Mm][Vv]
 *.[Mm][Pp][34]
+*.[Mm]4[Aa]
 
 # lock files & sync database files
 sync.ffs_lock
