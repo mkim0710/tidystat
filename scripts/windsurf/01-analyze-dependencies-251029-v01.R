@@ -1,10 +1,13 @@
 #!/usr/bin/env Rscript
-# Model: GPT-4; Details: temperature=0.7, max_tokens=2000; Timestamp: 2025-10-29 20:50 KST; Source: Windsurf
+# Model: Cascade (SWE-1); Details: temperature=0.7, max_tokens=2000; Timestamp: 2025-10-29 20:50 KST; Source: Windsurf
 # Prompt: Create a script to analyze R file dependencies and generate DEPENDENCIES.md
 # Step: 01
 # Version: v01
 # Dependencies: stringr, dplyr, purrr, tidyr, igraph
 # Produces: docs/DEPENDENCIES.md
+# Previous: N/A (Initial version)
+# History: N/A (Initial version)
+# Changes: Initial creation of dependency analysis script
 
 # Load required packages
 suppressPackageStartupMessages({
@@ -44,9 +47,9 @@ extract_deps <- function(file_path) {
   # Patterns to match different types of dependencies
   patterns <- c(
     # source() calls
-    'source\s*\\([^)]*["\']([^"\']+\\.R)["\'][^)]*\\)',
+    'source\\s*\\([^)]*["\']([^"\']+\\.R)["\'][^)]*\\)',
     # library() calls
-    'library\s*\\(\s*["\']?([a-zA-Z0-9.]+)["\']?\s*\\)',
+    'library\\s*\\(\\s*["\']?([a-zA-Z0-9.]+)["\']?\\s*\\)',
     # import::from() calls
     'import::?from\\s*\\([^)]*["\']([^"\']+)["\']'
   )
