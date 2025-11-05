@@ -64,6 +64,7 @@
 *.[Rr][Ee][Gg] text working-tree-encoding=UTF-16LE-BOM eol=crlf diff
 *.[Rr][Dd][Pp] text working-tree-encoding=UTF-16LE-BOM eol=CRLF diff
 *.[Ii][Nn][Ii] text eol=crlf diff
+*.qdr text eol=crlf diff
 #==========================================#
 # *** Treat binary files correctly *** ----
 # Image files ----
