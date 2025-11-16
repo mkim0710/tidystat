@@ -113,6 +113,8 @@ cache/
 # Document files
 *.[Pp][Pp][Tt]
 *.[Pp][Pp][Tt][XxMm]
+*.[Pp][Oo][Tt][XxMm]
+*.[Tt][Hh][Mm][Xx]
 # *.xls *.xlsx # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
 *.[Xx][Ll][Ss]
 *.[Xx][Ll][Ss][XxMm]
@@ -122,6 +124,7 @@ cache/
 *.[Hh][Ww][Pp]
 *.[Hh][Ww][Pp][Xx]
 *.[Pp][Dd][Ff]
+*.[Ff][Pp]
 *.[Nn][Bb].[Hh][Tt][Mm][Ll]
 *.[Hh][Tt][Mm][Ll]
 *_[Ff][Ii][Ll][Ee][Ss]/
