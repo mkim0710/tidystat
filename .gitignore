@@ -74,6 +74,11 @@ cache/
 *.utf8.md
 *.knit.md
 
+# Python bytecode caches
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Ignore MacOS system files
 .DS_Store
 
