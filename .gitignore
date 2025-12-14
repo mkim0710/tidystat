@@ -169,6 +169,7 @@ __pycache__/
 *.[Ee][Xx][Ee]
 *.[Dd][Ll][Ll]
 *.[Bb][Ii][Nn]
+*.winmd
 # *.[Rr][Ee][Gg]
 *.[Mm][Ss][Ii]
 *.[Jj][Aa][Rr]
