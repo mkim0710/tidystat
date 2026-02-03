@@ -139,6 +139,10 @@ https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_expo
 https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.glm_object.summary.exp()%20-debug%20180806.r
 https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/55_model_weighted/function.svyglm.MainModel.byEffectModifier.dev.r
 
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.GT1.flextable.dev.Rmd
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.GT2_uvregression.flextable.dev.Rmd
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.GT2_3vregression.flextable-dev-Cl.r
+
 Please explain how I may modify them to look like the code I shared (using tbl_uvregression).
 
 ## Clarifications Q & As
@@ -154,3 +158,7 @@ Should Excel export preserve flextable formatting (e.g., via flextable::save_as_
 
 ### Statistical Models: 
 Should the refactored logic automatically detect model family (e.g., logistic, linear, Cox) based on outcome, or do you prefer passing the method explicitly? need both automation & explicit assignment
+
+### Which table types are you most interested in? (e.g., descriptive/summary tables like tbl_summary(), regression output tables like tbl_regression(), survival analysis tables like tbl_survfit(), or the cross-tabulation features?) -> all
+
+### Are there specific architectural patterns you want me to focus on? (e.g., the theming/styling system, the internal data structure for table representation, the modifier/piping workflow like add_p() / add_overall(), or the gt/flextable backend integration?) -> all
