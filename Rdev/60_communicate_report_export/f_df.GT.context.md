@@ -6,6 +6,55 @@ I like the features in the gtsummary library, but the library seems to often upd
 I still want tidyverse, flextable, and officer, because I want the final output to be in both word & excel, which will be finally formatted as scientific journal manuscript. 
 
 ___
+## I want to refactor the following code to reduce the dependency on the gtsummary library.
+If dependency on the gtsummary remains, I need the function to be compatible with gtsummary version 2.2.0 or above. Note that the functions in gtsummary might not be backward compatible. 
+I still want tidyverse, flextable, and officer, because I want the final output to be in both word & excel, which will be finally formatted as scientific journal manuscript.
+I need to reduce the dependency on the env1 object (https://raw.githubusercontent.com/mkim0710/tidystat/refs/heads/master/env1%24env.internal.source.r) as well.
+
+```r
+byVar = "A01_BMI_ge250"
+.Regex4proxies.byVar = byVar %>% str_extract("^[A-Za-z0-9]+_[A-Za-z0-9]+")
+DS4uvregression = DS.DNR %>%
+select(matches("^A0[0-1]"), all_of(byVar)) %>%
+select(-matches(.Regex4proxies.byVar), all_of(byVar)) %>%
+# mutate_if(is.factor, droplevels) %>%
+# select_if(function(x) !is.factor(x) || is.factor(x) && length(levels(x)) = 2) %>%
+select_if(function(x) !is.factor(x)) %>%
+select_if(function(x) !all(is.na(x))) %>%
+select_if(function(vec) !is.Date(vec))
+env1$env.internal.attach$Sys.time.set_t0()
+GT2_uvregression = DS4uvregression %>%
+mutate_if(is.factor, droplevels) %>%
+select_if(function(x) !all(is.na(x))) %>%
+select_if(function(vec) !is.Date(vec)) %>%
+select_if(function(vec) n_distinct(vec[!is.na(vec)]) > 1) %>%
+tbl_uvregression(
+method = glm,
+method.arg = list(family = binomial),
+y = !!rlang::sym(byVar),
+exponentiate = TRUE
+) %>%
+add_global_p(keep = TRUE) %>%
+# add_n(location = "both") %>%
+# add_nevent(location = "both") |>
+add_n(location = "level") %>%
+add_nevent(location = "level") |>
+# modify_header(all_stat_cols() ~ "**{level}**  nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
+modify_header(p.value ~ "***p***") |>
+# modify_spanning_header(all_stat_cols() ~ "summary") |>
+bold_p(t = 0.10) |>
+bold_labels() |>
+italicize_levels() |>
+env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
+env1$env.internal.attach$Sys.time.from_t0()  # Time difference of 4.008291 mins → Time difference of 31.2056 secs @ select_if(function(x) !is.factor(x))
+
+GT2_uvregression %>% show_header_names
+GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+GT2_uvregression |>
+print() |> invisible()
+```
+
+___
 ## I want to make a manuscript like the one generated from the code I shared (using tbl_uvregression).
 See the following code, which were my previous code for manuscirpt table generation.
 
@@ -107,51 +156,4 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 #  $ nMetS_NoMeds_WAIST_ge9085.ge3: logi [1:2837] TRUE FALSE TRUE TRUE FALSE FALSE ...
 ```
 
-___
-## I want to refactor the following code to reduce the dependency on the gtsummary library.
-If dependency on the gtsummary remains, I need the function to be compatible with gtsummary version 2.2.0 or above. Note that the functions in gtsummary might not be backward compatible. 
-I still want tidyverse, flextable, and officer, because I want the final output to be in both word & excel, which will be finally formatted as scientific journal manuscript.
-I need to reduce the dependency on the env1 object (https://raw.githubusercontent.com/mkim0710/tidystat/refs/heads/master/env1%24env.internal.source.r) as well.
 
-```r
-byVar = "A01_BMI_ge250"
-.Regex4proxies.byVar = byVar %>% str_extract("^[A-Za-z0-9]+_[A-Za-z0-9]+")
-DS4uvregression = DS.DNR %>%
-select(matches("^A0[0-1]"), all_of(byVar)) %>%
-select(-matches(.Regex4proxies.byVar), all_of(byVar)) %>%
-# mutate_if(is.factor, droplevels) %>%
-# select_if(function(x) !is.factor(x) || is.factor(x) && length(levels(x)) = 2) %>%
-select_if(function(x) !is.factor(x)) %>%
-select_if(function(x) !all(is.na(x))) %>%
-select_if(function(vec) !is.Date(vec))
-env1$env.internal.attach$Sys.time.set_t0()
-GT2_uvregression = DS4uvregression %>%
-mutate_if(is.factor, droplevels) %>%
-select_if(function(x) !all(is.na(x))) %>%
-select_if(function(vec) !is.Date(vec)) %>%
-select_if(function(vec) n_distinct(vec[!is.na(vec)]) > 1) %>%
-tbl_uvregression(
-method = glm,
-method.arg = list(family = binomial),
-y = !!rlang::sym(byVar),
-exponentiate = TRUE
-) %>%
-add_global_p(keep = TRUE) %>%
-# add_n(location = "both") %>%
-# add_nevent(location = "both") |>
-add_n(location = "level") %>%
-add_nevent(location = "level") |>
-# modify_header(all_stat_cols() ~ "**{level}**  nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
-modify_header(p.value ~ "***p***") |>
-# modify_spanning_header(all_stat_cols() ~ "summary") |>
-bold_p(t = 0.10) |>
-bold_labels() |>
-italicize_levels() |>
-env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
-env1$env.internal.attach$Sys.time.from_t0()  # Time difference of 4.008291 mins → Time difference of 31.2056 secs @ select_if(function(x) !is.factor(x))
-
-GT2_uvregression %>% show_header_names
-GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-GT2_uvregression |>
-print() |> invisible()
-```
