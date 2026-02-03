@@ -74,7 +74,7 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 
 ## Dependency Scope: When you say "reduce the dependency," do you mean:
 Reduce nested/chained operations (e.g., multiple select_if() calls)? I prefer tidyverse 
-Minimize reliance on external functions or packages? yes, except tidyverse. if possible, I want to be free of gtsummary library as well. 
+Minimize reliance on external functions or packages? yes, except tidyverse, flextable, and officer. if possible, I want to be free of gtsummary library as well. 
 Simplify the logic to make it more readable and maintainable? yes
 
 ## Regex Pattern: The pattern "^\\\\[A-Za-z0-9]+\\\\_\\\\[A-Za-z0-9]+" appears malformed (mismatched brackets). Should this be "^[A-Za-z0-9]+_[A-Za-z0-9]+" (matching columns like "A01_BMI")?
