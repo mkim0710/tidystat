@@ -1,6 +1,7 @@
-# Clarifications Q & As
+## Clarifications Q & As
 
-## Data Context: What is the structure of DS.DNR? Is it a data frame with primarily numeric and factor columns? Are there specific data types or patterns I should be aware of?
+### Data Context: 
+What is the structure of DS.DNR? Is it a data frame with primarily numeric and factor columns? Are there specific data types or patterns I should be aware of?
 See below:
 ```r
 CohortGJ0910.BaselineJKGJ2085NoHx...01 <- readRDS("data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds")
@@ -71,29 +72,3 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 #  $ nMetS_NoMeds_WAIST_ge9085.ge3: logi [1:2837] TRUE FALSE TRUE TRUE FALSE FALSE ...
 
 ```
-
-## Dependency Scope: When you say "reduce the dependency," do you mean:
-Reduce nested/chained operations (e.g., multiple select_if() calls)? I prefer tidyverse 
-Minimize reliance on external functions or packages? yes, except tidyverse, flextable, and officer. if possible, I want to be free of gtsummary library as well. 
-Simplify the logic to make it more readable and maintainable? yes
-
-## Regex Pattern: The pattern "^\\\\[A-Za-z0-9]+\\\\_\\\\[A-Za-z0-9]+" appears malformed (mismatched brackets). Should this be "^[A-Za-z0-9]+_[A-Za-z0-9]+" (matching columns like "A01_BMI")?
-Yes, '\\\\' would be there for escaping.
-
-## Package Version: Are you using gtsummary (for tbl_uvregression) with a specific version? This will help me suggest compatible syntax.
-gtsummary version 2.2.0 or above
-
-## Output Requirements: Beyond the univariate regression table, are there specific output formats or additional metrics you need preserved?
-I want the final output to be in both word & excel, which will be finally formatted as scientific journal manuscript.
-
-## Environment Object: The code references env1$... extensively. Is this a custom environment object you've created, or should the refactored code eliminate this dependency? 
-See: https://raw.githubusercontent.com/mkim0710/tidystat/refs/heads/master/env1%24env.internal.source.r
-
-## Table Structure: Do your manuscript tables usually present all predictors together in a single panel (i.e., one large table), or do you prefer to group them by domain (e.g., demographics, clinical labs, etc.)? prefer to group them by domain 
-
-## Three-variable Tables: For the GT2_3vregression scripts, are the three variables always fixed, or should the refactored function accept an arbitrary list of 1–3 predictors to include side-by-side? main exposure & age & sex
-
-## Excel Export: Should Excel export preserve flextable formatting (e.g., via flextable::save_as_excel() or officer::print()) or is a raw data export sufficient (via writexl::write_xlsx() or similar)? I prefer flextable & officer because I need to write word & excel files.
-
-## Statistical Models: Should the refactored logic automatically detect model family (e.g., logistic, linear, Cox) based on outcome, or do you prefer passing the method explicitly? need both automation & explicit assignment
-
