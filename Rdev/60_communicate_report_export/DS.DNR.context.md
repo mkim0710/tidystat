@@ -88,3 +88,12 @@ I want the final output to be in both word & excel, which will be finally format
 
 ## Environment Object: The code references env1$... extensively. Is this a custom environment object you've created, or should the refactored code eliminate this dependency? 
 See: https://raw.githubusercontent.com/mkim0710/tidystat/refs/heads/master/env1%24env.internal.source.r
+
+## Table Structure: Do your manuscript tables usually present all predictors together in a single panel (i.e., one large table), or do you prefer to group them by domain (e.g., demographics, clinical labs, etc.)? prefer to group them by domain 
+
+## Three-variable Tables: For the GT2_3vregression scripts, are the three variables always fixed, or should the refactored function accept an arbitrary list of 1–3 predictors to include side-by-side? main exposure & age & sex
+
+## Excel Export: Should Excel export preserve flextable formatting (e.g., via flextable::save_as_excel() or officer::print()) or is a raw data export sufficient (via writexl::write_xlsx() or similar)? I prefer flextable & officer because I need to write word & excel files.
+
+## Statistical Models: Should the refactored logic automatically detect model family (e.g., logistic, linear, Cox) based on outcome, or do you prefer passing the method explicitly? need both automation & explicit assignment
+
