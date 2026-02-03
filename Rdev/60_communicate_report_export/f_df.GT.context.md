@@ -2,7 +2,8 @@ analyze the following github repo:
 https://github.com/ddsjoberg/gtsummary
 analyze the functionality and the program logics - I want to eventually adopt some features in the repo into my custom functions for data table/report generation.
 
-I want to reduce the dependency on the gtsummary library because the functions in gtsummary seems not to be backward compatible. I still want tidyverse, flextable, and officer, because I want the final output to be in both word & excel, which will be finally formatted as scientific journal manuscript. 
+I like the features in the gtsummary library, but the library seems to often update without backward compatibility. Therefore, I want to reduce the dependency on the gtsummary library. 
+I still want tidyverse, flextable, and officer, because I want the final output to be in both word & excel, which will be finally formatted as scientific journal manuscript. 
 
 ___
 ## I want to make a manuscript like the one generated from the code I shared (using tbl_uvregression).
