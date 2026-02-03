@@ -53,37 +53,6 @@ GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate
 GT2_uvregression |>
 print() |> invisible()
 ```
-
-___
-## I want to make a manuscript like the one generated from the code I shared (using tbl_uvregression).
-See the following code, which were my previous code for manuscirpt table generation.
-
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.summary_byExposure.dev.Rmd
-https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/f_df.PersonTime.dev.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.HazardRatios.spread.dev.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.ggplot.ORCI.dev.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.tbl_varname_level_ORCI.source.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.tbl_varname_level_HRCI.dev.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.lm_object.summary.coefCI.dev.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.glm_object.summary.exp()%20-debug%20180806.r
-https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/55_model_weighted/function.svyglm.MainModel.byEffectModifier.dev.r
-
-Please explain how I may modify them to look like the code I shared (using tbl_uvregression).
-
-## Clarifications Q & As
-
-### Table Structure: 
-Do your manuscript tables usually present all predictors together in a single panel (i.e., one large table), or do you prefer to group them by domain (e.g., demographics, clinical labs, etc.)? prefer to group them by domain 
-
-### Three-variable Tables: 
-For the GT2_3vregression scripts, are the three variables always fixed, or should the refactored function accept an arbitrary list of 1–3 predictors to include side-by-side? main exposure & age & sex
-
-### Excel Export: 
-Should Excel export preserve flextable formatting (e.g., via flextable::save_as_excel() or officer::print()) or is a raw data export sufficient (via writexl::write_xlsx() or similar)? I prefer flextable & officer because I need to write word & excel files.
-
-### Statistical Models: 
-Should the refactored logic automatically detect model family (e.g., logistic, linear, Cox) based on outcome, or do you prefer passing the method explicitly? need both automation & explicit assignment
-
 ### Data Context: 
 What is the structure of DS.DNR? Is it a data frame with primarily numeric and factor columns? Are there specific data types or patterns I should be aware of?
 See below:
@@ -156,4 +125,32 @@ DS.DNR |> str(max.level = 2, give.attr = TRUE)
 #  $ nMetS_NoMeds_WAIST_ge9085.ge3: logi [1:2837] TRUE FALSE TRUE TRUE FALSE FALSE ...
 ```
 
+___
+## I want to make a manuscript like the one generated from the code I shared (using tbl_uvregression).
+See the following code, which were my previous code for manuscirpt table generation.
 
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.summary_byExposure.dev.Rmd
+https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/f_df.PersonTime.dev.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.HazardRatios.spread.dev.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.ggplot.ORCI.dev.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.tbl_varname_level_ORCI.source.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.tbl_varname_level_HRCI.dev.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.lm_object.summary.coefCI.dev.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.glm_object.summary.exp()%20-debug%20180806.r
+https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/55_model_weighted/function.svyglm.MainModel.byEffectModifier.dev.r
+
+Please explain how I may modify them to look like the code I shared (using tbl_uvregression).
+
+## Clarifications Q & As
+
+### Table Structure: 
+Do your manuscript tables usually present all predictors together in a single panel (i.e., one large table), or do you prefer to group them by domain (e.g., demographics, clinical labs, etc.)? prefer to group them by domain 
+
+### Three-variable Tables: 
+For the GT2_3vregression scripts, are the three variables always fixed, or should the refactored function accept an arbitrary list of 1–3 predictors to include side-by-side? main exposure & age & sex
+
+### Excel Export: 
+Should Excel export preserve flextable formatting (e.g., via flextable::save_as_excel() or officer::print()) or is a raw data export sufficient (via writexl::write_xlsx() or similar)? I prefer flextable & officer because I need to write word & excel files.
+
+### Statistical Models: 
+Should the refactored logic automatically detect model family (e.g., logistic, linear, Cox) based on outcome, or do you prefer passing the method explicitly? need both automation & explicit assignment
