@@ -844,7 +844,7 @@ DS = DS.DNR %>%
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-env1$env.internal.attach$Sys.time.set_t0()
+.t0 = Sys.time()
 GT1 = DS %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -868,7 +868,7 @@ GT1 = DS %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-env1$env.internal.attach$Sys.time.from_t0()
+.t1 = Sys.time(); cat(".t1 - .t0 == ", deparse(.t1 - .t0), "  \n", sep="")
 GT1 %>% show_header_names
 GT1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
 GT1 |>
@@ -887,7 +887,7 @@ DS = DS.DNR %>%
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-env1$env.internal.attach$Sys.time.set_t0()
+.t0 = Sys.time()
 GT1 = DS %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -911,7 +911,7 @@ GT1 = DS %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-env1$env.internal.attach$Sys.time.from_t0()
+.t1 = Sys.time(); cat(".t1 - .t0 == ", deparse(.t1 - .t0), "  \n", sep="")
 GT1 %>% show_header_names
 GT1$table_body %>% select(starts_with("variable"), label, starts_with("stat"), starts_with("SMD"), starts_with("test_result") , starts_with("statistic"), starts_with("parameter") , p.value) |> print(n=99)
 GT1 |>

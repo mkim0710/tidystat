@@ -693,7 +693,7 @@ DS4uvregression = DS.DNR %>%
     select_if(function(x) !is.factor(x)) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-env1$env.internal.attach$Sys.time.set_t0()
+.t0 = Sys.time()
 GT2_uvregression = DS4uvregression %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) !all(is.na(x))) %>% 
@@ -717,7 +717,7 @@ GT2_uvregression = DS4uvregression %>%
     bold_labels() |>
     italicize_levels() |>
     env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary()
-env1$env.internal.attach$Sys.time.from_t0()  # Time difference of 4.008291 mins → Time difference of 31.2056 secs @ select_if(function(x) !is.factor(x)) 
+.t1 = Sys.time(); cat(".t1 - .t0 == ", deparse(.t1 - .t0), "  \n", sep="")  # Time difference of 4.008291 mins → Time difference of 31.2056 secs @ select_if(function(x) !is.factor(x)) 
 
 GT2_uvregression %>% show_header_names
 GT2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
