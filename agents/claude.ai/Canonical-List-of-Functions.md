@@ -1,6 +1,6 @@
 # Canonical List of Functions - tidystat
 
-This document provides a comprehensive catalog of all functions defined in the tidystat R package, organized by category.
+This document provides a comprehensive catalog of all functions defined in the tidystat collection of R utility functions organized via the `env1` environment, grouped by category.
 
 ## Function Catalog
 
