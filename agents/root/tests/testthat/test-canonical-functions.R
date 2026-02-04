@@ -1,107 +1,52 @@
 testthat::test_that("canonical functions are defined in R sources", {
+  # Read the canonical function catalog
+  catalog_path <- "agents/root/canonical-list-of-functions.md"
+  catalog_lines <- readLines(catalog_path, warn = FALSE)
+  
+  # Extract function names from markdown table (column 3)
+  # Skip header and separator rows, then parse table rows
+  table_start <- which(grepl("^\\| Category \\|", catalog_lines))[1]
+  if (is.na(table_start)) {
+    stop("Could not find table header in canonical-list-of-functions.md")
+  }
+  
+  # Get all rows after the separator line
+  table_rows <- catalog_lines[(table_start + 2):length(catalog_lines)]
+  # Filter to rows that look like table rows (start with |)
+  table_rows <- table_rows[grepl("^\\|", table_rows)]
+  
+  # Extract function name from third column
+  function_names <- character(0)
+  for (row in table_rows) {
+    # Split by | and trim whitespace
+    cols <- trimws(strsplit(row, "\\|")[[1]])
+    # Remove empty first/last elements from leading/trailing pipes
+    cols <- cols[nchar(cols) > 0]
+    if (length(cols) >= 3) {
+      function_names <- c(function_names, cols[3])
+    }
+  }
+  
+  # Remove duplicates and ensure we found some functions
+  function_names <- unique(function_names)
+  testthat::expect_true(length(function_names) > 0, 
+                       info = "No function names extracted from catalog")
+  
+  # Read all R source files
   r_sources <- list.files("R", pattern = "\\.R$", full.names = TRUE)
-  source_text <- paste(vapply(r_sources, function(path) paste(readLines(path, warn = FALSE), collapse = "\n"), character(1)), collapse = "\n")
-  function_names <- c(
-    'dir.create.outputDirPath',
-    'template.yymmddThhmm',
-    'outputFilenamePrefix',
-    'outputFilenamePath',
-    'write_rds.ECHO.CodeText',
-    'fDf.write_xlsx_to_onedrive',
-    'fDf.write_csv_UTF8BOM_to_onedrive',
-    'f.generateText4TimeStamp.yymmddThhmm',
-    'f.generateText4TimeStamp.yymmddThh',
-    'f.generateText4TimeStamp.yymmdd',
-    'f.generateText4FileNameBase',
-    'CodeSnippet.END',
-    'CodeTemplate.env1.env.internal.attach',
-    'CodeTemplate.env1.env.internal.attach.ALIAS',
-    'MH_shortcuts',
-    'openWorkingFilesList',
-    'showSymbolPaths',
-    'showProjectPathFiles',
-    'showProjectPathsRecursively',
-    'showProjectPathsAtTidyStat',
-    'showCodeText2open.FileName.source.r',
-    'showCodeText2openSourceInGitHub',
-    'showCodeText2revert2LastCommit',
-    'showCodeText2restartSession.pending',
-    'fDf.fiter_different_rows',
-    'fDf.checkConstancyAcrossVars',
-    'fDf.checkConstancyAcrossVars.lgl',
-    'fDf.filter_mismatched_rows',
-    'simulate_longitudinal_data',
-    'fNum.signif_preserve_decimals',
-    'f_DS_path_FileNameExt.read.checkEntity',
-    'f_DSname.Search.read.checkEntity',
-    'f_FileNameExt.createBACKUP',
-    'f_path_path.BACKUP.overwrite',
-    'fPath.browseURL',
-    'fEnv.asList.allNames',
-    'f_RegExChrClass1_RegExChrClass2.setdiff_list',
-    'f_list_RegExChrClass.union_df',
-    'f_path.list_subpath.DepthFirstSearch_recursive',
-    'f_path.list_subpath.BreathFirstSearch',
-    'f_path.list_subpath',
-    'str_max_level1',
-    'str_max_level2',
-    'str_give_attr_F',
-    'str_max_level1.give_attr_F',
-    'str_max_level2.give_attr_F',
-    'paste0_collapse0',
-    'paste0_collapse0.print',
-    'cat0',
-    'catLF',
-    'deparse.cat0',
-    'fObject.DfObjectSize_IEC',
-    'f_vec.dput_line_by_line',
-    'f_list.dput_line_by_line',
-    'f_list.str_by_element',
-    'f_list.print_by_element',
-    'f_list_tibble.print_by_element',
-    'f_chrNameValuePairs2vector',
-    'f_vec1_vec2.setdiff_list',
-    'f_vec1_vec2.setdiff_df',
-    'f_list_vecs.union_df',
-    'f_vec_chr.strsplit0_as_list_vec',
-    'f_chr1.strsplit0_as_vec',
-    'f_chr1.strsplit0_as_vec.unique.sort',
-    'f_vec_chr.na_if_NotMatching',
-    'f_vec_chr.add_line_numbers',
-    'f_vec_chr.add_line_numbers.paste_collapse_LF_cat',
-    'f_vec_chr.list_SECTION_nonSECTION',
-    'fVec.na.locf',
-    'fLs.map_keepAttrs',
-    'fLs.removeEnvAttr',
-    'fLs.hasEnvAttr',
-    'fLs.removeEnvAttr.str',
-    'fLs.removeEnvAttr.saveRDS',
-    'f_FileNameExt.find_subpath',
-    'f_FileNameExt.find_subpath.BreathFirstSearch',
-    'f_list_list.to_matrix',
-    'f_list_list.to_data_frame',
-    'f_matrix.to_list_list',
-    'f_matrix.set_names.to_vector',
-    'fLsLs_exportJSON',
-    'fLsLs_exportCSV',
-    'f.generateText4OutputPath',
-    'f_df.add_VarNameT.deltaT0',
-    'f_df.add_VarNameT.pdeltaT0',
-    'f_df.add_RegExVars.kbins',
-    'f_df.add_RegExVars.quintile_factor',
-    'f_df.add_RegExVars.quartile_factor',
-    'fChr.as_numeric_safe_automatic',
-    'f_objectname.read_rds_or_xz',
-    'f_FileNameExt.read_rds_or_xz',
-    'fExcelPath_readAllSheets',
-    'f_path.is_git_tracked',
-    'f_gitattributes.split',
-    'f_file2.compare',
-    'f_url_destfile.DownloadIfDifferent',
-    'f_path.df_dirs_recursive.df_files',
-  )
+  source_text <- paste(vapply(r_sources, function(path) {
+    paste(readLines(path, warn = FALSE), collapse = "\n")
+  }, character(1)), collapse = "\n")
+  
+  # Check each function name exists in sources with proper escaping
   missing <- function_names[!vapply(function_names, function(name) {
-    grepl(paste0("\\.tmp\\$objectname\\s*=\\s*\\"", name, "\""), source_text)
+    # Escape special regex characters (especially dots)
+    escaped_name <- gsub("([.|()\\^{}+$*?\\[\\]])", "\\\\\\1", name)
+    pattern <- paste0("\\.tmp\\$objectname\\s*=\\s*\"", escaped_name, "\"")
+    grepl(pattern, source_text)
   }, logical(1))]
-  testthat::expect_length(missing, 0, info = paste("Missing definitions for:", paste(missing, collapse = ", ")))
+  
+  testthat::expect_length(missing, 0, 
+                         info = paste("Missing definitions for:", 
+                                    paste(missing, collapse = ", ")))
 })
