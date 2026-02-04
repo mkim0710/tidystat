@@ -1,0 +1,40 @@
+name: Test Canonical Functions
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'R/**'
+      - 'agents/root/canonical-list-of-functions.md'
+      - 'agents/root/tests/testthat/**'
+      - '.github/workflows/test-canonical-functions.yml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'R/**'
+      - 'agents/root/canonical-list-of-functions.md'
+      - 'agents/root/tests/testthat/**'
+      - '.github/workflows/test-canonical-functions.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup R
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: 'release'
+    
+    - name: Install testthat
+      run: |
+        install.packages('testthat')
+      shell: Rscript {0}
+    
+    - name: Run canonical function tests
+      run: |
+        library(testthat)
+        test_file('agents/root/tests/testthat/test-canonical-functions.R')
+      shell: Rscript {0}
