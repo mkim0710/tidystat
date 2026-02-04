@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('Path Operations')
-
 test_that("f_path.is_git_tracked checks git tracking", {
   if (exists("f_path.is_git_tracked", envir = env1$f)) {
     # Test with current directory (should be in git repo)

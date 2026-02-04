@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('Type Conversion')
-
 test_that("fChr.as_numeric_safe_automatic converts safely", {
   if (exists("fChr.as_numeric_safe_automatic", envir = env1$f)) {
     # Test basic conversion

@@ -32,17 +32,17 @@ Each function is documented with:
 ### 🧪 Unit Tests
 
 #### Test Files (9 categories)
-Comprehensive testthat unit tests covering all function categories:
+Comprehensive testthat unit tests covering all function categories (19 tests total):
 
-- `test-df-operations.R` - Data frame operations (25+ tests)
-- `test-file-io.R` - File I/O operations (15+ tests)
-- `test-vector-list.R` - Vector and list operations (20+ tests)
-- `test-matrix-array.R` - Matrix/array operations (10+ tests)
-- `test-path-operations.R` - Path operations (5+ tests)
-- `test-string-object.R` - String utilities (10+ tests)
-- `test-type-conversion.R` - Type conversions (8+ tests)
-- `test-regex.R` - Regular expressions (5+ tests)
-- `test-environment.R` - Environment operations (5+ tests)
+- `test-df-operations.R` - Data frame operations (4 tests)
+- `test-file-io.R` - File I/O operations (2 tests)
+- `test-vector-list.R` - Vector and list operations (4 tests)
+- `test-matrix-array.R` - Matrix/array operations (2 tests)
+- `test-path-operations.R` - Path operations (1 test)
+- `test-string-object.R` - String utilities (2 tests)
+- `test-type-conversion.R` - Type conversions (2 tests)
+- `test-regex.R` - Regular expressions (1 test)
+- `test-environment.R` - Environment operations (1 test)
 
 See [README_TESTS.md](./README_TESTS.md) for details on running tests.
 

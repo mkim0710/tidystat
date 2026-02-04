@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('Matrix and Array Operations')
-
 test_that("f_list_list.to_matrix converts nested lists", {
   if (exists("f_list_list.to_matrix", envir = env1$f)) {
     # Create a simple nested list

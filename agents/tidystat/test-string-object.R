@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('String and Object Utilities')
-
 test_that("paste0_collapse0 works correctly", {
   if (exists("paste0_collapse0", envir = env1$env.internal.attach)) {
     result <- env1$env.internal.attach$paste0_collapse0("a", "b", "c")

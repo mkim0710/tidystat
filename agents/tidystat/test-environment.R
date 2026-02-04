@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('Environment Operations')
-
 test_that("fEnv.asList.allNames converts environment to list", {
   if (exists("fEnv.asList.allNames", envir = env1$f)) {
     test_env <- new.env()

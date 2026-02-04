@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('Regular Expression Operations')
-
 test_that("f_RegExChrClass1_RegExChrClass2.setdiff_list works", {
   if (exists("f_RegExChrClass1_RegExChrClass2.setdiff_list", envir = env1$f)) {
     # Test set difference of regex character classes

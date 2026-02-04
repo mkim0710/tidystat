@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('Vector and List Operations')
-
 test_that("fVec.na.locf fills NAs correctly", {
   if (exists("fVec.na.locf", envir = env1$f)) {
     # Test basic LOCF

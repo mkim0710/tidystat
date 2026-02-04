@@ -15,8 +15,6 @@ if (file.exists(".Rprofile")) {
   if (exists(".First")) .First()
 }
 
-context('File I/O Operations')
-
 test_that("f_FileNameExt.createBACKUP creates backup files", {
   if (exists("f_FileNameExt.createBACKUP", envir = env1$f)) {
     # Create a temporary test file
