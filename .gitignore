@@ -157,6 +157,7 @@ __pycache__/
 
 # data files
 *.[Dd][Bb]
+*.[Aa][Cc][Cc][Dd][Bb]
 *.[Ss][Qq][Ll][Ii][Tt][Ee]
 *.[Ss][Aa][Ss]7[Bb][Dd][Aa][Tt]
 # *.rdata *.rda *.rds # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
