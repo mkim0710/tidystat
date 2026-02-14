@@ -106,9 +106,10 @@ __pycache__/
 
 # Compressed files
 *.[Zz][Ii][Pp]
-*.7z
 *.tar
-*.[gx]z
+*.gz
+*.xz
+*.7z
 
 # Link or alias files
 *.[Ll][Nn][Kk]
