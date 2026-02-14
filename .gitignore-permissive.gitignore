@@ -1,0 +1,258 @@
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# .gitignore is case-sensitive by default, but behavior may vary based on your filesystem. 
+# To configure git to ignore case, run the following command:
+# git config core.ignorecase true
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# * When a file matches both the global and project .gitignore: The project .gitignore overrides the global .gitignore
+# * When a file matches only the global .gitignore: If the project .gitignore has no explicitly matching pattern, the global .gitignore rule takes effect. (Caution~!!!)
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Caution) Different from RegEx~!! (especially be cautious with the question mark (?))
+# ab        : The the exact string "ab", either in file name or directory name. There should be no other characters before or after the string. (Caution: does not match "ab.xy" nor "xy.ab". Does match "ab/xy"?? Does match "xy/ab"??)
+# [Aa][Bb]  : The string "ab", case ignored, either in the file name or the directory name. There should be no other characters before or after the string. (Caution: does not match "ab.xy" nor "xy.ab". Does match "ab/xy"?? Does match "xy/ab"??)
+# *         : The asterisk(*) means "any character" zero or more times (Cf. In RegEx, the aristerisk (*) means "zero or more times" of the PRECEDING CHARACTER.)
+# .*        : Litteral dot(.), followed by "any character" zero or more times. (Caution: does not match "ab.c". Does match ".gitignore")
+# ab*       : The exact string "ab" followed by any characters, either in file name or directory name. There should be no other characters before the string. (Caution: Does not match "a" as in RegEx. Does match "ab.xy". Does match "abc/xy")
+# ?         : The question mark(?) means "any character" EXACTLY ONE TIME. (Cf. In RegEx, the question mark(?) means "zero or one time" of the PRECEDING CHARACTER.)
+# .?        : Litteral dot(.), followed by "any character" EXACTLY ONE TIME. (Caution: Does not match "c" as in RegEx. Does not match "." as in RegEx. Does match ".c".)
+# [Aa]?     : The character "a", case ignored, followed by "any character" EXACTLY ONE TIME. (Caution: Does not match "a" as in RegEx. Does match "ab".)
+# a?b       : The character "a", followed by "any character" EXACTLY ONE TIME, followed by "b". (Caution: Does not match "ab" as in RegEx. Does not match "b" as in RegEx. Does match "axb". Does match "a.b".)
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@ https://git-scm.com/docs/gitignore
+# Literal Matches: Simple file or directory names can be ignored directly.
+# file.txt
+# directory/
+# Wildcard Matches: The * wildcard matches zero or more characters.
+# *.log          -> Matches any file ending with .log
+# temp*          -> Matches any file starting with temp
+# Directory Matches: Adding a trailing slash / indicates a directory.
+# logs/          -> Ignores the logs directory
+# Negation: Patterns can be negated by starting with an exclamation mark !.
+# !important.log -> Do not ignore important.log even if *.log is ignored
+# Glob Patterns: ** matches directories recursively.
+# **/temp        -> Matches temp files in any directory
+# Comments: Lines starting with # are comments. 
+# This is a comment
+# Caution: Comments must start with # at the beginning of the line or after optional whitespace.
+# in the middle of a line does not create a comment.
+# *** Important) even if a file type is ignored, it can be forced to be tracked by:
+# git add -f specific_filename.ext
+# *** Important) even if a commit ignored, it can be forced to be tracked by:
+# git add -f specific_filename.ext
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# *** use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
+# *** Let's just use pre-commit hook for file sizes only.
+# *** For binary data files, let's just ignore, and search for files intermittently (maybe make a custom git status --ignored?)
+# https://stackoverflow.com/questions/466764/git-command-to-show-which-specific-files-are-ignored-by-gitignore
+# git status --ignored
+# git check-ignore -v *  # along with the .gitignore rule that led to its exclusion
+# git check-ignore -v **/*  # For a recursive list including subdirectories, assuming your shell supports the ** glob pattern.
+# find . -type f | git check-ignore --stdin -v  # For a recursive list including subdirectories, including files in subdirectories not picked up by standard glob patterns.
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# R/RStudio files
+*.Rhistory
+*.Rapp.history
+.Ruserdata
+*.Rproj
+.Rproj.user/
+rsconnect/
+# .Renviron: may store <APIKEY>
+.Renviron
+*.Renviron*
+
+# knitr and R markdown default cache directories/temporary files
+*_cache/
+cache/
+*.utf8.md
+*.knit.md
+
+# Python bytecode caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore MacOS system files
+.DS_Store
+
+# Private files
+*[Kk][Ee][Yy]
+*[Kk][Ee][Yy].*
+[Mm][Hh])*.[Rr]
+*-[Pp][Ee][Rr][Ss][Oo][Nn][Aa][Ll]*
+*-[Pp][Rr][Ii][Vv][Aa][Tt][Ee]*
+*-[Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ee]*
+*- [Aa][Nn][Nn][Oo][Tt][Aa][Tt][Ee]*
+# *-[Ee][Dd][Ii][Tt]*
+# *- [Ee][Dd][Ii][Tt]*
+*-[Ii][Nn][Ff][Oo]*
+*- [Ii][Nn][Ff][Oo]*
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.[Hh][Tt][Tt][Rr]-[Oo][Aa][Uu][Tt][Hh]
+
+# Quarto files
+.[Qq][Uu][Aa][Rr][Tt][Oo]
+
+# Editor-specific files
+#.[Vv][Ss][Cc][Oo][Dd][Ee]
+*[Hh][Ii][Ss][Tt][Oo][Rr][Yy]/
+
+# Compressed files
+*.[Zz][Ii][Pp]
+*.7z
+*.tar
+*.[gx]z
+
+# Link or alias files
+*.[Ll][Nn][Kk]
+*alias
+*alias [2-9]
+
+# Document files
+*.[Pp][Pp][Tt]
+*.[Pp][Pp][Tt][XxMm]
+*.[Pp][Oo][Tt][XxMm]
+*.[Tt][Hh][Mm][Xx]
+# *.xls *.xlsx # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
+*.[Xx][Ll][Ss]
+*.[Xx][Ll][Ss][XxMm]
+*.[Dd][Oo][Cc]
+*.[Dd][Oo][Cc][XxMm]
+*.[Rr][Tt][Ff]
+*.[Hh][Ww][Pp]
+*.[Hh][Ww][Pp][Xx]
+*.[Pp][Dd][Ff]
+*.[Ff][Pp]
+*.[Nn][Bb].[Hh][Tt][Mm][Ll]
+*.[Hh][Tt][Mm][Ll]
+*_[Ff][Ii][Ll][Ee][Ss]/
+
+# Temporary and debug files
+[Tt][Ee][Mm][Pp]
+[Tt][Mm][Pp]
+*-[Tt][Mm][Pp]*
+*-[Vv][Oo][Ii][Dd]*
+# *-[Pp][Ee][Nn][Dd][Ii][Nn][Gg]*
+# *-[Dd][Ee][Vv]*
+*-[Dd][Ee][Bb][Uu][Gg]*
+[Bb][Aa][Cc][Kk][Uu][Pp]
+*-[Bb][Aa][Cc][Kk][Uu][Pp]*
+# *-[Aa][Rr][Cc][Hh][Ii][Vv][Ee]*
+[Oo][Ll][Dd]
+*-[Oo][Ll][Dd]*
+
+# Log files
+# *-[Ll][Oo][Gg]*
+*.[Ll][Oo][Gg]
+
+# dump files
+*.[Dd][Mm][Pp]
+
+# data files
+*.[Dd][Bb]
+*.[Aa][Cc][Cc][Dd][Bb]
+*.[Ss][Qq][Ll][Ii][Tt][Ee]
+*.[Ss][Aa][Ss]7[Bb][Dd][Aa][Tt]
+# *.rdata *.rda *.rds # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
+*.[Rr][Dd][Aa][Tt][Aa]
+*.[Rr][Dd][Aa]
+*.[Rr][Dd][Ss]
+*.[Cc][Ss][Vv] # -> use pre-commit hook to block commit based on the size limit?
+
+# Executable files & Binary files
+*.[Ee][Xx][Ee]
+*.[Dd][Ll][Ll]
+*.[Bb][Ii][Nn]
+*.winmd
+# *.[Rr][Ee][Gg]
+*.[Mm][Ss][Ii]
+*.[Jj][Aa][Rr]
+*.[Dd][Oo][Ww][Nn][Ll][Oo][Aa][Dd]
+*.[Mm][Tt][Aa]
+
+# Image files
+*.[Pp][Nn][Gg]
+*.[Jj][Pp][Ee][Gg]
+*.[Jj][Pp][Gg]
+*.[Gg][Ii][Ff]
+*.[Tt][Ii][Ff]
+*.[Bb][Mm][Pp]
+# *.[Ss][Vv][Gg]
+
+# Media files
+*.[Ww][Aa][Vv]
+*.[Ww][Mm][Vv]
+*.[Mm][Pp][34]
+*.[Mm]4[Aa]
+
+# lock files & sync database files
+sync.ffs_lock
+*.ffs_db
+.tmp.driveupload/
+.obsidian/*
+!.obsidian/*.json
+!.obsidian/regex-rulesets/
+!.obsidian/regex-rulesets/*.RegExPipeLine
+.trash/
+
+# MHahk
+msedgeprofile_autocoder/
+browser/
+bin/
+
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# @@ Re-inclusion by Negation (Do Not Ignore, Always Track)
+!*@Rocker.html
+!*@Rocker.pdf
+!*@Rocker*[^.][^n][^b].html
+!*@Rocker*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
+!*@Posit.Cloud.html
+!*@Posit.Cloud.pdf
+!*@Posit.Cloud*[^.][^n][^b].html
+!*@Posit.Cloud*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
+!github-temp/
+!github-tmp/
+!github-dev/
+!github-debug/
+!github-backup/
+!github-archive/
+!github-old/
+!MHjavascript/*.html
+!MHjavascript/*/*.html
+!*.js.html
+!*.js-call.html
+!*-edit.md
+
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# @@ Re-exclusion to override the `Re-inclusion by Negation` (Last Rule Wins)
+GitIgnoreFiles/
+*-[Gg]it[Ii]gnore*
+*git.bfg-report/
+
+# Machine-specific backup files
+*-ID92i5-4570T*
+*-MKIM-15ZD980-HX70K*
+*-LIVAi7-8700*
+*-ASRockX300Ryzen5600G*
+*-Min-[Hh]yung’s Mac*
+*-MAGB760M13700KF*
+*-NUC14-185*
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+.obsidian/workspace.json
