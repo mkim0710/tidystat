@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FreeFileSync XmlType="BATCH" XmlFormat="23">
+    <Notes/>
+    <Compare>
+        <Variant>TimeAndSize</Variant>
+        <Symlinks>Direct</Symlinks>
+        <IgnoreTimeShift/>
+    </Compare>
+    <Synchronize>
+        <Changes>
+            <Left Create="right" Update="right" Delete="right"/>
+            <Right Create="left" Update="left" Delete="left"/>
+        </Changes>
+        <DeletionPolicy>Versioning</DeletionPolicy>
+        <VersioningFolder Style="Replace">D:\D_FFS_Versioning</VersioningFolder>
+    </Synchronize>
+    <Filter>
+        <Include>
+            <Item>*</Item>
+        </Include>
+        <Exclude>
+            <Item>\System Volume Information\</Item>
+            <Item>\$Recycle.Bin\</Item>
+            <Item>\RECYCLE?\</Item>
+            <Item>\Recovery\</Item>
+            <Item>*\thumbs.db</Item>
+            <Item>\.git\</Item>
+            <Item>\.Rproj.user\</Item>
+            <Item>*\.Rproj.user\</Item>
+            <Item>*.Rproj</Item>
+            <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
+            <Item>\Obsidian Templates</Item>
+            <Item>*-NoSync*</Item>
+            <Item>regex-rulesets</Item>
+            <Item>ObsidianFiles</Item>
+            <Item>ObsidianLinks</Item>
+        </Exclude>
+        <SizeMin Unit="None">0</SizeMin>
+        <SizeMax Unit="None">0</SizeMax>
+        <TimeSpan Type="None">0</TimeSpan>
+    </Filter>
+    <FolderPairs>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_KNHIS.CohortGJ0910</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_KNHIS.CohortGJ0910</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_KNHIS_HEALS0215_01</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_KNHIS_HEALS0215_01</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_KNHIS_Demo</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_KNHIS_Demo</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_NoDependency</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_NoDependency</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject-MHdaily</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject-MHdaily</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_KoGES2020AS8840</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_KoGES2020AS8840</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_KoGES_AA10030</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_KoGES_AA10030</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\Rproject_Rmd</Left>
+            <Right>D:\OneDrive\[][Rproject]\Rproject_Rmd</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\github_tidystat</Left>
+            <Right>D:\OneDrive\[][Rproject]\github_tidystat</Right>
+        </Pair>
+    </FolderPairs>
+    <Errors Ignore="false" Retry="0" Delay="5"/>
+    <PostSyncCommand Condition="Completion"/>
+    <LogFolder/>
+    <EmailNotification Condition="Always"/>
+    <GridViewType>Action</GridViewType>
+    <Batch>
+        <ProgressDialog Minimized="true" AutoClose="true"/>
+        <ErrorDialog>Show</ErrorDialog>
+        <PostSyncAction>None</PostSyncAction>
+    </Batch>
+</FreeFileSync>
