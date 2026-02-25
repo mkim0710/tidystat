@@ -151,7 +151,8 @@ __pycache__/
 
 # Log files
 # *-[Ll][Oo][Gg]*
-*.[Ll][Oo][Gg]
+# *.[Ll][Oo][Gg]
+*pipe-pane.log
 
 # dump files
 *.[Dd][Mm][Pp]
