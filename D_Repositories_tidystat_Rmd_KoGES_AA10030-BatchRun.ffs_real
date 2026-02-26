@@ -2,11 +2,15 @@
 <FreeFileSync XmlType="REAL" XmlFormat="2">
     <Directories>
         <Item>D:\D_Repositories\github_tidystat</Item>
+        <Item>D:\D_Repositories\MHdotfiles</Item>
+        <Item>D:\D_Repositories\MHShell</Item>
         <Item>D:\D_Repositories\Rproject-MHdaily</Item>
         <Item>D:\D_Repositories\Rproject_KoGES2020AS8840</Item>
         <Item>D:\D_Repositories\Rproject_KoGES_AA10030</Item>
         <Item>D:\D_Repositories\Rproject_NoDependency</Item>
         <Item>D:\D_Repositories\Rproject_Rmd</Item>
+        <Item>D:\OneDrive\MHdotfiles</Item>
+        <Item>D:\OneDrive\MHShell</Item>
         <Item>D:\OneDrive\[][Rproject]\github_tidystat</Item>
         <Item>D:\OneDrive\[][Rproject]\Rproject-MHdaily</Item>
         <Item>D:\OneDrive\[][Rproject]\Rproject_KoGES2020AS8840</Item>
