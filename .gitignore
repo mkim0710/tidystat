@@ -74,6 +74,12 @@ cache/
 *.utf8.md
 *.knit.md
 
+# Virtual environments: .venv/, .env/
+.[Vv][Ee][Nn][Vv]/
+.[Ee][Nn][Vv]/
+[Vv][Ee][Nn][Vv]/
+[Ee][Nn][Vv]/
+
 # Python bytecode caches
 __pycache__/
 *.py[cod]
