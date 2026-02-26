@@ -41,6 +41,14 @@
     </Filter>
     <FolderPairs>
         <Pair>
+            <Left>D:\D_Repositories\MHShell</Left>
+            <Right>D:\OneDrive\MHShell</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\D_Repositories\MHdotfiles</Left>
+            <Right>D:\OneDrive\MHdotfiles</Right>
+        </Pair>
+        <Pair>
             <Left>D:\D_Repositories\Rproject_KNHIS.CohortGJ0910</Left>
             <Right>D:\OneDrive\[][Rproject]\Rproject_KNHIS.CohortGJ0910</Right>
         </Pair>
