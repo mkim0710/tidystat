@@ -75,10 +75,11 @@ cache/
 *.knit.md
 
 # Virtual environments: .venv/, .env/
-.[Vv][Ee][Nn][Vv]/
 .[Ee][Nn][Vv]/
-[Vv][Ee][Nn][Vv]/
+.[Vv][Ee][Nn][Vv]/
+.venv-tt/
 [Ee][Nn][Vv]/
+[Vv][Ee][Nn][Vv]/
 
 # Python bytecode caches
 __pycache__/
