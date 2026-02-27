@@ -74,10 +74,9 @@ cache/
 *.utf8.md
 *.knit.md
 
-# Virtual environments: .venv/, .env/
-.[Ee][Nn][Vv]/
-.[Vv][Ee][Nn][Vv]/
-.venv-tt/
+# Virtual environments: .venv*/, .env*/
+.[Ee][Nn][Vv]*/
+.[Vv][Ee][Nn][Vv]*/
 [Ee][Nn][Vv]/
 [Vv][Ee][Nn][Vv]/
 
