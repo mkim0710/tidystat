@@ -264,3 +264,8 @@ GitIgnoreFiles/
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 .obsidian/workspace.json
+
+# Claude Desktop App - sensitive config (contains oauth tokens)
+Claude/desktop/config.json
+# Claude Code worktrees (temporary agent working directories)
+.claude/worktrees/
