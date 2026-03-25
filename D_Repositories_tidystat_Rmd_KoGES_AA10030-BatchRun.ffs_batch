@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FreeFileSync XmlType="BATCH" XmlFormat="23">
-    <Notes/>
+    <Notes>PostSyncCommand runs Reconstruct-Symlinks.ps1 to recreate NTFS symlinks that cannot survive OneDrive sync. Script location: D:\D_Repositories\MHShell\MHPowerShell-Windows-Management\Reconstruct-Symlinks.ps1. Edit the $Symlinks array in that script to add/remove symlink definitions.</Notes>
     <Compare>
         <Variant>TimeAndSize</Variant>
         <Symlinks>Direct</Symlinks>
@@ -11,8 +11,7 @@
             <Left Create="right" Update="right" Delete="right"/>
             <Right Create="left" Update="left" Delete="left"/>
         </Changes>
-        <DeletionPolicy>Versioning</DeletionPolicy>
-        <VersioningFolder Style="Replace">D:\D_FFS_Versioning</VersioningFolder>
+        <DeletionPolicy>RecycleBin</DeletionPolicy>
     </Synchronize>
     <Filter>
         <Include>
@@ -74,7 +73,7 @@
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
-    <PostSyncCommand Condition="Completion"/>
+    <PostSyncCommand Condition="Completion">powershell.exe -ExecutionPolicy Bypass -File "D:\D_Repositories\MHShell\MHPowerShell-Windows-Management\Reconstruct-Symlinks.ps1"</PostSyncCommand>
     <LogFolder/>
     <EmailNotification Condition="Always"/>
     <GridViewType>Action</GridViewType>
