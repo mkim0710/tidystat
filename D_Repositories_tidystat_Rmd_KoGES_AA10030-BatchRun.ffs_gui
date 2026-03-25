@@ -12,6 +12,7 @@
             <Right Create="left" Update="left" Delete="left"/>
         </Changes>
         <DeletionPolicy>RecycleBin</DeletionPolicy>
+        <VersioningFolder Style="Replace"/>
     </Synchronize>
     <Filter>
         <Include>
