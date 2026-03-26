@@ -11,7 +11,7 @@
             <Left Create="right" Update="right" Delete="right"/>
             <Right Create="left" Update="left" Delete="left"/>
         </Changes>
-        <DeletionPolicy>RecycleBin</DeletionPolicy>
+        <DeletionPolicy>Permanent</DeletionPolicy>
         <VersioningFolder Style="Replace"/>
     </Synchronize>
     <Filter>
