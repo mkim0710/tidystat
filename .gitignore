@@ -269,3 +269,6 @@ GitIgnoreFiles/
 Claude/desktop/config.json
 # Claude Code worktrees (temporary agent working directories)
 .claude/worktrees/
+
+# Node.js dependencies
+node_modules/
